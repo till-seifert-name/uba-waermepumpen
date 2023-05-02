@@ -1,0 +1,15 @@
+.mat-drawer-container {
+  min-height: 100%;
+}
+
+
+::ng-deep .mat-horizontal-stepper-wrapper {
+  height: 100%;
+}
+
+::ng-deep .mat-horizontal-stepper-wrapper .mat-horizontal-content-container {
+  flex-grow: 1;
+  max-height: calc(100vh - 17em);
+  overflow-x: visible;
+  overflow-y: auto;
+}
