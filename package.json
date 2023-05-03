@@ -1,11 +1,11 @@
 {
-  "name": "dau-online-tool",
+  "name": "dbu-online-tool",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-dev": "ng build --base-href=/dau-online-tool/",
+    "build-dev": "ng build --base-href=/dbu-online-tool/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
