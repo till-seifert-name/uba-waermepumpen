@@ -68,10 +68,9 @@
                       </p>
                       <mat-form-field appearance="outline" class="w-100">
                         <mat-label>km/Tag</mat-label>
-                        <input matInput type="number" [(ngModel)]="grid.cells['Names']['F_R1']"
-                               name="F_R1" #F_R1="ngModel" required
-                               min="1"
-                               step="1">
+                        <input matInput type="number" [ngModel]="grid.cells['Names']['F_R1']"
+                               name="F_R1" #F_R1="ngModel" required min="1" step="1"
+                               (ngModelChange)="grid.setCell('Names', 'F_R1', F_R1.value)">
                       </mat-form-field>
                     </div>
 
@@ -81,9 +80,9 @@
                       </p>
                       <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Strecken über 150 km</mat-label>
-                        <mat-select [(ngModel)]="grid.cells['Names']['F_S1']" name="F_S1"
-                                    #F_S1="ngModel"
-                                    required>
+                        <mat-select [ngModel]="grid.cells['Names']['F_S1']" name="F_S1"
+                                    #F_S1="ngModel" required
+                                    (selectionchange)="grid.setCell('Names', 'F_S1', F_S1.value)">
                           <mat-option
                             *ngFor="let option of [grid.cells['Names']['A_S1'], grid.cells['Names']['A_S2'], grid.cells['Names']['A_S3']]"
                             [value]="option">
@@ -101,8 +100,9 @@
                   </p>
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Häufigkeit Nutzung</mat-label>
-                    <mat-select [(ngModel)]="grid.cells['Names']['F_SZ1']" name="F_SZ1" #F_SZ1="ngModel"
-                                required>
+                    <mat-select [ngModel]="grid.cells['Names']['F_SZ1']" name="F_SZ1"
+                                #F_SZ1="ngModel" required
+                                (ngModelChange)="grid.setCell('Names', 'F_SZ1', F_SZ1.value)">
                       <mat-option
                         *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
                         [value]="option">
@@ -118,8 +118,8 @@
                   </p>
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Ladesäulen verfügbar?</mat-label>
-                    <mat-select [(ngModel)]="grid.cells['Names']['F_L1']" name="F_L1" #F_L1="ngModel"
-                                required>
+                    <mat-select [ngModel]="grid.cells['Names']['F_L1']" name="F_L1" #F_L1="ngModel" required
+                                (ngModelChange)="grid.setCell('Names', 'F_L1', F_L1.value)">
                       <mat-option
                         *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
                         [value]="option">
@@ -133,8 +133,8 @@
                   </p>
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Ladesäulen auf Strecke verfügbar?</mat-label>
-                    <mat-select [(ngModel)]="grid.cells['Names']['F_L2']" name="F_L2" #F_L2="ngModel"
-                                required>
+                    <mat-select [ngModel]="grid.cells['Names']['F_L2']" name="F_L2" #F_L2="ngModel" required
+                                (ngModelChange)="grid.setCell('Names', 'F_L2', F_L2.value)">
                       <mat-option
                         *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
                         [value]="option">
@@ -148,8 +148,8 @@
                   </p>
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Fahrzeug Teil eines Fuhrparks?</mat-label>
-                    <mat-select [(ngModel)]="grid.cells['Names']['F_F1']" name="F_F1" #F_F1="ngModel"
-                                required>
+                    <mat-select [ngModel]="grid.cells['Names']['F_F1']" name="F_F1" #F_F1="ngModel" required
+                                (ngModelChange)="grid.setCell('Names', 'F_F1', F_F1.value)">
                       <mat-option
                         *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
                         [value]="option">

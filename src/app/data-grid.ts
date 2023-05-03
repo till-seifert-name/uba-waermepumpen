@@ -1,3 +1,5 @@
+import {Subject} from "rxjs";
+
 /**
  * Represents the contents of a cell in the DataGrid.
  */
@@ -5,9 +7,24 @@ export type CellContent = string | CellFunc | number;
 /**
  * A function that can be used as the content of a cell in the DataGrid.
  */
-export type CellFunc = (sheet: string, cell: string, grid: DataGrid) => any;
+export type CellFunc = (sheet: string, cell: string, grid: DataGrid) => number | string;
 
 export type Sheet = Record<string, CellContent>;
+export type CellChange = { sheet: string; cell: string; value: any };
+
+function isRestoredSheets(data: any): data is Record<string, Sheet> {
+  if (typeof data !== 'object' || data === null) {
+    return false;
+  }
+
+  for (const sheet in data) {
+    if (typeof data[sheet] !== 'object' || data[sheet] === null) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 /**
  * A class representing a grid of data, similar to an Excel spreadsheet.
@@ -15,6 +32,7 @@ export type Sheet = Record<string, CellContent>;
 export class DataGrid {
   cells: Record<string, Sheet>;
   results: Record<string, Record<string, any>>;
+  private cellChangedSubject: Subject<CellChange> = new Subject();
   g: (sheet: string, cell: string) => number | string;
 
   constructor() {
@@ -28,19 +46,71 @@ export class DataGrid {
     console.log('DataGrid', ...l)
   }
 
+  onCellChanged(): Subject<CellChange> {
+    return this.cellChangedSubject;
+  }
+
+  /**
+   * Method to serialize the cells
+   */
+  serializeCells(): string {
+    return JSON.stringify(this.cells);
+  }
+
+  // Method to serialize only the whitelisted cells for all sheets
+  serializeWhitelistedCells(whitelist: string[]): string {
+    const whitelistedSheets: Record<string, Sheet> = {};
+
+    for (const sheetName in this.cells) {
+      whitelistedSheets[sheetName] = {};
+      for (const cell in this.cells[sheetName]) {
+        if (whitelist.includes(cell)) {
+          whitelistedSheets[sheetName][cell] = this.cells[sheetName][cell];
+        }
+      }
+    }
+
+    return JSON.stringify(whitelistedSheets);
+  }
+
+
+  /**
+   * Method to restore cells from serialized data
+   */
+  restoreCells(json: string) {
+    try {
+      const restoredSheets = JSON.parse(json);
+      if (!isRestoredSheets(restoredSheets)) {
+        throw new Error('Invalid data format for restored cells');
+      }
+      for (const sheetName in restoredSheets) {
+        this.cells[sheetName] ??= {};
+        for (const cell in restoredSheets[sheetName]) {
+          if (restoredSheets[sheetName][cell] !== null) {
+            this.cells[sheetName][cell] = restoredSheets[sheetName][cell];
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error restoring cells:', error);
+    }
+  }
+
   /**
    * Sets the content of the specified cell in the specified sheet.
    */
-  setCell(sheet: string, cell: string, content: CellContent): void {
-    if (typeof this.cells[sheet] === 'undefined') {
-      this.cells[sheet] = {};
+  setCell(sheet: string, cell: string, value: CellContent): void {
+    // clear result cache, since input changed
+    this.clearResults();
+
+    this.cells[sheet] ??= {};
+
+    if (typeof value === 'string' && /^[0-9\-]*[.,]?[0-9Ee\-]+$/.test(value)) {
+      value = parseFloat(value.replace(/[.,]/, '.'));
     }
 
-    if (typeof content === 'string' && /^[0-9\-]*[.,]?[0-9Ee\-]+$/.test(content)) {
-      content = parseFloat(content.replace(/[.,]/, '.'));
-    }
-
-    this.cells[sheet][cell] = content;
+    this.cells[sheet][cell] = value;
+    this.cellChangedSubject.next({sheet, cell, value});
   }
 
   /**
@@ -76,15 +146,25 @@ export class DataGrid {
     this.cells[sheet] ??= {};
     this.results[sheet] ??= {};
 
-    const cellContent = /*this.results[sheet][cell] ?? */this.cells[sheet][cell];
+    const cellContent = this.results[sheet][cell] ?? this.cells[sheet][cell];
 
     if (typeof cellContent === 'function') {
-      const functionResult = cellContent(sheet, cell, this);
-      this.results[sheet][cell] = functionResult;
-      //DataGrid.log(`${sheet}:${cell}  ${this.results[sheet][cell]}`);
-      return functionResult;
+      return this.resolveFunction(sheet, cell, cellContent);
     }
     return cellContent || 0;
+  }
+
+  private resolveFunction(sheet: string, cell: string, func: CellFunc): number {
+    this.results[sheet] ??= {};
+
+    // null marks that the cell is part of the stack that is just evaluated, to detect loops
+    if (this.results[sheet][cell] === null) {
+      throw new Error(`Circular dependency detected at ${sheet}!${cell}`);
+    }
+
+    this.results[sheet][cell] = null;
+    this.results[sheet][cell] = func(sheet, cell, this);
+    return this.results[sheet][cell];
   }
 
   /**

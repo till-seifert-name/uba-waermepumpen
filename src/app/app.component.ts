@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {CellContent, DataGrid, UND, WAHR, WENNS} from "./data-grid";
-import {Fragen_Prototyp_Einzelfahrzeug_data, Empfehlungslisten_data} from "./data";
+import {DataGrid, UND, WAHR, WENNS} from "./data-grid";
+import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data} from "./data";
+import {debounceTime, filter} from "rxjs";
 
+
+const STORAGE_KEY = 'DBU-DATA';
 
 @Component({
   selector: 'app-root',
@@ -102,8 +105,35 @@ export class AppComponent {
         " "
       );
     });
+
+
+    // load saved state
+
+    const cellsToSave: string[] = [
+      'F_R1',
+      'F_S1',
+      'F_SZ1',
+      'F_L1',
+      'F_L2',
+      'F_F1',
+    ];
+
+    // Subscribe to (some) cell changes save to localStorage
+    grid.onCellChanged().pipe(
+      filter(cellChange => cellsToSave.includes(cellChange.cell)),
+      debounceTime(1000)
+    ).subscribe(cellChange => {
+      console.log(`Cell changed: ${cellChange.sheet}!${cellChange.cell} = ${cellChange.value}`);
+      localStorage.setItem(STORAGE_KEY, grid.serializeWhitelistedCells(cellsToSave));
+    });
+
+    // Restore cells from localStorage if available
+    const serializedData = localStorage.getItem(STORAGE_KEY);
+    if (serializedData) {
+      grid.restoreCells(serializedData);
+      console.log(`Input restored: ${serializedData}`);
+    }
+
   }
-
-
 }
 
