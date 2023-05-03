@@ -53,8 +53,11 @@
                  </mat-step>-->
 
                 <mat-step>
-                  <ng-template matStepLabel>Antriebsart</ng-template>
+                  <ng-template matStepLabel>
+                    Antriebsart
+                  </ng-template>
                   <h2>Antriebsart</h2>
+
                   <p>
                     In diesem Abschnitt geht es darum, wie das Fahrprofil aussieht und ob Lademöglichkeiten bestehen.
                     Diese Fragestellungen sind relevant, um ein möglichst umweltverträgliches Fahrzeug bzgl. der
@@ -82,7 +85,7 @@
                         <mat-label>Strecken über 150 km</mat-label>
                         <mat-select [ngModel]="grid.cells['Names']['F_S1']" name="F_S1"
                                     #F_S1="ngModel" required
-                                    (selectionchange)="grid.setCell('Names', 'F_S1', F_S1.value)">
+                                    (ngModelChange)="grid.setCell('Names', 'F_S1', F_S1.value)">
                           <mat-option
                             *ngFor="let option of [grid.cells['Names']['A_S1'], grid.cells['Names']['A_S2'], grid.cells['Names']['A_S3']]"
                             [value]="option">
@@ -94,7 +97,6 @@
                   </div>
 
 
-                  <!-- Existing question -->
                   <p>
                     Wie häufig werden die Tagesstrecken im Normalfall von Standzeiten (≈ mind. 30 min) unterbrochen?
                   </p>
@@ -111,7 +113,6 @@
                     </mat-select>
                   </mat-form-field>
 
-                  <!-- New questions with Ja/Nein values from sheet object -->
                   <p>
                     Sind Ladesäulen am Standort bzw. im umliegenden öffentlichen Raum oder am Wohnort der Nutzenden
                     verfügbar?
@@ -159,79 +160,98 @@
                   </mat-form-field>
 
 
-                  <div>
+                  <div class="d-flex justify-content-between">
                     <button mat-raised-button matStepperPrevious>Zurück</button>
-                    <button mat-raised-button matStepperNext [disabled]="!F_R1.valid || !F_SZ1.valid">
+                    <button mat-raised-button color="primary" matStepperNext [disabled]="!F_R1.valid || !F_SZ1.valid">
                       Weiter
                     </button>
                   </div>
                 </mat-step>
 
-                <mat-step>
-                  <ng-template matStepLabel>2.2 Verkehrsmittel</ng-template>
-                  <h2>2.2 Verkehrsmittel</h2>
 
+                <mat-step>
+                  <ng-template matStepLabel>
+                    Fahrzeugsegment
+                  </ng-template>
+                  <h2>Fahrzeugsegment</h2>
+
+                  <p>
+                    In diesem Abschnitt geht es darum, welche Aufgabenstellung erfüllt werden soll, um ein möglichst
+                    umweltverträgliches Fahrzeug bzgl. des Fahrzeugsegments zu wählen. Die Abfragen bezüglich der
+                    Antriebsart gehen teilweise ebenfalls mit ein in die Empfehlung zum Fahrzeugsegment.
+                  </p>
 
                   <div class="row">
-                    <div class="col-auto">
-                      <h3>Öffentliche Verkehrsmittel</h3>
-
-                      <mat-form-field appearance="outline">
-                        <mat-label>Häufigkeit Nutzung</mat-label>
-                        <mat-select [(ngModel)]="publicTransport" name="publicTransport"
-                                    #F_S1="ngModel"
-                                    required>
-                          <mat-option value="fast_nie">Fast nie</mat-option>
-                          <mat-option value="ab_und_zu">Ab und zu</mat-option>
-                          <mat-option value="regelmäßig">Regelmäßig</mat-option>
-                        </mat-select>
+                    <div class="col-auto col-md-6">
+                      <p>
+                        Wie viele <strong>Personen</strong> fahren maximal zusammen in dem Pkw?
+                      </p>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Person(en)</mat-label>
+                        <input matInput type="number" [ngModel]="grid.cells['Names']['F_P1']"
+                               name="F_P1" #F_P1="ngModel" required min="1" step="1" max="9"
+                               (ngModelChange)="grid.setCell('Names', 'F_P1', F_P1.value)">
                       </mat-form-field>
                     </div>
-                    <div class="col-auto">
-                      <h3>Fahrrad</h3>
-                      <mat-form-field appearance="outline">
-                        <mat-label>Häufigkeit Nutzung</mat-label>
-                        <mat-select [(ngModel)]="bicycle" name="bicycle" #bicycleCtrl="ngModel" required>
-                          <mat-option value="fast_nie">Fast nie</mat-option>
-                          <mat-option value="ab_und_zu">Ab und zu</mat-option>
-                          <mat-option value="regelmäßig">Regelmäßig</mat-option>
+
+                    <div class="col-auto col-md-6">
+                      <p>
+                        <strong>Wie häufig</strong> werden alle <strong>Sitzplätze benötigt</strong>?
+                      </p>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Sitzplätze</mat-label>
+                        <mat-select [ngModel]="grid.cells['Names']['F_SP1']" name="F_SP1"
+                                    #F_SP1="ngModel" required
+                                    (ngModelChange)="grid.setCell('Names', 'F_SP1', F_SP1.value)">
+                          <mat-option
+                            *ngFor="let option of [grid.cells['Names']['A_SP1'], grid.cells['Names']['A_SP2'], grid.cells['Names']['A_SP3']]"
+                            [value]="option">
+                            {{ option }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
                   </div>
 
 
-                  <h3>PKW</h3>
-                  <h4>Pooling</h4>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Häufigkeit Nutzung</mat-label>
-                    <mat-select [(ngModel)]="carPooling" name="carPooling" #carPoolingCtrl="ngModel" required>
-                      <mat-option value="fast_nie">Fast nie</mat-option>
-                      <mat-option value="ab_und_zu">Ab und zu</mat-option>
-                      <mat-option value="regelmäßig">Regelmäßig</mat-option>
+                  <p>
+                    Wie häufig bestehen aufwändige Anforderungen an den Transport von Gegenständen (z.B.
+                    viele/große/schwere Gegenstände), sodass Vans/Utilities notwendig sind?
+                  </p>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Transport von Gegenständen</mat-label>
+                    <mat-select [ngModel]="grid.cells['Names']['F_T1']" name="F_T1"
+                                #F_T1="ngModel" required
+                                (ngModelChange)="grid.setCell('Names', 'F_T1', F_T1.value)">
+                      <mat-option
+                        *ngFor="let option of [grid.cells['Names']['A_T1'], grid.cells['Names']['A_T2'], grid.cells['Names']['A_T3']]"
+                        [value]="option">
+                        {{ option }}
+                      </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <h4>Sharing</h4>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Häufigkeit Nutzung</mat-label>
-                    <mat-select [(ngModel)]="carSharing" name="carSharing" #carSharingCtrl="ngModel" required>
-                      <mat-option value="fast_nie">Fast nie</mat-option>
-                      <mat-option value="ab_und_zu">Ab und zu</mat-option>
-                      <mat-option value="regelmäßig">Regelmäßig</mat-option>
+
+                  <p>
+                    Wird der Pkw für die <strong>Leitungsebene</strong> beschafft?
+                  </p>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Leitungsebene?</mat-label>
+                    <mat-select [ngModel]="grid.cells['Names']['F_LE1']" name="F_LE1" #F_LE1="ngModel" required
+                                (ngModelChange)="grid.setCell('Names', 'F_LE1', F_LE1.value)">
+                      <mat-option
+                        *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
+                        [value]="option">
+                        {{ option }}
+                      </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <h4>Mieten</h4>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Häufigkeit Nutzung</mat-label>
-                    <mat-select [(ngModel)]="carRenting" name="carRenting" #carRentingCtrl="ngModel" required>
-                      <mat-option value="fast_nie">Fast nie</mat-option>
-                      <mat-option value="ab_und_zu">Ab und zu</mat-option>
-                      <mat-option value="regelmäßig">Regelmäßig</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <div>
+
+
+                  <div class="d-flex justify-content-between">
                     <button mat-raised-button matStepperPrevious>Zurück</button>
-                    <button mat-raised-button [disabled]="!form.valid" (click)="onSubmit(form)">Absenden</button>
+                    <button mat-raised-button color="primary" matStepperNext [disabled]="!F_R1.valid || !F_SZ1.valid">
+                      Weiter
+                    </button>
                   </div>
                 </mat-step>
 
@@ -255,6 +275,16 @@
                 </mat-card-content>
               </mat-card>
 
+              <mat-card class="flex-grow-1 bg-info">
+                <mat-card-header>
+                  <mat-card-title>
+                    Empfehlung zum Fahrzeugsegment:
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>{{grid.getCell('Names', 'E_F0')}}</p>
+                </mat-card-content>
+              </mat-card>
 
             </div>
 

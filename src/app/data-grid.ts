@@ -283,7 +283,7 @@ export class DataGrid {
   }
 }
 
-export function UND(...conditions: boolean[]): boolean {
+export function UND(...conditions: boolean[]) {
   return conditions.every((condition) => condition);
 }
 
@@ -297,3 +297,12 @@ export function WENNS(...args: any[]): any {
   }
   return args[args.length - 1];
 }
+
+export function ODER(...conditions: boolean[]) {
+  return conditions.some(cond => cond);
+}
+
+export function ISTLEER(value: unknown) {
+  return value === '' || value === null || value === undefined;
+}
+

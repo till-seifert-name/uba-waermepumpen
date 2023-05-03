@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {DataGrid, UND, WAHR, WENNS} from "./data-grid";
+import {DataGrid, ISTLEER, ODER, UND, WAHR, WENNS} from "./data-grid";
 import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data} from "./data";
 import {debounceTime, filter} from "rxjs";
 
@@ -39,6 +39,7 @@ export class AppComponent {
       grid.setCell("Names", cell, content);
     }
 
+    // Function for Empfehlung zur Antriebsart:
     grid.setCell("Names", "E_A0", (sheet, cell, grid) => {
 
       const {
@@ -107,6 +108,118 @@ export class AppComponent {
     });
 
 
+    // Empfehlung zum Fahrzeugsegment:
+    grid.setCell("Names", "E_F0", (sheet, cell, grid) => {
+
+      const {
+        F_F1,
+        F_P1,
+        F_T1,
+        E_F1,
+        A_T1,
+        A_T2,
+        A_T3,
+        F_LE1,
+        A_JN1,
+        E_F2,
+        A_JN2,
+        F_S1,
+        A_S1,
+        E_F3,
+        A_S2,
+        A_S3,
+        E_F4,
+        F_SP1,
+        A_SP1,
+        E_F5,
+        E_F6,
+        A_SP2,
+        E_F7,
+        A_SP3,
+        E_F8,
+        E_F9,
+        E_F10,
+        E_F11,
+        E_F12,
+        E_F13,
+        E_F14,
+        E_F15,
+        E_F16,
+        E_F17,
+        E_F18,
+        E_F19,
+        E_F20,
+        E_F21,
+        E_F22,
+        E_F23,
+        E_F24,
+        E_F25,
+        E_F26,
+        E_F27,
+        E_F28,
+        E_F29,
+        E_F30,
+        E_F31,
+        E_F32,
+        E_F33,
+        E_F34,
+        E_F35,
+        E_F36,
+        E_F37,
+        E_F38,
+        E_F39,
+        E_F40,
+        E_F41,
+        E_F42
+      } = grid.cells['Names'];
+
+      return WENNS(
+        UND(F_P1 < 6, F_T1 == A_T3), E_F1,
+        UND(F_P1 < 6, ODER(F_T1 == A_T1, ISTLEER(F_T1)), F_LE1 == A_JN1), E_F2,
+        UND(F_P1 >= 1, F_P1 <= 2, F_T1 == A_T1, F_LE1 == A_JN2, F_S1 == A_S1), E_F3,
+        UND(F_P1 >= 1, F_P1 <= 2, F_T1 == A_T1, F_LE1 == A_JN2, ODER(F_S1 == A_S2, F_S1 == A_S3)), E_F4,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP1, F_T1 == A_T1, F_LE1 == A_JN2, F_S1 == A_S1), E_F5,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP1, F_T1 == A_T1, F_LE1 == A_JN2, ODER(F_S1 == A_S2, F_S1 == A_S3)), E_F6,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP2, F_T1 == A_T1, F_LE1 == A_JN2), E_F7,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP3, F_T1 == A_T1, F_LE1 == A_JN2), E_F8,
+        UND(F_P1 == 5, F_SP1 == A_SP1, F_T1 == A_T1, F_LE1 == A_JN2), E_F9,
+        UND(F_P1 == 5, ODER(F_SP1 == A_SP2, F_SP1 == A_SP3), F_T1 == A_T1, F_LE1 == A_JN2), E_F10,
+        UND(F_P1 >= 6, F_P1 <= 7, F_SP1 == A_SP1, F_T1 == A_T1, F_F1 == A_JN1), E_F11,
+        UND(F_P1 >= 6, F_P1 <= 7, F_SP1 == A_SP1, F_T1 == A_T1, F_F1 == A_JN2), E_F12,
+        UND(F_P1 >= 6, F_P1 <= 7, F_SP1 == A_SP1, F_T1 == A_T3, F_F1 == A_JN1), E_F13,
+        UND(F_P1 >= 6, F_P1 <= 7, F_SP1 == A_SP1, F_T1 == A_T3, F_F1 == A_JN2), E_F14,
+        UND(F_P1 >= 6, F_P1 <= 7, ODER(F_SP1 == A_SP2, F_SP1 == A_SP3)), E_F15,
+        UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T1, F_F1 == A_JN1), E_F16,
+        UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T1, F_F1 == A_JN2), E_F17,
+        UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T3, F_F1 == A_JN1), E_F18,
+        UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T3, F_F1 == A_JN2), E_F19,
+        UND(F_P1 >= 8, F_P1 <= 9, ODER(F_SP1 == A_SP2, F_SP1 == A_SP3)), E_F20,
+        UND(F_P1 < 6, F_T1 == A_T2, F_LE1 == A_JN1, F_F1 == A_JN1), E_F21, UND(F_P1 < 6, F_T1 == A_T2, F_LE1 == A_JN1, F_F1 == A_JN2), E_F22,
+        UND(F_P1 >= 1, F_P1 <= 2, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1, F_S1 == A_S1), E_F23,
+        UND(F_P1 >= 1, F_P1 <= 2, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2, F_S1 == A_S1), E_F24,
+        UND(F_P1 >= 1, F_P1 <= 2, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1, ODER(F_S1 == A_S2, F_S1 == A_S3)), E_F25,
+        UND(F_P1 >= 1, F_P1 <= 2, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2, ODER(F_S1 == A_S2, F_S1 == A_S3)), E_F26,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP1, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1, F_S1 == A_S1), E_F27,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP1, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2, F_S1 == A_S1), E_F28,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP1, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1, ODER(F_S1 == A_S2, F_S1 == A_S3)), E_F29,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP1, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2, ODER(F_S1 == A_S2, F_S1 == A_S3)), E_F30,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP2, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1), E_F31,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP2, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2), E_F32,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP3, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1), E_F33,
+        UND(F_P1 >= 3, F_P1 <= 4, F_SP1 == A_SP3, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2), E_F34,
+        UND(F_P1 == 5, F_SP1 == A_SP1, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1), E_F35,
+        UND(F_P1 == 5, F_SP1 == A_SP1, F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2), E_F36,
+        UND(F_P1 == 5, ODER(F_SP1 == A_SP2, F_SP1 == A_SP3), F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN1), E_F37,
+        UND(F_P1 == 5, ODER(F_SP1 == A_SP2, F_SP1 == A_SP3), F_T1 == A_T2, F_LE1 == A_JN2, F_F1 == A_JN2), E_F38,
+        UND(F_P1 >= 6, F_P1 <= 7, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN1), E_F39,
+        UND(F_P1 >= 6, F_P1 <= 7, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN2), E_F40,
+        UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN1), E_F41,
+        UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN2), E_F42,
+        WAHR(), " ");
+
+    });
+
+
     // load saved state
 
     const cellsToSave: string[] = [
@@ -116,6 +229,11 @@ export class AppComponent {
       'F_L1',
       'F_L2',
       'F_F1',
+
+      'F_P1',
+      'F_SP1',
+      'F_T1',
+      'F_LE1',
     ];
 
     // Subscribe to (some) cell changes save to localStorage
