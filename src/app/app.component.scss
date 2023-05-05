@@ -9,7 +9,22 @@
 
 ::ng-deep .mat-horizontal-stepper-wrapper .mat-horizontal-content-container {
   flex-grow: 1;
-  max-height: calc(100vh - 17em);
+  max-height: calc(100vh - 15em);
   overflow-x: visible;
   overflow-y: auto;
+}
+
+
+.root-route-is-active + .mat-toolbar {
+  background: transparent;
+  position: fixed !important;
+  pointer-events: none;
+
+  button {
+    pointer-events: all;
+  }
+
+  #title {
+    display: none;
+  }
 }

@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {DataGrid, ISTLEER, ODER, UND, WAHR, WENNS} from "../data-grid";
 import {NgForm} from "@angular/forms";
-import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data} from "../data";
-import {debounceTime, filter} from "rxjs";
 import {BerechnungService} from "../berechnung.service";
 
 
@@ -19,7 +17,6 @@ export class VorueberlegungenComponent {
   ) {
 
     this.grid = this.berechnungService.grid;
-
   }
 
   onSubmit(form: NgForm) {
