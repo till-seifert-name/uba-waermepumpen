@@ -19,6 +19,7 @@ import {StartComponent} from './start/start.component';
 import { HintergrundinformationenComponent } from './hintergrundinformationen/hintergrundinformationen.component';
 import { VorueberlegungenComponent } from './vorueberlegungen/vorueberlegungen.component';
 import { EmpfehlungenComponent } from './empfehlungen/empfehlungen.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EmpfehlungenComponent } from './empfehlungen/empfehlungen.component';
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

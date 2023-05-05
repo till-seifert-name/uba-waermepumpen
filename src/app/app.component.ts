@@ -1,8 +1,6 @@
-import {Component} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {DataGrid, ISTLEER, ODER, UND, WAHR, WENNS} from "./data-grid";
-import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data} from "./data";
-import {debounceTime, filter} from "rxjs";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSidenav} from "@angular/material/sidenav";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -10,8 +8,22 @@ import {debounceTime, filter} from "rxjs";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild(MatSidenav) sidenav: MatSidenav | undefined;
 
+  constructor(
+    private router: Router
+  ) {
+  }
+
+  ngOnInit() {
+    // auto-close side-nav when navigating
+    this.router.events.subscribe(() => {
+      if (this.sidenav?.opened) {
+        this.sidenav.close();
+      }
+    });
+  }
 
 }
 

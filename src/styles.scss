@@ -15,7 +15,7 @@
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$dau-online-tool-primary: mat.define-palette(mat.$indigo-palette, 900);
+$dau-online-tool-primary: mat.define-palette(mat.$indigo-palette, A700);
 $dau-online-tool-accent: mat.define-palette(mat.$lime-palette, A200);
 $dau-online-tool-accent-warn: mat.define-palette(mat.$red-palette);
 
