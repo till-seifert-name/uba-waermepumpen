@@ -1,10 +1,21 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {StartComponent} from "./start/start.component";
+import {HintergrundinformationenComponent} from "./hintergrundinformationen/hintergrundinformationen.component";
+import {VorueberlegungenComponent} from "./vorueberlegungen/vorueberlegungen.component";
+import {EmpfehlungenComponent} from "./empfehlungen/empfehlungen.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: StartComponent, pathMatch: 'full'},
+  {path: 'hintergrundinformationen', component: HintergrundinformationenComponent},
+  {path: 'vorueberlegungen', component: VorueberlegungenComponent},
+  {path: 'empfehlungen', component: EmpfehlungenComponent},
+  {path: '**', redirectTo: ''}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

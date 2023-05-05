@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -15,10 +15,18 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
+import {StartComponent} from './start/start.component';
+import { HintergrundinformationenComponent } from './hintergrundinformationen/hintergrundinformationen.component';
+import { VorueberlegungenComponent } from './vorueberlegungen/vorueberlegungen.component';
+import { EmpfehlungenComponent } from './empfehlungen/empfehlungen.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StartComponent,
+    HintergrundinformationenComponent,
+    VorueberlegungenComponent,
+    EmpfehlungenComponent
   ],
   imports: [
     BrowserModule,
@@ -40,4 +48,5 @@ import {MatCardModule} from "@angular/material/card";
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

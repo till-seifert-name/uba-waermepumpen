@@ -1,0 +1,267 @@
+<mat-card class="main-card flex-grow-1 mt-4 mb-4">
+  <mat-card-header>
+    <mat-card-title>Einzelfahrzeug beschaffen</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="flex-grow-1">
+
+    <div class="row h-100">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)"
+            class="col-6 d-flex flex-column">
+
+        <!-- Stepper with form elements -->
+
+        <mat-horizontal-stepper [linear]="false"
+                                headerPosition="bottom"
+                                labelPosition="bottom"
+                                class="flex-grow-1"
+        >
+
+          <!-- <mat-step>
+             <ng-template matStepLabel>1. Vorüberlegungen</ng-template>
+             <p>Informationen und Fragen zu den Vorüberlegungen.</p>
+             <div>
+               <button mat-raised-button matStepperNext>Weiter</button>
+             </div>
+           </mat-step>-->
+
+          <mat-step>
+            <ng-template matStepLabel>
+              Antriebsart
+            </ng-template>
+            <h2>Antriebsart</h2>
+
+            <p>
+              In diesem Abschnitt geht es darum, wie das Fahrprofil aussieht und ob Lademöglichkeiten bestehen.
+              Diese Fragestellungen sind relevant, um ein möglichst umweltverträgliches Fahrzeug bzgl. der
+              Antriebsart zu wählen.
+            </p>
+
+            <div class="row">
+              <div class="col-auto col-md-6">
+                <p>
+                  Welche Distanz soll mit dem zu beschaffenden Pkw im Normalfall pro Tag zurückgelegt werden?
+                </p>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>km/Tag</mat-label>
+                  <input matInput type="number" [ngModel]="grid.cells['Names']['F_R1']"
+                         name="F_R1" #F_R1="ngModel" required min="1" step="1"
+                         (ngModelChange)="grid.setCell('Names', 'F_R1', F_R1.value)">
+                </mat-form-field>
+              </div>
+
+              <div class="col-auto col-md-6">
+                <p>
+                  Wie oft werden übers Jahr Tagesstrecken über 150 km zurückgelegt?
+                </p>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Strecken über 150 km</mat-label>
+                  <mat-select [ngModel]="grid.cells['Names']['F_S1']" name="F_S1"
+                              #F_S1="ngModel" required
+                              (ngModelChange)="grid.setCell('Names', 'F_S1', F_S1.value)">
+                    <mat-option
+                      *ngFor="let option of [grid.cells['Names']['A_S1'], grid.cells['Names']['A_S2'], grid.cells['Names']['A_S3']]"
+                      [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <p>
+              Wie häufig werden die Tagesstrecken im Normalfall von Standzeiten (≈ mind. 30 min) unterbrochen?
+            </p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Häufigkeit Nutzung</mat-label>
+              <mat-select [ngModel]="grid.cells['Names']['F_SZ1']" name="F_SZ1"
+                          #F_SZ1="ngModel" required
+                          (ngModelChange)="grid.setCell('Names', 'F_SZ1', F_SZ1.value)">
+                <mat-option
+                  *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
+                  [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <p>
+              Sind Ladesäulen am Standort bzw. im umliegenden öffentlichen Raum oder am Wohnort der Nutzenden
+              verfügbar?
+            </p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Ladesäulen verfügbar?</mat-label>
+              <mat-select [ngModel]="grid.cells['Names']['F_L1']" name="F_L1" #F_L1="ngModel" required
+                          (ngModelChange)="grid.setCell('Names', 'F_L1', F_L1.value)">
+                <mat-option
+                  *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
+                  [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <p>
+              Sind Ladesäulen auf den zu befahrenden Strecken verfügbar?
+            </p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Ladesäulen auf Strecke verfügbar?</mat-label>
+              <mat-select [ngModel]="grid.cells['Names']['F_L2']" name="F_L2" #F_L2="ngModel" required
+                          (ngModelChange)="grid.setCell('Names', 'F_L2', F_L2.value)">
+                <mat-option
+                  *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
+                  [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <p>
+              Ist das zu beschaffende Fahrzeug Teil eines Fuhrparks?
+            </p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Fahrzeug Teil eines Fuhrparks?</mat-label>
+              <mat-select [ngModel]="grid.cells['Names']['F_F1']" name="F_F1" #F_F1="ngModel" required
+                          (ngModelChange)="grid.setCell('Names', 'F_F1', F_F1.value)">
+                <mat-option
+                  *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
+                  [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <div class="d-flex justify-content-between">
+              <button mat-raised-button matStepperPrevious>Zurück</button>
+              <button mat-raised-button color="primary" matStepperNext [disabled]="!F_R1.valid || !F_SZ1.valid">
+                Weiter
+              </button>
+            </div>
+          </mat-step>
+
+
+          <mat-step>
+            <ng-template matStepLabel>
+              Fahrzeugsegment
+            </ng-template>
+            <h2>Fahrzeugsegment</h2>
+
+            <p>
+              In diesem Abschnitt geht es darum, welche Aufgabenstellung erfüllt werden soll, um ein möglichst
+              umweltverträgliches Fahrzeug bzgl. des Fahrzeugsegments zu wählen. Die Abfragen bezüglich der
+              Antriebsart gehen teilweise ebenfalls mit ein in die Empfehlung zum Fahrzeugsegment.
+            </p>
+
+            <div class="row">
+              <div class="col-auto col-md-6">
+                <p>
+                  Wie viele <strong>Personen</strong> fahren maximal zusammen in dem Pkw?
+                </p>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Person(en)</mat-label>
+                  <input matInput type="number" [ngModel]="grid.cells['Names']['F_P1']"
+                         name="F_P1" #F_P1="ngModel" required min="1" step="1" max="9"
+                         (ngModelChange)="grid.setCell('Names', 'F_P1', F_P1.value)">
+                </mat-form-field>
+              </div>
+
+              <div class="col-auto col-md-6">
+                <p>
+                  <strong>Wie häufig</strong> werden alle <strong>Sitzplätze benötigt</strong>?
+                </p>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Sitzplätze</mat-label>
+                  <mat-select [ngModel]="grid.cells['Names']['F_SP1']" name="F_SP1"
+                              #F_SP1="ngModel" required
+                              (ngModelChange)="grid.setCell('Names', 'F_SP1', F_SP1.value)">
+                    <mat-option
+                      *ngFor="let option of [grid.cells['Names']['A_SP1'], grid.cells['Names']['A_SP2'], grid.cells['Names']['A_SP3']]"
+                      [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <p>
+              Wie häufig bestehen aufwändige Anforderungen an den Transport von Gegenständen (z.B.
+              viele/große/schwere Gegenstände), sodass Vans/Utilities notwendig sind?
+            </p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Transport von Gegenständen</mat-label>
+              <mat-select [ngModel]="grid.cells['Names']['F_T1']" name="F_T1"
+                          #F_T1="ngModel" required
+                          (ngModelChange)="grid.setCell('Names', 'F_T1', F_T1.value)">
+                <mat-option
+                  *ngFor="let option of [grid.cells['Names']['A_T1'], grid.cells['Names']['A_T2'], grid.cells['Names']['A_T3']]"
+                  [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <p>
+              Wird der Pkw für die <strong>Leitungsebene</strong> beschafft?
+            </p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Leitungsebene?</mat-label>
+              <mat-select [ngModel]="grid.cells['Names']['F_LE1']" name="F_LE1" #F_LE1="ngModel" required
+                          (ngModelChange)="grid.setCell('Names', 'F_LE1', F_LE1.value)">
+                <mat-option
+                  *ngFor="let option of [grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
+                  [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <div class="d-flex justify-content-between">
+              <button mat-raised-button matStepperPrevious>Zurück</button>
+              <button mat-raised-button color="primary" matStepperNext [disabled]="!F_R1.valid || !F_SZ1.valid">
+                Weiter
+              </button>
+            </div>
+          </mat-step>
+
+
+        </mat-horizontal-stepper>
+
+
+      </form>
+
+      <!-- Results -->
+      <div class="col-6 d-flex flex-column align-content-stretch align-items-stretch">
+
+        <mat-card class="flex-grow-1 bg-info">
+          <mat-card-header>
+            <mat-card-title>
+              Empfehlung zur Antriebsart:
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{grid.getCell('Names', 'E_A0')}}</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="flex-grow-1 bg-info">
+          <mat-card-header>
+            <mat-card-title>
+              Empfehlung zum Fahrzeugsegment:
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{grid.getCell('Names', 'E_F0')}}</p>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </div>
+
+  </mat-card-content>
+</mat-card>
