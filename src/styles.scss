@@ -19,12 +19,17 @@ $dau-online-tool-primary: mat.define-palette(mat.$indigo-palette, 900);
 $dau-online-tool-accent: mat.define-palette(mat.$lime-palette, A200);
 $dau-online-tool-accent-warn: mat.define-palette(mat.$red-palette);
 
+$font-family-base: 'Inter';
+$dau-online-tool-typography: mat.define-typography-config(
+  $font-family: "Inter",
+);
+
 $dau-online-tool-theme: mat.define-light-theme((color: (
   primary: $dau-online-tool-primary,
   accent: $dau-online-tool-accent,
   warn: $dau-online-tool-accent-warn,
 ),
-  typography: mat.define-typography-config(),
+  typography: $dau-online-tool-typography,
   density: 0,
 ));
 
@@ -34,9 +39,16 @@ $dau-online-tool-theme: mat.define-light-theme((color: (
 // that you are using.
 @include mat.all-component-themes($dau-online-tool-theme);
 
-/* You can add global styles to this file, and also import other style files */
+//
+// Fonts
+//
+$font-size-base: 1rem !default;
+$h1-font-size: $font-size-base * 2.25;
+
+
 @import "bootstrap";
 
+@import "fonts";
 
 html, body {
   height: 100%;
@@ -44,7 +56,7 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Inter, "Helvetica Neue", sans-serif;
 }
 
 body > app-root {
