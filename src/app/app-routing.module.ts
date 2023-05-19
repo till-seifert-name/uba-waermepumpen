@@ -6,11 +6,30 @@ import {VorueberlegungenComponent} from "./vorueberlegungen/vorueberlegungen.com
 import {EmpfehlungenComponent} from "./empfehlungen/empfehlungen.component";
 
 const routes: Routes = [
-  {path: '', component: StartComponent, pathMatch: 'full'},
-  {path: 'hintergrundinformationen', component: HintergrundinformationenComponent},
-  {path: 'vorueberlegungen', component: VorueberlegungenComponent},
-  {path: 'empfehlungen', component: EmpfehlungenComponent},
-  {path: '**', redirectTo: ''}
+  {
+    path: '',
+    component: StartComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'hintergrundinformationen',
+    component: HintergrundinformationenComponent,
+    title: 'Hintergrundinformationen'
+  },
+  {
+    path: 'vorueberlegungen',
+    component: VorueberlegungenComponent,
+    title: 'Vorüberlegungen'
+  },
+  {
+    path: 'empfehlungen',
+    component: EmpfehlungenComponent,
+    title: 'Empfehlungen'
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  }
 ];
 
 @NgModule({
