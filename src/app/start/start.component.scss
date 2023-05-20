@@ -4,9 +4,9 @@
 
 .hero {
   padding: 0.1px;
-  background: url("/assets/Header Startseite/Vector.svg") no-repeat 0.3rem 0.3rem,
-  url("/assets/Header Startseite/Vector-1.svg") no-repeat 10rem 0rem,
-  url("/assets/Header Startseite/Blatt.svg") no-repeat right 5.1rem;
+  background: url("../../assets/Header Startseite/Vector.svg") no-repeat 0.3rem 0.3rem,
+  url("../../assets/Header Startseite/Vector-1.svg") no-repeat 10rem 0rem,
+  url("../../assets/Header Startseite/Blatt.svg") no-repeat right 5.1rem;
 
   h1 {
     text-shadow: 0 0 1rem var(--bs-dark);
