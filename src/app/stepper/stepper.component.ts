@@ -1,5 +1,16 @@
-import {Component, ContentChild, Directive, Input, TemplateRef} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  Directive,
+  ElementRef,
+  Input,
+  OnInit,
+  TemplateRef
+} from '@angular/core';
 import {CdkStepper} from '@angular/cdk/stepper';
+import {ActivatedRoute, Router} from "@angular/router";
+import {Directionality} from "@angular/cdk/bidi";
 
 @Directive({
   selector: '[stepperGraphic]'
@@ -23,42 +34,42 @@ export class StepperGraphicDirective {
 @Component({
   selector: 'app-custom-stepper',
   template: `
-      <div class="stepper-header gap-2">
-          <h1 class="step-label h5 text-uppercase mb-0 ms-2">{{selected?.label}}</h1>
-          <span class="stepper-title h5 text-uppercase mb-0">
+    <div class="stepper-header gap-2">
+      <h1 class="step-label h5 text-uppercase mb-0 ms-2">{{selected?.label}}</h1>
+      <span class="stepper-title h5 text-uppercase mb-0">
             {{title}}
-              <strong>{{selectedIndex + 1}}</strong>/{{steps.length}}
+        <strong>{{selectedIndex + 1}}</strong>/{{steps.length}}
           </span>
-          <span class="stepper-graphic" *ngIf="graphicDirective">
+      <span class="stepper-graphic" *ngIf="graphicDirective">
             <ng-container *ngTemplateOutlet="graphicDirective.template"></ng-container>
           </span>
-      </div>
+    </div>
 
-      <div class="stepper-content">
-          <div [ngTemplateOutlet]="selected ? selected.content : null">
+    <div class="stepper-content">
+      <div [ngTemplateOutlet]="selected ? selected.content : null">
 
-          </div>
       </div>
+    </div>
 
-      <div class="stepper-footer">
-          <button mat-button
-                  color="primary"
-                  class="rounded-pill"
-                  cdkStepperPrevious
-                  [disabled]="selectedIndex === 0">
-              Zurück
-          </button>
-          <mat-progress-bar mode="determinate"
-                            [value]="(selectedIndex + 1) / steps.length * 100">
-          </mat-progress-bar>
-          <button mat-stroked-button
-                  color="primary"
-                  class="rounded-pill"
-                  cdkStepperNext
-                  [disabled]="selectedIndex === steps.length - 1">
-              Weiter
-          </button>
-      </div>
+    <div class="stepper-footer">
+      <button mat-button
+              color="primary"
+              class="rounded-pill"
+              cdkStepperPrevious
+              [disabled]="selectedIndex === 0">
+        Zurück
+      </button>
+      <mat-progress-bar mode="determinate"
+                        [value]="(selectedIndex + 1) / steps.length * 100">
+      </mat-progress-bar>
+      <button mat-stroked-button
+              color="primary"
+              class="rounded-pill"
+              cdkStepperNext
+              [disabled]="selectedIndex === steps.length - 1">
+        Weiter
+      </button>
+    </div>
   `,
   styles: [`
     :host {
@@ -105,7 +116,62 @@ export class StepperGraphicDirective {
   `],
   providers: [{provide: CdkStepper, useExisting: CustomStepperComponent}],
 })
-export class CustomStepperComponent extends CdkStepper {
+export class CustomStepperComponent extends CdkStepper implements OnInit {
   @Input() title: string = ''; // Title for the stepper
   @ContentChild(StepperGraphicDirective, {static: false}) graphicDirective: StepperGraphicDirective | undefined;
+
+  constructor(_dir: Directionality,
+              _changeDetectorRef: ChangeDetectorRef,
+              _elementRef: ElementRef<HTMLElement>,
+              private route: ActivatedRoute,
+              private router: Router) {
+    super(_dir, _changeDetectorRef, _elementRef);
+  }
+
+  ngOnInit() {
+    // get the step from the current fragment
+    const {step = ''} = this.parseFragment(this.route.snapshot.fragment || '');
+    const index = parseInt(step, 10);
+    if (step && !isNaN(index)) {
+      super.selectedIndex = index;
+    }
+  }
+
+  override ngAfterViewInit() {
+    super.ngAfterViewInit();
+
+    this.selectionChange.subscribe(event => {
+      // Parse the current fragment
+      const fragmentParams = this.parseFragment(this.route.snapshot.fragment || '');
+
+      // Update the step in the parsed fragment
+      fragmentParams['step'] = event.selectedIndex ? event.selectedIndex.toString() : undefined;
+
+      // Stringify the updated fragment
+      const newFragment = this.stringifyFragment(fragmentParams);
+
+      this.router.navigate([], {
+        relativeTo: this.route,
+        replaceUrl: true,
+        fragment: newFragment,
+        queryParamsHandling: 'merge', // preserve the other existing query parameters
+      });
+    });
+  }
+
+  // Parse the URL fragment into an object
+  private parseFragment(fragment: string): Record<string, string | undefined> {
+    return fragment.split('&').reduce((params, pair) => {
+      const [key, value] = pair.split('=');
+      return {...params, [key]: value};
+    }, {});
+  }
+
+  // Stringify an object into a URL fragment
+  private stringifyFragment(params: Record<string, string | number | undefined>): string {
+    return Object.entries(params)
+      .map(([key, value]) => value !== undefined ? `${key}=${value}` : '')
+      .filter(kv => kv !== '')
+      .join('&');
+  }
 }
