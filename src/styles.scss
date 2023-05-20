@@ -138,9 +138,7 @@ $dau-online-tool-theme: mat.define-light-theme((color: (
   density: 0,
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
+// Include theme styles for each component used in app or all styles.
 @include mat.all-component-themes($dau-online-tool-theme);
 @include mat.typography-hierarchy($dbu-typography-config);
 
@@ -149,8 +147,8 @@ $primary: mat.get-color-from-palette($blues, 700);
 $secondary: mat.get-color-from-palette($greens, 600);
 $success: mat.get-color-from-palette($greens, 600);
 $info: mat.get-color-from-palette($turquoise, 400);
-$warning: mat.get-color-from-palette($greens, 700); // Warning color usually is orange or yellow, adjust accordingly
-$danger: mat.get-color-from-palette($blues, 800); // Danger color usually is red, adjust accordingly
+$warning: mat.get-color-from-palette($greens, 700); // Color usually is orange or yellow, adjust?
+$danger: mat.get-color-from-palette($blues, 800); // Color usually is red, adjust?
 $light: mat.get-color-from-palette($blues, 50);
 $dark: mat.get-color-from-palette($blues, 900);
 
@@ -159,17 +157,38 @@ $primary-contrast: mat.get-contrast-color-from-palette($blues, 500);
 $secondary-contrast: mat.get-contrast-color-from-palette($greens, 500);
 $success-contrast: mat.get-contrast-color-from-palette($greens, 600);
 $info-contrast: mat.get-contrast-color-from-palette($turquoise, 400);
-$warning-contrast: mat.get-contrast-color-from-palette($greens, 700); // Adjust accordingly
-$danger-contrast: mat.get-contrast-color-from-palette($blues, 800); // Adjust accordingly
+$warning-contrast: mat.get-contrast-color-from-palette($greens, 700);
+$danger-contrast: mat.get-contrast-color-from-palette($blues, 800);
 $light-contrast: mat.get-contrast-color-from-palette($blues, 100);
 $dark-contrast: mat.get-contrast-color-from-palette($blues, 900);
+
+
+//
+// override some MD3 styles
+//
+:root {
+  /* set material controls corner radius */
+  --mdc-text-button-container-shape: 24px;
+  --mdc-outlined-button-container-shape: 24px;
+  --mdc-filled-button-container-shape: 24px;
+  --mdc-shape-small: 6px;
+  --mdc-shape-medium: 12px;
+}
+
+/* outlined buttons should use their primary color for the border */
+.mat-mdc-outlined-button {
+  --mdc-outlined-button-outline-color: currentColor;
+}
+
+//
+// override BS styles
+//
 
 //
 // Fonts
 //
 $font-size-base: 1rem !default;
 $h1-font-size: $font-size-base * 2.25;
-
 
 @import "bootstrap";
 

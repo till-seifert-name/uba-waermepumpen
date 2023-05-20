@@ -54,7 +54,6 @@ export class StepperGraphicDirective {
     <div class="stepper-footer">
       <button mat-button
               color="primary"
-              class="rounded-pill"
               cdkStepperPrevious
               [disabled]="selectedIndex === 0">
         Zurück
@@ -64,7 +63,6 @@ export class StepperGraphicDirective {
       </mat-progress-bar>
       <button mat-stroked-button
               color="primary"
-              class="rounded-pill"
               cdkStepperNext
               [disabled]="selectedIndex === steps.length - 1">
         Weiter
