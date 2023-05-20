@@ -16,7 +16,7 @@
 
 
 .root-route-is-active + .mat-toolbar {
-  background: transparent;
+  background: transparent !important;
   position: fixed !important;
   pointer-events: none;
 

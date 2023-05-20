@@ -15,29 +15,154 @@
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$dau-online-tool-primary: mat.define-palette(mat.$indigo-palette, A700);
-$dau-online-tool-accent: mat.define-palette(mat.$lime-palette, A200);
-$dau-online-tool-accent-warn: mat.define-palette(mat.$red-palette);
+// Blues palette
+$blues: (
+  50: #F4F5F5, // Provided
+  100: #C7C5D0, // Provided
+  200: #BEC2FF, // Provided
+  300: #9CA4FF, // Provided
+  400: #7A85FF, // Provided
+  500: #5764FF, // Provided
+  600: #0011E8, // Provided
+  700: #0009A7, // Provided
+  800: #00056A, // Provided
+  900: #00046A, // Provided
+  A100: #A4AEFF, // Generated
+  A200: #8C98FF, // Generated
+  A400: #6977FF, // Generated
+  A700: #00046A, // Provided
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff
+  )
+);
+
+// Greens palette
+$greens: (
+  50: #F4FCE8, // Generated
+  100: #E1F0B7, // Generated
+  200: #D3EC8F, // Generated
+  300: #B5E256, // Generated
+  400: #A2D72D, // Provided
+  500: #86B01F, // Provided
+  600: #5E8200, // Provided
+  700: #465200, // Generated
+  800: #253600, // Provided
+  900: #192500, // Generated
+  A100: #F0F8D1, // Generated
+  A200: #D4E891, // Generated
+  A400: #88BB00, // Provided
+  A700: #466300, // Generated
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff
+  )
+);
+
+// Turquoise palette
+$turquoise: (
+  50: #CDF9FF, // Provided
+  100: #AFFFFF, // Provided
+  200: #80E4EE, // Generated
+  300: #5ECBDD, // Generated
+  400: #20BCCC, // Provided
+  500: #00A0AE, // Provided
+  600: #008490, // Provided
+  700: #01676A, // Generated
+  800: #014F56, // Provided
+  900: #013539, // Generated
+  A100: #AFFFFF, // Provided
+  A200: #80E4EE, // Generated
+  A400: #00A0AE, // Provided
+  A700: #01676A, // Generated
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff
+  )
+);
+
+// Convert color maps to color palettes
+$blues-palette: mat.define-palette($blues, 600, 400, 900);
+$greens-palette: mat.define-palette($greens, 600, 400, 900);
+$turquoise-palette: mat.define-palette($turquoise, 600, 400, 900);
 
 $font-family-base: 'Inter';
-$dau-online-tool-typography: mat.define-typography-config(
-  $font-family: "Inter",
+
+$dbu-typography-config: mat.define-typography-config(
+  $font-family: $font-family-base,
+  $headline-3: mat.define-typography-level(45px, 52px, 400),
 );
 
 $dau-online-tool-theme: mat.define-light-theme((color: (
-  primary: $dau-online-tool-primary,
-  accent: $dau-online-tool-accent,
-  warn: $dau-online-tool-accent-warn,
+  primary: $blues-palette,
+  accent: $greens-palette,
+  warn: $turquoise-palette,
 ),
-  typography: $dau-online-tool-typography,
+  typography: $dbu-typography-config,
   density: 0,
 ));
-
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($dau-online-tool-theme);
+@include mat.typography-hierarchy($dbu-typography-config);
+
+// Define Bootstrap colors with Angular Material color functions
+$primary: mat.get-color-from-palette($blues, 700);
+$secondary: mat.get-color-from-palette($greens, 600);
+$success: mat.get-color-from-palette($greens, 600);
+$info: mat.get-color-from-palette($turquoise, 400);
+$warning: mat.get-color-from-palette($greens, 700); // Warning color usually is orange or yellow, adjust accordingly
+$danger: mat.get-color-from-palette($blues, 800); // Danger color usually is red, adjust accordingly
+$light: mat.get-color-from-palette($blues, 50);
+$dark: mat.get-color-from-palette($blues, 900);
+
+// Define Bootstrap contrast (text) colors with Angular Material color functions
+$primary-contrast: mat.get-contrast-color-from-palette($blues, 500);
+$secondary-contrast: mat.get-contrast-color-from-palette($greens, 500);
+$success-contrast: mat.get-contrast-color-from-palette($greens, 600);
+$info-contrast: mat.get-contrast-color-from-palette($turquoise, 400);
+$warning-contrast: mat.get-contrast-color-from-palette($greens, 700); // Adjust accordingly
+$danger-contrast: mat.get-contrast-color-from-palette($blues, 800); // Adjust accordingly
+$light-contrast: mat.get-contrast-color-from-palette($blues, 100);
+$dark-contrast: mat.get-contrast-color-from-palette($blues, 900);
 
 //
 // Fonts
@@ -60,6 +185,5 @@ body {
 }
 
 body > app-root {
-  height: 100%;
-  width: 100%;
+  display: contents;
 }
