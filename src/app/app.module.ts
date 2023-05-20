@@ -16,10 +16,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {StartComponent} from './start/start.component';
-import { HintergrundinformationenComponent } from './hintergrundinformationen/hintergrundinformationen.component';
-import { VorueberlegungenComponent } from './vorueberlegungen/vorueberlegungen.component';
-import { EmpfehlungenComponent } from './empfehlungen/empfehlungen.component';
+import {HintergrundinformationenComponent} from './hintergrundinformationen/hintergrundinformationen.component';
+import {VorueberlegungenComponent} from './vorueberlegungen/vorueberlegungen.component';
+import {EmpfehlungenComponent} from './empfehlungen/empfehlungen.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import {CustomStepperComponent, StepperGraphicDirective} from './stepper/stepper.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {CdkStepperModule} from "@angular/cdk/stepper";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import {MatExpansionModule} from "@angular/material/expansion";
     StartComponent,
     HintergrundinformationenComponent,
     VorueberlegungenComponent,
-    EmpfehlungenComponent
+    EmpfehlungenComponent,
+    CustomStepperComponent    ,
+    StepperGraphicDirective    ,
   ],
   imports: [
     BrowserModule,
@@ -39,13 +44,15 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatSidenavModule,
     MatListModule,
     MatLineModule,
+    MatProgressBarModule,
     MatStepperModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    CdkStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
