@@ -56,7 +56,7 @@ export class StepperGraphicDirective {
               color="primary"
               cdkStepperPrevious
               [disabled]="selectedIndex === 0">
-        Zurück
+        zurück
       </button>
       <mat-progress-bar mode="determinate"
                         [value]="(selectedIndex + 1) / steps.length * 100">
@@ -65,7 +65,7 @@ export class StepperGraphicDirective {
               color="primary"
               cdkStepperNext
               [disabled]="selectedIndex === steps.length - 1">
-        Weiter
+        weiter
       </button>
     </div>
   `,
