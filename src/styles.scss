@@ -127,6 +127,7 @@ $font-family-base: 'Inter';
 $dbu-typography-config: mat.define-typography-config(
   $font-family: $font-family-base,
   $headline-3: mat.define-typography-level(45px, 52px, 400),
+  $headline-6: mat.define-typography-level(16px, 28px, 300),
 );
 
 $dau-online-tool-theme: mat.define-light-theme((color: (

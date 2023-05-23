@@ -23,6 +23,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {CustomStepperComponent, StepperGraphicDirective} from './stepper/stepper.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {CdkStepperModule} from "@angular/cdk/stepper";
+import { UebersichtsgrafikComponent } from './vorueberlegungen/uebersichtsgrafik/uebersichtsgrafik.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {CdkStepperModule} from "@angular/cdk/stepper";
     VorueberlegungenComponent,
     EmpfehlungenComponent,
     CustomStepperComponent    ,
-    StepperGraphicDirective    ,
+    StepperGraphicDirective,
+    UebersichtsgrafikComponent    ,
   ],
   imports: [
     BrowserModule,

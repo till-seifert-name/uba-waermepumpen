@@ -8,11 +8,13 @@
   <mat-card-content class="flex-grow-1">
 
     <div class="row h-100">
+
       <form #form="ngForm" (ngSubmit)="onSubmit(form)"
             class="col-6 d-flex flex-column">
 
         <!-- Stepper -->
-        <app-custom-stepper title="Vorüberlegungen"
+        <app-custom-stepper #stepper
+                            title="Vorüberlegungen"
                             [linear]="false"
                             class="flex-grow-1"
         >
@@ -246,6 +248,26 @@
 
       <!-- Results -->
       <div class="col-6 d-flex flex-column align-content-stretch align-items-stretch">
+
+        <h4 *ngIf="stepper.selectedIndex == 0"
+            class="mat-headline-6 me-2 align-self-end text-uppercase">
+          Übersichtsgrafik
+        </h4>
+        <mat-card
+          *ngIf="stepper.selectedIndex == 0"
+          class="mat-mdc-elevation-specific mat-elevation-z8"
+          style="
+  inset: 3.7rem -1rem -1rem 50%;
+  position: absolute;
+  background-color: var(--bs-light);
+  overflow: auto;
+  max-height: 846px;
+  z-index: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+">
+          <app-uebersichtsgrafik></app-uebersichtsgrafik>
+        </mat-card>
 
         <mat-card class="flex-grow-1 bg-info">
           <mat-card-header>

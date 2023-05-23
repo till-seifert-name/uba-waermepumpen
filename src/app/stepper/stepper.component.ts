@@ -35,10 +35,10 @@ export class StepperGraphicDirective {
   selector: 'app-custom-stepper',
   template: `
     <div class="stepper-header gap-2">
-      <h1 class="step-label h5 text-uppercase mb-0 ms-2">{{selected?.label}}</h1>
-      <span class="stepper-title h5 text-uppercase mb-0">
+      <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2">{{selected?.label}}</h1>
+      <span class="stepper-title mat-headline-6 text-uppercase mb-0">
             {{title}}
-        <strong>{{selectedIndex + 1}}</strong>/{{steps.length}}
+        <span class="fw-bold">{{selectedIndex + 1}}</span>/{{steps.length}}
           </span>
       <span class="stepper-graphic" *ngIf="graphicDirective">
             <ng-container *ngTemplateOutlet="graphicDirective.template"></ng-container>
