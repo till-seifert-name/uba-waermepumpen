@@ -23,7 +23,9 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {CustomStepperComponent, FinishButtonDirective, StepperGraphicDirective} from './stepper/stepper.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {CdkStepperModule} from "@angular/cdk/stepper";
-import { UebersichtsgrafikComponent } from './vorueberlegungen/uebersichtsgrafik/uebersichtsgrafik.component';
+import {UebersichtsgrafikComponent} from './vorueberlegungen/uebersichtsgrafik/uebersichtsgrafik.component';
+import {ButtonToggleGroupComponent} from './empfehlungen/button-toggle-group/button-toggle-group.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -32,10 +34,11 @@ import { UebersichtsgrafikComponent } from './vorueberlegungen/uebersichtsgrafik
     HintergrundinformationenComponent,
     VorueberlegungenComponent,
     EmpfehlungenComponent,
-    CustomStepperComponent    ,
+    CustomStepperComponent,
     StepperGraphicDirective,
     FinishButtonDirective,
-    UebersichtsgrafikComponent    ,
+    UebersichtsgrafikComponent,
+    ButtonToggleGroupComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { UebersichtsgrafikComponent } from './vorueberlegungen/uebersichtsgrafik
     MatSelectModule,
     MatCardModule,
     MatExpansionModule,
-    CdkStepperModule
+    CdkStepperModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

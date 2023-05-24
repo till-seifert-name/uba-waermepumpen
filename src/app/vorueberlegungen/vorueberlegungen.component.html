@@ -1,4 +1,4 @@
-<mat-card class="mx-3 text-bg-light bg-white flex-grow-1 mb-3" xmlns="http://www.w3.org/1999/html">
+<mat-card class="mx-3 text-bg-light bg-white flex-grow-1 mb-3">
   <!--
     <mat-card-header>
       <mat-card-title>Einzelfahrzeug beschaffen</mat-card-title>
@@ -254,7 +254,7 @@
       </form>
 
       <!-- Results -->
-      <div class="col-6 d-flex flex-column justify-content-start align-items-stretch gap-2">
+      <div class="col-6 d-flex flex-column justify-content-start align-items-stretch">
 
         <!-- Übersichtsgrafik -->
         <h4 *ngIf="stepper.selectedIndex == 0"
@@ -278,64 +278,74 @@
         </mat-card>
 
         <!-- Dokumentation -->
-        <mat-card appearance="outlined"
-                  class="bg-light"
-                  [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')"
-        >
-          <mat-card-header>
-            <mat-card-title class="mat-h1">
-              1. Umfang der Pkw-Beschaffung
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')">
-            <p class="ps-4">
-              {{grid.getCell('Fragen_Prototyp_Flotte', 'B16')}}
-              <em class="text-secondary">{{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}</em>
-              {{grid.getCell('Fragen_Prototyp_Flotte', 'F16')}}
-              <em class="text-secondary fs-2">{{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent}}</em>
-              <!--{{grid.getCell('Fragen_Prototyp_Flotte', 'H16')}}-->
-            </p>
-            <p class="ps-4">
-              {{grid.getCell('Fragen_Prototyp_Flotte', 'B17')}}
-            </p>
-            <p class="ps-4">
-              Bitte überlegen Sie mithilfe der nächsten Frage, ob der Fuhrpark noch weiter verkleinert werden kann.
-            </p>
-          </mat-card-content>
-        </mat-card>
+        <h4 *ngIf="stepper.selectedIndex != 0"
+            style="height: 40px"
+            class="mat-headline-6 me-2 align-self-end text-uppercase m-0">
+          Dokumentation
+        </h4>
+        <hr class="mt-1">
 
-        <mat-card appearance="outlined"
-                  class="bg-light"
-                  [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')"
-        >
-          <mat-card-header>
-            <mat-card-title class="mat-h1">
-              2. Alternativen zum Pkw-Kauf
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')">
-            <p class="ps-4">
-              {{grid.getCell('Names', 'E_F0')}}
-            </p>
-          </mat-card-content>
-        </mat-card>
+        <div class="vstack gap-2">
 
-        <mat-card appearance="outlined"
-                  class="bg-light"
-                  [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')"
-        >
-          <mat-card-header>
-            <mat-card-title class="mat-h1">
-              3. Verkleinerung des Fuhrparks
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')">
-            <p class="ps-4">
-              {{grid.getCell('Fragen_Prototyp_Flotte', 'B59')}}
-            </p>
-          </mat-card-content>
-        </mat-card>
+          <mat-card appearance="outlined"
+                    class="bg-light"
+                    [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')"
+          >
+            <mat-card-header>
+              <mat-card-title class="mat-h1">
+                1. Umfang der Pkw-Beschaffung
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')">
+              <p class="ps-4">
+                {{grid.getCell('Fragen_Prototyp_Flotte', 'B16')}}
+                <em class="text-secondary">{{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}</em>
+                {{grid.getCell('Fragen_Prototyp_Flotte', 'F16')}}
+                <em class="text-secondary fs-2">{{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent}}</em>
+                <!--{{grid.getCell('Fragen_Prototyp_Flotte', 'H16')}}-->
+              </p>
+              <p class="ps-4">
+                {{grid.getCell('Fragen_Prototyp_Flotte', 'B17')}}
+              </p>
+              <p class="ps-4">
+                Bitte überlegen Sie mithilfe der nächsten Frage, ob der Fuhrpark noch weiter verkleinert werden kann.
+              </p>
+            </mat-card-content>
+          </mat-card>
 
+          <mat-card appearance="outlined"
+                    class="bg-light"
+                    [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')"
+          >
+            <mat-card-header>
+              <mat-card-title class="mat-h1">
+                2. Alternativen zum Pkw-Kauf
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')">
+              <p class="ps-4">
+                {{grid.getCell('Names', 'E_F0')}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card appearance="outlined"
+                    class="bg-light"
+                    [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')"
+          >
+            <mat-card-header>
+              <mat-card-title class="mat-h1">
+                3. Verkleinerung des Fuhrparks
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')">
+              <p class="ps-4">
+                {{grid.getCell('Fragen_Prototyp_Flotte', 'B59')}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+        </div>
       </div>
 
     </div>

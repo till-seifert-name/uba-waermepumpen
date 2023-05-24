@@ -147,7 +147,7 @@ $dau-online-tool-theme: mat.define-light-theme((color: (
 $primary: mat.get-color-from-palette($blues, 700);
 $secondary: mat.get-color-from-palette($greens, A400);
 $success: mat.get-color-from-palette($greens, 600);
-$info: mat.get-color-from-palette($turquoise, 400);
+$info: mat.get-color-from-palette($turquoise, 50);
 $warning: mat.get-color-from-palette($greens, 700); // Color usually is orange or yellow, adjust?
 $danger: mat.get-color-from-palette($blues, 800); // Color usually is red, adjust?
 $light: mat.get-color-from-palette($blues, 50);
@@ -157,7 +157,7 @@ $dark: mat.get-color-from-palette($blues, 900);
 $primary-contrast: mat.get-contrast-color-from-palette($blues, 500);
 $secondary-contrast: mat.get-contrast-color-from-palette($greens, 500);
 $success-contrast: mat.get-contrast-color-from-palette($greens, 600);
-$info-contrast: mat.get-contrast-color-from-palette($turquoise, 400);
+$info-contrast: mat.get-contrast-color-from-palette($turquoise, 50);
 $warning-contrast: mat.get-contrast-color-from-palette($greens, 700);
 $danger-contrast: mat.get-contrast-color-from-palette($blues, 800);
 $light-contrast: mat.get-contrast-color-from-palette($blues, 100);
