@@ -57,7 +57,7 @@
             <hr class="mt-1">
             <section class="p-2">
 
-              <h4>Mobilitätsbedarf</h4>
+              <h2 class="mat-h1">Mobilitätsbedarf</h2>
               <p>
                 Der folgende Teil beschäftigt sich mit den Fragen, wie der Mobilitätsbedarf gedeckt werden kann und ob
                 alle Pkw-Beschaffungen tatsächlich notwendig sind. Solche Vorüberlegungen bezüglich der
@@ -70,7 +70,7 @@
                 Fahrzeuge untereinander austauschen/gemeinsam nutzen, beantwortet werden
               </p>
 
-              <h5>1. Umfang der Pkw-Beschaffung</h5>
+              <h3 class="mat-headline-5">1. Umfang der Pkw-Beschaffung</h3>
 
               <p>
                 Wie viele Pkw sollen beschafft werden?
@@ -102,8 +102,8 @@
             <hr class="mt-1">
             <section class="p-2">
 
-              <h5>2. Alternativen zum Pkw-Kauf</h5>
-              <p class="fw-bolder">
+              <h3 class="mat-headline-5">2. Alternativen zum Pkw-Kauf</h3>
+              <p>
                 Wie oft können die geplanten Strecken/Einsatzzwecke mit folgenden Verkehrsmitteln erledigt werden?
               </p>
               <p>
@@ -116,29 +116,30 @@
               </p>
 
               <div class="row">
-                <div class="col-auto">
-                  <h6>Öffentliche Verkehrsmittel</h6>
 
+                <div class="col-auto">
+                  <h5 class="mat-body">Öffentliche Verkehrsmittel</h5>
                   <mat-form-field appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_BF1']" name="F_BF1" #F_BF1="ngModel" required
                                 (ngModelChange)="grid.setCell('Names', 'F_BF1', F_BF1.value)">
                       <mat-option
-                        *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV3']]"
+                        *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
                         [value]="option">
                         {{ option }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
+
                 <div class="col-auto">
-                  <h6>Fahrrad</h6>
+                  <h5 class="mat-body">Fahrrad</h5>
                   <mat-form-field appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_FL1']" name="F_FL1" #F_FL1="ngModel" required
                                 (ngModelChange)="grid.setCell('Names', 'F_FL1', F_FL1.value)">
                       <mat-option
-                        *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV3']]"
+                        *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
                         [value]="option">
                         {{ option }}
                       </mat-option>
@@ -148,41 +149,41 @@
               </div>
 
 
-              <h6>PKW</h6>
+              <h5 class="mat-body">PKW</h5>
 
-              <h6>Pooling</h6>
+              <h6 class="mat-body">Pooling</h6>
               <mat-form-field appearance="outline">
                 <mat-label>Häufigkeit der Nutzung</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_CP1']" name="F_CP1" #F_CP1="ngModel" required
                             (ngModelChange)="grid.setCell('Names', 'F_CP1', F_CP1.value)">
                   <mat-option
-                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV3']]"
+                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
                     [value]="option">
                     {{ option }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
 
-              <h6>Sharing</h6>
+              <h6 class="mat-body">Sharing</h6>
               <mat-form-field appearance="outline">
                 <mat-label>Häufigkeit der Nutzung</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_CS1']" name="F_CS1" #F_CS1="ngModel" required
                             (ngModelChange)="grid.setCell('Names', 'F_CS1', F_CS1.value)">
                   <mat-option
-                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV3']]"
+                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
                     [value]="option">
                     {{ option }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
 
-              <h6>Mieten</h6>
+              <h6 class="mat-body">Mieten</h6>
               <mat-form-field appearance="outline">
                 <mat-label>Häufigkeit der Nutzung</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_M1']" name="F_M1" #F_M1="ngModel" required
                             (ngModelChange)="grid.setCell('Names', 'F_M1', F_M1.value)">
                   <mat-option
-                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV3']]"
+                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
                     [value]="option">
                     {{ option }}
                   </mat-option>
@@ -199,7 +200,7 @@
             <hr class="mt-1">
             <section class="p-2">
 
-              <h5>3. Verkleinerung des Fuhrparks</h5>
+              <h3 class="mat-headline-5">3. Verkleinerung des Fuhrparks</h3>
               <p>
                 Die folgende Frage bezieht sich auf Ihre Einschätzung, nachdem Sie die Vorüberlegungen zur
                 Flottenbeschaffung durchgegangen sind:
@@ -217,7 +218,7 @@
                        (ngModelChange)="grid.setCell('Names', 'F_E2', F_E2.value)">
               </mat-form-field>
 
-              <mat-card class="bg-light mb-1">
+              <mat-card class="bg-light mb-1" appearance="outlined">
                 <mat-card-content>
                   <p>
                     Für die verbleibenden Pkw nutzen Sie bitte den Tooleinstieg "Empfehlungen" zur
@@ -230,7 +231,7 @@
                     werden.
                   </p>
                   <div class="text-center">
-                    <a mat-flat-button color="primary" routerLink="/empfehlungen">
+                    <a mat-stroked-button color="primary" routerLink="/empfehlungen">
                       Empfehlungen
                     </a>
                   </div>
@@ -247,8 +248,9 @@
       </form>
 
       <!-- Results -->
-      <div class="col-6 d-flex flex-column align-content-stretch align-items-stretch">
+      <div class="col-6 d-flex flex-column justify-content-start align-items-stretch gap-2">
 
+        <!-- Übersichtsgrafik -->
         <h4 *ngIf="stepper.selectedIndex == 0"
             class="mat-headline-6 me-2 align-self-end text-uppercase">
           Übersichtsgrafik
@@ -269,25 +271,62 @@
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
         </mat-card>
 
-        <mat-card class="flex-grow-1 bg-info">
+        <!-- Dokumentation -->
+        <mat-card appearance="outlined"
+                  class="bg-light"
+                  [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')"
+        >
           <mat-card-header>
-            <mat-card-title>
-              Empfehlung zur Antriebsart:
+            <mat-card-title class="mat-h1">
+              1. Umfang der Pkw-Beschaffung
             </mat-card-title>
           </mat-card-header>
-          <mat-card-content>
-            <p>{{grid.getCell('Names', 'E_A0')}}</p>
+          <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')">
+            <p class="ps-4">
+              {{grid.getCell('Fragen_Prototyp_Flotte', 'B16')}}
+              <em class="text-secondary">{{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}</em>
+              {{grid.getCell('Fragen_Prototyp_Flotte', 'F16')}}
+              <em class="text-secondary fs-2">{{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent}}</em>
+              <!--{{grid.getCell('Fragen_Prototyp_Flotte', 'H16')}}-->
+            </p>
+            <p class="ps-4">
+              {{grid.getCell('Fragen_Prototyp_Flotte', 'B17')}}
+            </p>
+            <p class="ps-4">
+              Bitte überlegen Sie mithilfe der nächsten Frage, ob der Fuhrpark noch weiter verkleinert werden kann.
+            </p>
           </mat-card-content>
         </mat-card>
 
-        <mat-card class="flex-grow-1 bg-info">
+        <mat-card appearance="outlined"
+                  class="bg-light"
+                  [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')"
+        >
           <mat-card-header>
-            <mat-card-title>
-              Empfehlung zum Fahrzeugsegment:
+            <mat-card-title class="mat-h1">
+              2. Alternativen zum Pkw-Kauf
             </mat-card-title>
           </mat-card-header>
-          <mat-card-content>
-            <p>{{grid.getCell('Names', 'E_F0')}}</p>
+          <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')">
+            <p class="ps-4">
+              {{grid.getCell('Names', 'E_F0')}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card appearance="outlined"
+                  class="bg-light"
+                  [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')"
+        >
+          <mat-card-header>
+            <mat-card-title class="mat-h1">
+              3. Verkleinerung des Fuhrparks
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')">
+            <p class="ps-4">
+              {{grid.getCell('Fragen_Prototyp_Flotte', 'B59')}}
+            </p>
           </mat-card-content>
         </mat-card>
 

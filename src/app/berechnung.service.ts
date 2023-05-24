@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data} from "./data";
-import {DataGrid, ISTLEER, ODER, UND, WAHR, WENNS} from "./data-grid";
+import {Injectable} from '@angular/core';
+import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data, Hinweislisten_für_Flotte} from "./data";
+import {ABS, CellContent, DataGrid, ISTLEER, ODER, UND, WAHR, WENN, WENNS} from "./data-grid";
 import {debounceTime, filter} from "rxjs";
 
 const STORAGE_KEY = 'DBU-DATA';
@@ -20,6 +20,10 @@ export class BerechnungService {
     }
 
     for (const [cell, content] of Object.entries(Empfehlungslisten_data)) {
+      grid.setCell("Names", cell, content);
+    }
+
+    for (const [cell, content] of Object.entries(Hinweislisten_für_Flotte)) {
       grid.setCell("Names", cell, content);
     }
 
@@ -200,7 +204,67 @@ export class BerechnungService {
         UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN1), E_F41,
         UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN2), E_F42,
         WAHR(), " ");
+    });
 
+    // Function for Umfang der Pkw-Beschaffung:
+    grid.setCell("Fragen_Prototyp_Flotte", "B16", (sheet, cell, grid) => {
+      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", "Mit dieser Beschaffung");
+    });
+
+    grid.setCell("Fragen_Prototyp_Flotte", "E16", (sheet, cell, grid) => {
+      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      return WENNS(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", F_E1 >= F_B1, H_F1, WAHR(), H_F2);
+    });
+
+    grid.setCell("Fragen_Prototyp_Flotte", "F16", (sheet, cell, grid) => {
+      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", "Sie Ihren Fuhrpark um");
+    });
+
+    grid.setCell("Fragen_Prototyp_Flotte", "G16", (sheet, cell, grid) => {
+      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      // @ts-ignore
+      return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", ABS((F_E1 - F_B1) / F_E1));
+    });
+
+    grid.setCell("Fragen_Prototyp_Flotte", "H16", (sheet, cell, grid) => {
+      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", ".");
+    });
+
+
+    grid.setCell("Fragen_Prototyp_Flotte", "B17", (sheet, cell, grid) => {
+      const {F_B1, F_E1, H_F5, H_F3, H_F4} = grid.cells['Names'];
+      return WENNS(
+        ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "",
+        F_E1 > F_B1, H_F5,
+        F_E1 < F_B1, H_F3,
+        WAHR(), H_F4
+      );
+    });
+
+
+    grid.setCell("Fragen_Prototyp_Flotte", "B59", (sheet, cell, grid) => {
+      let F_B1: number,
+        F_E1: number,
+        F_E2: number,
+        H_V3: CellContent,
+        H_V2: CellContent,
+        H_V4: CellContent,
+        H_V5: CellContent,
+        H_V1: CellContent
+      // @ts-ignore
+      ({F_B1, F_E1, F_E2, H_V3, H_V2, H_V4, H_V5, H_V1} = grid.cells['Names']);
+
+      return WENNS(
+        ISTLEER(F_E2), "",
+        UND(F_E2 == 0, F_E1 <= F_B1), H_V3,
+        UND(F_E2 == 0, F_E1 > F_B1), H_V2,
+        UND(F_E2 > 0, F_E1 < F_B1, F_E2 < (F_B1 - F_E1)), H_V4,
+        UND(F_E2 > 0, F_E1 < F_B1, F_E2 == (F_B1 - F_E1)), H_V5,
+        WAHR(), H_V1
+      );
     });
 
 
@@ -218,6 +282,10 @@ export class BerechnungService {
       'F_SP1',
       'F_T1',
       'F_LE1',
+
+      'F_B1', 'F_E1',
+      'F_BF1', 'F_FL1', 'F_CP1', 'F_CS1', 'F_M1',
+      'F_E2',
     ];
 
     // Subscribe to (some) cell changes save to localStorage

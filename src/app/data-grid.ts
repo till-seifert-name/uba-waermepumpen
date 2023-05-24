@@ -151,7 +151,7 @@ export class DataGrid {
     if (typeof cellContent === 'function') {
       return this.resolveFunction(sheet, cell, cellContent);
     }
-    return cellContent || 0;
+    return cellContent ?? "";
   }
 
   private resolveFunction(sheet: string, cell: string, func: CellFunc): number {
@@ -283,6 +283,8 @@ export class DataGrid {
   }
 }
 
+export const WENN = (bedingung: boolean, wertWennWahr: any, wertWennFalsch: any = "") => bedingung ? wertWennWahr : wertWennFalsch;
+
 export function UND(...conditions: boolean[]) {
   return conditions.every((condition) => condition);
 }
@@ -305,4 +307,6 @@ export function ODER(...conditions: boolean[]) {
 export function ISTLEER(value: unknown) {
   return value === '' || value === null || value === undefined;
 }
+
+export const ABS = (wert: number) => Math.abs(wert);
 

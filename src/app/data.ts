@@ -88,3 +88,20 @@ export const Empfehlungslisten_data: Sheet
   "E_F41": "Wenn nur selten über sieben Sitzplätze benötigt werden/aufwändige Transportanforderungen bestehen, kann für diese Ausnahmefälle ein Kleinbus bzw. Van (falls verfügbar) aus dem Fuhrpark verwendet oder sonst gemietet werden.  Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz für große Erwachsene auf der Rückbank. Werden oft fünf Sitzplätze oder mehr Komfort/Stauraum benötigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.",
   "E_F42": "Wenn nur selten über sieben Sitzplätze benötigt werden/aufwändige Transportanforderungen bestehen, kann für diese Ausnahmefälle ein Kleinbus bzw. Van gemietet werden.  Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz für große Erwachsene auf der Rückbank. Werden oft fünf Sitzplätze oder mehr Komfort/Stauraum benötigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.",
 };
+
+
+export const Hinweislisten_für_Flotte: Sheet = {
+  'H_F1': 'verkleinern',
+  'H_F2': 'vergrößern',
+//	Hinweis Fuhrparkgröße
+  'H_F3': 'Bitte überlegen Sie mithilfe der nächsten Frage, ob der Fuhrpark verkleinert statt vergrößert werden kann. Damit würden Sie einen entscheidenden Beitrag zur umweltverträglichen Beschaffung leisten.',
+  'H_F4': 'Bitte überlegen Sie mithilfe der nächsten Frage, ob der Fuhrpark verkleinert werden kann. Damit würden Sie einen entscheidenden Beitrag zur umweltverträglichen Beschaffung leisten.',
+  'H_F5': 'Mit der Verkleinerung des Fuhrparks leisten Sie einen entscheidenden Beitrag zur umweltverträglichen Beschaffung. Bitte überlegen Sie mithilfe der nächsten Frage, ob der Fuhrpark noch weiter verkleinert werden kann.',
+//	Hinweis Verzicht auf Pkw-Beschaffung
+  'H_V1': 'Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden Beitrag zur umweltverträglichen Beschaffung.',
+  'H_V2': 'Sie haben den Fuhrpark bereits vor der Nutzung des Tools verkleinert. Damit leisten Sie einen entscheidenden Beitrag zur umweltverträglichen Beschaffung.',
+  'H_V3': 'Bei der nächsten Beschaffung sollten Sie bereits in der Bedarfsermittlung prüfen, ob der Fuhrpark verkleinert werden kann.',
+  'H_V4': 'Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden Beitrag zur umweltverträglichen Beschaffung. Insgesamt besteht jedoch nach wie vor eine Vergrößerung im Vergleich zum vorhandenen Fuhrpark. Bei der nächsten Beschaffung sollten Sie bereits in der Bedarfsermittlung prüfen, ob der Fuhrpark verkleinert werden kann.',
+  'H_V5': 'Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden Beitrag zur umweltverträglichen Beschaffung. Insgesamt besteht jedoch nach wie vor keine Verkleinerung im Vergleich zum vorhandenen Fuhrpark. Bei der nächsten Beschaffung sollten Sie bereits in der Bedarfsermittlung prüfen, ob der Fuhrpark verkleinert werden kann.',
+
+};

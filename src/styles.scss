@@ -119,7 +119,7 @@ $turquoise: (
 
 // Convert color maps to color palettes
 $blues-palette: mat.define-palette($blues, 600, 400, 900);
-$greens-palette: mat.define-palette($greens, 600, 400, 900);
+$greens-palette: mat.define-palette($greens, A400, 400, 900);
 $turquoise-palette: mat.define-palette($turquoise, 600, 400, 900);
 
 $font-family-base: 'Inter';
@@ -145,7 +145,7 @@ $dau-online-tool-theme: mat.define-light-theme((color: (
 
 // Define Bootstrap colors with Angular Material color functions
 $primary: mat.get-color-from-palette($blues, 700);
-$secondary: mat.get-color-from-palette($greens, 600);
+$secondary: mat.get-color-from-palette($greens, A400);
 $success: mat.get-color-from-palette($greens, 600);
 $info: mat.get-color-from-palette($turquoise, 400);
 $warning: mat.get-color-from-palette($greens, 700); // Color usually is orange or yellow, adjust?
@@ -176,7 +176,7 @@ $dark-contrast: mat.get-contrast-color-from-palette($blues, 900);
   --mdc-shape-medium: 12px;
 }
 
-/* outlined buttons should use their primary color for the border */
+// outlined buttons should use their primary color for the border
 .mat-mdc-outlined-button {
   --mdc-outlined-button-outline-color: currentColor;
 }
@@ -206,4 +206,13 @@ body {
 
 body > app-root {
   display: contents;
+}
+
+// custom style
+.mat-card-inactive {
+  @extend .bg-white;
+
+  > * {
+    @extend .opacity-25;
+  }
 }
