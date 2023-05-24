@@ -22,6 +22,12 @@
           <ng-template stepperGraphic>
             <img src="assets/Startseite/flotte_1%202.svg" alt="Flotte" height="40">
           </ng-template>
+          <ng-template finishButton>
+            <a mat-stroked-button
+               [routerLink]="['/']"
+               color="primary">Beenden
+            </a>
+          </ng-template>
 
 
           <cdk-step label="Einleitung">

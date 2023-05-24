@@ -20,6 +20,14 @@ export class StepperGraphicDirective {
   }
 }
 
+@Directive({
+  selector: '[finishButton]'
+})
+export class FinishButtonDirective {
+  constructor(public template: TemplateRef<any>) {
+  }
+}
+
 /**
  * Custom CDK stepper component
  *
@@ -34,40 +42,45 @@ export class StepperGraphicDirective {
 @Component({
   selector: 'app-custom-stepper',
   template: `
-    <div class="stepper-header gap-2">
-      <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2">{{selected?.label}}</h1>
-      <span class="stepper-title mat-headline-6 text-uppercase mb-0">
+      <div class="stepper-header gap-2">
+          <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2">{{selected?.label}}</h1>
+          <span class="stepper-title mat-headline-6 text-uppercase mb-0">
             {{title}}
-        <span class="fw-bold">{{selectedIndex + 1}}</span>/{{steps.length}}
+              <span class="fw-bold">{{selectedIndex + 1}}</span>/{{steps.length}}
           </span>
-      <span class="stepper-graphic" *ngIf="graphicDirective">
+          <span class="stepper-graphic" *ngIf="graphicDirective">
             <ng-container *ngTemplateOutlet="graphicDirective.template"></ng-container>
           </span>
-    </div>
-
-    <div class="stepper-content">
-      <div [ngTemplateOutlet]="selected ? selected.content : null">
-
       </div>
-    </div>
 
-    <div class="stepper-footer">
-      <button mat-button
-              color="primary"
-              cdkStepperPrevious
-              [disabled]="selectedIndex === 0">
-        zurück
-      </button>
-      <mat-progress-bar mode="determinate"
-                        [value]="(selectedIndex + 1) / steps.length * 100">
-      </mat-progress-bar>
-      <button mat-stroked-button
-              color="primary"
-              cdkStepperNext
-              [disabled]="selectedIndex === steps.length - 1">
-        weiter
-      </button>
-    </div>
+      <div class="stepper-content">
+          <div [ngTemplateOutlet]="selected ? selected.content : null">
+
+          </div>
+      </div>
+
+      <div class="stepper-footer">
+          <button mat-button
+                  color="primary"
+                  cdkStepperPrevious
+                  [disabled]="selectedIndex === 0">
+              zurück
+          </button>
+          <mat-progress-bar mode="determinate"
+                            [value]="(selectedIndex + 1) / steps.length * 100">
+          </mat-progress-bar>
+          <ng-container *ngIf="finishButtonDirective && (selectedIndex === steps.length - 1); else nextButton">
+              <ng-container *ngTemplateOutlet="finishButtonDirective.template ?? null"></ng-container>
+          </ng-container>
+          <ng-template #nextButton>
+              <button mat-stroked-button
+                      color="primary"
+                      cdkStepperNext
+                      [disabled]="selectedIndex === steps.length - 1">
+                  weiter
+              </button>
+          </ng-template>
+      </div>
   `,
   styles: [`
     :host {
@@ -117,6 +130,7 @@ export class StepperGraphicDirective {
 export class CustomStepperComponent extends CdkStepper implements OnInit {
   @Input() title: string = ''; // Title for the stepper
   @ContentChild(StepperGraphicDirective, {static: false}) graphicDirective: StepperGraphicDirective | undefined;
+  @ContentChild(FinishButtonDirective, {static: false}) finishButtonDirective: FinishButtonDirective |undefined;
 
   constructor(_dir: Directionality,
               _changeDetectorRef: ChangeDetectorRef,

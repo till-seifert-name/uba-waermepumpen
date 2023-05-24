@@ -20,7 +20,7 @@ import {HintergrundinformationenComponent} from './hintergrundinformationen/hint
 import {VorueberlegungenComponent} from './vorueberlegungen/vorueberlegungen.component';
 import {EmpfehlungenComponent} from './empfehlungen/empfehlungen.component';
 import {MatExpansionModule} from "@angular/material/expansion";
-import {CustomStepperComponent, StepperGraphicDirective} from './stepper/stepper.component';
+import {CustomStepperComponent, FinishButtonDirective, StepperGraphicDirective} from './stepper/stepper.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {CdkStepperModule} from "@angular/cdk/stepper";
 import { UebersichtsgrafikComponent } from './vorueberlegungen/uebersichtsgrafik/uebersichtsgrafik.component';
@@ -34,6 +34,7 @@ import { UebersichtsgrafikComponent } from './vorueberlegungen/uebersichtsgrafik
     EmpfehlungenComponent,
     CustomStepperComponent    ,
     StepperGraphicDirective,
+    FinishButtonDirective,
     UebersichtsgrafikComponent    ,
   ],
   imports: [
