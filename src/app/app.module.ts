@@ -26,6 +26,7 @@ import {CdkStepperModule} from "@angular/cdk/stepper";
 import {UebersichtsgrafikComponent} from './vorueberlegungen/uebersichtsgrafik/uebersichtsgrafik.component';
 import {ButtonToggleGroupComponent} from './empfehlungen/button-toggle-group/button-toggle-group.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { ArrowComponent } from './vorueberlegungen/arrow/arrow.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     FinishButtonDirective,
     UebersichtsgrafikComponent,
     ButtonToggleGroupComponent,
+    ArrowComponent,
   ],
   imports: [
     BrowserModule,

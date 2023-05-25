@@ -330,16 +330,7 @@
                 <div class="legend text-dark fw-bold text-uppercase small">Umweltvorteil</div>
                 <div class="subtitle text-muted text-uppercase small"><span>aus Umweltsicht vor Pkw zu bevorzogen</span>
                 </div>
-                <div class="up-arrow text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" style="height: 18rem" viewBox="15 5 20 300"
-                       fill="none"
-                  >
-                    <g style="stroke: currentColor; stroke-width: 1px; fill: none">
-                      <line x1="25" y1="300" x2="25" y2="10"/>
-                      <polyline points="20,15 25,10 30,15"/>
-                    </g>
-                  </svg>
-                </div>
+                <app-arrow class="up-arrow text-primary p-3 ps-2" direction="up" style="height: 80%"></app-arrow>
 
                 <div class="A1 bg-white border border-1 border-light"></div>
                 <div class="B1 bg-white border border-1 border-light"></div>
@@ -348,15 +339,8 @@
                 <div class="B2 bg-white border border-1 border-light"></div>
                 <div class="C2 bg-white border border-1 border-light"></div>
 
-                <div class="right-arrow text-primary">
-                  <svg viewBox="5 15 300 20" style="width: 18rem;">
-                    <g transform="rotate(90 145 145)"
-                       style="stroke: currentColor; stroke-width: 1px; fill: none;">
-                      <line x1="25" y1="300" x2="25" y2="10"></line>
-                      <polyline points="20,15 25,10 30,15"></polyline>
-                    </g>
-                  </svg>
-                </div>
+                <app-arrow class="right-arrow text-primary p-3 pb-2" direction="right" style="width: 75%"></app-arrow>
+
                 <div class="freq-rare text-muted text-uppercase small">Fast nie</div>
                 <div class="freq-sometimes text-muted text-uppercase small">Ab und Zu</div>
                 <div class="freq-regular text-muted text-uppercase small">Regelmäsßig</div>
@@ -398,35 +382,35 @@
               <mat-card appearance="outlined" class="d-inline-flex">
 
                 <mat-card-content class="d-flex flex-row gap-2 py-2 px-3 w-auto">
-                 <span class="d-block text-center" >
+                 <span class="d-block text-center">
                    <svg class="d-inline-block circle fahrrad" title="Fahrrad" width="12" height="12">
                      <circle r="4" cx="6" cy="6"></circle>
                    </svg>
                    <span class="d-block text-center text-muted small">Fahrrad</span>
                  </span>
 
-                 <span class="d-block text-center" >
+                  <span class="d-block text-center">
                    <svg class="d-inline-block circle oepnv" title="ÖPNV/Bahn/Fernbus" width="12" height="12">
                      <circle r="4" cx="6" cy="6"></circle>
                    </svg>
                    <span class="d-block text-center text-muted small">ÖPNV/Bahn/Fernbus</span>
                  </span>
 
-                 <span class="d-block text-center" >
+                  <span class="d-block text-center">
                    <svg class="d-inline-block circle pkw-pooling" title="PKW Pooling" width="12" height="12">
                      <circle r="4" cx="6" cy="6"></circle>
                    </svg>
                    <span class="d-block text-center text-muted small">Pooling</span>
                  </span>
 
-                 <span class="d-block text-center" >
+                  <span class="d-block text-center">
                    <svg class="d-inline-block circle pkw-sharing" title="PKW Sharing" width="12" height="12">
                      <circle r="4" cx="6" cy="6"></circle>
                    </svg>
                    <span class="d-block text-center text-muted small">Sharing</span>
                  </span>
 
-                 <span class="d-block text-center" >
+                  <span class="d-block text-center">
                    <svg class="d-inline-block circle pkw-mieten" title="PKW Mieten" width="12" height="12">
                      <circle r="4" cx="6" cy="6"></circle>
                    </svg>
