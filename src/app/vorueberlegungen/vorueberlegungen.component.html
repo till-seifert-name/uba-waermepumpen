@@ -326,9 +326,10 @@
             <mat-card-content [class.invisible]="!grid.getCell('Darstellung_Flotte', 'D11')">
               <!-- Matrix -->
 
-              <div class="grid">
-                <div class="legend text-primary"><em>Umweltvorteil</em></div>
-                <div class="subtitle text-muted"><span>aus Umweltsicht vor Pkw zu bevorzogen</span></div>
+              <div class="grid mb-3">
+                <div class="legend text-dark fw-bold text-uppercase small">Umweltvorteil</div>
+                <div class="subtitle text-muted text-uppercase small"><span>aus Umweltsicht vor Pkw zu bevorzogen</span>
+                </div>
                 <div class="up-arrow text-primary">
                   <svg xmlns="http://www.w3.org/2000/svg" style="height: 18rem" viewBox="15 5 20 300"
                        fill="none"
@@ -356,10 +357,11 @@
                     </g>
                   </svg>
                 </div>
-                <div class="freq-rare text-muted">Fast nie</div>
-                <div class="freq-sometimes text-muted">Ab und Zu</div>
-                <div class="freq-regular text-muted">Regelmäsßig</div>
-                <div class="freq-title text-primary">Häufigkeit Substitutionsmöglichkeiten</div>
+                <div class="freq-rare text-muted text-uppercase small">Fast nie</div>
+                <div class="freq-sometimes text-muted text-uppercase small">Ab und Zu</div>
+                <div class="freq-regular text-muted text-uppercase small">Regelmäsßig</div>
+                <div class="freq-title text-dark fw-bold text-uppercase small">Häufigkeit Substitutionsmöglichkeiten
+                </div>
 
                 <svg class="circle oepnv" title="ÖPNV"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
@@ -392,6 +394,48 @@
                   <circle r="27" cx="30" cy="30"></circle>
                 </svg>
               </div>
+
+              <mat-card appearance="outlined" class="d-inline-flex">
+
+                <mat-card-content class="d-flex flex-row gap-2 py-2 px-3 w-auto">
+                 <span class="d-block text-center" >
+                   <svg class="d-inline-block circle fahrrad" title="Fahrrad" width="12" height="12">
+                     <circle r="4" cx="6" cy="6"></circle>
+                   </svg>
+                   <span class="d-block text-center text-muted small">Fahrrad</span>
+                 </span>
+
+                 <span class="d-block text-center" >
+                   <svg class="d-inline-block circle oepnv" title="ÖPNV/Bahn/Fernbus" width="12" height="12">
+                     <circle r="4" cx="6" cy="6"></circle>
+                   </svg>
+                   <span class="d-block text-center text-muted small">ÖPNV/Bahn/Fernbus</span>
+                 </span>
+
+                 <span class="d-block text-center" >
+                   <svg class="d-inline-block circle pkw-pooling" title="PKW Pooling" width="12" height="12">
+                     <circle r="4" cx="6" cy="6"></circle>
+                   </svg>
+                   <span class="d-block text-center text-muted small">Pooling</span>
+                 </span>
+
+                 <span class="d-block text-center" >
+                   <svg class="d-inline-block circle pkw-sharing" title="PKW Sharing" width="12" height="12">
+                     <circle r="4" cx="6" cy="6"></circle>
+                   </svg>
+                   <span class="d-block text-center text-muted small">Sharing</span>
+                 </span>
+
+                 <span class="d-block text-center" >
+                   <svg class="d-inline-block circle pkw-mieten" title="PKW Mieten" width="12" height="12">
+                     <circle r="4" cx="6" cy="6"></circle>
+                   </svg>
+                   <span class="d-block text-center text-muted small">Mieten</span>
+                 </span>
+
+                </mat-card-content>
+              </mat-card>
+
 
               <!--
               <p class="ps-4">

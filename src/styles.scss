@@ -192,9 +192,9 @@ $dark-contrast: mat.get-contrast-color-from-palette($blues, 900);
 
 // Define a map with the color palettes
 $palettes: (
-  blues: $blues-palette,
-  greens: $greens-palette,
-  turquoise: $turquoise-palette,
+  "blues": $blues-palette,
+  "greens": $greens-palette,
+  "turquoise": $turquoise-palette,
 );
 
 // Define the CSS variables

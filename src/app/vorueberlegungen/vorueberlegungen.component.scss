@@ -74,33 +74,27 @@
     transition-property: grid-row, grid-column, grid-area;
     transition-duration: 200ms;
 
-    stroke: currentColor;
     stroke-width: 2px;
     fill: transparent
   }
 
   .fahrrad {
-    color: var(--color-fahrrad);
     transform: translate(20px, 20px);
   }
 
   .oepnv {
-    color: var(--color-oepnv);
     transform: translate(-20px, -20px);
   }
 
   .pkw-pooling {
-    color: var(--color-pkw-pooling);
     transform: translate(-30px, -30px);
   }
 
   .pkw-sharing {
-    color: var(--color-pkw-sharing);
     transform: translate(30px, 30px);
   }
 
   .pkw-mieten {
-    color: var(--color-pkw-mieten);
     transform: translate(0px, 0px);
   }
 
@@ -129,4 +123,30 @@
     grid-area: freq-title;
     text-align: center;
   }
+}
+
+.circle {
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill: transparent
+}
+
+.fahrrad {
+  color: var(--color-fahrrad);
+}
+
+.oepnv {
+  color: var(--color-oepnv);
+}
+
+.pkw-pooling {
+  color: var(--color-pkw-pooling);
+}
+
+.pkw-sharing {
+  color: var(--color-pkw-sharing);
+}
+
+.pkw-mieten {
+  color: var(--color-pkw-mieten);
 }
