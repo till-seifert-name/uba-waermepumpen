@@ -268,8 +268,73 @@ export class BerechnungService {
     });
 
 
-    // load saved state
+// Set values
+    grid.setCell("Darstellung_Flotte", "B10", "Verkehrsmittel");
+    grid.setCell("Darstellung_Flotte", "B11", "Mietwagen");
+    grid.setCell("Darstellung_Flotte", "B12", "Car-Sharing");
+    grid.setCell("Darstellung_Flotte", "B13", "Car-Pooling");
+    grid.setCell("Darstellung_Flotte", "B14", "Fahrrad");
+    grid.setCell("Darstellung_Flotte", "B15", "ÖPNV/Bahn/Fernbus");
+    grid.setCell("Darstellung_Flotte", "B2", "Semiquantitatives Diagramm: Verkehrsmittel zur Deckung des Mobilitätsbedarfs");
+    grid.setCell("Darstellung_Flotte", "B5", 'Umformung der Anteile:');
+    grid.setCell("Darstellung_Flotte", "C10", "Semiquantitativer Anteil");
+    grid.setCell("Darstellung_Flotte", "C5", "Semiquantitativer Anteil");
+    grid.setCell("Darstellung_Flotte", "D10", "Substitutionsmöglichkeit");
+    grid.setCell("Darstellung_Flotte", "D5", "Zahlenwert für die Darstellung");
+    grid.setCell("Darstellung_Flotte", "D6", 2);
+    grid.setCell("Darstellung_Flotte", "D7", 4);
+    grid.setCell("Darstellung_Flotte", "D8", 6);
+    grid.setCell("Darstellung_Flotte", "E10", "Umweltvorteil");
+    grid.setCell("Darstellung_Flotte", "E11", 1);
+    grid.setCell("Darstellung_Flotte", "E12", 1);
+    grid.setCell("Darstellung_Flotte", "E13", 1);
+    grid.setCell("Darstellung_Flotte", "E14", 2);
+    grid.setCell("Darstellung_Flotte", "E15", 2);
 
+// Set formulas
+    grid.setCell("Darstellung_Flotte", "C11", (sheet, cell, grid) => grid.getCell('Names', 'F_M1'));
+
+    grid.setCell("Darstellung_Flotte", "C12", (sheet, cell, grid) => grid.getCell('Names', 'F_CS1'));
+
+    grid.setCell("Darstellung_Flotte", "C13", (sheet, cell, grid) => grid.getCell('Names', 'F_CP1'));
+
+    grid.setCell("Darstellung_Flotte", "C14", (sheet, cell, grid) => grid.getCell('Names', 'F_FL1'));
+
+    grid.setCell("Darstellung_Flotte", "C15", (sheet, cell, grid) => grid.getCell('Names', 'F_BF1'));
+
+    grid.setCell("Darstellung_Flotte", "C6", (sheet, cell, grid) => grid.getCell('Names', 'A_SV1'));
+
+    grid.setCell("Darstellung_Flotte", "C7", (sheet, cell, grid) => grid.getCell('Names', 'A_SV2'));
+
+    grid.setCell("Darstellung_Flotte", "C8", (sheet, cell, grid) => grid.getCell('Names', 'A_SV3'));
+
+    grid.setCell("Darstellung_Flotte", "D11", (sheet, cell, grid) => {
+      const C11 = grid.getCell('Darstellung_Flotte', 'C11');
+      return grid.SVERWEIS(sheet, C11, 'C6', 'D8', 2, false);
+    });
+
+    grid.setCell("Darstellung_Flotte", "D12", (sheet, cell, grid) => {
+      const C12 = grid.getCell('Darstellung_Flotte', 'C12');
+      return grid.SVERWEIS(sheet, C12, 'C6', 'D8', 2, false);
+    });
+
+    grid.setCell("Darstellung_Flotte", "D13", (sheet, cell, grid) => {
+      const C13 = grid.getCell('Darstellung_Flotte', 'C13');
+      return grid.SVERWEIS(sheet, C13, 'C6', 'D8', 2, false);
+    });
+
+    grid.setCell("Darstellung_Flotte", "D14", (sheet, cell, grid) => {
+      const C14 = grid.getCell('Darstellung_Flotte', 'C14');
+      return grid.SVERWEIS(sheet, C14, 'C6', 'D8', 2, false);
+    });
+
+    grid.setCell("Darstellung_Flotte", "D15", (sheet, cell, grid) => {
+      const C15 = grid.getCell('Darstellung_Flotte', 'C15');
+      return grid.SVERWEIS(sheet, C15, 'C6', 'D8', 2, false);
+    });
+
+
+    // load saved state
     const cellsToSave: string[] = [
       'F_R1',
       'F_S1',

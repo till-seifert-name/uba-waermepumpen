@@ -1,3 +1,132 @@
 :host {
   display: contents;
+
+  --color-fahrrad: var(--color-A400-greens);
+  --color-oepnv: var(--color-600-turquoise);
+  --color-pkw-pooling: var(--color-50-turquoise);
+  --color-pkw-sharing: var(--color-200-turquoise);
+  --color-pkw-mieten: var(--color-300-turquoise);
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr) auto auto auto;
+  grid-template-columns: auto auto auto repeat(3, 1fr);
+  grid-template-areas:
+        "legend subtitle up-arrow A1 B1 C1"
+        "legend subtitle up-arrow A2 B2 C2"
+        ". . . right-arrow right-arrow    right-arrow"
+        ". . . freq-rare   freq-sometimes freq-regular"
+        ". . . freq-title  freq-title     freq-title";
+
+  .legend {
+    grid-area: legend;
+
+    writing-mode: vertical-lr;
+    text-orientation: inherit;
+    rotate: 180deg;
+    text-align: center;
+  }
+
+  .subtitle {
+    grid-area: subtitle;
+
+    writing-mode: vertical-lr;
+    text-orientation: inherit;
+    rotate: 180deg;
+    text-align: center;
+  }
+
+  .up-arrow {
+    grid-area: up-arrow;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .A1 {
+    grid-area: A1;
+  }
+
+  .B1 {
+    grid-area: B1;
+  }
+
+  .C1 {
+    grid-area: C1;
+  }
+
+  .A2 {
+    grid-area: A2;
+  }
+
+  .B2 {
+    grid-area: B2;
+  }
+
+  .C2 {
+    grid-area: C2;
+  }
+
+  .circle {
+    align-self: center;
+    justify-self: center;
+
+    transition-property: grid-row, grid-column, grid-area;
+    transition-duration: 200ms;
+
+    stroke: currentColor;
+    stroke-width: 2px;
+    fill: transparent
+  }
+
+  .fahrrad {
+    color: var(--color-fahrrad);
+    transform: translate(20px, 20px);
+  }
+
+  .oepnv {
+    color: var(--color-oepnv);
+    transform: translate(-20px, -20px);
+  }
+
+  .pkw-pooling {
+    color: var(--color-pkw-pooling);
+    transform: translate(-30px, -30px);
+  }
+
+  .pkw-sharing {
+    color: var(--color-pkw-sharing);
+    transform: translate(30px, 30px);
+  }
+
+  .pkw-mieten {
+    color: var(--color-pkw-mieten);
+    transform: translate(0px, 0px);
+  }
+
+  .right-arrow {
+    grid-area: right-arrow;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .freq-rare {
+    grid-area: freq-rare;
+    text-align: center;
+  }
+
+  .freq-sometimes {
+    grid-area: freq-sometimes;
+    text-align: center;
+  }
+
+  .freq-regular {
+    grid-area: freq-regular;
+    text-align: center;
+  }
+
+  .freq-title {
+    grid-area: freq-title;
+    text-align: center;
+  }
 }

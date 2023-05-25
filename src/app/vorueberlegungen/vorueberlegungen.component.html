@@ -299,9 +299,10 @@
             <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')">
               <p class="ps-4">
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'B16')}}
-                <em class="text-secondary">{{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}</em>
+                <strong class="text-secondary">{{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}</strong>
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'F16')}}
-                <em class="text-secondary fs-2">{{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent}}</em>
+                <em
+                  class="text-secondary fst-normal fs-4">{{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent}}</em>
                 <!--{{grid.getCell('Fragen_Prototyp_Flotte', 'H16')}}-->
               </p>
               <p class="ps-4">
@@ -315,17 +316,115 @@
 
           <mat-card appearance="outlined"
                     class="bg-light"
-                    [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')"
+                    [class.mat-card-inactive]="!grid.getCell('Darstellung_Flotte', 'D11')"
           >
             <mat-card-header>
               <mat-card-title class="mat-h1">
                 2. Alternativen zum Pkw-Kauf
               </mat-card-title>
             </mat-card-header>
-            <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B19')">
+            <mat-card-content [class.invisible]="!grid.getCell('Darstellung_Flotte', 'D11')">
+              <!-- Matrix -->
+
+              <div class="grid">
+                <div class="legend text-primary"><em>Umweltvorteil</em></div>
+                <div class="subtitle text-muted"><span>aus Umweltsicht vor Pkw zu bevorzogen</span></div>
+                <div class="up-arrow text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="height: 18rem" viewBox="15 5 20 300"
+                       fill="none"
+                  >
+                    <g style="stroke: currentColor; stroke-width: 1px; fill: none">
+                      <line x1="25" y1="300" x2="25" y2="10"/>
+                      <polyline points="20,15 25,10 30,15"/>
+                    </g>
+                  </svg>
+                </div>
+
+                <div class="A1 bg-white border border-1 border-light"></div>
+                <div class="B1 bg-white border border-1 border-light"></div>
+                <div class="C1 bg-white border border-1 border-light"></div>
+                <div class="A2 bg-white border border-1 border-light"></div>
+                <div class="B2 bg-white border border-1 border-light"></div>
+                <div class="C2 bg-white border border-1 border-light"></div>
+
+                <div class="right-arrow text-primary">
+                  <svg viewBox="5 15 300 20" style="width: 18rem;">
+                    <g transform="rotate(90 145 145)"
+                       style="stroke: currentColor; stroke-width: 1px; fill: none;">
+                      <line x1="25" y1="300" x2="25" y2="10"></line>
+                      <polyline points="20,15 25,10 30,15"></polyline>
+                    </g>
+                  </svg>
+                </div>
+                <div class="freq-rare text-muted">Fast nie</div>
+                <div class="freq-sometimes text-muted">Ab und Zu</div>
+                <div class="freq-regular text-muted">Regelmäsßig</div>
+                <div class="freq-title text-primary">Häufigkeit Substitutionsmöglichkeiten</div>
+
+                <svg class="circle oepnv" title="ÖPNV"
+                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E15') + 0"
+                     width="60" height="60">
+                  <circle r="27" cx="30" cy="30"></circle>
+                </svg>
+                <svg class="circle fahrrad" title="Fahrrad"
+                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D14') / 2 + 3"
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E14') + 0"
+                     width="40" height="40">
+                  <circle r="17" cx="20" cy="20"></circle>
+                </svg>
+                <svg class="circle pkw-pooling" title="PKW Pooling"
+                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D13') / 2 + 3"
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E13') + 0"
+                     width="76" height="76">
+                  <circle r="25" cx="38" cy="38"></circle>
+                </svg>
+                <svg class="circle pkw-sharing" title="PKW Sharing"
+                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D12') / 2 + 3"
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E12') + 0"
+                     width="60" height="60">
+                  <circle r="27" cx="30" cy="30"></circle>
+                </svg>
+                <svg class="circle pkw-mieten" title="PKW Mieten"
+                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D11') / 2 + 3"
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E11') + 0"
+                     width="60" height="60">
+                  <circle r="27" cx="30" cy="30"></circle>
+                </svg>
+              </div>
+
+              <!--
               <p class="ps-4">
-                {{grid.getCell('Names', 'E_F0')}}
+                Mietwagen:
+                {{grid.getCell('Darstellung_Flotte', 'D11')}}
+                /
+                {{grid.getCell('Darstellung_Flotte', 'E11')}}
               </p>
+              <p class="ps-4">
+                Car-Sharing:
+                {{grid.getCell('Darstellung_Flotte', 'D12')}}
+                /
+                {{grid.getCell('Darstellung_Flotte', 'E12')}}
+              </p>
+              <p class="ps-4">
+                Car-Pooling:
+                {{grid.getCell('Darstellung_Flotte', 'D13')}}
+                /
+                {{grid.getCell('Darstellung_Flotte', 'E13')}}
+              </p>
+              <p class="ps-4">
+                Fahrrad:
+                {{grid.getCell('Darstellung_Flotte', 'D14')}}
+                /
+                {{grid.getCell('Darstellung_Flotte', 'E14')}}
+              </p>
+              <p class="ps-4">
+                ÖPNV/Bahn/Fernbus:
+                {{grid.getCell('Darstellung_Flotte', 'D15')}}
+                /
+                {{grid.getCell('Darstellung_Flotte', 'E15')}}
+              </p>
+              -->
             </mat-card-content>
           </mat-card>
 

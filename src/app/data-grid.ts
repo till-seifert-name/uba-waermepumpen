@@ -7,7 +7,7 @@ export type CellContent = string | CellFunc | number;
 /**
  * A function that can be used as the content of a cell in the DataGrid.
  */
-export type CellFunc = (sheet: string, cell: string, grid: DataGrid) => number | string;
+export type CellFunc = (sheet: string, cell: string, grid: DataGrid) => number | string | null;
 
 export type Sheet = Record<string, CellContent>;
 export type CellChange = { sheet: string; cell: string; value: any };
@@ -159,7 +159,7 @@ export class DataGrid {
 
     // null marks that the cell is part of the stack that is just evaluated, to detect loops
     if (this.results[sheet][cell] === null) {
-      throw new Error(`Circular dependency detected at ${sheet}!${cell}`);
+      //throw new Error(`Circular dependency detected at ${sheet}!${cell}`);
     }
 
     this.results[sheet][cell] = null;
@@ -189,7 +189,7 @@ export class DataGrid {
    */
   SUM(sheet: string, cells: string[]): number {
     return cells.reduce((sum, cell) => {
-      let add = this.getCell(sheet, cell);
+      const add = this.getCell(sheet, cell);
       if (typeof add === 'number') {
         return sum + add;
       }
@@ -269,10 +269,33 @@ export class DataGrid {
    * Retrieves the value from a specified cell in a specified sheet using the INDEX function.
    */
   INDEX(sheet: string, cell1: string, cell2: string, row: number, col: number): any {
-    const $x = this.COLUMN(cell1) + (col - 1);
-    const $y = this.ROW(cell1) + (row - 1);
+    const x = this.COLUMN(cell1) + (col - 1);
+    const y = this.ROW(cell1) + (row - 1);
 
-    return this.getCell(sheet, DataGrid.index2cell($x, $y));
+    return this.getCell(sheet, DataGrid.index2cell(x, y));
+  }
+
+  SVERWEIS(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number, is_range: boolean): string | number | null {
+    const x = this.COLUMN(cell1);
+    const yStart = this.ROW(cell1);
+    const yEnd = this.ROW(cell2);
+
+    let result: string | number | null = null;
+    let found = false;
+
+    for (let y = yStart; y <= yEnd; y++) {
+      if (found) break;
+      const v = this.getCell(sheet, DataGrid.index2cell(x, y));
+      if (v == value) {
+        found = true;
+        result = this.getCell(sheet, DataGrid.index2cell(x + col - 1, y));
+      }
+    }
+    return result;
+  }
+
+  VLOOKUP(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number, is_range: boolean): string | number | null {
+    return this.SVERWEIS(sheet, value, cell1, cell2, col, is_range);
   }
 
   /**

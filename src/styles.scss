@@ -87,8 +87,8 @@ $greens: (
 $turquoise: (
   50: #CDF9FF, // Provided
   100: #AFFFFF, // Provided
-  200: #80E4EE, // Generated
-  300: #5ECBDD, // Generated
+  200: #8FF2FF, // Provided
+  300: #4ED8E9, // Provided
   400: #20BCCC, // Provided
   500: #00A0AE, // Provided
   600: #008490, // Provided
@@ -163,6 +163,66 @@ $danger-contrast: mat.get-contrast-color-from-palette($blues, 800);
 $light-contrast: mat.get-contrast-color-from-palette($blues, 100);
 $dark-contrast: mat.get-contrast-color-from-palette($blues, 900);
 
+
+// Define utility classes for the primary, accent, and warn colors
+.mat-primary-text {
+  color: mat.get-color-from-palette($blues-palette, 500);
+}
+
+.mat-accent-text {
+  color: mat.get-color-from-palette($greens-palette, 'A400');
+}
+
+.mat-warn-text {
+  color: mat.get-color-from-palette($turquoise-palette, 600);
+}
+
+// Define utility classes for the primary, accent, and warn colors
+.mat-primary-text {
+  color: mat.get-color-from-palette($blues-palette, 500);
+}
+
+.mat-accent-text {
+  color: mat.get-color-from-palette($greens-palette, 'A400');
+}
+
+.mat-warn-text {
+  color: mat.get-color-from-palette($turquoise-palette, 600);
+}
+
+// Define a map with the color palettes
+$palettes: (
+  blues: $blues-palette,
+  greens: $greens-palette,
+  turquoise: $turquoise-palette,
+);
+
+// Define the CSS variables
+:root {
+  @each $palette-name, $palette in $palettes {
+    @each $name, $color in $palette {
+      @if type-of($color) == color {
+        --color-#{$name}-#{$palette-name}: #{mat.get-color-from-palette($palette, $name)};
+        --contrast-#{$name}-#{$palette-name}: #{mat.get-contrast-color-from-palette($palette, $name)};
+      }
+    }
+  }
+}
+
+// Iterate over the palettes for utility classes
+@each $palette-name, $palette in $palettes {
+  @each $name, $color in $palette {
+    @if type-of($color) == color {
+      .text-#{$name}-#{$palette-name} {
+        color: var(--color-#{$name}-#{$palette-name});
+      }
+      .bg-#{$name}-#{$palette-name} {
+        background-color: var(--color-#{$name}-#{$palette-name}) !important;
+        color: var(--contrast-#{$name}-#{$palette-name});
+      }
+    }
+  }
+}
 
 //
 // override some MD3 styles
