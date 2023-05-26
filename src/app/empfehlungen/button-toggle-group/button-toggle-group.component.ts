@@ -5,7 +5,7 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
   template: `
     <mat-button-toggle-group [value]="selectedOption" (change)="onChange($event)">
       <mat-button-toggle   *ngFor="let option of options" [value]="option">
-        <mat-icon *ngIf="selectedOption === option">check</mat-icon>
+        <mat-icon class="material-icons-outlined" *ngIf="selectedOption === option">check</mat-icon>
         {{ option }}
       </mat-button-toggle>
     </mat-button-toggle-group>

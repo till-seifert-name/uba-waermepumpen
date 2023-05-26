@@ -26,8 +26,9 @@ import {CdkStepperModule} from "@angular/cdk/stepper";
 import {UebersichtsgrafikComponent} from './vorueberlegungen/uebersichtsgrafik/uebersichtsgrafik.component';
 import {ButtonToggleGroupComponent} from './empfehlungen/button-toggle-group/button-toggle-group.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import { ArrowComponent } from './vorueberlegungen/arrow/arrow.component';
-import { InfoCardComponent } from './hintergrundinformationen/info-card/info-card.component';
+import {ArrowComponent} from './vorueberlegungen/arrow/arrow.component';
+import {InfoCardComponent} from './hintergrundinformationen/info-card/info-card.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { InfoCardComponent } from './hintergrundinformationen/info-card/info-car
     MatProgressBarModule,
     MatStepperModule,
     MatInputModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
