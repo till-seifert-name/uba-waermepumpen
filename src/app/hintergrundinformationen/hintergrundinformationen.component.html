@@ -1,1 +1,158 @@
-<p>hintergrundinformationen works!</p>
+<mat-card appearance="outlined" class="mx-3 text-bg-light bg-white flex-grow-1 mb-3">
+
+  <mat-card-content class="flex-grow-1">
+
+    <div class="d-flex align-content-center align-items-center justify-content-between">
+
+      <h1 class="mat-headline-6 ms-2 mb-0 text-uppercase">
+        Hintergrundinformationen
+      </h1>
+
+      <img src="assets/Hintergrundinfos/fragezeichen_1%201.svg" alt="Flotte" height="40">
+
+    </div>
+
+    <hr class="mt-1">
+
+    <section class="p-2">
+
+      <p>Auf dieser Seite können Sie sich zu Themen der umweltverträglichen Mobilität informieren.</p>
+
+      <ul
+        class="mb-4">
+        <li>
+          Die Infoboxen „THG-Vergleich von Verkehrsmitteln“ und „Mobilitätsbudget“ decken übergeordnete Themen ab.
+        </li>
+        <li>
+          Die übrigen Infoboxen halten spezifische Informationen zu den verschiedenen Verkehrsmitteln und deren
+          Einbindung
+          bei
+          der Deckung des Mobilitätsbedarfs der öffentlichen Hand bereit.
+        </li>
+      </ul>
+
+
+      <div class="row gap-5">
+
+        <div class="col">
+
+          <!-- Blues palette -->
+          <div class="d-flex flex-column gap-2">
+
+            <app-info-card
+              cardTitle="THG-Vergleich von Verkehrsmitteln"
+              cardBodyText="Die Klimawirkung von Verkehrsmitteln des Personenverkehrs unterscheidet sich erheblich."
+              innerCardClass="bg-600-blues"
+              outerCardClass="info-card-all"
+              class="mb-4"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Mobilitätsbudget"
+              cardBodyText="Monatlicher Betrag für die private und dienstliche Mobilität für Arbeitnehmende"
+              innerCardClass="bg-600-blues"
+              outerCardClass="info-card-budget"
+              class="mb-4"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Pkw"
+              cardBodyText="Bei unvermeidlicher Pkw-Nutzung existieren Alternativen zur Anschaffung zusätzlicher Fahrzeuge."
+              innerCardClass="bg-500-blues"
+              outerCardClass="info-card-pkw"
+            ></app-info-card>
+
+            <app-info-card
+              cardTitle="Antriebsart"
+              innerCardClass="bg-400-blues"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Fahrzeugsegment"
+              innerCardClass="bg-400-blues"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Pooling von Fahrrädern"
+              innerCardClass="bg-300-blues"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Sharing-Angebote für Fahrräder"
+              innerCardClass="bg-300-blues"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Abo/Leasing eines Fahrrads"
+              innerCardClass="bg-300-blues"
+            ></app-info-card>
+          </div>
+
+        </div>
+
+        <div class="col">
+
+          <!-- Turquoise palette -->
+          <div class="d-flex flex-column gap-2 mb-4">
+
+            <app-info-card
+              cardTitle="Öffentliche Verkehrsmittel"
+              cardBodyText="Die Nutzung von Bus und Bahn etc. ist eine umweltverträgliche Alternative zum Pkw."
+              innerCardClass="bg-600-turquoise"
+              outerCardClass="info-card-oepnv"
+            ></app-info-card>
+
+            <app-info-card
+              cardTitle="ÖPNV"
+              innerCardClass="bg-500-turquoise"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Abo im ÖPNV"
+              innerCardClass="bg-400-turquoise"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Bahn und Fernbus"
+              innerCardClass="bg-500-turquoise"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Bahncard"
+              innerCardClass="bg-400-turquoise"
+            ></app-info-card>
+          </div>
+
+          <!-- Greens palette -->
+          <div class="d-flex flex-column gap-2">
+
+            <app-info-card
+              cardTitle="Fahrrad"
+              cardBodyText="Fahrradfahren schont das Klima und den öffentlichen Haushalt, ist leise und hält fit."
+              innerCardClass="bg-600-greens"
+              outerCardClass="info-card-bike"
+            ></app-info-card>
+
+            <app-info-card
+              cardTitle="(E-)Fahrrad"
+              innerCardClass="bg-A400-greens"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="(E-)Lastenrad"
+              innerCardClass="bg-A400-greens"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Pooling von Fahrrädern"
+              innerCardClass="bg-400-greens"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Sharing-Angebote für Fahrräder"
+              innerCardClass="bg-400-greens"
+            ></app-info-card>
+            <app-info-card
+              cardTitle="Abo/Leasing eines Fahrrads"
+              innerCardClass="bg-400-greens"
+            ></app-info-card>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </mat-card-content>
+
+</mat-card>

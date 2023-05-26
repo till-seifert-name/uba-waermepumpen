@@ -27,6 +27,7 @@ import {UebersichtsgrafikComponent} from './vorueberlegungen/uebersichtsgrafik/u
 import {ButtonToggleGroupComponent} from './empfehlungen/button-toggle-group/button-toggle-group.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { ArrowComponent } from './vorueberlegungen/arrow/arrow.component';
+import { InfoCardComponent } from './hintergrundinformationen/info-card/info-card.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ArrowComponent } from './vorueberlegungen/arrow/arrow.component';
     UebersichtsgrafikComponent,
     ButtonToggleGroupComponent,
     ArrowComponent,
+    InfoCardComponent,
   ],
   imports: [
     BrowserModule,
