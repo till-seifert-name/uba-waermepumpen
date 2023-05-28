@@ -348,76 +348,83 @@
                 <div class="freq-title text-dark fw-bold text-uppercase small">Häufigkeit Substitutionsmöglichkeiten
                 </div>
 
-                <svg class="circle oepnv" title="ÖPNV"
-                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E15') + 0"
-                     width="60" height="60">
+                <svg class="circle oepnv" [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E15')" width="60" height="60">
+                  <title>ÖPNV</title>
                   <circle r="27" cx="30" cy="30"></circle>
                 </svg>
-                <svg class="circle fahrrad" title="Fahrrad"
+
+                <svg class="circle fahrrad"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D14') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E14') + 0"
-                     width="40" height="40">
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E14')" width="40" height="40">
+                  <title>Fahrrad</title>
                   <circle r="17" cx="20" cy="20"></circle>
                 </svg>
-                <svg class="circle pkw-pooling" title="PKW Pooling"
+
+                <svg class="circle pkw-pooling"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D13') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E13') + 0"
-                     width="76" height="76">
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E13')" width="76" height="76">
+                  <title>PKW Pooling</title>
                   <circle r="25" cx="38" cy="38"></circle>
                 </svg>
-                <svg class="circle pkw-sharing" title="PKW Sharing"
+
+                <svg class="circle pkw-sharing"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D12') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E12') + 0"
-                     width="60" height="60">
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E12')" width="60" height="60">
+                  <title>PKW Sharing</title>
                   <circle r="27" cx="30" cy="30"></circle>
                 </svg>
-                <svg class="circle pkw-mieten" title="PKW Mieten"
+
+                <svg class="circle pkw-mieten"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D11') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E11') + 0"
-                     width="60" height="60">
+                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E11')" width="60" height="60">
+                  <title>PKW Mieten</title>
                   <circle r="27" cx="30" cy="30"></circle>
                 </svg>
+
               </div>
 
               <mat-card appearance="outlined" class="d-inline-flex">
-
                 <mat-card-content class="d-flex flex-row gap-2 py-2 px-3 w-auto">
-                 <span class="d-block text-center">
-                   <svg class="d-inline-block circle fahrrad" title="Fahrrad" width="12" height="12">
-                     <circle r="4" cx="6" cy="6"></circle>
-                   </svg>
-                   <span class="d-block text-center text-muted small">Fahrrad</span>
-                 </span>
+                  <span class="d-block text-center">
+                    <svg class="d-inline-block circle fahrrad" width="12" height="12">
+                      <title>Fahrrad</title>
+                      <circle r="4" cx="6" cy="6"></circle>
+                    </svg>
+                    <span class="d-block text-center text-muted small">Fahrrad</span>
+                  </span>
 
                   <span class="d-block text-center">
-                   <svg class="d-inline-block circle oepnv" title="ÖPNV/Bahn/Fernbus" width="12" height="12">
-                     <circle r="4" cx="6" cy="6"></circle>
-                   </svg>
-                   <span class="d-block text-center text-muted small">ÖPNV/Bahn/Fernbus</span>
-                 </span>
+                    <svg class="d-inline-block circle oepnv" width="12" height="12">
+                      <title>ÖPNV/Bahn/Fernbus</title>
+                      <circle r="4" cx="6" cy="6"></circle>
+                    </svg>
+                    <span class="d-block text-center text-muted small">ÖPNV/Bahn/Fernbus</span>
+                  </span>
 
                   <span class="d-block text-center">
-                   <svg class="d-inline-block circle pkw-pooling" title="PKW Pooling" width="12" height="12">
-                     <circle r="4" cx="6" cy="6"></circle>
-                   </svg>
-                   <span class="d-block text-center text-muted small">Pooling</span>
-                 </span>
+                    <svg class="d-inline-block circle pkw-pooling" width="12" height="12">
+                      <title>PKW Pooling</title>
+                      <circle r="4" cx="6" cy="6"></circle>
+                    </svg>
+                    <span class="d-block text-center text-muted small">Pooling</span>
+                  </span>
 
                   <span class="d-block text-center">
-                   <svg class="d-inline-block circle pkw-sharing" title="PKW Sharing" width="12" height="12">
-                     <circle r="4" cx="6" cy="6"></circle>
-                   </svg>
-                   <span class="d-block text-center text-muted small">Sharing</span>
-                 </span>
+                    <svg class="d-inline-block circle pkw-sharing" width="12" height="12">
+                      <title>PKW Sharing</title>
+                      <circle r="4" cx="6" cy="6"></circle>
+                    </svg>
+                    <span class="d-block text-center text-muted small">Sharing</span>
+                  </span>
 
                   <span class="d-block text-center">
-                   <svg class="d-inline-block circle pkw-mieten" title="PKW Mieten" width="12" height="12">
-                     <circle r="4" cx="6" cy="6"></circle>
-                   </svg>
-                   <span class="d-block text-center text-muted small">Mieten</span>
-                 </span>
-
+                    <svg class="d-inline-block circle pkw-mieten" width="12" height="12">
+                      <title>PKW Mieten</title>
+                      <circle r="4" cx="6" cy="6"></circle>
+                    </svg>
+                    <span class="d-block text-center text-muted small">Mieten</span>
+                  </span>
                 </mat-card-content>
               </mat-card>
 
