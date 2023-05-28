@@ -91,7 +91,7 @@ export class BerechnungService {
         UND(F_R1 > A_R1, F_S1 === A_S3, F_SZ1 === A_SV3, F_L2 === A_JN2),
         E_A11,
         WAHR(),
-        " "
+        ""
       );
     });
 
@@ -203,7 +203,7 @@ export class BerechnungService {
         UND(F_P1 >= 6, F_P1 <= 7, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN2), E_F40,
         UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN1), E_F41,
         UND(F_P1 >= 8, F_P1 <= 9, F_SP1 == A_SP1, F_T1 == A_T2, F_F1 == A_JN2), E_F42,
-        WAHR(), " ");
+        WAHR(), "");
     });
 
     // Function for Umfang der Pkw-Beschaffung:
