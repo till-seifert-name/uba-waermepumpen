@@ -276,3 +276,7 @@ body > app-root {
     @extend .opacity-25;
   }
 }
+
+mat-card {
+  break-inside: avoid;
+}

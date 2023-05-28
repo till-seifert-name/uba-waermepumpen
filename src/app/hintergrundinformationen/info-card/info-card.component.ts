@@ -1,4 +1,5 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-info-card',
@@ -63,7 +64,7 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
     dialog {
       width: 80%;
       min-width: 10rem;
-      max-width: 700px;
+      max-width: 74rem;
       border: none;
       padding: 0;
       background: transparent;
@@ -91,11 +92,11 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
         display: none;
       }
 
-       dialog[open] mat-card-actions {
+      dialog[open] mat-card-actions {
         display: none;
       }
 
-      dialog[open] mat-card-content:first-of-type {
+      dialog[open] > mat-card > mat-card-content:first-of-type {
         padding: 1cm;
         position: fixed;
         z-index: 2000;
@@ -109,49 +110,49 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
     }
   `],
   template: `
-      <mat-card role="button"
-                tabindex="0"
-                class="outer-card"
-                [ngClass]="outerCardClass"
-                appearance="outlined"
-                (keydown.enter)="openDialog()" (keydown.space)="openDialog()" (click)="openDialog()">
-          <mat-card [ngClass]="innerCardClass" appearance="outlined">
-              <mat-card-content class="p-2 px-3 str">
-                  <p *ngIf="cardTitle" class="mat-body-strong" [class.mb-1]="cardBodyText">
-                      {{cardTitle}}
-                  </p>
-                  <p *ngIf="cardBodyText" class="mat-h5">
-                      {{cardBodyText}}
-                  </p>
-              </mat-card-content>
-          </mat-card>
+    <mat-card role="button"
+              tabindex="0"
+              class="outer-card"
+              [ngClass]="outerCardClass"
+              appearance="outlined"
+              (keydown.enter)="openDialog()" (keydown.space)="openDialog()" (click)="openDialog()">
+      <mat-card [ngClass]="innerCardClass" appearance="outlined">
+        <mat-card-content class="p-2 px-3 str">
+          <p *ngIf="cardTitle" class="mat-body-strong" [class.mb-1]="cardBodyText">
+            {{cardTitle}}
+          </p>
+          <p *ngIf="cardBodyText" class="mat-h5">
+            {{cardBodyText}}
+          </p>
+        </mat-card-content>
       </mat-card>
+    </mat-card>
 
-      <dialog #dialog (click)="onDialogClick($event)">
-          <mat-card appearance="outlined">
+    <dialog #dialog (click)="onDialogClick($event)">
+      <mat-card appearance="outlined">
 
-              <mat-card-content>
-                  <ng-content></ng-content>
-              </mat-card-content>
+        <mat-card-content>
+          <ng-content></ng-content>
+        </mat-card-content>
 
-              <mat-card-actions align="end" class="position-absolute top-0 end-0">
-                  <button autofocus mat-icon-button (click)="closeDialog()">
-                      <mat-icon class="material-icons-outlined">close</mat-icon>
-                  </button>
-              </mat-card-actions>
-              <mat-card-actions align="end">
-                  <button mat-icon-button>
-                      <mat-icon class="material-icons-outlined">share</mat-icon>
-                  </button>
-                  <button mat-icon-button (click)="downloadAsPDF()">
-                      <mat-icon class="material-icons-outlined">file_download</mat-icon>
-                  </button>
-              </mat-card-actions>
-          </mat-card>
-      </dialog>
+        <mat-card-actions align="end" class="position-absolute top-0 end-0">
+          <button autofocus mat-icon-button (click)="closeDialog()">
+            <mat-icon class="material-icons-outlined">close</mat-icon>
+          </button>
+        </mat-card-actions>
+        <mat-card-actions align="end">
+          <button mat-icon-button>
+            <mat-icon class="material-icons-outlined">share</mat-icon>
+          </button>
+          <button mat-icon-button (click)="downloadAsPDF()">
+            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </dialog>
   `,
 })
-export class InfoCardComponent {
+export class InfoCardComponent implements AfterViewInit {
   @Input() cardTitle?: string;
   @Input() cardBodyText?: string;
   @Input() outerCardClass!: string;
@@ -159,13 +160,51 @@ export class InfoCardComponent {
 
   @ViewChild('dialog') dialog!: ElementRef<HTMLDialogElement>;
 
+  constructor(private route: ActivatedRoute, private router: Router) {
+
+  }
+
+  fragmentName: string = '';
+
+  ngAfterViewInit(): void {
+    if (this.cardTitle) {
+      this.fragmentName = this.cardTitle.replace(/[^a-z0-9üäöß]+/iug, '-').toLowerCase();
+
+      this.route.fragment.subscribe(fragment => {
+        const params = this.parseFragment(fragment || '');
+        if (params[this.fragmentName]) {
+          setTimeout(() => this.openDialog(), 0);
+        } else {
+          setTimeout(() => this.closeDialog(), 0);
+        }
+      });
+    }
+  }
 
   openDialog(): void {
+    if (!this.dialog || this.dialog.nativeElement.open)
+      return;
+
     this.dialog.nativeElement.showModal();
+
+    const fragment = this.route.snapshot.fragment;
+    const params = this.parseFragment(fragment ?? '');
+    params[this.fragmentName] = '1';
+    const newFragment = this.stringifyFragment(params);
+    this.router.navigate([], {fragment: newFragment, replaceUrl: true});
   }
 
   closeDialog(): void {
+    if (!this.dialog || !this.dialog.nativeElement.open)
+      return;
+
     this.dialog.nativeElement.close();
+
+    const fragment = this.route.snapshot.fragment;
+    const params = this.parseFragment(fragment ?? '');
+    delete params[this.fragmentName];
+    const newFragment = this.stringifyFragment(params);
+    this.router.navigate([], {fragment: newFragment, replaceUrl: true});
   }
 
   onDialogClick(event: Event): void {
@@ -176,5 +215,21 @@ export class InfoCardComponent {
 
   downloadAsPDF() {
     print()
+  }
+
+  // Parse the URL fragment into an object
+  private parseFragment(fragment: string): Record<string, string | undefined> {
+    return fragment.split('&').reduce((params, pair) => {
+      const [key, value] = pair.split('=');
+      return {...params, [key]: value};
+    }, {});
+  }
+
+  // Stringify an object into a URL fragment
+  private stringifyFragment(params: Record<string, string | number | undefined>): string {
+    return Object.entries(params)
+      .map(([key, value]) => value !== undefined ? `${key}=${value}` : '')
+      .filter(kv => kv !== '')
+      .join('&');
   }
 }
