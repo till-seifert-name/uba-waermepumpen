@@ -1,9 +1,5 @@
 
 
-.mat-drawer-container {
-  min-height: 100%;
-}
-
 
 ::ng-deep .mat-horizontal-stepper-wrapper {
   height: 100%;
@@ -29,4 +25,8 @@
   #title {
     display: none;
   }
+}
+
+.mat-toolbar.fixed-top {
+  z-index: 2;
 }

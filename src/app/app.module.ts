@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
-import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatLineModule} from "@angular/material/core";
 import {MatStepperModule} from "@angular/material/stepper";
@@ -29,6 +28,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {ArrowComponent} from './vorueberlegungen/arrow/arrow.component';
 import {InfoCardComponent} from './hintergrundinformationen/info-card/info-card.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import {MatTableModule} from "@angular/material/table";
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule,
+    MatMenuModule,
     MatListModule,
     MatLineModule,
     MatProgressBarModule,

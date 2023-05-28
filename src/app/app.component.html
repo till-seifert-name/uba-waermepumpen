@@ -1,57 +1,48 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="over">
-    <mat-nav-list>
-      <a mat-list-item [activated]="true" routerLink="/"
-         routerLinkActive="mdc-list-item--activated" [routerLinkActiveOptions]="{ exact: true }">
-        Startseite
-      </a>
-      <a mat-list-item routerLink="/hintergrundinformationen"
-         routerLinkActive="mdc-list-item--activated">
-        Hintergrundinformationen
-      </a>
-      <a mat-list-item routerLink="/vorueberlegungen"
-         routerLinkActive="mdc-list-item--activated">
-        Vorüberlegungen
-      </a>
-      <a mat-list-item routerLink="/empfehlungen"
-         routerLinkActive="mdc-list-item--activated">
-        Empfehlungen
-      </a>
-      <mat-divider></mat-divider>
-      <a mat-list-item routerLink="/kontakt"
-         routerLinkActive="mdc-list-item--activated">
-        Kontakt
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
+<mat-menu #menu="matMenu">
+  <a mat-menu-item routerLink="/"
+     routerLinkActive="mdc-list-item--activated" [routerLinkActiveOptions]="{ exact: true }">
+    Startseite
+  </a>
+  <a mat-menu-item routerLink="/hintergrundinformationen"
+     routerLinkActive="mdc-list-item--activated">
+    Hintergrundinformationen
+  </a>
+  <a mat-menu-item routerLink="/vorueberlegungen"
+     routerLinkActive="mdc-list-item--activated">
+    Vorüberlegungen
+  </a>
+  <a mat-menu-item routerLink="/empfehlungen"
+     routerLinkActive="mdc-list-item--activated">
+    Empfehlungen
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-menu-item routerLink="/kontakt"
+     routerLinkActive="mdc-list-item--activated">
+    Kontakt
+  </a>
+</mat-menu>
 
-  <mat-sidenav-content class="vh-100 d-flex flex-column bg-dark text-bg-dark">
+<span class="visually-hidden"
+      routerLink="/"
+      routerLinkActive="root-route-is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+></span>
 
-    <span class="visually-hidden"
-          routerLink="/"
-          routerLinkActive="root-route-is-active"
-          [routerLinkActiveOptions]="{ exact: true }"
-    ></span>
+<!-- Toolbar -->
+<mat-toolbar class="position-sticky top-0 flex-shrink-0 fixed-top justify-content-end bg-dark text-bg-dark">
 
-    <!-- Toolbar -->
-    <mat-toolbar class="position-sticky top-0 flex-shrink-0 fixed-top justify-content-end bg-dark text-bg-dark">
+  <span id="title" class="flex-grow-1 mat-body-2" routerLink="/">
+    Umweltverträgliche Mobilität für die öffentliche Hand
+  </span>
 
-      <span id="title" class="flex-grow-1 mat-body-2" routerLink="/">
-        Umweltverträgliche Mobilität für die öffentliche Hand
-      </span>
+  <button class="text-bg-dark bg-dark" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon class="material-icons-outlined">menu</mat-icon>
+  </button>
 
-      <button class="text-bg-dark bg-dark" mat-icon-button aria-label="Menü öffnen…" (click)="sidenav.toggle()">
-        <mat-icon class="material-icons-outlined">menu</mat-icon>
-      </button>
+</mat-toolbar>
 
-    </mat-toolbar>
+<div class="flex-grow-1 d-flex flex-column">
 
+  <router-outlet></router-outlet>
 
-    <div class="flex-grow-1 d-flex flex-column">
-
-      <router-outlet></router-outlet>
-
-    </div>
-
-  </mat-sidenav-content>
-</mat-sidenav-container>
+</div>
