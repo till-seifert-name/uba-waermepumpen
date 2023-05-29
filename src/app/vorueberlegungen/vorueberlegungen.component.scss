@@ -150,3 +150,28 @@
 .pkw-mieten {
   color: var(--color-pkw-mieten);
 }
+
+.mat-card-ubersicht {
+  inset: 3.7rem -1rem -1rem 50%;
+  position: absolute;
+  background-color: var(--bs-light);
+  overflow: auto;
+  max-height: 863px;
+  z-index: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+  transition-property: left, inset, box-shadow;
+
+  &.mat-card-hidden {
+    left: calc(100% + 1rem);
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  &.mat-card-visible {
+    overflow: auto;
+  }
+}

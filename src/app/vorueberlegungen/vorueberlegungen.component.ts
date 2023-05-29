@@ -12,6 +12,10 @@ import {BerechnungService} from "../berechnung.service";
 export class VorueberlegungenComponent {
   public grid: DataGrid;
 
+  public viewstate = {
+    uebersichtsgrafikVisible: false,
+  }
+
   constructor(
     public berechnungService: BerechnungService,
   ) {
@@ -19,7 +23,7 @@ export class VorueberlegungenComponent {
     this.grid = this.berechnungService.grid;
   }
 
-  onSubmit(form: NgForm) {
-    console.log('Form data:', form.value);
+  toggleUebersichtsgrafikVisible() {
+    this.viewstate.uebersichtsgrafikVisible = !this.viewstate.uebersichtsgrafikVisible;
   }
 }

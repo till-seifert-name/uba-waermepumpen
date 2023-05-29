@@ -262,6 +262,8 @@ html, body {
 body {
   margin: 0;
   font-family: Inter, "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 body > app-root {

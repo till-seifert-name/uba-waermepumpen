@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {DataGrid} from "../data-grid";
 import {BerechnungService} from "../berechnung.service";
 import {NgForm} from "@angular/forms";
@@ -11,6 +11,10 @@ import {NgForm} from "@angular/forms";
 export class EmpfehlungenComponent {
   public grid: DataGrid;
 
+  public viewstate = {
+    uebersichtsgrafikVisible: false,
+  }
+
   constructor(
     public berechnungService: BerechnungService,
   ) {
@@ -18,7 +22,7 @@ export class EmpfehlungenComponent {
     this.grid = this.berechnungService.grid;
   }
 
-  onSubmit(form: NgForm) {
-    console.log('Form data:', form.value);
+  toggleUebersichtsgrafikVisible() {
+    this.viewstate.uebersichtsgrafikVisible = !this.viewstate.uebersichtsgrafikVisible;
   }
 }
