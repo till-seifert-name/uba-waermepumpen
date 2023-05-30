@@ -6,12 +6,12 @@ import {Component, Input} from '@angular/core';
     <svg class="circle" [class]="circleClass"
          [style.grid-column]="gridColumn"
          [style.grid-row]="gridRow"
-         [style.width.px]="getCircleDimension(size) * 2"
-         [style.height.px]="getCircleDimension(size) * 2">
+         [style.width.px]="getCircleDimension(size)"
+         [style.height.px]="getCircleDimension(size)">
       <title>{{title}}</title>
-      <circle [attr.r]="getCircleDimension(size) - 3"
-              [attr.cx]="getCircleDimension(size)"
-              [attr.cy]="getCircleDimension(size)"></circle>
+      <circle [attr.r]="getCircleDimension(size) / 2 - 3"
+              [attr.cx]="getCircleDimension(size) / 2"
+              [attr.cy]="getCircleDimension(size) / 2"></circle>
     </svg>
   `,
   styles: [`
@@ -34,9 +34,9 @@ export class ResizableCircleComponent {
   @Input() gridColumn: number = 1;
   @Input() gridRow: number = 1;
   @Input() title: string = '';
-  @Input() size: number = 30;
+  @Input() size: number = 36;
 
   getCircleDimension(baseDimension: number): number {
-    return baseDimension * (1 + 0.3 * (this.gridColumn - 4));
+    return baseDimension * (1 + 0.88 * (this.gridColumn - 4));
   }
 }
