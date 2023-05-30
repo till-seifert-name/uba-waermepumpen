@@ -46,7 +46,7 @@ export class FinishButtonDirective {
           <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2 me-0">{{selected?.label}}</h1>
 
           <button mat-icon-button
-                  class="btn-reset mx-0 my-n2"
+                  class="btn-reset mx-0 my-n2 d-print-none"
                   *ngIf="onReset.observers.length" (click)="onReset.emit()">
               <mat-icon class="material-icons-outlined">refresh</mat-icon>
           </button>
@@ -55,7 +55,7 @@ export class FinishButtonDirective {
             {{title}}
               <span class="fw-bold">{{selectedIndex + 1}}</span>/{{steps.length}}
           </span>
-          <span class="stepper-graphic ms-2" *ngIf="graphicDirective">
+          <span class="stepper-graphic ms-2  d-print-none" *ngIf="graphicDirective">
             <ng-container *ngTemplateOutlet="graphicDirective.template"></ng-container>
           </span>
       </div>
@@ -64,7 +64,7 @@ export class FinishButtonDirective {
           <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
       </div>
 
-      <div class="stepper-footer">
+      <div class="stepper-footer d-print-none">
           <button mat-button
                   color="primary"
                   cdkStepperPrevious

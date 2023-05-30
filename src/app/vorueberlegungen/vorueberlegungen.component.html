@@ -267,7 +267,7 @@
             Dokumentation
           </h4>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="downloadAsPDF()"
-                  class="ms-0 me-auto"
+                  class="ms-0 me-auto d-print-none"
                   title="Drucken">
             <mat-icon class="material-icons-outlined">file_download</mat-icon>
           </button>
@@ -292,7 +292,7 @@
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   title="Übersichtsgrafik ein-/ausblenden"
-                  class="btn-open-close">
+                  class="btn-open-close d-print-none">
             <mat-icon class="material-icons-outlined" color="primary">
               <ng-container *ngIf="!viewstate.uebersichtsgrafikVisible">arrow_circle_left</ng-container>
               <ng-container *ngIf="viewstate.uebersichtsgrafikVisible">arrow_circle_right</ng-container>
