@@ -42,3 +42,8 @@
     }
   }
 }
+
+/* hide reset button in first step */
+app-custom-stepper[data-current-step="0"] ::ng-deep .btn-reset {
+  display: none;
+}

@@ -3,7 +3,7 @@ import {
   Component,
   ContentChild,
   Directive,
-  ElementRef, EventEmitter,
+  ElementRef, EventEmitter, HostBinding,
   Input,
   OnInit, Output,
   TemplateRef
@@ -46,7 +46,7 @@ export class FinishButtonDirective {
           <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2 me-0">{{selected?.label}}</h1>
 
           <button mat-icon-button
-                  class="mx-0 my-n2"
+                  class="btn-reset mx-0 my-n2"
                   *ngIf="onReset.observers.length" (click)="onReset.emit()">
               <mat-icon class="material-icons-outlined">refresh</mat-icon>
           </button>
@@ -135,10 +135,14 @@ export class FinishButtonDirective {
 export class CustomStepperComponent extends CdkStepper implements OnInit {
   @Input() title: string = ''; // Title for the stepper
   @ContentChild(StepperGraphicDirective, {static: false}) graphicDirective: StepperGraphicDirective | undefined;
-  @ContentChild(FinishButtonDirective, {static: false}) finishButtonDirective: FinishButtonDirective |undefined;
-
+  @ContentChild(FinishButtonDirective, {static: false}) finishButtonDirective: FinishButtonDirective | undefined;
 
   @Output() onReset = new EventEmitter<void>();
+
+  @HostBinding('attr.data-current-step') get currentStep() {
+    return this.selectedIndex;
+  }
+
 
   constructor(_dir: Directionality,
               _changeDetectorRef: ChangeDetectorRef,
