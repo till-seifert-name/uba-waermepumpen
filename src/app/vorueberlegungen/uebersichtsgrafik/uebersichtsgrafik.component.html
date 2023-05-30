@@ -167,7 +167,7 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+        <g [dialogTrigger]="popupPooling" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 32138,7161 c 0,-156 127,-282 283,-282 h 2505 c 155,0 282,126 282,282 v 565 c 0,156 -127,283 -282,283 h -2505 c -156,0 -283,-127 -283,-283 z"/>
             <path
@@ -184,6 +184,14 @@
                 </tspan>
             </text>
         </g>
+        <foreignObject>
+          <app-info-card-button #popupPooling cardTitle="Pooling">
+            <ng-template #dialogContent>
+              Pooling
+            </ng-template>
+          </app-info-card-button>
+        </foreignObject>
+
         <g transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 27481,13405 c 0,-156 126,-282 282,-282 h 2506 c 156,0 282,126 282,282 v 565 c 0,156 -126,283 -282,283 h -2506 c -156,0 -282,-127 -282,-283 z"/>

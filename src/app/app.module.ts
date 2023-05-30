@@ -27,6 +27,10 @@ import {ButtonToggleGroupComponent} from './empfehlungen/button-toggle-group/but
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {ArrowComponent} from './vorueberlegungen/arrow/arrow.component';
 import {InfoCardComponent} from './hintergrundinformationen/info-card/info-card.component';
+import {
+  DialogTriggerDirective,
+  InfoCardButtonComponent
+} from './hintergrundinformationen/info-card/info-card-button.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatMenuModule} from "@angular/material/menu";
 import { ResizableCircleComponent } from './vorueberlegungen/resizable-circle/resizable-circle.component';
@@ -45,6 +49,8 @@ import { ResizableCircleComponent } from './vorueberlegungen/resizable-circle/re
     ButtonToggleGroupComponent,
     ArrowComponent,
     InfoCardComponent,
+    InfoCardButtonComponent,
+    DialogTriggerDirective,
     ResizableCircleComponent,
   ],
   imports: [
