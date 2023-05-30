@@ -23,7 +23,11 @@ export class VorueberlegungenComponent {
     this.grid = this.berechnungService.grid;
   }
 
-  toggleUebersichtsgrafikVisible() {
-    this.viewstate.uebersichtsgrafikVisible = !this.viewstate.uebersichtsgrafikVisible;
+  toggleUebersichtsgrafikVisible(forceState?: boolean) {
+    if (forceState !== undefined) {
+      this.viewstate.uebersichtsgrafikVisible = forceState;
+    } else {
+      this.viewstate.uebersichtsgrafikVisible = !this.viewstate.uebersichtsgrafikVisible;
+    }
   }
 }

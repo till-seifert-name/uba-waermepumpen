@@ -259,7 +259,7 @@
         <!-- Übersichtsgrafik -->
         <div class="d-flex align-items-center justify-content-between" style="height: 40px">
           <h4 *ngIf="stepper.selectedIndex > 0"
-              (click)="toggleUebersichtsgrafikVisible()"
+              (click)="toggleUebersichtsgrafikVisible(false)"
               [class.text-muted]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
               class="mat-headline-6 me-auto m-0 mx-2 text-uppercase">
             Dokumentation
@@ -268,7 +268,7 @@
                   title="Übersichtsgrafik ein-/ausblenden">
             <mat-icon class="material-icons-outlined" color="primary">swap_horizontal_circle</mat-icon>
           </button>
-          <h4 (click)="toggleUebersichtsgrafikVisible()"
+          <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
               class="mat-headline-6 ms-auto m-0 mx-2 text-uppercase">
             Übersichtsgrafik
