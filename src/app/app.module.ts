@@ -29,6 +29,7 @@ import {ArrowComponent} from './vorueberlegungen/arrow/arrow.component';
 import {InfoCardComponent} from './hintergrundinformationen/info-card/info-card.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatMenuModule} from "@angular/material/menu";
+import { ResizableCircleComponent } from './vorueberlegungen/resizable-circle/resizable-circle.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {MatMenuModule} from "@angular/material/menu";
     ButtonToggleGroupComponent,
     ArrowComponent,
     InfoCardComponent,
+    ResizableCircleComponent,
   ],
   imports: [
     BrowserModule,

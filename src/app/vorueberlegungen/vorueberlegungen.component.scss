@@ -67,36 +67,6 @@
     grid-area: C2;
   }
 
-  .circle {
-    align-self: center;
-    justify-self: center;
-
-    transition-property: grid-row, grid-column, grid-area;
-    transition-duration: 200ms;
-
-    stroke-width: 2px;
-    fill: transparent
-  }
-
-  .fahrrad {
-    transform: translate(20px, 20px);
-  }
-
-  .oepnv {
-    transform: translate(-20px, -20px);
-  }
-
-  .pkw-pooling {
-    transform: translate(-30px, -30px);
-  }
-
-  .pkw-sharing {
-    transform: translate(30px, 30px);
-  }
-
-  .pkw-mieten {
-    transform: translate(0px, 0px);
-  }
 
   .right-arrow {
     grid-area: right-arrow;
@@ -122,6 +92,26 @@
   .freq-title {
     grid-area: freq-title;
     text-align: center;
+  }
+
+  .fahrrad ::ng-deep svg {
+    transform: translate(15px, 15px);
+  }
+
+  .oepnv ::ng-deep svg {
+    transform: translate(-15px, -15px);
+  }
+
+  .pkw-pooling ::ng-deep svg {
+    transform: translate(-20px, -20px);
+  }
+
+  .pkw-sharing ::ng-deep svg {
+    transform: translate(20px, 20px);
+  }
+
+  .pkw-mieten ::ng-deep svg {
+    transform: translate(0px, 0px);
   }
 }
 

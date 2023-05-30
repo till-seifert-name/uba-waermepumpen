@@ -321,14 +321,13 @@
 
           <mat-card appearance="outlined"
                     class="bg-light"
-                    [class.mat-card-inactive]="!grid.getCell('Darstellung_Flotte', 'D11')"
           >
             <mat-card-header>
               <mat-card-title class="mat-h1">
                 2. Alternativen zum Pkw-Kauf
               </mat-card-title>
             </mat-card-header>
-            <mat-card-content [class.invisible]="!grid.getCell('Darstellung_Flotte', 'D11')">
+            <mat-card-content>
               <!-- Matrix -->
 
               <div class="grid mb-3">
@@ -352,39 +351,50 @@
                 <div class="freq-title text-dark fw-bold text-uppercase small">Häufigkeit Substitutionsmöglichkeiten
                 </div>
 
-                <svg class="circle oepnv" [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
-                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E15')" width="60" height="60">
-                  <title>ÖPNV</title>
-                  <circle r="27" cx="30" cy="30"></circle>
-                </svg>
+                <app-resizable-circle
+                  class="oepnv"
+                  *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D15')"
+                  [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
+                  [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E15')"
+                  title="ÖPNV"
+                  [size]="30">
+                </app-resizable-circle>
 
-                <svg class="circle fahrrad"
-                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D14') / 2 + 3"
-                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E14')" width="40" height="40">
-                  <title>Fahrrad</title>
-                  <circle r="17" cx="20" cy="20"></circle>
-                </svg>
+                <app-resizable-circle
+                  class="fahrrad"
+                  *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D14')"
+                  [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D14') / 2 + 3"
+                  [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E14')"
+                  title="Fahrrad"
+                  [size]="20">
+                </app-resizable-circle>
 
-                <svg class="circle pkw-pooling"
-                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D13') / 2 + 3"
-                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E13')" width="76" height="76">
-                  <title>PKW Pooling</title>
-                  <circle r="25" cx="38" cy="38"></circle>
-                </svg>
+                <app-resizable-circle
+                  class="pkw-pooling"
+                  *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D13')"
+                  [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D13') / 2 + 3"
+                  [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E13')"
+                  title="PKW Pooling"
+                  [size]="38">
+                </app-resizable-circle>
 
-                <svg class="circle pkw-sharing"
-                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D12') / 2 + 3"
-                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E12')" width="60" height="60">
-                  <title>PKW Sharing</title>
-                  <circle r="27" cx="30" cy="30"></circle>
-                </svg>
+                <app-resizable-circle
+                  class="pkw-sharing"
+                  *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D12')"
+                  [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D12') / 2 + 3"
+                  [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E12')"
+                  title="PKW Sharing"
+                  [size]="30">
+                </app-resizable-circle>
 
-                <svg class="circle pkw-mieten"
-                     [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D11') / 2 + 3"
-                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E11')" width="60" height="60">
-                  <title>PKW Mieten</title>
-                  <circle r="27" cx="30" cy="30"></circle>
-                </svg>
+                <app-resizable-circle
+                  class="pkw-mieten"
+                  *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D11')"
+                  [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D11') / 2 + 3"
+                  [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E11')"
+                  title="PKW Mieten"
+                  [size]="30">
+                </app-resizable-circle>
 
               </div>
 
