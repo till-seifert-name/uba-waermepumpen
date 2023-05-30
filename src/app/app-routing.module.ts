@@ -4,6 +4,9 @@ import {StartComponent} from "./start/start.component";
 import {HintergrundinformationenComponent} from "./hintergrundinformationen/hintergrundinformationen.component";
 import {VorueberlegungenComponent} from "./vorueberlegungen/vorueberlegungen.component";
 import {EmpfehlungenComponent} from "./empfehlungen/empfehlungen.component";
+import {ImpressumComponent} from "./impressum/impressum.component";
+import {DatenschutzComponent} from "./datenschutz/datenschutz.component";
+import {KontaktComponent} from "./kontakt/kontakt.component";
 
 const routes: Routes = [
   {
@@ -25,6 +28,21 @@ const routes: Routes = [
     path: 'empfehlungen',
     component: EmpfehlungenComponent,
     title: 'Empfehlungen'
+  },
+  {
+    path: 'impressum',
+    component: ImpressumComponent,
+    title: 'Impressum'
+  },
+  {
+    path: 'datenschutz',
+    component: DatenschutzComponent,
+    title: 'Datenschutzerklärung'
+  },
+  {
+    path: 'kontakt',
+    component: KontaktComponent,
+    title: 'Kontakt'
   },
   {
     path: '**',

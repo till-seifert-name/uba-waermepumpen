@@ -34,6 +34,9 @@ import {
 import {MatTableModule} from "@angular/material/table";
 import {MatMenuModule} from "@angular/material/menu";
 import { ResizableCircleComponent } from './vorueberlegungen/resizable-circle/resizable-circle.component';
+import { ImpressumComponent } from './impressum/impressum.component';
+import { DatenschutzComponent } from './datenschutz/datenschutz.component';
+import { KontaktComponent } from './kontakt/kontakt.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { ResizableCircleComponent } from './vorueberlegungen/resizable-circle/re
     InfoCardButtonComponent,
     DialogTriggerDirective,
     ResizableCircleComponent,
+    ImpressumComponent,
+    DatenschutzComponent,
+    KontaktComponent,
   ],
   imports: [
     BrowserModule,
