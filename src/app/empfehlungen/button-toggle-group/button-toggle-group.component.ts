@@ -4,7 +4,7 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
   selector: 'app-button-toggle-group',
   template: `
     <mat-button-toggle-group [value]="selectedOption" (change)="onChange($event)">
-      <mat-button-toggle   *ngFor="let option of options" [value]="option">
+      <mat-button-toggle *ngFor="let option of options" [value]="option">
         <mat-icon class="material-icons-outlined" *ngIf="selectedOption === option">check</mat-icon>
         {{ option }}
       </mat-button-toggle>
@@ -12,16 +12,10 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
   `,
   styleUrls: ['./button-toggle-group.component.scss']
 })
-export class ButtonToggleGroupComponent implements OnInit {
+export class ButtonToggleGroupComponent {
   @Input() options: any[] = [];
   @Input() selectedOption: any;
   @Output() selectedOptionChange = new EventEmitter<any>();
-
-  ngOnInit() {
-    if (!this.selectedOption && this.options.length) {
-      this.selectedOption = this.options[0];
-    }
-  }
 
   onChange(event: any) {
     this.selectedOption = event.value;
