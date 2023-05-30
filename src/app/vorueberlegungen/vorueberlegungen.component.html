@@ -321,13 +321,27 @@
 
           <mat-card appearance="outlined"
                     class="bg-light"
+                    [class.mat-card-inactive]="
+                    !grid.getCell('Darstellung_Flotte', 'D15') &&
+                    !grid.getCell('Darstellung_Flotte', 'D14') &&
+                    !grid.getCell('Darstellung_Flotte', 'D13') &&
+                    !grid.getCell('Darstellung_Flotte', 'D12') &&
+                    !grid.getCell('Darstellung_Flotte', 'D11')
+                     "
           >
             <mat-card-header>
               <mat-card-title class="mat-h1">
                 2. Alternativen zum Pkw-Kauf
               </mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content
+              [class.invisible]="
+                    !grid.getCell('Darstellung_Flotte', 'D15') &&
+                    !grid.getCell('Darstellung_Flotte', 'D14') &&
+                    !grid.getCell('Darstellung_Flotte', 'D13') &&
+                    !grid.getCell('Darstellung_Flotte', 'D12') &&
+                    !grid.getCell('Darstellung_Flotte', 'D11')
+               ">
               <!-- Matrix -->
 
               <div class="grid mb-3">
