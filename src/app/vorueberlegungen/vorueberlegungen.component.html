@@ -316,9 +316,6 @@
               <p class="ps-4">
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'B17')}}
               </p>
-              <p class="ps-4">
-                Bitte überlegen Sie mithilfe der nächsten Frage, ob der Fuhrpark noch weiter verkleinert werden kann.
-              </p>
             </mat-card-content>
           </mat-card>
 
@@ -356,35 +353,35 @@
                 </div>
 
                 <svg class="circle oepnv" [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E15')" width="60" height="60">
+                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E15')" width="60" height="60">
                   <title>ÖPNV</title>
                   <circle r="27" cx="30" cy="30"></circle>
                 </svg>
 
                 <svg class="circle fahrrad"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D14') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E14')" width="40" height="40">
+                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E14')" width="40" height="40">
                   <title>Fahrrad</title>
                   <circle r="17" cx="20" cy="20"></circle>
                 </svg>
 
                 <svg class="circle pkw-pooling"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D13') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E13')" width="76" height="76">
+                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E13')" width="76" height="76">
                   <title>PKW Pooling</title>
                   <circle r="25" cx="38" cy="38"></circle>
                 </svg>
 
                 <svg class="circle pkw-sharing"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D12') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E12')" width="60" height="60">
+                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E12')" width="60" height="60">
                   <title>PKW Sharing</title>
                   <circle r="27" cx="30" cy="30"></circle>
                 </svg>
 
                 <svg class="circle pkw-mieten"
                      [style.grid-column]="grid.getCellNumeric('Darstellung_Flotte', 'D11') / 2 + 3"
-                     [style.grid-row]="grid.getCellNumeric('Darstellung_Flotte', 'E11')" width="60" height="60">
+                     [style.grid-row]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E11')" width="60" height="60">
                   <title>PKW Mieten</title>
                   <circle r="27" cx="30" cy="30"></circle>
                 </svg>
