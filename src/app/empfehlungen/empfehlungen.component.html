@@ -286,6 +286,14 @@
           [class.mat-card-visible]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
           [class.mat-card-hidden]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)">
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
+          <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
+                  title="Übersichtsgrafik ein-/ausblenden"
+                  class="btn-open-close">
+            <mat-icon class="material-icons-outlined" color="primary">
+              <ng-container *ngIf="!viewstate.uebersichtsgrafikVisible">arrow_circle_left</ng-container>
+              <ng-container *ngIf="viewstate.uebersichtsgrafikVisible">arrow_circle_right</ng-container>
+            </mat-icon>
+          </button>
         </mat-card>
 
         <!-- Dokumentation -->
