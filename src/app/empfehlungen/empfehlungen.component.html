@@ -268,9 +268,14 @@
           <h4 *ngIf="stepper.selectedIndex > 0"
               (click)="toggleUebersichtsgrafikVisible(false)"
               [class.text-muted]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
-              class="mat-headline-6 me-auto m-0 mx-2 text-uppercase">
+              class="mat-headline-6 me-0 m-0 mx-2 text-uppercase">
             Dokumentation
           </h4>
+          <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="downloadAsPDF()"
+                  class="ms-0 me-auto"
+                  title="Drucken">
+            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+          </button>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   title="Übersichtsgrafik ein-/ausblenden">
             <mat-icon class="material-icons-outlined" color="primary">swap_horizontal_circle</mat-icon>

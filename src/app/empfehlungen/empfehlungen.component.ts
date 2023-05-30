@@ -33,4 +33,8 @@ export class EmpfehlungenComponent {
   resetInput() {
     this.berechnungService.resetInputs()
   }
+
+  downloadAsPDF() {
+    print()
+  }
 }

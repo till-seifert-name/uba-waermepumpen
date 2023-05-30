@@ -34,4 +34,8 @@ export class VorueberlegungenComponent {
   resetInput() {
     this.berechnungService.resetInputs()
   }
+
+  downloadAsPDF() {
+    print()
+  }
 }
