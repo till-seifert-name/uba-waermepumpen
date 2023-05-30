@@ -1,10 +1,10 @@
-<mat-card class="m-3 text-bg-light bg-white flex-grow-1">
+<mat-card class="m-3 mt-0 text-bg-light bg-white flex-grow-1">
 
   <mat-card-content class="flex-grow-1">
 
     <div class="row h-100">
       <form
-            class="col-6 d-flex flex-column">
+        class="col-6 d-flex flex-column">
 
         <!-- Stepper with form elements -->
 
@@ -265,17 +265,18 @@
         <!-- Übersichtsgrafik -->
         <div class="d-flex align-items-center justify-content-between" style="height: 40px">
           <h4 *ngIf="stepper.selectedIndex > 0"
+              (click)="toggleUebersichtsgrafikVisible()"
               [class.text-muted]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
-              class="mat-headline-6 me-auto m-0 text-uppercase">
+              class="mat-headline-6 me-auto m-0 mx-2 text-uppercase">
             Dokumentation
           </h4>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   title="Übersichtsgrafik ein-/ausblenden">
             <mat-icon class="material-icons-outlined" color="primary">swap_horizontal_circle</mat-icon>
           </button>
-          <h4
-            [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
-            class="mat-headline-6 ms-auto m-0 text-uppercase">
+          <h4 (click)="toggleUebersichtsgrafikVisible()"
+              [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
+              class="mat-headline-6 ms-auto m-0 mx-2 text-uppercase">
             Übersichtsgrafik
           </h4>
         </div>
@@ -290,7 +291,7 @@
         <!-- Dokumentation -->
         <hr class="mt-1">
 
-        <div class="vstack gap-2">
+        <div class="vstack gap-2 me-2">
           <mat-card appearance="outlined"
                     class="bg-light"
                     [class.mat-card-inactive]="!grid.getCell('Names', 'E_A0')"

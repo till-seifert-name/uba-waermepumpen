@@ -152,26 +152,41 @@
 }
 
 .mat-card-ubersicht {
-  inset: 3.7rem -1rem -1rem 50%;
+  inset: 3.7rem -1rem -1rem auto;
+  width: calc(50% + 1rem);
   position: absolute;
   background-color: var(--bs-light);
-  overflow: auto;
   max-height: 863px;
   z-index: 1;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 
-  transition-duration: 0.25s;
-  transition-timing-function: ease-in-out;
-  transition-property: left, inset, box-shadow;
+  transition-delay: 0s;
+  transition: width 0.25s ease-in-out,
+  inset 0.25s ease-in-out,
+  box-shadow 0.25s ease-in-out;
 
   &.mat-card-hidden {
-    left: calc(100% + 1rem);
+    width: 0;
     box-shadow: none;
-    overflow: hidden;
+
+    /* Angular Material after pseudo lass prevents the card from beeing invisible */
+    &:after {
+      display: none;
+    }
+  }
+
+  > .btn-open-close {
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateX(-100%) translateY(50%);
+    transition: left 0.25s ease-in-out;
   }
 
   &.mat-card-visible {
-    overflow: auto;
+    > .btn-open-close {
+      left: 9px;
+    }
   }
 }
