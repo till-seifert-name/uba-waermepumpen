@@ -518,6 +518,18 @@
             </mat-card-content>
           </mat-card>
 
+          <section *ngIf="stepper.selectedIndex > 2"
+                   class="text-center mt-3 d-print-none"
+          >
+            <p>Zur Dokumentation können Sie Ihre Eingaben und die resultierenden Ergebnisse herunterladen.</p>
+            <button mat-stroked-button
+               (click)="downloadAsPDF()"
+               color="primary">
+              Download Vorüberlegungen
+            </button>
+          </section>
+
+
         </div>
 
       </div>

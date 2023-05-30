@@ -306,6 +306,7 @@
         <hr class="mt-1">
 
         <div class="vstack gap-2 me-2">
+
           <mat-card appearance="outlined"
                     class="bg-light"
                     [class.mat-card-inactive]="!grid.getCell('Names', 'E_A0')"
@@ -338,6 +339,18 @@
               </p>
             </mat-card-content>
           </mat-card>
+
+
+          <section *ngIf="stepper.selectedIndex > 2"
+                   class="text-center mt-3 d-print-none"
+          >
+            <p>Zur Dokumentation können Sie Ihre Eingaben und die resultierenden Ergebnisse herunterladen.</p>
+            <button mat-stroked-button
+                    (click)="downloadAsPDF()"
+                    color="primary">
+              Download individuelle Empfehlungen
+            </button>
+          </section>
 
         </div>
       </div>
