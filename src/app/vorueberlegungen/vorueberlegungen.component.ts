@@ -30,4 +30,8 @@ export class VorueberlegungenComponent {
       this.viewstate.uebersichtsgrafikVisible = !this.viewstate.uebersichtsgrafikVisible;
     }
   }
+
+  resetInput() {
+    this.berechnungService.resetInputs()
+  }
 }

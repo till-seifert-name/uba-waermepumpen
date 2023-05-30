@@ -3,9 +3,9 @@ import {
   Component,
   ContentChild,
   Directive,
-  ElementRef,
+  ElementRef, EventEmitter,
   Input,
-  OnInit,
+  OnInit, Output,
   TemplateRef
 } from '@angular/core';
 import {CdkStepper} from '@angular/cdk/stepper';
@@ -42,21 +42,26 @@ export class FinishButtonDirective {
 @Component({
   selector: 'app-custom-stepper',
   template: `
-      <div class="stepper-header gap-2">
-          <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2">{{selected?.label}}</h1>
-          <span class="stepper-title mat-headline-6 text-uppercase mb-0">
+      <div class="stepper-header">
+          <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2 me-0">{{selected?.label}}</h1>
+
+          <button mat-icon-button
+                  class="mx-0 my-n2"
+                  *ngIf="onReset.observers.length" (click)="onReset.emit()">
+              <mat-icon class="material-icons-outlined">refresh</mat-icon>
+          </button>
+
+          <span class="stepper-title mat-headline-6 text-uppercase mb-0 ms-auto">
             {{title}}
               <span class="fw-bold">{{selectedIndex + 1}}</span>/{{steps.length}}
           </span>
-          <span class="stepper-graphic" *ngIf="graphicDirective">
+          <span class="stepper-graphic ms-2" *ngIf="graphicDirective">
             <ng-container *ngTemplateOutlet="graphicDirective.template"></ng-container>
           </span>
       </div>
 
       <div class="stepper-content">
-          <div [ngTemplateOutlet]="selected ? selected.content : null">
-
-          </div>
+          <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
       </div>
 
       <div class="stepper-footer">
@@ -131,6 +136,9 @@ export class CustomStepperComponent extends CdkStepper implements OnInit {
   @Input() title: string = ''; // Title for the stepper
   @ContentChild(StepperGraphicDirective, {static: false}) graphicDirective: StepperGraphicDirective | undefined;
   @ContentChild(FinishButtonDirective, {static: false}) finishButtonDirective: FinishButtonDirective |undefined;
+
+
+  @Output() onReset = new EventEmitter<void>();
 
   constructor(_dir: Directionality,
               _changeDetectorRef: ChangeDetectorRef,

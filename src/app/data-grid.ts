@@ -87,12 +87,27 @@ export class DataGrid {
         this.cells[sheetName] ??= {};
         for (const cell in restoredSheets[sheetName]) {
           if (restoredSheets[sheetName][cell] !== null) {
-            this.cells[sheetName][cell] = restoredSheets[sheetName][cell];
+            this.setCell(sheetName, cell, restoredSheets[sheetName][cell]);
           }
         }
       }
     } catch (error) {
       console.error('Error restoring cells:', error);
+    }
+  }
+
+  /**
+   * Method to set all listed cells to one value
+   * @param list
+   * @param value
+   */
+  clearListed(list: string[], value = ''): void {
+    for (const sheetName in this.cells) {
+      for (const cell in this.cells[sheetName]) {
+        if (list.includes(cell)) {
+          this.setCell(sheetName, cell, value);
+        }
+      }
     }
   }
 

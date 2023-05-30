@@ -335,31 +335,14 @@ export class BerechnungService {
 
 
     // load saved state
-    const cellsToSave: string[] = [
-      'F_R1',
-      'F_S1',
-      'F_SZ1',
-      'F_L1',
-      'F_L2',
-      'F_F1',
-
-      'F_P1',
-      'F_SP1',
-      'F_T1',
-      'F_LE1',
-
-      'F_B1', 'F_E1',
-      'F_BF1', 'F_FL1', 'F_CP1', 'F_CS1', 'F_M1',
-      'F_E2',
-    ];
 
     // Subscribe to (some) cell changes save to localStorage
     grid.onCellChanged().pipe(
-      filter(cellChange => cellsToSave.includes(cellChange.cell)),
+      filter(cellChange => this.cellsToSave.includes(cellChange.cell)),
       debounceTime(1000)
     ).subscribe(cellChange => {
       console.log(`Cell changed: ${cellChange.sheet}!${cellChange.cell} = ${cellChange.value}`);
-      localStorage.setItem(STORAGE_KEY, grid.serializeWhitelistedCells(cellsToSave));
+      localStorage.setItem(STORAGE_KEY, grid.serializeWhitelistedCells(this.cellsToSave));
     });
 
     // Restore cells from localStorage if available
@@ -368,5 +351,30 @@ export class BerechnungService {
       grid.restoreCells(serializedData);
       console.log(`Input restored: ${serializedData}`);
     }
+  }
+
+  /**
+   * Cells to load/save
+   */
+  private cellsToSave: string[] = [
+    'F_R1',
+    'F_S1',
+    'F_SZ1',
+    'F_L1',
+    'F_L2',
+    'F_F1',
+
+    'F_P1',
+    'F_SP1',
+    'F_T1',
+    'F_LE1',
+
+    'F_B1', 'F_E1',
+    'F_BF1', 'F_FL1', 'F_CP1', 'F_CS1', 'F_M1',
+    'F_E2',
+  ];
+
+  resetInputs() {
+    this.grid.clearListed(this.cellsToSave);
   }
 }

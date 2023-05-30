@@ -29,4 +29,8 @@ export class EmpfehlungenComponent {
       this.viewstate.uebersichtsgrafikVisible = !this.viewstate.uebersichtsgrafikVisible;
     }
   }
+
+  resetInput() {
+    this.berechnungService.resetInputs()
+  }
 }
