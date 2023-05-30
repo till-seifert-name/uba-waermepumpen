@@ -141,9 +141,9 @@ import {ActivatedRoute, Router} from "@angular/router";
           </button>
         </mat-card-actions>
         <mat-card-actions align="end">
-          <button mat-icon-button>
+          <!--<button mat-icon-button>
             <mat-icon class="material-icons-outlined">share</mat-icon>
-          </button>
+          </button>-->
           <button mat-icon-button (click)="downloadAsPDF()">
             <mat-icon class="material-icons-outlined">file_download</mat-icon>
           </button>
