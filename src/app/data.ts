@@ -2,8 +2,8 @@ import {Sheet} from "./data-grid";
 
 
 export const Fragen_Prototyp_Einzelfahrzeug_data: Sheet = {
-  F_R1: 200,
-  F_S1: 'Häufig',
+  F_R1: '',
+  F_S1: '',
   F_SZ1: '',
   F_L1: '',
   F_L2: '',
