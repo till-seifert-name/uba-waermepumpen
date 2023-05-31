@@ -333,10 +333,16 @@ body > app-root {
     padding: 0 !important;
   }
 
+  .h-print-auto {
+    height: unset !important;
+  }
+
   .print-break-avoid {
     break-inside: avoid-page;
+    position: relative;
   }
   .print-break-before {
     break-before: page;
+    position: relative;
   }
 }
