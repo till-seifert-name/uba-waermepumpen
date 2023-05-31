@@ -119,10 +119,32 @@
 
               <h3 class="mat-h2">1.2 Ladesäulen</h3>
 
-              <p>
+              <p class="fw-bold">
                 Sind Ladesäulen am Standort bzw. im umliegenden öffentlichen Raum oder am Wohnort der Nutzenden
                 verfügbar?
+                <mat-icon [dialogTrigger]="popupLadeinfrastrukturStandort"
+                          class="material-icons-outlined text-muted align-middle">
+                  help_outline
+                </mat-icon>
               </p>
+              <app-info-card-button #popupLadeinfrastrukturStandort
+                                    cardTitle="Verfügbarkeit von Ladeinfrastruktur - Standort">
+                <ng-template #dialogContent>
+                  <h1>Verfügbarkeit von Ladeinfrastruktur - Standort</h1>
+                  <p>
+                    Auf folgenden Seiten können Sie die Verfügbarkeit von Ladesäulen in der Umgebung Ihres Standortes
+                    überprüfen:
+                  </p>
+                  <ul>
+                    <li><a href="https://moovility.me/">Deutschland</a></li>
+                    <li><a
+                      href="https://www.berlin.de/sen/uvk/verkehr/verkehrsplanung/elektromobilitaet/ladeinfrastruktur-im-oeffentlichen-raum/oeffentliche-ladeinfrastruktur-fuer-pkw-und-leichte-nutzfahrzeuge/">Berlin</a>
+                      (Standort und Details zur Ladesäule)
+                    </li>
+                  </ul>
+                </ng-template>
+              </app-info-card-button>
+
               <app-button-toggle-group
                 class="mt-4 mb-5"
                 [options]="[grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
@@ -130,9 +152,30 @@
                 (selectedOptionChange)="grid.setCell('Names', 'F_L1', $event)">
               </app-button-toggle-group>
 
-              <p>
+
+              <p class="fw-bold">
                 Sind Ladesäulen auf den zu befahrenden Strecken verfügbar?
+                <mat-icon [dialogTrigger]="popupLadeinfrastrukturStrecken"
+                          class="material-icons-outlined text-muted align-middle">
+                  help_outline
+                </mat-icon>
               </p>
+              <app-info-card-button #popupLadeinfrastrukturStrecken
+                                    cardTitle="Verfügbarkeit von Ladeinfrastruktur - Strecken">
+                <ng-template #dialogContent>
+                  <h1>Verfügbarkeit von Ladeinfrastruktur - Strecken</h1>
+                  <p>
+                    Geplante Strecken können Sie in E-Auto-Routenplaner eingeben, die Ihnen mögliche Zwischenhalte zum
+                    Nachladen anzeigen:
+                  </p>
+                  <ul>
+                    <li><a href="https://web.abetterrouteplanner.com">A Better Routeplanner</a></li>
+                    <li><a href="https://planner.electricroutes.com">ElectricRoutes</a>
+                    </li>
+                  </ul>
+                </ng-template>
+              </app-info-card-button>
+
               <app-button-toggle-group
                 class="mt-4 mb-5"
                 [options]="[grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
@@ -142,7 +185,7 @@
 
 
               <h2 class="mat-h2">1.3 Fuhrpark</h2>
-              <p>
+              <p class="fw-bold">
                 Ist das zu beschaffende Fahrzeug Teil eines Fuhrparks?
               </p>
               <app-button-toggle-group
@@ -244,7 +287,7 @@
                   </p>
                   <div class="text-center">
                     <!-- TODO: Popover Umweltanforderungen [dialogTrigger]="popupUmweltanforderungen"-->
-                    <a mat-stroked-button color="primary"  href="assets/downloads/Umweltanforderungen.pdf">
+                    <a mat-stroked-button color="primary" href="assets/downloads/Umweltanforderungen.pdf">
                       Umweltanforderungen
                     </a>
                   </div>
@@ -266,10 +309,12 @@
       </form>
 
       <!-- Results -->
-      <div class="col-12 col-12-print col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
+      <div
+        class="col-12 col-12-print col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
 
         <!-- Übersichtsgrafik -->
-        <div class="print-break-before d-flex d-print-block align-items-center justify-content-between" style="height: 40px">
+        <div class="print-break-before d-flex d-print-block align-items-center justify-content-between"
+             style="height: 40px">
           <h4 *ngIf="stepper.selectedIndex > 0"
               (click)="toggleUebersichtsgrafikVisible(false)"
               [class.text-muted]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"

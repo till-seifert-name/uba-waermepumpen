@@ -72,22 +72,36 @@
                 Fahrzeuge untereinander austauschen/gemeinsam nutzen, beantwortet werden
               </p>
 
-              <h3 class="mat-headline-5">1. Umfang der Pkw-Beschaffung</h3>
+              <h3 class="mat-headline-5 my-4">1. Umfang der Pkw-Beschaffung</h3>
 
-              <p>
+              <p class="fw-bold px-4 p-print-none">
                 Wie viele Pkw sollen beschafft werden?
               </p>
-              <mat-form-field appearance="outline" class="w-100">
+              <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Anzahl Pkw</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_B1']"
                        name="F_B1" #F_B1="ngModel" required min="1" step="1"
                        (ngModelChange)="grid.setCell('Names', 'F_B1', F_B1.value)">
               </mat-form-field>
 
-              <p>
+              <p class="fw-bold px-4 p-print-none">
                 Wie viele Fahrzeuge aus einem vorhandenen Fuhrpark werden durch diese Beschaffung ersetzt?
+                <mat-icon [dialogTrigger]="popupVerkleinerung" class="material-icons-outlined text-muted align-middle">help_outline</mat-icon>
               </p>
-              <mat-form-field appearance="outline" class="w-100">
+              <app-info-card-button #popupVerkleinerung cardTitle="Verkleinerung des Fuhrparks">
+                <ng-template #dialogContent>
+                  <h1>Verkleinerung des Fuhrparks</h1>
+                  <p>
+                    Diese Frage zielt darauf ab, ob schon vor der Nutzung dieses Tools Vorüberlegungen angestellt
+                    wurden,
+                    die dazu geführt haben, dass der Fuhrpark verkleinert wird. Das heißt, dass mehr Fahrzeuge aus dem
+                    vorhandenen Fuhrpark ersetzt werden, als durch die betrachte Beschaffung neu gekauft/geleast werden
+                    sollen.
+                  </p>
+                </ng-template>
+              </app-info-card-button>
+
+              <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Anzahl Fahrzeuge, die ersetzt werden</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_E1']"
                        name="F_E1" #F_E1="ngModel" required min="1" step="1"
@@ -250,10 +264,12 @@
       </form>
 
       <!-- Results -->
-      <div class="col-12 col-12-print print-break-before col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
+      <div
+        class="col-12 col-12-print print-break-before col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
 
         <!-- Übersichtsgrafik -->
-        <div class="d-flex d-print-block align-items-center justify-content-between px-2 p-print-none" style="height: 40px">
+        <div class="d-flex d-print-block align-items-center justify-content-between px-2 p-print-none"
+             style="height: 40px">
           <h4 *ngIf="stepper.selectedIndex > 0"
               (click)="toggleUebersichtsgrafikVisible(false)"
               [class.text-muted]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
@@ -483,8 +499,8 @@
           >
             <p>Zur Dokumentation können Sie Ihre Eingaben und die resultierenden Ergebnisse herunterladen.</p>
             <button mat-stroked-button
-               (click)="downloadAsPDF()"
-               color="primary">
+                    (click)="downloadAsPDF()"
+                    color="primary">
               Download Vorüberlegungen
             </button>
           </section>
