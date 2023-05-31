@@ -292,9 +292,11 @@ body > app-root {
 }
 
 @media print {
-  body {
-
+  @page {
+    size: A4;
+    margin: 1.5cm 1cm 2cm 1cm;
   }
+
   .mat-mdc-card {
     break-inside: avoid;
 
