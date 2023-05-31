@@ -1,3 +1,4 @@
+<!--suppress JSUnusedGlobalSymbols, RequiredAttributes -->
 <figure mat-card-image class="bg-light m-0"
         style="
         background: var(--bs-light) url('assets/Übersicht_bg.svg') no-repeat top left;
@@ -14,7 +15,7 @@
             viewBox="0 0 25779.223 29905.221"
             xmlns="http://www.w3.org/2000/svg">
 
-        <g transform="translate(-25325.889,-6210.889)">
+        <g [dialogTrigger]="popupOEffentliche" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 43215,17215 c 0,-156 126,-282 282,-282 h 3528 c 157,0 283,126 283,282 v 566 c 0,155 -126,282 -283,282 h -3528 c -156,0 -282,-127 -282,-282 z"/>
             <path
@@ -31,7 +32,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupOEffentliche cardTitle="Öffentliche Verkehrsmittel">
+          <ng-template #dialogContent>
+            <app-popup-oeffentliche-verkehrsmittel></app-popup-oeffentliche-verkehrsmittel>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupBahnFernbus" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 43215,22718 c 0,-155 126,-282 282,-282 h 3528 c 157,0 283,127 283,282 v 566 c 0,156 -126,282 -283,282 h -3528 c -156,0 -282,-126 -282,-282 z"/>
             <path
@@ -48,7 +57,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupBahnFernbus cardTitle="Bahn und Fernbus">
+          <ng-template #dialogContent>
+            <app-popup-bahn-fernbus></app-popup-bahn-fernbus>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupOEPNV" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 43215,19968 c 0,-156 126,-283 282,-283 h 3528 c 157,0 283,127 283,283 v 564 c 0,156 -126,282 -283,282 h -3528 c -156,0 -282,-126 -282,-282 z"/>
             <path
@@ -65,7 +82,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupOEPNV cardTitle="ÖPNV">
+          <ng-template #dialogContent>
+            <app-popup-oepnv></app-popup-oepnv>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupAbo" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 47307,18520 c 0,-156 126,-282 283,-282 h 2505 c 156,0 282,126 282,282 v 566 c 0,156 -126,282 -282,282 h -2505 c -157,0 -283,-126 -283,-282 z"/>
             <path
@@ -82,7 +107,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupAbo cardTitle="Abo">
+          <ng-template #dialogContent>
+            <app-popup-abo-oepnv></app-popup-abo-oepnv>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupBahncard" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 47272,21307 c 0,-156 126,-282 282,-282 h 2506 c 156,0 282,126 282,282 v 565 c 0,157 -126,283 -282,283 h -2506 c -156,0 -282,-126 -282,-283 z"/>
             <path
@@ -99,7 +132,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupBahncard cardTitle="Bahncard">
+          <ng-template #dialogContent>
+            <app-popup-bahncard></app-popup-bahncard>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupFahrradSharing" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 32173,8714 c 0,-156 127,-283 283,-283 h 2505 c 156,0 282,127 282,283 v 565 c 0,155 -126,282 -282,282 h -2505 c -156,0 -283,-127 -283,-282 z"/>
             <path
@@ -111,12 +152,20 @@
             <text>
                 <tspan font-size="494px" font-weight="400">
                     <tspan x="32793" y="9174">
-                        <tspan fill="#000000">Sharing</tspan>
+                        <tspan fill="#000000">Sharing <!-- Rad --></tspan>
                     </tspan>
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupFahrradSharing cardTitle="Fahrrad Sharing">
+          <ng-template #dialogContent>
+            <app-popup-fahrrad-sharing></app-popup-fahrrad-sharing>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupFahrradKauf" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 32138,10265 c 0,-156 126,-282 282,-282 h 3387 c 156,0 283,126 283,282 v 566 c 0,156 -127,282 -283,282 h -3387 c -156,0 -282,-126 -282,-282 z"/>
             <path
@@ -128,12 +177,20 @@
             <text>
                 <tspan font-size="494px" font-weight="400">
                     <tspan x="32992" y="10726">
-                        <tspan fill="#000000">Abo/Kauf</tspan>
+                        <tspan fill="#000000">Abo/Kauf <!-- Rad --></tspan>
                     </tspan>
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupFahrradKauf cardTitle="Fahrrad Abo/Kauf">
+          <ng-template #dialogContent>
+            <app-popup-fahrrad-abo-kauf-leasing></app-popup-fahrrad-abo-kauf-leasing>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupEFahrrad" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 26634,10301 c 0,-156 127,-283 282,-283 h 3353 c 156,0 282,127 282,283 v 565 c 0,156 -126,282 -282,282 h -3353 c -155,0 -282,-126 -282,-282 z"/>
             <path
@@ -150,7 +207,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupEFahrrad cardTitle="(E-)Fahrrad">
+          <ng-template #dialogContent>
+            <app-popup-efahrrad></app-popup-efahrrad>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupELastenrad" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 26105,11854 c 0,-157 126,-283 282,-283 h 3882 c 156,0 282,126 282,283 v 564 c 0,156 -126,283 -282,283 h -3882 c -156,0 -282,-127 -282,-283 z"/>
             <path
@@ -167,7 +232,15 @@
                 </tspan>
             </text>
         </g>
-        <g [dialogTrigger]="popupPooling" transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupELastenrad cardTitle="(E-)Lastenrad">
+          <ng-template #dialogContent>
+            <app-popup-elastenrad></app-popup-elastenrad>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupFahrradPooling" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 32138,7161 c 0,-156 127,-282 283,-282 h 2505 c 155,0 282,126 282,282 v 565 c 0,156 -127,283 -282,283 h -2505 c -156,0 -283,-127 -283,-283 z"/>
             <path
@@ -184,15 +257,15 @@
                 </tspan>
             </text>
         </g>
-        <foreignObject>
-          <app-info-card-button #popupPooling cardTitle="Pooling">
-            <ng-template #dialogContent>
-              Pooling
-            </ng-template>
-          </app-info-card-button>
-        </foreignObject>
+      <foreignObject>
+        <app-info-card-button #popupFahrradPooling cardTitle="Pooling von Fahrrädern">
+          <ng-template #dialogContent>
+            <app-popup-fahrrad-pooling></app-popup-fahrrad-pooling>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
 
-        <g transform="translate(-25325.889,-6210.889)">
+        <g [dialogTrigger]="popupFahrrad" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 27481,13405 c 0,-156 126,-282 282,-282 h 2506 c 156,0 282,126 282,282 v 565 c 0,156 -126,283 -282,283 h -2506 c -156,0 -282,-127 -282,-283 z"/>
             <path
@@ -209,7 +282,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupFahrrad cardTitle="Fahrrad">
+          <ng-template #dialogContent>
+            <app-popup-fahrrad></app-popup-fahrrad>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupPkw" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 32173,23847 c 0,-156 127,-282 283,-282 h 2505 c 156,0 282,126 282,282 v 566 c 0,156 -126,282 -282,282 h -2505 c -156,0 -283,-126 -283,-282 z"/>
             <path
@@ -226,7 +307,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupPkw cardTitle="Pkw">
+          <ng-template #dialogContent>
+            <app-popup-pkw></app-popup-pkw>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupMobilitaetsbudget" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 43603,30022 c 0,-157 126,-283 282,-283 h 4481 c 156,0 283,126 283,283 v 564 c 0,156 -127,283 -283,283 h -4481 c -156,0 -282,-127 -282,-283 z"/>
             <path
@@ -243,7 +332,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupMobilitaetsbudget cardTitle="Mobilitätsbudget">
+          <ng-template #dialogContent>
+            <app-popup-mobilitaetsbudget></app-popup-mobilitaetsbudget>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupThgVergleich" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 35806,18839 c 0,-156 127,-283 283,-283 h 2647 c 155,0 282,127 282,283 v 564 c 0,156 -127,283 -282,283 h -2647 c -156,0 -283,-127 -283,-283 z"/>
             <path
@@ -260,7 +357,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupThgVergleich cardTitle="THG-Vergleich von Verkehrsmitteln">
+          <ng-template #dialogContent>
+            <app-popup-thg-vergleich></app-popup-thg-vergleich>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupAntriebsart" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 30656,25788 c 0,-156 126,-283 282,-283 h 2506 c 156,0 282,127 282,283 v 564 c 0,157 -126,283 -282,283 h -2506 c -156,0 -282,-126 -282,-283 z"/>
             <path
@@ -277,7 +382,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupAntriebsart cardTitle="Antriebsart">
+          <ng-template #dialogContent>
+            <app-popup-antriebsart></app-popup-antriebsart>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupDimensionierung" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 29068,28893 c 0,-157 127,-283 283,-283 h 4093 c 156,0 282,126 282,283 v 564 c 0,156 -126,283 -282,283 h -4093 c -156,0 -283,-127 -283,-283 z"/>
             <path
@@ -294,7 +407,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupDimensionierung cardTitle="Dimensionierung">
+          <ng-template #dialogContent>
+            <app-popup-dimensionierung></app-popup-dimensionierung>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupAusstattung" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 30233,30444 c 0,-156 126,-282 282,-282 h 2929 c 156,0 282,126 282,282 v 565 c 0,157 -126,283 -282,283 h -2929 c -156,0 -282,-126 -282,-283 z"/>
             <path
@@ -311,7 +432,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupAusstattung cardTitle="Ausstattung">
+          <ng-template #dialogContent>
+            <app-popup-ausstattung></app-popup-ausstattung>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupFahrzeugsegment" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 29068,27340 c 0,-156 127,-282 283,-282 h 4163 c 156,0 283,126 283,282 v 565 c 0,156 -127,282 -283,282 h -4163 c -156,0 -283,-126 -283,-282 z"/>
             <path
@@ -328,7 +457,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupFahrzeugsegment cardTitle="Fahrzeugsegment">
+          <ng-template #dialogContent>
+            <app-popup-fahrzeugsegment></app-popup-fahrzeugsegment>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupPkwMieten" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 34431,28928 c 0,-156 126,-283 282,-283 h 2506 c 155,0 282,127 282,283 v 565 c 0,156 -127,282 -282,282 h -2506 c -156,0 -282,-126 -282,-282 z"/>
             <path
@@ -345,7 +482,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupPkwMieten cardTitle="Mietwagen">
+          <ng-template #dialogContent>
+            <app-popup-pkw-mieten></app-popup-pkw-mieten>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupPkwKauf" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 34431,30480 c 0,-156 126,-283 282,-283 h 3388 c 155,0 282,127 282,283 v 565 c 0,156 -127,282 -282,282 h -3388 c -156,0 -282,-126 -282,-282 z"/>
             <path
@@ -362,7 +507,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupPkwKauf cardTitle="Leasing/Kauf eines Pkw">
+          <ng-template #dialogContent>
+            <app-popup-pkw-leasing-kauf></app-popup-pkw-leasing-kauf>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupPkwSharing" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 34431,27375 c 0,-156 126,-282 282,-282 h 2506 c 155,0 282,126 282,282 v 566 c 0,155 -127,282 -282,282 h -2506 c -156,0 -282,-127 -282,-282 z"/>
             <path
@@ -379,7 +532,15 @@
                 </tspan>
             </text>
         </g>
-        <g transform="translate(-25325.889,-6210.889)">
+      <foreignObject>
+        <app-info-card-button #popupPkwSharing cardTitle="Car-Sharing">
+          <ng-template #dialogContent>
+            <app-popup-pkw-sharing></app-popup-pkw-sharing>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
+        <g [dialogTrigger]="popupPkwPooling" transform="translate(-25325.889,-6210.889)">
             <path
                     d="m 34431,25823 c 0,-156 126,-282 282,-282 h 2506 c 155,0 282,126 282,282 v 564 c 0,157 -127,284 -282,284 h -2506 c -156,0 -282,-127 -282,-284 z"/>
             <path
@@ -396,5 +557,13 @@
                 </tspan>
             </text>
         </g>
+      <foreignObject>
+        <app-info-card-button #popupPkwPooling cardTitle="Car-Pooling">
+          <ng-template #dialogContent>
+            <app-popup-pkw-pooling></app-popup-pkw-pooling>
+          </ng-template>
+        </app-info-card-button>
+      </foreignObject>
+
     </svg>
 </figure>

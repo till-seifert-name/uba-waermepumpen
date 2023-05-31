@@ -37,6 +37,28 @@ import { ResizableCircleComponent } from './vorueberlegungen/resizable-circle/re
 import { ImpressumComponent } from './impressum/impressum.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
+import { PopupPkwPoolingComponent } from './hintergrundinformationen/popup-pkw-pooling/popup-pkw-pooling.component';
+import { PopupOEffentlicheVerkehrsmittelComponent } from './hintergrundinformationen/popup-oeffentliche-verkehrsmittel/popup-oeffentliche-verkehrsmittel.component';
+import { PopupBahnFernbusComponent } from './hintergrundinformationen/popup-bahn-fernbus/popup-bahn-fernbus.component';
+import { PopupOEPNVComponent } from './hintergrundinformationen/popup-oepnv/popup-oepnv.component';
+import { PopupAboOEPNVComponent } from './hintergrundinformationen/popup-abo-oepnv/popup-abo-oepnv.component';
+import { PopupBahncardComponent } from './hintergrundinformationen/popup-bahncard/popup-bahncard.component';
+import { PopupFahrradSharingComponent } from './hintergrundinformationen/popup-fahrrad-sharing/popup-fahrrad-sharing.component';
+import { PopupFahrradAboKaufLeasingComponent } from './hintergrundinformationen/popup-fahrrad-abo-kauf-leasing/popup-fahrrad-abo-kauf-leasing.component';
+import { PopupEFahrradComponent } from './hintergrundinformationen/popup-efahrrad/popup-efahrrad.component';
+import { PopupELastenradComponent } from './hintergrundinformationen/popup-elastenrad/popup-elastenrad.component';
+import { PopupFahrradPoolingComponent } from './hintergrundinformationen/popup-fahrrad-pooling/popup-fahrrad-pooling.component';
+import { PopupFahhradComponent } from './hintergrundinformationen/popup-fahhrad/popup-fahhrad.component';
+import { PopupPkwComponent } from './hintergrundinformationen/popup-pkw/popup-pkw.component';
+import { PopupMobilitaetsbudgetComponent } from './hintergrundinformationen/popup-mobilitaetsbudget/popup-mobilitaetsbudget.component';
+import { PopupThgVergleichComponent } from './hintergrundinformationen/popup-thg-vergleich/popup-thg-vergleich.component';
+import { PopupAntriebsartComponent } from './hintergrundinformationen/popup-antriebsart/popup-antriebsart.component';
+import { PopupDimensionierungComponent } from './hintergrundinformationen/popup-dimensionierung/popup-dimensionierung.component';
+import { PopupAusstattungComponent } from './hintergrundinformationen/popup-ausstattung/popup-ausstattung.component';
+import { PopupFahrzeugsegmentComponent } from './hintergrundinformationen/popup-fahrzeugsegment/popup-fahrzeugsegment.component';
+import { PopupPkwMietenComponent } from './hintergrundinformationen/popup-pkw-mieten/popup-pkw-mieten.component';
+import { PopupPkwLeasingKaufComponent } from './hintergrundinformationen/popup-pkw-leasing-kauf/popup-pkw-leasing-kauf.component';
+import { PopupPkwSharingComponent } from './hintergrundinformationen/popup-pkw-sharing/popup-pkw-sharing.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +80,28 @@ import { KontaktComponent } from './kontakt/kontakt.component';
     ImpressumComponent,
     DatenschutzComponent,
     KontaktComponent,
+    PopupPkwPoolingComponent,
+    PopupOEffentlicheVerkehrsmittelComponent,
+    PopupBahnFernbusComponent,
+    PopupOEPNVComponent,
+    PopupAboOEPNVComponent,
+    PopupBahncardComponent,
+    PopupFahrradSharingComponent,
+    PopupFahrradAboKaufLeasingComponent,
+    PopupEFahrradComponent,
+    PopupELastenradComponent,
+    PopupFahrradPoolingComponent,
+    PopupFahhradComponent,
+    PopupPkwComponent,
+    PopupMobilitaetsbudgetComponent,
+    PopupThgVergleichComponent,
+    PopupAntriebsartComponent,
+    PopupDimensionierungComponent,
+    PopupAusstattungComponent,
+    PopupFahrzeugsegmentComponent,
+    PopupPkwMietenComponent,
+    PopupPkwLeasingKaufComponent,
+    PopupPkwSharingComponent,
   ],
   imports: [
     BrowserModule,

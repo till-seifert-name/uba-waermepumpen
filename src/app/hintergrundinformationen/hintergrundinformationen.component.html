@@ -46,41 +46,7 @@
               outerCardClass="info-card-all"
               class="mb-4"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/oeffentliche_2%202.svg" height="72" alt="ÖPNV">
-                <img src="assets/Infoboxen/fahrrad%201.svg" height="48" alt="Fahrrad">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="48" alt="PKW">
-              </p>
-              <h1>THG-Vergleich von Verkehrsmitteln</h1>
-              <p>
-                Die <strong>Klimawirkung</strong> von Verkehrsmitteln des Personenverkehrs unterscheidet sich zum Teil
-                erheblich. So stößt
-                ein Pkw mit Abstand das meiste CO2 pro Personenkilometer aus.
-              </p>
-              <figure>
-                <img class="img-fluid" src="assets/Infoboxen/thg-vergleich%203.png"
-                     alt="Diagramm THG-Vergleich von Verkehrsmitteln">
-                <figcaption class="small text-muted mt-1">
-                  Abbildung 1: Vergleich der CO2-Emissionen von Verkehrsmitteln (eigene Abbildung nach (UBA 2021))
-                </figcaption>
-              </figure>
-              <p>
-                Mit dem <a href="https://www.quarks.de/umwelt/klimawandel/co2-rechner-fuer-auto-flugzeug-und-co/">CO₂-Rechner
-                von Quarks</a> können die CO₂-Emissionen eines Pkw mit anderen Verkehrsmitteln verglichen
-                werden. Hierbei können folgende Parameter variiert werden:
-              </p>
-              <ul>
-                <li>Antriebsart</li>
-                <li>Fahrzeugalter bzw. der Verbrauch</li>
-                <li>Personen im Pkw</li>
-                <li>Fahrstrecke</li>
-              </ul>
-              <p>
-                Von der öffentlichen Hand werden in Deutschland pro Jahr über 40.000 Fahrzeuge (ohne ÖPNV und
-                Eigenbetriebe wie Müllentsorgung) angeschafft. Dieses Finanz- und Nachfragevolumen begründet eine
-                besondere <strong>Verantwortung der öffentlichen Hand</strong> zur umweltverträglichen Beschaffung in
-                diesem Bereich.
-              </p>
+              <app-popup-thg-vergleich></app-popup-thg-vergleich>
             </app-info-card>
 
 
@@ -91,22 +57,7 @@
               outerCardClass="info-card-budget"
               class="mb-4"
             >
-              <h1>Mobilitätsbudget</h1>
-              <p>
-                Das Mobilitätsbudget ist ein monatlicher Betrag, mit dem
-                Arbeitnehmende die private oder dienstliche Mobilität selber
-                koordinieren können.</p>
-              <p>
-                Da der Betrag nicht an einen Dienstwagen geknüpft ist, bietet
-                dieser Ansatz bei entsprechender Ausgestaltung (z.B. Anreizsystem
-                für öffentliche Verkehrsmittel und Fahrrad) ein großes Potential
-                für umweltverträgliche Mobilität.</p>
-              <p>
-                Weiterführende Informationen finden Sie auf den Seiten des <a
-                href="https://www.vcd.org/artikel/mobilitaetsbudget-statt-dienstwagen"
-              >VCD</a>
-                und des Projekts <a
-                href="https://www.compan-e.de/mobilitaetsbudget/">Compan-e</a>.</p>
+              <app-popup-mobilitaetsbudget></app-popup-mobilitaetsbudget>
 
             </app-info-card>
 
@@ -117,407 +68,35 @@
               innerCardClass="bg-500-blues"
               outerCardClass="info-card-pkw"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Pkw</h1>
-              <p>
-                Wenn zur Deckung des Mobilitätsbedarfs ein Pkw eingesetzt werden
-                soll, muss nicht zwangsläufig ein zusätzliches Fahrzeug beschafft
-                werden. Zunächst sollte geprüft werden, ob der Bedarf durch die
-                <b>Koordinierung des bestehenden Fuhrparks</b> oder durch die
-                Nutzung von <a [routerLink]="[]" fragment="car-sharing=1">Car-Sharing</a>-Angeboten gedeckt werden kann.
-                Ist
-                dies nicht der Fall, muss ein neues Fahrzeug geleast/gekauft werden.</p>
-              <p>
-                Bei der <a [routerLink]="[]" fragment="leasing-kauf-eines-pkw=1">Neubeschaffung</a> sollte ein möglichst
-                umweltverträglicher Antrieb gewählt und eine Überdimensionierung
-                vermieden werden (siehe <a [routerLink]="[]" fragment="antriebsart=1">Antriebsart</a>, <a
-                [routerLink]="[]" fragment="fahrzeugsegment=1">Fahrzeugsegment</a>,
-                <a [routerLink]="[]" fragment="dimensionierung=1">Dimensionierung</a>).
-              </p>
+              <app-popup-pkw></app-popup-pkw>
             </app-info-card>
 
             <app-info-card
               cardTitle="Antriebsart"
               innerCardClass="bg-400-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Antriebsart</h1>
-              <section class="" style="column-count: 2; column-gap: 1rem">
-                <p>
-                  Die öffentliche Beschaffung von Fahrzeugen soll konsequent auf
-                  <b>emissionsarme Fahrzeuge</b> umgestellt werden. Deshalb sollen
-                  grundsätzlich Fahrzeuge mit einem vollelektrischen Antrieb (<b>BEV
-                  - batterieelektrisches Fahrzeug</b>) beschafft werden. Nur in
-                  Ausnahmefällen sollen Fahrzeuge mit Verbrennungsmotoren eingesetzt
-                  werden.</p>
-                <p>
-                  Ein BEV hat je nach Lebensfahrleistung einen Klimavorteil von 30 -
-                  40 % gegenüber konventionellen Fahrzeugen. Da der Anteil
-                  erneuerbarer Energien an der Stromerzeugung stetig wächst, wird
-                  dieser Vorteil weiter zunehmen. Trotz der hauptsächlich durch die
-                  Batterie bedingten höheren Herstellungsemissionen hat ein bereits
-                  im Jahr 2020 zugelassenes Elektrofahrzeug der Kompaktklasse bei
-                  gleicher Nutzungsintensität gegenüber einem Benziner ab gut 4
-                  Jahren, gegenüber Erdgas und Diesel ab etwa 5,5 Jahren einen
-                  Klimavorteil. Gegenüber anderen potentiell klimafreundlichen
-                  Antrieben besteht ein deutlicher <b>Effizienzvorteil</b>: Für
-                  strombasierten Wasserstoff oder synthetischen Kraftstoff würde für
-                  die gleiche Fahrtstrecke ein Vielfaches an erneuerbarem Strom
-                  benötigt. (<a
-                  href="https://www.bmuv.de/fileadmin/Daten_BMU/Download_PDF/Verkehr/emob_klimabilanz_bf.pdf"
-                >Kämper
-                  et al. 2020</a>)
-                </p>
-
-                <mat-card appearance="outlined" class="bg-light mb-3">
-                  <mat-card-content>
-                    <p>
-                      <mat-icon class="float-end">gavel</mat-icon>
-                      <b>Rechtlicher Hinweis</b>
-                    </p>
-                    <p>
-                      Das <a
-                      href="https://www.bmvi.de/SharedDocs/DE/Artikel/G/clean-vehicles-directive.html">SaubFahrzeugBeschG</a>
-                      gibt eine <b>Quote</b> von 38,5&nbsp;% für die Beschaffung
-                      emissionsarmer Fahrzeuge vor. Darüber hinaus gibt es eigene
-                      Vorgaben der Länder wie z.B. das Land <a
-                      href="https://www.thm.de/site/images/planung/Landtagsdrucksachen/2021/upup/DS_20_3892_Nachhaltige_Mobilitt_Antwort_HMdF.pdf"
-                    >Hessen</a>,
-                      das für die Landesverwaltung eine Quote von 50&nbsp;% E-Autos in
-                      der Beschaffung vorschreibt.</p>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card appearance="outlined" class="bg-300-blues mb-3">
-                  <mat-card-content>
-                    <p>
-                      <b>Antriebsvergleich</b></p>
-                    <p>
-                      Auf der Seite von <a
-                      href="https://www.alternativ-mobil.info/alternative-antriebe/vergleich-alternative-antriebe"
-                    >Alternativ
-                      Mobil</a> können Pkw je Fahrzeugsegment bezüglich
-                      der Reichweite, Emissionen und Kosten verglichen werden. Die
-                      Emissionen der Fahrzeugherstellung werden allerdings nicht
-                      berücksichtigt.</p>
-                    <p>
-                      Anders ist dies beim Ökobilanz-Tool von <a
-                      href="https://www.greenncap.com/lca-german.php">Green
-                      NCAP</a>. Hier werden alle Treibhausgas-Emissionen
-                      über den gesamten Lebenszyklus berechnet und dabei auch die
-                      Entwicklung des Strommixes über die Lebensdauer berücksichtigt.
-                      Ein Vergleich mithilfe des Tools am Beispiel der Golfklasse ist auf
-                      der Seite des <a
-                      href="https://www.adac.de/verkehr/tanken-kraftstoff-antrieb/alternative-antriebe/klimabilanz/#neu-die-interaktive-lca-plattform"
-                    >ADAC</a>
-                      zu sehen.</p>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card appearance="outlined" class="bg-200-blues mb-3">
-                  <mat-card-content>
-                    <p>
-                      <b>Die Problematik der PHEV</b></p>
-                    <p>
-                      Plug-in-Hybride (<b>PHEV</b>) können eine emissionsarme Alternative
-                      sein. Dies gilt allerdings nur, wenn in der Praxis ein <b>hoher
-                      elektrischer Fahranteil</b> erzielt wird (über 70 %) (<a
-                      href="https://www.compan-e.de/wp-content/uploads/2022/08/compan-e_CarPolicy.pdf">Agora
-                      Verkehrswende und Öko-Institut 2022</a>). Da dies
-                      gerade bei Dienstwagen häufig nicht der Fall ist (<a
-                      href="https://theicct.org/wp-content/uploads/2022/06/real-world-phev-use-jun22-1.pdf">Plötz
-                      et al. 2022</a>; <a
-                      href="https://www.transportenvironment.org/discover/neue-tests-zeigen-bmw-plug-in-hybrid-weit-umweltschadlicher-als-angegeben/"
-                    >T&amp;E
-                      2023</a>), sind PHEV aus Umweltsicht selten besser
-                      als sparsame Verbrenner. Zudem gibt es PHEV-Modelle vor allem in
-                      größeren Fahrzeugsegmenten – kleinere Fahrzeuge sind aber
-                      deutlich umweltschonender.</p>
-                    <p>
-                      PHEV sind also nur zu empfehlen, wenn ohnehin ein großes Fahrzeug
-                      nötig ist und der elektrische Fahranteil durch <b>regelmäßiges
-                      Laden</b> gewährleistet werden kann. Bei guter Verfügbarkeit von
-                      Ladeinfrastruktur hat ein vollelektrischer Pkw (BEV) jedoch
-                      ebenfalls keine Reichweitennachteile und ist umweltverträglicher
-                      und oft günstiger als ein PHEV.</p>
-                  </mat-card-content>
-                </mat-card>
-
-
-                <p>
-                  Neben den Infoboxen auf dieser Website finden Sie weitere
-                  detaillierte Informationen zur Umstellung der Flotte auf
-                  batterieelektrische Antriebe im <a
-                  href="https://efleetguide.de/">eFleet
-                  Guide</a>.</p>
-              </section>
+              <app-popup-antriebsart></app-popup-antriebsart>
             </app-info-card>
 
             <app-info-card
               cardTitle="Fahrzeugsegment"
               innerCardClass="bg-400-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Fahrzeugsegment</h1>
-              <p>
-                Durch die Wahl eines kleineren Fahrzeugsegments können
-                Umweltauswirkungen stark gemindert werden. Es ist daher wichtig,
-                eine Überdimensionierung zu verhindern.</p>
-              <p>
-                Ein Beispiel für die erheblichen Unterschiede zwischen den
-                Fahrzeugsegmenten: Bei Verbrennern erzeugt ein Pkw der Oberklasse
-                über den gesamten Lebenszyklus fast 30&nbsp;% mehr <b>CO</b><sub><b>2</b></sub><b>-Emissionen</b>
-                als ein Kleinwagen. Bei E-Autos ist der Unterschied zwischen
-                Kleinwagen und Oberklasse sogar noch deutlicher – pro gefahrenem
-                Kilometer können sich die CO<sub>2</sub>-Emissionen über den
-                Lebensweg verdoppeln. Auch beim <b>Ressourcenverbrauch</b> gibt es
-                große Unterschiede: Durchschnittlich wiegt die Oberklasse bei einem
-                Verbrenner-Pkw ca. 50&nbsp;% mehr als ein Kleinwagen. Bei E-Pkw ist
-                es vor allem die Batterie – für die Batterieherstellung werden
-                bei einem Elektro-SUV rund 25&nbsp;% mehr kritische Rohstoffe wie
-                Lithium, Nickel und Kobalt benötigt als bei einer Kompaktklasse.
-                (<a
-                href="https://vcoe.at/files/vcoe/uploads/News/VCOe-Factsheets/2022/Kreislaufwirtschaft%20in%20der%20Mobilit%C3%A4t%20umsetzen/VC%C3%96-Factsheet%20Kreislaufwirtschaft%20in%20der%20Mobilit%C3%A4t%20umsetzen.pdf"
-              >Mosshammer
-                2022</a>)
-              </p>
-              <p>
-                Die Fahrzeugsegmente nach Kraftfahrt-Bundesamt (KBA) lauten (an der
-                <b>Fahrzeuggröße</b> <!-- TODO:  Verlinkung zu Infobox „Beispiele pro Fahrzeugsegment“ -->orientiert):
-              </p>
-              <ul>
-                <li>
-                  Minis (Kleinstwagen)
-                </li>
-                <li>
-                  Kleinwagen
-                </li>
-                <li>
-                  Kompaktklasse (Untere Mittelklasse)
-                </li>
-                <li>
-                  Mittelklasse
-                </li>
-                <li>
-                  Obere Mittelklasse (ggf. nur für Leitungsebene)
-                </li>
-                <li>
-                  Oberklasse (nicht angemessen für die öffentliche Beschaffung)
-                </li>
-              </ul>
-              <p>
-                Zudem gibt es Einteilungen nach <b>Verwendungsart</b> bzw.
-                Fahrzeugart und -aufbau wie z.B. Vans und Utilities (Hochdachkombis,
-                Kleinbusse und Pick-ups, die als Pkw zugelassen sind).</p>
-              <p>
-                Gerade wenn meistens nur 1 bis 2 Personen zusammenfahren und keine
-                großen Gegenstände befördert werden sollen, reichen Minis und
-                Kleinwagen vollkommen aus. Falls regelmäßig mehrere Personen
-                mitgenommen werden, gibt es ab der unteren Mittelklasse
-                (Kompaktklasse) zahlreiche Autos mit viel Platz auf der Rückbank.
-                Eine Übersicht hierzu ist beim <a
-                href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/kauftipps/autos-viel-platz-rueckbank/"
-              >ADAC</a>
-                zu finden.</p>
-              <p>
-                <b>Beispiele pro Fahrzeugsegment</b><!-- TODO:  Ggf. als Extrabox --></p>
-              <table class="table">
-                <thead>
-                <tr>
-                  <td
-                  >
-
-                    <b>Fahrzeugsegment</b>
-                  </td>
-                  <td
-                  >
-
-                    <b>Fahrzeugmodell</b>
-                  </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td
-                  >
-
-                    Minis (Kleinstwagen)
-                  </td>
-                  <td
-                  >
-
-                    Fiat 500, Renault Twingo
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td
-                  >
-
-                    Kleinwagen
-                  </td>
-                  <td
-                  >
-
-                    Opel Corsa, Renault Zoe
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td
-                  >
-
-                    Kompaktklasse (Untere Mittelklasse)
-                  </td>
-                  <td
-                  >
-
-                    VW ID.3, VW Golf, Opel Astra
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td
-                  >
-
-                    Mittelklasse
-                  </td>
-                  <td
-                  >
-
-                    VW ID.4, BMW 3er, Audi A4
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td
-                  >
-
-                    Obere Mittelklasse
-                  </td>
-                  <td
-                  >
-
-                    Mercedes E-Klasse, Audi A6
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+              <app-popup-fahrzeugsegment></app-popup-fahrzeugsegment>
             </app-info-card>
 
             <app-info-card
               cardTitle="Dimensionierung"
               innerCardClass="bg-400-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Dimensionierung</h1>
-              <p>
-                Neben der Wahl eines kleineren Fahrzeugsegments ist die
-                Dimensionierung des <b>Motors</b> und bei E-Autos zusätzlich die
-                Dimensionierung der <b>Batterie</b> entscheidend. Das Potential,
-                Umweltauswirkungen zu mindern, ist hier besonders groß.</p>
-              <p>
-                Hinweise zur <b>Batteriegröße </b>von E-Autos finden Sie z.B. auf
-                den Seiten des <a
-                href="https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/kaufen/elektroauto-batterie-groesse/"
-              >ADAC</a>
-                und der <a
-                href="https://www.enbw.com/blog/elektromobilitaet/laden/wie-gross-muss-die-batterie-fuer-mein-elektroauto-sein/"
-              >EnBW</a>.</p>
-              <p>
-                Bei der Antriebsdimensionierung von Verbrenner-Pkw sollten
-                grundsätzlich die Modellvarianten mit der kleinsten Motorisierung
-                gewählt werden, da diese auch den niedrigsten Kraftstoffverbrauch
-                aufweisen. Die <b>Motorleistung</b> alleine lässt dabei keinen
-                Rückschluss auf die Fahrdynamik im Alltag zu, da sie in
-                Zusammenhang mit dem maximalen Drehmoment und der Drehzahl gesehen
-                werden muss. Wenn ein Fahrzeug schon bei niedriger Drehzahl ein
-                hohes Drehmoment erreicht, kann es effektiv und kraftstoffsparend
-                gefahren werden.
-              </p>
-              <p>
-                <b>Elektromotoren</b> haben von Anfang an ihr maximales Drehmoment,
-                sodass E-Autos standardmäßig auch bei vergleichsweise geringen
-                Motorleistungen aus dem Stand gut beschleunigen.</p>
+              <app-popup-dimensionierung></app-popup-dimensionierung>
             </app-info-card>
 
             <app-info-card
               cardTitle="Ausstattung"
               innerCardClass="bg-400-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Ausstattung</h1>
-              <p>
-                Auf<b> Sonderausstattungen</b>, die keinen Sicherheits- oder
-                Komfortvorteil haben, sondern ausschließlich der <b>Optik</b>
-                dienen, sollte bei einer Pkw-Beschaffung <b>verzichtet </b>werden.
-                So sollte der Einsatz von <b>edlen Materialien</b> in der
-                Innenraumverkleidung wie Kohlefaser (Carbon), Edelhölzer und
-                Edelmetalle vermieden werden, da dieser der Umwelt schadet, ohne
-                einen funktionalen Mehrwert zu haben. Darüber hinaus ist auf
-                <b>Glasdächer</b> zu verzichten, die einen negativen Einfluss auf
-                die Fahrzeugisolation und damit (insbesondere bei E-Autos mit
-                weniger Motorabwärme) auf den Heizbedarf haben.</p>
-              <p>
-                Sonderausstattungen, die <b>aus Umweltsicht wünschenswert</b> sind,
-                sind beispielsweise <b>LED-Scheinwerfer</b> statt Halogenlampen, da
-                sie effizienter und durch die bessere Ausleuchtung auch sicherer
-                sind. Zudem ist bei E-Pkw eine <b>Wärmepumpe</b> zu empfehlen, da
-                sie den Strombedarf zum Heizen reduziert und sich dadurch zudem
-                positiv auf die Reichweite auswirkt (<a
-                href="https://www.enbw.com/blog/elektromobilitaet/laden/e-auto-mit-waermepumpe-alles-wissenswerte/"
-              >EnBW
-                2022</a>).
-              </p>
-              <p>
-                <img src="assets/Reifen.png"
-                     style="max-width: 20rem"
-                     class="img-fluid img-thumbnail float-end ms-2"
-                     alt="Beispiel Aufkleber Effizienz für Reifen"/>
-                <b>Reifen</b><!-- TODO:  In Extra-Box --></p>
-              <p>
-                Effizienzvorteile sind ebenfalls bei der Wahl der Reifen zu
-                erzielen. Auf die Erstbereifung hat man bei der Pkw-Beschaffung in
-                der Regel keinen Einfluss. Ausstattungslinien, die mit breiteren
-                Reifen als die Serienausstattung einhergehen, sollten jedoch
-                explizit ausgeschlossen werden, da diese Reifen aufgrund des höheren
-                Rollwiderstands und Gewichts einen Mehrverbrauch verursachen (<a
-                href="https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/reifen/sicherheit/reifengroesse/"
-              >ADAC
-                2020</a>). Bei der Beschaffung von Ersatz- und
-                Winterreifen sollte das <b>EU-Reifenlabel C-B-B </b>(oder besser →
-                A ist der beste Wert) gefordert werden.</p>
-              <p>
-                Da <b>Ersatz- und Winterreifen</b> oft unabhängig von der
-                eigentlichen Pkw-Beschaffung ausgeschrieben (z.B. über eine
-                <b>zentrale Beschaffung</b>) und bei Bedarf intern angefordert
-                werden, sollten die Umweltanforderungen an Reifen an die zuständige
-                Beschaffungsstelle weitergegeben werden.</p>
-              <p>
-                <b>Ganzjahresreifen</b> können den Herstellungsaufwand eines
-                zusätzlichen Winterreifens vermeiden. Vor allem bei einem
-                innerstädtischen Einsatzprofil und in gemäßigten Klimaregionen
-                sind Ganzjahresreifen zu empfehlen, da hier die Spezialisierungen
-                von Sommer- und Winterreifen weniger relevant sind. Der Wegfall des
-                halbjährlichen Reifenwechsels und der Einlagerung ist ein weiterer
-                praktischer Vorteil von Ganzjahresreifen. (<a
-                href="https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/reifen/reifentest/ganzjahresreifen/"
-              >ADAC
-                2020</a>)</p>
+              <app-popup-ausstattung></app-popup-ausstattung>
 
             </app-info-card>
 
@@ -525,53 +104,14 @@
               cardTitle="Car-Pooling"
               innerCardClass="bg-300-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Car-Pooling</h1>
-              <p>
-                Die gemeinsame Nutzung vorhandener Pkw ist umweltverträglicher als
-                eine Neuanschaffung. Dazu bedarf es einer Abstimmung innerhalb der
-                eigenen Abteilung/Einrichtung oder mit einer anderen benachbarten
-                Einrichtung mit Fuhrpark. Um zu klären, ob ein sogenanntes
-                Car-Pooling möglich ist, können Sie das <b>Fuhrparkmanagement</b>
-                mit folgenden Fragen kontaktieren:</p>
-              <ul>
-                <li>
-                  Welche Fahrzeuge stehen aktuell zur Verfügung?
-                </li>
-                <li>
-                  Für welche Fahrzwecke werden die Fahrzeuge derzeit verwendet?
-                </li>
-                <li>
-                  Wie ist der Fuhrpark ausgelastet?
-                </li>
-              </ul>
+              <app-popup-pkw-pooling></app-popup-pkw-pooling>
             </app-info-card>
 
             <app-info-card
               cardTitle="Car-Sharing"
               innerCardClass="bg-300-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Car-Sharing</h1>
-              <p>
-                Sollte die gemeinsame Nutzung eigener vorhandener Pkw (Car-Pooling)
-                nicht möglich sein, kann bei einzelnen Fahrten in der Stadt die
-                Nutzung eines Sharing-Angebots eine zusätzliche Pkw-Beschaffung
-                vermeiden.</p>
-              <p>
-                Folgender Link führt zu einer <b>Anbieterübersicht </b>in
-                verschiedenen Städten in Deutschland: <a
-                href="https://www.carsharingcheck.de/">Car-Sharing</a>.</p>
-              <p>
-                Unter folgendem Link finden Sie zudem Informationen zu einem
-                Workshop, der sich mit dem <b>Aufbau eines eigenen kommunalen
-                E-Carsharing-Systems</b> beschäftigt: <a
-                href="https://www.barshare.de/workshop">Fortbildungsangebot
-                von BARshare</a></p>
+              <app-popup-pkw-sharing></app-popup-pkw-sharing>
 
             </app-info-card>
 
@@ -579,87 +119,14 @@
               cardTitle="Mietwagen"
               innerCardClass="bg-300-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Mietwagen</h1>
-              <p>
-                Das Mieten eines Pkw eignet sich, wenn in Einzelfällen lange
-                Strecken mit einem bestimmten Anforderungsprofil zurückgelegt
-                werden müssen, die nicht mit öffentlichen Verkehrsmitteln oder
-                einem Fahrzeug aus dem Fuhrpark bewältigt werden können.
-              </p>
-              <p>
-                Auf <a
-                href="https://mietwagen.check24.de/mietwagen/deutschland">CHECK24</a>
-                können Sie prüfen, ob Mietwagen-Angebote in der Nähe des
-                Einsatzortes verfügbar sind und diese vergleichen.</p>
+              <app-popup-pkw-mieten></app-popup-pkw-mieten>
             </app-info-card>
 
             <app-info-card
               cardTitle="Leasing/Kauf eines Pkw"
               innerCardClass="bg-300-blues"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/pkw_2%201.svg" height="72" alt="Pkw">
-              </p>
-              <h1>Leasing/Kauf eines Pkw</h1>
-              <p>
-                Wenn weder die Nutzung eines bereits vorhandenen Fahrzeugs aus dem
-                Fuhrpark noch die Nutzung eines Car-Sharing-Systems für einzelne
-                Fahrten möglich ist, muss ein neues Fahrzeug geleast/gekauft
-                werden.</p>
-              <p>
-                Fahrzeugdatenbanken, die Sie bei der <b>Marktanalyse </b>unterstützen
-                können, finden Sie unter folgenden Links:</p>
-              <p>
-                E-Autos:</p>
-              <ul>
-                <li>
-                  <a
-                    href="https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/kaufen/elektroautos-uebersicht/"
-                  >ADAC
-                    - Aktuelle Elektroautos</a>
-                <li>
-                  <a
-                    href="https://www.enbw.com/blog/e-auto-finder/">EnBW
-                    E-Auto Finder</a>
-                <li>
-                  <a
-                    href="https://www.bafa.de/SharedDocs/Downloads/DE/Energie/emob_liste_foerderfaehige_fahrzeuge.pdf?__blob=publicationFile&amp;v=156"
-                  >BAFA
-                    - Liste der förderfähigen Elektrofahrzeuge</a>
-                <li>
-                  <a
-                    href="https://eco-auto.info/products/passenger_cars_electric">eco-auto
-                    - Elektroautos</a> (Preise in CHF)
-              </ul>
-              <p>
-                Alle Antriebe:</p>
-              <ul>
-                <li>
-                  <a
-                    href="https://www.greenncap.com/assessments/">Green
-                    NCAP</a>
-                <li>
-                  <a
-                    href="https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/autosuche/">ADAC
-                    - Autosuche</a>
-                <li>
-                  <a
-                    href="https://www.alternativ-mobil.info/mediathek/tools/neuwagen-finder">Alternativ
-                    Mobil - Neuwagen-Finder</a>
-                <li>
-                  <a
-                    href="https://eco-auto.info/products/passenger_cars_combustion">eco-auto
-                    - Benzin- und Dieselautos</a> (Preise in CHF)
-              </ul>
-              <p>
-                Die <b>Optionen zur Vermeidung einer zusätzlichen Pkw-Beschaffung</b>
-                sollten aber unbedingt vorab von der Bedarfsstelle geprüft werden.
-                Insbesondere die Auslastung des vorhandenen Fuhrparks und das
-                Ausweichen auf öffentliche Verkehrsmittel oder das Fahrrad sollten
-                dabei berücksichtigt werden.</p>
+              <app-popup-pkw-leasing-kauf></app-popup-pkw-leasing-kauf>
             </app-info-card>
 
           </div>
@@ -677,69 +144,14 @@
               innerCardClass="bg-600-turquoise"
               outerCardClass="info-card-oepnv"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/oeffentliche_2%202.svg" height="72" alt="ÖPNV">
-              </p>
-              <h1>Öffentliche Verkehrsmittel</h1>
-              <p>
-                Die Nutzung von Bus und Bahn etc. ist sowohl im Nah- als auch im
-                Fernverkehr eine <b>umweltverträgliche</b> Alternative zum Pkw. Sie
-                verursachen nur ca. halb so viel (bei höherer Auslastung noch
-                deutlich weniger) CO<sub>2</sub>-Emissionen wie ein Pkw auf der
-                gleichen Strecke (<a
-                href="https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/mobilitaet/bus-bahn-fahren#gewusst-wie"
-              >UBA
-                2022</a>).</p>
-              <p>
-                Oft ist diese Option auch <b>günstiger</b>, insbesondere wenn z.B.
-                Monatskarten für den ÖPNV oder Bahncards bereitgestellt werden.
-                Zum Beispiel lassen sich rund 3.700 € und ca. 320 kg CO<sub>2</sub>
-                sparen (<a
-                href="https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/mobilitaet/bus-bahn-fahren#gewusst-wie"
-              >UBA
-                2022</a>), wenn der Arbeitsweg ein Jahr lang mit
-                öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt wird
-                (Annahme: Arbeitsweg von 25 km mit der S-Bahn und zu Fuß statt mit
-                dem Pkw).</p>
-              <p>
-                Zudem kann die <b>Wegzeit</b> (anders als im Auto) <b>aktiv genutzt</b>
-                werden.</p>
-              <p>
-                Auf der Seite der <a
-                href="https://www.bahn.de/">Deutschen
-                Bahn</a> oder in der App <a
-                href="https://www.bahn.de/service/mobile/db-navigator">DB
-                Navigator</a> können Sie geplante Strecken
-                eingeben und erhalten aktuelle Informationen zu möglichen
-                öffentlichen Verkehrsmitteln.</p>
+              <app-popup-oeffentliche-verkehrsmittel></app-popup-oeffentliche-verkehrsmittel>
             </app-info-card>
 
             <app-info-card
               cardTitle="ÖPNV"
               innerCardClass="bg-500-turquoise"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/oeffentliche_2%202.svg" height="72" alt="ÖPNV">
-              </p>
-              <h1>ÖPNV</h1>
-              <p>
-                Vor allem in der Stadt können Wege ohne aufwändige
-                Transportanforderungen <b>umweltverträglich</b> mit dem ÖPNV statt
-                mit dem Auto zurückgelegt werden. Insbesondere mit einem
-                <a [routerLink]="[]" fragment="abo-im-öpnv=1">Abo</a>
-                ist
-                die Nutzung des ÖPNV zudem deutlich <b>günstiger </b>als
-                Autofahren. Gerade im Berufsverkehr mit vielen Staus auf der
-                Autobahn und den Straßen hat der ÖPNV auch einen <b>Zeitvorteil</b>.</p>
-              <p>
-                Auf der Seite der <a
-                href="https://www.bahn.de/">Deutschen
-                Bahn</a> oder in der App <a
-                href="https://www.bahn.de/service/mobile/db-navigator">DB
-                Navigator</a> können Sie geplante Strecken
-                eingeben und erhalten aktuelle Informationen zu möglichen
-                Verbindungen im ÖPNV.<b> </b>
-              </p>
+              <app-popup-oepnv></app-popup-oepnv>
 
             </app-info-card>
 
@@ -747,84 +159,21 @@
               cardTitle="Abo im ÖPNV"
               innerCardClass="bg-400-turquoise"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/oeffentliche_2%202.svg" height="72" alt="ÖPNV">
-              </p>
-              <h1>Abo im ÖPNV</h1>
-              <p>
-                Ein Abo für den ÖPNV in Form einer <b>Zeitkarte
-              </b>(Wochen-/Monats-/Jahreskarte) ist eine günstige Alternative zu
-                Einzeltickets, die die Nutzung des ÖPNV zudem deutlich
-                unkomplizierter macht. Darüber hinaus ist ein Abo ein Anreiz, den
-                ÖPNV regelmäßig zu nutzen, womit das Auto in der Stadt (für Wege
-                ohne aufwändige Transportanforderungen) überflüssig werden kann.</p>
-              <p>
-                Ein besonders attraktives Abo ist das <a
-                href="https://www.adac.de/news/49-euro-ticket/">49-Euro-Ticket</a>,
-                das seit Mai 2023 erhältlich ist. Dieses Ticket ist <b>deutschlandweit</b>
-                im öffentlichen Nahverkehr <b>gültig </b>und monatlich kündbar.
-                Anders als das 9-Euro-Ticket aus dem Sommer 2022 soll das
-                49-Euro-Ticket ein dauerhaftes Angebot bleiben, sodass die Befassung
-                mit regionalen Zeitkarten in der Regel nicht mehr nötig sein wird.</p>
+              <app-popup-abo-oepnv></app-popup-abo-oepnv>
             </app-info-card>
 
             <app-info-card
               cardTitle="Bahn und Fernbus"
               innerCardClass="bg-500-turquoise"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/oeffentliche_2%202.svg" height="72" alt="ÖPNV">
-              </p>
-              <h1>Bahn und Fernbus</h1>
-              <p>
-                Für längere Strecken ohne aufwändige Transportanforderungen sind
-                Bahn und Fernbus eine <b>umweltverträgliche </b>Alternative zum
-                Pkw. Zudem haben Bahn und Bus oft einen <b>Kostenvorteil </b>gegenüber
-                dem Auto, insbesondere wenn man nicht nur die Kraftstoffkosten
-                sondern die Vollkosten (inkl. Betriebskosten, Wartung, Reparatur
-                etc.) betrachtet. Bei mehreren Langstrecken im Jahr lohnt sich zudem
-                eine <a [routerLink]="[]" fragment="bahncard=1">BahnCard</a>,
-                die weitere Rabatte beim Bahnfahren bereithält.</p>
-              <p>
-                Hervorzuheben ist darüber hinaus der Vorteil, dass die <b>Fahrtzeit
-              </b>in Bahn und Bus <b>aktiv genutzt</b> werden kann, was im Auto
-                nicht der Fall ist.</p>
-              <p>
-                Auf der Seite der <a
-                href="https://www.bahn.de/">Deutschen
-                Bahn</a> oder in der App <a
-                href="https://www.bahn.de/service/mobile/db-navigator">DB
-                Navigator</a> können Sie geplante Strecken
-                eingeben und erhalten aktuelle Informationen zu möglichen
-                Verbindungen mit der <b>Bahn</b>.</p>
-              <p>
-                Auf <a href="https://www.checkmybus.de/"
-              >CheckMyBus</a>
-                können Sie je nach geplanter Strecke Angebote zu <b>Fernbussen
-              </b>vergleichen.</p>
+              <app-popup-bahn-fernbus></app-popup-bahn-fernbus>
             </app-info-card>
 
             <app-info-card
               cardTitle="Bahncard"
               innerCardClass="bg-400-turquoise"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/oeffentliche_2%202.svg" height="72" alt="ÖPNV">
-              </p>
-              <h1>Bahncard</h1>
-              <p>
-                Der Kauf einer <a
-                href="https://www.bahn.de/angebot/bahncard">BahnCard</a>
-                mit 25 oder 50 % Rabatt lohnt sich in der Regel schon nach wenigen
-                Zugfahrten. Zudem ist eine BahnCard ein Anreiz, viel mit der Bahn zu
-                reisen und diese auch für private Fahrten zu nutzen.</p>
-              <p>
-                Im geschäftlichen Bereich gibt es die <a
-                href="https://www.bahn.de/bahnbusiness/tickets-und-angebote/bahncard-business">BahnCard
-                Business</a>, bei der der <b>Firmenrabatt mit dem
-                BahnCard-Rabatt kombiniert</b> wird. Zudem läuft die BahnCard
-                Business automatisch nach einem Jahr aus und kann beim Ausscheiden
-                von Mitarbeitenden erstattet werden.</p>
+              <app-popup-bahncard></app-popup-bahncard>
 
 
             </app-info-card>
@@ -839,196 +188,41 @@
               innerCardClass="bg-600-greens"
               outerCardClass="info-card-bike"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/fahrrad%201.svg" height="72" alt="Fahrrad">
-              </p>
-              <h1>Fahrrad</h1>
-              <p>
-                Fahrradfahren schont das Klima und den öffentlichen Haushalt, ist
-                leise und hält fit. Damit ist es bei kürzeren Wegen die ideale
-                Alternative zum Pkw. Auf Strecken bis ca. 5 km ist man mit dem
-                Fahrrad sogar schneller unterwegs als mit dem Pkw; mit dem
-                Elektro-Fahrrad (Pedelec) sogar bis etwa 7 km (<a
-                href="https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/mobilitaet/fahrrad-radeln#gewusst-wie"
-              >UBA
-                2014</a>).
-              </p>
-              <p>
-                Zur Einschätzung, wie hoch der Aufwand wäre, die geplanten Wege
-                mit dem Fahrrad zurückzulegen, können Sie die Strecken in den
-                Routenplaner von <a
-                href="https://www.naviki.org/de/naviki/route-planen/">Naviki</a>
-                eingeben. Hier können auch Routen für verschiedene Einsatzzwecke
-                abgefragt werden, z.B. speziell für schnelle Elektro-Fahrräder
-                (S-Pedelecs).</p>
-
+              <app-popup-fahrrad></app-popup-fahrrad>
             </app-info-card>
 
             <app-info-card
               cardTitle="(E-)Fahrrad"
               innerCardClass="bg-A400-greens"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/fahrrad%201.svg" height="72" alt="Fahrrad">
-              </p>
-              <h1>(E-)Fahrrad</h1>
-              <p>
-                Auf kürzeren Strecken ist das Fahrrad eine umweltverträgliche,
-                günstige und gesunde Alternative zum Pkw. Mit Elektro-Fahrrädern
-                (Pedelecs) können auch längere Strecken bequem zurückgelegt
-                werden.</p>
-              <p>
-                Was Sie bei der Beschaffung von Fahrrädern beachten sollten, können
-                Sie auf der Seite des <a
-                href="https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/mobilitaet/fahrrad-radeln#gewusst-wie"
-              >UBA</a>
-                nachlesen. Unter folgendem Link finden Sie zudem eine Übersicht
-                über Elektro-Fahrräder im Test: <a
-                href="https://www.radfahren.de/test-teile/e-bike-test-2022/"
-              >Elektro-Fahrräder</a></p>
+              <app-popup-efahrrad></app-popup-efahrrad>
             </app-info-card>
             <app-info-card
               cardTitle="(E-)Lastenrad"
               innerCardClass="bg-A400-greens"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/fahrrad%201.svg" height="72" alt="Fahrrad">
-              </p>
-              <h1>(E-)Lastenrad</h1>
-              <p>
-                Lastenräder können im innerstädtischen Verkehr mittelgroße
-                Transporte mit dem Pkw ersetzen. Die Modellvielfalt wächst stetig,
-                sodass für jeden Einsatzzweck die geeignete Ausstattung gewählt
-                werden kann. Die Räder bieten dabei eine Nutzlast von über 80&nbsp;kg
-                (exklusive Fahrer*in (75&nbsp;kg)), einzelne Modelle auch deutlich
-                über 100&nbsp;kg.</p>
-              <p>
-                Seit 2016 tourt die <a
-                href="https://cargobikeroadshow.org/">Cargobike
-                Roadshow</a> durch zahlreiche Städte und gibt
-                interessierten Personen unverbindlich die Möglichkeit,
-                verschiedenste Lastenräder Probe zu fahren.</p>
-              <p>
-                Das <a
-                href="https://www.bafa.de/DE/Energie/Energieeffizienz/E-Lastenfahrrad/e-lastenfahrrad_node.html"
-              >BAFA</a>
-                fördert die Anschaffung von Lastenfahrrädern durch private
-                Unternehmen, Kommunen, Körperschaften sowie Vereine und Verbände
-                mit 25 % der Anschaffungskosten (max. 2.500 Euro).
-              </p>
-              <p>
-                Auf den folgenden Seiten können Sie sich einen Überblick über
-                Lastenräder auf dem Markt verschaffen:
-              </p>
-              <ul>
-                <li>
-                  Suchportal für Lastenräder (<a
-                  href="https://cargobike.guide/">cargobike.guide</a>)
-                <li>
-                  Elektro-Lastenräder im Vergleich (<a
-                  href="https://www.adac.de/rund-ums-fahrzeug/tests/fahrrad/e-lastenfahrrad/"
-                >ADAC</a>)
-              </ul>
+              <app-popup-elastenrad></app-popup-elastenrad>
 
             </app-info-card>
             <app-info-card
               cardTitle="Pooling von Fahrrädern"
               innerCardClass="bg-400-greens"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/fahrrad%201.svg" height="72" alt="Fahrrad">
-              </p>
-              <h1>Pooling von Fahrrädern</h1>
-              <p>
-                Falls in der eigenen oder in einer benachbarten Einrichtung bereits
-                ein oder mehrere (Elektro-)Fahrräder vorhanden sind, sollten diese
-                in Abstimmung gemeinsam genutzt und einem möglichst großen
-                Personenkreis zugänglich gemacht werden.</p>
-              <p>
-                Um die Räder bei den Mitarbeitenden in den Fokus der Wahrnehmung zu
-                rücken und die Auslastung zu steuern, empfiehlt es sich, sie
-                <b>gleichberechtigt in das Pkw-Fuhrparkmanagement zu integrieren</b>.</p>
-              <p>
-                Wenn sich schwer abschätzen lässt, ob Diensträder in Ihrer
-                Institution regelmäßig genutzt würden, kann ein
-                <a [routerLink]="[]" fragment="abo-leasing-eines-fahrrads=1">Fahrrad-Abo</a>
-                sinnvoll
-                sein. Damit können Räder in Ihrer Einrichtung ohne hohe
-                Investitionskosten für einen begrenzten Zeitraum getestet werden.</p>
+              <app-popup-fahrrad-pooling></app-popup-fahrrad-pooling>
 
             </app-info-card>
             <app-info-card
               cardTitle="Sharing-Angebote für Fahrräder"
               innerCardClass="bg-400-greens"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/fahrrad%201.svg" height="72" alt="Fahrrad">
-              </p>
-              <h1>Sharing-Angebote für Fahrräder</h1>
-              <p>
-                Sollte die gemeinsame Nutzung eigener vorhandener Fahrräder
-                (Pooling) nicht möglich sein, kann bei einzelnen Fahrten in der
-                Stadt die Nutzung eines Sharing-Angebots eine Option sein.</p>
-              <p>
-                Folgender Link führt zu einer <b>Anbieterübersicht</b> in
-                verschiedenen Städten in Deutschland: <a
-                href="https://www.vdv.de/new-mobility-projekte.aspx#tab-4444">Bike-Sharing</a>.
-                Auf der Seite von <a
-                href="https://www.fahrrad-xxl.de/blog/bike-sharing-anbieter-in-deutschland-invasion-oder-mobilitaetssegen"
-              >Fahrrad
-                XXL</a> finden Sie zudem detaillierte Infos über
-                die verschiedenen Anbieter. Hier sind auch die
-                <b>Registrierungsmöglichkeiten, Ausstattung der Fahrräder und
-                  Kosten</b> dargestellt.
-              </p>
-              <p>
-                Im Bereich der Mikromobilität können auch <b>E-Scooter</b> eine
-                mögliche Option sein. In welchen Städten sie verfügbar sind,
-                zeigt z.B. die Website des VDV: <a
-                href="https://www.vdv.de/liste-e-scooter.aspx">E-Scooter-Projekte</a>
-              </p>
+              <app-popup-fahrrad-sharing></app-popup-fahrrad-sharing>
 
             </app-info-card>
             <app-info-card
               cardTitle="Abo/Leasing eines Fahrrads"
               innerCardClass="bg-400-greens"
             >
-              <p class="d-flex gap-3 align-items-center justify-content-start">
-                <img src="assets/Infoboxen/fahrrad%201.svg" height="72" alt="Fahrrad">
-              </p>
-              <h1>Abo/Leasing eines Fahrrads</h1>
-              <p>
-                Wenn die Akzeptanz eines Fahrrads oder E-Bikes für den
-                Diensteinsatz zunächst ausprobiert oder ein Rad nur vorübergehend
-                genutzt werden soll, kann es eine Option sein, das Fahrrad zu
-                mieten. Inzwischen bieten zehn Anbieter zum Teil deutschlandweit
-                sogenannte <b><a>Fahrrad-Abos</a></b> an. Bei
-                dem Anbieter Swapfiets kostet ein einfaches Fahrrad monatlich ab
-                19,90&nbsp;€. Dabei sind Reparaturen inklusive bzw. wird im
-                Schadensfall binnen 48 Stunden ein neues Rad gestellt.
-                Fahrrad-Abo-Anbieter in der Übersicht finden Sie hier:
-                <a href="https://www.fahrrad-abos.de/">fahrrad-abos.de</a>
-              </p>
-              <h3>Jobrad</h3>
-              <p>
-                Seit Oktober 2020 ist die <b>Gehaltsumwandlung (geldwerter Vorteil)
-                für Dienstfahrräder</b> auch für Angestellte von Kommunen
-                möglich: Die 0,25%-Regelung, die für vollelektrische Dienst-Pkw
-                gilt, kann auch für Dienst-Fahrräder und ebenso für das Leasen
-                von E-Bikes angewandt werden. Auf Bundesebene besteht diese
-                Möglichkeit noch nicht, auf Landesebene nur in einzelnen
-                Bundesländern. Detaillierte Infos finden Sie unter folgenden Links:</p>
-              <ul>
-                <li>
-                  <a
-                    href="https://www.jobrad.org/aktuelles/dienstrad-versteuerung.html"
-                  >Versteuerung</a>
-                  von Diensträdern (0,25%-Regelung)
-                <li>
-                  <a
-                    href="https://www.jobrad.org/arbeitnehmer/ersparnis-berechnen.html">Fahrradleasingrechner</a>
-                  (Vorteil berechnen)
-              </ul>
+              <app-popup-fahrrad-abo-kauf-leasing></app-popup-fahrrad-abo-kauf-leasing>
 
             </app-info-card>
           </div>
