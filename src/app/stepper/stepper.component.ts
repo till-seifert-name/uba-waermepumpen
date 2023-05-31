@@ -42,7 +42,7 @@ export class FinishButtonDirective {
 @Component({
   selector: 'app-custom-stepper',
   template: `
-      <div class="stepper-header">
+      <div class="stepper-header d-print-none">
           <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2 me-0">{{selected?.label}}</h1>
 
           <button mat-icon-button
@@ -60,8 +60,13 @@ export class FinishButtonDirective {
           </span>
       </div>
 
-      <div class="stepper-content">
-          <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
+      <div *ngFor="let s of steps"
+           class="stepper-content d-print-block"
+           [class.d-block]="s === selected"
+           [class.d-none]="s !== selected"
+      >
+          <h2 class="d-none d-print-block text-uppercase">{{s.label}}</h2>
+          <ng-container [ngTemplateOutlet]="s.content"></ng-container>
       </div>
 
       <div class="stepper-footer d-print-none">
@@ -91,6 +96,10 @@ export class FinishButtonDirective {
     :host {
       display: flex;
       flex-direction: column;
+
+      @media print {
+        display: block;
+      }
     }
 
     .stepper-header {
@@ -111,6 +120,10 @@ export class FinishButtonDirective {
 
     .stepper-content {
       flex: 1;
+
+      @media print {
+        break-inside: avoid;
+      }
     }
 
     .stepper-footer {

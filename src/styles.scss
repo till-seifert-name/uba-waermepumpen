@@ -286,6 +286,57 @@ body > app-root {
   }
 }
 
-mat-card {
+/* Prevent splitting cards in multi columns layouts */
+.mat-mdc-card {
   break-inside: avoid;
+}
+
+@media print {
+  body {
+
+  }
+  .mat-mdc-card {
+    break-inside: avoid;
+
+    &.mat-card-main-content {
+      break-inside: unset;
+    }
+
+    &.mat-card-print {
+      display: block; /* workaround for printing bug in FF */
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+
+      > .mat-mdc-card-header {
+        display: block; /* workaround for printing bug in FF */
+        padding: 0;
+      }
+
+      > .mat-mdc-card-content {
+        padding: 0;
+      }
+    }
+  }
+
+
+  .col-12-print {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .bg-print-none {
+    background: transparent !important;
+  }
+
+  .p-print-none {
+    padding: 0 !important;
+  }
+
+  .print-break-avoid {
+    break-inside: avoid-page;
+  }
+  .print-break-before {
+    break-before: page;
+  }
 }

@@ -1,4 +1,11 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {DomPortal, DomPortalOutlet} from '@angular/cdk/portal';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild
+} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -75,37 +82,20 @@ import {ActivatedRoute, Router} from "@angular/router";
     }
 
     @media print {
-      ::ng-deep body:has(dialog[open]) * {
-        visibility: hidden;
-
-        dialog[open] mat-card-content,
-        dialog[open] mat-card-content * {
-          visibility: visible !important;
-        }
+      ::ng-deep body.dialog-open > :not(dialog[open]) {
+        display: none;
       }
 
-      dialog[open] mat-card-content, dialog[open] mat-card-content * {
-        visibility: visible !important;
+      dialog[open] {
+        display: block;
+        position: static;
+        width: auto;
+        max-width: unset;
+        min-width: unset;
       }
 
       dialog::backdrop {
         display: none;
-      }
-
-      dialog[open] mat-card-actions {
-        display: none;
-      }
-
-      dialog[open] > mat-card > mat-card-content:first-of-type {
-        padding: 1cm;
-        position: fixed;
-        z-index: 2000;
-        left: 0;
-        top: 0;
-        margin: 0;
-        width: 100%;
-        min-height: 100%;
-        background: white;
       }
     }
   `],
@@ -129,18 +119,18 @@ import {ActivatedRoute, Router} from "@angular/router";
     </mat-card>
 
     <dialog #dialog (click)="onDialogClick($event)">
-      <mat-card appearance="outlined">
+      <mat-card appearance="outlined" class="mat-card-print">
 
         <mat-card-content>
           <ng-content></ng-content>
         </mat-card-content>
 
-        <mat-card-actions align="end" class="position-absolute top-0 end-0">
+        <mat-card-actions align="end" class="position-absolute top-0 end-0 d-print-none">
           <button autofocus mat-icon-button (click)="closeDialog()">
             <mat-icon class="material-icons-outlined">close</mat-icon>
           </button>
         </mat-card-actions>
-        <mat-card-actions align="end">
+        <mat-card-actions align="end" class="d-print-none">
           <!--<button mat-icon-button>
             <mat-icon class="material-icons-outlined">share</mat-icon>
           </button>-->
@@ -159,6 +149,7 @@ export class InfoCardComponent implements AfterViewInit {
   @Input() innerCardClass!: string;
 
   @ViewChild('dialog') dialog!: ElementRef<HTMLDialogElement>;
+  portalOutlet!: DomPortalOutlet;
 
   constructor(private route: ActivatedRoute, private router: Router) {
 
@@ -167,6 +158,10 @@ export class InfoCardComponent implements AfterViewInit {
   fragmentName: string = '';
 
   ngAfterViewInit(): void {
+
+    // init portal to put dialog in
+    this.portalOutlet = new DomPortalOutlet(document.body, undefined, undefined, undefined, document);
+
     if (this.cardTitle) {
       this.fragmentName = this.cardTitle.replace(/[^a-z0-9üäöß]+/iug, '-').toLowerCase();
 
@@ -181,11 +176,20 @@ export class InfoCardComponent implements AfterViewInit {
     }
   }
 
+  private closeListener = () => this.closeDialog();
+
   openDialog(): void {
     if (!this.dialog || this.dialog.nativeElement.open)
       return;
 
+    // insert dialog into portal at the end of the body
+    this.portalOutlet.attach(new DomPortal(this.dialog));
+
     this.dialog.nativeElement.showModal();
+    document.body.classList.add('dialog-open');
+
+    // react to native close with ESC
+    this.dialog.nativeElement.addEventListener('cancel', this.closeListener);
 
     const fragment = this.route.snapshot.fragment;
     const params = this.parseFragment(fragment ?? '');
@@ -197,8 +201,14 @@ export class InfoCardComponent implements AfterViewInit {
   closeDialog(): void {
     if (!this.dialog || !this.dialog.nativeElement.open)
       return;
+    // remove listener
+    this.dialog.nativeElement.removeEventListener('cancel', this.closeListener);
 
     this.dialog.nativeElement.close();
+    document.body.classList.remove('dialog-open');
+
+    // remove dialog from portal
+    this.portalOutlet.detach();
 
     const fragment = this.route.snapshot.fragment;
     const params = this.parseFragment(fragment ?? '');

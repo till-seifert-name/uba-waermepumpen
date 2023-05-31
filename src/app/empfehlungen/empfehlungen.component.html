@@ -1,10 +1,10 @@
-<mat-card class="m-3 mt-0 text-bg-light bg-white flex-grow-1">
+<mat-card class="mat-card-main-content mat-card-print m-3 mt-0 text-bg-light bg-white flex-grow-1">
 
   <mat-card-content class="flex-grow-1">
 
     <div class="row h-100">
       <form
-        class="col-6 d-flex flex-column">
+        class="col-12 col-12-print col-md-6 d-print-block d-flex flex-column">
 
         <!-- Stepper with form elements -->
 
@@ -29,7 +29,7 @@
           <cdk-step label="Einleitung">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
               <p>
                 Die Wahl der Antriebsart und des Fahrzeugsegments ist entscheidend für eine umweltverträgliche
                 Pkw-Beschaffung. Im Folgenden erhalten Sie aus Abfragen resultierende Empfehlungen dazu.
@@ -50,7 +50,7 @@
           <cdk-step label="Angaben">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
 
               <h2 class="mat-h1">1. Antriebsart</h2>
 
@@ -115,7 +115,7 @@
           <cdk-step label="Angaben">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
 
               <h3 class="mat-h2">1.2 Ladesäulen</h3>
 
@@ -160,7 +160,7 @@
           <cdk-step label="Fahrzeugsegment">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
 
               <h2 class="mat-h1">2. Fahrzeugsegment</h2>
               <p>
@@ -232,7 +232,7 @@
                 (selectedOptionChange)="grid.setCell('Names', 'F_LE1', $event)">
               </app-button-toggle-group>
 
-              <mat-card class="bg-light mb-1" appearance="outlined">
+              <mat-card class="bg-light mb-1 d-print-none" appearance="outlined">
                 <mat-card-content>
                   <p>
                     Neben der Wahl der Antriebsart und des Fahrzeugsegments können Umwelt-anforderungen in der
@@ -243,11 +243,16 @@
                     umweltbezogene Mindestanforderungen und Zuschlagskriterien finden Sie hier.
                   </p>
                   <div class="text-center">
-                    <!-- TODO: Popover Umweltanforderungen -->
-                    <a mat-stroked-button color="primary" routerLink="/empfehlungen">
+                    <!-- TODO: Popover Umweltanforderungen [dialogTrigger]="popupUmweltanforderungen"-->
+                    <a mat-stroked-button color="primary"  href="assets/downloads/Umweltanforderungen.pdf">
                       Umweltanforderungen
                     </a>
                   </div>
+                  <!--<app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen">
+                    <ng-template #dialogContent>
+                      <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
+                    </ng-template>
+                  </app-info-card-button>-->
                 </mat-card-content>
               </mat-card>
 
@@ -261,14 +266,13 @@
       </form>
 
       <!-- Results -->
-      <div class="col-6 d-flex flex-column justify-content-start align-items-stretch">
+      <div class="col-12 col-12-print col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
 
         <!-- Übersichtsgrafik -->
-        <div class="d-flex align-items-center justify-content-between" style="height: 40px">
+        <div class="print-break-before d-flex d-print-block align-items-center justify-content-between" style="height: 40px">
           <h4 *ngIf="stepper.selectedIndex > 0"
               (click)="toggleUebersichtsgrafikVisible(false)"
               [class.text-muted]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
-              [class.d-print-none]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
               class="mat-headline-6 me-0 m-0 mx-2 text-uppercase">
             Dokumentation
           </h4>
@@ -284,14 +288,13 @@
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
-              [class.d-print-none]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
-              class="mat-headline-6 ms-auto m-0 mx-2 text-uppercase">
+              class="mat-headline-6 ms-auto m-0 mx-2 text-uppercase d-print-none">
             Übersichtsgrafik
           </h4>
         </div>
 
         <mat-card
-          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8"
+          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8 d-print-none"
           [class.mat-card-visible]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
           [class.mat-card-hidden]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)">
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
@@ -308,10 +311,10 @@
         <!-- Dokumentation -->
         <hr class="mt-1">
 
-        <div class="vstack gap-2 me-2">
+        <div class="me-2">
 
           <mat-card appearance="outlined"
-                    class="bg-light"
+                    class="mt-2 mat-card-print bg-light"
                     [class.mat-card-inactive]="!grid.getCell('Names', 'E_A0')"
           >
             <mat-card-header>
@@ -320,7 +323,7 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content [class.invisible]="!grid.getCell('Names', 'E_A0')">
-              <p class="ps-4">
+              <p class="ps-4 p-print-none">
                 {{grid.getCell('Names', 'E_A0')}}
               </p>
             </mat-card-content>
@@ -328,7 +331,7 @@
 
 
           <mat-card appearance="outlined"
-                    class="bg-light"
+                    class="mt-2 mat-card-print bg-light"
                     [class.mat-card-inactive]="!grid.getCell('Names', 'E_F0')"
           >
             <mat-card-header>
@@ -337,7 +340,7 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content [class.invisible]="!grid.getCell('Names', 'E_F0')">
-              <p class="ps-4">
+              <p class="ps-4 p-print-none">
                 {{grid.getCell('Names', 'E_F0')}}
               </p>
             </mat-card-content>

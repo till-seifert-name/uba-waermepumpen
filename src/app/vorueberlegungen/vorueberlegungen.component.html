@@ -1,16 +1,11 @@
-<mat-card class="m-3 mt-0 text-bg-light bg-white flex-grow-1">
-  <!--
-    <mat-card-header>
-      <mat-card-title>Einzelfahrzeug beschaffen</mat-card-title>
-    </mat-card-header>
-  -->
+<mat-card class="mat-card-main-content mat-card-print m-3 mt-0 text-bg-light bg-white flex-grow-1">
 
   <mat-card-content class="flex-grow-1">
 
     <div class="row h-100">
 
       <form
-        class="col-6 d-flex flex-column">
+        class="col-12 col-12-print col-md-6 d-flex flex-column d-print-block">
 
         <!-- Stepper -->
         <app-custom-stepper #stepper
@@ -34,7 +29,7 @@
           <cdk-step label="Einleitung">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
               <p>
                 Vor jeder Pkw-Beschaffung sollte geprüft werden, ob ein Pkw-Kauf tatsächlich notwendig ist. Dabei ist
                 insbesondere zu prüfen, ob der Mobilitätsbedarf (teilweise) mit folgenden Alternativen zum Pkw-Kauf
@@ -62,7 +57,7 @@
           <cdk-step label="Angaben">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
 
               <h2 class="mat-h1">Mobilitätsbedarf</h2>
               <p>
@@ -107,7 +102,7 @@
           <cdk-step label="Angaben">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
 
               <h3 class="mat-headline-5">2. Alternativen zum Pkw-Kauf</h3>
               <p>
@@ -205,7 +200,7 @@
           <cdk-step label="Angaben">
 
             <hr class="mt-1">
-            <section class="p-2">
+            <section class="p-2 p-print-none">
 
               <h3 class="mat-headline-5">3. Verkleinerung des Fuhrparks</h3>
               <p>
@@ -225,7 +220,7 @@
                        (ngModelChange)="grid.setCell('Names', 'F_E2', F_E2.value)">
               </mat-form-field>
 
-              <mat-card class="bg-light mb-1" appearance="outlined">
+              <mat-card class="bg-light mb-1 d-print-none" appearance="outlined">
                 <mat-card-content>
                   <p>
                     Für die verbleibenden Pkw nutzen Sie bitte den Tooleinstieg "Empfehlungen" zur
@@ -255,15 +250,14 @@
       </form>
 
       <!-- Results -->
-      <div class="col-6 d-flex flex-column justify-content-start align-items-stretch">
+      <div class="col-12 col-12-print print-break-before col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
 
         <!-- Übersichtsgrafik -->
-        <div class="d-flex align-items-center justify-content-between" style="height: 40px">
+        <div class="d-flex d-print-block align-items-center justify-content-between px-2 p-print-none" style="height: 40px">
           <h4 *ngIf="stepper.selectedIndex > 0"
               (click)="toggleUebersichtsgrafikVisible(false)"
               [class.text-muted]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
-              [class.d-print-none]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
-              class="mat-headline-6 me-0 m-0 mx-2 text-uppercase">
+              class="mat-headline-6 m-0 text-uppercase">
             Dokumentation
           </h4>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="downloadAsPDF()"
@@ -279,14 +273,13 @@
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
-              [class.d-print-none]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
-              class="mat-headline-6 ms-auto m-0 mx-2 text-uppercase">
+              class="mat-headline-6 ms-auto m-0 text-uppercase d-print-none">
             Übersichtsgrafik
           </h4>
         </div>
 
         <mat-card
-          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8"
+          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8 d-print-none"
           [class.mat-card-visible]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
           [class.mat-card-hidden]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)">
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
@@ -303,10 +296,10 @@
         <!-- Dokumentation -->
         <hr class="mt-1">
 
-        <div class="vstack gap-2 me-2">
+        <div class="me-2">
 
           <mat-card appearance="outlined"
-                    class="bg-light"
+                    class="bg-light mat-card-print"
                     [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')"
           >
             <mat-card-header>
@@ -315,7 +308,7 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')">
-              <p class="ps-4">
+              <p class="ps-4 p-print-none">
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'B16')}}
                 <strong class="text-secondary">{{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}</strong>
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'F16')}}
@@ -323,14 +316,14 @@
                   class="text-secondary fst-normal fs-4">{{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent}}</em>
                 <!--{{grid.getCell('Fragen_Prototyp_Flotte', 'H16')}}-->
               </p>
-              <p class="ps-4">
+              <p class="ps-4 p-print-none">
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'B17')}}
               </p>
             </mat-card-content>
           </mat-card>
 
           <mat-card appearance="outlined"
-                    class="bg-light"
+                    class="mt-2 bg-light mat-card-print"
                     [class.mat-card-inactive]="
                     !grid.getCell('Darstellung_Flotte', 'D15') &&
                     !grid.getCell('Darstellung_Flotte', 'D14') &&
@@ -422,7 +415,7 @@
 
               </div>
 
-              <mat-card appearance="outlined" class="d-inline-flex">
+              <mat-card appearance="outlined" class="d-inline-flex d-print-block mat-card-print">
                 <mat-card-content class="d-flex flex-row gap-2 py-2 px-3 w-auto">
                   <span class="d-block text-center">
                     <svg class="d-inline-block circle fahrrad" width="12" height="12">
@@ -466,44 +459,11 @@
                 </mat-card-content>
               </mat-card>
 
-
-              <!--
-              <p class="ps-4">
-                Mietwagen:
-                {{grid.getCell('Darstellung_Flotte', 'D11')}}
-                /
-                {{grid.getCell('Darstellung_Flotte', 'E11')}}
-              </p>
-              <p class="ps-4">
-                Car-Sharing:
-                {{grid.getCell('Darstellung_Flotte', 'D12')}}
-                /
-                {{grid.getCell('Darstellung_Flotte', 'E12')}}
-              </p>
-              <p class="ps-4">
-                Car-Pooling:
-                {{grid.getCell('Darstellung_Flotte', 'D13')}}
-                /
-                {{grid.getCell('Darstellung_Flotte', 'E13')}}
-              </p>
-              <p class="ps-4">
-                Fahrrad:
-                {{grid.getCell('Darstellung_Flotte', 'D14')}}
-                /
-                {{grid.getCell('Darstellung_Flotte', 'E14')}}
-              </p>
-              <p class="ps-4">
-                ÖPNV/Bahn/Fernbus:
-                {{grid.getCell('Darstellung_Flotte', 'D15')}}
-                /
-                {{grid.getCell('Darstellung_Flotte', 'E15')}}
-              </p>
-              -->
             </mat-card-content>
           </mat-card>
 
           <mat-card appearance="outlined"
-                    class="bg-light"
+                    class="mt-2 bg-light mat-card-print"
                     [class.mat-card-inactive]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')"
           >
             <mat-card-header>
@@ -512,7 +472,7 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')">
-              <p class="ps-4">
+              <p class="ps-4 p-print-none">
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'B59')}}
               </p>
             </mat-card-content>
@@ -528,7 +488,6 @@
               Download Vorüberlegungen
             </button>
           </section>
-
 
         </div>
 
