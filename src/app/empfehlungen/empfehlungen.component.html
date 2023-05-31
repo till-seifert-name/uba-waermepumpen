@@ -52,22 +52,22 @@
             <hr class="mt-1">
             <section class="p-2 p-print-none">
 
-              <h2 class="mat-h1">1. Antriebsart</h2>
+              <h2 class="mat-headline-4 mb-3">1. Antriebsart</h2>
 
-              <p>
+              <p class="px-4 p-print-none">
                 In diesem Abschnitt geht es darum, wie das Fahrprofil aussieht und ob Lademöglichkeiten bestehen.
               </p>
-              <p>
+              <p class="px-4 p-print-none">
                 Diese Fragestellungen sind relevant, um ein möglichst umweltverträgliches Fahrzeug bzgl. der
                 Antriebsart zu wählen.
               </p>
 
-              <h3 class="mat-h2">1.1 Fahrprofil</h3>
+              <h3 class="mat-h1 px-4 p-print-none">1.1 Fahrprofil</h3>
 
-              <p>
+              <p class="fw-bold px-4 p-print-none">
                 Welche Distanz soll mit dem zu beschaffenden Pkw im Normalfall pro Tag zurückgelegt werden?
               </p>
-              <mat-form-field appearance="outline" class="w-100">
+              <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>km/Tag</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_R1']"
                        name="F_R1" #F_R1="ngModel" required min="1" step="1"
@@ -75,10 +75,10 @@
               </mat-form-field>
 
 
-              <p>
+              <p class="fw-bold px-4 p-print-none">
                 Wie oft werden übers Jahr Tagesstrecken über 150 km zurückgelegt?
               </p>
-              <mat-form-field appearance="outline" class="w-100">
+              <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Strecken über 150 km</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_S1']" name="F_S1"
                             #F_S1="ngModel" required
@@ -92,10 +92,10 @@
               </mat-form-field>
 
 
-              <p>
+              <p class="fw-bold px-4 p-print-none">
                 Wie häufig werden die Tagesstrecken im Normalfall von Standzeiten (≈ mind. 30 min) unterbrochen?
               </p>
-              <mat-form-field appearance="outline" class="w-100">
+              <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Häufigkeit Nutzung</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_SZ1']" name="F_SZ1"
                             #F_SZ1="ngModel" required
@@ -117,9 +117,9 @@
             <hr class="mt-1">
             <section class="p-2 p-print-none">
 
-              <h3 class="mat-h2">1.2 Ladesäulen</h3>
+              <h3 class="mat-h1 px-4 p-print-none">1.2 Ladesäulen</h3>
 
-              <p class="fw-bold">
+              <p class="fw-bold px-4 p-print-none">
                 Sind Ladesäulen am Standort bzw. im umliegenden öffentlichen Raum oder am Wohnort der Nutzenden
                 verfügbar?
                 <mat-icon [dialogTrigger]="popupLadeinfrastrukturStandort"
@@ -146,14 +146,14 @@
               </app-info-card-button>
 
               <app-button-toggle-group
-                class="mt-4 mb-5"
+                class="mt-4 mb-5 px-4 p-print-none"
                 [options]="[grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
                 [selectedOption]="grid.cells['Names']['F_L1']"
                 (selectedOptionChange)="grid.setCell('Names', 'F_L1', $event)">
               </app-button-toggle-group>
 
 
-              <p class="fw-bold">
+              <p class="fw-bold px-4 p-print-none">
                 Sind Ladesäulen auf den zu befahrenden Strecken verfügbar?
                 <mat-icon [dialogTrigger]="popupLadeinfrastrukturStrecken"
                           class="material-icons-outlined text-muted align-middle">
@@ -177,19 +177,19 @@
               </app-info-card-button>
 
               <app-button-toggle-group
-                class="mt-4 mb-5"
+                class="mt-4 mb-5 px-4 p-print-none"
                 [options]="[grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
                 [selectedOption]="grid.cells['Names']['F_L2']"
                 (selectedOptionChange)="grid.setCell('Names', 'F_L2', $event)">
               </app-button-toggle-group>
 
 
-              <h2 class="mat-h2">1.3 Fuhrpark</h2>
-              <p class="fw-bold">
+              <h2 class="mat-h1 px-4 p-print-none">1.3 Fuhrpark</h2>
+              <p class="fw-bold px-4 p-print-none">
                 Ist das zu beschaffende Fahrzeug Teil eines Fuhrparks?
               </p>
               <app-button-toggle-group
-                class="mt-4 mb-5"
+                class="mt-4 mb-5 px-4 p-print-none"
                 [options]="[grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
                 [selectedOption]="grid.cells['Names']['F_F1']"
                 (selectedOptionChange)="grid.setCell('Names', 'F_F1', $event)">
@@ -205,21 +205,21 @@
             <hr class="mt-1">
             <section class="p-2 p-print-none">
 
-              <h2 class="mat-h1">2. Fahrzeugsegment</h2>
-              <p>
+              <h2 class="mat-headline-4 mb-3">2. Fahrzeugsegment</h2>
+              <p class="px-4 p-print-none">
                 In diesem Abschnitt geht es darum, welche Aufgabenstellung erfüllt werden soll, um ein möglichst
                 umweltverträgliches Fahrzeug bzgl. des Fahrzeugsegments zu wählen. Die Abfragen bezüglich der
                 Antriebsart gehen teilweise ebenfalls mit ein in die Empfehlung zum Fahrzeugsegment.
               </p>
 
-              <h3 class="mat-h2">2.1 Sitzplätze</h3>
+              <h3 class="mat-h1 px-4 p-print-none">2.1 Sitzplätze</h3>
 
-              <div class="row">
+              <div class="row px-4 p-print-none">
                 <div class="col-auto col-md-6">
-                  <p>
+                  <p class="fw-bold">
                     Wie viele Personen fahren maximal zusammen in dem Pkw?
                   </p>
-                  <mat-form-field appearance="outline" class="w-100">
+                  <mat-form-field appearance="outline" class="w-75">
                     <mat-label>Anzahl Personen</mat-label>
                     <input matInput type="number" [ngModel]="grid.cells['Names']['F_P1']"
                            name="F_P1" #F_P1="ngModel" required min="1" step="1" max="9"
@@ -228,7 +228,7 @@
                 </div>
 
                 <div class="col-auto col-md-6">
-                  <p>
+                  <p class="fw-bold">
                     Wie häufig werden alle Sitzplätze benötigt?
                   </p>
                   <mat-form-field appearance="outline" class="w-100">
@@ -246,12 +246,12 @@
                 </div>
               </div>
 
-              <h3 class="mat-h2">2.2 Transport</h3>
-              <p>
+              <h3 class="mat-h1 px-4 p-print-none">2.2 Transport</h3>
+              <p class="fw-bold px-4 p-print-none">
                 Wie häufig bestehen aufwändige Anforderungen an den Transport von Gegenständen (z.B.
                 viele/große/schwere Gegenstände), sodass Vans/Utilities notwendig sind?
               </p>
-              <mat-form-field appearance="outline" class="w-100">
+              <mat-form-field appearance="outline" class="w-75 px-4 p-print-none">
                 <mat-label>Häufigkeit</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_T1']" name="F_T1"
                             #F_T1="ngModel" required
@@ -264,12 +264,12 @@
                 </mat-select>
               </mat-form-field>
 
-              <h3 class="mat-h2">2.3 Leitungsebene</h3>
-              <p>
+              <h3 class="mat-h1 px-4 p-print-none">2.3 Leitungsebene</h3>
+              <p class="fw-bold px-4 p-print-none">
                 Wird der Pkw für die Leitungsebene beschafft?
               </p>
               <app-button-toggle-group
-                class="mt-4 mb-4"
+                class="mt-4 mb-4 px-4 p-print-none"
                 [options]="[grid.cells['Names']['A_JN1'], grid.cells['Names']['A_JN2']]"
                 [selectedOption]="grid.cells['Names']['F_LE1']"
                 (selectedOptionChange)="grid.setCell('Names', 'F_LE1', $event)">
