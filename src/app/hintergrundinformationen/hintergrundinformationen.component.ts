@@ -50,7 +50,7 @@ export class HintergrundinformationenComponent implements AfterViewInit {
       const element = component.elementRef.nativeElement;
       return {
         // Extract title from first heading in the element
-        title: element.querySelector('h1, h2, h3, h4, h5')?.innerHTML ?? '',
+        title: element.querySelector('h1, h2, h3, h4, h5')?.innerHTML.trim() ?? '',
         // Extract content from all paragraphs and dialogs in the element
         content: Array.from(element.querySelectorAll('p, dialog :is(p, li, tr, dd, dt, h3, h4, h5, h6)'))
           .reduce((acc, el) => `${acc} ${el instanceof HTMLElement ? (el.innerText + '.') : ''}`, '').trim(),
@@ -69,21 +69,24 @@ export class HintergrundinformationenComponent implements AfterViewInit {
   private filter(options: SearchIndexItem[], searchTermOrSelection: string | SearchIndexItem) {
     // If the search term is user input…
     if (typeof searchTermOrSelection === 'string') {
-      const searchTerm = searchTermOrSelection.toLowerCase();
+      const searchTerm = normalizeUnicode(searchTermOrSelection);
+
       // Filter, truncate content and sort the options
       return options
         .filter(option =>
-          option.title.toLowerCase().includes(searchTerm) || option.content.toLowerCase().includes(searchTerm)
+          normalizeUnicode(option.title).includes(searchTerm) ||
+          normalizeUnicode(option.content).includes(searchTerm)
         )
         .map(option => {
           let {content} = option;
-          if (content.toLowerCase().includes(searchTerm)) {
+
+          if (normalizeUnicode(content).includes(searchTerm)) {
             const sentences = content.split('.').map(s => s.trim() + '.');
-            const matchedSentenceIndex = sentences.findIndex(sentence => sentence.toLowerCase().includes(searchTerm));
+            const matchedSentenceIndex = sentences.findIndex(sentence => normalizeUnicode(sentence).includes(searchTerm));
             let matchedSentence = sentences[matchedSentenceIndex];
 
             if (matchedSentence) {
-              const searchTermStartIndex = matchedSentence.toLowerCase().indexOf(searchTerm);
+              const searchTermStartIndex = normalizeUnicode(matchedSentence).indexOf(searchTerm);
 
               const desiredLength = 69;
               if (matchedSentence.length > desiredLength) {
@@ -112,8 +115,8 @@ export class HintergrundinformationenComponent implements AfterViewInit {
           return {...option, content};
         })
         .sort((a, b) => {
-          const aTitleMatch = a.title.toLowerCase().includes(searchTerm);
-          const bTitleMatch = b.title.toLowerCase().includes(searchTerm);
+          const aTitleMatch = normalizeUnicode(a.title).includes(searchTerm);
+          const bTitleMatch = normalizeUnicode(b.title).includes(searchTerm);
           if (aTitleMatch && !bTitleMatch) {
             return -1;
           } else if (!aTitleMatch && bTitleMatch) {
@@ -137,9 +140,21 @@ export class HintergrundinformationenComponent implements AfterViewInit {
    */
   highlightMatch(text: string, searchTerm: string): string {
     if (!searchTerm) return text;
-    const searchPattern = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const regEx = new RegExp(`\\w*${searchPattern}\\w*`, 'gi');
-    return text.replace(regEx, match => `<strong>${match}</strong>`);
+    const searchTermNormalized = normalizeUnicode(searchTerm).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const textNormalized = normalizeUnicode(text);
+    const regEx = new RegExp(`\\w*${searchTermNormalized}\\w*`, 'gi');
+    let indices: number[][] = [];
+    let match;
+
+    while ((match = regEx.exec(textNormalized)) !== null) {
+      indices.push([match.index, match.index + match[0].length]);
+    }
+
+    for (let i = indices.length - 1; i >= 0; i--) {
+      text = text.substring(0, indices[i][0]) + '<strong>' + text.substring(indices[i][0], indices[i][1]) + '</strong>' + text.substring(indices[i][1]);
+    }
+
+    return text;
   }
 
   /**
@@ -153,4 +168,14 @@ export class HintergrundinformationenComponent implements AfterViewInit {
     // Set the input to the title of the element, instead of the object
     this.searchControl.setValue(match.title);
   }
+}
+
+/**
+ * @method normalizeUnicode
+ * @description Normalizes unicode characters in a string, replacing accented letters with their non-accented equivalents
+ * @param text - The text to normalize
+ * @returns The normalized text
+ */
+function normalizeUnicode(text: string): string {
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
