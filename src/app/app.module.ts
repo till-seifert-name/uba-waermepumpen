@@ -59,6 +59,7 @@ import { PopupFahrzeugsegmentComponent } from './hintergrundinformationen/popup-
 import { PopupPkwMietenComponent } from './hintergrundinformationen/popup-pkw-mieten/popup-pkw-mieten.component';
 import { PopupPkwLeasingKaufComponent } from './hintergrundinformationen/popup-pkw-leasing-kauf/popup-pkw-leasing-kauf.component';
 import { PopupPkwSharingComponent } from './hintergrundinformationen/popup-pkw-sharing/popup-pkw-sharing.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -103,28 +104,29 @@ import { PopupPkwSharingComponent } from './hintergrundinformationen/popup-pkw-s
     PopupPkwLeasingKaufComponent,
     PopupPkwSharingComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatListModule,
-    MatLineModule,
-    MatProgressBarModule,
-    MatStepperModule,
-    MatInputModule,
-    MatTableModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatCardModule,
-    MatExpansionModule,
-    CdkStepperModule,
-    MatButtonToggleModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatListModule,
+        MatLineModule,
+        MatProgressBarModule,
+        MatStepperModule,
+        MatInputModule,
+        MatTableModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatCardModule,
+        MatExpansionModule,
+        CdkStepperModule,
+        MatButtonToggleModule,
+        MatAutocompleteModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

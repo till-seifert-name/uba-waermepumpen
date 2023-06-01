@@ -16,21 +16,50 @@
 
     <section class="p-2">
 
-      <p>Auf dieser Seite können Sie sich zu Themen der umweltverträglichen Mobilität informieren.</p>
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-7">
+          <p>Auf dieser Seite können Sie sich zu Themen der umweltverträglichen Mobilität informieren.</p>
 
-      <ul
-        class="mb-4">
-        <li>
-          Die Infoboxen „THG-Vergleich von Verkehrsmitteln“ und „Mobilitätsbudget“ decken übergeordnete Themen ab.
-        </li>
-        <li>
-          Die übrigen Infoboxen halten spezifische Informationen zu den verschiedenen Verkehrsmitteln und deren
-          Einbindung
-          bei
-          der Deckung des Mobilitätsbedarfs der öffentlichen Hand bereit.
-        </li>
-      </ul>
+          <ul
+            class="mb-4">
+            <li>
+              Die Infoboxen „THG-Vergleich von Verkehrsmitteln“ und „Mobilitätsbudget“ decken übergeordnete Themen ab.
+            </li>
+            <li>
+              Die übrigen Infoboxen halten spezifische Informationen zu den verschiedenen Verkehrsmitteln und deren
+              Einbindung
+              bei
+              der Deckung des Mobilitätsbedarfs der öffentlichen Hand bereit.
+            </li>
+          </ul>
+        </div>
 
+        <div class="col-12 col-md-6 col-lg-5">
+          <!-- Search box -->
+          <mat-form-field class="w-100" appearance="outline" color="accent">
+            <input type="text" matInput [matAutocomplete]="auto" [formControl]="searchControl"
+                   placeholder="Suchbegriff hier eingeben">
+            <button *ngIf="searchControl.value" matSuffix mat-icon-button aria-label="Leeren"
+                    (click)="searchControl.setValue('')">
+              <mat-icon class="material-icons-outlined">close</mat-icon>
+            </button>
+            <button *ngIf="!searchControl.value" matSuffix mat-icon-button aria-label="Suchen">
+              <mat-icon class="material-icons-outlined">search</mat-icon>
+            </button>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+              <!-- each item in filteredOptions, highlightMatch method is used to bold the matching search term -->
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                <div class="mat-option-text">
+                  <div class="mat-body-1 mb-1 text-truncate w-100"
+                       [innerHtml]="highlightMatch(option.title, searchControl.value)"></div>
+                  <div class="mat-caption text-muted text-nowrap text-truncate w-100"
+                       [innerHtml]="highlightMatch(option.content, searchControl.value)"></div>
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
 
       <div class="row gap-5">
 

@@ -108,9 +108,9 @@ import {ActivatedRoute, Router} from "@angular/router";
               (keydown.enter)="openDialog()" (keydown.space)="openDialog()" (click)="openDialog()">
       <mat-card [ngClass]="innerCardClass" appearance="outlined">
         <mat-card-content class="p-2 px-3 str">
-          <p *ngIf="cardTitle" class="mat-body-strong" [class.mb-1]="cardBodyText">
+          <h2 *ngIf="cardTitle" class="mat-body-strong" [class.mb-1]="cardBodyText">
             {{cardTitle}}
-          </p>
+          </h2>
           <p *ngIf="cardBodyText" class="mat-h5">
             {{cardBodyText}}
           </p>
@@ -151,7 +151,12 @@ export class InfoCardComponent implements AfterViewInit {
   @ViewChild('dialog') dialog!: ElementRef<HTMLDialogElement>;
   portalOutlet!: DomPortalOutlet;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  /**
+   * @param route
+   * @param router
+   * @param elementRef is neede to access the test from outside for the search feature
+   */
+  constructor(private route: ActivatedRoute, private router: Router, public elementRef: ElementRef<Element>) {
 
   }
 
