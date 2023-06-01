@@ -42,9 +42,6 @@ export class DataGrid {
     this.g = this.getCell.bind(this);
   }
 
-  static log(...l: any[]): void {
-    console.log('DataGrid', ...l)
-  }
 
   onCellChanged(): Subject<CellChange> {
     return this.cellChangedSubject;
@@ -250,26 +247,6 @@ export class DataGrid {
     return sb;
   }
 
-  /**
-   * Shifts the character codes of a string by a specified amount.
-   */
-  static unshift(str: string, n: number = 0): string {
-    let result = '';
-    for (const c of str) {
-      result += String.fromCharCode(c.charCodeAt(0) - n);
-    }
-    return result;
-  }
-
-  /**
-   * Returns the name of the cell relative to a given cell by a specified offset.
-   */
-  static relCell(cell: string, x: number, y: number): string {
-    const $x = DataGrid.columnNameToColNumber(cell) + x;
-    const $y = DataGrid.cellNameToRowNumber(cell) + y;
-
-    return DataGrid.getExcelColumnName($x) + $y;
-  }
 
   // Implementations of Excel functions
   COLUMN(cell: string): number {
@@ -290,7 +267,7 @@ export class DataGrid {
     return this.getCell(sheet, DataGrid.index2cell(x, y));
   }
 
-  SVERWEIS(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number, is_range: boolean): string | number | null {
+  SVERWEIS(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number): string | number | null {
     const x = this.COLUMN(cell1);
     const yStart = this.ROW(cell1);
     const yEnd = this.ROW(cell2);
@@ -307,10 +284,6 @@ export class DataGrid {
       }
     }
     return result;
-  }
-
-  VLOOKUP(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number, is_range: boolean): string | number | null {
-    return this.SVERWEIS(sheet, value, cell1, cell2, col, is_range);
   }
 
   /**

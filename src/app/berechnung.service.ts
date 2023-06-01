@@ -208,7 +208,7 @@ export class BerechnungService {
 
     // Function for Umfang der Pkw-Beschaffung:
     grid.setCell("Fragen_Prototyp_Flotte", "B16", (sheet, cell, grid) => {
-      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      const {F_B1, F_E1,  } = grid.cells['Names'];
       return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", "Mit dieser Beschaffung");
     });
 
@@ -218,18 +218,18 @@ export class BerechnungService {
     });
 
     grid.setCell("Fragen_Prototyp_Flotte", "F16", (sheet, cell, grid) => {
-      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      const {F_B1, F_E1,  } = grid.cells['Names'];
       return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", "Sie Ihren Fuhrpark um");
     });
 
     grid.setCell("Fragen_Prototyp_Flotte", "G16", (sheet, cell, grid) => {
-      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      const {F_B1, F_E1,  } = grid.cells['Names'];
       // @ts-ignore
       return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", ABS((F_E1 - F_B1) / F_E1));
     });
 
     grid.setCell("Fragen_Prototyp_Flotte", "H16", (sheet, cell, grid) => {
-      const {F_B1, F_E1, H_F1, H_F2,} = grid.cells['Names'];
+      const {F_B1, F_E1,  } = grid.cells['Names'];
       return WENN(ODER(ISTLEER(F_B1), ISTLEER(F_E1)), "", ".");
     });
 
@@ -310,27 +310,27 @@ export class BerechnungService {
 
     grid.setCell("Darstellung_Flotte", "D11", (sheet, cell, grid) => {
       const C11 = grid.getCell('Darstellung_Flotte', 'C11');
-      return grid.SVERWEIS(sheet, C11, 'C6', 'D8', 2, false);
+      return grid.SVERWEIS(sheet, C11, 'C6', 'D8', 2);
     });
 
     grid.setCell("Darstellung_Flotte", "D12", (sheet, cell, grid) => {
       const C12 = grid.getCell('Darstellung_Flotte', 'C12');
-      return grid.SVERWEIS(sheet, C12, 'C6', 'D8', 2, false);
+      return grid.SVERWEIS(sheet, C12, 'C6', 'D8', 2);
     });
 
     grid.setCell("Darstellung_Flotte", "D13", (sheet, cell, grid) => {
       const C13 = grid.getCell('Darstellung_Flotte', 'C13');
-      return grid.SVERWEIS(sheet, C13, 'C6', 'D8', 2, false);
+      return grid.SVERWEIS(sheet, C13, 'C6', 'D8', 2);
     });
 
     grid.setCell("Darstellung_Flotte", "D14", (sheet, cell, grid) => {
       const C14 = grid.getCell('Darstellung_Flotte', 'C14');
-      return grid.SVERWEIS(sheet, C14, 'C6', 'D8', 2, false);
+      return grid.SVERWEIS(sheet, C14, 'C6', 'D8', 2);
     });
 
     grid.setCell("Darstellung_Flotte", "D15", (sheet, cell, grid) => {
       const C15 = grid.getCell('Darstellung_Flotte', 'C15');
-      return grid.SVERWEIS(sheet, C15, 'C6', 'D8', 2, false);
+      return grid.SVERWEIS(sheet, C15, 'C6', 'D8', 2);
     });
 
 

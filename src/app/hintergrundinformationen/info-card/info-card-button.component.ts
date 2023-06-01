@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component, ContentChild,
   Directive,
-  ElementRef, EmbeddedViewRef, HostBinding,
+  ElementRef, HostBinding,
   HostListener,
   Input, Renderer2,
   TemplateRef,
