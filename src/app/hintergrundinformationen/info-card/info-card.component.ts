@@ -92,6 +92,9 @@ import {ActivatedRoute, Router} from "@angular/router";
         width: auto;
         max-width: unset;
         min-width: unset;
+        max-height: unset;
+        overflow: unset;
+        height: unset;
       }
 
       dialog::backdrop {
