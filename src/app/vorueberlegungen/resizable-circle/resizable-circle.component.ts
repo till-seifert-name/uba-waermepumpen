@@ -3,12 +3,11 @@ import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-resizable-circle',
   template: `
-    <svg class="circle" [class]="circleClass"
+    <svg class="circle" [matTooltip]="title" [class]="circleClass"
          [style.grid-column]="gridColumn"
          [style.grid-row]="gridRow"
          [style.width.px]="getCircleDimension(size)"
          [style.height.px]="getCircleDimension(size)">
-      <title>{{title}}</title>
       <circle [attr.r]="getCircleDimension(size) / 2 - 3"
               [attr.cx]="getCircleDimension(size) / 2"
               [attr.cy]="getCircleDimension(size) / 2"></circle>

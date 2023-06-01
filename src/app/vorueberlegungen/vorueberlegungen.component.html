@@ -375,7 +375,8 @@
 
               <div class="grid mb-3">
                 <div class="legend text-dark fw-bold text-uppercase small">Umweltvorteil</div>
-                <div class="subtitle text-muted text-uppercase small"><span>aus Umweltsicht vor Pkw-Kauf zu bevorzogen</span>
+                <div class="subtitle text-muted text-uppercase small">
+                  <span>aus Umweltsicht vor Pkw-Kauf zu bevorzugen</span>
                 </div>
                 <app-arrow class="up-arrow text-primary p-3 ps-2" direction="up" style="height: 80%"></app-arrow>
 
@@ -399,7 +400,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D15')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E15')"
-                  title="ÖPNV/Bahn/Fernbus"
+                  [title]="'ÖPNV/Bahn/Fernbus'"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -408,7 +409,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D14')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D14') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E14')"
-                  title="Fahrrad"
+                  [title]="'Fahrrad'"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -417,7 +418,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D13')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D13') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E13')"
-                  title="Car-Pooling"
+                  [title]="'Car-Pooling'"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -426,7 +427,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D12')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D12') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E12')"
-                  title="Carsharing"
+                  [title]="'Car-Sharing'"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -435,7 +436,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D11')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D11') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E11')"
-                  title="Mietwagen"
+                  [title]="'Mietwagen'"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -445,7 +446,6 @@
                 <mat-card-content class="d-flex flex-row gap-2 py-2 px-3 w-auto">
                   <span class="d-block text-center">
                     <svg class="d-inline-block circle fahrrad" width="12" height="12">
-                      <title>Fahrrad</title>
                       <circle r="4" cx="6" cy="6"></circle>
                     </svg>
                     <span class="d-block text-center text-muted small">Fahrrad</span>
@@ -453,7 +453,6 @@
 
                   <span class="d-block text-center">
                     <svg class="d-inline-block circle oepnv" width="12" height="12">
-                      <title>ÖPNV/Bahn/Fernbus</title>
                       <circle r="4" cx="6" cy="6"></circle>
                     </svg>
                     <span class="d-block text-center text-muted small">ÖPNV/Bahn/Fernbus</span>
@@ -461,7 +460,6 @@
 
                   <span class="d-block text-center">
                     <svg class="d-inline-block circle pkw-pooling" width="12" height="12">
-                      <title>PKW Pooling</title>
                       <circle r="4" cx="6" cy="6"></circle>
                     </svg>
                     <span class="d-block text-center text-muted small">Pooling</span>
@@ -469,7 +467,6 @@
 
                   <span class="d-block text-center">
                     <svg class="d-inline-block circle pkw-sharing" width="12" height="12">
-                      <title>PKW Sharing</title>
                       <circle r="4" cx="6" cy="6"></circle>
                     </svg>
                     <span class="d-block text-center text-muted small">Sharing</span>
@@ -477,7 +474,6 @@
 
                   <span class="d-block text-center">
                     <svg class="d-inline-block circle pkw-mieten" width="12" height="12">
-                      <title>PKW Mieten</title>
                       <circle r="4" cx="6" cy="6"></circle>
                     </svg>
                     <span class="d-block text-center text-muted small">Mieten</span>

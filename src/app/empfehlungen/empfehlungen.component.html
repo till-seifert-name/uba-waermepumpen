@@ -121,7 +121,8 @@
 
               <p class="fw-bold px-4 p-print-none">
                 Sind Ladesäulen am Standort bzw. im umliegenden öffentlichen Raum oder am Wohnort der Nutzenden
-                verfügbar?
+                verfügbar? Neben der Reichweite der Batterie ist die Verfügbarkeit von Ladeinfrastruktur entscheidend
+                dafür, ob ein E-Auto geeignet ist.
                 <mat-icon [dialogTrigger]="popupLadeinfrastrukturStandort"
                           class="material-icons-outlined text-muted align-middle">
                   help_outline
@@ -212,7 +213,24 @@
                 Antriebsart gehen teilweise ebenfalls mit ein in die Empfehlung zum Fahrzeugsegment.
               </p>
 
-              <h3 class="mat-h1 px-4 p-print-none">2.1 Sitzplätze</h3>
+              <h3 class="mat-h1 px-4 p-print-none">
+                2.1 Sitzplätze
+                <mat-icon [dialogTrigger]="popupSitzplaetze"
+                          class="material-icons-outlined text-muted align-middle">
+                  help_outline
+                </mat-icon>
+              </h3>
+              <app-info-card-button #popupSitzplaetze
+                                    cardTitle="Anzahl der Mitfahrenden">
+                <ng-template #dialogContent>
+                  <h1>Anzahl der Mitfahrenden</h1>
+                  <p>
+                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong> bzw. das
+                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt werden soll, kann
+                    die bisherige Nutzung evaluiert werden.
+                  </p>
+                </ng-template>
+              </app-info-card-button>
 
               <div class="row px-4 p-print-none">
                 <div class="col-auto col-md-6">
@@ -246,7 +264,27 @@
                 </div>
               </div>
 
-              <h3 class="mat-h1 px-4 p-print-none">2.2 Transport</h3>
+              <h3 class="mat-h1 px-4 p-print-none">
+                2.2 Transport
+                <mat-icon [dialogTrigger]="popupTransport"
+                          class="material-icons-outlined text-muted align-middle">
+                  help_outline
+                </mat-icon>
+              </h3>
+              <app-info-card-button #popupTransport
+                                    cardTitle="Aufwändige Transportanforderungen">
+                <ng-template #dialogContent>
+                  <h1>Aufwändige Transportanforderungen</h1>
+                  <p>
+                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong>
+                    bzw. das
+                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt
+                    werden soll, kann
+                    die bisherige Nutzung evaluiert werden.
+                  </p>
+                </ng-template>
+              </app-info-card-button>
+
               <p class="fw-bold px-4 p-print-none">
                 Wie häufig bestehen aufwändige Anforderungen an den Transport von Gegenständen (z.B.
                 viele/große/schwere Gegenstände), sodass Vans/Utilities notwendig sind?
@@ -399,7 +437,7 @@
             <button mat-stroked-button
                     (click)="downloadAsPDF()"
                     color="primary">
-              Download individuelle Empfehlungen
+              Download Empfehlungen
             </button>
           </section>
 

@@ -62,6 +62,7 @@ import { PopupPkwSharingComponent } from './hintergrundinformationen/popup-pkw-s
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import '@angular/common/locales/global/de';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -106,29 +107,30 @@ import '@angular/common/locales/global/de';
     PopupPkwLeasingKaufComponent,
     PopupPkwSharingComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-        MatMenuModule,
-        MatListModule,
-        MatLineModule,
-        MatProgressBarModule,
-        MatStepperModule,
-        MatInputModule,
-        MatTableModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatCardModule,
-        MatExpansionModule,
-        CdkStepperModule,
-        MatButtonToggleModule,
-        MatAutocompleteModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatListModule,
+    MatLineModule,
+    MatProgressBarModule,
+    MatStepperModule,
+    MatInputModule,
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatCardModule,
+    MatExpansionModule,
+    CdkStepperModule,
+    MatButtonToggleModule,
+    MatAutocompleteModule,
+    MatTooltipModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
