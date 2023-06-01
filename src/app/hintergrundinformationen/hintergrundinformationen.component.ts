@@ -53,7 +53,7 @@ export class HintergrundinformationenComponent implements AfterViewInit {
         title: element.querySelector('h1, h2, h3, h4, h5')?.innerHTML.trim() ?? '',
         // Extract content from all paragraphs and dialogs in the element
         content: Array.from(element.querySelectorAll('p, dialog :is(p, li, tr, dd, dt, h3, h4, h5, h6)'))
-          .reduce((acc, el) => `${acc} ${el instanceof HTMLElement ? (el.innerText + '.') : ''}`, '').trim(),
+          .reduce((acc, el) => `${acc} ${el instanceof HTMLElement && el.innerText.trim() ? el.innerText + '.' : ''}`, '').trim(),
         component: component
       };
     }) ?? [];
@@ -177,5 +177,8 @@ export class HintergrundinformationenComponent implements AfterViewInit {
  * @returns The normalized text
  */
 function normalizeUnicode(text: string): string {
-  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  return text.normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ß/g, "ss")
+    .toLowerCase();
 }
