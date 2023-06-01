@@ -71,7 +71,7 @@ import {InfoCardComponent} from "./info-card.component";
           <!--<button mat-icon-button>
             <mat-icon class="material-icons-outlined">share</mat-icon>
           </button>-->
-          <button mat-icon-button (click)="downloadAsPDF()">
+          <button mat-icon-button (click)="downloadAsPDF()" matTooltip="Drucken" matTooltipPosition="below">
             <mat-icon class="material-icons-outlined">file_download</mat-icon>
           </button>
         </mat-card-actions>

@@ -10,7 +10,7 @@
 
         <!-- Stepper -->
         <app-custom-stepper #stepper
-                            title="Empfehlungen"
+                            [title]="'Empfehlungen'"
                             [linear]="false"
                             class="flex-grow-1"
                             (onReset)="resetInput()"
@@ -66,7 +66,22 @@
 
               <p class="fw-bold px-4 p-print-none">
                 Welche Distanz soll mit dem zu beschaffenden Pkw im Normalfall pro Tag zurückgelegt werden?
+                <mat-icon [dialogTrigger]="popupStrecken"
+                          class="material-icons-outlined text-muted align-middle">
+                  help_outline
+                </mat-icon>
               </p>
+              <app-info-card-button #popupStrecken
+                                    cardTitle="Strecken pro Tag">
+                <ng-template #dialogContent>
+                  <h1>Strecken pro Tag</h1>
+                  <p>
+                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong> bzw. das
+                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt werden soll, kann
+                    das <strong>Fahrtenbuch</strong> genutzt werden, um eine repräsentative tägliche Streckenlänge abzuleiten.
+                  </p>
+                </ng-template>
+              </app-info-card-button>
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>km/Tag</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_R1']"
@@ -77,7 +92,24 @@
 
               <p class="fw-bold px-4 p-print-none">
                 Wie oft werden übers Jahr Tagesstrecken über 150 km zurückgelegt?
+                <mat-icon [dialogTrigger]="popupTagesfahrprofil"
+                          class="material-icons-outlined text-muted align-middle">
+                  help_outline
+                </mat-icon>
               </p>
+              <app-info-card-button #popupTagesfahrprofil
+                                    cardTitle="Tagesfahrprofil">
+                <ng-template #dialogContent>
+                  <h1>Tagesfahrprofil</h1>
+                  <p>
+                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong>
+                    bzw. das
+                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt
+                    werden soll, kann
+                    das <strong>Fahrtenbuch</strong> zur Beantwortung der Frage genutzt werden.
+                  </p>
+                </ng-template>
+              </app-info-card-button>
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Strecken über 150 km</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_S1']" name="F_S1"
@@ -119,10 +151,14 @@
 
               <h3 class="mat-h1 px-4 p-print-none">1.2 Ladesäulen</h3>
 
+              <p class="px-4 p-print-none">
+                Neben der Reichweite der Batterie ist die Verfügbarkeit von Ladeinfrastruktur entscheidend
+                dafür, ob ein E-Auto geeignet ist.
+              </p>
+
               <p class="fw-bold px-4 p-print-none">
                 Sind Ladesäulen am Standort bzw. im umliegenden öffentlichen Raum oder am Wohnort der Nutzenden
-                verfügbar? Neben der Reichweite der Batterie ist die Verfügbarkeit von Ladeinfrastruktur entscheidend
-                dafür, ob ein E-Auto geeignet ist.
+                verfügbar?
                 <mat-icon [dialogTrigger]="popupLadeinfrastrukturStandort"
                           class="material-icons-outlined text-muted align-middle">
                   help_outline
@@ -361,11 +397,11 @@
           </h4>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="downloadAsPDF()"
                   class="ms-0 me-auto d-print-none"
-                  title="Drucken">
+                  matTooltip="Drucken">
             <mat-icon class="material-icons-outlined">file_download</mat-icon>
           </button>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
-                  title="Übersichtsgrafik ein-/ausblenden"
+                  matTooltip="Übersichtsgrafik ein-/ausblenden"
                   class="d-print-none">
             <mat-icon class="material-icons-outlined" color="primary">swap_horizontal_circle</mat-icon>
           </button>
@@ -382,7 +418,7 @@
           [class.mat-card-hidden]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)">
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
-                  title="Übersichtsgrafik ein-/ausblenden"
+                  matTooltip="Übersichtsgrafik ein-/ausblenden"
                   class="btn-open-close d-print-none">
             <mat-icon class="material-icons-outlined" color="primary">
               <ng-container *ngIf="!viewstate.uebersichtsgrafikVisible">arrow_circle_left</ng-container>

@@ -46,7 +46,7 @@ export class FinishButtonDirective {
           <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2 me-0">{{selected?.label}}</h1>
 
           <button mat-icon-button
-                  matTooltip="Alle Eingaben zurücksetzen"
+                  matTooltip="Eingaben zurücksetzen"
                   class="btn-reset mx-0 my-n2 d-print-none"
                   *ngIf="onReset.observers.length" (click)="onReset.emit()">
               <mat-icon class="material-icons-outlined">refresh</mat-icon>
