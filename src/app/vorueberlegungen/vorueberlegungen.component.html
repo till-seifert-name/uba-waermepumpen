@@ -86,7 +86,9 @@
 
               <p class="fw-bold px-4 p-print-none">
                 Wie viele Fahrzeuge aus einem vorhandenen Fuhrpark werden durch diese Beschaffung ersetzt?
-                <mat-icon [dialogTrigger]="popupVerkleinerung" class="material-icons-outlined text-muted align-middle">help_outline</mat-icon>
+                <mat-icon [dialogTrigger]="popupVerkleinerung" class="material-icons-outlined text-muted align-middle">
+                  help_outline
+                </mat-icon>
               </p>
               <app-info-card-button #popupVerkleinerung cardTitle="Verkleinerung des Fuhrparks">
                 <ng-template #dialogContent>
@@ -326,11 +328,19 @@
             <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B16')">
               <p class="ps-4 p-print-none">
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'B16')}}
-                <strong class="text-secondary">{{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}</strong>
+                <strong class="text-secondary"
+                        [attr.data-direction]="grid.getCell('Fragen_Prototyp_Flotte', 'E16')"
+                        [attr.data-percent]="grid.getCell('Fragen_Prototyp_Flotte', 'G16')"
+                >
+                  {{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}
+                </strong>
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'F16')}}
-                <em
-                  class="text-secondary fst-normal fs-4">{{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent}}</em>
-                <!--{{grid.getCell('Fragen_Prototyp_Flotte', 'H16')}}-->
+                <em class="text-secondary fst-normal fs-4"
+                    [attr.data-direction]="grid.getCell('Fragen_Prototyp_Flotte', 'E16')"
+                    [attr.data-percent]="grid.getCell('Fragen_Prototyp_Flotte', 'G16')"
+                >
+                  {{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent:'0.0-0':'de'}}
+                </em>
               </p>
               <p class="ps-4 p-print-none">
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'B17')}}

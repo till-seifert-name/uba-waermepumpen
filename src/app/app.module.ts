@@ -61,6 +61,8 @@ import { PopupPkwLeasingKaufComponent } from './hintergrundinformationen/popup-p
 import { PopupPkwSharingComponent } from './hintergrundinformationen/popup-pkw-sharing/popup-pkw-sharing.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
+import '@angular/common/locales/global/de';
+
 @NgModule({
   declarations: [
     AppComponent,

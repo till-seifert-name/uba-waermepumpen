@@ -8,6 +8,20 @@
   --color-pkw-mieten: var(--color-50-turquoise);
 }
 
+.text-secondary {
+  &[data-direction="vergrößern"] {
+    color: var(--bs-danger) !important;
+  }
+
+  /*&[data-direction="verkleinern"] {
+
+  }*/
+
+  &[data-direction="verkleinern"][data-percent="0"] {
+    color: var(--bs-warning) !important;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-rows: repeat(2, 1fr) auto auto auto;
