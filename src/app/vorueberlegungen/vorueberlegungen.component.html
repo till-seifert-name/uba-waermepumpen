@@ -375,7 +375,7 @@
 
               <div class="grid mb-3">
                 <div class="legend text-dark fw-bold text-uppercase small">Umweltvorteil</div>
-                <div class="subtitle text-muted text-uppercase small"><span>aus Umweltsicht vor Pkw zu bevorzogen</span>
+                <div class="subtitle text-muted text-uppercase small"><span>aus Umweltsicht vor Pkw-Kauf zu bevorzogen</span>
                 </div>
                 <app-arrow class="up-arrow text-primary p-3 ps-2" direction="up" style="height: 80%"></app-arrow>
 
@@ -390,7 +390,7 @@
 
                 <div class="freq-rare text-muted text-uppercase small">Fast nie</div>
                 <div class="freq-sometimes text-muted text-uppercase small">Ab und Zu</div>
-                <div class="freq-regular text-muted text-uppercase small">Regelmäsßig</div>
+                <div class="freq-regular text-muted text-uppercase small">Regelmäßig</div>
                 <div class="freq-title text-dark fw-bold text-uppercase small">Häufigkeit Substitutionsmöglichkeiten
                 </div>
 
@@ -399,7 +399,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D15')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E15')"
-                  title="ÖPNV"
+                  title="ÖPNV/Bahn/Fernbus"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -417,7 +417,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D13')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D13') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E13')"
-                  title="PKW Pooling"
+                  title="Car-Pooling"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -426,7 +426,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D12')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D12') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E12')"
-                  title="PKW Sharing"
+                  title="Carsharing"
                   [size]="36">
                 </app-resizable-circle>
 
@@ -435,7 +435,7 @@
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D11')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D11') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E11')"
-                  title="PKW Mieten"
+                  title="Mietwagen"
                   [size]="36">
                 </app-resizable-circle>
 

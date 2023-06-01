@@ -13,7 +13,7 @@ const routes: Routes = [
     path: '',
     component: StartComponent,
     pathMatch: 'full',
-    title: 'DBU Online-Tool'
+    title: 'Pkw-Beschaffung'
   },
   {
     path: 'hintergrundinformationen',
