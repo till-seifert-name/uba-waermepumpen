@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {DataGrid} from "../data-grid";
 import {BerechnungService} from "../berechnung.service";
-import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-empfehlungen',
@@ -31,7 +30,8 @@ export class EmpfehlungenComponent {
   }
 
   resetInput() {
-    this.berechnungService.resetInputs()
+    if (confirm('Alle Eingaben zurücksetzen?'))
+      this.berechnungService.resetInputs()
   }
 
   downloadAsPDF() {

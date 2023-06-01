@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
-import {DataGrid, ISTLEER, ODER, UND, WAHR, WENNS} from "../data-grid";
-import {NgForm} from "@angular/forms";
+import {DataGrid} from "../data-grid";
 import {BerechnungService} from "../berechnung.service";
-
 
 @Component({
   selector: 'app-vorueberlegungen',
@@ -32,7 +30,8 @@ export class VorueberlegungenComponent {
   }
 
   resetInput() {
-    this.berechnungService.resetInputs()
+    if (confirm('Alle Eingaben zurücksetzen?'))
+      this.berechnungService.resetInputs()
   }
 
   downloadAsPDF() {
