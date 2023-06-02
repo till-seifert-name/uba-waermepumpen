@@ -143,16 +143,11 @@ export class HintergrundinformationenComponent implements AfterViewInit {
     const searchTermNormalized = normalizeUnicode(searchTerm).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const textNormalized = normalizeUnicode(text);
     const regEx = new RegExp(`\\w*${searchTermNormalized}\\w*`, 'gi');
-    let indices: number[][] = [];
-    let match;
 
-    while ((match = regEx.exec(textNormalized)) !== null) {
-      indices.push([match.index, match.index + match[0].length]);
-    }
-
-    for (let i = indices.length - 1; i >= 0; i--) {
-      text = text.substring(0, indices[i][0]) + '<strong>' + text.substring(indices[i][0], indices[i][1]) + '</strong>' + text.substring(indices[i][1]);
-    }
+    Array.from(textNormalized.matchAll(regEx)).reverse().forEach(match => {
+      const [start, end] = [match.index!, match.index! + match[0].length];
+      text = `${text.slice(0, start)}<strong>${text.slice(start, end)}</strong>${text.slice(end)}`;
+    });
 
     return text;
   }
