@@ -3,3 +3,9 @@
   /* to pass radius to card content image */
   border-radius: inherit;
 }
+
+/* focus clickable groups */
+:focus path:first-of-type {
+  stroke: var(--bs-primary) !important;
+  fill-opacity: 0.5;
+}

@@ -26,6 +26,13 @@
     &:after {
       display: none;
     }
+
+    /* hide clickable elements in hidden card to prevent keyboarb focus*/
+    ::ng-deep [role="button"] {
+      visibility: hidden;
+      transition-property: visibility;
+      transition-delay: 0.25s;
+    }
   }
 
   > .btn-open-close {
