@@ -34,7 +34,7 @@
           </ul>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-5">
+        <div class="col-12 col-md-6 col-lg-5 d-print-none">
           <!-- Search box -->
           <mat-form-field class="w-100" appearance="outline" color="accent">
             <input type="text" matInput [matAutocomplete]="auto" [formControl]="searchControl"
@@ -48,9 +48,11 @@
             </button>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
               <!-- each item in filteredOptions, highlightMatch method is used to bold the matching search term -->
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                          class="px-3 py-2 border-bottom"
+              >
                 <div class="mat-option-text">
-                  <div class="mat-body-1 mb-1 text-truncate w-100"
+                  <div class="mat-body-2 mb-1 text-truncate w-100"
                        [innerHtml]="highlightMatch(option.title, searchControl.value)"></div>
                   <div class="mat-caption text-muted text-nowrap text-truncate w-100"
                        [innerHtml]="highlightMatch(option.content, searchControl.value)"></div>
@@ -61,9 +63,9 @@
         </div>
       </div>
 
-      <div class="row gap-5">
+      <div class="row gap-5 justify-content-around">
 
-        <div class="col">
+        <div class="col-12 col-md" style="max-width: 40rem">
 
           <!-- Blues palette -->
           <div class="d-flex flex-column gap-2">
@@ -162,7 +164,7 @@
 
         </div>
 
-        <div class="col">
+        <div class="col-12 col-md" style="max-width: 40rem">
 
           <!-- Turquoise palette -->
           <div class="d-flex flex-column gap-2 mb-4">

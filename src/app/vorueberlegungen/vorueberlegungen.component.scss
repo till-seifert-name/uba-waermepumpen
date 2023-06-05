@@ -156,11 +156,10 @@
 }
 
 .mat-card-ubersicht {
-  inset: 3.7rem -1rem -1rem auto;
-  width: calc(50% + 1rem);
+  inset: 3.7rem -1rem auto auto;
+  width: min(calc(100vw - 2rem), max(calc(50% + 1rem), 35rem));
   position: absolute;
   background-color: var(--bs-light);
-  max-height: 863px;
   z-index: 1;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;

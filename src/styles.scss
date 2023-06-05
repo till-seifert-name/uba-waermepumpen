@@ -18,7 +18,7 @@
 // Blues palette
 $blues: (
   50: #F4F5F5, // Provided
-  100: #C7C5D0, // Provided
+  100: #E6E9E8, // Provided
   200: #BEC2FF, // Provided
   300: #9CA4FF, // Provided
   400: #7A85FF, // Provided
@@ -160,7 +160,7 @@ $success-contrast: mat.get-contrast-color-from-palette($greens, 600);
 $info-contrast: mat.get-contrast-color-from-palette($turquoise, 50);
 $warning-contrast: mat.get-contrast-color-from-palette($greens, 700);
 $danger-contrast: mat.get-contrast-color-from-palette($blues, 800);
-$light-contrast: mat.get-contrast-color-from-palette($blues, 100);
+$light-contrast: mat.get-contrast-color-from-palette($blues, 50);
 $dark-contrast: mat.get-contrast-color-from-palette($blues, 900);
 
 
@@ -240,6 +240,16 @@ $palettes: (
 .mat-mdc-outlined-button {
   --mdc-outlined-button-outline-color: currentColor;
 }
+
+// outline inptu fields
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: #777680;
+  }
+}
+
 
 //
 // override BS styles

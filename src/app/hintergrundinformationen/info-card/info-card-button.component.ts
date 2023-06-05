@@ -56,7 +56,7 @@ import {InfoCardComponent} from "./info-card.component";
     <ng-content (dialogTrigger)="openDialog()"></ng-content>
 
     <dialog #dialog (click)="onDialogClick($event)">
-      <mat-card appearance="outlined" class="mat-card-print">
+      <mat-card appearance="outlined" class="mat-card-print bg-light">
 
         <mat-card-content>
           <ng-template [ngTemplateOutlet]="dialogContent"></ng-template>

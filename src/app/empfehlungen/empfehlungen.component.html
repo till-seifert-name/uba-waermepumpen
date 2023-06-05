@@ -86,7 +86,7 @@
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>km/Tag</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_R1']"
-                       name="F_R1" #F_R1="ngModel" required min="1" step="1"
+                       name="F_R1" #F_R1="ngModel" min="1" step="1"
                        (ngModelChange)="grid.setCell('Names', 'F_R1', F_R1.value)">
               </mat-form-field>
 
@@ -115,7 +115,7 @@
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Strecken über 150 km</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_S1']" name="F_S1"
-                            #F_S1="ngModel" required
+                            #F_S1="ngModel"
                             (ngModelChange)="grid.setCell('Names', 'F_S1', F_S1.value)">
                   <mat-option
                     *ngFor="let option of [grid.cells['Names']['A_S1'], grid.cells['Names']['A_S2'], grid.cells['Names']['A_S3']]"
@@ -132,7 +132,7 @@
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Häufigkeit Nutzung</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_SZ1']" name="F_SZ1"
-                            #F_SZ1="ngModel" required
+                            #F_SZ1="ngModel"
                             (ngModelChange)="grid.setCell('Names', 'F_SZ1', F_SZ1.value)">
                   <mat-option
                     *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
@@ -246,7 +246,7 @@
             <hr class="mt-1">
             <section class="p-2 p-print-none">
 
-              <h2 class="mat-headline-4 mb-3">2. Fahrzeugsegment</h2>
+              <h2 class="mat-h1 mb-3">2. Fahrzeugsegment</h2>
               <p class="px-4 p-print-none">
                 In diesem Abschnitt geht es darum, welche Aufgabenstellung erfüllt werden soll, um ein möglichst
                 umweltverträgliches Fahrzeug bzgl. des Fahrzeugsegments zu wählen. Die Abfragen bezüglich der
@@ -281,7 +281,7 @@
                   <mat-form-field appearance="outline" class="w-75">
                     <mat-label>Anzahl Personen</mat-label>
                     <input matInput type="number" [ngModel]="grid.cells['Names']['F_P1']"
-                           name="F_P1" #F_P1="ngModel" required min="1" step="1" max="9"
+                           name="F_P1" #F_P1="ngModel" min="1" step="1" max="9"
                            (ngModelChange)="grid.setCell('Names', 'F_P1', F_P1.value)">
                   </mat-form-field>
                 </div>
@@ -293,7 +293,7 @@
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Häufigkeit</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_SP1']" name="F_SP1"
-                                #F_SP1="ngModel" required
+                                #F_SP1="ngModel"
                                 (ngModelChange)="grid.setCell('Names', 'F_SP1', F_SP1.value)">
                       <mat-option
                         *ngFor="let option of [grid.cells['Names']['A_SP1'], grid.cells['Names']['A_SP2'], grid.cells['Names']['A_SP3']]"
@@ -334,7 +334,7 @@
               <mat-form-field appearance="outline" class="w-75 px-4 p-print-none">
                 <mat-label>Häufigkeit</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_T1']" name="F_T1"
-                            #F_T1="ngModel" required
+                            #F_T1="ngModel"
                             (ngModelChange)="grid.setCell('Names', 'F_T1', F_T1.value)">
                   <mat-option
                     *ngFor="let option of [grid.cells['Names']['A_T1'], grid.cells['Names']['A_T2'], grid.cells['Names']['A_T3']]"

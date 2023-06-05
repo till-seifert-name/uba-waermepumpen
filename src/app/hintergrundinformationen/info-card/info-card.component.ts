@@ -29,7 +29,7 @@ import {ActivatedRoute, Router} from "@angular/router";
       }
 
       &.info-card-all {
-        background-image: url('../../../assets/Hintergrundinfos/pkw_Zeichenfläche 1 1.svg'),
+        background-image: url('../../../assets/Hintergrundinfos/pkw_Zeichenflaeche 1 1.svg'),
         url('../../../assets/Hintergrundinfos/oeffentliche_2 2.svg'),
         url('../../../assets/Hintergrundinfos/fahrrad 1.svg');
 
@@ -49,7 +49,7 @@ import {ActivatedRoute, Router} from "@angular/router";
       }
 
       &.info-card-pkw {
-        background-image: url('../../../assets/Hintergrundinfos/pkw_Zeichenfläche 1 1.svg');
+        background-image: url('../../../assets/Hintergrundinfos/pkw_Zeichenflaeche 1 1.svg');
         background-position: right 11px top 50%;
         background-size: 70px auto;
       }
@@ -122,7 +122,7 @@ import {ActivatedRoute, Router} from "@angular/router";
     </mat-card>
 
     <dialog #dialog (click)="onDialogClick($event)">
-      <mat-card appearance="outlined" class="mat-card-print">
+      <mat-card appearance="outlined" class="mat-card-print bg-light">
 
         <mat-card-content>
           <ng-content></ng-content>

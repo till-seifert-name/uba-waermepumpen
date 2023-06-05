@@ -10,5 +10,9 @@
 
   h1 {
     text-shadow: 0 0 1rem var(--bs-dark);
+
+    @media print {
+      text-shadow: none;
+    }
   }
 }

@@ -36,11 +36,11 @@
                 gedeckt werden kann:
               </p>
               <ul>
-                <li>ÖPNV bzw. Bahn/Fernbus</li>
-                <li>(Elektro-)Fahrrad/Lastenrad</li>
-                <li>Gemeinsame Nutzung vorhandener Pkw (Car-Pooling)</li>
-                <li>Nutzung von Pkw eines Car-Sharing-Anbieters</li>
-                <li>Mietwagen für einzelne Strecken</li>
+                <li><strong>ÖPNV</strong> bzw. <strong>Bahn/Fernbus</strong></li>
+                <li>(Elektro-)<strong>Fahrrad</strong>/Lastenrad</li>
+                <li>Gemeinsame Nutzung vorhandener Pkw (<strong>Car-Pooling</strong>)</li>
+                <li>Nutzung von Pkw eines <strong>Car-Sharing</strong>-Anbieters</li>
+                <li><strong>Mietwagen</strong> für einzelne Strecken</li>
               </ul>
               <p>
                 Solche Vorüberlegungen bezüglich der Bedarfsermittlung sind z.B. im Land Berlin verpflichtend zu
@@ -80,7 +80,7 @@
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Anzahl Pkw</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_B1']"
-                       name="F_B1" #F_B1="ngModel" required min="1" step="1"
+                       name="F_B1" #F_B1="ngModel" min="1" step="1"
                        (ngModelChange)="grid.setCell('Names', 'F_B1', F_B1.value)">
               </mat-form-field>
 
@@ -108,7 +108,7 @@
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
                 <mat-label>Anzahl Fahrzeuge, die ersetzt werden</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_E1']"
-                       name="F_E1" #F_E1="ngModel" required min="1" step="1"
+                       name="F_E1" #F_E1="ngModel" min="1" step="1"
                        (ngModelChange)="grid.setCell('Names', 'F_E1', F_E1.value)">
               </mat-form-field>
 
@@ -135,13 +135,13 @@
                 Frage helfen.
               </p>
 
-              <div class="row">
+              <div class="row mt-4">
 
-                <div class="col-auto">
-                  <h5 class="mat-body">Öffentliche Verkehrsmittel</h5>
-                  <mat-form-field appearance="outline">
+                <div class="col-6">
+                  <h5 class="mat-body-strong">Öffentliche Verkehrsmittel</h5>
+                  <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
-                    <mat-select [ngModel]="grid.cells['Names']['F_BF1']" name="F_BF1" #F_BF1="ngModel" required
+                    <mat-select [ngModel]="grid.cells['Names']['F_BF1']" name="F_BF1" #F_BF1="ngModel"
                                 (ngModelChange)="grid.setCell('Names', 'F_BF1', F_BF1.value)">
                       <mat-option
                         *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
@@ -152,11 +152,11 @@
                   </mat-form-field>
                 </div>
 
-                <div class="col-auto">
-                  <h5 class="mat-body">Fahrrad</h5>
-                  <mat-form-field appearance="outline">
+                <div class="col-6">
+                  <h5 class="mat-body-strong">Fahrrad</h5>
+                  <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
-                    <mat-select [ngModel]="grid.cells['Names']['F_FL1']" name="F_FL1" #F_FL1="ngModel" required
+                    <mat-select [ngModel]="grid.cells['Names']['F_FL1']" name="F_FL1" #F_FL1="ngModel"
                                 (ngModelChange)="grid.setCell('Names', 'F_FL1', F_FL1.value)">
                       <mat-option
                         *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
@@ -169,46 +169,51 @@
               </div>
 
 
-              <h5 class="mat-body">PKW</h5>
+              <div class="row">
 
-              <h6 class="mat-body">Pooling</h6>
-              <mat-form-field appearance="outline">
-                <mat-label>Häufigkeit der Nutzung</mat-label>
-                <mat-select [ngModel]="grid.cells['Names']['F_CP1']" name="F_CP1" #F_CP1="ngModel" required
-                            (ngModelChange)="grid.setCell('Names', 'F_CP1', F_CP1.value)">
-                  <mat-option
-                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
-                    [value]="option">
-                    {{ option }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                <div class="col-6">
+                  <h5 class="mat-body-strong">Pkw</h5>
 
-              <h6 class="mat-body">Sharing</h6>
-              <mat-form-field appearance="outline">
-                <mat-label>Häufigkeit der Nutzung</mat-label>
-                <mat-select [ngModel]="grid.cells['Names']['F_CS1']" name="F_CS1" #F_CS1="ngModel" required
-                            (ngModelChange)="grid.setCell('Names', 'F_CS1', F_CS1.value)">
-                  <mat-option
-                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
-                    [value]="option">
-                    {{ option }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                  <h6 class="mat-body-strong">Pooling</h6>
+                  <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Häufigkeit der Nutzung</mat-label>
+                    <mat-select [ngModel]="grid.cells['Names']['F_CP1']" name="F_CP1" #F_CP1="ngModel"
+                                (ngModelChange)="grid.setCell('Names', 'F_CP1', F_CP1.value)">
+                      <mat-option
+                        *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
+                        [value]="option">
+                        {{ option }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
 
-              <h6 class="mat-body">Mieten</h6>
-              <mat-form-field appearance="outline">
-                <mat-label>Häufigkeit der Nutzung</mat-label>
-                <mat-select [ngModel]="grid.cells['Names']['F_M1']" name="F_M1" #F_M1="ngModel" required
-                            (ngModelChange)="grid.setCell('Names', 'F_M1', F_M1.value)">
-                  <mat-option
-                    *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
-                    [value]="option">
-                    {{ option }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                  <h6 class="mat-body-strong">Sharing</h6>
+                  <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Häufigkeit der Nutzung</mat-label>
+                    <mat-select [ngModel]="grid.cells['Names']['F_CS1']" name="F_CS1" #F_CS1="ngModel"
+                                (ngModelChange)="grid.setCell('Names', 'F_CS1', F_CS1.value)">
+                      <mat-option
+                        *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
+                        [value]="option">
+                        {{ option }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <h6 class="mat-body-strong">Mieten</h6>
+                  <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Häufigkeit der Nutzung</mat-label>
+                    <mat-select [ngModel]="grid.cells['Names']['F_M1']" name="F_M1" #F_M1="ngModel"
+                                (ngModelChange)="grid.setCell('Names', 'F_M1', F_M1.value)">
+                      <mat-option
+                        *ngFor="let option of [grid.cells['Names']['A_SV1'], grid.cells['Names']['A_SV2'], grid.cells['Names']['A_SV3']]"
+                        [value]="option">
+                        {{ option }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
 
             </section>
 
@@ -234,7 +239,7 @@
               <mat-form-field appearance="outline" class="d-flex mx-auto w-75">
                 <mat-label>Anzahl Pkw</mat-label>
                 <input matInput type="number" [ngModel]="grid.cells['Names']['F_E2']"
-                       name="F_E2" #F_E2="ngModel" required min="0" step="1"
+                       name="F_E2" #F_E2="ngModel" min="0" step="1"
                        (ngModelChange)="grid.setCell('Names', 'F_E2', F_E2.value)">
               </mat-form-field>
 
