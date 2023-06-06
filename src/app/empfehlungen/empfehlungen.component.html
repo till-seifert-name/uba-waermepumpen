@@ -77,9 +77,12 @@
                 <ng-template #dialogContent>
                   <h1>Strecken pro Tag</h1>
                   <p>
-                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong> bzw. das
-                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt werden soll, kann
-                    das <strong>Fahrtenbuch</strong> genutzt werden, um eine repräsentative tägliche Streckenlänge abzuleiten.
+                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong>
+                    bzw. das
+                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt
+                    werden soll, kann
+                    das <strong>Fahrtenbuch</strong> genutzt werden, um eine repräsentative tägliche Streckenlänge
+                    abzuleiten.
                   </p>
                 </ng-template>
               </app-info-card-button>
@@ -266,8 +269,10 @@
                 <ng-template #dialogContent>
                   <h1>Anzahl der Mitfahrenden</h1>
                   <p>
-                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong> bzw. das
-                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt werden soll, kann
+                    Bitte kontaktieren Sie bei Unsicherheiten die <strong>Bedarfsstelle</strong>/die <strong>Nutzer*innen</strong>
+                    bzw. das
+                    <strong>Fuhrparkmanagement</strong>. Falls mit der Beschaffung ein Fahrzeug aus der Flotte ersetzt
+                    werden soll, kann
                     die bisherige Nutzung evaluiert werden.
                   </p>
                 </ng-template>
@@ -366,16 +371,16 @@
                     umweltbezogene Mindestanforderungen und Zuschlagskriterien finden Sie hier.
                   </p>
                   <div class="text-center">
-                    <!-- TODO: Popover Umweltanforderungen [dialogTrigger]="popupUmweltanforderungen"-->
-                    <a mat-stroked-button color="primary" href="assets/downloads/Umweltanforderungen.pdf">
+                    <a mat-stroked-button color="primary" [dialogTrigger]="popupUmweltanforderungen">
                       Umweltanforderungen
                     </a>
                   </div>
-                  <!--<app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen">
+                  <app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen"
+                                        pdfDownloadUrl="assets/downloads/Umweltanforderungen.pdf">
                     <ng-template #dialogContent>
                       <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
                     </ng-template>
-                  </app-info-card-button>-->
+                  </app-info-card-button>
                 </mat-card-content>
               </mat-card>
 

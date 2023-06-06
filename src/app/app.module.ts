@@ -59,6 +59,9 @@ import { PopupFahrzeugsegmentComponent } from './hintergrundinformationen/popup-
 import { PopupPkwMietenComponent } from './hintergrundinformationen/popup-pkw-mieten/popup-pkw-mieten.component';
 import { PopupPkwLeasingKaufComponent } from './hintergrundinformationen/popup-pkw-leasing-kauf/popup-pkw-leasing-kauf.component';
 import { PopupPkwSharingComponent } from './hintergrundinformationen/popup-pkw-sharing/popup-pkw-sharing.component';
+import {
+  PopupUmweltanforderungenComponent
+} from './empfehlungen/popup-umweltanforderungen/popup-umweltanforderungen.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import '@angular/common/locales/global/de';
@@ -106,6 +109,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     PopupPkwMietenComponent,
     PopupPkwLeasingKaufComponent,
     PopupPkwSharingComponent,
+    PopupUmweltanforderungenComponent,
   ],
   imports: [
     BrowserModule,

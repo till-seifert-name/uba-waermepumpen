@@ -53,7 +53,7 @@ import {InfoCardComponent} from "./info-card.component";
     }
   `],
   template: `
-    <ng-content (dialogTrigger)="openDialog()"></ng-content>
+    <ng-content></ng-content>
 
     <dialog #dialog (click)="onDialogClick($event)">
       <mat-card appearance="outlined" class="mat-card-print bg-light">
@@ -68,12 +68,17 @@ import {InfoCardComponent} from "./info-card.component";
           </button>
         </mat-card-actions>
         <mat-card-actions align="end" class="d-print-none">
-          <!--<button mat-icon-button>
-            <mat-icon class="material-icons-outlined">share</mat-icon>
-          </button>-->
-          <button mat-icon-button (click)="downloadAsPDF()" matTooltip="Drucken" matTooltipPosition="below">
-            <mat-icon class="material-icons-outlined">file_download</mat-icon>
-          </button>
+            <!--<button mat-icon-button>
+              <mat-icon class="material-icons-outlined">share</mat-icon>
+            </button>-->
+            <a *ngIf="pdfDownloadUrl" mat-icon-button [href]="pdfDownloadUrl"
+               matTooltip="Download PDF" matTooltipPosition="below">
+                <mat-icon class="material-icons-outlined">file_download</mat-icon>
+            </a>
+            <button *ngIf="!pdfDownloadUrl" mat-icon-button (click)="downloadAsPDF()"
+                    matTooltip="Drucken" matTooltipPosition="below">
+                <mat-icon class="material-icons-outlined">file_download</mat-icon>
+            </button>
         </mat-card-actions>
       </mat-card>
     </dialog>

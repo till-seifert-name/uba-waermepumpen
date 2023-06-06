@@ -137,7 +137,12 @@ import {ActivatedRoute, Router} from "@angular/router";
           <!--<button mat-icon-button>
             <mat-icon class="material-icons-outlined">share</mat-icon>
           </button>-->
-          <button mat-icon-button (click)="downloadAsPDF()" matTooltip="Drucken" matTooltipPosition="below">
+          <a *ngIf="pdfDownloadUrl" mat-icon-button [href]="pdfDownloadUrl" target="_blank" matTooltip="Download PDF"
+             matTooltipPosition="below">
+            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+          </a>
+          <button *ngIf="!pdfDownloadUrl" mat-icon-button (click)="downloadAsPDF()" matTooltip="Drucken"
+                  matTooltipPosition="below">
             <mat-icon class="material-icons-outlined">file_download</mat-icon>
           </button>
         </mat-card-actions>
@@ -150,6 +155,7 @@ export class InfoCardComponent implements AfterViewInit {
   @Input() cardBodyText?: string;
   @Input() outerCardClass!: string;
   @Input() innerCardClass!: string;
+  @Input() pdfDownloadUrl?: string;
 
   @ViewChild('dialog') dialog!: ElementRef<HTMLDialogElement>;
   portalOutlet!: DomPortalOutlet;
