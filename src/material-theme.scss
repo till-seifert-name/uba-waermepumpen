@@ -1,0 +1,218 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+@use 'sass:map';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+// Blues palette
+$blues: (
+  50: #F4F5F5, // Provided
+  100: #E6E9E8, // Provided
+  200: #BEC2FF, // Provided
+  300: #9CA4FF, // Provided
+  400: #7A85FF, // Provided
+  500: #5764FF, // Provided
+  600: #0011E8, // Provided
+  700: #0009A7, // Provided
+  800: #00056A, // Provided
+  900: #00046A, // Provided
+  A100: #A4AEFF, // Generated
+  A200: #8C98FF, // Generated
+  A400: #6977FF, // Generated
+  A700: #00046A, // Provided
+  contrast: (
+    50: #191C1D,
+    100: #191C1D,
+    200: #191C1D,
+    300: #191C1D,
+    400: #191C1D,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #191C1D,
+    A200: #191C1D,
+    A400: #191C1D,
+    A700: #ffffff
+  )
+);
+
+// Greens palette
+$greens: (
+  50: #F4FCE8, // Generated
+  100: #E1F0B7, // Generated
+  200: #D3EC8F, // Generated
+  300: #B5E256, // Generated
+  400: #A2D72D, // Provided
+  500: #86B01F, // Provided
+  600: #5E8200, // Provided
+  700: #465200, // Generated
+  800: #253600, // Provided
+  900: #192500, // Generated
+  A100: #F0F8D1, // Generated
+  A200: #D4E891, // Generated
+  A400: #88BB00, // Provided
+  A700: #466300, // Generated
+  contrast: (
+    50: #191C1D,
+    100: #191C1D,
+    200: #191C1D,
+    300: #191C1D,
+    400: #191C1D,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #191C1D,
+    A200: #191C1D,
+    A400: #191C1D,
+    A700: #ffffff
+  )
+);
+
+// Turquoise palette
+$turquoise: (
+  50: #CDF9FF, // Provided
+  100: #AFFFFF, // Provided
+  200: #8FF2FF, // Provided
+  300: #4ED8E9, // Provided
+  400: #20BCCC, // Provided
+  500: #00A0AE, // Provided
+  600: #008490, // Provided
+  700: #01676A, // Generated
+  800: #014F56, // Provided
+  900: #013539, // Generated
+  A100: #AFFFFF, // Provided
+  A200: #80E4EE, // Generated
+  A400: #00A0AE, // Provided
+  A700: #01676A, // Generated
+  contrast: (
+    50: #191C1D,
+    100: #191C1D,
+    200: #191C1D,
+    300: #191C1D,
+    400: #191C1D,
+    500: #191C1D,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #191C1D,
+    A200: #191C1D,
+    A400: #191C1D,
+    A700: #ffffff
+  )
+);
+
+// Convert color maps to color palettes
+$blues-palette: mat.define-palette($blues, 600, 400, 900);
+$greens-palette: mat.define-palette($greens, A400, 400, 900);
+$turquoise-palette: mat.define-palette($turquoise, 600, 400, 900);
+
+
+$dbu-typography-config: mat.define-typography-config(
+  $font-family: $font-family-base,
+  $headline-3: mat.define-typography-level(45px, 52px, 400),
+ /* $headline-4: mat.define-typography-level(45px, 52px, 400),
+  $headline-5: mat.define-typography-level(45px, 52px, 400),*/
+  $headline-6: mat.define-typography-level(16px, 28px, 300),
+);
+
+
+// Custom Material colors
+$dark-primary-text: rgba(mat.get-contrast-color-from-palette($blues, 50), 1);
+$dark-secondary-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+$light-primary-text: mat.get-contrast-color-from-palette($blues, 900);
+$light-secondary-text: rgba($dark-primary-text, 0.7);
+$light-disabled-text: rgba($dark-primary-text, 0.5);
+$light-dividers: rgba($dark-primary-text, 0.12);
+$light-focused: rgba($dark-primary-text, 0.12);
+
+// Background palette for light themes.
+$light-theme-background-palette: (
+  status-bar: map.get($blues-palette, 300),
+  app-bar: map.get($blues-palette, 100),
+  background: map.get($blues-palette, 50),
+  hover: rgba(map.get($blues-palette, 50), 0.04),
+  card: $light-primary-text , //rgba($dark-primary-text, 0.25),
+  dialog: $light-primary-text,
+  disabled-button: rgba($dark-primary-text, 0.12),
+  raised-button: $light-primary-text,
+  focused-button: $dark-focused,
+  selected-button: map.get($blues-palette, 300),
+  selected-disabled-button: map.get($blues-palette, 400),
+  disabled-button-toggle: map.get($blues-palette, 200),
+  unselected-chip: map.get($blues-palette, 200),
+  disabled-list-option: map.get($blues-palette, 200),
+  tooltip: map.get($blues-palette, 700),
+);
+// Foreground palette for light themes.
+$light-theme-foreground-palette: (
+  base: $dark-primary-text,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba($dark-primary-text, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: $dark-primary-text,
+  hint-text: $dark-disabled-text,
+  secondary-text: $dark-secondary-text,
+  icon: rgba($dark-primary-text, 0.54),
+  icons: rgba($dark-primary-text, 0.54),
+  text: $dark-primary-text,
+  slider-min: rgba($dark-primary-text, 0.87),
+  slider-off: rgba($dark-primary-text, 0.26),
+  slider-off-active: rgba($dark-primary-text, 0.38),
+);
+
+
+// costom function the gefine a theme, that allows override of base foreground color
+// is used in place of matrials define-theme. which dies not allwo that
+@function define-light-theme($config) {
+  $theme: mat.define-light-theme($config);
+  $color: map.get($theme, color);
+  $color: map.merge(
+      $color,
+      (
+        background: $light-theme-background-palette,
+        foreground: $light-theme-foreground-palette,
+      )
+  );
+  @return map.merge(
+      $theme,
+      (
+        color: $color,
+      )
+  );
+}
+
+$dau-online-tool-theme: define-light-theme((color: (
+  primary: $blues-palette,
+  accent: $greens-palette,
+  warn: $turquoise-palette,
+),
+  typography: $dbu-typography-config,
+  density: 0,
+));
+
+// Include theme styles for each component used in app or all styles.
+@include mat.all-component-themes($dau-online-tool-theme);
+@include mat.typography-hierarchy($dbu-typography-config);
