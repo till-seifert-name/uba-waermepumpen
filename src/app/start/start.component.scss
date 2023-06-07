@@ -4,9 +4,19 @@
 
 .hero {
   padding: 0.1px;
-  background: url("../../assets/Header Startseite/Vector.svg") no-repeat 0.3rem 0.3rem,
-  url("../../assets/Header Startseite/Vector-1.svg") no-repeat 10rem 0rem,
-  url("../../assets/Header Startseite/Blatt.svg") no-repeat right 5.1rem;
+  background: url("../../assets/Header Startseite/Vector.svg") 0.3rem 0.3rem no-repeat,
+  url("../../assets/Header Startseite/Vector-1.svg") 10rem 0rem no-repeat,
+  url("../../assets/Header Startseite/Blatt.svg") right 5.1rem no-repeat,
+  url("../../assets/Logo/Logo.svg") top 1.8rem center/13rem auto no-repeat
+  ;
+
+  @media screen and (min-width: 1200px) {
+    background: url("../../assets/Header Startseite/Vector.svg") 0.3rem 0.3rem no-repeat,
+    url("../../assets/Header Startseite/Vector-1.svg") 10rem 0rem no-repeat,
+    url("../../assets/Header Startseite/Blatt.svg") right 5.1rem no-repeat,
+    url("../../assets/Logo/Logo.svg") top 1.8rem center/13rem auto no-repeat
+    ;
+  }
 
   h1 {
     text-shadow: 0 0 1rem var(--bs-dark);
