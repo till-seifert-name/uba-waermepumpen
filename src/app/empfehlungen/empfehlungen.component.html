@@ -74,6 +74,7 @@
               </p>
               <app-info-card-button #popupStrecken
                                     cardTitle="Strecken pro Tag">
+                <!--suppress JSUnusedGlobalSymbols -->
                 <ng-template #dialogContent>
                   <h1>Strecken pro Tag</h1>
                   <p>
@@ -104,6 +105,7 @@
               </p>
               <app-info-card-button #popupTagesfahrprofil
                                     cardTitle="Tagesfahrprofil">
+                <!--suppress JSUnusedGlobalSymbols -->
                 <ng-template #dialogContent>
                   <h1>Tagesfahrprofil</h1>
                   <p>
@@ -172,6 +174,7 @@
               </p>
               <app-info-card-button #popupLadeinfrastrukturStandort
                                     cardTitle="Verfügbarkeit von Ladeinfrastruktur - Standort">
+                <!--suppress JSUnusedGlobalSymbols -->
                 <ng-template #dialogContent>
                   <h1>Verfügbarkeit von Ladeinfrastruktur - Standort</h1>
                   <p>
@@ -206,6 +209,7 @@
               </p>
               <app-info-card-button #popupLadeinfrastrukturStrecken
                                     cardTitle="Verfügbarkeit von Ladeinfrastruktur - Strecken">
+                <!--suppress JSUnusedGlobalSymbols -->
                 <ng-template #dialogContent>
                   <h1>Verfügbarkeit von Ladeinfrastruktur - Strecken</h1>
                   <p>
@@ -266,6 +270,7 @@
               </h3>
               <app-info-card-button #popupSitzplaetze
                                     cardTitle="Anzahl der Mitfahrenden">
+                <!--suppress JSUnusedGlobalSymbols -->
                 <ng-template #dialogContent>
                   <h1>Anzahl der Mitfahrenden</h1>
                   <p>
@@ -320,6 +325,7 @@
               </h3>
               <app-info-card-button #popupTransport
                                     cardTitle="Aufwändige Transportanforderungen">
+                <!--suppress JSUnusedGlobalSymbols -->
                 <ng-template #dialogContent>
                   <h1>Aufwändige Transportanforderungen</h1>
                   <p>
@@ -377,6 +383,7 @@
                   </div>
                   <app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen"
                                         pdfDownloadUrl="assets/downloads/Umweltanforderungen.pdf">
+                    <!--suppress JSUnusedGlobalSymbols -->
                     <ng-template #dialogContent>
                       <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
                     </ng-template>
@@ -447,10 +454,20 @@
                     class="mt-2 mat-card-print bg-light"
                     [class.mat-card-inactive]="!grid.getCell('Names', 'E_A0')"
           >
-            <mat-card-header>
+            <mat-card-header class="align-items-baseline justify-content-between">
               <mat-card-title class="mat-h1">
                 1. Antriebsart
               </mat-card-title>
+              <button mat-stroked-button class="bg-300-blues rounded-3 border" [dialogTrigger]="popupAntriebsart"
+                      *ngIf="grid.getCell('Names', 'E_A0')">
+                Antriebsart
+              </button>
+              <app-info-card-button #popupAntriebsart cardTitle="Antriebsart">
+                <!--suppress JSUnusedGlobalSymbols -->
+                <ng-template #dialogContent>
+                  <app-popup-antriebsart></app-popup-antriebsart>
+                </ng-template>
+              </app-info-card-button>
             </mat-card-header>
             <mat-card-content [class.invisible]="!grid.getCell('Names', 'E_A0')">
               <p class="ps-4 p-print-none">
@@ -464,10 +481,20 @@
                     class="mt-2 mat-card-print bg-light"
                     [class.mat-card-inactive]="!grid.getCell('Names', 'E_F0')"
           >
-            <mat-card-header>
+            <mat-card-header class="align-items-baseline justify-content-between">
               <mat-card-title class="mat-h1">
                 2. Fahrzeugsegment
               </mat-card-title>
+              <button mat-stroked-button class="bg-300-blues rounded-3 border" [dialogTrigger]="popupFahrzeugsegment"
+                      *ngIf="grid.getCell('Names', 'E_F0')">
+                Fahrzeugsegment
+              </button>
+              <app-info-card-button #popupFahrzeugsegment cardTitle="Fahrzeugsegment">
+                <!--suppress JSUnusedGlobalSymbols -->
+                <ng-template #dialogContent>
+                  <app-popup-fahrzeugsegment></app-popup-fahrzeugsegment>
+                </ng-template>
+              </app-info-card-button>
             </mat-card-header>
             <mat-card-content [class.invisible]="!grid.getCell('Names', 'E_F0')">
               <p class="ps-4 p-print-none">

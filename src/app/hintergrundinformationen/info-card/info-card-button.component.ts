@@ -14,7 +14,7 @@ import {InfoCardComponent} from "./info-card.component";
   selector: 'app-info-card-button',
   styles: [`
     :host {
-      display: block;
+      display: none;
     }
 
     /* Popup */

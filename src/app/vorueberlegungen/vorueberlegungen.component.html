@@ -93,6 +93,7 @@
                 </mat-icon>
               </p>
               <app-info-card-button #popupVerkleinerung cardTitle="Verkleinerung des Fuhrparks">
+                <!--suppress JSUnusedGlobalSymbols -->
                 <ng-template #dialogContent>
                   <h1>Verkleinerung des Fuhrparks</h1>
                   <p>
@@ -138,7 +139,17 @@
               <div class="row mt-4">
 
                 <div class="col-6">
-                  <h5 class="mat-body-strong">Öffentliche Verkehrsmittel</h5>
+                  <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
+                    <span>Öffentliche Verkehrsmittel</span>
+                    <button mat-stroked-button  class="bg-600-turquoise rounded-3 border" [dialogTrigger]="popupOEffentliche">Öffentliche</button>
+                  </h5>
+                  <app-info-card-button #popupOEffentliche cardTitle="Öffentliche Verkehrsmittel">
+                    <!--suppress JSUnusedGlobalSymbols -->
+                    <ng-template #dialogContent>
+                      <app-popup-oeffentliche-verkehrsmittel></app-popup-oeffentliche-verkehrsmittel>
+                    </ng-template>
+                  </app-info-card-button>
+
                   <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_BF1']" name="F_BF1" #F_BF1="ngModel"
@@ -153,7 +164,19 @@
                 </div>
 
                 <div class="col-6">
-                  <h5 class="mat-body-strong">Fahrrad</h5>
+                  <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
+                    <span>Fahrrad</span>
+                    <button mat-stroked-button class="bg-600-greens rounded-3 border" [dialogTrigger]="popupEFahrrad">
+                      Fahrrad
+                    </button>
+                  </h5>
+                  <app-info-card-button #popupEFahrrad cardTitle="(E-)Fahrrad">
+                    <!--suppress JSUnusedGlobalSymbols -->
+                    <ng-template #dialogContent>
+                      <app-popup-efahrrad></app-popup-efahrrad>
+                    </ng-template>
+                  </app-info-card-button>
+
                   <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_FL1']" name="F_FL1" #F_FL1="ngModel"
@@ -172,9 +195,32 @@
               <div class="row">
 
                 <div class="col-6">
-                  <h5 class="mat-body-strong">Pkw</h5>
+                  <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
+                    <span>Pkw</span>
+                    <button mat-stroked-button class="bg-500-blues rounded-3 border" [dialogTrigger]="popupPkw">
+                      Pkw
+                    </button>
+                  </h5>
+                  <app-info-card-button #popupPkw cardTitle="Pkw">
+                    <!--suppress JSUnusedGlobalSymbols -->
+                    <ng-template #dialogContent>
+                      <app-popup-pkw></app-popup-pkw>
+                    </ng-template>
+                  </app-info-card-button>
 
-                  <h6 class="mat-body-strong">Pooling</h6>
+                  <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
+                    <span>Pooling</span>
+                    <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwPooling">
+                      Pooling
+                    </button>
+                  </h6>
+                  <app-info-card-button #popupPkwPooling cardTitle="Car-Pooling">
+                    <!--suppress JSUnusedGlobalSymbols -->
+                    <ng-template #dialogContent>
+                      <app-popup-pkw-pooling></app-popup-pkw-pooling>
+                    </ng-template>
+                  </app-info-card-button>
+
                   <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_CP1']" name="F_CP1" #F_CP1="ngModel"
@@ -187,7 +233,19 @@
                     </mat-select>
                   </mat-form-field>
 
-                  <h6 class="mat-body-strong">Sharing</h6>
+                  <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
+                    <span>Sharing</span>
+                    <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwSharing">
+                      Sharing
+                    </button>
+                  </h6>
+                  <app-info-card-button #popupPkwSharing cardTitle="Car-Sharing">
+                    <!--suppress JSUnusedGlobalSymbols -->
+                    <ng-template #dialogContent>
+                      <app-popup-pkw-sharing></app-popup-pkw-sharing>
+                    </ng-template>
+                  </app-info-card-button>
+
                   <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_CS1']" name="F_CS1" #F_CS1="ngModel"
@@ -200,7 +258,19 @@
                     </mat-select>
                   </mat-form-field>
 
-                  <h6 class="mat-body-strong">Mieten</h6>
+                  <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
+                    <span>Mieten</span>
+                    <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwMieten">
+                      Mieten
+                    </button>
+                  </h6>
+                  <app-info-card-button #popupPkwMieten cardTitle="Mietwagen">
+                    <!--suppress JSUnusedGlobalSymbols -->
+                    <ng-template #dialogContent>
+                      <app-popup-pkw-mieten></app-popup-pkw-mieten>
+                    </ng-template>
+                  </app-info-card-button>
+
                   <mat-form-field class="w-100" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_M1']" name="F_M1" #F_M1="ngModel"

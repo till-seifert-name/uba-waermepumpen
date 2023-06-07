@@ -84,7 +84,7 @@ $palettes: (
       }
       .bg-#{$name}-#{$palette-name} {
         background-color: var(--color-#{$name}-#{$palette-name}) !important;
-        color: var(--contrast-#{$name}-#{$palette-name});
+        color: var(--contrast-#{$name}-#{$palette-name}) !important;
       }
     }
   }
