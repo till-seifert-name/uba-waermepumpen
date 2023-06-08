@@ -194,13 +194,14 @@
 
               <div class="row">
 
-                <div class="col-6">
+                <div class="g-col-6 grid gap-2 align-items-baseline justify-content-between"
+                     style="--bs-columns: 2; grid-template-columns: min-content">
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Pkw</span>
-                    <button mat-stroked-button class="bg-500-blues rounded-3 border" [dialogTrigger]="popupPkw">
-                      Pkw
-                    </button>
                   </h5>
+                  <button mat-stroked-button class="bg-500-blues rounded-3 border" [dialogTrigger]="popupPkw">
+                    Pkw
+                  </button>
                   <app-info-card-button #popupPkw cardTitle="Pkw">
                     <!--suppress JSUnusedGlobalSymbols -->
                     <ng-template #dialogContent>
@@ -210,10 +211,10 @@
 
                   <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Pooling</span>
-                    <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwPooling">
-                      Pooling
-                    </button>
                   </h6>
+                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwPooling">
+                    Pooling
+                  </button>
                   <app-info-card-button #popupPkwPooling cardTitle="Car-Pooling">
                     <!--suppress JSUnusedGlobalSymbols -->
                     <ng-template #dialogContent>
@@ -221,7 +222,7 @@
                     </ng-template>
                   </app-info-card-button>
 
-                  <mat-form-field class="w-100" appearance="outline">
+                  <mat-form-field class="w-100 g-col-2" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_CP1']" name="F_CP1" #F_CP1="ngModel"
                                 (ngModelChange)="grid.setCell('Names', 'F_CP1', F_CP1.value)">
@@ -235,10 +236,10 @@
 
                   <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Sharing</span>
-                    <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwSharing">
-                      Sharing
-                    </button>
                   </h6>
+                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwSharing">
+                    Sharing
+                  </button>
                   <app-info-card-button #popupPkwSharing cardTitle="Car-Sharing">
                     <!--suppress JSUnusedGlobalSymbols -->
                     <ng-template #dialogContent>
@@ -246,7 +247,7 @@
                     </ng-template>
                   </app-info-card-button>
 
-                  <mat-form-field class="w-100" appearance="outline">
+                  <mat-form-field class="w-100 g-col-2" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_CS1']" name="F_CS1" #F_CS1="ngModel"
                                 (ngModelChange)="grid.setCell('Names', 'F_CS1', F_CS1.value)">
@@ -260,10 +261,10 @@
 
                   <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Mieten</span>
-                    <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwMieten">
-                      Mieten
-                    </button>
                   </h6>
+                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border" [dialogTrigger]="popupPkwMieten">
+                    Mieten
+                  </button>
                   <app-info-card-button #popupPkwMieten cardTitle="Mietwagen">
                     <!--suppress JSUnusedGlobalSymbols -->
                     <ng-template #dialogContent>
@@ -271,7 +272,7 @@
                     </ng-template>
                   </app-info-card-button>
 
-                  <mat-form-field class="w-100" appearance="outline">
+                  <mat-form-field class="w-100 g-col-2" appearance="outline">
                     <mat-label>Häufigkeit der Nutzung</mat-label>
                     <mat-select [ngModel]="grid.cells['Names']['F_M1']" name="F_M1" #F_M1="ngModel"
                                 (ngModelChange)="grid.setCell('Names', 'F_M1', F_M1.value)">
