@@ -26,3 +26,12 @@
     }
   }
 }
+
+/* bigger accordion indicator */
+:host ::ng-deep .mat-expansion-indicator {
+  margin-inline-end: 2rem;
+  &:after {
+    padding: 5px;
+    border-width: 0 1.5px 1.5px 0;
+  }
+}
