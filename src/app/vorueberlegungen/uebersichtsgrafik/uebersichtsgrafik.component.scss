@@ -5,7 +5,16 @@
 }
 
 /* focus clickable groups */
-:focus path:first-of-type {
-  stroke: var(--bs-primary) !important;
-  fill-opacity: 0.5;
+[role="button"] {
+
+  user-select: none;
+
+  path {
+    filter: brightness(100%);
+    transition: filter 0.1s linear;
+  }
+
+  &:focus path:first-of-type {
+    filter: brightness(80%);
+  }
 }

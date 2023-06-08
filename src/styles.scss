@@ -18,6 +18,7 @@ $info: mat.get-color-from-palette($turquoise, 50);
 //$danger: mat.get-color-from-palette($blues, 800); // Color usually is red, adjust?
 $light: mat.get-color-from-palette($blues, 50);
 $dark: mat.get-color-from-palette($blues, 900);
+$dark-border-subtle: #777680;
 
 // Define Bootstrap contrast (text) colors with Angular Material color functions
 $primary-contrast: mat.get-contrast-color-from-palette($blues, 500);
@@ -107,7 +108,7 @@ $palettes: (
   --mdc-outlined-button-outline-color: currentColor;
 }
 
-// outline inptu fields
+// outline input fields
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) {
   .mdc-notched-outline__leading,
   .mdc-notched-outline__notch,
