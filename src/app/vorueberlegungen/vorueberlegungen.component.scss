@@ -8,6 +8,18 @@
   --color-pkw-mieten: var(--color-50-turquoise);
 }
 
+/* limit the columns in the card to screen height ans scroll content */
+.max-screen-height {
+  @media screen {
+    max-height: calc(100vh - 112px);
+  }
+
+  ::ng-deep .mat-mdc-button-touch-target {
+    display: none;
+  }
+}
+
+
 .text-secondary {
   &[data-direction="vergrößern"] {
     color: var(--bs-danger) !important;

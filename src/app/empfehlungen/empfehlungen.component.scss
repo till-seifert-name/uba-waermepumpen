@@ -2,6 +2,17 @@
   display: contents;
 }
 
+/* limit the columns in the card to screen height ans scroll content */
+.max-screen-height {
+  @media screen {
+    max-height: calc(100vh - 112px);
+  }
+
+  ::ng-deep .mat-mdc-button-touch-target {
+    display: none;
+  }
+}
+
 
 .mat-card-ubersicht {
   inset: 3.7rem -1rem -1rem auto;

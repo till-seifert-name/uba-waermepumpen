@@ -5,13 +5,13 @@
     <div class="row d-print-block h-100 h-print-auto">
 
       <form
-        class="col-12 col-12-print col-md-6 d-flex flex-column d-print-block">
+        class="max-screen-height col-12 col-12-print col-md-6 d-flex flex-column d-print-block">
 
         <!-- Stepper -->
         <app-custom-stepper #stepper
                             [title]="'Vorüberlegungen'"
                             [linear]="false"
-                            class="flex-grow-1"
+                            class="flex-grow-1 h-100"
                             (onReset)="resetInput()"
         >
 
@@ -52,7 +52,6 @@
             </section>
 
           </cdk-step>
-
 
           <cdk-step label="Angaben">
 
@@ -117,7 +116,6 @@
 
           </cdk-step>
 
-
           <cdk-step label="Angaben">
 
             <hr class="mt-1">
@@ -136,12 +134,14 @@
                 Frage helfen.
               </p>
 
-              <div class="row mt-4">
+              <div class="grid mt-4">
 
-                <div class="col-6">
+                <div class="g-col-6">
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Öffentliche Verkehrsmittel</span>
-                    <button mat-stroked-button  class="bg-600-turquoise rounded-3 border" [dialogTrigger]="popupOEffentliche">Öffentliche</button>
+                    <button mat-stroked-button class="bg-600-turquoise rounded-3 border"
+                            [dialogTrigger]="popupOEffentliche">Öffentliche
+                    </button>
                   </h5>
                   <app-info-card-button #popupOEffentliche cardTitle="Öffentliche Verkehrsmittel">
                     <!--suppress JSUnusedGlobalSymbols -->
@@ -163,7 +163,7 @@
                   </mat-form-field>
                 </div>
 
-                <div class="col-6">
+                <div class="g-col-6">
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Fahrrad</span>
                     <button mat-stroked-button class="bg-600-greens rounded-3 border" [dialogTrigger]="popupEFahrrad">
@@ -192,7 +192,7 @@
               </div>
 
 
-              <div class="row">
+              <div class="grid">
 
                 <div class="g-col-6 grid gap-2 align-items-baseline justify-content-between"
                      style="--bs-columns: 2; grid-template-columns: min-content">
@@ -290,7 +290,6 @@
 
           </cdk-step>
 
-
           <cdk-step label="Angaben">
 
             <hr class="mt-1">
@@ -338,14 +337,13 @@
 
           </cdk-step>
 
-
         </app-custom-stepper>
 
       </form>
 
       <!-- Results -->
       <div
-        class="col-12 col-12-print print-break-before col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
+        class="max-screen-height col-12 col-12-print print-break-before col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
 
         <!-- Übersichtsgrafik -->
         <div class="d-flex d-print-block align-items-center justify-content-between px-2 p-print-none"
@@ -392,7 +390,7 @@
         <!-- Dokumentation -->
         <hr class="mt-1">
 
-        <div class="me-2">
+        <div class="me-2 overflow-auto">
 
           <mat-card appearance="outlined"
                     class="bg-light mat-card-print"

@@ -121,6 +121,7 @@ export class FinishButtonDirective {
 
     .stepper-content {
       flex: 1;
+      overflow-y: auto;
 
       @media print {
         break-inside: avoid;
