@@ -7,15 +7,13 @@
   background: url("../../assets/Header Startseite/Vector.svg") 0.3rem 0.3rem no-repeat,
   url("../../assets/Header Startseite/Vector-1.svg") 10rem 0rem no-repeat,
   url("../../assets/Header Startseite/Blatt.svg") right 5.1rem no-repeat,
-  url("../../assets/Logo/Logo.svg") top 1.8rem center/13rem auto no-repeat
-  ;
+  url("../../assets/Logo/Logo.svg") top 1.8rem center/13rem auto no-repeat;
 
   @media screen and (min-width: 1200px) {
     background: url("../../assets/Header Startseite/Vector.svg") 0.3rem 0.3rem no-repeat,
     url("../../assets/Header Startseite/Vector-1.svg") 10rem 0rem no-repeat,
     url("../../assets/Header Startseite/Blatt.svg") right 5.1rem no-repeat,
-    url("../../assets/Logo/Logo.svg") top 1.8rem center/13rem auto no-repeat
-    ;
+    url("../../assets/Logo/Logo.svg") top 1.8rem center/13rem auto no-repeat;
   }
 
   h1 {
@@ -28,10 +26,22 @@
 }
 
 /* bigger accordion indicator */
-:host ::ng-deep .mat-expansion-indicator {
-  margin-inline-end: 2rem;
-  &:after {
-    padding: 5px;
-    border-width: 0 1.5px 1.5px 0;
+:host ::ng-deep {
+
+  .mat-accordion {
+    .mat-expansion-panel {
+      border-radius: 0 !important;
+      border-color: var(--bs-dark-border-subtle) !important;
+    }
+
+    .mat-expansion-indicator {
+      margin-inline-end: 2rem;
+
+      &:after {
+        color: var(--bs-dark-border-subtle);
+        padding: 5px;
+        border-width: 0 1.5px 1.5px 0;
+      }
+    }
   }
 }
