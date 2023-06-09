@@ -4,17 +4,19 @@
   border-radius: inherit;
 }
 
+.button {
+  stroke: var(--bs-dark-border-subtle);
+  stroke-width: 72px;
+}
+
 /* focus clickable groups */
 [role="button"] {
-
   user-select: none;
 
-  path {
-    filter: brightness(100%);
-    transition: filter 0.1s linear;
-  }
+  filter: brightness(100%);
+  transition: filter 0.1s linear;
 
-  &:focus path:first-of-type {
+  &:focus {
     filter: brightness(80%);
   }
 }
