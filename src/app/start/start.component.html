@@ -316,7 +316,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <p class="fw-bold mt-3 mb-0">Umweltanforderungen</p>
+      <p class="fw-bold mb-0">Umweltanforderungen</p>
       <p>
         <strong></strong> In dieser Auflistung finden Sie umweltbezogene Mindestanforderungen und
         Zuschlagskriterien,
@@ -370,7 +370,7 @@
       </p>
       <p>Die
         Empfehlungen zur Antriebsart in diesem Tool sollen bei der Erfüllung der Quote unterstützen. Die in diesem Tool
-        gelisteten <a href="assets/downloads/Umweltanforderungen.pdf">Umweltanforderungen</a> für die Ausschreibung von
+        gelisteten <a [dialogTrigger]="popupUmweltanforderungen" href="assets/downloads/Umweltanforderungen.pdf">Umweltanforderungen</a> für die Ausschreibung von
         Pkw gelten zusätzlich zu den Anforderungen des
         SaubFahrzeugBeschG, da sie teilweise darüber hinausgehen (z.B. der CO₂-Grenzwert für PHEV oder der Grenzwert für
         den
@@ -378,6 +378,12 @@
         Quote
         fallen, vorgegeben (z.B. CO₂-Grenzwerte für Verbrenner).
       </p>
+      <app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen">
+        <!--suppress JSUnusedGlobalSymbols -->
+        <ng-template #dialogContent>
+          <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
+        </ng-template>
+      </app-info-card-button>
     </mat-expansion-panel>
 
   </mat-accordion>

@@ -68,17 +68,17 @@ import {InfoCardComponent} from "./info-card.component";
           </button>
         </mat-card-actions>
         <mat-card-actions align="end" class="d-print-none">
-            <!--<button mat-icon-button>
-              <mat-icon class="material-icons-outlined">share</mat-icon>
-            </button>-->
-            <a *ngIf="pdfDownloadUrl" mat-icon-button [href]="pdfDownloadUrl"
-               matTooltip="Download PDF" matTooltipPosition="below">
-                <mat-icon class="material-icons-outlined">file_download</mat-icon>
-            </a>
-            <button *ngIf="!pdfDownloadUrl" mat-icon-button (click)="downloadAsPDF()"
-                    matTooltip="Drucken" matTooltipPosition="below">
-                <mat-icon class="material-icons-outlined">file_download</mat-icon>
-            </button>
+          <!--<button mat-icon-button>
+            <mat-icon class="material-icons-outlined">share</mat-icon>
+          </button>-->
+          <a *ngIf="pdfDownloadUrl" mat-icon-button [href]="pdfDownloadUrl"
+             matTooltip="Download PDF" matTooltipPosition="below">
+            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+          </a>
+          <button *ngIf="!pdfDownloadUrl" mat-icon-button (click)="downloadAsPDF()"
+                  matTooltip="Drucken" matTooltipPosition="below">
+            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+          </button>
         </mat-card-actions>
       </mat-card>
     </dialog>
@@ -108,8 +108,20 @@ export class DialogTriggerDirective {
   @HostListener('click', ['$event'])
   @HostListener('keydown.space', ['$event'])
   @HostListener('keydown.enter', ['$event'])
-  onClick(event: Event) {
+  onClick(event: MouseEvent) {
+
+    // Check if the element is an <a> tag and get its href attribute
+    if (this.el.nativeElement.nodeName === 'A') {
+      const href = this.el.nativeElement.href;
+      // Check if href is set and this.dialogComponent.pdfDownloadUrl is empty
+      if (href && !this.dialogComponent.pdfDownloadUrl) {
+        // Assign href to this.dialogComponent.pdfDownloadUrl
+        this.dialogComponent.pdfDownloadUrl = href;
+      }
+    }
+
     this.dialogComponent.openDialog();
     event.stopPropagation();
+    event.preventDefault();
   }
 }
