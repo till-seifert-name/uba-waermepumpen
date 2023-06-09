@@ -144,11 +144,16 @@ html, body {
   height: 100%;
 }
 
+:root {
+  --body-max-width: 92rem;
+}
+
 body {
   margin: 0;
   font-family: Inter, "Helvetica Neue", sans-serif;
   display: flex;
   flex-direction: column;
+  max-width: var(--body-max-width);
 }
 
 body > app-root {
