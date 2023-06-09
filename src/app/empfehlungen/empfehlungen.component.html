@@ -409,7 +409,7 @@
         class="max-screen-height col-12 col-12-print col-md-6 d-print-block d-flex flex-column justify-content-start align-items-stretch">
 
         <!-- Übersichtsgrafik -->
-        <div class="print-break-before d-flex d-print-block align-items-center justify-content-between"
+        <div class="d-flex d-print-block print-break-before align-items-center justify-content-between"
              style="height: 40px">
           <h4 *ngIf="stepper.selectedIndex > 0"
               (click)="toggleUebersichtsgrafikVisible(false)"
@@ -424,18 +424,18 @@
           </button>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
-                  class="d-print-none">
+                  class="d-print-none d-none d-lg-block">
             <mat-icon class="material-icons-outlined" color="primary">swap_horizontal_circle</mat-icon>
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
-              class="mat-headline-6 ms-auto m-0 mx-2 text-uppercase d-print-none">
+              class="mat-headline-6 ms-auto m-0 mx-2 text-uppercase d-none d-lg-block d-print-none">
             Übersichtsgrafik
           </h4>
         </div>
 
         <mat-card
-          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8 d-print-none"
+          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8 d-none d-lg-block d-print-none"
           [class.mat-card-visible]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
           [class.mat-card-hidden]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)">
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
@@ -486,10 +486,11 @@
                     [class.mat-card-inactive]="!grid.getCell('Names', 'E_F0')"
           >
             <mat-card-header class="align-items-baseline justify-content-between">
-              <mat-card-title class="mat-h1">
+              <mat-card-title class="mat-h1" style="hyphens: auto">
                 2. Fahrzeugsegment
               </mat-card-title>
               <button mat-stroked-button class="bg-300-blues rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupFahrzeugsegment"
+                      style="hyphens: auto"
                       *ngIf="grid.getCell('Names', 'E_F0')">
                 Fahrzeugsegment
               </button>

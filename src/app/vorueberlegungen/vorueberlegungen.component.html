@@ -136,7 +136,7 @@
 
               <div class="grid mt-4">
 
-                <div class="g-col-6">
+                <div class="g-col-12 g-col-sm-6">
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Öffentliche Verkehrsmittel</span>
                     <button mat-stroked-button class="bg-600-turquoise rounded-3 border border-2 border-dark-subtle"
@@ -163,7 +163,7 @@
                   </mat-form-field>
                 </div>
 
-                <div class="g-col-6">
+                <div class="g-col-12 g-col-sm-6">
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Fahrrad</span>
                     <button mat-stroked-button class="bg-600-greens rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupEFahrrad">
@@ -194,7 +194,7 @@
 
               <div class="grid">
 
-                <div class="g-col-6 grid gap-2 align-items-baseline justify-content-between"
+                <div class="g-col-12 g-col-sm-6 grid gap-2 align-items-baseline justify-content-between"
                      style="--bs-columns: 2; grid-template-columns: min-content">
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Pkw</span>
@@ -361,19 +361,19 @@
           </button>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
-                  class="d-print-none"
+                  class="d-print-none d-none d-lg-block"
           >
             <mat-icon class="material-icons-outlined" color="primary">swap_horizontal_circle</mat-icon>
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
-              class="mat-headline-6 ms-auto m-0 text-uppercase d-print-none">
+              class="mat-headline-6 ms-auto m-0 text-uppercase d-none d-lg-block d-print-none">
             Übersichtsgrafik
           </h4>
         </div>
 
         <mat-card
-          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8 d-print-none"
+          class="mat-card-ubersicht mat-mdc-elevation-specific mat-elevation-z8 d-none d-lg-block d-print-none"
           [class.mat-card-visible]="viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0"
           [class.mat-card-hidden]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)">
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
@@ -411,7 +411,7 @@
                   {{grid.getCell('Fragen_Prototyp_Flotte', 'E16')}}
                 </strong>
                 {{grid.getCell('Fragen_Prototyp_Flotte', 'F16')}}
-                <em class="text-secondary fst-normal fs-4"
+                <em class="text-secondary fst-normal fs-4 ps-1"
                     [attr.data-direction]="grid.getCell('Fragen_Prototyp_Flotte', 'E16')"
                     [attr.data-percent]="grid.getCell('Fragen_Prototyp_Flotte', 'G16')"
                 >

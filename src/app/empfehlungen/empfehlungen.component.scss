@@ -4,7 +4,7 @@
 
 /* limit the columns in the card to screen height ans scroll content */
 .max-screen-height {
-  @media screen {
+  @media screen and (min-width: 768px) { /* breakpoint md, but cant be a variable */
     max-height: calc(100vh - 112px);
   }
 
@@ -15,8 +15,8 @@
 
 
 .mat-card-ubersicht {
-  inset: 3.7rem -1rem -1rem auto;
-  width: calc(50% + 1rem);
+  inset: 3.7rem -1rem auto auto;
+  width: min(calc(100vw - 2rem), max(calc(50% + 1rem), 35rem));
   position: absolute;
   background-color: var(--bs-light);
   max-height: 863px;

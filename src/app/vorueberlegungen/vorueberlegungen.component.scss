@@ -10,7 +10,7 @@
 
 /* limit the columns in the card to screen height ans scroll content */
 .max-screen-height {
-  @media screen {
+  @media screen and (min-width: 768px) { /* breakpoint md, but cant be a variable */
     max-height: calc(100vh - 112px);
   }
 

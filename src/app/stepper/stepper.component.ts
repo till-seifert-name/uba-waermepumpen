@@ -43,7 +43,7 @@ export class FinishButtonDirective {
   selector: 'app-custom-stepper',
   template: `
       <div class="stepper-header d-print-none">
-          <h1 class="step-label mat-headline-6 text-uppercase mb-0 ms-2 me-0">{{selected?.label}}</h1>
+          <h1 class="step-label mat-headline-6 text-uppercase text-truncate mb-0 ms-2 me-0">{{selected?.label}}</h1>
 
           <button mat-icon-button
                   matTooltip="Eingaben zurücksetzen"
@@ -52,11 +52,11 @@ export class FinishButtonDirective {
               <mat-icon class="material-icons-outlined">refresh</mat-icon>
           </button>
 
-          <span class="stepper-title mat-headline-6 text-uppercase mb-0 ms-auto">
+          <span class="stepper-title mat-headline-6 text-uppercase text-truncate mb-0 ms-auto">
             {{title}}
               <span class="fw-bold">{{selectedIndex + 1}}</span>/{{steps.length}}
           </span>
-          <span class="stepper-graphic ms-2  d-print-none" *ngIf="graphicDirective">
+          <span class="stepper-graphic ms-2 d-none d-sm-block d-print-none" *ngIf="graphicDirective">
             <ng-container *ngTemplateOutlet="graphicDirective.template"></ng-container>
           </span>
       </div>
