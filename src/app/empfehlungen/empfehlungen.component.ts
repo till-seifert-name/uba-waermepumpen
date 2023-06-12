@@ -1,40 +1,17 @@
 import {Component} from '@angular/core';
-import {DataGrid} from "../data-grid";
 import {BerechnungService} from "../berechnung.service";
+import {FormComponent} from "../form.component";
 
 @Component({
   selector: 'app-empfehlungen',
   templateUrl: './empfehlungen.component.html',
   styleUrls: ['./empfehlungen.component.scss']
 })
-export class EmpfehlungenComponent {
-  public grid: DataGrid;
-
-  public viewstate = {
-    uebersichtsgrafikVisible: false,
-  }
+export class EmpfehlungenComponent extends FormComponent {
 
   constructor(
-    public berechnungService: BerechnungService,
+    berechnungService: BerechnungService,
   ) {
-
-    this.grid = this.berechnungService.grid;
-  }
-
-  toggleUebersichtsgrafikVisible(forceState?: boolean) {
-    if (forceState !== undefined) {
-      this.viewstate.uebersichtsgrafikVisible = forceState;
-    } else {
-      this.viewstate.uebersichtsgrafikVisible = !this.viewstate.uebersichtsgrafikVisible;
-    }
-  }
-
-  resetInput() {
-    if (confirm('Alle Eingaben zurücksetzen?'))
-      this.berechnungService.resetInputs()
-  }
-
-  downloadAsPDF() {
-    print()
+    super(berechnungService);
   }
 }

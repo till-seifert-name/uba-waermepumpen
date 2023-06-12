@@ -4,6 +4,7 @@
 
     <div class="row d-print-block h-100 h-print-auto">
       <form
+        (submit)="focusNextInput()"
         class="max-screen-height col-12 col-12-print col-md-6 d-print-block d-flex flex-column">
 
         <!-- Stepper with form elements -->
@@ -13,6 +14,7 @@
                             [title]="'Empfehlungen'"
                             [linear]="false"
                             class="flex-grow-1 h-100"
+                            (selectionChange)="stepperChanged()"
                             (onReset)="resetInput()"
         >
 

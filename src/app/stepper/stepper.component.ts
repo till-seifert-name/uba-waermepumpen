@@ -48,6 +48,7 @@ export class FinishButtonDirective {
           <button mat-icon-button
                   matTooltip="Eingaben zurücksetzen"
                   class="btn-reset mx-0 my-n2 d-print-none"
+                  type="button"
                   *ngIf="onReset.observers.length" (click)="onReset.emit()">
               <mat-icon class="material-icons-outlined">refresh</mat-icon>
           </button>
@@ -72,6 +73,7 @@ export class FinishButtonDirective {
 
       <div class="stepper-footer d-print-none">
           <button mat-button
+                  type="button"
                   color="primary"
                   cdkStepperPrevious
                   [disabled]="selectedIndex === 0">
@@ -85,6 +87,7 @@ export class FinishButtonDirective {
           </ng-container>
           <ng-template #nextButton>
               <button mat-stroked-button
+                      type="submit"
                       color="primary"
                       cdkStepperNext
                       [disabled]="selectedIndex === steps.length - 1">
