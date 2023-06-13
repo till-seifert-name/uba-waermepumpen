@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MatExpansionPanel} from "@angular/material/expansion";
 
 @Component({
   selector: 'app-start',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class StartComponent {
 
+  scrollTo(panel: MatExpansionPanel) {
+    panel._body.nativeElement.scrollIntoView({behavior: "smooth"});
+  }
 }
