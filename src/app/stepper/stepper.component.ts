@@ -62,7 +62,8 @@ export class FinishButtonDirective {
           </span>
       </div>
 
-      <div *ngFor="let s of steps"
+      <div *ngFor="let s of steps; let index = index"
+           [id]="'step-content-' + index"
            class="stepper-content d-print-block"
            [class.d-block]="s === selected"
            [class.d-none]="s !== selected"
@@ -72,28 +73,42 @@ export class FinishButtonDirective {
       </div>
 
       <div class="stepper-footer d-print-none">
-          <button mat-button
-                  type="button"
-                  color="primary"
-                  cdkStepperPrevious
-                  [disabled]="selectedIndex === 0">
-              zurück
-          </button>
-          <mat-progress-bar mode="determinate"
-                            [value]="(selectedIndex + 1) / steps.length * 100">
-          </mat-progress-bar>
-          <ng-container *ngIf="finishButtonDirective && (selectedIndex === steps.length - 1); else nextButton">
-              <ng-container *ngTemplateOutlet="finishButtonDirective.template ?? null"></ng-container>
-          </ng-container>
-          <ng-template #nextButton>
-              <button mat-stroked-button
-                      type="submit"
+          <div>
+              <button mat-button
+                      type="button"
                       color="primary"
-                      cdkStepperNext
-                      [disabled]="selectedIndex === steps.length - 1">
-                  weiter
+                      cdkStepperPrevious
+                      [disabled]="selectedIndex === 0">
+                  zurück
               </button>
-          </ng-template>
+          </div>
+
+          <div class="stepper-dots d-flex gap-5" role="tablist">
+              <button *ngFor="let step of steps; let index = index"
+                      [class.bg-primary]="index <= selectedIndex"
+                      class="border-0 p-0 stepper-dot rounded-pill"
+                      role="tab"
+                      type="button"
+                      [attr.aria-selected]="index === selectedIndex"
+                      [attr.aria-controls]="'step-content-' + index"
+                      (click)="selectedIndex = index">
+              </button>
+          </div>
+
+          <div>
+              <ng-container *ngIf="finishButtonDirective && (selectedIndex === steps.length - 1); else nextButton">
+                  <ng-container *ngTemplateOutlet="finishButtonDirective.template ?? null"></ng-container>
+              </ng-container>
+              <ng-template #nextButton>
+                  <button mat-stroked-button
+                          type="submit"
+                          color="primary"
+                          cdkStepperNext
+                          [disabled]="selectedIndex === steps.length - 1">
+                      weiter
+                  </button>
+              </ng-template>
+          </div>
       </div>
   `,
   styles: [`
@@ -112,14 +127,14 @@ export class FinishButtonDirective {
       justify-content: stretch;
       align-content: center;
       align-items: center;
-    }
 
-    .stepper-header .stepper-graphic {
-      flex-grow: 0;
-    }
+      .stepper-graphic {
+        flex-grow: 0;
+      }
 
-    .stepper-header .step-label {
-      margin-inline-end: auto;
+      .step-label {
+        margin-inline-end: auto;
+      }
     }
 
     .stepper-content {
@@ -137,15 +152,25 @@ export class FinishButtonDirective {
       gap: 2rem;
       justify-content: space-between;
       align-items: center;
-    }
 
-    .stepper-footer button {
-      flex-grow: 0;
-    }
+      > div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
 
-    mat-progress-bar {
-      margin: 0 auto;
-      max-width: 16rem;
+        &:first-child {
+          justify-content: start;
+        }
+        &:last-child {
+          justify-content: end;
+        }
+      }
+
+      .stepper-dot {
+        height: 10px;
+        width: 10px;
+        background: var(--bs-gray-300);
+      }
     }
   `],
   providers: [{provide: CdkStepper, useExisting: CustomStepperComponent}],
