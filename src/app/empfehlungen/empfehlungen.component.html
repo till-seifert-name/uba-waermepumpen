@@ -291,15 +291,21 @@
 
               <div class="grid gap-4 gap-xl-5 px-4 p-print-none" style="--bs-columns: 2">
                 <div class="g-col-2 g-col-lg-1">
-                  <p class="fw-bold">
+                  <p class="fw-bold" [class.text-danger]="grid.cells['Names']['F_P1'] >= 10">
                     Wie viele Personen fahren maximal zusammen in dem Pkw?
                   </p>
-                  <mat-form-field appearance="outline" class="w-100">
+                  <mat-form-field appearance="outline" class="w-100" [color]="grid.cells['Names']['F_P1'] >= 10 ? 'warn' : 'primary'">
                     <mat-label>Anzahl Personen</mat-label>
                     <input matInput type="number" [ngModel]="grid.cells['Names']['F_P1']"
                            name="F_P1" #F_P1="ngModel" min="1" step="1" max="9"
                            (ngModelChange)="grid.setCell('Names', 'F_P1', F_P1.value)">
                   </mat-form-field>
+
+                  <p *ngIf="grid.cells['Names']['F_P1'] >= 10" class="alert alert-danger">
+                    Die eingegebene Anzahl an Personen übersteigt die maximal zulässige Anzahl
+                    von 9 Personen in einem als Pkw zugelassenen Fahrzeug.
+                  </p>
+
                 </div>
 
                 <div class="g-col-2 g-col-lg-1">
@@ -320,6 +326,7 @@
                   </mat-form-field>
                 </div>
               </div>
+
 
               <h3 class="mat-h1 px-4 p-print-none">
                 2.2 Transport
@@ -464,7 +471,8 @@
               <mat-card-title class="mat-h1">
                 1. Antriebsart
               </mat-card-title>
-              <button mat-stroked-button class="bg-300-blues rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupAntriebsart"
+              <button mat-stroked-button class="bg-300-blues rounded-3 border border-2 border-dark-subtle"
+                      [dialogTrigger]="popupAntriebsart"
                       *ngIf="grid.getCell('Names', 'E_A0')">
                 Antriebsart
               </button>
@@ -491,7 +499,8 @@
               <mat-card-title class="mat-h1" style="hyphens: auto">
                 2. Fahrzeugsegment
               </mat-card-title>
-              <button mat-stroked-button class="bg-300-blues rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupFahrzeugsegment"
+              <button mat-stroked-button class="bg-300-blues rounded-3 border border-2 border-dark-subtle"
+                      [dialogTrigger]="popupFahrzeugsegment"
                       style="hyphens: auto"
                       *ngIf="grid.getCell('Names', 'E_F0')">
                 Fahrzeugsegment

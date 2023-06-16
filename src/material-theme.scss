@@ -207,7 +207,7 @@ $light-theme-foreground-palette: (
 $dau-online-tool-theme: define-light-theme((color: (
   primary: $blues-palette,
   accent: $greens-palette,
-  warn: $turquoise-palette,
+  warn: mat.define-palette(mat.$red-palette),
 ),
   typography: $dbu-typography-config,
   density: 0,
