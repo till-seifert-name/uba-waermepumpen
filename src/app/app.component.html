@@ -20,6 +20,14 @@
      routerLinkActive="mdc-list-item--activated">
     Kontakt
   </a>
+  <a mat-menu-item routerLink="/impressum"
+     routerLinkActive="mdc-list-item--activated">
+    Impressum
+  </a>
+  <a mat-menu-item routerLink="/datenschutz"
+     routerLinkActive="mdc-list-item--activated">
+    Datenschutz
+  </a>
 </mat-menu>
 
 <span class="visually-hidden"
@@ -29,7 +37,8 @@
 ></span>
 
 <!-- Toolbar -->
-<mat-toolbar class="position-sticky top-0 flex-shrink-0 fixed-top mx-auto justify-content-end bg-dark text-bg-dark d-print-none">
+<mat-toolbar
+  class="position-sticky top-0 flex-shrink-0 fixed-top mx-auto justify-content-end bg-dark text-bg-dark d-print-none">
 
   <a routerLink="/" id="logo" class="px-1 pe-2">
     <img src="assets/Logo/Logo.svg" alt="" height="40">
