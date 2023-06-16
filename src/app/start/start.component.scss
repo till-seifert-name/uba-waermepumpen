@@ -44,4 +44,16 @@
       }
     }
   }
+
 }
+
+/* focus clickable groups */
+svg [role="button"] {
+  filter: brightness(100%);
+  transition: filter 0.1s linear;
+
+  &:focus {
+    filter: brightness(75%) contrast(184%);
+  }
+}
+
