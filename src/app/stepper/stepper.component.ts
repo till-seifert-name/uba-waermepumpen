@@ -85,7 +85,7 @@ export class FinishButtonDirective {
 
           <div class="stepper-dots d-flex gap-5" role="tablist">
               <button *ngFor="let step of steps; let index = index"
-                      [class.bg-primary]="index <= selectedIndex"
+                      [class.bg-A400-blues]="index <= selectedIndex"
                       class="border-0 p-0 stepper-dot rounded-pill"
                       role="tab"
                       type="button"
@@ -161,6 +161,7 @@ export class FinishButtonDirective {
         &:first-child {
           justify-content: start;
         }
+
         &:last-child {
           justify-content: end;
         }
@@ -171,6 +172,10 @@ export class FinishButtonDirective {
         width: 10px;
         background: var(--bs-gray-300);
       }
+    }
+
+    [role="tab"] {
+      cursor: pointer;
     }
   `],
   providers: [{provide: CdkStepper, useExisting: CustomStepperComponent}],
