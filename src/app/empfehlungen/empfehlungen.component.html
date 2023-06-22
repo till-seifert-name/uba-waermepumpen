@@ -125,7 +125,7 @@
                 </ng-template>
               </app-info-card-button>
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
-                <mat-label>Strecken über 150 km</mat-label>
+                <mat-label>Häufigkeit</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_S1']" name="F_S1"
                             #F_S1="ngModel"
                             (ngModelChange)="grid.setCell('Names', 'F_S1', F_S1.value)">
@@ -142,7 +142,7 @@
                 Wie häufig werden die Tagesstrecken im Normalfall von Standzeiten (≈ mind. 30 min) unterbrochen?
               </p>
               <mat-form-field appearance="outline" class="px-4 p-print-none w-75">
-                <mat-label>Häufigkeit Nutzung</mat-label>
+                <mat-label>Häufigkeit</mat-label>
                 <mat-select [ngModel]="grid.cells['Names']['F_SZ1']" name="F_SZ1"
                             #F_SZ1="ngModel"
                             (ngModelChange)="grid.setCell('Names', 'F_SZ1', F_SZ1.value)">

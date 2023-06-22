@@ -1,3 +1,6 @@
+:host {
+  display: contents;
+}
 
 ::ng-deep .mdc-menu-surface.mat-mdc-autocomplete-panel {
   max-height: max(256px, calc(100vh - 250px)) !important;
