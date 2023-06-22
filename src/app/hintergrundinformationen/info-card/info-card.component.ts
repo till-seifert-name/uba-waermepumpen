@@ -129,7 +129,7 @@ import {ActivatedRoute, Router} from "@angular/router";
         </mat-card-content>
 
         <mat-card-actions align="end" class="position-absolute top-0 end-0 d-print-none">
-          <button mat-icon-button (click)="closeDialog()">
+          <button mat-icon-button (click)="closeDialog()" autofocus>
             <mat-icon class="material-icons-outlined">close</mat-icon>
           </button>
         </mat-card-actions>
