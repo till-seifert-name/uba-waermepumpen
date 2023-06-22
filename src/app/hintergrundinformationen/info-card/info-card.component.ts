@@ -16,7 +16,7 @@ import {ActivatedRoute, Router} from "@angular/router";
     }
 
     .outer-card {
-      margin-inline-end: 90px;
+      margin-inline-end: 160px;
 
       &.info-card-all,
       &.info-card-budget,
@@ -111,7 +111,7 @@ import {ActivatedRoute, Router} from "@angular/router";
               (keydown.enter)="openDialog()" (keydown.space)="openDialog()" (click)="openDialog()">
       <mat-card [ngClass]="innerCardClass" appearance="outlined">
         <mat-card-content class="p-2 px-3 str">
-          <h2 *ngIf="cardTitle" class="mat-body-strong" [class.mb-1]="cardBodyText">
+          <h2 *ngIf="cardTitle" [class.mb-1]="cardBodyText">
             {{cardTitle}}
           </h2>
           <p *ngIf="cardBodyText" class="mat-h5">
