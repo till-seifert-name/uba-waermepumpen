@@ -28,7 +28,8 @@
             "assets": [
               "src/favicon.ico",
               "src/favicon.svg",
-              "src/assets"
+              "src/assets",
+              "src/Projektsteckbrief.pdf"
             ],
             "styles": [
               "src/styles.scss"
