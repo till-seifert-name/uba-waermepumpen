@@ -23,13 +23,12 @@
           <ul
             class="mb-4">
             <li>
-              Die Infoboxen „THG-Vergleich von Verkehrsmitteln“ und „Mobilitätsbudget“ decken übergeordnete Themen ab.
+              Die Infoboxen „Klimawirkung verschiedener Verkehrsmittel“ und „Mobilitätsbudget“ geben einen allgemeinen Einstieg in das Thema.
             </li>
             <li>
-              Die übrigen Infoboxen halten spezifische Informationen zu den verschiedenen Verkehrsmitteln und deren
-              Einbindung
-              bei
-              der Deckung des Mobilitätsbedarfs der öffentlichen Hand bereit.
+              Die anderen Infoboxen geben spezifische Informationen zu den verschiedenen Verkehrsmitteln (Pkw,
+              Öffentliche Verkehrsmittel, Fahrrad) und deren mögliche Einbindung bei der Deckung des Mobilitätsbedarfs
+              der öffentlichen Hand.
             </li>
           </ul>
         </div>
@@ -71,7 +70,7 @@
           <div class="d-flex flex-column gap-2">
 
             <app-info-card
-              cardTitle="THG-Vergleich von Verkehrsmitteln"
+              cardTitle="Klimawirkung verschiedener Verkehrsmittel"
               cardBodyText="Die Klimawirkung von Verkehrsmitteln des Personenverkehrs unterscheidet sich erheblich."
               innerCardClass="bg-600-blues"
               outerCardClass="info-card-all"
@@ -95,7 +94,7 @@
 
             <app-info-card
               cardTitle="Pkw"
-              cardBodyText="Bei der Nutzung von Pkw existieren Alternativen zur Anschaffung zusätzlicher Fahrzeuge und Kriterien der Umweltverträglichkeit für Neubeschaffungen."
+              cardBodyText="Sollen Pkw eingesetzt werden, dann sollten Alternativen zur Anschaffung geprüft werden sowie die Umweltverträglichkeit der Neuanschaffungen möglichst hoch sein. "
               innerCardClass="bg-500-blues"
               outerCardClass="info-card-pkw"
             >
@@ -117,14 +116,16 @@
             </app-info-card>
 
             <app-info-card
-              cardTitle="Dimensionierung"
+              cardId="Dimensionierung"
+              cardTitle="Motorleistung und Batteriegröße"
               innerCardClass="bg-400-blues"
             >
               <app-popup-dimensionierung></app-popup-dimensionierung>
             </app-info-card>
 
             <app-info-card
-              cardTitle="Ausstattung"
+              cardId="Ausstattung"
+              cardTitle="Sonderausstattung"
               innerCardClass="bg-400-blues"
             >
               <app-popup-ausstattung></app-popup-ausstattung>

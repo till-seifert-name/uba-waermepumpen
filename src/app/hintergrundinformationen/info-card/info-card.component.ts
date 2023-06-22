@@ -151,7 +151,8 @@ import {ActivatedRoute, Router} from "@angular/router";
   `,
 })
 export class InfoCardComponent implements AfterViewInit {
-  @Input() cardTitle?: string;
+  @Input() cardTitle: string = '';
+  @Input() cardId: string = '';
   @Input() cardBodyText?: string;
   @Input() outerCardClass!: string;
   @Input() innerCardClass!: string;
@@ -176,8 +177,8 @@ export class InfoCardComponent implements AfterViewInit {
     // init portal to put dialog in
     this.portalOutlet = new DomPortalOutlet(document.body, undefined, undefined, undefined, document);
 
-    if (this.cardTitle) {
-      this.fragmentName = this.cardTitle.replace(/[^a-z0-9üäöß]+/iug, '-').toLowerCase();
+    if (this.cardId || this.cardTitle) {
+      this.fragmentName = (this.cardId || this.cardTitle).replace(/[^a-z0-9üäöß]+/iug, '-').toLowerCase();
 
       this.route.fragment.subscribe(fragment => {
         const params = this.parseFragment(fragment || '');
