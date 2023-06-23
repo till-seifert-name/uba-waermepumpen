@@ -201,6 +201,11 @@ export class InfoCardComponent implements AfterViewInit {
     this.portalOutlet.attach(new DomPortal(this.dialog));
 
     this.dialog.nativeElement.showModal();
+
+    // blur close button
+    if (document.activeElement instanceof HTMLButtonElement)
+      document.activeElement.blur();
+
     document.body.classList.add('dialog-open');
 
     // react to native close with ESC
