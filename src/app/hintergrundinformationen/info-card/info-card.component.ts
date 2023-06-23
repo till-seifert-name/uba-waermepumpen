@@ -182,10 +182,11 @@ export class InfoCardComponent implements AfterViewInit {
 
       this.route.fragment.subscribe(fragment => {
         const params = this.parseFragment(fragment || '');
-        if (params[this.fragmentName]) {
+        console.log(params)
+        if (params['popup'] === this.fragmentName) {
           setTimeout(() => this.openDialog(), 0);
         } else {
-          setTimeout(() => this.closeDialog(), 0);
+          this.closeDialog();
         }
       });
     }
@@ -213,7 +214,7 @@ export class InfoCardComponent implements AfterViewInit {
 
     const fragment = this.route.snapshot.fragment;
     const params = this.parseFragment(fragment ?? '');
-    params[this.fragmentName] = '1';
+    params['popup'] = this.fragmentName;
     const newFragment = this.stringifyFragment(params);
     this.router.navigate([], {fragment: newFragment, replaceUrl: true});
   }
@@ -232,9 +233,11 @@ export class InfoCardComponent implements AfterViewInit {
 
     const fragment = this.route.snapshot.fragment;
     const params = this.parseFragment(fragment ?? '');
-    delete params[this.fragmentName];
-    const newFragment = this.stringifyFragment(params);
-    this.router.navigate([], {fragment: newFragment, replaceUrl: true});
+    if (params['popup'] === this.fragmentName) {
+      delete params['popup'];
+      const newFragment = this.stringifyFragment(params);
+      this.router.navigate([], {fragment: newFragment || undefined, replaceUrl: true});
+    }
   }
 
   onDialogClick(event: Event): void {
