@@ -433,8 +433,8 @@
           </button>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
-                  class="d-print-none d-none d-lg-block">
-            <mat-icon class="material-icons-outlined" color="primary">swap_horizontal_circle</mat-icon>
+                  class="d-print-none d-none d-lg-block p-0 fs-48">
+            <mat-icon fontSet="material-symbols-outlined" inline="true" color="primary">swap_horizontal_circle</mat-icon>
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
