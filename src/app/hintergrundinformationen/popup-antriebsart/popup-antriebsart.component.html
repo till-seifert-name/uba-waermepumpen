@@ -9,7 +9,19 @@
     sollen Fahrzeuge mit einem vollelektrischen Antrieb (<b>BEV - batterieelektrisches Fahrzeug</b>) bevorzugt beschafft
     werden. Nur in Ausnahmefällen - z.B. wenn für den Einsatzzweck keine E-Fahrzeuge geeignet oder die Kosten nicht
     vertretbar sind - sollen Fahrzeuge mit Verbrennungsmotoren eingesetzt werden. Dabei sind die Vorgaben zum
-    CO2-Ausstoß sowie zu Luftschadstoffen zu berücksichtigen (siehe hier für Vorschläge zu Umweltanforderungen).
+    CO₂-Ausstoß sowie zu Luftschadstoffen zu berücksichtigen (siehe
+    <a [dialogTrigger]="popupUmweltanforderungen" href="assets/downloads/Umweltanforderungen.pdf">
+      hier für Vorschläge zu Umweltanforderungen
+    </a>).
+  </p>
+  <app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen"
+                        pdfDownloadUrl="assets/downloads/Umweltanforderungen.pdf">
+    <!--suppress JSUnusedGlobalSymbols -->
+    <ng-template #dialogContent>
+      <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
+    </ng-template>
+  </app-info-card-button>
+
   <p>
     Ein BEV hat je nach Lebensfahrleistung einen Klimavorteil von 30 – 40 % gegenüber konventionellen Fahrzeugen. Da der
     Anteil
@@ -23,8 +35,8 @@
     Antrieben besteht ein deutlicher <b>Effizienzvorteil</b>: Für
     strombasierten Wasserstoff oder synthetischen Kraftstoff würde für
     die gleiche Fahrtstrecke ein Vielfaches an erneuerbarem Strom
-    benötigt. (<a
-    href="https://www.bmuv.de/fileadmin/Daten_BMU/Download_PDF/Verkehr/emob_klimabilanz_bf.pdf"
+    benötigt. (<a target="_blank"
+                  href="https://www.bmuv.de/fileadmin/Daten_BMU/Download_PDF/Verkehr/emob_klimabilanz_bf.pdf"
   >Kämper
     et al. 2020</a>)
   </p>
@@ -47,13 +59,15 @@
         <a target="_blank"
            href="https://www.thm.de/site/images/planung/Landtagsdrucksachen/2021/upup/DS_20_3892_Nachhaltige_Mobilitt_Antwort_HMdF.pdf"
         >Hessen</a>,
-        das für die Landesverwaltung eine Quote von 50 % E-Autos in der Beschaffung vorschreibt, und das Land Berlin,
+        das für die Landesverwaltung eine Quote von 50 % E-Autos in der Beschaffung vorschreibt, und das Land <a
+        target="_blank"
+        href="https://www.berlin.de/nachhaltige-beschaffung/recht/">Berlin</a>,
         das den Kauf von E-Fahrzeugen als Priorität setzt.</p>
     </mat-card-content>
   </mat-card>
 
 
-  <p>
+  <p style="break-inside: avoid-column;">
     Neben den Infoboxen auf dieser Website finden Sie weitere
     detaillierte Informationen zur Umstellung der Flotte auf
     batterieelektrische Antriebe im
@@ -73,8 +87,8 @@
         Emissionen der Fahrzeugherstellung werden allerdings nicht
         berücksichtigt.</p>
       <p>
-        Anders ist dies beim Ökobilanz-Tool von <a
-        href="https://www.greenncap.com/lca-german.php">Green
+        Anders ist dies beim Ökobilanz-Tool von <a target="_blank"
+                                                   href="https://www.greenncap.com/lca-german.php">Green
         NCAP</a>. Hier werden alle Treibhausgas-Emissionen
         über den gesamten Lebenszyklus berechnet und dabei auch die
         Entwicklung des Strommixes über die Lebensdauer berücksichtigt.
