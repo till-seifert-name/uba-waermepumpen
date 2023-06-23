@@ -88,8 +88,8 @@
               <p class="fw-bold px-4 p-print-none">
                 Wie viele Fahrzeuge aus einem vorhandenen Fuhrpark werden durch diese Beschaffung ersetzt?
                 <mat-icon [dialogTrigger]="popupVerkleinerung"
-                          matTooltip="Hilfe"
-                          class="material-icons-outlined text-muted align-middle">
+                          matTooltip="Hilfe" inline="true"
+                          fontSet="material-symbols-outlined" class="wght-300 opsz-20 fs-5 text-muted align-middle">
                   help_outline
                 </mat-icon>
               </p>
@@ -359,11 +359,11 @@
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="downloadAsPDF()"
                   class="ms-0 me-auto d-print-none"
                   matTooltip="Herunterladen">
-            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined" class="wght-300">download</mat-icon>
           </button>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
-                  class="d-print-none d-none d-lg-block p-0 fs-48">
+                  class="d-print-none d-none d-lg-block p-0 bs-48">
             <mat-icon fontSet="material-symbols-outlined" inline="true" color="primary">swap_horizontal_circle</mat-icon>
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
@@ -380,10 +380,10 @@
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
-                  class="btn-open-close d-print-none">
-            <mat-icon class="material-icons-outlined" color="primary">
-              <ng-container *ngIf="!viewstate.uebersichtsgrafikVisible">arrow_circle_left</ng-container>
-              <ng-container *ngIf="viewstate.uebersichtsgrafikVisible">arrow_circle_right</ng-container>
+                  class="btn-open-close d-print-none p-0 bs-40">
+            <mat-icon fontSet="material-symbols-outlined" class="opsz-40 rotate-90" inline="true" color="primary">
+              <ng-container *ngIf="!viewstate.uebersichtsgrafikVisible">expand_circle_down</ng-container>
+              <ng-container *ngIf="viewstate.uebersichtsgrafikVisible">expand_circle_up</ng-container>
             </mat-icon>
           </button>
         </mat-card>

@@ -50,7 +50,7 @@ export class FinishButtonDirective {
                   class="btn-reset mx-0 my-n2 d-print-none"
                   type="button"
                   *ngIf="onReset.observers.length" (click)="onReset.emit()">
-              <mat-icon class="material-icons-outlined">refresh</mat-icon>
+              <mat-icon fontSet="material-symbols-outlined" class="wght-300">refresh</mat-icon>
           </button>
 
           <span class="stepper-title mat-headline-6 text-uppercase text-truncate mb-0 ms-auto">

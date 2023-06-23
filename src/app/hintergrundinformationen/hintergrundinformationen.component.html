@@ -40,10 +40,10 @@
                    placeholder="Suchbegriff hier eingeben">
             <button *ngIf="searchControl.value" matSuffix mat-icon-button aria-label="Leeren"
                     (click)="searchControl.setValue('')">
-              <mat-icon class="material-icons-outlined">close</mat-icon>
+              <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
             </button>
             <button *ngIf="!searchControl.value" matSuffix mat-icon-button aria-label="Suchen">
-              <mat-icon class="material-icons-outlined">search</mat-icon>
+              <mat-icon fontSet="material-symbols-outlined">search</mat-icon>
             </button>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
               <!-- each item in filteredOptions, highlightMatch method is used to bold the matching search term -->

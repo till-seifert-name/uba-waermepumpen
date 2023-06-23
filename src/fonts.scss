@@ -30,114 +30,42 @@
 @import 'material-symbols/outlined';
 
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0;
 }
-.fs-48 {
+
+$weights: 200, 300;
+$opticalSizes: 20, 24, 40, 48;
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+
+  @each $weight in $weights {
+    &.wght-#{$weight} {
+      font-variation-settings: 'FILL' 0, 'wght' $weight, 'GRAD' 0, 'opsz' 24;
+
+      @each $size in $opticalSizes {
+        &.opsz-#{$size} {
+          font-variation-settings: 'FILL' 0, 'wght' $weight, 'GRAD' 0, 'opsz' $size;
+        }
+      }
+    }
+  }
+}
+
+.bs-40 {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 40px !important;
+  line-height: 40px !important;
+}
+
+.bs-48 {
+  width: 48px !important;
+  height: 48px !important;
   font-size: 48px !important;
   line-height: 48px !important;
 }
 
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./assets/fonts/Material_Icons-400-1.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Material Icons Outlined';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./assets/fonts/Material_Icons_Outlined-400-2.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Material Icons Round';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./assets/fonts/Material_Icons_Round-400-3.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Material Icons Sharp';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./assets/fonts/Material_Icons_Sharp-400-4.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Material Icons Two Tone';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./assets/fonts/Material_Icons_Two_Tone-400-5.otf') format('opentype');
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-outlined {
-  font-family: 'Material Icons Outlined';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-round {
-  font-family: 'Material Icons Round';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-sharp {
-  font-family: 'Material Icons Sharp';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-two-tone {
-  font-family: 'Material Icons Two Tone';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
+.rotate-90 {
+  transform: rotate(90deg);
 }

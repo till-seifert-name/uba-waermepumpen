@@ -75,7 +75,7 @@
                 Welche Distanz soll mit dem zu beschaffenden Pkw im Normalfall pro Tag zurückgelegt werden?
                 <mat-icon [dialogTrigger]="popupStrecken"
                           matTooltip="Hilfe"
-                          class="material-icons-outlined text-muted align-middle">
+                          fontSet="material-symbols-outlined" class="wght-300 opsz-20 fs-5 text-muted align-middle">
                   help_outline
                 </mat-icon>
               </p>
@@ -106,7 +106,7 @@
                 Wie oft werden übers Jahr Tagesstrecken über 150 km zurückgelegt?
                 <mat-icon [dialogTrigger]="popupTagesfahrprofil"
                           matTooltip="Hilfe"
-                          class="material-icons-outlined text-muted align-middle">
+                          fontSet="material-symbols-outlined" class="wght-300 opsz-20 fs-5 text-muted align-middle">
                   help_outline
                 </mat-icon>
               </p>
@@ -175,7 +175,7 @@
                 verfügbar?
                 <mat-icon [dialogTrigger]="popupLadeinfrastrukturStandort"
                           matTooltip="Hilfe"
-                          class="material-icons-outlined text-muted align-middle">
+                          fontSet="material-symbols-outlined" class="wght-300 opsz-20 fs-5 text-muted align-middle">
                   help_outline
                 </mat-icon>
               </p>
@@ -210,7 +210,7 @@
                 Sind Ladesäulen auf den zu befahrenden Strecken verfügbar?
                 <mat-icon [dialogTrigger]="popupLadeinfrastrukturStrecken"
                           matTooltip="Hilfe"
-                          class="material-icons-outlined text-muted align-middle">
+                          fontSet="material-symbols-outlined" class="wght-300 opsz-20 fs-5 text-muted align-middle">
                   help_outline
                 </mat-icon>
               </p>
@@ -270,7 +270,7 @@
                 2.1 Sitzplätze
                 <mat-icon [dialogTrigger]="popupSitzplaetze"
                           matTooltip="Hilfe"
-                          class="material-icons-outlined text-muted align-middle">
+                          fontSet="material-symbols-outlined" class="wght-300 opsz-20 fs-5 text-muted align-middle">
                   help_outline
                 </mat-icon>
               </h3>
@@ -332,7 +332,7 @@
                 2.2 Transport
                 <mat-icon [dialogTrigger]="popupTransport"
                           matTooltip="Hilfe"
-                          class="material-icons-outlined text-muted align-middle">
+                          fontSet="material-symbols-outlined" class="wght-300 opsz-20 fs-5 text-muted align-middle">
                   help_outline
                 </mat-icon>
               </h3>
@@ -429,12 +429,12 @@
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="downloadAsPDF()"
                   class="ms-0 me-auto d-print-none"
                   matTooltip="Herunterladen">
-            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined" class="wght-300">file_download</mat-icon>
           </button>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
-                  class="d-print-none d-none d-lg-block p-0 fs-48">
-            <mat-icon fontSet="material-symbols-outlined" inline="true" color="primary">swap_horizontal_circle</mat-icon>
+                  class="d-print-none d-none d-lg-block p-0 bs-48">
+            <mat-icon fontSet="material-symbols-outlined" class="opsz-48" inline="true" color="primary">swap_horizontal_circle</mat-icon>
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
@@ -450,10 +450,10 @@
           <app-uebersichtsgrafik></app-uebersichtsgrafik>
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
-                  class="btn-open-close d-print-none">
-            <mat-icon class="material-icons-outlined" color="primary">
-              <ng-container *ngIf="!viewstate.uebersichtsgrafikVisible">arrow_circle_left</ng-container>
-              <ng-container *ngIf="viewstate.uebersichtsgrafikVisible">arrow_circle_right</ng-container>
+                  class="btn-open-close d-print-none p-0 bs-40">
+            <mat-icon fontSet="material-symbols-outlined" class="opsz-40 rotate-90" inline="true" color="primary">
+              <ng-container *ngIf="!viewstate.uebersichtsgrafikVisible">expand_circle_down</ng-container>
+              <ng-container *ngIf="viewstate.uebersichtsgrafikVisible">expand_circle_up</ng-container>
             </mat-icon>
           </button>
         </mat-card>

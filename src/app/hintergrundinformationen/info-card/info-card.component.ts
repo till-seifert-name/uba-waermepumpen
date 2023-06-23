@@ -130,20 +130,20 @@ import {ActivatedRoute, Router} from "@angular/router";
 
         <mat-card-actions align="end" class="position-absolute top-0 end-0 d-print-none">
           <button mat-icon-button (click)="closeDialog()" autofocus>
-            <mat-icon class="material-icons-outlined">close</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
           </button>
         </mat-card-actions>
         <mat-card-actions align="end" class="d-print-none">
           <!--<button mat-icon-button>
-            <mat-icon class="material-icons-outlined">share</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined">share</mat-icon>
           </button>-->
           <a *ngIf="pdfDownloadUrl" mat-icon-button [href]="pdfDownloadUrl" target="_blank" matTooltip="Download PDF"
              matTooltipPosition="below">
-            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined" class="wght-300">file_download</mat-icon>
           </a>
           <button *ngIf="!pdfDownloadUrl" mat-icon-button (click)="downloadAsPDF()" matTooltip="Drucken"
                   matTooltipPosition="below">
-            <mat-icon class="material-icons-outlined">file_download</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined" class="wght-300">file_download</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
