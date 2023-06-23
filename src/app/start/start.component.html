@@ -14,7 +14,7 @@
 
 <section class="bg-white text-body container-fluid flex-grow-1 d-flex flex-column">
 
-  <h3 class="mat-body-1 text-primary text-center mt-3 mb-5">
+  <h3 class="mat-body-1 text-primary text-center mt-3 mb-4">
     Auf dieser Seite können Sie sich im Zuge der umweltverträglichen Beschaffung von Pkw umfassend informieren,
     <br>
     Ihre Vorüberlegungen dokumentieren und Empfehlungen zur Antriebsart und zum Fahrzeugsegment erhalten.
@@ -24,11 +24,11 @@
 
     <div class="col-12 col-sm-4 text-center d-flex flex-column justify-content-between gap-2">
       <img src="assets/Startseite/fragezeichen_1%201.svg" alt="?" height="48">
-      <h4>
+      <h4 class="mb-0">
         <span class="fw-bold" style="hyphens: auto">Hintergrundinformationen erhalten</span><br>
         Wie kann der Mobilitätsbedarf gedeckt werden?
       </h4>
-      <p class="mt-sm-4" style="hyphens: auto">
+      <p class="mt-sm-4 mt-md-auto" style="hyphens: auto">
         <a mat-stroked-button color="primary" routerLink="/hintergrundinformationen">
           Hintergrundinformationen
         </a>
@@ -44,7 +44,7 @@
         Verkehrsmittel genutzt werden?
       </h4>
 
-      <p class="mt-sm-4">
+      <p class="mt-sm-4 mt-md-auto">
         <a mat-stroked-button color="primary" routerLink="/vorueberlegungen">
           Vorüberlegungen
         </a>
@@ -58,7 +58,7 @@
         Kann ein umweltverträgliches Fahrzeug beschafft werden?
       </h4>
 
-      <p class="mt-sm-4">
+      <p class="mt-sm-4 mt-md-auto">
         <a mat-stroked-button color="primary" routerLink="/empfehlungen">
           Empfehlungen
         </a>
@@ -68,7 +68,7 @@
   </div>
 
 
-  <mat-accordion class="mb-5" multi displayMode="flat" #accordion>
+  <mat-accordion class="mb-4" multi displayMode="flat" #accordion>
 
     <mat-expansion-panel class="border-bottom border-top shadow-none">
       <mat-expansion-panel-header class="h-auto p-3">
