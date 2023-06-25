@@ -50,10 +50,10 @@ export class HintergrundinformationenComponent implements AfterViewInit {
       const element = component.elementRef.nativeElement;
       return {
         // Extract title from first heading in the element
-        title: element.querySelector('h1, h2, h3, h4, h5')?.innerHTML.trim() ?? '',
+        title: element.querySelector('h1, h2, h3, h4, h5')?.innerHTML?.trim() ?? '',
         // Extract content from all paragraphs and dialogs in the element
         content: Array.from(element.querySelectorAll('p, dialog :is(p, li, tr, dd, dt, h3, h4, h5, h6)'))
-          .reduce((acc, el) => `${acc} ${el instanceof HTMLElement && el.innerText.trim() ? el.innerText + '.' : ''}`, '').trim(),
+          .reduce((acc, el) => `${acc} ${el instanceof HTMLElement && el.innerText?.trim() ? el.innerText + '.' : ''}`, '').trim(),
         component: component
       };
     }) ?? [];

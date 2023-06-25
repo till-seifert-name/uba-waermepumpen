@@ -2,11 +2,12 @@ import {DomPortal, DomPortalOutlet} from '@angular/cdk/portal';
 import {
   AfterViewInit,
   Component,
-  ElementRef,
-  Input,
+  ElementRef, Inject,
+  Input, PLATFORM_ID, Renderer2,
   ViewChild
 } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-info-card',
@@ -164,18 +165,29 @@ export class InfoCardComponent implements AfterViewInit {
   /**
    * @param route
    * @param router
-   * @param elementRef is neede to access the test from outside for the search feature
+   * @param elementRef is needed to access the text from outside for the search feature
+   * @param document
+   * @param platformId
+   * @param renderer
    */
-  constructor(private route: ActivatedRoute, private router: Router, public elementRef: ElementRef<Element>) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public elementRef: ElementRef<Element>,
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private renderer: Renderer2
+  ) {
 
   }
 
   fragmentName: string = '';
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
 
     // init portal to put dialog in
-    this.portalOutlet = new DomPortalOutlet(document.body, undefined, undefined, undefined, document);
+    this.portalOutlet = new DomPortalOutlet(this.document.body, undefined, undefined, undefined, this.document);
 
     if (this.cardId || this.cardTitle) {
       this.fragmentName = (this.cardId || this.cardTitle).replace(/[^a-z0-9üäöß]+/iug, '-').toLowerCase();
@@ -195,6 +207,8 @@ export class InfoCardComponent implements AfterViewInit {
   private closeListener = () => this.closeDialog();
 
   openDialog(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     if (!this.dialog || this.dialog.nativeElement.open)
       return;
 
@@ -204,10 +218,10 @@ export class InfoCardComponent implements AfterViewInit {
     this.dialog.nativeElement.showModal();
 
     // blur close button
-    if (document.activeElement instanceof HTMLButtonElement)
-      document.activeElement.blur();
+    if (this.document.activeElement instanceof HTMLButtonElement)
+      this.document.activeElement.blur();
 
-    document.body.classList.add('dialog-open');
+    this.renderer.addClass(this.document.body, 'dialog-open');
 
     // react to native close with ESC
     this.dialog.nativeElement.addEventListener('cancel', this.closeListener);
@@ -220,13 +234,15 @@ export class InfoCardComponent implements AfterViewInit {
   }
 
   closeDialog(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     if (!this.dialog || !this.dialog.nativeElement.open)
       return;
     // remove listener
     this.dialog.nativeElement.removeEventListener('cancel', this.closeListener);
 
     this.dialog.nativeElement.close();
-    document.body.classList.remove('dialog-open');
+    this.renderer.removeClass(this.document.body, 'dialog-open');
 
     // remove dialog from portal
     this.portalOutlet.detach();

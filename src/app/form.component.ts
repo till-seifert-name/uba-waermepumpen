@@ -1,6 +1,8 @@
+import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 import {DataGrid} from "./data-grid";
 import {debounceTime, Subject} from "rxjs";
 import {BerechnungService} from "./berechnung.service";
+import {Inject, PLATFORM_ID} from "@angular/core";
 
 export class FormComponent {
   public grid: DataGrid;
@@ -14,7 +16,11 @@ export class FormComponent {
    */
   protected focusSubject = new Subject<void>();
 
-  constructor(public berechnungService: BerechnungService) {
+  constructor(
+    public berechnungService: BerechnungService,
+    @Inject(DOCUMENT) public document: Document,
+    @Inject(PLATFORM_ID) public platformId: Object,
+  ) {
     this.grid = this.berechnungService.grid;
 
     // Focus the first/next input when the stepper chnages ot a form element is usbmitted
@@ -41,11 +47,13 @@ export class FormComponent {
   }
 
   focusNextInput(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const inputs: HTMLElement[] = Array.from(
-      document.querySelectorAll('input, select, textarea, mat-select, mat-button-toggle, button[type=submit]') as NodeListOf<HTMLElement>)
+      this.document.querySelectorAll('input, select, textarea, mat-select, mat-button-toggle, button[type=submit]') as NodeListOf<HTMLElement>)
       .filter(input => !isHidden(input));
 
-    const nextInput = inputs[(inputs.indexOf(document.activeElement as HTMLElement) ?? -1) + 1] ?? inputs[0];
+    const nextInput = inputs[(inputs.indexOf(this.document.activeElement as HTMLElement) ?? -1) + 1] ?? inputs[0];
     nextInput?.focus();
   }
 

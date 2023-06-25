@@ -112,7 +112,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     PopupUmweltanforderungenComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,

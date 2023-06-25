@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dbu-online-tool",
+            "outputPath": "dist/dbu-online-tool/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -38,6 +38,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/betatest/",
+
               "budgets": [
                 {
                   "type": "initial",
@@ -53,6 +55,8 @@
               "outputHashing": "all"
             },
             "development": {
+              "baseHref": "/dbu-online-tool/",
+
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -100,6 +104,65 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/dbu-online-tool/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "dbu-online-tool:build:development",
+              "serverTarget": "dbu-online-tool:server:development"
+            },
+            "production": {
+              "browserTarget": "dbu-online-tool:build:production",
+              "serverTarget": "dbu-online-tool:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/",
+              "/kontakt",
+              "/impressum",
+              "/datenschutz",
+              "/kontakt",
+              "/hintergrundinformationen"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dbu-online-tool:build:production",
+              "serverTarget": "dbu-online-tool:server:production"
+            },
+            "development": {
+              "browserTarget": "dbu-online-tool:build:development",
+              "serverTarget": "dbu-online-tool:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       },
       "i18n": {
