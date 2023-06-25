@@ -571,9 +571,8 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content [class.invisible]="!grid.getCell('Fragen_Prototyp_Flotte', 'B59')">
-              <p class="ps-4 p-print-none" style="white-space: pre-line">
-                {{grid.getCell('Fragen_Prototyp_Flotte', 'B59')}}
-              </p>
+              <p class="ps-4 p-print-none" style="white-space: pre-line"
+                 [innerHTML]="grid.getCell('Fragen_Prototyp_Flotte', 'B59').toString() | markdown : { inline: true }"></p>
             </mat-card-content>
           </mat-card>
 

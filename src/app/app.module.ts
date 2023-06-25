@@ -66,6 +66,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import '@angular/common/locales/global/de';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MarkdownModule} from "ngx-markdown";
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
+    MarkdownModule.forRoot(),
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

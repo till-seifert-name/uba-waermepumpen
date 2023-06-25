@@ -31,7 +31,9 @@
     "@nguniversal/express-engine": "^15.2.1",
     "bootstrap": "^5.2.3",
     "express": "^4.15.2",
+    "marked": "^4.3.0",
     "material-symbols": "^0.8.1",
+    "ngx-markdown": "^15.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

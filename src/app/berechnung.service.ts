@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data, Hinweislisten_für_Flotte} from "./data";
+import {Empfehlungslisten_data, Fragen_Prototyp_Einzelfahrzeug_data, Hinweislisten_fuer_Flotte} from "./data";
 import {ABS, CellContent, DataGrid, ISTLEER, ODER, UND, WAHR, WENN, WENNS} from "./data-grid";
 import {debounceTime, filter} from "rxjs";
 
@@ -23,7 +23,7 @@ export class BerechnungService {
       grid.setCell("Names", cell, content);
     }
 
-    for (const [cell, content] of Object.entries(Hinweislisten_für_Flotte)) {
+    for (const [cell, content] of Object.entries(Hinweislisten_fuer_Flotte)) {
       grid.setCell("Names", cell, content);
     }
 
