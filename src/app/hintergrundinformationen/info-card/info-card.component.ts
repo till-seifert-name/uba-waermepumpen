@@ -194,7 +194,6 @@ export class InfoCardComponent implements AfterViewInit {
 
       this.route.fragment.subscribe(fragment => {
         const params = this.parseFragment(fragment || '');
-        console.log(params)
         if (params['popup'] === this.fragmentName) {
           setTimeout(() => this.openDialog(), 0);
         } else {
