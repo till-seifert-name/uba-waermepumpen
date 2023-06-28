@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, HostBinding, Input} from '@angular/core';
 
 @Component({
   selector: 'app-resizable-circle',
@@ -30,7 +30,9 @@ import {Component, Input} from '@angular/core';
 })
 export class ResizableCircleComponent {
   @Input() circleClass: string = '';
+  @HostBinding('attr.data-column')
   @Input() gridColumn: number = 1;
+  @HostBinding('attr.data-row')
   @Input() gridRow: number = 1;
   @Input() title: string = '';
   @Input() size: number = 36;

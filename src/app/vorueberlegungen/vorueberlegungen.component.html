@@ -168,7 +168,8 @@
                 <div class="g-col-12 g-col-sm-6">
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Fahrrad</span>
-                    <button mat-stroked-button class="bg-600-greens rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupEFahrrad">
+                    <button mat-stroked-button class="bg-600-greens rounded-3 border border-2 border-dark-subtle"
+                            [dialogTrigger]="popupEFahrrad">
                       Fahrrad
                     </button>
                   </h5>
@@ -201,7 +202,8 @@
                   <h5 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Pkw</span>
                   </h5>
-                  <button mat-stroked-button class="bg-500-blues rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupPkw">
+                  <button mat-stroked-button class="bg-500-blues rounded-3 border border-2 border-dark-subtle"
+                          [dialogTrigger]="popupPkw">
                     Pkw
                   </button>
                   <app-info-card-button #popupPkw cardTitle="Pkw">
@@ -214,7 +216,8 @@
                   <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Pooling</span>
                   </h6>
-                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupPkwPooling">
+                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border border-2 border-dark-subtle"
+                          [dialogTrigger]="popupPkwPooling">
                     Pooling
                   </button>
                   <app-info-card-button #popupPkwPooling cardTitle="Car-Pooling">
@@ -239,7 +242,8 @@
                   <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Sharing</span>
                   </h6>
-                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupPkwSharing">
+                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border border-2 border-dark-subtle"
+                          [dialogTrigger]="popupPkwSharing">
                     Sharing
                   </button>
                   <app-info-card-button #popupPkwSharing cardTitle="Car-Sharing">
@@ -264,7 +268,8 @@
                   <h6 class="mat-body-strong d-flex align-items-baseline justify-content-between">
                     <span>Mieten</span>
                   </h6>
-                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border border-2 border-dark-subtle" [dialogTrigger]="popupPkwMieten">
+                  <button mat-stroked-button class="bg-50-turquoise rounded-3 border border-2 border-dark-subtle"
+                          [dialogTrigger]="popupPkwMieten">
                     Mieten
                   </button>
                   <app-info-card-button #popupPkwMieten cardTitle="Mietwagen">
@@ -364,7 +369,8 @@
           <button *ngIf="stepper.selectedIndex > 0" mat-icon-button (click)="toggleUebersichtsgrafikVisible()"
                   matTooltip="Übersichtsgrafik ein-/ausblenden"
                   class="d-print-none d-none d-lg-block p-0 bs-48">
-            <mat-icon fontSet="material-symbols-outlined" inline="true" color="primary">swap_horizontal_circle</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined" inline="true" color="primary">swap_horizontal_circle
+            </mat-icon>
           </button>
           <h4 (click)="toggleUebersichtsgrafikVisible(true)"
               [class.text-muted]="!(viewstate.uebersichtsgrafikVisible || stepper.selectedIndex == 0)"
@@ -473,20 +479,20 @@
                 </div>
 
                 <app-resizable-circle
-                  class="oepnv"
-                  *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D15')"
-                  [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
-                  [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E15')"
-                  [title]="'ÖPNV/Bahn/Fernbus'"
-                  [size]="36">
-                </app-resizable-circle>
-
-                <app-resizable-circle
                   class="fahrrad"
                   *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D14')"
                   [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D14') / 2 + 3"
                   [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E14')"
                   [title]="'Fahrrad'"
+                  [size]="36">
+                </app-resizable-circle>
+
+                <app-resizable-circle
+                  class="oepnv"
+                  *ngIf="grid.getCellNumeric('Darstellung_Flotte', 'D15')"
+                  [gridColumn]="grid.getCellNumeric('Darstellung_Flotte', 'D15') / 2 + 3"
+                  [gridRow]="3 - grid.getCellNumeric('Darstellung_Flotte', 'E15')"
+                  [title]="'ÖPNV/Bahn/Fernbus'"
                   [size]="36">
                 </app-resizable-circle>
 

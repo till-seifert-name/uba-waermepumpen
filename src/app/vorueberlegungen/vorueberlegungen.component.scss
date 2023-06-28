@@ -120,25 +120,59 @@
     text-align: center;
   }
 
-  .fahrrad ::ng-deep svg {
-    transform: translate(15px, 15px);
+  --offset: 35px;
+
+  @for $i from 1 through 2 {
+    @for $j from 4 through 6 {
+      ::ng-deep > * {
+        &[data-row="#{$i}"][data-column="#{$j}"] {
+          // Only child
+          /*&:nth-child(1 of[data-row="#{$i}"][data-column="#{$j}"]):nth-last-child(1 of[data-row="#{$i}"][data-column="#{$j}"]) {
+            > .circle {
+              translate: 0 0;
+            }
+          }*/
+
+          // First sibling of two
+          &:nth-child(1 of[data-row="#{$i}"][data-column="#{$j}"]):nth-last-child(2 of[data-row="#{$i}"][data-column="#{$j}"]) {
+            > .circle {
+              translate: calc(-1 * var(--offset)) 0;
+            }
+          }
+
+          // Second (last) sibling of two
+          &:nth-child(2 of[data-row="#{$i}"][data-column="#{$j}"]):nth-last-child(1 of[data-row="#{$i}"][data-column="#{$j}"]) {
+            > .circle {
+              translate: var(--offset) 0;
+            }
+          }
+
+          // First sibling of three
+          &:nth-child(1 of[data-row="#{$i}"][data-column="#{$j}"]):nth-last-child(3 of[data-row="#{$i}"][data-column="#{$j}"]) {
+            > .circle {
+              translate: calc(-1 * var(--offset)) 0;
+            }
+          }
+
+          // Second sibling of three
+          /*&:nth-child(2 of[data-row="#{$i}"][data-column="#{$j}"]):nth-last-child(2 of[data-row="#{$i}"][data-column="#{$j}"]) {
+            > .circle {
+              translate: 0 0;
+            }
+          }*/
+
+          // Third (last) sibling of three
+          &:nth-child(3 of[data-row="#{$i}"][data-column="#{$j}"]):nth-last-child(1 of[data-row="#{$i}"][data-column="#{$j}"]) {
+            > .circle {
+              translate: var(--offset) 0;
+            }
+          }
+        }
+      }
+    }
   }
 
-  .oepnv ::ng-deep svg {
-    transform: translate(-15px, -15px);
-  }
 
-  .pkw-pooling ::ng-deep svg {
-    transform: translate(-20px, -20px);
-  }
-
-  .pkw-sharing ::ng-deep svg {
-    transform: translate(20px, 20px);
-  }
-
-  .pkw-mieten ::ng-deep svg {
-    transform: translate(0px, 0px);
-  }
 }
 
 .circle {
