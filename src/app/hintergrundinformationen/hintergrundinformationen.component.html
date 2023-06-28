@@ -40,7 +40,7 @@
                    placeholder="Suchbegriff hier eingeben">
             <button *ngIf="searchControl.value" matSuffix mat-icon-button aria-label="Leeren"
                     (click)="searchControl.setValue('')">
-              <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+              <mat-icon fontSet="material-symbols-outlined" class="wght-300">close</mat-icon>
             </button>
             <button *ngIf="!searchControl.value" matSuffix mat-icon-button aria-label="Suchen">
               <mat-icon fontSet="material-symbols-outlined">search</mat-icon>

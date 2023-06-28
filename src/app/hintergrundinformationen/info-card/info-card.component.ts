@@ -131,7 +131,7 @@ import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
         <mat-card-actions align="end" class="position-absolute top-0 end-0 d-print-none">
           <button mat-icon-button (click)="closeDialog()" autofocus>
-            <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined" class="wght-300">close</mat-icon>
           </button>
         </mat-card-actions>
         <mat-card-actions align="end" class="d-print-none">
