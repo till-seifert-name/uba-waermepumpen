@@ -422,7 +422,7 @@
                     [attr.data-direction]="grid.getCell('Fragen_Prototyp_Flotte', 'E16')"
                     [attr.data-percent]="grid.getCell('Fragen_Prototyp_Flotte', 'G16')"
                 >
-                  {{grid.getCell('Fragen_Prototyp_Flotte', 'G16')|percent:'0.0-0':'de'}}
+                  {{(grid.getCellNumeric('Fragen_Prototyp_Flotte', 'G16')*100)|number:'0.0-0':'de'}} %
                 </em>
               </p>
               <p class="ps-4 p-print-none" style="white-space: pre-line">
