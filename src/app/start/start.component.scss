@@ -4,17 +4,23 @@
 
 .hero {
   padding: 0.1px;
-  background: url("../../assets/Header Startseite/Vector.svg") 0.3rem 0.3rem no-repeat,
-  url("../../assets/Header Startseite/Vector-1.svg") 10rem 0rem no-repeat,
-  url("../../assets/Header Startseite/Blatt.svg") right 5.1rem no-repeat,
-  url("../../assets/Logo/Logo.svg") top 1.5rem center/11.3rem auto no-repeat;
+  position: relative;
 
-  /*@media screen and (min-width: 1200px) {
-    background: url("../../assets/Header Startseite/Vector.svg") 0.3rem 0.3rem no-repeat,
-    url("../../assets/Header Startseite/Vector-1.svg") 10rem 0rem no-repeat,
-    url("../../assets/Header Startseite/Blatt.svg") right 5.1rem no-repeat,
-    url("../../assets/Logo/Logo.svg") top 0.8rem center/11.3rem auto no-repeat;
-  }*/
+  &:before {
+    display: block;
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: clamp(-30px, calc(0.5 * (0px - 100vw + var(--body-max-width))), 0px);
+    right: clamp(-30px, calc(0.5 * (0px - 100vw + var(--body-max-width))), 0px);
+    /*right: -30px;*/
+    background: url("../../assets/Header Startseite/Vector.svg") calc(30px + 0.3rem) 0.3rem no-repeat,
+    url("../../assets/Header Startseite/Vector-1.svg") calc(30px + 10rem) 0rem no-repeat,
+    url("../../assets/Header Startseite/Blatt.svg") right clamp(-28px, calc((-28px + 100vw - var(--body-max-width))), 2px) top 5.1rem no-repeat,
+    url("../../assets/Logo/Logo.svg") top 1.5rem center/11.3rem auto no-repeat;
+    background-clip: border-box;
+  }
 
   h1 {
     text-shadow: 0 0 1rem var(--bs-dark);

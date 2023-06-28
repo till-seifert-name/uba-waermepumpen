@@ -176,12 +176,12 @@ body > app-root {
 
 /* White border left and right */
 .backdrop-white {
-  box-shadow: var(--body-max-width) 0 0 0 rgba(var(--bs-white-rgb), var(--bs-bg-opacity)),
-  calc(-1 * var(--body-max-width)) 0 0 0 rgba(var(--bs-white-rgb), var(--bs-bg-opacity));
+  box-shadow: calc(var(--body-max-width) - 1px) 0 0 0 rgba(var(--bs-white-rgb), var(--bs-bg-opacity)),
+  calc(-1 * var(--body-max-width) + 1px) 0 0 0 rgba(var(--bs-white-rgb), var(--bs-bg-opacity));
 }
 .backdrop-dark {
-  box-shadow: var(--body-max-width) 0 0 0 rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)),
-  calc(-1 * var(--body-max-width)) 0 0 0 rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+  box-shadow: calc(var(--body-max-width) - 1px) 0 0 0 rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)),
+  calc(-1 * var(--body-max-width) + 1px) 0 0 0 rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
 }
 
 @media print {
