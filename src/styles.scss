@@ -151,6 +151,7 @@ html, body {
 body {
   margin: 0;
   font-family: Inter, "Helvetica Neue", sans-serif;
+  font-display: swap;
   display: flex;
   flex-direction: column;
   max-width: var(--body-max-width);
