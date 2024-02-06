@@ -9,6 +9,17 @@
     </div>
   </h1>
 
+  <div class="d-flex flex-column align-items-center gap-2 position-absolute"
+       style="
+         top: 8.2rem;
+         right: clamp(0.6rem, 0.6rem + 100vw - var(--body-max-width), 2px);
+       ">
+    <strong>Aktuell:</strong>
+    <a mat-stroked-button class="text-bg-dark" href="https://ifeu.org/energie/umfrage/index.php/359934?lang=de" target="_blank">
+      Umfrage
+    </a>
+  </div>
+
 </section>
 
 
@@ -403,6 +414,27 @@
           <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
         </ng-template>
       </app-info-card-button>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="border-bottom shadow-none">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-headline-5 m-0">
+          <strong>Aktuell: Feedbackmöglichkeit</strong>&ensp;–&ensp;Umfrage zur Nutzung der entwickelten Instrumente in der Praxis
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>
+        Derzeit evaluiert das ifeu die Anwendung der entwickelten Instrumente in der Praxis. Teilen Sie uns bis Ende März 2024 per Online-Umfrage Ihre
+        Erfahrungen mit dem Online-Tool, den Umweltanforderungen und dem LZK-Rechner (siehe Downloads) mit.
+      </p>
+      <p>
+        Die Umfrage richtet sich an Bedarfsträger und Beschaffungsstellen sowie an Personen in politischen Institutionen, die für die öffentliche
+        Fahrzeugbeschaffung zuständig sind. Die Umfrageergebnisse fließen in die Tool-Optimierung und in die Erstellung einer FAQ-Seite sowie eines
+        Webinar-Moduls ein.
+      </p>
+      <p>
+        <strong>Link zur Online-Umfrage: </strong>
+        <a href="https://ifeu.org/energie/umfrage/index.php/359934?lang=de" target="_blank">https://ifeu.org/energie/umfrage/index.php/359934?lang=de</a>
+      </p>
     </mat-expansion-panel>
 
   </mat-accordion>
