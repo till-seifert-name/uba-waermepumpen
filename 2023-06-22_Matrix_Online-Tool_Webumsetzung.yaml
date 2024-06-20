@@ -1,0 +1,2910 @@
+Auswahllisten:
+  A1: "Auswahllisten f\xFCr Drop-Down-Men\xFCs"
+  A11: A_S1
+  A12: A_S2
+  A13: A_S3
+  A16: A_SV1
+  A17: A_SV2
+  A18: A_SV3
+  A21: A_SP1
+  A22: A_SP2
+  A23: A_SP3
+  A26: A_T1
+  A27: A_T2
+  A28: A_T3
+  A3: ID
+  A4: A_R1
+  A7: A_JN1
+  A8: A_JN2
+  B10: "Wie oft werden \xFCbers Jahr Strecken \xFCber 150 km zur\xFCckgelegt?"
+  B11: Selten
+  B12: "H\xE4ufig"
+  B13: Meistens
+  B15: "Standzeiten / Verkehrsmittel (f\xFCr Prototyp_Flotte)"
+  B16: Fast nie
+  B17: Ab und zu
+  B18: "Regelm\xE4\xDFig"
+  B20: "Wie h\xE4ufig werden alle Sitzpl\xE4tze ben\xF6tigt?"
+  B21: Selten
+  B22: "H\xE4ufig"
+  B23: Meistens
+  B25: Transportanforderungen
+  B26: Nie
+  B27: Gelegentlich
+  B28: "Regelm\xE4\xDFig"
+  B3: "Reichweiten-Grenze f\xFCr BEV [km]"
+  B4: 150
+  B6: Ja/Nein-Fragen
+  B7: Ja
+  B8: Nein
+Changelog:
+  A1: "\xC4nderungsdatum"
+  A10: 2023-05-24 00:00:00
+  A100: 2023-06-20 00:00:00
+  A101: 2023-06-20 00:00:00
+  A102: 2023-06-21 00:00:00
+  A103: 2023-06-21 00:00:00
+  A11: 2023-05-24 00:00:00
+  A12: 2023-05-24 00:00:00
+  A13: 2023-05-24 00:00:00
+  A14: 2023-05-24 00:00:00
+  A15: 2023-05-24 00:00:00
+  A16: 2023-05-24 00:00:00
+  A17: 2023-05-24 00:00:00
+  A18: 2023-05-24 00:00:00
+  A19: 2023-05-24 00:00:00
+  A2: 2023-04-14 00:00:00
+  A20: 2023-05-24 00:00:00
+  A21: 2023-05-24 00:00:00
+  A22: 2023-05-24 00:00:00
+  A23: 2023-05-24 00:00:00
+  A24: 2023-05-24 00:00:00
+  A25: 2023-05-24 00:00:00
+  A26: 2023-05-24 00:00:00
+  A27: 2023-05-24 00:00:00
+  A28: 2023-05-24 00:00:00
+  A29: 2023-05-24 00:00:00
+  A3: 2023-05-24 00:00:00
+  A30: 2023-05-25 00:00:00
+  A31: 2023-05-25 00:00:00
+  A32: 2023-05-30 00:00:00
+  A33: 2023-05-30 00:00:00
+  A34: 2023-05-30 00:00:00
+  A35: 2023-05-30 00:00:00
+  A36: 2023-05-30 00:00:00
+  A37: 2023-05-30 00:00:00
+  A38: 2023-05-30 00:00:00
+  A39: 2023-05-30 00:00:00
+  A4: 2023-05-24 00:00:00
+  A40: 2023-05-30 00:00:00
+  A41: 2023-05-30 00:00:00
+  A42: 2023-05-30 00:00:00
+  A43: 2023-05-30 00:00:00
+  A44: 2023-05-30 00:00:00
+  A45: 2023-05-30 00:00:00
+  A46: 2023-05-30 00:00:00
+  A47: 2023-05-30 00:00:00
+  A48: 2023-05-30 00:00:00
+  A49: 2023-05-30 00:00:00
+  A5: 2023-05-24 00:00:00
+  A50: 2023-05-30 00:00:00
+  A51: 2023-05-30 00:00:00
+  A52: 2023-05-31 00:00:00
+  A53: 2023-05-31 00:00:00
+  A54: 2023-05-31 00:00:00
+  A55: 2023-05-31 00:00:00
+  A56: 2023-06-01 00:00:00
+  A57: 2023-06-01 00:00:00
+  A58: 2023-06-01 00:00:00
+  A59: 2023-06-08 00:00:00
+  A6: 2023-05-24 00:00:00
+  A60: 2023-06-08 00:00:00
+  A61: 2023-06-08 00:00:00
+  A62: 2023-06-08 00:00:00
+  A63: 2023-06-08 00:00:00
+  A64: 2023-06-08 00:00:00
+  A65: 2023-06-08 00:00:00
+  A66: 2023-06-08 00:00:00
+  A67: 2023-06-08 00:00:00
+  A68: 2023-06-08 00:00:00
+  A69: 2023-06-08 00:00:00
+  A7: 2023-05-24 00:00:00
+  A70: 2023-06-08 00:00:00
+  A71: 2023-06-08 00:00:00
+  A72: 2023-06-09 00:00:00
+  A73: 2023-06-09 00:00:00
+  A74: 2023-06-09 00:00:00
+  A75: 2023-06-09 00:00:00
+  A76: 2023-06-09 00:00:00
+  A77: 2023-06-09 00:00:00
+  A78: 2023-06-09 00:00:00
+  A79: 2023-06-13 00:00:00
+  A8: 2023-05-24 00:00:00
+  A80: 2023-06-13 00:00:00
+  A81: 2023-06-13 00:00:00
+  A82: 2023-06-13 00:00:00
+  A83: 2023-06-13 00:00:00
+  A84: 2023-06-13 00:00:00
+  A85: 2023-06-13 00:00:00
+  A86: 2023-06-13 00:00:00
+  A87: 2023-06-13 00:00:00
+  A88: 2023-06-13 00:00:00
+  A89: 2023-06-14 00:00:00
+  A9: 2023-05-24 00:00:00
+  A90: 2023-06-14 00:00:00
+  A91: 2023-06-14 00:00:00
+  A92: 2023-06-14 00:00:00
+  A93: 2023-06-14 00:00:00
+  A94: 2023-06-14 00:00:00
+  A95: 2023-06-14 00:00:00
+  A96: 2023-06-14 00:00:00
+  A97: 2023-06-14 00:00:00
+  A98: 2023-06-14 00:00:00
+  A99: 2023-06-20 00:00:00
+  B1: 'Bearbeitet durch:'
+  B10: Julia
+  B100: Julia
+  B101: Julia
+  B102: Julia
+  B103: Julia
+  B11: Julia
+  B12: Julia
+  B13: Julia
+  B14: Julia
+  B15: Julia
+  B16: Julia
+  B17: Julia
+  B18: Julia
+  B19: Julia
+  B2: Julia
+  B20: Julia
+  B21: Julia
+  B22: Julia
+  B23: Julia
+  B24: Julia
+  B25: Julia
+  B26: Julia
+  B27: Julia
+  B28: Julia
+  B29: Julia
+  B3: Julia
+  B30: Julia
+  B31: Julia
+  B32: Julia
+  B33: Julia
+  B34: Julia
+  B35: Julia
+  B36: Julia
+  B37: Julia
+  B38: Julia
+  B39: Julia
+  B4: Julia
+  B40: Julia
+  B41: Julia
+  B42: Julia
+  B43: Julia
+  B44: Julia
+  B45: Julia
+  B46: Julia
+  B47: Julia
+  B48: Julia
+  B49: Julia
+  B5: Julia
+  B50: Julia
+  B51: Julia
+  B52: Julia
+  B53: Julia
+  B54: Julia
+  B55: Julia
+  B56: Julia
+  B57: Julia
+  B58: Julia
+  B59: Julia
+  B6: Julia
+  B60: Julia
+  B61: Julia
+  B62: Julia
+  B63: Julia
+  B64: Julia
+  B65: Julia
+  B66: Julia
+  B67: Julia
+  B68: Julia
+  B69: Julia
+  B7: Julia
+  B70: Julia
+  B71: Julia
+  B72: Julia
+  B73: Julia
+  B74: Julia
+  B75: Julia
+  B76: Julia
+  B77: Julia
+  B78: Julia
+  B79: Julia
+  B8: Julia
+  B80: Julia
+  B81: Julia
+  B82: Julia
+  B83: Julia
+  B84: Julia
+  B85: Julia
+  B86: Julia
+  B87: Julia
+  B88: Julia
+  B89: Julia
+  B9: Julia
+  B90: Julia
+  B91: Susanne
+  B92: Susanne
+  B93: Susanne
+  B94: Susanne
+  B95: Susanne
+  B96: Susanne
+  B97: Julia
+  B98: Julia
+  B99: Julia
+  C1: Blatt/Unterseite Website
+  C10: "Vor\xFCberlegungen 2/4"
+  C100: Umweltanforderungen - Pop-up
+  C101: Umweltanforderungen - Downloadversion
+  C102: Empfehlungslisten
+  C103: Infoboxen
+  C11: "Vor\xFCberlegungen 2/4"
+  C12: "Vor\xFCberlegungen 3/4"
+  C13: "Vor\xFCberlegungen 3/4"
+  C14: "Vor\xFCberlegungen 3/4"
+  C15: "Vor\xFCberlegungen 4/4"
+  C16: Startseite
+  C17: Startseite
+  C18: Startseite
+  C19: Startseite
+  C2: Alle
+  C20: Startseite
+  C21: Startseite
+  C22: Bildschirmbreite
+  C23: Empfehlungen 1/4
+  C24: Empfehlungen 1/4
+  C25: Empfehlungen 2/4
+  C26: Empfehlungen 3/4
+  C27: Empfehlungen 4/4
+  C28: Empfehlungen 4/4
+  C29: Empfehlungen 4/4
+  C3: "Vor\xFCberlegungen 1/4"
+  C30: "Vor\xFCberlegungen 3/4"
+  C31: "Vor\xFCberlegungen 3/4"
+  C32: Titel in Tab
+  C33: Hintergrundinformationen
+  C34: Hintergrundinformationen
+  C35: Hintergrundinformationen
+  C36: Download-Funktion
+  C37: Hintergrundinformationen
+  C38: Hintergrundinformationen
+  C39: Hintergrundinformationen
+  C4: "Vor\xFCberlegungen 1/4"
+  C40: Hintergrundinformationen
+  C41: Hintergrundinformationen
+  C42: Hintergrundinformationen
+  C43: Download-Funktion
+  C44: Download-Funktion
+  C45: Hintergrundinformationen
+  C46: Hintergrundinformationen
+  C47: Startseite
+  C48: Startseite
+  C49: Startseite
+  C5: "Vor\xFCberlegungen 2/4"
+  C50: Empfehlungen 4/4
+  C51: Startseite
+  C52: Startseite
+  C53: Empfehlungen 3/4
+  C54: Empfehlungen 2/4 und 4/4
+  C55: Kopfzeile
+  C56: Startseite
+  C57: Infoboxen
+  C58: Logo
+  C59: "Kopfzeile bei Vor\xFCberlegungen und Empfehlungen"
+  C6: "Vor\xFCberlegungen 2/4"
+  C60: "Empfehlungen und Vor\xFCberlegungen"
+  C61: Startseite
+  C62: Startseite
+  C63: Startseite
+  C64: Startseite
+  C65: Startseite
+  C66: Startseite
+  C67: Startseite
+  C68: Startseite
+  C69: Startseite
+  C7: "Vor\xFCberlegungen 2/4"
+  C70: Startseite
+  C71: Startseite
+  C72: Startseite
+  C73: Startseite
+  C74: Startseite
+  C75: Empfehlungslisten
+  C76: Infobox
+  C77: Empfehlungen
+  C78: "Zur\xFCcksetzen-Funktion"
+  C79: Kontakt
+  C8: "Vor\xFCberlegungen 2/4"
+  C80: Infobox
+  C81: Infobox
+  C82: Infobox
+  C83: Infobox
+  C84: Impressum und Datenschutz
+  C85: Startseite
+  C86: Startseite
+  C87: Startseite
+  C88: Startseite, Kontakt, Impressum, Datenschutz
+  C89: Empfehlungen 2/4
+  C9: "Vor\xFCberlegungen 2/4"
+  C90: Empfehlungen 4/4
+  C91: Hintergrundinformationen
+  C92: "Empfehlungen ab 2/4 und Vor\xFCberlegungen ab 2/4"
+  C93: "Empfehlungen ab 2/4 und Vor\xFCberlegungen ab 2/4"
+  C94: Hintergrundinformationen
+  C95: Hintergrundinformationen
+  C96: "Empfehlungen und Vor\xFCberlegungen"
+  C97: "Startseite \"\xDCber das Online-Tool\""
+  C98: Umweltanforderungen - Pop-up
+  C99: Umweltanforderungen - Pop-up
+  D1: Zelle/Position auf Website
+  D10: Linke Seite
+  D100: Umgang mit Sonderausstattung
+  D102: Spalte B
+  D11: Linke Seite
+  D12: Linke Seite
+  D13: Linke Seite
+  D14: Linke Seite
+  D15: Rechte Seite
+  D16: "Text \xFCber Tooleinstieg"
+  D17: "Burgermen\xFC oben rechts"
+  D18: "Fu\xDFzeile"
+  D19: "Fu\xDFzeile"
+  D20: "Akkordeonmen\xFC"
+  D21: "Fu\xDFzeile"
+  D23: Linke Seite
+  D24: Linke Seite
+  D25: Linke Seite
+  D26: Linke Seite
+  D27: Linke Seite
+  D28: Linke Seite
+  D29: Ansicht
+  D3: Linke Seite
+  D30: Rechte Seite
+  D31: Rechte Seite
+  D33: UX
+  D34: Funktion
+  D35: UX
+  D37: Infoboxen - Teilen
+  D38: Infoboxen - Links
+  D39: THG-Vergleich von Verkehrsmitteln
+  D4: Rechte Seite
+  D40: THG-Vergleich von Verkehrsmitteln
+  D41: Abo/Leasing eines Fahrrads
+  D42: Pkw
+  D45: Antriebsart
+  D46: Fahrzeugsegment
+  D47: "Burgermen\xFC"
+  D48: Downloads
+  D49: Downloads
+  D5: Linke Seite
+  D50: Rechte Seite
+  D51: "Ansatzpunkte f\xFCr die umweltvertr\xE4gliche Beschaffung "
+  D52: Rechtliche Einordnung
+  D53: Linke Seite
+  D54: Linke Seite
+  D56: "Ansatzpunkte f\xFCr die umweltvertr\xE4gliche Beschaffung "
+  D57: Icon
+  D6: Rechte Seite
+  D60: Navigation
+  D61: Tooleinstieg
+  D62: Tooleinstieg
+  D63: "\xDCber das Online-Tool"
+  D64: "Ansatzpunkte f\xFCr die umweltvertr\xE4gliche Beschaffung "
+  D65: "Ansatzpunkte f\xFCr die umweltvertr\xE4gliche Beschaffung "
+  D66: Downloads
+  D67: Downloads
+  D68: Downloads
+  D69: Rechtliche Einordnung
+  D7: Rechte Seite
+  D70: "Fu\xDFzeile"
+  D71: "Fu\xDFzeile"
+  D72: "Burgermen\xFC"
+  D73: Downloads
+  D74: Rechtliche Einordnung
+  D75: Zeile 19, 20, 39-42
+  D76: Fahrzeugsegment
+  D77: Rechte Seite
+  D8: Rechte Seite
+  D80: Fahrzeugsegment
+  D81: Fahrzeugsegment
+  D82: Fahrzeugsegment
+  D83: THG-Vergleich von Verkehrsmitteln
+  D85: "Akkordeonmen\xFC"
+  D86: "Akkordeonmen\xFC"
+  D87: "Ansatzpunkte f\xFCr die umweltvertr\xE4gliche Beschaffung"
+  D89: Eingabefelder
+  D9: Rechte Seite
+  D90: Fehlermeldung
+  D91: weisse Hintergrundbox
+  D94: 'Cards Unterkategorien '
+  D95: Cards Oberkategorien
+  D96: 'Icons: Download, refresh, Fragezeichen'
+  E1: "Alter Code/ \xC4nderung auf Website"
+  E10: "Eingabek\xE4sten: Rahmen auch schon vor der Eingabe/Auswahl in dunkelgrau\
+    \ (wie in Figma) und Sternchen weglassen"
+  E100: "Letzte Unteraufz\xE4hlung unter \"(Panorama-)Glasdach\" austauschen mit \"\
+    Negativer Einfluss auf die Fahrzeugisolation/Aufheizung und damit auf den Heizbedarf\
+    \ und die K\xFChlleistung\""
+  E101: "PDF f\xFCr Downloadversion (sowohl auf Startseite unter Downloads als auch\
+    \ als Druckversion des Pop-ups) ersetzen (siehe Link zu PDF im Kommentar)"
+  E102: "Anpassungen rot markiert (und Zelle gelb gef\xE4rbt) in Spalte B; Hinweise\
+    \ dazu in Spalte C. Zum Teil Kommentare f\xFCr Hyperlink \xFCber dem Wort \"Modelle\"\
+    \ (ist immer der gleiche Link - Hinweis in Spalte C, wenn Link verwendet werden\
+    \ soll). Bei der \xDCbernahme bitte wieder die Zeilenumbr\xFCche beachten"
+  E103: "\xC4nderungen in Infoboxen wie per Mail besprochen \xFCbernehmen -> Abschnittsweise\
+    \ die \xC4nderungen annehmen und dann \xFCbernehmen. Z.T. auch neue Verlinkungen\
+    \ zu anderen Infoboxen (in Kommentaren als NEU markiert). Abschnitts\xFCberschriften\
+    \ haben sich zum Teil ge\xE4ndert -> f\xFCr \"Hintergrundinformationen\" und Infoboxen\
+    \ \xFCbernehmen, aber in der \xDCbersichtsgrafik so lassen (ist sonst teilweise\
+    \ zu lang f\xFCr die kleinen Boxen in der Grafik). Link zur Word-Datei im Kommentar"
+  E11: "Fragebutton neben \"Wie viele Fahrzeuge aus einem vorhandenen Fuhrpark werden\
+    \ durch diese Beschaffung ersetzt?\" (siehe Figma, Text f\xFCr Hilfebox siehe\
+    \ Link in Kommentar)"
+  E12: "PKW (\xFCber der Auswahl f\xFCr Pooling etc.)"
+  E13: "Farbige Buttons neben Auswahloptionen hinzuf\xFCgen (siehe Figma), die dann\
+    \ die entsprechenden Infoboxen \xF6ffnen"
+  E14: "Auswahlfelder verbreitern, sodass \"H\xE4ufigkeit der Nutzung\" ganz zu sehen\
+    \ ist -> Schrift ggf. auch ein bisschen kleiner; Erste Auswahlfelder etwas von\
+    \ \"Eine Analyse der bisherigen Nutzung des Fuhrparks kann bei der Beantwortung\
+    \ der Frage helfen.\" abr\xFCcken/etwas tiefer (siehe Figma)"
+  E15: "Unter 3. -> Hinweis auf Download + Download-Button (siehe Figma) -> im Gegensatz\
+    \ zu Figma soll im Button allerdings stehen \"Download Vor\xFCberlegungen\""
+  E16: "Text in zwei Zeilen anordnen, damit der Text nicht \xFCber die gesamte Seite\
+    \ geht"
+  E17: "Men\xFC nur als Box auf der rechten Seite ausklappen (siehe Figma)"
+  E18: "ifeu-Logo nach rechts r\xFCcken (sieht bei mir verrutscht aus und ist unter\
+    \ den anderen drei Logos gelandet)"
+  E19: 'Link auf Logos setzen -> DBU: https://www.dbu.de/; Berlin: https://www.berlin.de/sen/uvk/;
+    Brandenburg: https://mluk.brandenburg.de/mluk/de/'
+  E2: 'Formeln: Bezug auf Zellen'
+  E20: "Nicht als Kasten mit Schatten au\xDFenrum, sondern vom Design her wie in Figma"
+  E21: "Impressum und Datenschutz: Overlays mit Infos erg\xE4nzen"
+  E22: "Tool nicht \xFCber die ganze Breite gehen lassen, sondern so wie in Figma\
+    \ + etwas mehr Platz am Rand lassen (wie in Figma)"
+  E23: "Kopfzeile: Auto-Icon ist wie in Figma ganz ohne Schatten. Bei den Vor\xFC\
+    berlegungen hattest du die Version mit ein bisschen Schatten (weniger als in der\
+    \ \xDCbersichtsgrafik, aber mehr als jetzt gerade in Figma in der Kopfzeile) genommen.\
+    \ Das finde ich sogar besser, also gerne auch hier die Version mit ein bisschen\
+    \ Schatten"
+  E24: "Etwas Abstand zwischen den Aufz\xE4hlungspunkten lassen (siehe Figma)"
+  E25: "Die ersten beiden Fragen haben schon einen Eintrag, obwohl ich ein neues privates\
+    \ Fenster ge\xF6ffnet habe "
+  E26: "Die Ja/Nein-Buttons sehen schon f\xFCr \"Ja\" vorausgew\xE4hlt aus, aber werden\
+    \ anscheinend erst gezogen, nachdem man nochmal draufklickt/die Auswahl wechselt.\
+    \ Hier bitte im ersten Schritt keine Seite einf\xE4rben und mit H\xE4kchen versehen"
+  E27: 'Kopfzeile: ANGABEN statt FAHRZEUGSEGMENT'
+  E28: "Infokasten zu Umweltanforderungen: Bindestrich in \"Umwelt-anforderungen\"\
+    \ rausnehmen -> also erster Satz \"Neben der Wahl der Antriebsart und des Fahrzeugsegments\
+    \ k\xF6nnen Umweltanforderungen in der Ausschreibung einen Beitrag zur umweltvertr\xE4\
+    glichen Pkw-Beschaffung leisten.\""
+  E29: "Bei mir muss man gerade scrollen, um alles zu sehen. In Figma ist das nicht\
+    \ n\xF6tig, aber da ist die Schrift dann auch noch kleiner, oder? Kleiner w\xFC\
+    rde ich mit der Schrift lieber nicht werden. Falls sich das Scrollen nicht vermeiden\
+    \ l\xE4sst, gerne die Kopfzeile mit \"EMPFEHLUNGEN 4/4\" etc. fixieren"
+  E3: "Bei Aufz\xE4hlung einzelne W\xF6rter fettgedruckt wie in Figma"
+  E30: "Grafik Alternativen zum Pkw-Kauf -> Anordnung: Einordnung oben/unten in Grafik\
+    \ tauschen, also Fahrrad + \xD6PNV oben, die Pkw-bezogenen Kreise (Pooling, Sharing,\
+    \ Mieten) unten; Kreisgr\xF6\xDFe abh\xE4ngig machen von x-Achse, also links kleine\
+    \ Kreise, rechts die gr\xF6\xDFten Kreise; Grafik schon anzeigen, sobald die erste\
+    \ Auswahl getroffen wird und dann nach und nach Kreise erg\xE4nzen, sobald jeweilige\
+    \ Auswahl getroffen"
+  E31: "Grafik Alternativen zum Pkw-Kauf -> Text + Hovern: y-Achsen-Beschriftung:\
+    \ \"PKW\" ersetzen mit \"PKW-KAUF\"; x-Achse -> REGELM\xC4SSIG hat ein S zu viel;\
+    \ Beschriftung aus Legende beim Hovern \xFCber Kreise anzeigen (siehe Figma)"
+  E32: "Wenn man auf die offizielle Website klickt, steht oben als Kurztitel im Tab\
+    \ zurzeit \"DBU Online-Tool\". Kannst du das \xE4ndern zu \"Pkw-Beschaffung\"?"
+  E33: "Blassere Boxen f\xFCr Car-Pooling etc. (entsprechend auch bei \xD6ffentl.\
+    \ + Fahrrad) noch etwas blasser einf\xE4rben, damit sie sich noch besser abheben"
+  E34: "Suchfunktion erg\xE4nzen (siehe Figma)"
+  E35: "Bildchen neben Infoboxen passen nicht ganz in den Rahmen, wenn der Bildschirm\
+    \ sehr breit ist -> Problem l\xF6st sich ggf. ohnehin, wenn die Bildschirmbreite\
+    \ nicht mehr ganz ausgenutzt wird (siehe Changelog Zeile 22)"
+  E36: "Cool, dass du die Download-Funktion schon eingebaut hast. Die war an sich\
+    \ von Susanne erstmal nur vorgemerkt f\xFCr einen sp\xE4teren Zeitpunkt, aber\
+    \ scheint ja gut zu funktionieren. Eine Sache ist mir dabei jedoch aufgefallen:\
+    \ Die Infoboxen werden in der Druckansicht immer doppelt ausgegeben, also immer\
+    \ zwei Seiten mit dem gleichen Inhalt. Falls sich das einfach l\xF6sen l\xE4sst,\
+    \ gerne - ansonsten das Icon einfach erstmal weglassen"
+  E37: Das Symbol zum Teilen war auch nur von Susanne vorgemerkt - das kannst du erstmal
+    einfach rauslassen
+  E38: "Links zu externen Websites in neuem Tab \xF6ffnen"
+  E39: 'In erstem Absatz und in Abb.-Beschriftung: CO2 -> 2 tiefgestellt;  in Abb.-Beschriftung:
+    (UBA 2021) verlinken (siehe Word)'
+  E4: "Verkn\xFCpfung der Felder in der \xDCbersichtsgrafik mit den Infoboxen (gleiche\
+    \ Infoboxen wie im Teil \"Hintergrundinformationen\")"
+  E40: "Grafik ist bei breitem Bildschirm sehr gro\xDF - so anpassen, dass die Schriftgr\xF6\
+    \xDFe in der Grafik in etwa so gro\xDF ist wie der restliche Text; Zoomfunktion\
+    \ f\xFCr Grafik erm\xF6glichen (siehe Figma)"
+  E41: "Die Unter\xFCberschrift \"Jobrad\" fettgedruckt; den unteren Teil zum Jobrad\
+    \ in eine extra Box in dieser Infobox mit dem Symbol f\xFCr rechtliche Hinweise\
+    \ (also wie das Beispiel in Figma in der Antriebsart-Box)"
+  E42: "\"Neubeschaffung\" nicht als Link, aber daf\xFCr fettgedruckt. Daf\xFCr \"\
+    geleast/gekauft\" im oberen Absatz als Link zur \"Leasing/Kauf eines Pkw\"-Infobox\
+    \ + \"Koordinierung des bestehenden Fuhrparks\" als Link zur \"Car-Pooling\"-Infobox\
+    \ (aber dann nicht mehr fettgedruckt)"
+  E43: "Kann man es so einstellen, dass bei der sich \xF6ffnenden Druck-Ansicht direkt\
+    \ bei Ziel \"Als PDF speichern\" und nicht irgendein Drucker ausgew\xE4hlt wird?"
+  E44: "Bei der Druckansicht fehlt bei den gro\xDFen Infoboxen (Antriebsart, Fahrzeugsegment,\
+    \ Ausstattung) der untere Teil, der nicht mehr auf eine DIN A4-Seite passt (kl\xE4\
+    rt sich ggf. zusammen mit dem Task in Zeile 36)"
+  E45: Den letzten Absatz "Neben den Infoboxen auf dieser Website..." unter die Box
+    "Rechtlicher Hinweis"
+  E46: "Leerzeichen zwischen \"Fahrzeuggr\xF6\xDFe\" und \"orientiert\" (\xFCber der\
+    \ Aufz\xE4hlung)"
+  E47: "\"Kontakt\" erg\xE4nzen -> siehe Figma"
+  E48: "Dateien f\xFCr LZK-Rechner zum Download bereitstellen (siehe Mail)"
+  E49: "Umweltanforderungen: Bei der schnellen L\xF6sung (Erzeugen einer PDF aus Figma)\
+    \ gibt es drei Probleme (da ich leider nur einen View-only-Zugang habe und nichts\
+    \ direkt in Figma anpassen kann): 1. Die Beschriftung der ersten Kategorie ist\
+    \ in Figma verrutscht (\"CO2-Emissionen (WLTP)\" klebt unter der Partikelzahl).\
+    \ 2. Das x oben rechts und der Download-Pfeil sind hinf\xE4llig. 3. Die Fu\xDF\
+    note fehlt in Figma. K\xF6nntest du die Umweltanforderungen also doch selber zusammenbauen?\
+    \ Falls das nicht bis heute Abend klappt, schicke ich dir die Ursprungsdatei aus\
+    \ Word als PDF, die du zum Download bereitstellen kannst (auch bei Empfehlungen\
+    \ Seite 4 beim entsprechenden Verweis auf die Umweltanforderungen)"
+  E5: "Kopfzeile: Zur\xFCcksetzen-Funktion neben \"ANGABEN\" wie in Figma"
+  E50: "Button \"Download individuelle Empfehlungen\" \xE4ndern zu \"Download Empfehlungen\""
+  E51: "Die Grafik fehlt hier noch - f\xFCr eine schnelle L\xF6sung hier einfach die\
+    \ Grafik aus Figma als Bild einsetzen (sp\xE4ter dann nachbauen?)"
+  E52: "CO2 -> 2 tiefgestellt (an 4 Stellen); Link nur \xFCber das erste Mal \"SaubFahrzeugBeschG\"\
+    : https://bmdv.bund.de/SharedDocs/DE/Artikel/G/clean-vehicles-directive.html;\
+    \ \"Umweltanforderungen\" im unteren Absatz mit PDF verlinken (wie bei Downloads)"
+  E53: "Bei \"1.2. Lades\xE4ulen\" zwei Hilfebuttons einbauen (siehe Link in Kommentar);\
+    \ unter \"1.2. Lades\xE4ulen\" Text \xFCber der ersten Frage erg\xE4nzen: \"Neben\
+    \ der Reichweite der Batterie ist die Verf\xFCgbarkeit von Ladeinfrastruktur entscheidend\
+    \ daf\xFCr, ob ein E-Auto geeignet ist.\""
+  E54: "Insgesamt 4 Hilfebuttons erg\xE4nzen (Text siehe Link in Kommentar)"
+  E55: "In der Kopfzeile (alle Seiten au\xDFer die Startseite) beim Hovern \xFCber\
+    \ den Tool-Titel oben links eine Zeige-Hand erscheinen lassen (wie sonst auch\
+    \ bei klickbaren Elementen)"
+  E56: 'Grafik etwas kleiner '
+  E57: "Icon f\xFCr die rechtlichen Hinweise als \xA7 (siehe Kommentar dazu in Figma-Kommentarwechsel)"
+  E58: Siehe Mail
+  E59: Tooltip "Drucken" ersetzen mit "Herunterladen"
+  E6: "Kopfzeile wie in Figma erg\xE4nzen: DOKUMENTATION, Download-Funktion, Wechselbutton\
+    \ zwischen Dokumentation und \xDCbersichtsgrafik"
+  E60: "Beim Testen des Tools ist mir aufgefallen, dass es beim Hin- und Herspringen\
+    \ zwischen den verschiedenen Tooleinstiegen etwas l\xE4stig ist, dass man immer\
+    \ wieder auf der ersten Seite eines jeden Tooleinstiegs landet und sich dann wieder\
+    \ bis zur letzten Seite durchklicken muss, wenn man dort hinwill. Daher die zwei\
+    \ Fragen: Sollte sich das Tool die jeweils zuletzt besuchte Seite eines Tooleinstiegs\
+    \ merken und dann direkt dahin springen? Und/oder sollten wir doch wieder auf\
+    \ die Punkte statt des Fortschrittbalkens in der Navigation gehen und dann die\
+    \ Punkte anklickbar machen, damit man schneller auf die letzte Seite kommt?"
+  E61: "Statt \"Notwendigkeit der Beschaffung\" -> \"Notwendigkeit der Beschaffung\
+    \ pr\xFCfen\u201C"
+  E62: "Kann ein m\xF6glichst umweltvertr\xE4gliches Fahrzeug beschafft werden? "
+  E63: "Als ersten Absatz neu einf\xFCgen: \"Von der \xF6ffentlichen Hand werden in\
+    \ Deutschland pro Jahr \xFCber 40.000 Fahrzeuge (ohne \xD6PNV und Eigenbetriebe\
+    \ wie M\xFCllentsorgung) angeschafft. Dieses Finanz- und Nachfragevolumen begr\xFC\
+    ndet eine besondere Verantwortung der \xF6ffentlichen Hand zur umweltvertr\xE4\
+    glichen Beschaffung in diesem Bereich.\" -> Danach den jetzigen ersten Satz streichen\
+    \ (Es gibt viele M\xF6glichkeiten, die Beschaffung umweltvertr\xE4glicher zu gestalten.)\
+    \ und den verbleibenden Satz (Mithilfe dieses Tools k\xF6nnen Sie sich umfassend\
+    \ zu Themen der umweltvertr\xE4glichen Beschaffung im Mobilit\xE4tsbereich informieren.)\
+    \ an den Anfang des n\xE4chsten Absatzes packen (also in den Absatz \"Der Fokus\
+    \ des Tools liegt...\" eingliedern)"
+  E64: "Die \xDCbersichtsgrafik zeigt, an welchen Punkten im Beschaffungsprozess dieses\
+    \ Tool mit welchen Mitteln ansetzt. "
+  E65: '"Angebotswertung" statt "Angebotsbewertung" in Kasten; "Lebenszykluskosten-Rechner"
+    statt "Lebenszykluskosten-Tool"'
+  E66: 'In Titel "Downloads: Umweltanforderungen und Lebenszykluskosten-Tool " ->
+    "Tool" durch "Rechner" ersetzen'
+  E67: "Dateinamen korrigieren: \"LZK\" statt \"LKZ\" (beim Herunterladen hei\xDF\
+    en die Dateien dann aber richtig); Punkt entfernen nach \"Dokumentation des Rechners,\
+    \ die der Aussschreibung beigef\xFCgt werden kann\""
+  E68: "Dickgedruckte W\xF6rter \xE4ndern: Statt \"Datei\" -> \"Umweltanforderungen\"\
+    ; statt \"Tool\" -> \"Lebenszykluskosten-Rechner\"; nach den dickgedruckten W\xF6\
+    rtern dann ein Zeilenumbruch (siehe Figma)"
+  E69: "\"Den rechtlichen Rahmen f\xFCr die \xF6ffentliche Pkw-Beschaffung...\" ->\
+    \ \"\xF6ffentliche\" erg\xE4nzen"
+  E7: "Auswahl der Ansicht Dokumentation/\xDCbersichtsgrafik \xFCber Wechselbutton\
+    \ in Kopfzeile + \xFCber Klicken auf DOKUMENTATION oder \xDCBERSICHTSGRAFIK in\
+    \ Kopfzeile + \xFCber Pfeil links/rechts auf der rechten Seite neben der \xDC\
+    bersichtsgrafik (siehe Animation in Figma)"
+  E70: "\"Entwickelt von:\" vor das ifeu-Logo (analog zu \"Gef\xF6rdert durch:\" auf\
+    \ der linken Seite)"
+  E71: "Impressum und Datenschutz dunkelblau und ohne graue Hinterlegung beim Dr\xFC\
+    berhovern (siehe Figma). Ggf. das ifeu-Logo h\xF6her r\xFCcken (obere Kante der\
+    \ anderen Logos) und dann Impressum und Datenschutz unter das Logo (siehe Vorschlag\
+    \ rechts). Dann verschiebt sich die rechte Seite der Fu\xDFzeile vielleicht auch\
+    \ nicht mehr unter die linke Seite, wenn man das Fenster schmaler zieht. "
+  E72: "Auf der Startseite ist das Burgermen\xFC jetzt ganz au\xDFen rechts, obwohl\
+    \ die Breite sonst f\xFCr alle anderen Elemente schmaler geworden ist. Auf allen\
+    \ Unterseiten sieht es allerdings gut aus. Kannst du die Position des Men\xFC\
+    s auf der Startseite den Unterseiten anpassen?"
+  E73: "Der Abstand zwischen der \xDCberschrift und der ersten Unter\xFCberschrift\
+    \ ist jetzt sehr gro\xDF. Bitte an die anderen ausklappbaren Boxen anpassen (\"\
+    \xDCber das Online-Tool\" etc.)"
+  E74: "Ich dachte, ich h\xE4tte den Task schon irgendwo, aber finde ihn gerade nicht\
+    \ mehr: Der Link \"Umweltanforderungen\" im zweiten Absatz soll erst mal das Pop-Up\
+    \ wie bei Empfehlungen 4/4 \xF6ffnen und dann erst bei der Download-Funktion die\
+    \ andere PDF anzeigen"
+  E75: Mini (Kleinstwagen)
+  E76: "In Aufz\xE4hlung und Tabelle \"Minis (Kleinstwagen)\" mit \"Kleinstwagen\"\
+    \ ersetzen. In Absatz vor Unter\xFCberschrift \"Beispiele pro Fahrzeugsegment\"\
+    : \"Minis\" ersetzen mit \"Kleinst-\""
+  E77: "Kannst du bei den Empfehlungen die Zeilenumbr\xFCche aus dem Tab \"Empfehlungslisten\"\
+    \ \xFCbernehmen? Muss keine Leerzeile sein (wie hier in Excel), sondern einfach\
+    \ ein Absatz mit kleinem Abstand. Ich hoffe, das geht automatisch und du musst\
+    \ die nicht alle h\xE4ndisch erg\xE4nzen..."
+  E78: "Wenn man in die Eingabefelder eine Zahl eingibt und aus Excel-Gewohnheit Enter\
+    \ dr\xFCckt, erscheint der Dialog, ob alle Eingaben zur\xFCckgesetzt werden sollen.\
+    \ Kannst du das rausnehmen und bei Enter einfach das Eingabefeld verlassen?"
+  E79: "Die Logos von Berlin und Brandenburg sind jetzt auf einmal sehr gro\xDF -\
+    \ kannst du die wieder verkleinern (siehe Figma)? Und auch der Titel \"Kontakt\"\
+    \ wirkt bei mir gerade sehr gro\xDF. Vielleicht eher so wie bei Impressum und\
+    \ Datenschutz von der Schriftgr\xF6\xDFe her."
+  E8: "Der letzte Satz im Feld Nr. 1 \"Bitte \xFCberlegen Sie mithilfe der n\xE4chsten\
+    \ Frage, ob der Fuhrpark noch weiter verkleinert werden kann.\" ist statisch und\
+    \ doppelt - einfach rausnehmen (der entsprechende Satz kommt eh \xFCber die Verkn\xFC\
+    pfungen in der Excel-Datei)"
+  E80: "In Aufz\xE4hlung: Text in Klammern hinter \"Obere Mittelklasse\" und hinter\
+    \ \"Oberklasse\" l\xF6schen"
+  E81: "In Absatz \xFCber Tabelle -> erste zwei S\xE4tze ersetzen mit: \"Gerade wenn\
+    \ meistens nur 1 bis 2 Personen zusammenfahren und keine gro\xDFen Gegenst\xE4\
+    nde bef\xF6rdert werden sollen, sind Kleinst- und Kleinwagen aus Umweltsicht zu\
+    \ bevorzugen. Falls regelm\xE4\xDFig mehrere Personen mitgenommen werden, gibt\
+    \ es bereits ab der unteren Mittelklasse (Kompaktklasse) zahlreiche Autos mit\
+    \ viel Platz auf der R\xFCckbank.\" (siehe sonst auch Word -> Link im Kommentar)"
+  E82: "In Tabelle: Unten eine Zeile hinzuf\xFCgen: (links) \"Oberklasse\"; (rechts)\
+    \ \"BMW 7er, Mercedes S-Klasse\""
+  E83: "Bei Abbildungsbezeichnung: in der Klammer hinter \"(eigene Abbildung nach\
+    \ (UBA 2021)\" erg\xE4nzen: \", Werte von 2017)\" -> also insgesamt neu (aber\
+    \ Link \xFCber Quelle beibehalten): \"(eigene Abbildung nach (UBA 2021), Werte\
+    \ von 2017)\""
+  E84: "Impressum und Datenschutz in Burgermen\xFC unter \"Kontakt\" packen und damit\
+    \ von der Startseite nehmen"
+  E85: "Schriftgr\xF6\xDFe vom Flie\xDFtext anpassen an Schrift von den Fragen \xFC\
+    ber den Tooleinstiegen; Schriftgr\xF6\xDFe der \xDCberschriften \"\xDCber das\
+    \ Online-Tool\" etc. kleiner (n\xE4chst kleinere Schriftgr\xF6\xDFe von Material\
+    \ Design; wenn unklar, sucht Susanne nochmal die konkrete Schriftgr\xF6\xDFe raus)"
+  E86: "Wenn Zeile 85 erledigt: die 4 Balken des Akkordeonmen\xFCs im geschlossenen\
+    \ Zustand schmaler machen. Abstand zwischen Tooleinstiegen und Akkordeonmen\xFC\
+    \ verkleinern (Abstand wie in Figma)"
+  E87: "Grafik: Blaue K\xE4sten verlinken mit Tooleinstiegen (Vor\xFCberlegungen und\
+    \ Empfehlungen). Bei Umweltanforderungen das Pop-Up-Fenster mit der Tabelle \xF6\
+    ffnen. Beim LZK-Rechner die Downloads im Akkordeonmen\xFC aufklappen. "
+  E88: "Bei breiten Bildschirmen an den Seiten keine blaue Einrahmung, sondern nur\
+    \ die Kopfzeile in Blau und darunter an den Seiten wei\xDF lassen (Breite der\
+    \ Inhalte aber beibehalten wie gehabt). Bei den anderen Tooleinstiegen bleibt\
+    \ es an der Seite blau (da liegt dann ja auch quasi ein wei\xDFes Feld mit abgerundeten\
+    \ Ecken drauf). War etwas missverst\xE4ndlich in Figma :-)"
+  E89: "Die \xDCberschriften der Eingabefelder sind zum Teil abweichend von Figma\
+    \ und passen nicht immer genau. Bitte an Figma anpassen (also die unteren beiden\
+    \ einfach nur \"H\xE4ufigkeit\")"
+  E9: "\"verg\xF6\xDFern\" und Prozentzahl in Rot, wenn \"vergr\xF6\xDFern\" gezogen\
+    \ wird; \"verkleinern\" und \"0%\" in Gelb, wenn \"verkleinern\" + 0% berechnet\
+    \ wird; bei Prozentzahlen \xFCber 1000 wird zurzeit ein Komma statt Tausenderpunkt\
+    \ angezeigt -> bitte zu Punkt \xE4ndern"
+  E90: "Beim Feld \"Anzahl Personen\":  Ab 10 -> Feld, Feld\xFCberschrift und Zahl\
+    \ rot f\xE4rben und Fehlermeldung erscheinen lassen: \"Die eingegebene Anzahl\
+    \ an Personen \xFCbersteigt die maximal zul\xE4ssige Anzahl von 9 Personen in\
+    \ einem als Pkw zugelassenen Fahrzeug.\""
+  E91: "Die weisse Box passt sich hier nicht flexibel an die H\xF6he des Screens an,\
+    \ wie bei \"Vor\xFCberlegungen\" und \"Empfehlungen\""
+  E92: 'Die Icons zum switchen der Grafik sind anders als die im figma-Layout '
+  E93: 'Overlay Boxen bei Fragezeichen: Close-Icons oben rechts sehen anders aus als
+    bei den anderen Overlay Boxen (anderes Verhalten bei Hover, siehe Screenshot in
+    mail)'
+  E94: "Die Cards der Unterkategorien sollen einger\xFCckt werden (siehe figma \"\
+    Hintergrundinformationen neu\")"
+  E95: "Die weissen Headlines f\xFCr die Oberkategorien (THG-Vergleich... etc.) werden\
+    \ 2 px gr\xF6\xDFer = 18px (statt 16px), (siehe figma \"Hintergrundinformationen\
+    \ neu\")"
+  E96: Icons werden nochmal ausgetauscht, siehe figma "Empfehlungen Abfrage 1 mit
+    Auswertungen neue Icons"
+  E97: "\"Von der \xF6ffentlichen Hand werden in Deutschland pro Jahr \xFCber 40.000\
+    \ Fahrzeuge (ohne \xD6PNV und Eigenbetriebe wie M\xFCllentsorgung) angeschafft\
+    \ (TREMOD 2020, Werte vom KBA von 2019).\" -> \"(TREMOD 2020, Werte vom KBA von\
+    \ 2019)\" erg\xE4nzen mit Links wie in Kommentar"
+  E98: "Bei \"Umgang mit Sonderausstattung\" -> erster Absatz \"Auf Sonderausstattungen,\
+    \ die keinen Sicherheits- oder Komfortvorteil haben, sondern ausschlie\xDFlich\
+    \ der Optik dienen, sollte bei einer Pkw-Beschaffung verzichtet werden.\" -> \"\
+    verzichtet\" auch fettgedruckt"
+  E99: "Erster Satz: \"Den rechtlichen Rahmen f\xFCr die \xF6ffentliche Pkw-Beschaffung\
+    \ gibt das SaubFahrzeugBeschG vor.\" -> \"f\xFCr die \xF6ffentliche Pkw-Beschaffung\"\
+    \ hinzuf\xFCgen + Link \xFCber \"SaubFahrzeugBeschG\" (siehe Kommentar)"
+  F1: Neuer Code
+  F12: Pkw
+  F2: 'Formeln: Bezug auf Variablennamen (siehe Reiter "Formeln" -> "Namens-Manager")'
+  F62: "Kann ein umweltvertr\xE4gliches Fahrzeug beschafft werden? "
+  F64: "Die \xDCbersichtsgrafik zeigt, bei welchen Schritten des Beschaffungsprozesses\
+    \ welche Tool-Bestandteile (blaue K\xE4sten) Unterst\xFCtzung bieten k\xF6nnen. "
+  F75: Kleinstwagen
+  G1: "Priorit\xE4t"
+  G10: Erledigt
+  G100: Gering
+  G101: Mittel
+  G102: Hoch
+  G103: Hoch
+  G11: Erledigt
+  G12: Erledigt
+  G13: Erledigt
+  G14: Erledigt
+  G15: Erledigt
+  G16: Erledigt
+  G17: Erledigt
+  G18: Erledigt
+  G19: Erledigt
+  G2: Erledigt
+  G20: Erledigt
+  G21: Erledigt
+  G22: Erledigt
+  G23: Erledigt
+  G24: Erledigt
+  G25: Erledigt
+  G26: Erledigt
+  G27: Erledigt
+  G28: Erledigt
+  G29: Erledigt
+  G3: Erledigt
+  G30: Gering
+  G31: Erledigt
+  G32: Erledigt
+  G33: Erledigt
+  G34: Erledigt
+  G35: Erledigt
+  G36: Erledigt
+  G37: Erledigt
+  G38: Mittel
+  G39: Erledigt
+  G4: Erledigt
+  G40: Erledigt
+  G41: Erledigt
+  G42: Erledigt
+  G43: Erledigt
+  G44: Erledigt
+  G45: Erledigt
+  G46: Erledigt
+  G47: Erledigt
+  G48: Erledigt
+  G49: Erledigt
+  G5: Erledigt
+  G50: Erledigt
+  G51: Erledigt
+  G52: Erledigt
+  G53: Erledigt
+  G54: Erledigt
+  G55: Erledigt
+  G56: Erledigt
+  G57: Erledigt
+  G58: Erledigt
+  G59: Erledigt
+  G6: Erledigt
+  G60: Erledigt
+  G61: Erledigt
+  G62: Erledigt
+  G63: Erledigt
+  G64: Erledigt
+  G65: Erledigt
+  G66: Erledigt
+  G67: Erledigt
+  G68: Erledigt
+  G69: Erledigt
+  G7: Erledigt
+  G70: Erledigt
+  G71: Erledigt
+  G72: Erledigt
+  G73: Erledigt
+  G74: Erledigt
+  G75: Erledigt
+  G76: Erledigt
+  G77: Erledigt
+  G78: Erledigt
+  G79: Erledigt
+  G8: Erledigt
+  G80: Erledigt
+  G81: Erledigt
+  G82: Erledigt
+  G83: Gering
+  G84: Erledigt
+  G85: Mittel
+  G86: Erledigt
+  G87: Erledigt
+  G88: Gering
+  G89: Erledigt
+  G9: Erledigt
+  G90: Erledigt
+  G91: Erledigt
+  G92: Mittel
+  G93: Mittel
+  G94: Mittel
+  G95: Mittel
+  G96: Mittel
+  G97: Gering
+  G98: Gering
+  G99: Gering
+  H1: Im Online-Tool angepasst?
+  H30: ja
+  H38: ja
+  H85: Ja
+  I1: "Webumsetzung gepr\xFCft am:"
+  I10: 2023-06-08 00:00:00
+  I11: 2023-05-31 00:00:00
+  I12: 2023-06-08 00:00:00
+  I13: 2023-06-09 00:00:00
+  I14: 2023-06-08 00:00:00
+  I15: 2023-05-31 00:00:00
+  I16: 2023-06-01 00:00:00
+  I17: 2023-05-30 00:00:00
+  I18: 2023-06-01 00:00:00
+  I19: 2023-05-30 00:00:00
+  I20: 2023-06-09 00:00:00
+  I21: 2023-05-31 00:00:00
+  I22: 2023-06-08 00:00:00
+  I23: 2023-06-08 00:00:00
+  I24: 2023-06-08 00:00:00
+  I25: 2023-05-30 00:00:00
+  I26: 2023-05-30 00:00:00
+  I27: 2023-06-01 00:00:00
+  I28: 2023-06-01 00:00:00
+  I29: 2023-06-13 00:00:00
+  I3: 2023-06-08 00:00:00
+  I30: siehe Kommentar
+  I31: 2023-06-01 00:00:00
+  I32: 2023-06-01 00:00:00
+  I33: 2023-06-08 00:00:00
+  I34: 2023-06-01 00:00:00
+  I35: 2023-06-09 00:00:00
+  I36: 2023-05-31 00:00:00
+  I37: 2023-05-30 00:00:00
+  I38: siehe Kommentar
+  I39: 2023-06-08 00:00:00
+  I4: 2023-05-31 00:00:00
+  I40: 2023-06-09 00:00:00
+  I41: 2023-06-01 00:00:00
+  I42: 2023-06-08 00:00:00
+  I43: 2023-06-01 00:00:00
+  I44: 2023-06-01 00:00:00
+  I45: 2023-06-01 00:00:00
+  I46: 2023-06-01 00:00:00
+  I47: 2023-06-01 00:00:00
+  I48: 2023-05-30 00:00:00
+  I49: 2023-06-09 00:00:00
+  I5: 2023-06-01 00:00:00
+  I50: 2023-06-01 00:00:00
+  I51: 2023-05-30 00:00:00
+  I52: 2023-06-01 00:00:00
+  I53: 2023-06-01 00:00:00
+  I54: 2023-06-01 00:00:00
+  I55: 2023-06-01 00:00:00
+  I56: 2023-06-01 00:00:00
+  I57: 2023-06-09 00:00:00
+  I58: 2023-06-20 00:00:00
+  I59: 2023-06-09 00:00:00
+  I6: 2023-05-31 00:00:00
+  I60: 2023-06-20 00:00:00
+  I61: 2023-06-19 00:00:00
+  I62: 2023-06-09 00:00:00
+  I63: 2023-06-09 00:00:00
+  I64: 2023-06-09 00:00:00
+  I65: 2023-06-09 00:00:00
+  I66: 2023-06-09 00:00:00
+  I67: 2023-06-09 00:00:00
+  I68: 2023-06-09 00:00:00
+  I69: 2023-06-09 00:00:00
+  I7: 2023-05-30 00:00:00
+  I70: 2023-06-09 00:00:00
+  I71: 2023-06-09 00:00:00
+  I72: 2023-06-09 00:00:00
+  I73: 2023-06-09 00:00:00
+  I74: 2023-06-09 00:00:00
+  I75: 2023-06-09 00:00:00
+  I76: 2023-06-09 00:00:00
+  I77: 2023-06-09 00:00:00
+  I78: 2023-06-14 00:00:00
+  I79: 2023-06-19 00:00:00
+  I8: 2023-05-30 00:00:00
+  I80: 2023-06-19 00:00:00
+  I81: 2023-06-19 00:00:00
+  I82: 2023-06-19 00:00:00
+  I84: 2023-06-19 00:00:00
+  I85: siehe Kommentar
+  I86: 2023-06-20 00:00:00
+  I87: 2023-06-19 00:00:00
+  I89: 2023-06-20 00:00:00
+  I9: 2023-06-01 00:00:00
+  I90: 2023-06-19 00:00:00
+  I91: 2023-06-20 00:00:00
+  J1: Anmerkung
+  J30: '@Till: Ist mit Susanne besprochen; kannst du jetzt umsetzen (siehe Kommentar)'
+  J38: '@Till: Ist mit Susanne besprochen; kannst du jetzt umsetzen (siehe Kommentar)'
+  J92: 'Till: brauchst du von mir andere Icondateien?'
+Darstellung_Flotte:
+  B10: Verkehrsmittel
+  B11: Mietwagen
+  B12: Car-Sharing
+  B13: Car-Pooling
+  B14: Fahrrad
+  B15: "\xD6PNV/Bahn/Fernbus"
+  B2: "Semiquantitatives Diagramm: Verkehrsmittel zur Deckung des Mobilit\xE4tsbedarfs"
+  B5: 'Umformung der Anteile:'
+  C10: Semiquantitativer Anteil
+  C11: =Fragen_Prototyp_Flotte!B30
+  C12: =Fragen_Prototyp_Flotte!B28
+  C13: =Fragen_Prototyp_Flotte!B26
+  C14: =Fragen_Prototyp_Flotte!B24
+  C15: =Fragen_Prototyp_Flotte!B22
+  C5: Semiquantitativer Anteil
+  C6: =Auswahllisten!B16
+  C7: =Auswahllisten!B17
+  C8: =Auswahllisten!B18
+  D10: "Substitutionsm\xF6glichkeit "
+  D11: =VLOOKUP(C11,C6:D8,2,FALSE())
+  D12: =VLOOKUP(C12,C6:D8,2,FALSE())
+  D13: =VLOOKUP(C13,C6:D8,2,FALSE())
+  D14: =VLOOKUP(C14,C6:D8,2,FALSE())
+  D15: =VLOOKUP(C15,C6:D8,2,FALSE())
+  D5: "Zahlenwert f\xFCr die Darstellung"
+  D6: 2
+  D7: 4
+  D8: 6
+  E10: Umweltvorteil
+  E11: 1
+  E12: 1
+  E13: 1
+  E14: 2
+  E15: 2
+Empfehlungslisten:
+  A1: "Empfehlungslisten f\xFCr Antwortkombinationen"
+  A10: E_A7
+  A11: E_A8
+  A12: E_A9
+  A13: E_A10
+  A14: E_A11
+  A16: ID
+  A17: E_F1
+  A18: E_F2
+  A19: E_F3
+  A20: E_F4
+  A21: E_F5
+  A22: E_F6
+  A23: E_F7
+  A24: E_F8
+  A25: E_F9
+  A26: E_F10
+  A27: E_F11
+  A28: E_F12
+  A29: E_F13
+  A3: ID
+  A30: E_F14
+  A31: E_F15
+  A32: E_F16
+  A33: E_F17
+  A34: E_F18
+  A35: E_F19
+  A36: E_F20
+  A37: E_F21
+  A38: E_F22
+  A39: E_F23
+  A4: E_A1
+  A40: E_F24
+  A41: E_F25
+  A42: E_F26
+  A43: E_F27
+  A44: E_F28
+  A45: E_F29
+  A46: E_F30
+  A47: E_F31
+  A48: E_F32
+  A49: E_F33
+  A5: E_A2
+  A50: E_F34
+  A51: E_F35
+  A52: E_F36
+  A53: E_F37
+  A54: E_F38
+  A55: E_F39
+  A56: E_F40
+  A57: E_F41
+  A58: E_F42
+  A6: E_A3
+  A7: E_A4
+  A8: E_A5
+  A9: E_A6
+  B10: "Erlaubt die Terminplanung Fahrtunterbrechungen von mind. 20-40 min an Standorten\
+    \ mit (Schnell-)Ladem\xF6glichkeiten, ist ein E-Auto (BEV - rein batteriebetrieben)\
+    \ trotz h\xE4ufiger l\xE4ngerer Strecken bevorzugt zu beschaffen. "
+  B11: "Ein E-Auto (BEV - rein batteriebetrieben) mit gro\xDFer Reichweite ist ggf.\
+    \ geeignet. In h\xF6heren Preissegmenten ist eine Reichweite von 300 km g\xE4\
+    ngig. Es sollte jedoch beachtet werden, dass dem Umweltvorteil eines BEV in der\
+    \ Nutzung die Herstellungsemissionen einer gro\xDFen Batterie gegen\xFCberstehen.\
+    \ Zudem sind gro\xDFe Batterien vor allem in gr\xF6\xDFeren Fahrzeugen verbaut.\
+    \ Ein kleinerer, m\xF6glichst sparsamer Verbrenner kann in diesem Anwendungsfall\
+    \ aus Umweltsicht (und aus Kostensicht ohnehin) also durchaus vorteilhaft sein."
+  B12: "Erlaubt die Terminplanung auf langen Strecken keine bzw. nur sehr kurze Fahrtunterbrechungen\
+    \ unter 30 min, ist die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall\
+    \ sollte ein m\xF6glichst sparsamer Verbrenner beschafft werden."
+  B13: "Bei vielen langen Strecken, auf denen keine Ladem\xF6glichkeit besteht, ist\
+    \ die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall sollte ein m\xF6\
+    glichst sparsamer Verbrenner beschafft werden."
+  B14: "Bei vielen langen Strecken, auf denen keine Ladem\xF6glichkeit besteht, ist\
+    \ die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall sollte ein m\xF6\
+    glichst sparsamer Verbrenner beschafft werden. \n\nDas Fahrprofil mit regelm\xE4\
+    \xDFigen l\xE4ngeren Fahrtunterbrechungen eignet sich an sich allerdings f\xFC\
+    r E-Autos. Der weitere Ausbau der \xF6ffentlichen Ladeinfrastruktur oder die Wahl\
+    \ von Alternativrouten mit verf\xFCgbaren Lades\xE4ulen kann also (in Zukunft)\
+    \ eine E-Auto-Beschaffung durchaus erm\xF6glichen. "
+  B16: Empfehlung zum Fahrzeugsegment
+  B17: "Bei regelm\xE4\xDFigen aufw\xE4ndigen Transportanforderungen ist ein Van oder\
+    \ ein Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und Pick-ups,\
+    \ die als Pkw zugelassen sind) notwendig."
+  B18: "F\xFCr die Leitungsebene besteht ggf. Anspruch auf ein Fahrzeug aus einem\
+    \ h\xF6heren Fahrzeugsegment. Trotzdem sollte aus Umweltgr\xFCnden abgewogen werden,\
+    \ ob ein kleineres Fahrzeug geeignet ist und die Leitungsebene freiwillig auf\
+    \ diesen Anspruch verzichtet. "
+  B19: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht."
+  B20: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist (gerade bei vielen l\xE4\
+    ngeren Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen\
+    \ werden, welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der\
+    \ Institution entspricht."
+  B21: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht."
+  B22: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist (gerade bei vielen l\xE4ngeren\
+    \ Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen werden,\
+    \ welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der Institution\
+    \ entspricht."
+  B23: "Werden h\xE4ufig mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Ist mehr Komfort\
+    \ und/oder Stauraum n\xF6tig, sollte genau abgewogen werden, welches Segment den\
+    \ Umweltanspr\xFCchen und der Vorbildfunktion der Institution entspricht."
+  B24: "Auch wenn meistens bis zu vier Personen in dem Auto fahren, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht."
+  B25: "Wenn selten alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht."
+  B26: "Werden oft alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt, ist ein Fahrzeug der Mittelklasse\
+    \ zu empfehlen."
+  B27: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann ein Hochdachkombi\
+    \ (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet werden."
+  B28: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann ein Hochdachkombi\
+    \ gemietet werden."
+  B29: "Wenn nur selten \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Hochdachkombi oder Kleinbus (falls verf\xFCgbar)\
+    \ aus dem Fuhrpark verwendet oder sonst gemietet werden. Bei regelm\xE4\xDFigen\
+    \ aufw\xE4ndigen Transportanforderungen ist allerdings ohnehin ein Van oder ein\
+    \ Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und Pick-ups, die\
+    \ als Pkw zugelassen sind) notwendig. Bei der Wahl der Fahrzeugart ist also abzuw\xE4\
+    gen, ob der Personentransport (-> Hochdachkombi, Kleinbus) oder der Transport\
+    \ von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up) \xFCberwiegt."
+  B3: Empfehlung zur Antriebsart
+  B30: "Wenn nur selten \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Hochdachkombi oder Kleinbus gemietet werden. Bei\
+    \ regelm\xE4\xDFigen aufw\xE4ndigen Transportanforderungen ist allerdings ohnehin\
+    \ ein Van oder ein Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und\
+    \ Pick-ups, die als Pkw zugelassen sind) notwendig. Bei der Wahl der Fahrzeugart\
+    \ ist also abzuw\xE4gen, ob der Personentransport (-> Hochdachkombi, Kleinbus)\
+    \ oder der Transport von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up) \xFC\
+    berwiegt."
+  B31: "Werden oft mind. sechs Sitzpl\xE4tze ben\xF6tigt, sollte ein Hochdachkombi\
+    \ beschafft werden. Diese Fahrzeugart hat unter den 7-Sitzern in der Regel das\
+    \ beste Preis-Leistungs-Verh\xE4ltnis und f\xE4hrt sparsamer als z.B. ein SUV."
+  B32: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann ein Kleinbus\
+    \ (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet werden."
+  B33: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann ein Kleinbus\
+    \ gemietet werden."
+  B34: "Wenn nur selten \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Kleinbus (falls verf\xFCgbar) aus dem Fuhrpark verwendet\
+    \ oder sonst gemietet werden. Bei regelm\xE4\xDFigen aufw\xE4ndigen Transportanforderungen\
+    \ ist allerdings ohnehin ein Van oder ein Fahrzeug der Rubrik Utilities (Hochdachkombis,\
+    \ Kleinbusse und Pick-ups, die als Pkw zugelassen sind) notwendig. Bei der Wahl\
+    \ der Fahrzeugart ist also abzuw\xE4gen, ob der Personentransport (-> Hochdachkombi,\
+    \ Kleinbus) oder der Transport von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up)\
+    \ \xFCberwiegt."
+  B35: "Wenn nur selten \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Kleinbus gemietet werden. Bei regelm\xE4\xDFigen\
+    \ aufw\xE4ndigen Transportanforderungen ist allerdings ohnehin ein Van oder ein\
+    \ Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und Pick-ups, die\
+    \ als Pkw zugelassen sind) notwendig. Bei der Wahl der Fahrzeugart ist also abzuw\xE4\
+    gen, ob der Personentransport (-> Hochdachkombi, Kleinbus) oder der Transport\
+    \ von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up) \xFCberwiegt."
+  B36: "Werden oft mind. acht Sitzpl\xE4tze ben\xF6tigt, sollte ein Kleinbus beschafft\
+    \ werden."
+  B37: "F\xFCr die Leitungsebene besteht ggf. Anspruch auf ein Fahrzeug aus einem\
+    \ h\xF6heren Fahrzeugsegment. Trotzdem sollte aus Umweltgr\xFCnden abgewogen werden,\
+    \ ob ein kleineres Fahrzeug geeignet ist und die Leitungsebene freiwillig auf\
+    \ diesen Anspruch verzichtet. \n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFC\
+    gbar) aus dem Fuhrpark verwendet oder sonst gemietet werden. "
+  B38: "F\xFCr die Leitungsebene besteht ggf. Anspruch auf ein Fahrzeug aus einem\
+    \ h\xF6heren Fahrzeugsegment. Trotzdem sollte aus Umweltgr\xFCnden abgewogen werden,\
+    \ ob ein kleineres Fahrzeug geeignet ist und die Leitungsebene freiwillig auf\
+    \ diesen Anspruch verzichtet.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  B39: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder\
+    \ sonst gemietet werden. "
+  B4: "Wenn weder am Arbeitsplatz (bzw. im umliegenden \xF6ffentlichen Raum) noch\
+    \ am Wohnort der Nutzenden eine f\xFCr mehrere Stunden nutzbare Ladem\xF6glichkeit\
+    \ besteht, ist die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall sollte\
+    \ ein m\xF6glichst sparsamer Verbrenner beschafft werden. \n\nDer Auf- und Ausbau\
+    \ von Ladeinfrastruktur ist jedoch unbedingt zu empfehlen, um in Zukunft E-Autos\
+    \ beschaffen zu k\xF6nnen."
+  B40: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug gemietet werden. "
+  B41: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist (gerade bei vielen l\xE4\
+    ngeren Strecken) mehr Komfort und/oder Stauraum n\xF6tig sein, sollte genau abgewogen\
+    \ werden, welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der\
+    \ Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFC\
+    gbar) aus dem Fuhrpark verwendet oder sonst gemietet werden. "
+  B42: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist (gerade bei vielen l\xE4\
+    ngeren Strecken) mehr Komfort und/oder Stauraum n\xF6tig sein, sollte genau abgewogen\
+    \ werden, welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der\
+    \ Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  B43: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder\
+    \ sonst gemietet werden. "
+  B44: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug gemietet werden. "
+  B45: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist (gerade bei vielen l\xE4ngeren\
+    \ Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen werden,\
+    \ welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der Institution\
+    \ entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen,\
+    \ die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFCgbar) aus\
+    \ dem Fuhrpark verwendet oder sonst gemietet werden. "
+  B46: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist (gerade bei vielen l\xE4ngeren\
+    \ Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen werden,\
+    \ welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der Institution\
+    \ entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen,\
+    \ die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  B47: "Werden h\xE4ufig mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Ist mehr Komfort\
+    \ und/oder Stauraum n\xF6tig, sollte genau abgewogen werden, welches Segment den\
+    \ Umweltanspr\xFCchen und der Vorbildfunktion der Institution entspricht.\n\n\
+    Wenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen, die einen\
+    \ Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese\
+    \ Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark\
+    \ verwendet oder sonst gemietet werden. "
+  B48: "Werden h\xE4ufig mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Ist mehr Komfort\
+    \ und/oder Stauraum n\xF6tig, sollte genau abgewogen werden, welches Segment den\
+    \ Umweltanspr\xFCchen und der Vorbildfunktion der Institution entspricht.\n\n\
+    Wenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen, die einen\
+    \ Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese\
+    \ Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  B49: "Auch wenn meistens bis zu vier Personen in dem Auto fahren, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet\
+    \ werden. "
+  B5: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
+    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken \xFCber\
+    \ 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden. Bei schlechter\
+    \ Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4ck/Transportgut\
+    \ kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz kommen, sofern\
+    \ unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt werden k\xF6\
+    nnen. Besteht die M\xF6glichkeit zum Laden nicht, kann in diesen Ausnahmef\xE4\
+    llen (falls vef\xFCgbar) ein anderes Fahrzeug mit entsprechender Reichweite aus\
+    \ dem Fuhrpark oder sonst ein Mietwagen genutzt werden."
+  B50: "Auch wenn meistens bis zu vier Personen in dem Auto fahren, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug gemietet werden. "
+  B51: "Wenn selten alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet\
+    \ werden. "
+  B52: "Wenn selten alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug gemietet werden. "
+  B53: "Werden oft alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt, ist ein Fahrzeug der Mittelklasse\
+    \ zu empfehlen.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFC\
+    gbar) aus dem Fuhrpark verwendet oder sonst gemietet werden. "
+  B54: "Werden oft alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt, ist ein Fahrzeug der Mittelklasse\
+    \ zu empfehlen.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  B55: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Hochdachkombi bzw. Van (falls verf\xFCgbar) aus dem Fuhrpark\
+    \ verwendet oder sonst gemietet werden."
+  B56: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Hochdachkombi bzw. Van gemietet werden."
+  B57: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Kleinbus bzw. Van (falls verf\xFCgbar) aus dem Fuhrpark verwendet\
+    \ oder sonst gemietet werden."
+  B58: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Kleinbus bzw. Van gemietet werden."
+  B6: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
+    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken \xFCber\
+    \ 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden. Bei schlechter\
+    \ Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4ck/Transportgut\
+    \ kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz kommen, sofern\
+    \ unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt werden k\xF6\
+    nnen. Besteht die M\xF6glichkeit zum Laden nicht, kann in diesen Ausnahmef\xE4\
+    llen ein Mietwagen genutzt werden."
+  B7: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
+    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal Tagesstrecken\
+    \ \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder am Zielort (Schnell-)\
+    \ Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das E-Auto auch auf diesen\
+    \ Strecken zum Einsatz kommen. Besteht die M\xF6glichkeit zum Laden nicht, sollte\
+    \ gepr\xFCft werden, ob f\xFCr die Einsatztage mit l\xE4ngeren Strecken regelm\xE4\
+    \xDFig ein anderes Fahrzeug mit entsprechender Reichweite aus dem Fuhrpark genutzt\
+    \ werden kann. Dieses Fahrzeug kann auch ein E-Auto mit gr\xF6\xDFerer Batterie\
+    \ sein, da in h\xF6heren Preissegmenten reale 300 km Reichweite g\xE4ngig sind.\
+    \ Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFCber 150 km tats\xE4chlich zum\
+    \ Gro\xDFteil mit dem Pkw zur\xFCckgelegt werden m\xFCssen (aufgrund schlechter\
+    \ Anbindung an den \xF6ffentlichen Verkehr oder viel Gep\xE4ck/Transportgut) oder\
+    \ ob mit Bahn oder Fernbus gereist werden kann."
+  B8: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
+    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal Tagesstrecken\
+    \ \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder am Zielort (Schnell-)\
+    \ Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das E-Auto auch auf diesen\
+    \ Strecken zum Einsatz kommen. Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFC\
+    ber 150 km tats\xE4chlich zum Gro\xDFteil mit dem Pkw zur\xFCckgelegt werden m\xFC\
+    ssen (aufgrund schlechter Anbindung an den \xF6ffentlichen Verkehr oder viel Gep\xE4\
+    ck/Transportgut) oder ob mit Bahn oder Fernbus gereist werden kann.\n\nIst dies\
+    \ nicht der Fall und besteht keine M\xF6glichkeit zum Laden w\xE4hrend l\xE4ngerer\
+    \ Strecken, kann die Beschaffung eines Plug-in-Hybrids (PHEV) sinnvoll sein. In\
+    \ diesem Fall sollte jedoch darauf geachtet werden, dass bei den k\xFCrzeren Strecken,\
+    \ die im Regelfall gefahren werden, ein elektrischer Fahranteil von \xFCber 70\
+    \ % erzielt wird. Dazu muss ein regelm\xE4\xDFiges Laden gew\xE4hrleistet sein.\
+    \ Zudem sind PHEVs eher in gr\xF6\xDFeren Fahrzeugsegmenten verf\xFCgbar. Je nach\
+    \ Anwendungsfall kann ein kleiner, sparsamer Verbrenner auch aus Umweltsicht vorteilhaft\
+    \ gg\xFC. einem PHEV sein. "
+  B9: "Inkonsistente Eingabe: Die Aussage zur H\xE4ufigkeit l\xE4ngerer Strecken passt\
+    \ nicht mit der angegeben Streckenl\xE4nge eines repr\xE4sentativen Tages zusammen.\
+    \ Bitte passen Sie die Streckenl\xE4nge so an, dass sie den Fahrten im Regelfall\
+    \ entspricht."
+  C10: siehe rote Markierungen
+  C11: siehe rote Markierungen
+  C16: "Anmerkung f\xFCr Changelog"
+  C18: "\"bis zur Oberen Mittelklasse\" gel\xF6scht; siehe rote Markierungen"
+  C19: siehe rote Markierungen
+  C20: siehe rote Markierungen
+  C21: siehe rote Markierungen
+  C22: siehe rote Markierungen
+  C23: siehe rote Markierungen
+  C24: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C25: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C27: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C28: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C29: siehe rote Markierungen
+  C3: "Anmerkung f\xFCr Changelog"
+  C30: siehe rote Markierungen
+  C32: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C33: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C37: "\"bis zur Oberen Mittelklasse\" gel\xF6scht; siehe rote Markierungen"
+  C38: "\"bis zur Oberen Mittelklasse\" gel\xF6scht; siehe rote Markierungen"
+  C39: siehe rote Markierungen
+  C4: siehe rote Markierungen
+  C40: siehe rote Markierungen
+  C41: siehe rote Markierungen
+  C42: siehe rote Markierungen
+  C43: siehe rote Markierungen
+  C44: siehe rote Markierungen
+  C45: siehe rote Markierungen
+  C46: siehe rote Markierungen
+  C47: siehe rote Markierungen
+  C48: siehe rote Markierungen
+  C49: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C5: siehe rote Markierungen
+  C50: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C51: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C52: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C55: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C56: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C57: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C58: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
+  C6: siehe rote Markierungen
+  C7: siehe rote Markierungen
+  C8: siehe rote Markierungen
+Fragen_Prototyp_Einzelfahrzeug:
+  A11: F_R1
+  A14: F_SZ1
+  A17: F_L1
+  A20: F_L2
+  A23: F_F1
+  A26: E_A0
+  A33: F_P1
+  A35: i
+  A36: F_T1
+  A39: F_LE1
+  A42: E_F0
+  A6: ID
+  B10: "Welche Distanz soll mit dem zu beschaffenden Pkw im Normalfall pro Tag zur\xFC\
+    ckgelegt werden?"
+  B11: 200
+  B13: "Wie h\xE4ufig werden die Tagesstrecken im Normalfall von Standzeiten (\u2248\
+    \ mind. 30 min) unterbrochen?"
+  B14: "Regelm\xE4\xDFig"
+  B16: "Sind Lades\xE4ulen am Standort bzw. im umliegenden \xF6ffentlichen Raum oder\
+    \ am Wohnort der Nutzenden verf\xFCgbar?"
+  B17: Ja
+  B19: "Sind Lades\xE4ulen auf den zu befahrenden Strecken verf\xFCgbar?"
+  B2: Fragen - Prototyp Einzelfahrzeug
+  B20: Ja
+  B22: Ist das zu beschaffende Fahrzeug Teil eines Fuhrparks?
+  B23: Nein
+  B25: 'Empfehlung zur Antriebsart:'
+  B26: =IFS(F_L1=A_JN2, E_A1, AND(F_R1<=A_R1, F_S1=A_S1, F_F1=A_JN1), E_A2, AND(F_R1<=A_R1,
+    F_S1=A_S1, F_F1=A_JN2), E_A3, AND(F_R1<=A_R1, F_S1=A_S2, F_F1=A_JN1), E_A4, AND(F_R1<=A_R1,
+    F_S1=A_S2, F_F1=A_JN2), E_A5, AND(F_R1<=A_R1, F_S1=A_S3), E_A6, AND(F_R1>A_R1,
+    F_S1=A_S1), E_A6, AND(F_R1>A_R1, F_SZ1=A_SV1), E_A9, AND(F_R1>A_R1, F_S1=A_S2,
+    F_SZ1=A_SV2, F_L2=A_JN1), E_A8, AND(F_R1>A_R1, F_SZ1=A_SV2, F_L2=A_JN2), E_A10,
+    AND(F_R1>A_R1, F_S1=A_S2, F_SZ1=A_SV3, F_L2=A_JN1), E_A7, AND(F_R1>A_R1, F_S1=A_S2,
+    F_SZ1=A_SV3, F_L2=A_JN2), E_A11, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV2, F_L2=A_JN1),
+    E_A8, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN1), E_A8, AND(F_R1>A_R1,
+    F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN2), E_A11, TRUE(), " ")
+  B28: Fahrzeugsegment
+  B30: "In diesem Abschnitt geht es darum, welche Aufgabenstellung erf\xFCllt werden\
+    \ soll, um ein m\xF6glichst umweltvertr\xE4gliches Fahrzeug bzgl. des Fahrzeugsegments\
+    \ zu w\xE4hlen. Die Abfragen bez\xFCglich der Antriebsart gehen teilweise ebenfalls\
+    \ mit ein in die Empfehlung zum Fahrzeugsegment."
+  B32: Wie viele Personen fahren maximal zusammen in dem Pkw?
+  B33: 3
+  B35: "Wie h\xE4ufig bestehen aufw\xE4ndige Anforderungen an den Transport von Gegenst\xE4\
+    nden (z.B. viele/gro\xDFe/schwere Gegenst\xE4nde), sodass Vans/Utilities notwendig\
+    \ sind?"
+  B36: Gelegentlich
+  B38: "Wird der Pkw f\xFCr die Leitungsebene beschafft?"
+  B39: Nein
+  B4: Einzelfahrzeug beschaffen
+  B41: 'Empfehlung zum Fahrzeugsegment:'
+  B42: =IFS(AND(F_P1<6, F_T1=A_T3), E_F1, AND(F_P1<6, OR(F_T1=A_T1, ISBLANK(F_T1)),
+    F_LE1=A_JN1), E_F2, AND(F_P1>=1, F_P1<=2, F_T1=A_T1, F_LE1=A_JN2, F_S1=A_S1),
+    E_F3, AND(F_P1>=1, F_P1<=2, F_T1=A_T1, F_LE1=A_JN2, OR(F_S1=A_S2, F_S1=A_S3)),
+    E_F4, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1, F_T1=A_T1, F_LE1=A_JN2, F_S1=A_S1), E_F5,
+    AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1, F_T1=A_T1, F_LE1=A_JN2, OR(F_S1=A_S2, F_S1=A_S3)),
+    E_F6, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP2, F_T1=A_T1, F_LE1=A_JN2), E_F7, AND(F_P1>=3,
+    F_P1<=4, F_SP1=A_SP3, F_T1=A_T1, F_LE1=A_JN2), E_F8, AND(F_P1=5, F_SP1=A_SP1,
+    F_T1=A_T1, F_LE1=A_JN2), E_F9, AND(F_P1=5, OR(F_SP1=A_SP2, F_SP1=A_SP3), F_T1=A_T1,
+    F_LE1=A_JN2), E_F10, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN1),
+    E_F11, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN2), E_F12, AND(F_P1>=6,
+    F_P1<=7, F_SP1=A_SP1, F_T1=A_T3, F_F1=A_JN1), E_F13, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1,
+    F_T1=A_T3, F_F1=A_JN2), E_F14, AND(F_P1>=6, F_P1<=7, OR(F_SP1=A_SP2, F_SP1=A_SP3)),
+    E_F15, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN1), E_F16, AND(F_P1>=8,
+    F_P1<=9, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN2), E_F17, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1,
+    F_T1=A_T3, F_F1=A_JN1), E_F18, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T3, F_F1=A_JN2),
+    E_F19, AND(F_P1>=8, F_P1<=9, OR(F_SP1=A_SP2, F_SP1=A_SP3)), E_F20, AND(F_P1<6,
+    F_T1=A_T2, F_LE1=A_JN1, F_F1=A_JN1), E_F21, AND(F_P1<6, F_T1=A_T2, F_LE1=A_JN1,
+    F_F1=A_JN2), E_F22, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1,
+    F_S1=A_S1), E_F23, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2, F_S1=A_S1),
+    E_F24, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1, OR(F_S1=A_S2,
+    F_S1=A_S3)), E_F25, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2,
+    OR(F_S1=A_S2, F_S1=A_S3)), E_F26, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1, F_T1=A_T2,
+    F_LE1=A_JN2, F_F1=A_JN1, F_S1=A_S1), E_F27, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1,
+    F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2, F_S1=A_S1), E_F28, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1,
+    F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1, OR(F_S1=A_S2, F_S1=A_S3)), E_F29, AND(F_P1>=3,
+    F_P1<=4, F_SP1=A_SP1, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2, OR(F_S1=A_S2, F_S1=A_S3)),
+    E_F30, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1),
+    E_F31, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2),
+    E_F32, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP3, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1),
+    E_F33, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP3, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2),
+    E_F34, AND(F_P1=5, F_SP1=A_SP1, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1), E_F35, AND(F_P1=5,
+    F_SP1=A_SP1, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2), E_F36, AND(F_P1=5, OR(F_SP1=A_SP2,
+    F_SP1=A_SP3), F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1), E_F37, AND(F_P1=5, OR(F_SP1=A_SP2,
+    F_SP1=A_SP3), F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2), E_F38, AND(F_P1>=6, F_P1<=7,
+    F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1), E_F39, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1,
+    F_T1=A_T2, F_F1=A_JN2), E_F40, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1),
+    E_F41, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN2), E_F42, TRUE(),
+    " ")
+  B6: Antriebsart
+  B8: "In diesem Abschnitt geht es darum, wie das Fahrprofil aussieht und ob Ladem\xF6\
+    glichkeiten bestehen. Diese Fragestellungen sind relevant, um ein m\xF6glichst\
+    \ umweltvertr\xE4gliches Fahrzeug bzgl. der Antriebsart zu w\xE4hlen."
+  C11: km/Tag
+  C14: "<- Bitte ausw\xE4hlen"
+  C17: "<- Bitte ausw\xE4hlen"
+  C20: "<- Bitte ausw\xE4hlen"
+  C23: "<- Bitte ausw\xE4hlen"
+  C33: Person(en)
+  C36: "<- Bitte ausw\xE4hlen"
+  C39: "<- Bitte ausw\xE4hlen"
+  D11: F_S1
+  D33: F_SP1
+  E10: "Wie oft werden \xFCbers Jahr Tagesstrecken \xFCber 150 km zur\xFCckgelegt?"
+  E11: "H\xE4ufig"
+  E32: "Wie h\xE4ufig werden alle Sitzpl\xE4tze ben\xF6tigt?"
+  E33: "H\xE4ufig"
+  F11: "<- Bitte ausw\xE4hlen"
+  F33: "<- Bitte ausw\xE4hlen"
+Fragen_Prototyp_Flotte:
+  A11: F_B1
+  A14: F_E1
+  A22: F_BF1
+  A24: F_FL1
+  A26: F_CP1
+  A28: F_CS1
+  A30: F_M1
+  A57: F_E2
+  B10: Wie viele Pkw sollen beschafft werden?
+  B11: 12
+  B13: Wie viele Fahrzeuge aus einem vorhandenen Fuhrpark werden durch diese Beschaffung
+    ersetzt?
+  B14: 10
+  B16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", "Mit dieser Beschaffung")
+  B17: =IFS(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", F_E1>F_B1, H_F5, F_E1<F_B1, H_F3,
+    TRUE(), H_F4)
+  B19: "Wie oft k\xF6nnen die geplanten Strecken/Einsatzzwecke mit folgenden Verkehrsmitteln\
+    \ erledigt werden?\n"
+  B2: Fragen - Prototyp Flotte
+  B20: "Bedenken Sie bei der Beantwortung der Frage, dass die abgefragten Optionen\
+    \ auch kombiniert werden k\xF6nnen (z.B. Fahrrad und \xD6PNV).\nEine Analyse der\
+    \ bisherigen Nutzung des Fuhrparks kann bei der Beantwortung der Frage helfen."
+  B22: Ab und zu
+  B24: Fast nie
+  B26: "Regelm\xE4\xDFig"
+  B28: Ab und zu
+  B30: Ab und zu
+  B32: "Folgende Verkehrsmittel/Nutzungsarten kommen neben einer Pkw-Beschaffung zur\
+    \ Deckung des betrachteten Mobilit\xE4tsbedarfs in Frage:"
+  B4: Mehrere Fahrzeuge/Flotte beschaffen
+  B55: "Die folgende Frage bezieht sich auf Ihre Einsch\xE4tzung, nachdem Sie die\
+    \ Vor\xFCberlegungen zur Flottenbeschaffung durchgegangen sind:"
+  B56: "Auf wie viele der urspr\xFCnglich zu beschaffenden Pkw kann durch eine optimale\
+    \ Ausnutzung des Fuhrparks und die Kombination mit anderen Verkehrsmitteln verzichtet\
+    \ werden?"
+  B57: 10
+  B59: =IFS(ISBLANK(F_E2), "", AND(F_E2=0, F_E1<=F_B1), H_V3, AND(F_E2=0, F_E1>F_B1),
+    H_V2, AND(F_E2>0, F_E1<F_B1, F_E2<(F_B1-F_E1)), H_V4, AND(F_E2>0, F_E1<F_B1, F_E2=(F_B1-F_E1)),
+    H_V5, TRUE(), H_V1)
+  B6: Verkehrsmittel
+  B61: "F\xFCr die verbleibenden Pkw nutzen Sie bitte den Tooleinstieg (B) \"Einzelfahrzeug\
+    \ beschaffen\". Sollte der Einsatzzweck f\xFCr alle zu beschaffenden Pkw gleich\
+    \ sein, k\xF6nnen die resultierenden Empfehlungen f\xFCr die komplette Ausschreibung\
+    \ \xFCbernommen werden. Bei sich deutlich unterscheidenden Einsatzzwecken sollten\
+    \ die Abfragen pro Einsatzzweck bearbeitet werden."
+  B8: "Der folgende Teil besch\xE4ftigt sich mit den Fragen, wie der Mobilit\xE4tsbedarf\
+    \ gedeckt werden kann und ob alle Pkw-Beschaffungen tats\xE4chlich notwendig sind.\
+    \ Solche Vor\xFCberlegungen bez\xFCglich der Bedarfsermittlung sind z.B. im Land\
+    \ Berlin verpflichtend zu dokumentieren.\n\nDie Fragen sollten jeweils f\xFCr\
+    \ einen Standort bzw. f\xFCr Zusammenschl\xFCsse von Standorten/Institutionen,\
+    \ die Fahrzeuge untereinander austauschen/gemeinsam nutzen, beantwortet werden."
+  D11: Pkw
+  D14: Pkw
+  D22: "\xD6PNV bzw. Bahn/Fernbus"
+  D24: (Elektro-)Fahrrad/Lastenrad
+  D26: Gemeinsame Nutzung vorhandener Pkw (Car-Pooling)
+  D28: Nutzung von Pkw eines Car-Sharing-Anbieters
+  D30: "Mietwagen f\xFCr einzelne Strecken"
+  D57: Pkw
+  E16: =IFS(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", F_E1>=F_B1, H_F1, TRUE(), H_F2)
+  F16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", "Sie Ihren Fuhrpark um")
+  G16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", ABS((F_E1-F_B1)/F_E1))
+  H16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", ".")
+Hinweisliste_Flotte:
+  A1: "Hinweislisten f\xFCr Flotte"
+  A10: H_F5
+  A13: H_V1
+  A14: H_V2
+  A15: H_V3
+  A16: H_V4
+  A17: H_V5
+  A3: ID
+  A4: H_F1
+  A5: H_F2
+  A8: H_F3
+  A9: H_F4
+  B10: "Mit der Verkleinerung des Fuhrparks leisten Sie einen entscheidenden Beitrag\
+    \ zur umweltvertr\xE4glichen Beschaffung. Bitte \xFCberlegen Sie mithilfe der\
+    \ n\xE4chsten Frage, ob der Fuhrpark noch weiter verkleinert werden kann. "
+  B12: Hinweis Verzicht auf Pkw-Beschaffung
+  B13: "Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung."
+  B14: "Sie haben den Fuhrpark bereits vor der Nutzung des Tools verkleinert. Damit\
+    \ leisten Sie einen entscheidenden Beitrag zur umweltvertr\xE4glichen Beschaffung."
+  B15: "Bei der n\xE4chsten Beschaffung sollten Sie bereits in der Bedarfsermittlung\
+    \ pr\xFCfen, ob der Fuhrpark verkleinert werden kann. "
+  B16: "Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung. Insgesamt besteht jedoch nach\
+    \ wie vor eine Vergr\xF6\xDFerung im Vergleich zum vorhandenen Fuhrpark. Bei der\
+    \ n\xE4chsten Beschaffung sollten Sie bereits in der Bedarfsermittlung pr\xFC\
+    fen, ob der Fuhrpark verkleinert werden kann. "
+  B17: "Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung. Insgesamt besteht jedoch nach\
+    \ wie vor keine Verkleinerung im Vergleich zum vorhandenen Fuhrpark. Bei der n\xE4\
+    chsten Beschaffung sollten Sie bereits in der Bedarfsermittlung pr\xFCfen, ob\
+    \ der Fuhrpark verkleinert werden kann. "
+  B3: "Fuhrparkgr\xF6\xDFe"
+  B4: verkleinern
+  B5: "vergr\xF6\xDFern"
+  B7: "Hinweis Fuhrparkgr\xF6\xDFe"
+  B8: "Bitte \xFCberlegen Sie mithilfe der n\xE4chsten Frage, ob der Fuhrpark verkleinert\
+    \ statt vergr\xF6\xDFert werden kann. Damit w\xFCrden Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung leisten."
+  B9: "Bitte \xFCberlegen Sie mithilfe der n\xE4chsten Frage, ob der Fuhrpark verkleinert\
+    \ werden kann. Damit w\xFCrden Sie einen entscheidenden Beitrag zur umweltvertr\xE4\
+    glichen Beschaffung leisten."
+Matrix:
+  A1: "Abfrage-Empfehlung-Matrix f\xFCr das DBU-Online-Tool"
+  A10: Antriebsart
+  A11: Antriebsart
+  A12: Antriebsart
+  A13: Antriebsart
+  A14: Antriebsart
+  A15: Antriebsart
+  A16: Antriebsart
+  A17: Antriebsart
+  A18: Antriebsart
+  A19: Fahrzeugsegment
+  A20: Fahrzeugsegment
+  A21: Fahrzeugsegment
+  A22: Fahrzeugsegment
+  A23: Fahrzeugsegment
+  A24: Fahrzeugsegment
+  A25: Fahrzeugsegment
+  A26: Fahrzeugsegment
+  A27: Fahrzeugsegment
+  A28: Fahrzeugsegment
+  A29: Fahrzeugsegment
+  A3: Kategorie
+  A30: Fahrzeugsegment
+  A31: Fahrzeugsegment
+  A32: Fahrzeugsegment
+  A33: Fahrzeugsegment
+  A34: Fahrzeugsegment
+  A35: Fahrzeugsegment
+  A36: Fahrzeugsegment
+  A37: Fahrzeugsegment
+  A38: Fahrzeugsegment
+  A39: Fahrzeugsegment
+  A4: Antriebsart
+  A40: Fahrzeugsegment
+  A41: Fahrzeugsegment
+  A42: Fahrzeugsegment
+  A43: Fahrzeugsegment
+  A44: Fahrzeugsegment
+  A45: Fahrzeugsegment
+  A46: Fahrzeugsegment
+  A47: Fahrzeugsegment
+  A48: Fahrzeugsegment
+  A49: Fahrzeugsegment
+  A5: Antriebsart
+  A50: Fahrzeugsegment
+  A51: Fahrzeugsegment
+  A52: Fahrzeugsegment
+  A53: Fahrzeugsegment
+  A54: Fahrzeugsegment
+  A55: Fahrzeugsegment
+  A56: Fahrzeugsegment
+  A57: Fahrzeugsegment
+  A58: Fahrzeugsegment
+  A59: Fahrzeugsegment
+  A6: Antriebsart
+  A60: Fahrzeugsegment
+  A7: Antriebsart
+  A8: Antriebsart
+  A9: Antriebsart
+  B10: Strecke pro Tag
+  B11: Strecke pro Tag
+  B12: Strecke pro Tag
+  B13: Strecke pro Tag
+  B14: Strecke pro Tag
+  B15: Strecke pro Tag
+  B16: Strecke pro Tag
+  B17: Strecke pro Tag
+  B18: Strecke pro Tag
+  B19: Anzahl_max Personen
+  B20: Anzahl_max Personen
+  B21: Anzahl_max Personen
+  B22: Anzahl_max Personen
+  B23: Anzahl_max Personen
+  B24: Anzahl_max Personen
+  B25: Anzahl_max Personen
+  B26: Anzahl_max Personen
+  B27: Anzahl_max Personen
+  B28: Anzahl_max Personen
+  B29: Anzahl_max Personen
+  B3: Abfrage_1
+  B30: Anzahl_max Personen
+  B31: Anzahl_max Personen
+  B32: Anzahl_max Personen
+  B33: Anzahl_max Personen
+  B34: Anzahl_max Personen
+  B35: Anzahl_max Personen
+  B36: Anzahl_max Personen
+  B37: Anzahl_max Personen
+  B38: Anzahl_max Personen
+  B39: Anzahl_max Personen
+  B4: Nicht relevant
+  B40: Anzahl_max Personen
+  B41: Anzahl_max Personen
+  B42: Anzahl_max Personen
+  B43: Anzahl_max Personen
+  B44: Anzahl_max Personen
+  B45: Anzahl_max Personen
+  B46: Anzahl_max Personen
+  B47: Anzahl_max Personen
+  B48: Anzahl_max Personen
+  B49: Anzahl_max Personen
+  B5: Strecke pro Tag
+  B50: Anzahl_max Personen
+  B51: Anzahl_max Personen
+  B52: Anzahl_max Personen
+  B53: Anzahl_max Personen
+  B54: Anzahl_max Personen
+  B55: Anzahl_max Personen
+  B56: Anzahl_max Personen
+  B57: Anzahl_max Personen
+  B58: Anzahl_max Personen
+  B59: Anzahl_max Personen
+  B6: Strecke pro Tag
+  B60: Anzahl_max Personen
+  B7: Strecke pro Tag
+  B8: Strecke pro Tag
+  B9: Strecke pro Tag
+  C10: "Gr\xF6\xDFer 150 km/Tag"
+  C11: "Gr\xF6\xDFer 150 km/Tag"
+  C12: "Gr\xF6\xDFer 150 km/Tag"
+  C13: "Gr\xF6\xDFer 150 km/Tag"
+  C14: "Gr\xF6\xDFer 150 km/Tag"
+  C15: "Gr\xF6\xDFer 150 km/Tag"
+  C16: "Gr\xF6\xDFer 150 km/Tag"
+  C17: "Gr\xF6\xDFer 150 km/Tag"
+  C18: "Gr\xF6\xDFer 150 km/Tag"
+  C19: Kleiner 6
+  C20: Kleiner 6
+  C21: 1 bis 2
+  C22: 1 bis 2
+  C23: 3 bis 4
+  C24: 3 bis 4
+  C25: 3 bis 4
+  C26: 3 bis 4
+  C27: 5
+  C28: 5
+  C29: 6 bis 7
+  C3: Auswahl_1
+  C30: 6 bis 7
+  C31: 6 bis 7
+  C32: 6 bis 7
+  C33: 6 bis 7
+  C34: 8 bis 9
+  C35: 8 bis 9
+  C36: 8 bis 9
+  C37: 8 bis 9
+  C38: 8 bis 9
+  C39: Kleiner 6
+  C4: Nicht relevant
+  C40: Kleiner 6
+  C41: 1 bis 2
+  C42: 1 bis 2
+  C43: 1 bis 2
+  C44: 1 bis 2
+  C45: 3 bis 4
+  C46: 3 bis 4
+  C47: 3 bis 4
+  C48: 3 bis 4
+  C49: 3 bis 4
+  C5: Kleiner gleich 150 km/Tag
+  C50: 3 bis 4
+  C51: 3 bis 4
+  C52: 3 bis 4
+  C53: 5
+  C54: 5
+  C55: 5
+  C56: 5
+  C57: 6 bis 7
+  C58: 6 bis 7
+  C59: 8 bis 9
+  C6: Kleiner gleich 150 km/Tag
+  C60: 8 bis 9
+  C7: Kleiner gleich 150 km/Tag
+  C8: Kleiner gleich 150 km/Tag
+  C9: Kleiner gleich 150 km/Tag
+  D10: "Strecken \xFCber 150 km"
+  D11: Nicht relevant
+  D12: "Strecken \xFCber 150 km"
+  D13: Nicht relevant
+  D14: "Strecken \xFCber 150 km"
+  D15: "Strecken \xFCber 150 km"
+  D16: "Strecken \xFCber 150 km"
+  D17: "Strecken \xFCber 150 km"
+  D18: "Strecken \xFCber 150 km"
+  D19: Nicht relevant
+  D20: Nicht relevant
+  D21: Nicht relevant
+  D22: Nicht relevant
+  D23: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D24: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D25: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D26: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D27: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D28: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D29: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D3: Abfrage_2
+  D30: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D31: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D32: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D33: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D34: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D35: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D36: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D37: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D38: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D39: Nicht relevant
+  D4: Nicht relevant
+  D40: Nicht relevant
+  D41: Nicht relevant
+  D42: Nicht relevant
+  D43: Nicht relevant
+  D44: Nicht relevant
+  D45: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D46: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D47: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D48: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D49: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D5: "Strecken \xFCber 150 km"
+  D50: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D51: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D52: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D53: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D54: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D55: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D56: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D57: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D58: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D59: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D6: "Strecken \xFCber 150 km"
+  D60: "Alle Sitzpl\xE4tze ben\xF6tigt"
+  D7: "Strecken \xFCber 150 km"
+  D8: "Strecken \xFCber 150 km"
+  D9: "Strecken \xFCber 150 km"
+  E10: Selten
+  E11: Nicht relevant
+  E12: "H\xE4ufig"
+  E13: Nicht relevant
+  E14: "H\xE4ufig"
+  E15: "H\xE4ufig"
+  E16: Meistens
+  E17: Meistens
+  E18: Meistens
+  E19: Nicht relevant
+  E20: Nicht relevant
+  E21: Nicht relevant
+  E22: Nicht relevant
+  E23: Selten
+  E24: Selten
+  E25: "H\xE4ufig"
+  E26: Meistens
+  E27: Selten
+  E28: "H\xE4ufig, Meistens"
+  E29: Selten
+  E3: Auswahl_2
+  E30: Selten
+  E31: Selten
+  E32: Selten
+  E33: "H\xE4ufig, Meistens"
+  E34: Selten
+  E35: Selten
+  E36: Selten
+  E37: Selten
+  E38: "H\xE4ufig, Meistens"
+  E39: Nicht relevant
+  E4: Nicht relevant
+  E40: Nicht relevant
+  E41: Nicht relevant
+  E42: Nicht relevant
+  E43: Nicht relevant
+  E44: Nicht relevant
+  E45: Selten
+  E46: Selten
+  E47: Selten
+  E48: Selten
+  E49: "H\xE4ufig"
+  E5: Selten
+  E50: "H\xE4ufig"
+  E51: Meistens
+  E52: Meistens
+  E53: Selten
+  E54: Selten
+  E55: "H\xE4ufig, Meistens"
+  E56: "H\xE4ufig, Meistens"
+  E57: Selten
+  E58: Selten
+  E59: Selten
+  E6: Selten
+  E60: Selten
+  E7: "H\xE4ufig"
+  E8: "H\xE4ufig"
+  E9: Meistens
+  F10: Nicht relevant
+  F11: Standzeiten
+  F12: Standzeiten
+  F13: Standzeiten
+  F14: Standzeiten
+  F15: Standzeiten
+  F16: Standzeiten
+  F17: Standzeiten
+  F18: Standzeiten
+  F19: Transport Van
+  F20: Transport Van
+  F21: Transport Van
+  F22: Transport Van
+  F23: Transport Van
+  F24: Transport Van
+  F25: Transport Van
+  F26: Transport Van
+  F27: Transport Van
+  F28: Transport Van
+  F29: Transport Van
+  F3: Abfrage_3
+  F30: Transport Van
+  F31: Transport Van
+  F32: Transport Van
+  F33: Nicht relevant
+  F34: Transport Van
+  F35: Transport Van
+  F36: Transport Van
+  F37: Transport Van
+  F38: Nicht relevant
+  F39: Transport Van
+  F4: Nicht relevant
+  F40: Transport Van
+  F41: Transport Van
+  F42: Transport Van
+  F43: Transport Van
+  F44: Transport Van
+  F45: Transport Van
+  F46: Transport Van
+  F47: Transport Van
+  F48: Transport Van
+  F49: Transport Van
+  F5: Nicht relevant
+  F50: Transport Van
+  F51: Transport Van
+  F52: Transport Van
+  F53: Transport Van
+  F54: Transport Van
+  F55: Transport Van
+  F56: Transport Van
+  F57: Transport Van
+  F58: Transport Van
+  F59: Transport Van
+  F6: Nicht relevant
+  F60: Transport Van
+  F7: Nicht relevant
+  F8: Nicht relevant
+  F9: Nicht relevant
+  G10: Nicht relevant
+  G11: Fast nie
+  G12: Ab und zu
+  G13: Ab und zu
+  G14: "Regelm\xE4\xDFig"
+  G15: "Regelm\xE4\xDFig"
+  G16: Ab und zu
+  G17: "Regelm\xE4\xDFig"
+  G18: "Regelm\xE4\xDFig"
+  G19: "Regelm\xE4\xDFig"
+  G20: Nie (oder k.A.)
+  G21: Nie
+  G22: Nie
+  G23: Nie
+  G24: Nie
+  G25: Nie
+  G26: Nie
+  G27: Nie
+  G28: Nie
+  G29: Nie
+  G3: Auswahl_3
+  G30: Nie
+  G31: "Regelm\xE4\xDFig"
+  G32: "Regelm\xE4\xDFig"
+  G33: Nicht relevant
+  G34: Nie
+  G35: Nie
+  G36: "Regelm\xE4\xDFig"
+  G37: "Regelm\xE4\xDFig"
+  G38: Nicht relevant
+  G39: Gelegentlich
+  G4: Nicht relevant
+  G40: Gelegentlich
+  G41: Gelegentlich
+  G42: Gelegentlich
+  G43: Gelegentlich
+  G44: Gelegentlich
+  G45: Gelegentlich
+  G46: Gelegentlich
+  G47: Gelegentlich
+  G48: Gelegentlich
+  G49: Gelegentlich
+  G5: Nicht relevant
+  G50: Gelegentlich
+  G51: Gelegentlich
+  G52: Gelegentlich
+  G53: Gelegentlich
+  G54: Gelegentlich
+  G55: Gelegentlich
+  G56: Gelegentlich
+  G57: Gelegentlich
+  G58: Gelegentlich
+  G59: Gelegentlich
+  G6: Nicht relevant
+  G60: Gelegentlich
+  G7: Nicht relevant
+  G8: Nicht relevant
+  G9: Nicht relevant
+  H10: Nicht relevant
+  H11: Nicht relevant
+  H12: "Lades\xE4ulen Strecken"
+  H13: "Lades\xE4ulen Strecken"
+  H14: "Lades\xE4ulen Strecken"
+  H15: "Lades\xE4ulen Strecken"
+  H16: "Lades\xE4ulen Strecken"
+  H17: "Lades\xE4ulen Strecken"
+  H18: "Lades\xE4ulen Strecken"
+  H19: Nicht relevant
+  H20: Leitungsebene
+  H21: Leitungsebene
+  H22: Leitungsebene
+  H23: Leitungsebene
+  H24: Leitungsebene
+  H25: Leitungsebene
+  H26: Leitungsebene
+  H27: Leitungsebene
+  H28: Leitungsebene
+  H29: Nicht relevant
+  H3: Abfrage_4
+  H30: Nicht relevant
+  H31: Nicht relevant
+  H32: Nicht relevant
+  H33: Nicht relevant
+  H34: Nicht relevant
+  H35: Nicht relevant
+  H36: Nicht relevant
+  H37: Nicht relevant
+  H38: Nicht relevant
+  H39: Leitungsebene
+  H4: "Lades\xE4ulen Standort"
+  H40: Leitungsebene
+  H41: Leitungsebene
+  H42: Leitungsebene
+  H43: Leitungsebene
+  H44: Leitungsebene
+  H45: Leitungsebene
+  H46: Leitungsebene
+  H47: Leitungsebene
+  H48: Leitungsebene
+  H49: Leitungsebene
+  H5: Nicht relevant
+  H50: Leitungsebene
+  H51: Leitungsebene
+  H52: Leitungsebene
+  H53: Leitungsebene
+  H54: Leitungsebene
+  H55: Leitungsebene
+  H56: Leitungsebene
+  H57: Nicht relevant
+  H58: Nicht relevant
+  H59: Nicht relevant
+  H6: Nicht relevant
+  H60: Nicht relevant
+  H7: Nicht relevant
+  H8: Nicht relevant
+  H9: Nicht relevant
+  I10: Nicht relevant
+  I11: Nicht relevant
+  I12: Ja
+  I13: Nein
+  I14: Ja
+  I15: Nein
+  I16: Ja
+  I17: Ja
+  I18: Nein
+  I19: Nicht relevant
+  I20: Ja
+  I21: Nein
+  I22: Nein
+  I23: Nein
+  I24: Nein
+  I25: Nein
+  I26: Nein
+  I27: Nein
+  I28: Nein
+  I29: Nicht relevant
+  I3: Auswahl_4
+  I30: Nicht relevant
+  I31: Nicht relevant
+  I32: Nicht relevant
+  I33: Nicht relevant
+  I34: Nicht relevant
+  I35: Nicht relevant
+  I36: Nicht relevant
+  I37: Nicht relevant
+  I38: Nicht relevant
+  I39: Ja
+  I4: Nein
+  I40: Ja
+  I41: Nein
+  I42: Nein
+  I43: Nein
+  I44: Nein
+  I45: Nein
+  I46: Nein
+  I47: Nein
+  I48: Nein
+  I49: Nein
+  I5: Nicht relevant
+  I50: Nein
+  I51: Nein
+  I52: Nein
+  I53: Nein
+  I54: Nein
+  I55: Nein
+  I56: Nein
+  I57: Nicht relevant
+  I58: Nicht relevant
+  I59: Nicht relevant
+  I6: Nicht relevant
+  I60: Nicht relevant
+  I7: Nicht relevant
+  I8: Nicht relevant
+  I9: Nicht relevant
+  J10: Nicht relevant
+  J11: Nicht relevant
+  J12: Nicht relevant
+  J13: Nicht relevant
+  J14: Nicht relevant
+  J15: Nicht relevant
+  J16: Nicht relevant
+  J17: Nicht relevant
+  J18: Nicht relevant
+  J19: Nicht relevant
+  J20: Nicht relevant
+  J21: Nicht relevant
+  J22: Nicht relevant
+  J23: Nicht relevant
+  J24: Nicht relevant
+  J25: Nicht relevant
+  J26: Nicht relevant
+  J27: Nicht relevant
+  J28: Nicht relevant
+  J29: Fuhrpark
+  J3: Abfrage_5
+  J30: Fuhrpark
+  J31: Fuhrpark
+  J32: Fuhrpark
+  J33: Nicht relevant
+  J34: Fuhrpark
+  J35: Fuhrpark
+  J36: Fuhrpark
+  J37: Fuhrpark
+  J38: Nicht relevant
+  J39: Fuhrpark
+  J4: Nicht relevant
+  J40: Fuhrpark
+  J41: Fuhrpark
+  J42: Fuhrpark
+  J43: Fuhrpark
+  J44: Fuhrpark
+  J45: Fuhrpark
+  J46: Fuhrpark
+  J47: Fuhrpark
+  J48: Fuhrpark
+  J49: Fuhrpark
+  J5: Fuhrpark
+  J50: Fuhrpark
+  J51: Fuhrpark
+  J52: Fuhrpark
+  J53: Fuhrpark
+  J54: Fuhrpark
+  J55: Fuhrpark
+  J56: Fuhrpark
+  J57: Fuhrpark
+  J58: Fuhrpark
+  J59: Fuhrpark
+  J6: Fuhrpark
+  J60: Fuhrpark
+  J7: Fuhrpark
+  J8: Fuhrpark
+  J9: Nicht relevant
+  K10: Nicht relevant
+  K11: Nicht relevant
+  K12: Nicht relevant
+  K13: Nicht relevant
+  K14: Nicht relevant
+  K15: Nicht relevant
+  K16: Nicht relevant
+  K17: Nicht relevant
+  K18: Nicht relevant
+  K19: Nicht relevant
+  K20: Nicht relevant
+  K21: Nicht relevant
+  K22: Nicht relevant
+  K23: Nicht relevant
+  K24: Nicht relevant
+  K25: Nicht relevant
+  K26: Nicht relevant
+  K27: Nicht relevant
+  K28: Nicht relevant
+  K29: Ja
+  K3: Auswahl_5
+  K30: Nein
+  K31: Ja
+  K32: Nein
+  K33: Nicht relevant
+  K34: Ja
+  K35: Nein
+  K36: Ja
+  K37: Nein
+  K38: Nicht relevant
+  K39: Ja
+  K4: Nicht relevant
+  K40: Nein
+  K41: Ja
+  K42: Nein
+  K43: Ja
+  K44: Nein
+  K45: Ja
+  K46: Nein
+  K47: Ja
+  K48: Nein
+  K49: Ja
+  K5: Ja
+  K50: Nein
+  K51: Ja
+  K52: Nein
+  K53: Ja
+  K54: Nein
+  K55: Ja
+  K56: Nein
+  K57: Ja
+  K58: Nein
+  K59: Ja
+  K6: Nein
+  K60: Nein
+  K7: Ja
+  K8: Nein
+  K9: Nicht relevant
+  L10: '-'
+  L11: '-'
+  L12: '-'
+  L13: '-'
+  L14: '-'
+  L15: '-'
+  L16: '-'
+  L17: '-'
+  L18: '-'
+  L19: Nicht relevant
+  L20: Nicht relevant
+  L21: "Strecken \xFCber 150 km"
+  L22: "Strecken \xFCber 150 km"
+  L23: "Strecken \xFCber 150 km"
+  L24: "Strecken \xFCber 150 km"
+  L25: Nicht relevant
+  L26: Nicht relevant
+  L27: Nicht relevant
+  L28: Nicht relevant
+  L29: Nicht relevant
+  L3: Abfrage_6
+  L30: Nicht relevant
+  L31: Nicht relevant
+  L32: Nicht relevant
+  L33: Nicht relevant
+  L34: Nicht relevant
+  L35: Nicht relevant
+  L36: Nicht relevant
+  L37: Nicht relevant
+  L38: Nicht relevant
+  L39: Nicht relevant
+  L4: '-'
+  L40: Nicht relevant
+  L41: "Strecken \xFCber 150 km"
+  L42: "Strecken \xFCber 150 km"
+  L43: "Strecken \xFCber 150 km"
+  L44: "Strecken \xFCber 150 km"
+  L45: "Strecken \xFCber 150 km"
+  L46: "Strecken \xFCber 150 km"
+  L47: "Strecken \xFCber 150 km"
+  L48: "Strecken \xFCber 150 km"
+  L49: Nicht relevant
+  L5: '-'
+  L50: Nicht relevant
+  L51: Nicht relevant
+  L52: Nicht relevant
+  L53: Nicht relevant
+  L54: Nicht relevant
+  L55: Nicht relevant
+  L56: Nicht relevant
+  L57: Nicht relevant
+  L58: Nicht relevant
+  L59: Nicht relevant
+  L6: '-'
+  L60: Nicht relevant
+  L7: '-'
+  L8: '-'
+  L9: '-'
+  M10: '-'
+  M11: '-'
+  M12: '-'
+  M13: '-'
+  M14: '-'
+  M15: '-'
+  M16: '-'
+  M17: '-'
+  M18: '-'
+  M19: Nicht relevant
+  M20: Nicht relevant
+  M21: Selten
+  M22: "H\xE4ufig, Meistens"
+  M23: Selten
+  M24: "H\xE4ufig, Meistens"
+  M25: Nicht relevant
+  M26: Nicht relevant
+  M27: Nicht relevant
+  M28: Nicht relevant
+  M29: Nicht relevant
+  M3: Auswahl_6
+  M30: Nicht relevant
+  M31: Nicht relevant
+  M32: Nicht relevant
+  M33: Nicht relevant
+  M34: Nicht relevant
+  M35: Nicht relevant
+  M36: Nicht relevant
+  M37: Nicht relevant
+  M38: Nicht relevant
+  M39: Nicht relevant
+  M4: '-'
+  M40: Nicht relevant
+  M41: Selten
+  M42: Selten
+  M43: "H\xE4ufig, Meistens"
+  M44: "H\xE4ufig, Meistens"
+  M45: Selten
+  M46: Selten
+  M47: "H\xE4ufig, Meistens"
+  M48: "H\xE4ufig, Meistens"
+  M49: Nicht relevant
+  M5: '-'
+  M50: Nicht relevant
+  M51: Nicht relevant
+  M52: Nicht relevant
+  M53: Nicht relevant
+  M54: Nicht relevant
+  M55: Nicht relevant
+  M56: Nicht relevant
+  M57: Nicht relevant
+  M58: Nicht relevant
+  M59: Nicht relevant
+  M6: '-'
+  M60: Nicht relevant
+  M7: '-'
+  M8: '-'
+  M9: '-'
+  N10: =E_A6
+  N11: =E_A9
+  N12: =E_A8
+  N13: =E_A10
+  N14: =E_A7
+  N15: =E_A11
+  N16: =E_A8
+  N17: =E_A8
+  N18: =E_A11
+  N19: =E_F1
+  N20: =E_F2
+  N21: =E_F3
+  N22: =E_F4
+  N23: =E_F5
+  N24: =E_F6
+  N25: =E_F7
+  N26: =E_F8
+  N27: =E_F9
+  N28: =E_F10
+  N29: =E_F11
+  N3: Empfehlung
+  N30: =E_F12
+  N31: =E_F13
+  N32: =E_F14
+  N33: =E_F15
+  N34: =E_F16
+  N35: =E_F17
+  N36: =E_F18
+  N37: =E_F19
+  N38: =E_F20
+  N39: =E_F21
+  N4: =E_A1
+  N40: =E_F22
+  N41: =E_F23
+  N42: =E_F24
+  N43: =E_F25
+  N44: =E_F26
+  N45: =E_F27
+  N46: =E_F28
+  N47: =E_F29
+  N48: =E_F30
+  N49: =E_F31
+  N5: =E_A2
+  N50: =E_F32
+  N51: =E_F33
+  N52: =E_F34
+  N53: =E_F35
+  N54: =E_F36
+  N55: =E_F37
+  N56: =E_F38
+  N57: =E_F39
+  N58: =E_F40
+  N59: =E_F41
+  N6: =E_A3
+  N60: =E_F42
+  N7: =E_A4
+  N8: =E_A5
+  N9: =E_A6
+Names:
+  A_JN1: Ja
+  A_JN2: Nein
+  A_R1: 150
+  A_S1: Selten
+  A_S2: "H\xE4ufig"
+  A_S3: Meistens
+  A_SP1: Selten
+  A_SP2: "H\xE4ufig"
+  A_SP3: Meistens
+  A_SV1: Fast nie
+  A_SV2: Ab und zu
+  A_SV3: "Regelm\xE4\xDFig"
+  A_T1: Nie
+  A_T2: Gelegentlich
+  A_T3: "Regelm\xE4\xDFig"
+  E_A0: =IFS(F_L1=A_JN2, E_A1, AND(F_R1<=A_R1, F_S1=A_S1, F_F1=A_JN1), E_A2, AND(F_R1<=A_R1,
+    F_S1=A_S1, F_F1=A_JN2), E_A3, AND(F_R1<=A_R1, F_S1=A_S2, F_F1=A_JN1), E_A4, AND(F_R1<=A_R1,
+    F_S1=A_S2, F_F1=A_JN2), E_A5, AND(F_R1<=A_R1, F_S1=A_S3), E_A6, AND(F_R1>A_R1,
+    F_S1=A_S1), E_A6, AND(F_R1>A_R1, F_SZ1=A_SV1), E_A9, AND(F_R1>A_R1, F_S1=A_S2,
+    F_SZ1=A_SV2, F_L2=A_JN1), E_A8, AND(F_R1>A_R1, F_SZ1=A_SV2, F_L2=A_JN2), E_A10,
+    AND(F_R1>A_R1, F_S1=A_S2, F_SZ1=A_SV3, F_L2=A_JN1), E_A7, AND(F_R1>A_R1, F_S1=A_S2,
+    F_SZ1=A_SV3, F_L2=A_JN2), E_A11, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV2, F_L2=A_JN1),
+    E_A8, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN1), E_A8, AND(F_R1>A_R1,
+    F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN2), E_A11, TRUE(), " ")
+  E_A1: "Wenn weder am Arbeitsplatz (bzw. im umliegenden \xF6ffentlichen Raum) noch\
+    \ am Wohnort der Nutzenden eine f\xFCr mehrere Stunden nutzbare Ladem\xF6glichkeit\
+    \ besteht, ist die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall sollte\
+    \ ein m\xF6glichst sparsamer Verbrenner beschafft werden. \n\nDer Auf- und Ausbau\
+    \ von Ladeinfrastruktur ist jedoch unbedingt zu empfehlen, um in Zukunft E-Autos\
+    \ beschaffen zu k\xF6nnen."
+  E_A10: "Bei vielen langen Strecken, auf denen keine Ladem\xF6glichkeit besteht,\
+    \ ist die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall sollte ein\
+    \ m\xF6glichst sparsamer Verbrenner beschafft werden."
+  E_A11: "Bei vielen langen Strecken, auf denen keine Ladem\xF6glichkeit besteht,\
+    \ ist die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall sollte ein\
+    \ m\xF6glichst sparsamer Verbrenner beschafft werden. \n\nDas Fahrprofil mit regelm\xE4\
+    \xDFigen l\xE4ngeren Fahrtunterbrechungen eignet sich an sich allerdings f\xFC\
+    r E-Autos. Der weitere Ausbau der \xF6ffentlichen Ladeinfrastruktur oder die Wahl\
+    \ von Alternativrouten mit verf\xFCgbaren Lades\xE4ulen kann also (in Zukunft)\
+    \ eine E-Auto-Beschaffung durchaus erm\xF6glichen. "
+  E_A2: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
+    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken\
+    \ \xFCber 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden.\
+    \ Bei schlechter Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4\
+    ck/Transportgut kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz\
+    \ kommen, sofern unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt\
+    \ werden k\xF6nnen. Besteht die M\xF6glichkeit zum Laden nicht, kann in diesen\
+    \ Ausnahmef\xE4llen (falls vef\xFCgbar) ein anderes Fahrzeug mit entsprechender\
+    \ Reichweite aus dem Fuhrpark oder sonst ein Mietwagen genutzt werden."
+  E_A3: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
+    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken\
+    \ \xFCber 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden.\
+    \ Bei schlechter Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4\
+    ck/Transportgut kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz\
+    \ kommen, sofern unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt\
+    \ werden k\xF6nnen. Besteht die M\xF6glichkeit zum Laden nicht, kann in diesen\
+    \ Ausnahmef\xE4llen ein Mietwagen genutzt werden."
+  E_A4: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
+    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal\
+    \ Tagesstrecken \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder\
+    \ am Zielort (Schnell-) Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das\
+    \ E-Auto auch auf diesen Strecken zum Einsatz kommen. Besteht die M\xF6glichkeit\
+    \ zum Laden nicht, sollte gepr\xFCft werden, ob f\xFCr die Einsatztage mit l\xE4\
+    ngeren Strecken regelm\xE4\xDFig ein anderes Fahrzeug mit entsprechender Reichweite\
+    \ aus dem Fuhrpark genutzt werden kann. Dieses Fahrzeug kann auch ein E-Auto mit\
+    \ gr\xF6\xDFerer Batterie sein, da in h\xF6heren Preissegmenten reale 300 km Reichweite\
+    \ g\xE4ngig sind. Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFCber 150 km\
+    \ tats\xE4chlich zum Gro\xDFteil mit dem Pkw zur\xFCckgelegt werden m\xFCssen\
+    \ (aufgrund schlechter Anbindung an den \xF6ffentlichen Verkehr oder viel Gep\xE4\
+    ck/Transportgut) oder ob mit Bahn oder Fernbus gereist werden kann."
+  E_A5: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
+    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal\
+    \ Tagesstrecken \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder\
+    \ am Zielort (Schnell-) Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das\
+    \ E-Auto auch auf diesen Strecken zum Einsatz kommen. Zudem ist zu pr\xFCfen,\
+    \ ob die Tagesstrecken \xFCber 150 km tats\xE4chlich zum Gro\xDFteil mit dem Pkw\
+    \ zur\xFCckgelegt werden m\xFCssen (aufgrund schlechter Anbindung an den \xF6\
+    ffentlichen Verkehr oder viel Gep\xE4ck/Transportgut) oder ob mit Bahn oder Fernbus\
+    \ gereist werden kann.\n\nIst dies nicht der Fall und besteht keine M\xF6glichkeit\
+    \ zum Laden w\xE4hrend l\xE4ngerer Strecken, kann die Beschaffung eines Plug-in-Hybrids\
+    \ (PHEV) sinnvoll sein. In diesem Fall sollte jedoch darauf geachtet werden, dass\
+    \ bei den k\xFCrzeren Strecken, die im Regelfall gefahren werden, ein elektrischer\
+    \ Fahranteil von \xFCber 70 % erzielt wird. Dazu muss ein regelm\xE4\xDFiges Laden\
+    \ gew\xE4hrleistet sein. Zudem sind PHEVs eher in gr\xF6\xDFeren Fahrzeugsegmenten\
+    \ verf\xFCgbar. Je nach Anwendungsfall kann ein kleiner, sparsamer Verbrenner\
+    \ auch aus Umweltsicht vorteilhaft gg\xFC. einem PHEV sein. "
+  E_A6: "Inkonsistente Eingabe: Die Aussage zur H\xE4ufigkeit l\xE4ngerer Strecken\
+    \ passt nicht mit der angegeben Streckenl\xE4nge eines repr\xE4sentativen Tages\
+    \ zusammen. Bitte passen Sie die Streckenl\xE4nge so an, dass sie den Fahrten\
+    \ im Regelfall entspricht."
+  E_A7: "Erlaubt die Terminplanung Fahrtunterbrechungen von mind. 20-40 min an Standorten\
+    \ mit (Schnell-)Ladem\xF6glichkeiten, ist ein E-Auto (BEV - rein batteriebetrieben)\
+    \ trotz h\xE4ufiger l\xE4ngerer Strecken bevorzugt zu beschaffen. "
+  E_A8: "Ein E-Auto (BEV - rein batteriebetrieben) mit gro\xDFer Reichweite ist ggf.\
+    \ geeignet. In h\xF6heren Preissegmenten ist eine Reichweite von 300 km g\xE4\
+    ngig. Es sollte jedoch beachtet werden, dass dem Umweltvorteil eines BEV in der\
+    \ Nutzung die Herstellungsemissionen einer gro\xDFen Batterie gegen\xFCberstehen.\
+    \ Zudem sind gro\xDFe Batterien vor allem in gr\xF6\xDFeren Fahrzeugen verbaut.\
+    \ Ein kleinerer, m\xF6glichst sparsamer Verbrenner kann in diesem Anwendungsfall\
+    \ aus Umweltsicht (und aus Kostensicht ohnehin) also durchaus vorteilhaft sein."
+  E_A9: "Erlaubt die Terminplanung auf langen Strecken keine bzw. nur sehr kurze Fahrtunterbrechungen\
+    \ unter 30 min, ist die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall\
+    \ sollte ein m\xF6glichst sparsamer Verbrenner beschafft werden."
+  E_F0: =IFS(AND(F_P1<6, F_T1=A_T3), E_F1, AND(F_P1<6, OR(F_T1=A_T1, ISBLANK(F_T1)),
+    F_LE1=A_JN1), E_F2, AND(F_P1>=1, F_P1<=2, F_T1=A_T1, F_LE1=A_JN2, F_S1=A_S1),
+    E_F3, AND(F_P1>=1, F_P1<=2, F_T1=A_T1, F_LE1=A_JN2, OR(F_S1=A_S2, F_S1=A_S3)),
+    E_F4, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1, F_T1=A_T1, F_LE1=A_JN2, F_S1=A_S1), E_F5,
+    AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1, F_T1=A_T1, F_LE1=A_JN2, OR(F_S1=A_S2, F_S1=A_S3)),
+    E_F6, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP2, F_T1=A_T1, F_LE1=A_JN2), E_F7, AND(F_P1>=3,
+    F_P1<=4, F_SP1=A_SP3, F_T1=A_T1, F_LE1=A_JN2), E_F8, AND(F_P1=5, F_SP1=A_SP1,
+    F_T1=A_T1, F_LE1=A_JN2), E_F9, AND(F_P1=5, OR(F_SP1=A_SP2, F_SP1=A_SP3), F_T1=A_T1,
+    F_LE1=A_JN2), E_F10, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN1),
+    E_F11, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN2), E_F12, AND(F_P1>=6,
+    F_P1<=7, F_SP1=A_SP1, F_T1=A_T3, F_F1=A_JN1), E_F13, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1,
+    F_T1=A_T3, F_F1=A_JN2), E_F14, AND(F_P1>=6, F_P1<=7, OR(F_SP1=A_SP2, F_SP1=A_SP3)),
+    E_F15, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN1), E_F16, AND(F_P1>=8,
+    F_P1<=9, F_SP1=A_SP1, F_T1=A_T1, F_F1=A_JN2), E_F17, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1,
+    F_T1=A_T3, F_F1=A_JN1), E_F18, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T3, F_F1=A_JN2),
+    E_F19, AND(F_P1>=8, F_P1<=9, OR(F_SP1=A_SP2, F_SP1=A_SP3)), E_F20, AND(F_P1<6,
+    F_T1=A_T2, F_LE1=A_JN1, F_F1=A_JN1), E_F21, AND(F_P1<6, F_T1=A_T2, F_LE1=A_JN1,
+    F_F1=A_JN2), E_F22, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1,
+    F_S1=A_S1), E_F23, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2, F_S1=A_S1),
+    E_F24, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1, OR(F_S1=A_S2,
+    F_S1=A_S3)), E_F25, AND(F_P1>=1, F_P1<=2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2,
+    OR(F_S1=A_S2, F_S1=A_S3)), E_F26, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1, F_T1=A_T2,
+    F_LE1=A_JN2, F_F1=A_JN1, F_S1=A_S1), E_F27, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1,
+    F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2, F_S1=A_S1), E_F28, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP1,
+    F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1, OR(F_S1=A_S2, F_S1=A_S3)), E_F29, AND(F_P1>=3,
+    F_P1<=4, F_SP1=A_SP1, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2, OR(F_S1=A_S2, F_S1=A_S3)),
+    E_F30, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1),
+    E_F31, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP2, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2),
+    E_F32, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP3, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1),
+    E_F33, AND(F_P1>=3, F_P1<=4, F_SP1=A_SP3, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2),
+    E_F34, AND(F_P1=5, F_SP1=A_SP1, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1), E_F35, AND(F_P1=5,
+    F_SP1=A_SP1, F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2), E_F36, AND(F_P1=5, OR(F_SP1=A_SP2,
+    F_SP1=A_SP3), F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN1), E_F37, AND(F_P1=5, OR(F_SP1=A_SP2,
+    F_SP1=A_SP3), F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2), E_F38, AND(F_P1>=6, F_P1<=7,
+    F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1), E_F39, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1,
+    F_T1=A_T2, F_F1=A_JN2), E_F40, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1),
+    E_F41, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN2), E_F42, TRUE(),
+    " ")
+  E_F1: "Bei regelm\xE4\xDFigen aufw\xE4ndigen Transportanforderungen ist ein Van\
+    \ oder ein Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und Pick-ups,\
+    \ die als Pkw zugelassen sind) notwendig."
+  E_F10: "Werden oft alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt, ist ein Fahrzeug der\
+    \ Mittelklasse zu empfehlen."
+  E_F11: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann ein Hochdachkombi\
+    \ (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet werden."
+  E_F12: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann ein Hochdachkombi\
+    \ gemietet werden."
+  E_F13: "Wenn nur selten \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Hochdachkombi oder Kleinbus (falls verf\xFCgbar)\
+    \ aus dem Fuhrpark verwendet oder sonst gemietet werden. Bei regelm\xE4\xDFigen\
+    \ aufw\xE4ndigen Transportanforderungen ist allerdings ohnehin ein Van oder ein\
+    \ Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und Pick-ups, die\
+    \ als Pkw zugelassen sind) notwendig. Bei der Wahl der Fahrzeugart ist also abzuw\xE4\
+    gen, ob der Personentransport (-> Hochdachkombi, Kleinbus) oder der Transport\
+    \ von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up) \xFCberwiegt."
+  E_F14: "Wenn nur selten \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Hochdachkombi oder Kleinbus gemietet werden. Bei\
+    \ regelm\xE4\xDFigen aufw\xE4ndigen Transportanforderungen ist allerdings ohnehin\
+    \ ein Van oder ein Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und\
+    \ Pick-ups, die als Pkw zugelassen sind) notwendig. Bei der Wahl der Fahrzeugart\
+    \ ist also abzuw\xE4gen, ob der Personentransport (-> Hochdachkombi, Kleinbus)\
+    \ oder der Transport von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up) \xFC\
+    berwiegt."
+  E_F15: "Werden oft mind. sechs Sitzpl\xE4tze ben\xF6tigt, sollte ein Hochdachkombi\
+    \ beschafft werden. Diese Fahrzeugart hat unter den 7-Sitzern in der Regel das\
+    \ beste Preis-Leistungs-Verh\xE4ltnis und f\xE4hrt sparsamer als z.B. ein SUV."
+  E_F16: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann ein Kleinbus\
+    \ (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet werden."
+  E_F17: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann ein Kleinbus\
+    \ gemietet werden."
+  E_F18: "Wenn nur selten \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Kleinbus (falls verf\xFCgbar) aus dem Fuhrpark verwendet\
+    \ oder sonst gemietet werden. Bei regelm\xE4\xDFigen aufw\xE4ndigen Transportanforderungen\
+    \ ist allerdings ohnehin ein Van oder ein Fahrzeug der Rubrik Utilities (Hochdachkombis,\
+    \ Kleinbusse und Pick-ups, die als Pkw zugelassen sind) notwendig. Bei der Wahl\
+    \ der Fahrzeugart ist also abzuw\xE4gen, ob der Personentransport (-> Hochdachkombi,\
+    \ Kleinbus) oder der Transport von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up)\
+    \ \xFCberwiegt."
+  E_F19: "Wenn nur selten \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein Kleinbus gemietet werden. Bei regelm\xE4\xDFigen\
+    \ aufw\xE4ndigen Transportanforderungen ist allerdings ohnehin ein Van oder ein\
+    \ Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und Pick-ups, die\
+    \ als Pkw zugelassen sind) notwendig. Bei der Wahl der Fahrzeugart ist also abzuw\xE4\
+    gen, ob der Personentransport (-> Hochdachkombi, Kleinbus) oder der Transport\
+    \ von Gegenst\xE4nden (-> Van, Hochdachkombi, Pick-up) \xFCberwiegt."
+  E_F2: "F\xFCr die Leitungsebene besteht ggf. Anspruch auf ein Fahrzeug aus einem\
+    \ h\xF6heren Fahrzeugsegment. Trotzdem sollte aus Umweltgr\xFCnden abgewogen werden,\
+    \ ob ein kleineres Fahrzeug geeignet ist und die Leitungsebene freiwillig auf\
+    \ diesen Anspruch verzichtet. "
+  E_F20: "Werden oft mind. acht Sitzpl\xE4tze ben\xF6tigt, sollte ein Kleinbus beschafft\
+    \ werden."
+  E_F21: "F\xFCr die Leitungsebene besteht ggf. Anspruch auf ein Fahrzeug aus einem\
+    \ h\xF6heren Fahrzeugsegment. Trotzdem sollte aus Umweltgr\xFCnden abgewogen werden,\
+    \ ob ein kleineres Fahrzeug geeignet ist und die Leitungsebene freiwillig auf\
+    \ diesen Anspruch verzichtet. \n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFC\
+    gbar) aus dem Fuhrpark verwendet oder sonst gemietet werden. "
+  E_F22: "F\xFCr die Leitungsebene besteht ggf. Anspruch auf ein Fahrzeug aus einem\
+    \ h\xF6heren Fahrzeugsegment. Trotzdem sollte aus Umweltgr\xFCnden abgewogen werden,\
+    \ ob ein kleineres Fahrzeug geeignet ist und die Leitungsebene freiwillig auf\
+    \ diesen Anspruch verzichtet.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  E_F23: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder\
+    \ sonst gemietet werden. "
+  E_F24: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug gemietet werden. "
+  E_F25: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist (gerade bei vielen l\xE4\
+    ngeren Strecken) mehr Komfort und/oder Stauraum n\xF6tig sein, sollte genau abgewogen\
+    \ werden, welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der\
+    \ Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFC\
+    gbar) aus dem Fuhrpark verwendet oder sonst gemietet werden. "
+  E_F26: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist (gerade bei vielen l\xE4\
+    ngeren Strecken) mehr Komfort und/oder Stauraum n\xF6tig sein, sollte genau abgewogen\
+    \ werden, welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der\
+    \ Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  E_F27: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder\
+    \ sonst gemietet werden. "
+  E_F28: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich\
+    \ aufw\xE4ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus\
+    \ der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein\
+    \ entsprechendes Fahrzeug gemietet werden. "
+  E_F29: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist (gerade bei vielen l\xE4ngeren\
+    \ Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen werden,\
+    \ welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der Institution\
+    \ entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen,\
+    \ die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFCgbar) aus\
+    \ dem Fuhrpark verwendet oder sonst gemietet werden. "
+  E_F3: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht."
+  E_F30: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist (gerade bei vielen l\xE4ngeren\
+    \ Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen werden,\
+    \ welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der Institution\
+    \ entspricht.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen,\
+    \ die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFC\
+    r diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  E_F31: "Werden h\xE4ufig mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Ist mehr Komfort\
+    \ und/oder Stauraum n\xF6tig, sollte genau abgewogen werden, welches Segment den\
+    \ Umweltanspr\xFCchen und der Vorbildfunktion der Institution entspricht.\n\n\
+    Wenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen, die einen\
+    \ Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese\
+    \ Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark\
+    \ verwendet oder sonst gemietet werden. "
+  E_F32: "Werden h\xE4ufig mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Ist mehr Komfort\
+    \ und/oder Stauraum n\xF6tig, sollte genau abgewogen werden, welches Segment den\
+    \ Umweltanspr\xFCchen und der Vorbildfunktion der Institution entspricht.\n\n\
+    Wenn nur gelegentlich aufw\xE4ndige Transportanforderungen bestehen, die einen\
+    \ Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen, kann f\xFCr diese\
+    \ Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  E_F33: "Auch wenn meistens bis zu vier Personen in dem Auto fahren, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet\
+    \ werden. "
+  E_F34: "Auch wenn meistens bis zu vier Personen in dem Auto fahren, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug gemietet werden. "
+  E_F35: "Wenn selten alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet\
+    \ werden. "
+  E_F36: "Wenn selten alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht.\n\nWenn nur gelegentlich aufw\xE4\
+    ndige Transportanforderungen bestehen, die einen Van/ein Fahrzeug aus der Rubrik\
+    \ Utilities n\xF6tig machen, kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes\
+    \ Fahrzeug gemietet werden. "
+  E_F37: "Werden oft alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt, ist ein Fahrzeug der\
+    \ Mittelklasse zu empfehlen.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug (falls verf\xFC\
+    gbar) aus dem Fuhrpark verwendet oder sonst gemietet werden. "
+  E_F38: "Werden oft alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt, ist ein Fahrzeug der\
+    \ Mittelklasse zu empfehlen.\n\nWenn nur gelegentlich aufw\xE4ndige Transportanforderungen\
+    \ bestehen, die einen Van/ein Fahrzeug aus der Rubrik Utilities n\xF6tig machen,\
+    \ kann f\xFCr diese Ausnahmef\xE4lle ein entsprechendes Fahrzeug gemietet werden. "
+  E_F39: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Hochdachkombi bzw. Van (falls verf\xFCgbar) aus dem Fuhrpark\
+    \ verwendet oder sonst gemietet werden."
+  E_F4: "Aus Umweltsicht sollte bei einer Nutzung des Fahrzeugs durch max. zwei Personen\
+    \ idealerweise ein Kleinstwagen beschafft werden. Ist (gerade bei vielen l\xE4\
+    ngeren Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen\
+    \ werden, welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der\
+    \ Institution entspricht."
+  E_F40: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Hochdachkombi bzw. Van gemietet werden."
+  E_F41: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Kleinbus bzw. Van (falls verf\xFCgbar) aus dem Fuhrpark verwendet\
+    \ oder sonst gemietet werden."
+  E_F42: "Im betrachteten Beschaffungsfall sollte bei bis zu vier Personen aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Werden oft f\xFCnf Sitzpl\xE4tze oder mehr Komfort/Stauraum\
+    \ ben\xF6tigt, ist ein Fahrzeug der Mittelklasse zu empfehlen.\n\nF\xFCr die Ausnahmef\xE4\
+    lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
+    \ bestehen, kann ein Kleinbus bzw. Van gemietet werden."
+  E_F5: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist mehr Komfort und/oder Stauraum\
+    \ n\xF6tig, sollte genau abgewogen werden, welches Segment den Umweltanspr\xFC\
+    chen und der Vorbildfunktion der Institution entspricht."
+  E_F6: "Werden nur selten mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Kleinwagen beschafft werden. Ist (gerade bei vielen l\xE4ngeren\
+    \ Strecken) mehr Komfort und/oder Stauraum n\xF6tig, sollte genau abgewogen werden,\
+    \ welches Segment den Umweltanspr\xFCchen und der Vorbildfunktion der Institution\
+    \ entspricht."
+  E_F7: "Werden h\xE4ufig mehr als zwei Sitzpl\xE4tze ben\xF6tigt, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Ist mehr Komfort\
+    \ und/oder Stauraum n\xF6tig, sollte genau abgewogen werden, welches Segment den\
+    \ Umweltanspr\xFCchen und der Vorbildfunktion der Institution entspricht."
+  E_F8: "Auch wenn meistens bis zu vier Personen in dem Auto fahren, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht."
+  E_F9: "Wenn selten alle f\xFCnf Sitzpl\xE4tze ben\xF6tigt werden, sollte aus Umweltsicht\
+    \ bevorzugt ein Fahrzeug der Kompaktklasse beschafft werden. Bereits in diesem\
+    \ Fahrzeugsegment gibt es viele Modelle mit ausreichend Platz f\xFCr gro\xDFe\
+    \ Erwachsene auf der R\xFCckbank. Ist mehr Komfort und/oder Stauraum n\xF6tig,\
+    \ sollte genau abgewogen werden, welches Segment den Umweltanspr\xFCchen und der\
+    \ Vorbildfunktion der Institution entspricht."
+  F_B1: 12
+  F_BF1: Ab und zu
+  F_CP1: "Regelm\xE4\xDFig"
+  F_CS1: Ab und zu
+  F_E1: 10
+  F_E2: 10
+  F_F1: Nein
+  F_FL1: Fast nie
+  F_L1: Ja
+  F_L2: Ja
+  F_LE1: Nein
+  F_M1: Ab und zu
+  F_P1: 3
+  F_R1: 200
+  F_S1: "H\xE4ufig"
+  F_SP1: "H\xE4ufig"
+  F_SZ1: "Regelm\xE4\xDFig"
+  F_T1: Gelegentlich
+  H_F1: verkleinern
+  H_F2: "vergr\xF6\xDFern"
+  H_F3: "Bitte \xFCberlegen Sie mithilfe der n\xE4chsten Frage, ob der Fuhrpark verkleinert\
+    \ statt vergr\xF6\xDFert werden kann. Damit w\xFCrden Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung leisten."
+  H_F4: "Bitte \xFCberlegen Sie mithilfe der n\xE4chsten Frage, ob der Fuhrpark verkleinert\
+    \ werden kann. Damit w\xFCrden Sie einen entscheidenden Beitrag zur umweltvertr\xE4\
+    glichen Beschaffung leisten."
+  H_F5: "Mit der Verkleinerung des Fuhrparks leisten Sie einen entscheidenden Beitrag\
+    \ zur umweltvertr\xE4glichen Beschaffung. Bitte \xFCberlegen Sie mithilfe der\
+    \ n\xE4chsten Frage, ob der Fuhrpark noch weiter verkleinert werden kann. "
+  H_V1: "Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung."
+  H_V2: "Sie haben den Fuhrpark bereits vor der Nutzung des Tools verkleinert. Damit\
+    \ leisten Sie einen entscheidenden Beitrag zur umweltvertr\xE4glichen Beschaffung."
+  H_V3: "Bei der n\xE4chsten Beschaffung sollten Sie bereits in der Bedarfsermittlung\
+    \ pr\xFCfen, ob der Fuhrpark verkleinert werden kann. "
+  H_V4: "Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung. Insgesamt besteht jedoch nach\
+    \ wie vor eine Vergr\xF6\xDFerung im Vergleich zum vorhandenen Fuhrpark. Bei der\
+    \ n\xE4chsten Beschaffung sollten Sie bereits in der Bedarfsermittlung pr\xFC\
+    fen, ob der Fuhrpark verkleinert werden kann. "
+  H_V5: "Mit dem Verzicht auf zu beschaffende Pkw leisten Sie einen entscheidenden\
+    \ Beitrag zur umweltvertr\xE4glichen Beschaffung. Insgesamt besteht jedoch nach\
+    \ wie vor keine Verkleinerung im Vergleich zum vorhandenen Fuhrpark. Bei der n\xE4\
+    chsten Beschaffung sollten Sie bereits in der Bedarfsermittlung pr\xFCfen, ob\
+    \ der Fuhrpark verkleinert werden kann. "
