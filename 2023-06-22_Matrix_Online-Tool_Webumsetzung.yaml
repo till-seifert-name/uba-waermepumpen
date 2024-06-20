@@ -33,7 +33,7 @@ Auswahllisten:
   B27: Gelegentlich
   B28: "Regelm\xE4\xDFig"
   B3: "Reichweiten-Grenze f\xFCr BEV [km]"
-  B4: 150
+  B4: 300
   B6: Ja/Nein-Fragen
   B7: Ja
   B8: Nein
@@ -44,7 +44,21 @@ Changelog:
   A101: 2023-06-20 00:00:00
   A102: 2023-06-21 00:00:00
   A103: 2023-06-21 00:00:00
+  A104: 2023-06-26 00:00:00
+  A105: 2023-06-26 00:00:00
+  A106: 2023-06-26 00:00:00
+  A107: 2023-06-26 00:00:00
+  A108: 2023-06-26 00:00:00
+  A109: 2023-06-26 00:00:00
   A11: 2023-05-24 00:00:00
+  A110: 2023-06-26 00:00:00
+  A111: 2023-06-27 00:00:00
+  A112: 2023-06-27 00:00:00
+  A113: 2023-06-28 00:00:00
+  A114: 2023-06-28 00:00:00
+  A115: 2024-06-18 00:00:00
+  A116: 2024-06-18 00:00:00
+  A117: 2024-06-20 00:00:00
   A12: 2023-05-24 00:00:00
   A13: 2023-05-24 00:00:00
   A14: 2023-05-24 00:00:00
@@ -147,7 +161,21 @@ Changelog:
   B101: Julia
   B102: Julia
   B103: Julia
+  B104: Julia
+  B105: Julia
+  B106: Julia
+  B107: Julia
+  B108: Julia
+  B109: Julia
   B11: Julia
+  B110: Julia
+  B111: Julia
+  B112: Julia
+  B113: Julia
+  B114: Julia
+  B115: Julia
+  B116: Julia
+  B117: Julia
   B12: Julia
   B13: Julia
   B14: Julia
@@ -250,7 +278,21 @@ Changelog:
   C101: Umweltanforderungen - Downloadversion
   C102: Empfehlungslisten
   C103: Infoboxen
+  C104: Tracking Matomo
+  C105: Infobox
+  C106: Umweltanforderungen - Pop-up
+  C107: Umweltanforderungen - Pop-up
+  C108: Umweltanforderungen - Pop-up
+  C109: Umweltanforderungen - Downloadversion
   C11: "Vor\xFCberlegungen 2/4"
+  C110: Downloads
+  C111: Empfehlungen 3/4
+  C112: Infobox
+  C113: Startseite
+  C114: Startseite
+  C115: Auswahllisten
+  C116: Empfehlungslisten
+  C117: Startseite
   C12: "Vor\xFCberlegungen 3/4"
   C13: "Vor\xFCberlegungen 3/4"
   C14: "Vor\xFCberlegungen 3/4"
@@ -351,7 +393,15 @@ Changelog:
   D10: Linke Seite
   D100: Umgang mit Sonderausstattung
   D102: Spalte B
+  D105: Antriebsart
   D11: Linke Seite
+  D111: Obere Hilfebox bei der ersten Frage
+  D112: Antriebsart
+  D113: "Akkordeonmen\xFC"
+  D114: Kopfzeile
+  D115: Zelle B4
+  D116: Zellen B5-8
+  D117: "Fu\xDFzeile"
   D12: Linke Seite
   D13: Linke Seite
   D14: Linke Seite
@@ -448,9 +498,43 @@ Changelog:
     \ haben sich zum Teil ge\xE4ndert -> f\xFCr \"Hintergrundinformationen\" und Infoboxen\
     \ \xFCbernehmen, aber in der \xDCbersichtsgrafik so lassen (ist sonst teilweise\
     \ zu lang f\xFCr die kleinen Boxen in der Grafik). Link zur Word-Datei im Kommentar"
+  E104: Code aus Mail einbinden
+  E105: "Neuen Absatz zur THG-Quote (siehe Word) einf\xFCgen. Den untersten Absatz\
+    \ auf der linken Seite (Hinweis zum eFleet Guide) dann ganz unten auf der rechten\
+    \ Seite platzieren, damit die linke und rechte Seite von der H\xF6he her in etwa\
+    \ ausgeglichen sind. Noch was zum ersten Absatz: \"(siehe hier f\xFCr Vorschl\xE4\
+    ge zu Umweltanforderungen ).\" -> Ein Leerzeichen zu viel hinter \"Umweltanforderungen\""
+  E106: "Die H\xE4kchen und Plus-Zeichen in den unteren beiden Boxen werden gerade\
+    \ nicht richtig dargestellt (\"check\" und \"add\" statt Symbole)"
+  E107: "\"(WLTP)\" in Tabelle hinter \"Partikelzahl (PN)\", \"Energieverbrauch\"\
+    \ -> Also wie in den beiden Zeilen dar\xFCber bei CO2 und NOx."
+  E108: "Bei \"Umgang mit Sonderausstattung\" die Reihenfolge der Aufz\xE4hlungspunkte\
+    \ \xE4ndern -> \"Kohlefaser (Carbon)\" als drittes ganz unten"
+  E109: "PDF f\xFCr Downloadversion (sowohl auf Startseite unter Downloads als auch\
+    \ als Druckversion des Pop-ups) ersetzen (siehe Link zu PDF im Kommentar)"
   E11: "Fragebutton neben \"Wie viele Fahrzeuge aus einem vorhandenen Fuhrpark werden\
     \ durch diese Beschaffung ersetzt?\" (siehe Figma, Text f\xFCr Hilfebox siehe\
     \ Link in Kommentar)"
+  E110: LZK-Dateien austauschen (siehe Mail)
+  E111: "Link \xFCber \"Berlin\" \xF6ffnet nicht in neuem Tab"
+  E112: "Neuer Abschnitt zu Ladeinfrastruktur in neuer Extra-Box (siehe Word). Abschnitt\
+    \ zum eFleet Guide daf\xFCr wieder auf die linke Seite ganz unten (sorry f\xFC\
+    r das Hin und Her... - dass man die Ladeinfrastruktur nochmal hier bringen k\xF6\
+    nnte, ist mir erst heute bei der Abschlussveranstaltung aufgefallen, als es da\
+    \ nochmal explizit drum ging. Ausschlie\xDFlich in den Hilfeboxen bei den Empfehlungen\
+    \ ist es ggf. zu versteckt)"
+  E113: "Irgendwie sind die \xDCberschriften im Akkordeonmen\xFC verrutscht. Bitte\
+    \ wieder auf die gleiche H\xF6he wie die Texte platzieren"
+  E114: "Susanne hatte gerade nochmal kurz dr\xFCbergeguckt und gefragt, ob du das\
+    \ gr\xFCne Blatt auf der rechten Seite komplett lassen k\xF6nntest, wenn die Bildschirmbreite\
+    \ das zul\xE4sst. Ist das ohne gro\xDFen Aufwand m\xF6glich? Falls nicht, kann's\
+    \ aber auch so bleiben, wie es ist :-)"
+  E115: "Reichweiten-Grenze f\xFCr BEV von 150 auf 300 km ge\xE4ndert (nach Recherche\
+    \ mithilfe der ADAC-Datenbank durch Felix)"
+  E116: "Reichweiten-Grenze f\xFCr BEV von 150 auf 300 km ge\xE4ndert + 400 km bei\
+    \ gr\xF6\xDFerer Batterie/h\xF6herem Preissegment"
+  E117: "Toolversion Stand erg\xE4nzen und ifeu-Logo daf\xFCr etwas nach oben r\xFC\
+    cken + Fu\xDFzeile nach unten verl\xE4ngern (siehe PPT in Mail)"
   E12: "PKW (\xFCber der Auswahl f\xFCr Pooling etc.)"
   E13: "Farbige Buttons neben Auswahloptionen hinzuf\xFCgen (siehe Figma), die dann\
     \ die entsprechenden Infoboxen \xF6ffnen"
@@ -725,11 +809,25 @@ Changelog:
   F75: Kleinstwagen
   G1: "Priorit\xE4t"
   G10: Erledigt
-  G100: Gering
-  G101: Mittel
-  G102: Hoch
-  G103: Hoch
+  G100: Erledigt
+  G101: Erledigt
+  G102: Erledigt
+  G103: Erledigt
+  G104: Erledigt
+  G105: Erledigt
+  G106: Erledigt
+  G107: Erledigt
+  G108: Erledigt
+  G109: Erledigt
   G11: Erledigt
+  G110: Erledigt
+  G111: Erledigt
+  G112: Erledigt
+  G113: Erledigt
+  G114: Erledigt
+  G115: Hoch
+  G116: Hoch
+  G117: Mittel
   G12: Erledigt
   G13: Erledigt
   G14: Erledigt
@@ -750,7 +848,7 @@ Changelog:
   G28: Erledigt
   G29: Erledigt
   G3: Erledigt
-  G30: Gering
+  G30: Erledigt
   G31: Erledigt
   G32: Erledigt
   G33: Erledigt
@@ -758,7 +856,7 @@ Changelog:
   G35: Erledigt
   G36: Erledigt
   G37: Erledigt
-  G38: Mittel
+  G38: Erledigt
   G39: Erledigt
   G4: Erledigt
   G40: Erledigt
@@ -808,120 +906,138 @@ Changelog:
   G80: Erledigt
   G81: Erledigt
   G82: Erledigt
-  G83: Gering
+  G83: Erledigt
   G84: Erledigt
-  G85: Mittel
+  G85: Erledigt
   G86: Erledigt
   G87: Erledigt
-  G88: Gering
+  G88: Erledigt
   G89: Erledigt
   G9: Erledigt
   G90: Erledigt
   G91: Erledigt
-  G92: Mittel
-  G93: Mittel
-  G94: Mittel
-  G95: Mittel
-  G96: Mittel
-  G97: Gering
-  G98: Gering
-  G99: Gering
-  H1: Im Online-Tool angepasst?
-  H30: ja
-  H38: ja
-  H85: Ja
-  I1: "Webumsetzung gepr\xFCft am:"
-  I10: 2023-06-08 00:00:00
-  I11: 2023-05-31 00:00:00
-  I12: 2023-06-08 00:00:00
-  I13: 2023-06-09 00:00:00
-  I14: 2023-06-08 00:00:00
-  I15: 2023-05-31 00:00:00
-  I16: 2023-06-01 00:00:00
-  I17: 2023-05-30 00:00:00
-  I18: 2023-06-01 00:00:00
-  I19: 2023-05-30 00:00:00
-  I20: 2023-06-09 00:00:00
-  I21: 2023-05-31 00:00:00
-  I22: 2023-06-08 00:00:00
-  I23: 2023-06-08 00:00:00
-  I24: 2023-06-08 00:00:00
-  I25: 2023-05-30 00:00:00
-  I26: 2023-05-30 00:00:00
-  I27: 2023-06-01 00:00:00
-  I28: 2023-06-01 00:00:00
-  I29: 2023-06-13 00:00:00
-  I3: 2023-06-08 00:00:00
-  I30: siehe Kommentar
-  I31: 2023-06-01 00:00:00
-  I32: 2023-06-01 00:00:00
-  I33: 2023-06-08 00:00:00
-  I34: 2023-06-01 00:00:00
-  I35: 2023-06-09 00:00:00
-  I36: 2023-05-31 00:00:00
-  I37: 2023-05-30 00:00:00
-  I38: siehe Kommentar
-  I39: 2023-06-08 00:00:00
-  I4: 2023-05-31 00:00:00
-  I40: 2023-06-09 00:00:00
-  I41: 2023-06-01 00:00:00
-  I42: 2023-06-08 00:00:00
-  I43: 2023-06-01 00:00:00
-  I44: 2023-06-01 00:00:00
-  I45: 2023-06-01 00:00:00
-  I46: 2023-06-01 00:00:00
-  I47: 2023-06-01 00:00:00
-  I48: 2023-05-30 00:00:00
-  I49: 2023-06-09 00:00:00
-  I5: 2023-06-01 00:00:00
-  I50: 2023-06-01 00:00:00
-  I51: 2023-05-30 00:00:00
-  I52: 2023-06-01 00:00:00
-  I53: 2023-06-01 00:00:00
-  I54: 2023-06-01 00:00:00
-  I55: 2023-06-01 00:00:00
-  I56: 2023-06-01 00:00:00
-  I57: 2023-06-09 00:00:00
-  I58: 2023-06-20 00:00:00
-  I59: 2023-06-09 00:00:00
-  I6: 2023-05-31 00:00:00
-  I60: 2023-06-20 00:00:00
-  I61: 2023-06-19 00:00:00
-  I62: 2023-06-09 00:00:00
-  I63: 2023-06-09 00:00:00
-  I64: 2023-06-09 00:00:00
-  I65: 2023-06-09 00:00:00
-  I66: 2023-06-09 00:00:00
-  I67: 2023-06-09 00:00:00
-  I68: 2023-06-09 00:00:00
-  I69: 2023-06-09 00:00:00
-  I7: 2023-05-30 00:00:00
-  I70: 2023-06-09 00:00:00
-  I71: 2023-06-09 00:00:00
-  I72: 2023-06-09 00:00:00
-  I73: 2023-06-09 00:00:00
-  I74: 2023-06-09 00:00:00
-  I75: 2023-06-09 00:00:00
-  I76: 2023-06-09 00:00:00
-  I77: 2023-06-09 00:00:00
-  I78: 2023-06-14 00:00:00
-  I79: 2023-06-19 00:00:00
-  I8: 2023-05-30 00:00:00
-  I80: 2023-06-19 00:00:00
-  I81: 2023-06-19 00:00:00
-  I82: 2023-06-19 00:00:00
-  I84: 2023-06-19 00:00:00
-  I85: siehe Kommentar
-  I86: 2023-06-20 00:00:00
-  I87: 2023-06-19 00:00:00
-  I89: 2023-06-20 00:00:00
-  I9: 2023-06-01 00:00:00
-  I90: 2023-06-19 00:00:00
-  I91: 2023-06-20 00:00:00
-  J1: Anmerkung
-  J30: '@Till: Ist mit Susanne besprochen; kannst du jetzt umsetzen (siehe Kommentar)'
-  J38: '@Till: Ist mit Susanne besprochen; kannst du jetzt umsetzen (siehe Kommentar)'
-  J92: 'Till: brauchst du von mir andere Icondateien?'
+  G92: Erledigt
+  G93: Erledigt
+  G94: Erledigt
+  G95: Erledigt
+  G96: Erledigt
+  G97: Erledigt
+  G98: Erledigt
+  G99: Erledigt
+  H1: "Webumsetzung gepr\xFCft am:"
+  H10: 2023-06-08 00:00:00
+  H100: 2023-06-26 00:00:00
+  H101: 2023-06-22 00:00:00
+  H102: 2023-06-27 00:00:00
+  H103: 2023-06-26 00:00:00
+  H104: 2023-06-26 00:00:00
+  H105: 2023-06-27 00:00:00
+  H106: 2023-06-26 00:00:00
+  H107: 2023-06-26 00:00:00
+  H108: 2023-06-26 00:00:00
+  H109: 2023-06-26 00:00:00
+  H11: 2023-05-31 00:00:00
+  H110: 2023-06-26 00:00:00
+  H111: 2023-06-28 00:00:00
+  H112: 2023-06-28 00:00:00
+  H113: 2023-06-28 00:00:00
+  H114: 2023-06-28 00:00:00
+  H12: 2023-06-08 00:00:00
+  H13: 2023-06-09 00:00:00
+  H14: 2023-06-08 00:00:00
+  H15: 2023-05-31 00:00:00
+  H16: 2023-06-01 00:00:00
+  H17: 2023-05-30 00:00:00
+  H18: 2023-06-01 00:00:00
+  H19: 2023-05-30 00:00:00
+  H20: 2023-06-09 00:00:00
+  H21: 2023-05-31 00:00:00
+  H22: 2023-06-08 00:00:00
+  H23: 2023-06-08 00:00:00
+  H24: 2023-06-08 00:00:00
+  H25: 2023-05-30 00:00:00
+  H26: 2023-05-30 00:00:00
+  H27: 2023-06-01 00:00:00
+  H28: 2023-06-01 00:00:00
+  H29: 2023-06-13 00:00:00
+  H3: 2023-06-08 00:00:00
+  H30: 2023-06-28 00:00:00
+  H31: 2023-06-01 00:00:00
+  H32: 2023-06-01 00:00:00
+  H33: 2023-06-08 00:00:00
+  H34: 2023-06-01 00:00:00
+  H35: 2023-06-09 00:00:00
+  H36: 2023-05-31 00:00:00
+  H37: 2023-05-30 00:00:00
+  H38: 2023-06-22 00:00:00
+  H39: 2023-06-08 00:00:00
+  H4: 2023-05-31 00:00:00
+  H40: 2023-06-09 00:00:00
+  H41: 2023-06-01 00:00:00
+  H42: 2023-06-08 00:00:00
+  H43: 2023-06-01 00:00:00
+  H44: 2023-06-01 00:00:00
+  H45: 2023-06-01 00:00:00
+  H46: 2023-06-01 00:00:00
+  H47: 2023-06-01 00:00:00
+  H48: 2023-05-30 00:00:00
+  H49: 2023-06-09 00:00:00
+  H5: 2023-06-01 00:00:00
+  H50: 2023-06-01 00:00:00
+  H51: 2023-05-30 00:00:00
+  H52: 2023-06-01 00:00:00
+  H53: 2023-06-01 00:00:00
+  H54: 2023-06-01 00:00:00
+  H55: 2023-06-01 00:00:00
+  H56: 2023-06-01 00:00:00
+  H57: 2023-06-09 00:00:00
+  H58: 2023-06-20 00:00:00
+  H59: 2023-06-09 00:00:00
+  H6: 2023-05-31 00:00:00
+  H60: 2023-06-20 00:00:00
+  H61: 2023-06-19 00:00:00
+  H62: 2023-06-09 00:00:00
+  H63: 2023-06-09 00:00:00
+  H64: 2023-06-09 00:00:00
+  H65: 2023-06-09 00:00:00
+  H66: 2023-06-09 00:00:00
+  H67: 2023-06-09 00:00:00
+  H68: 2023-06-09 00:00:00
+  H69: 2023-06-09 00:00:00
+  H7: 2023-05-30 00:00:00
+  H70: 2023-06-09 00:00:00
+  H71: 2023-06-09 00:00:00
+  H72: 2023-06-09 00:00:00
+  H73: 2023-06-09 00:00:00
+  H74: 2023-06-09 00:00:00
+  H75: 2023-06-09 00:00:00
+  H76: 2023-06-09 00:00:00
+  H77: 2023-06-09 00:00:00
+  H78: 2023-06-14 00:00:00
+  H79: 2023-06-19 00:00:00
+  H8: 2023-05-30 00:00:00
+  H80: 2023-06-19 00:00:00
+  H81: 2023-06-19 00:00:00
+  H82: 2023-06-19 00:00:00
+  H83: 2023-06-26 00:00:00
+  H84: 2023-06-19 00:00:00
+  H85: 2023-06-26 00:00:00
+  H86: 2023-06-20 00:00:00
+  H87: 2023-06-19 00:00:00
+  H88: 2023-06-27 00:00:00
+  H89: 2023-06-20 00:00:00
+  H9: 2023-06-01 00:00:00
+  H90: 2023-06-19 00:00:00
+  H91: 2023-06-20 00:00:00
+  H92: 2023-06-26 00:00:00
+  H93: 2023-06-26 00:00:00
+  H94: 2023-06-22 00:00:00
+  H95: 2023-06-22 00:00:00
+  H96: 2023-06-26 00:00:00
+  H97: 2023-06-26 00:00:00
+  H98: 2023-06-26 00:00:00
+  H99: 2023-06-26 00:00:00
+  I1: Anmerkung
 Darstellung_Flotte:
   B10: Verkehrsmittel
   B11: Mietwagen
@@ -942,11 +1058,11 @@ Darstellung_Flotte:
   C7: =Auswahllisten!B17
   C8: =Auswahllisten!B18
   D10: "Substitutionsm\xF6glichkeit "
-  D11: =VLOOKUP(C11,C6:D8,2,FALSE())
-  D12: =VLOOKUP(C12,C6:D8,2,FALSE())
-  D13: =VLOOKUP(C13,C6:D8,2,FALSE())
-  D14: =VLOOKUP(C14,C6:D8,2,FALSE())
-  D15: =VLOOKUP(C15,C6:D8,2,FALSE())
+  D11: =VLOOKUP(C11,C6:D8,2,FALSE)
+  D12: =VLOOKUP(C12,C6:D8,2,FALSE)
+  D13: =VLOOKUP(C13,C6:D8,2,FALSE)
+  D14: =VLOOKUP(C14,C6:D8,2,FALSE)
+  D15: =VLOOKUP(C15,C6:D8,2,FALSE)
   D5: "Zahlenwert f\xFCr die Darstellung"
   D6: 2
   D7: 4
@@ -1251,9 +1367,9 @@ Empfehlungslisten:
     \ Fahrzeug (falls verf\xFCgbar) aus dem Fuhrpark verwendet oder sonst gemietet\
     \ werden. "
   B5: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
-    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
     \ das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken \xFCber\
-    \ 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden. Bei schlechter\
+    \ 300 km sollte idealerweise die Bahn oder der Fernbus genutzt werden. Bei schlechter\
     \ Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4ck/Transportgut\
     \ kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz kommen, sofern\
     \ unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt werden k\xF6\
@@ -1328,35 +1444,35 @@ Empfehlungslisten:
     lle, in denen \xFCber sieben Sitzpl\xE4tze ben\xF6tigt werden/aufw\xE4ndige Transportanforderungen\
     \ bestehen, kann ein Kleinbus bzw. Van gemietet werden."
   B6: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
-    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
     \ das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken \xFCber\
-    \ 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden. Bei schlechter\
+    \ 300 km sollte idealerweise die Bahn oder der Fernbus genutzt werden. Bei schlechter\
     \ Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4ck/Transportgut\
     \ kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz kommen, sofern\
     \ unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt werden k\xF6\
     nnen. Besteht die M\xF6glichkeit zum Laden nicht, kann in diesen Ausnahmef\xE4\
     llen ein Mietwagen genutzt werden."
   B7: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
-    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
     \ das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal Tagesstrecken\
-    \ \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder am Zielort (Schnell-)\
+    \ \xFCber 300 km zur\xFCckgelegt werden sollen und unterwegs oder am Zielort (Schnell-)\
     \ Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das E-Auto auch auf diesen\
     \ Strecken zum Einsatz kommen. Besteht die M\xF6glichkeit zum Laden nicht, sollte\
     \ gepr\xFCft werden, ob f\xFCr die Einsatztage mit l\xE4ngeren Strecken regelm\xE4\
     \xDFig ein anderes Fahrzeug mit entsprechender Reichweite aus dem Fuhrpark genutzt\
     \ werden kann. Dieses Fahrzeug kann auch ein E-Auto mit gr\xF6\xDFerer Batterie\
-    \ sein, da in h\xF6heren Preissegmenten reale 300 km Reichweite g\xE4ngig sind.\
-    \ Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFCber 150 km tats\xE4chlich zum\
+    \ sein, da in h\xF6heren Preissegmenten reale 400 km Reichweite g\xE4ngig sind.\
+    \ Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFCber 300 km tats\xE4chlich zum\
     \ Gro\xDFteil mit dem Pkw zur\xFCckgelegt werden m\xFCssen (aufgrund schlechter\
     \ Anbindung an den \xF6ffentlichen Verkehr oder viel Gep\xE4ck/Transportgut) oder\
     \ ob mit Bahn oder Fernbus gereist werden kann."
   B8: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da Reichweiten\
-    \ bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
+    \ bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar sind, sodass\
     \ das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal Tagesstrecken\
-    \ \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder am Zielort (Schnell-)\
+    \ \xFCber 300 km zur\xFCckgelegt werden sollen und unterwegs oder am Zielort (Schnell-)\
     \ Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das E-Auto auch auf diesen\
     \ Strecken zum Einsatz kommen. Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFC\
-    ber 150 km tats\xE4chlich zum Gro\xDFteil mit dem Pkw zur\xFCckgelegt werden m\xFC\
+    ber 300 km tats\xE4chlich zum Gro\xDFteil mit dem Pkw zur\xFCckgelegt werden m\xFC\
     ssen (aufgrund schlechter Anbindung an den \xF6ffentlichen Verkehr oder viel Gep\xE4\
     ck/Transportgut) oder ob mit Bahn oder Fernbus gereist werden kann.\n\nIst dies\
     \ nicht der Fall und besteht keine M\xF6glichkeit zum Laden w\xE4hrend l\xE4ngerer\
@@ -1371,46 +1487,9 @@ Empfehlungslisten:
     \ nicht mit der angegeben Streckenl\xE4nge eines repr\xE4sentativen Tages zusammen.\
     \ Bitte passen Sie die Streckenl\xE4nge so an, dass sie den Fahrten im Regelfall\
     \ entspricht."
-  C10: siehe rote Markierungen
-  C11: siehe rote Markierungen
   C16: "Anmerkung f\xFCr Changelog"
-  C18: "\"bis zur Oberen Mittelklasse\" gel\xF6scht; siehe rote Markierungen"
-  C19: siehe rote Markierungen
-  C20: siehe rote Markierungen
-  C21: siehe rote Markierungen
-  C22: siehe rote Markierungen
-  C23: siehe rote Markierungen
-  C24: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C25: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C27: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C28: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C29: siehe rote Markierungen
   C3: "Anmerkung f\xFCr Changelog"
-  C30: siehe rote Markierungen
-  C32: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C33: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C37: "\"bis zur Oberen Mittelklasse\" gel\xF6scht; siehe rote Markierungen"
-  C38: "\"bis zur Oberen Mittelklasse\" gel\xF6scht; siehe rote Markierungen"
-  C39: siehe rote Markierungen
-  C4: siehe rote Markierungen
-  C40: siehe rote Markierungen
-  C41: siehe rote Markierungen
-  C42: siehe rote Markierungen
-  C43: siehe rote Markierungen
-  C44: siehe rote Markierungen
-  C45: siehe rote Markierungen
-  C46: siehe rote Markierungen
-  C47: siehe rote Markierungen
-  C48: siehe rote Markierungen
-  C49: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
   C5: siehe rote Markierungen
-  C50: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C51: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C52: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C55: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C56: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C57: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
-  C58: "siehe rote Markierungen; Verlinkung (siehe Kommentar) \xFCber \"Modelle\""
   C6: siehe rote Markierungen
   C7: siehe rote Markierungen
   C8: siehe rote Markierungen
@@ -1450,7 +1529,7 @@ Fragen_Prototyp_Einzelfahrzeug:
     AND(F_R1>A_R1, F_S1=A_S2, F_SZ1=A_SV3, F_L2=A_JN1), E_A7, AND(F_R1>A_R1, F_S1=A_S2,
     F_SZ1=A_SV3, F_L2=A_JN2), E_A11, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV2, F_L2=A_JN1),
     E_A8, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN1), E_A8, AND(F_R1>A_R1,
-    F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN2), E_A11, TRUE(), " ")
+    F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN2), E_A11, TRUE, " ")
   B28: Fahrzeugsegment
   B30: "In diesem Abschnitt geht es darum, welche Aufgabenstellung erf\xFCllt werden\
     \ soll, um ein m\xF6glichst umweltvertr\xE4gliches Fahrzeug bzgl. des Fahrzeugsegments\
@@ -1502,7 +1581,7 @@ Fragen_Prototyp_Einzelfahrzeug:
     F_SP1=A_SP3), F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2), E_F38, AND(F_P1>=6, F_P1<=7,
     F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1), E_F39, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1,
     F_T1=A_T2, F_F1=A_JN2), E_F40, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1),
-    E_F41, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN2), E_F42, TRUE(),
+    E_F41, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN2), E_F42, TRUE,
     " ")
   B6: Antriebsart
   B8: "In diesem Abschnitt geht es darum, wie das Fahrprofil aussieht und ob Ladem\xF6\
@@ -1540,7 +1619,7 @@ Fragen_Prototyp_Flotte:
   B14: 10
   B16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", "Mit dieser Beschaffung")
   B17: =IFS(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", F_E1>F_B1, H_F5, F_E1<F_B1, H_F3,
-    TRUE(), H_F4)
+    TRUE, H_F4)
   B19: "Wie oft k\xF6nnen die geplanten Strecken/Einsatzzwecke mit folgenden Verkehrsmitteln\
     \ erledigt werden?\n"
   B2: Fragen - Prototyp Flotte
@@ -1563,7 +1642,7 @@ Fragen_Prototyp_Flotte:
   B57: 10
   B59: =IFS(ISBLANK(F_E2), "", AND(F_E2=0, F_E1<=F_B1), H_V3, AND(F_E2=0, F_E1>F_B1),
     H_V2, AND(F_E2>0, F_E1<F_B1, F_E2<(F_B1-F_E1)), H_V4, AND(F_E2>0, F_E1<F_B1, F_E2=(F_B1-F_E1)),
-    H_V5, TRUE(), H_V1)
+    H_V5, TRUE, H_V1)
   B6: Verkehrsmittel
   B61: "F\xFCr die verbleibenden Pkw nutzen Sie bitte den Tooleinstieg (B) \"Einzelfahrzeug\
     \ beschaffen\". Sollte der Einsatzzweck f\xFCr alle zu beschaffenden Pkw gleich\
@@ -1584,7 +1663,7 @@ Fragen_Prototyp_Flotte:
   D28: Nutzung von Pkw eines Car-Sharing-Anbieters
   D30: "Mietwagen f\xFCr einzelne Strecken"
   D57: Pkw
-  E16: =IFS(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", F_E1>=F_B1, H_F1, TRUE(), H_F2)
+  E16: =IFS(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", F_E1>=F_B1, H_F1, TRUE, H_F2)
   F16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", "Sie Ihren Fuhrpark um")
   G16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", ABS((F_E1-F_B1)/F_E1))
   H16: =IF(OR(ISBLANK(F_B1), ISBLANK(F_E1)), "", ".")
@@ -2448,7 +2527,7 @@ Matrix:
 Names:
   A_JN1: Ja
   A_JN2: Nein
-  A_R1: 150
+  A_R1: 300
   A_S1: Selten
   A_S2: "H\xE4ufig"
   A_S3: Meistens
@@ -2469,7 +2548,7 @@ Names:
     AND(F_R1>A_R1, F_S1=A_S2, F_SZ1=A_SV3, F_L2=A_JN1), E_A7, AND(F_R1>A_R1, F_S1=A_S2,
     F_SZ1=A_SV3, F_L2=A_JN2), E_A11, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV2, F_L2=A_JN1),
     E_A8, AND(F_R1>A_R1, F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN1), E_A8, AND(F_R1>A_R1,
-    F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN2), E_A11, TRUE(), " ")
+    F_S1=A_S3, F_SZ1=A_SV3, F_L2=A_JN2), E_A11, TRUE, " ")
   E_A1: "Wenn weder am Arbeitsplatz (bzw. im umliegenden \xF6ffentlichen Raum) noch\
     \ am Wohnort der Nutzenden eine f\xFCr mehrere Stunden nutzbare Ladem\xF6glichkeit\
     \ besteht, ist die Beschaffung eines E-Autos nicht sinnvoll. In diesem Fall sollte\
@@ -2487,9 +2566,9 @@ Names:
     \ von Alternativrouten mit verf\xFCgbaren Lades\xE4ulen kann also (in Zukunft)\
     \ eine E-Auto-Beschaffung durchaus erm\xF6glichen. "
   E_A2: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
-    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ Reichweiten bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
     \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken\
-    \ \xFCber 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden.\
+    \ \xFCber 300 km sollte idealerweise die Bahn oder der Fernbus genutzt werden.\
     \ Bei schlechter Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4\
     ck/Transportgut kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz\
     \ kommen, sofern unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt\
@@ -2497,35 +2576,35 @@ Names:
     \ Ausnahmef\xE4llen (falls vef\xFCgbar) ein anderes Fahrzeug mit entsprechender\
     \ Reichweite aus dem Fuhrpark oder sonst ein Mietwagen genutzt werden."
   E_A3: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
-    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ Reichweiten bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
     \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nF\xFCr einzelne Tagesstrecken\
-    \ \xFCber 150 km sollte idealerweise die Bahn oder der Fernbus genutzt werden.\
+    \ \xFCber 300 km sollte idealerweise die Bahn oder der Fernbus genutzt werden.\
     \ Bei schlechter Anbindung an den \xF6ffentlichen Verkehr oder mit viel Gep\xE4\
     ck/Transportgut kann das E-Auto auch auf l\xE4ngeren Tagesstrecken zum Einsatz\
     \ kommen, sofern unterwegs oder am Zielort (Schnell-)Ladem\xF6glichkeiten genutzt\
     \ werden k\xF6nnen. Besteht die M\xF6glichkeit zum Laden nicht, kann in diesen\
     \ Ausnahmef\xE4llen ein Mietwagen genutzt werden."
   E_A4: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
-    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ Reichweiten bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
     \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal\
-    \ Tagesstrecken \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder\
+    \ Tagesstrecken \xFCber 300 km zur\xFCckgelegt werden sollen und unterwegs oder\
     \ am Zielort (Schnell-) Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das\
     \ E-Auto auch auf diesen Strecken zum Einsatz kommen. Besteht die M\xF6glichkeit\
     \ zum Laden nicht, sollte gepr\xFCft werden, ob f\xFCr die Einsatztage mit l\xE4\
     ngeren Strecken regelm\xE4\xDFig ein anderes Fahrzeug mit entsprechender Reichweite\
     \ aus dem Fuhrpark genutzt werden kann. Dieses Fahrzeug kann auch ein E-Auto mit\
-    \ gr\xF6\xDFerer Batterie sein, da in h\xF6heren Preissegmenten reale 300 km Reichweite\
-    \ g\xE4ngig sind. Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFCber 150 km\
+    \ gr\xF6\xDFerer Batterie sein, da in h\xF6heren Preissegmenten reale 400 km Reichweite\
+    \ g\xE4ngig sind. Zudem ist zu pr\xFCfen, ob die Tagesstrecken \xFCber 300 km\
     \ tats\xE4chlich zum Gro\xDFteil mit dem Pkw zur\xFCckgelegt werden m\xFCssen\
     \ (aufgrund schlechter Anbindung an den \xF6ffentlichen Verkehr oder viel Gep\xE4\
     ck/Transportgut) oder ob mit Bahn oder Fernbus gereist werden kann."
   E_A5: "Ein E-Auto (BEV - rein batteriebetrieben) ist bevorzugt zu beschaffen, da\
-    \ Reichweiten bis 150 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
+    \ Reichweiten bis 300 km mit den heute \xFCblichen E-Pkw in der Regel erzielbar\
     \ sind, sodass das Laden \xFCber Nacht ausreicht. \n\nWenn h\xE4ufiger auch mal\
-    \ Tagesstrecken \xFCber 150 km zur\xFCckgelegt werden sollen und unterwegs oder\
+    \ Tagesstrecken \xFCber 300 km zur\xFCckgelegt werden sollen und unterwegs oder\
     \ am Zielort (Schnell-) Ladem\xF6glichkeiten genutzt werden k\xF6nnen, kann das\
     \ E-Auto auch auf diesen Strecken zum Einsatz kommen. Zudem ist zu pr\xFCfen,\
-    \ ob die Tagesstrecken \xFCber 150 km tats\xE4chlich zum Gro\xDFteil mit dem Pkw\
+    \ ob die Tagesstrecken \xFCber 300 km tats\xE4chlich zum Gro\xDFteil mit dem Pkw\
     \ zur\xFCckgelegt werden m\xFCssen (aufgrund schlechter Anbindung an den \xF6\
     ffentlichen Verkehr oder viel Gep\xE4ck/Transportgut) oder ob mit Bahn oder Fernbus\
     \ gereist werden kann.\n\nIst dies nicht der Fall und besteht keine M\xF6glichkeit\
@@ -2589,7 +2668,7 @@ Names:
     F_SP1=A_SP3), F_T1=A_T2, F_LE1=A_JN2, F_F1=A_JN2), E_F38, AND(F_P1>=6, F_P1<=7,
     F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1), E_F39, AND(F_P1>=6, F_P1<=7, F_SP1=A_SP1,
     F_T1=A_T2, F_F1=A_JN2), E_F40, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN1),
-    E_F41, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN2), E_F42, TRUE(),
+    E_F41, AND(F_P1>=8, F_P1<=9, F_SP1=A_SP1, F_T1=A_T2, F_F1=A_JN2), E_F42, TRUE,
     " ")
   E_F1: "Bei regelm\xE4\xDFigen aufw\xE4ndigen Transportanforderungen ist ein Van\
     \ oder ein Fahrzeug der Rubrik Utilities (Hochdachkombis, Kleinbusse und Pick-ups,\
