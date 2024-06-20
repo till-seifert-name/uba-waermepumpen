@@ -59,6 +59,7 @@ Changelog:
   A115: 2024-06-18 00:00:00
   A116: 2024-06-18 00:00:00
   A117: 2024-06-20 00:00:00
+  A118: 2024-06-20 00:00:00
   A12: 2023-05-24 00:00:00
   A13: 2023-05-24 00:00:00
   A14: 2023-05-24 00:00:00
@@ -176,6 +177,7 @@ Changelog:
   B115: Julia
   B116: Julia
   B117: Julia
+  B118: Julia
   B12: Julia
   B13: Julia
   B14: Julia
@@ -293,6 +295,7 @@ Changelog:
   C115: Auswahllisten
   C116: Empfehlungslisten
   C117: Startseite
+  C118: Empfehlungslisten
   C12: "Vor\xFCberlegungen 3/4"
   C13: "Vor\xFCberlegungen 3/4"
   C14: "Vor\xFCberlegungen 3/4"
@@ -402,6 +405,7 @@ Changelog:
   D115: Zelle B4
   D116: Zellen B5-8
   D117: "Fu\xDFzeile"
+  D118: Zelle B11
   D12: Linke Seite
   D13: Linke Seite
   D14: Linke Seite
@@ -535,6 +539,8 @@ Changelog:
     \ gr\xF6\xDFerer Batterie/h\xF6herem Preissegment"
   E117: "Toolversion Stand erg\xE4nzen und ifeu-Logo daf\xFCr etwas nach oben r\xFC\
     cken + Fu\xDFzeile nach unten verl\xE4ngern (siehe PPT in Mail)"
+  E118: "Reichweiten-Grenze f\xFCr BEV bei gr\xF6\xDFerer Batterie/h\xF6herem Preissegment\
+    \ von 300 auf 400 km ge\xE4ndert"
   E12: "PKW (\xFCber der Auswahl f\xFCr Pooling etc.)"
   E13: "Farbige Buttons neben Auswahloptionen hinzuf\xFCgen (siehe Figma), die dann\
     \ die entsprechenden Infoboxen \xF6ffnen"
@@ -825,9 +831,10 @@ Changelog:
   G112: Erledigt
   G113: Erledigt
   G114: Erledigt
-  G115: Hoch
-  G116: Hoch
-  G117: Mittel
+  G115: Erledigt
+  G116: Erledigt
+  G117: Gering
+  G118: Hoch
   G12: Erledigt
   G13: Erledigt
   G14: Erledigt
@@ -1134,7 +1141,7 @@ Empfehlungslisten:
     \ mit (Schnell-)Ladem\xF6glichkeiten, ist ein E-Auto (BEV - rein batteriebetrieben)\
     \ trotz h\xE4ufiger l\xE4ngerer Strecken bevorzugt zu beschaffen. "
   B11: "Ein E-Auto (BEV - rein batteriebetrieben) mit gro\xDFer Reichweite ist ggf.\
-    \ geeignet. In h\xF6heren Preissegmenten ist eine Reichweite von 300 km g\xE4\
+    \ geeignet. In h\xF6heren Preissegmenten ist eine Reichweite von 400 km g\xE4\
     ngig. Es sollte jedoch beachtet werden, dass dem Umweltvorteil eines BEV in der\
     \ Nutzung die Herstellungsemissionen einer gro\xDFen Batterie gegen\xFCberstehen.\
     \ Zudem sind gro\xDFe Batterien vor allem in gr\xF6\xDFeren Fahrzeugen verbaut.\
@@ -1487,6 +1494,7 @@ Empfehlungslisten:
     \ nicht mit der angegeben Streckenl\xE4nge eines repr\xE4sentativen Tages zusammen.\
     \ Bitte passen Sie die Streckenl\xE4nge so an, dass sie den Fahrten im Regelfall\
     \ entspricht."
+  C11: siehe rote Markierungen
   C16: "Anmerkung f\xFCr Changelog"
   C3: "Anmerkung f\xFCr Changelog"
   C5: siehe rote Markierungen
@@ -2623,7 +2631,7 @@ Names:
     \ mit (Schnell-)Ladem\xF6glichkeiten, ist ein E-Auto (BEV - rein batteriebetrieben)\
     \ trotz h\xE4ufiger l\xE4ngerer Strecken bevorzugt zu beschaffen. "
   E_A8: "Ein E-Auto (BEV - rein batteriebetrieben) mit gro\xDFer Reichweite ist ggf.\
-    \ geeignet. In h\xF6heren Preissegmenten ist eine Reichweite von 300 km g\xE4\
+    \ geeignet. In h\xF6heren Preissegmenten ist eine Reichweite von 400 km g\xE4\
     ngig. Es sollte jedoch beachtet werden, dass dem Umweltvorteil eines BEV in der\
     \ Nutzung die Herstellungsemissionen einer gro\xDFen Batterie gegen\xFCberstehen.\
     \ Zudem sind gro\xDFe Batterien vor allem in gr\xF6\xDFeren Fahrzeugen verbaut.\
