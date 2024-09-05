@@ -6,8 +6,9 @@ import {
   Input, PLATFORM_ID, Renderer2,
   ViewChild
 } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, EventType, NavigationStart, Router} from "@angular/router";
 import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {debounceTime, filter, take} from "rxjs";
 
 @Component({
   selector: 'app-info-card',
@@ -113,10 +114,10 @@ import {DOCUMENT, isPlatformBrowser} from "@angular/common";
       <mat-card [ngClass]="innerCardClass" appearance="outlined">
         <mat-card-content class="p-2 px-3 str">
           <h2 *ngIf="cardTitle" [class.mb-1]="cardBodyText">
-            {{cardTitle}}
+            {{ cardTitle }}
           </h2>
           <p *ngIf="cardBodyText" class="mat-h5">
-            {{cardBodyText}}
+            {{ cardBodyText }}
           </p>
         </mat-card-content>
       </mat-card>
@@ -229,7 +230,16 @@ export class InfoCardComponent implements AfterViewInit {
     const params = this.parseFragment(fragment ?? '');
     params['popup'] = this.fragmentName;
     const newFragment = this.stringifyFragment(params);
-    this.router.navigate([], {fragment: newFragment, replaceUrl: true});
+
+    this.router.navigate([], {fragment: newFragment, replaceUrl: true, queryParamsHandling: "merge"}).then(() => {
+      // Close dialog on route change after it was opened. Delay a bit so that the current navigation is ignored
+      this.router.events.pipe(
+        filter((event): event is NavigationStart => 'type' in event && event.type === EventType.NavigationStart),
+        take(1),
+        debounceTime(100),
+      ).subscribe(() => this.closeDialog());
+    });
+
   }
 
   closeDialog(): void {
@@ -251,7 +261,7 @@ export class InfoCardComponent implements AfterViewInit {
     if (params['popup'] === this.fragmentName) {
       delete params['popup'];
       const newFragment = this.stringifyFragment(params);
-      this.router.navigate([], {fragment: newFragment || undefined, replaceUrl: true});
+      this.router.navigate([], {fragment: newFragment || undefined, replaceUrl: true, queryParamsHandling: "merge"});
     }
   }
 
