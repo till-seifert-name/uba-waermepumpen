@@ -1,0 +1,48 @@
+<section class="m-0 p-5 text-bg-light bg-white backdrop-white flex-grow-1">
+
+  <h1>FAQ</h1>
+
+  <mat-accordion class="mb-4" multi displayMode="flat">
+    <!-- FAQ Item 1 -->
+    <!-- Anpassen für den String der in der URL genutzt wird um diesen Abschnitt zu öffnen: id="faq1" -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="faq1" (opened)="onPanelChange()" (closed)="onPanelChange()">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-headline-5 m-0"> What is Lorem Ipsum?</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit nunc nec vestibulum consectetur.</p>
+    </mat-expansion-panel>
+
+    <!-- FAQ Item 2 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="faq2" (opened)="onPanelChange()" (closed)="onPanelChange()">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-headline-5 m-0"> Why do we use it?</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Vestibulum sit amet tristique leo. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </mat-expansion-panel>
+
+    <!-- FAQ Item 3 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="faq3" (opened)="onPanelChange()" (closed)="onPanelChange()">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-headline-5 m-0"> Where does it come from?</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi.</p>
+    </mat-expansion-panel>
+
+    <!-- FAQ Item 4 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="faq4" (opened)="onPanelChange()" (closed)="onPanelChange()">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-headline-5 m-0"> Where can I get some?</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Proin at malesuada libero. Sed in velit sit amet arcu tincidunt efficitur. Nam vulputate dolor sit amet velit.</p>
+    </mat-expansion-panel>
+
+    <!-- FAQ Item 5 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="faq5" (opened)="onPanelChange()" (closed)="onPanelChange()">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-headline-5 m-0"> How to use Lorem Ipsum?</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Maecenas facilisis fermentum arcu, ac pellentesque mi venenatis eu. Quisque non urna eget felis lacinia tincidunt.</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</section>

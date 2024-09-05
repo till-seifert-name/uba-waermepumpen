@@ -37,6 +37,7 @@ import { ResizableCircleComponent } from './vorueberlegungen/resizable-circle/re
 import { ImpressumComponent } from './impressum/impressum.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
+import { FaqComponent } from './faq/faq.component';
 import { PopupPkwPoolingComponent } from './hintergrundinformationen/popup-pkw-pooling/popup-pkw-pooling.component';
 import { PopupOEffentlicheVerkehrsmittelComponent } from './hintergrundinformationen/popup-oeffentliche-verkehrsmittel/popup-oeffentliche-verkehrsmittel.component';
 import { PopupBahnFernbusComponent } from './hintergrundinformationen/popup-bahn-fernbus/popup-bahn-fernbus.component';
@@ -88,6 +89,7 @@ import {MarkdownModule} from "ngx-markdown";
     ImpressumComponent,
     DatenschutzComponent,
     KontaktComponent,
+    FaqComponent,
     PopupPkwPoolingComponent,
     PopupOEffentlicheVerkehrsmittelComponent,
     PopupBahnFernbusComponent,

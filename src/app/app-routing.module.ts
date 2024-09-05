@@ -7,6 +7,7 @@ import {EmpfehlungenComponent} from "./empfehlungen/empfehlungen.component";
 import {ImpressumComponent} from "./impressum/impressum.component";
 import {DatenschutzComponent} from "./datenschutz/datenschutz.component";
 import {KontaktComponent} from "./kontakt/kontakt.component";
+import {FaqComponent} from "./faq/faq.component";
 
 const routes: Routes = [
   {
@@ -44,6 +45,11 @@ const routes: Routes = [
     path: 'kontakt',
     component: KontaktComponent,
     title: 'Kontakt'
+  },
+  {
+    path: 'FAQ',
+    component: FaqComponent,
+    title: 'FAQ'
   },
   {
     path: '**',
