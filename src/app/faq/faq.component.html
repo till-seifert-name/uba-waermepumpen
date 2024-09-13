@@ -3,46 +3,75 @@
   <h1>FAQ</h1>
 
   <mat-accordion class="mb-4" multi displayMode="flat">
-    <!-- FAQ Item 1 -->
-    <!-- Anpassen für den String der in der URL genutzt wird um diesen Abschnitt zu öffnen: id="faq1" -->
-    <mat-expansion-panel class="border-bottom shadow-none" id="faq1" (opened)="onPanelChange()" (closed)="onPanelChange()">
+
+    <!-- Dummy Accordion for Online-Tool -->
+    <mat-expansion-panel class="border-bottom shadow-none" disabled>
       <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0"> What is Lorem Ipsum?</mat-panel-title>
+        <mat-panel-title class="mat-h4 text-body fw-bold m-0">Online-Tool</mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit nunc nec vestibulum consectetur.</p>
     </mat-expansion-panel>
 
-    <!-- FAQ Item 2 -->
-    <mat-expansion-panel class="border-bottom shadow-none" id="faq2" (opened)="onPanelChange()" (closed)="onPanelChange()">
+    <!-- FAQ Item 1: Online-Tool Question 1 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="online-tool-q1" (opened)="onPanelChange()" (closed)="onPanelChange()">
       <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0"> Why do we use it?</mat-panel-title>
+        <mat-panel-title class="mat-h4 text-body m-0">Was bedeutet die Grenze von 300 km bei den Tagesstrecken in den Empfehlungen zur Antriebsart?</mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Vestibulum sit amet tristique leo. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>In den <a href="https://www.nachhaltige-oeffentliche-pkw-beschaffung.de/empfehlungen#step=1">Empfehlungen zur Antriebsart</a> umfasst die Frage zu den Tagesstrecken eine Grenze von 300 km. Dabei handelt es sich um die typische
+        Reichweite von rein batterieelektrischen Fahrzeugen (BEV). Die Reichweite bezieht sich in diesem Fall nicht auf den WLTP-Wert, sondern auf die reale Reichweite.</p>
+      <p>Der Wert wurde bei einer Marktanalyse über die <a href="https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/autosuche/">ADAC-Autosuche</a> (Stand: Februar 2024) abgeleitet. Bei der Marktanalyse wurde zudem die
+        Abhängigkeit zum Fahrzeugpreis berücksichtigt, da Fahrzeuge mit besonders hohen Reichweiten teilweise das Budget der öffentlichen Hand übersteigen.</p>
+      <figure>
+        <img src="assets/bev-reichweite-modellvarianten.png" alt="BEV Reichweite und Modellvarianten nach Fahrzeugpreis" class="img-fluid" style="max-width: 63ch">
+        <figcaption class="small text-muted mt-1">Abbildung: Marktanalyse zur realen Reichweite von BEV nach Fahrzeugpreis (eigene Abbildung mit Werten aus der <a
+          href="https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/autosuche/">ADAC-Autosuche</a>, Stand: Februar 2024)
+        </figcaption>
+      </figure>
     </mat-expansion-panel>
 
-    <!-- FAQ Item 3 -->
-    <mat-expansion-panel class="border-bottom shadow-none" id="faq3" (opened)="onPanelChange()" (closed)="onPanelChange()">
+    <!-- FAQ Item 2: Online-Tool Question 2 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="online-tool-q2" (opened)="onPanelChange()" (closed)="onPanelChange()">
       <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0"> Where does it come from?</mat-panel-title>
+        <mat-panel-title class="mat-h4 text-body m-0">Inwiefern kann das Online-Tool bei der Umsetzung von vergaberechtlichen Vorgaben unterstützen?</mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi.</p>
+      <p>Das Tool bietet eine Übersicht über Umweltanforderungen und ermöglicht eine entsprechende Berücksichtigung von Umweltkriterien bei der Beschaffung von Pkw.</p>
+      <img src="https://placehold.co/800x400?text=Vergaberechtliches+Unterstützung" alt="Vergaberechtliches Unterstützung" class="img-fluid">
+      <p class="text-muted">Abbildung: Unterstützung bei der Berücksichtigung vergaberechtlicher Vorgaben (eigene Abbildung)</p>
     </mat-expansion-panel>
 
-    <!-- FAQ Item 4 -->
-    <mat-expansion-panel class="border-bottom shadow-none" id="faq4" (opened)="onPanelChange()" (closed)="onPanelChange()">
+    <!-- Dummy Accordion for Umweltanforderungen -->
+    <mat-expansion-panel class="border-bottom shadow-none" disabled>
       <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0"> Where can I get some?</mat-panel-title>
+        <mat-panel-title class="mat-h4 text-body fw-bold m-0">Umweltanforderungen</mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Proin at malesuada libero. Sed in velit sit amet arcu tincidunt efficitur. Nam vulputate dolor sit amet velit.</p>
     </mat-expansion-panel>
 
-    <!-- FAQ Item 5 -->
-    <mat-expansion-panel class="border-bottom shadow-none" id="faq5" (opened)="onPanelChange()" (closed)="onPanelChange()">
+    <!-- FAQ Item 3: Umweltanforderungen Question 1 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="umweltanforderungen-q1" (opened)="onPanelChange()" (closed)="onPanelChange()">
       <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0"> How to use Lorem Ipsum?</mat-panel-title>
+        <mat-panel-title class="mat-h4 text-body m-0">Wie helfen Umweltanforderungen bei der Fahrzeugauswahl?</mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Maecenas facilisis fermentum arcu, ac pellentesque mi venenatis eu. Quisque non urna eget felis lacinia tincidunt.</p>
+      <p>Die festgelegten Umweltanforderungen definieren Mindeststandards, die bei der Ausschreibung für die Beschaffung von Fahrzeugen erfüllt werden müssen.</p>
+      <img src="https://placehold.co/800x400?text=Umweltanforderungen+Diagram" alt="Umweltanforderungen Diagram" class="img-fluid">
+      <p class="text-muted">Abbildung: Übersicht der Umweltanforderungen (eigene Abbildung)</p>
     </mat-expansion-panel>
+
+    <!-- Dummy Accordion for Lebenszykluskosten-Rechner -->
+    <mat-expansion-panel class="border-bottom shadow-none" disabled>
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-h4 text-body fw-bold m-0">Lebenszykluskosten-Rechner</mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+
+    <!-- FAQ Item 4: Lebenszykluskosten-Rechner Question 1 -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="lebenszykluskosten-q1" (opened)="onPanelChange()" (closed)="onPanelChange()">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-h4 text-body m-0">Wie berechnet der Lebenszykluskosten-Rechner die Wirtschaftlichkeit?</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Der Lebenszykluskosten-Rechner berechnet die Kosten für ein Fahrzeug über seine gesamte Nutzungsdauer, inklusive Anschaffung, Betrieb und Entsorgung.</p>
+      <img src="https://placehold.co/800x400?text=Lebenszykluskosten+Rechner" alt="Lebenszykluskosten Rechner" class="img-fluid">
+      <p class="text-muted">Abbildung: Berechnung der Lebenszykluskosten (eigene Abbildung)</p>
+    </mat-expansion-panel>
+
   </mat-accordion>
 
 </section>

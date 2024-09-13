@@ -1,0 +1,26 @@
+:host {
+  display: contents;
+}
+
+/* bigger accordion indicator */
+:host ::ng-deep {
+
+  .mat-accordion {
+    .mat-expansion-panel {
+      border-radius: 0 !important;
+      border-color: var(--bs-dark-border-subtle) !important;
+    }
+
+    .mat-expansion-indicator {
+      margin-inline-end: 2rem;
+
+      &:after {
+        color: var(--bs-dark-border-subtle);
+        padding: 5px;
+        border-width: 0 1.5px 1.5px 0;
+        transform: translateY(-50%) rotate(45deg) ;
+      }
+    }
+  }
+
+}
