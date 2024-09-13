@@ -408,6 +408,64 @@
       </app-info-card-button>
     </mat-expansion-panel>
 
+    <!-- Accordion Panel for Video-Tutorials and FAQ -->
+    <mat-expansion-panel class="border-bottom shadow-none" id="Video-Tutorials-FAQ" (opened)="onPanelChange()" (closed)="onPanelChange()">
+      <mat-expansion-panel-header class="h-auto p-3 px-4">
+        <mat-panel-title class="mat-headline-5 m-0">
+          Video-Tutorials und FAQ
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <p>Die Video-Tutorials helfen Ihnen beim Einstieg in die Nutzung der drei entwickelten Instrumente. </p>
+
+      <!-- 2x2 Grid Layout for Video Tutorials -->
+      <div class="grid" style="max-width: 120ch;">
+        <!-- Video 1: Online-Tool -->
+        <div class="g-col-5">
+          <p class="fw-bold mb-1">Online-Tool</p>
+          <figure class="ratio ratio-16x9">
+            <video class="w-100" controls preload="none">
+              <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e8/Antigua_Caleta_de_Fuste_-_Paseo_Maritimo_%28oT%29_01_ies.ogv/Antigua_Caleta_de_Fuste_-_Paseo_Maritimo_%28oT%29_01_ies.ogv.720p.vp9.webm"
+                      type="video/webm">
+            </video>
+          </figure>
+        </div>
+
+        <!-- Video 2: Umweltanforderungen -->
+        <div class="g-col-5 g-start-7">
+          <p class="fw-bold mb-1">Umweltanforderungen</p>
+          <figure class="ratio ratio-16x9">
+            <video class="w-100" controls preload="none">
+              <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e8/Antigua_Caleta_de_Fuste_-_Paseo_Maritimo_%28oT%29_01_ies.ogv/Antigua_Caleta_de_Fuste_-_Paseo_Maritimo_%28oT%29_01_ies.ogv.720p.vp9.webm"
+                      type="video/webm">
+            </video>
+          </figure>
+        </div>
+
+        <!-- Video 3: Lebenszykluskosten-Rechner -->
+        <div class="g-col-5">
+          <p class="fw-bold mb-1">Lebenszykluskosten-Rechner</p>
+          <figure class="ratio ratio-16x9">
+            <video class="w-100" controls preload="none">
+              <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e8/Antigua_Caleta_de_Fuste_-_Paseo_Maritimo_%28oT%29_01_ies.ogv/Antigua_Caleta_de_Fuste_-_Paseo_Maritimo_%28oT%29_01_ies.ogv.720p.vp9.webm"
+                      type="video/webm">
+            </video>
+          </figure>
+        </div>
+
+        <!-- Tile 4: FAQ Link -->
+        <div class="g-col-5 g-start-7">
+          <p class="fw-bold mb-1">&nbsp;</p>
+          <div class="ratio ratio-16x9">
+            <a routerLink="/FAQ" class="d-block btn btn-dark faq-tile">
+              Weitere Erläuterungen finden sie in den FAQ.
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </mat-expansion-panel>
+
   </mat-accordion>
 
 

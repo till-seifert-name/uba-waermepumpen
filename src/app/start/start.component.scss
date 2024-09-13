@@ -33,6 +33,21 @@
   }
 }
 
+.faq-tile {
+  background-image: url("../../assets/Header Startseite/Vector.svg"),
+  url("../../assets/Header Startseite/Vector-1.svg");
+  background-position: 10% 50%,
+  85% 0%;
+  background-size: auto 70%,
+  auto 60%;
+  background-repeat: no-repeat,
+  no-repeat;
+
+  background-clip: border-box;
+  padding: 37.2% 5% 4% 50%;
+  text-align: start;
+}
+
 /* bigger accordion indicator */
 :host ::ng-deep {
 
