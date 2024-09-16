@@ -1,6 +1,6 @@
 <mat-menu #menu="matMenu">
   <a mat-menu-item routerLink="/"
-     routerLinkActive="mdc-list-item--activated" [routerLinkActiveOptions]="{ exact: true }">
+     routerLinkActive="mdc-list-item--activated" [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }">
     Startseite
   </a>
   <a mat-menu-item routerLink="/hintergrundinformationen"
@@ -38,7 +38,7 @@
 <span class="visually-hidden"
       routerLink="/"
       routerLinkActive="root-route-is-active"
-      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }"
 ></span>
 
 <!-- Toolbar -->
