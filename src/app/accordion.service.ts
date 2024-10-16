@@ -62,8 +62,11 @@ export class AccordionService {
   /**
    * Handle panel changes and update the query params in the URL.
    */
-  handlePanelChange(accordion: MatAccordion, el: ElementRef): void {
-    const openPanels = this.getOpenPanelIds(accordion, el);
+  handlePanelChange(accordions: MatAccordion[], el: ElementRef): void {
+    const openPanels = accordions
+      .map(accordion => this.getOpenPanelIds(accordion, el))
+      .flatMap(ids => ids);
+
     this.router.navigate([], {
       relativeTo: this.route,
       replaceUrl: true,

@@ -29,7 +29,7 @@ export class StartComponent implements AfterViewInit {
    */
   onPanelChange(): void {
     if (this.accordion) {
-      this.accordionService.handlePanelChange(this.accordion, this.el);
+      this.accordionService.handlePanelChange([this.accordion], this.el);
     }
   }
 
