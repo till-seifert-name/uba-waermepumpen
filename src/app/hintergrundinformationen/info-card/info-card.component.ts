@@ -237,12 +237,12 @@ export class InfoCardComponent implements AfterViewInit {
         filter((event): event is NavigationStart => 'type' in event && event.type === EventType.NavigationStart),
         take(1),
         debounceTime(100),
-      ).subscribe(() => this.closeDialog());
+      ).subscribe(() => this.closeDialog(false));
     });
 
   }
 
-  closeDialog(): void {
+  closeDialog(updateFragment = true): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
     if (!this.dialog || !this.dialog.nativeElement.open)
@@ -258,7 +258,7 @@ export class InfoCardComponent implements AfterViewInit {
 
     const fragment = this.route.snapshot.fragment;
     const params = this.parseFragment(fragment ?? '');
-    if (params['popup'] === this.fragmentName) {
+    if (updateFragment && params['popup'] === this.fragmentName) {
       delete params['popup'];
       const newFragment = this.stringifyFragment(params);
       this.router.navigate([], {fragment: newFragment || undefined, replaceUrl: true, queryParamsHandling: "merge"});
