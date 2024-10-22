@@ -333,7 +333,7 @@
         die Sie in die
         Ausschreibung von Pkw übernehmen können.
         <br>
-        <a href="assets/downloads/Umweltanforderungen_Pkw-Beschaffung.pdf">Umweltanforderungen Pkw-Beschaffung</a>
+        <a href="assets/downloads/Umweltanforderungen_Fahrzeugbeschaffung.pdf">Umweltanforderungen Fahrzeugbeschaffung</a>
       </p>
 
       <p class="fw-bold mt-3 mb-1">Lebenszykluskosten-Rechner</p>
@@ -346,22 +346,35 @@
        <p>
         Hinweis: Für die korrekte Ausführung des Rechners wird mindestens die Excel-Version 2016 (oder aktueller) benötigt.
       </p>
-      <p>
-        Version 1.2 (Stand: 10.01.2024)
-      </p>
-
-      <dl class="row">
-        <dt class="col-sm-3 fw-normal"><a href="assets/downloads/LZK-Rechner_Pkw_V1.2.xlsx">LZK-Rechner Pkw</a></dt>
-        <dd class="col-sm-9">Lebenszykluskosten-Rechner in Excel</dd>
-
-        <dt class="col-sm-3 fw-normal"><a href="assets/downloads/LZK-Rechner_Pkw_V1.2_Beispiel.xlsx">LZK-Rechner Pkw
-          Beispiel</a></dt>
-        <dd class="col-sm-9">Lebenszykluskosten-Rechner beispielhaft mit Daten befüllt</dd>
-
-        <dt class="col-sm-3 fw-normal"><a href="assets/downloads/LZK-Rechner_Pkw_V1.2_Dokumentation.pdf">LZK-Rechner Pkw
-          Dokumentation</a></dt>
-        <dd class="col-sm-9">Dokumentation des Rechners, die der Aussschreibung beigefügt werden kann</dd>
-      </dl>
+      <table class="table table-borderless table-sm">
+        <thead>
+          <tr>
+            <th class="ps-0">Pkw</th>
+            <th>Leichte Nutzfahrzeuge (LNF)</th>
+          </tr>
+          <tr>
+            <td class="ps-0">Version 1.3 (Stand: 23.10.2024)</td>
+            <td>Version 1.0 (Stand: 23.10.2024)</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ps-0"><a href="assets/downloads/LZK-Rechner_Pkw_V1.3.xlsx">LZK-Rechner Pkw</a></td>
+            <td><a href="assets/downloads/LZK-Rechner_LNF_V1.0.xlsx">LZK-Rechner LNF</a></td>
+            <td class="pe-0">Lebenszykluskosten-Rechner in Excel</td>
+          </tr>
+          <tr>
+            <td class="ps-0"><a href="assets/downloads/LZK-Rechner_Pkw_V1.3_Beispiel.xlsx">LZK-Rechner Pkw Beispiel</a></td>
+            <td><a href="assets/downloads/LZK-Rechner_LNF_V1.0_Beispiel.xlsx">LZK-Rechner LNF Beispiel</a></td>
+            <td class="pe-0">Lebenszykluskosten-Rechner beispielhaft mit Daten befüllt</td>
+          </tr>
+          <tr>
+            <td class="ps-0"><a href="assets/downloads/LZK-Rechner_Fahrzeuge_Dokumentation.pdf">LZK-Rechner Fahrzeuge Dokumentation</a></td>
+            <td><a href="assets/downloads/LZK-Rechner_Fahrzeuge_Dokumentation.pdf">LZK-Rechner Fahrzeuge Dokumentation</a></td>
+            <td class="pe-0">Dokumentation des Rechners, die der Ausschreibung beigefügt werden kann</td>
+          </tr>
+        </tbody>
+      </table>
 
       <p class="fw-bold mb-1">Abschlussbericht</p>
       <p>
@@ -393,7 +406,7 @@
       </p>
       <p>Die
         Empfehlungen zur Antriebsart in diesem Tool sollen bei der Erfüllung der Quote unterstützen. Die in diesem Tool
-        gelisteten <a [dialogTrigger]="popupUmweltanforderungen" href="assets/downloads/Umweltanforderungen_Pkw-Beschaffung.pdf">Umweltanforderungen</a>
+        gelisteten <a [dialogTrigger]="popupUmweltanforderungen" href="assets/downloads/Umweltanforderungen_Fahrzeugbeschaffung.pdf">Umweltanforderungen</a>
         für die Ausschreibung von
         Pkw gelten zusätzlich zu den Anforderungen des
         SaubFahrzeugBeschG, da sie teilweise darüber hinausgehen (z.B. die CO₂-Mindestanforderung für PHEV oder die Mindestanforderungen für
@@ -403,7 +416,7 @@
         fallen, vorgegeben (z.B. CO₂-Mindestanforderungen für Verbrenner).
       </p>
       <app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen"
-                            pdfDownloadUrl="assets/downloads/Umweltanforderungen_Pkw-Beschaffung.pdf">
+                            pdfDownloadUrl="assets/downloads/Umweltanforderungen_Fahrzeugbeschaffung.pdf">
         <!--suppress JSUnusedGlobalSymbols -->
         <ng-template #dialogContent>
           <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
