@@ -1,7 +1,7 @@
 {
   "name": "dbu-online-tool",
-  "version": "2024.6.20",
-  "VERSION_UPDATED_AT": "2024-06-20",
+  "version": "2024.10.23",
+  "VERSION_UPDATED_AT": "2024-10-23",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
