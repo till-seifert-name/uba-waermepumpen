@@ -77,6 +77,7 @@ import {debounceTime, filter, take} from "rxjs";
       border: none;
       padding: 0;
       background: transparent;
+      overscroll-behavior: none;
 
       &::backdrop {
         background: rgba(0, 0, 0, 0.25);
