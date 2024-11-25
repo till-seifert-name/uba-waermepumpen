@@ -1,6 +1,40 @@
 <section class="m-0 p-5 text-bg-light bg-white backdrop-white flex-grow-1">
 
-  <h1>FAQ</h1>
+
+  <div class="row">
+
+    <h1 class="col-12 col-md-8 col-lg-9">
+      FAQ
+    </h1>
+
+    <div class="col-12 col-md-4 col-lg-3 d-print-none">
+      <!-- Search box -->
+      <mat-form-field class="w-100" appearance="outline" color="accent">
+        <input type="text" matInput [matAutocomplete]="auto" [formControl]="searchControl"
+               placeholder="Suchbegriff hier eingeben">
+        <button *ngIf="searchControl.value" matSuffix mat-icon-button aria-label="Leeren"
+                (click)="searchControl.setValue('')">
+          <mat-icon fontSet="material-symbols-outlined" class="wght-300">close</mat-icon>
+        </button>
+        <button *ngIf="!searchControl.value" matSuffix mat-icon-button aria-label="Suchen">
+          <mat-icon fontSet="material-symbols-outlined">search</mat-icon>
+        </button>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+          <!-- each item in filteredOptions, highlightMatch method is used to bold the matching search term -->
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                      class="px-3 py-2 border-bottom"
+          >
+            <div class="mat-option-text">
+              <div class="mat-body-2 mb-1 text-truncate w-100"
+                   [innerHtml]="highlightMatch(option.title, searchControl.value)"></div>
+              <div class="mat-caption text-muted text-nowrap text-truncate w-100"
+                   [innerHtml]="highlightMatch(option.content, searchControl.value)"></div>
+            </div>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
 
   <h2 class="fw-bold">Online-Tool</h2>
 
