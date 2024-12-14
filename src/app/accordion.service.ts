@@ -54,7 +54,7 @@ export class AccordionService {
     setTimeout(() => {
       const openPanelIds = this.getOpenPanelIds(accordion, el);
       if (openPanelIds.length > 0) {
-        el.nativeElement.querySelector(`#${openPanelIds[0]}`)?.scrollIntoView({behavior: 'smooth'});
+        el.nativeElement.querySelector(`#${openPanelIds[0]}`)?.scrollIntoView({behavior: 'smooth', block: "center"});
       }
     }, 0); // Ensure it runs after the view has been fully initialized
   }

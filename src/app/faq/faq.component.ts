@@ -109,7 +109,7 @@ export class FaqComponent implements AfterViewInit {
   }
 
   scrollTo(panel: MatExpansionPanel) {
-    panel._body.nativeElement.scrollIntoView({behavior: "smooth"});
+    panel._body.nativeElement.scrollIntoView({behavior: "smooth", block: "center"});
   }
 }
 
