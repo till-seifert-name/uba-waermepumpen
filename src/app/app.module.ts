@@ -68,6 +68,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import '@angular/common/locales/global/de';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MarkdownModule} from "ngx-markdown";
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import {MarkdownModule} from "ngx-markdown";
     PopupPkwLeasingKaufComponent,
     PopupPkwSharingComponent,
     PopupUmweltanforderungenComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
