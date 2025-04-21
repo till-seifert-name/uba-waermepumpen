@@ -3,23 +3,6 @@
      routerLinkActive="mdc-list-item--activated" [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }">
     Startseite
   </a>
-  <a mat-menu-item routerLink="/hintergrundinformationen"
-     routerLinkActive="mdc-list-item--activated">
-    Hintergrundinformationen
-  </a>
-  <a mat-menu-item routerLink="/vorueberlegungen"
-     routerLinkActive="mdc-list-item--activated">
-    Vorüberlegungen
-  </a>
-  <a mat-menu-item routerLink="/empfehlungen"
-     routerLinkActive="mdc-list-item--activated">
-    Empfehlungen
-  </a>
-  <mat-divider></mat-divider>
-  <a mat-menu-item routerLink="/FAQ"
-     routerLinkActive="mdc-list-item--activated">
-    FAQ
-  </a>
   <mat-divider></mat-divider>
   <a mat-menu-item routerLink="/kontakt"
      routerLinkActive="mdc-list-item--activated">
@@ -35,12 +18,6 @@
   </a>
 </mat-menu>
 
-<span class="visually-hidden"
-      routerLink="/"
-      routerLinkActive="root-route-is-active"
-      [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }"
-></span>
-
 <!-- Toolbar -->
 <mat-toolbar
   class="position-sticky top-0 flex-shrink-0 fixed-top mx-auto justify-content-end bg-dark backdrop-dark text-bg-dark d-print-none">
@@ -50,7 +27,7 @@
   </a>
 
   <a id="title" class="flex-grow-1 mat-body-2 text-bg-dark text-decoration-none text-truncate" routerLink="/">
-    Umweltverträgliche Mobilität für die öffentliche Hand
+    UBA Wärmepumpen Tool
   </a>
 
   <button class="text-bg-dark bg-dark bs-40 p-0" mat-icon-button [matMenuTriggerFor]="menu">
@@ -60,7 +37,5 @@
 </mat-toolbar>
 
 <div class="flex-grow-1 d-flex flex-column bg-dark bg-print-none d-print-block">
-
   <router-outlet></router-outlet>
-
 </div>

@@ -1,560 +1,552 @@
 <section class="bg-dark text-bg-dark hero">
-
   <h1 class="text-center">
-    <div class="mat-headline-4" style="margin: 9.1rem 0 0 0;">
-      Willkommen beim Online-Tool
+    <div class="mat-headline-4" style="margin: 4rem 0 0 0;">
+      UBA Wärmepumpen Tool
     </div>
-    <div class="mat-headline-3" style="margin: 1.3rem 0 3.3rem 0; hyphens: auto">
-      Umweltverträgliche Mobilität für die öffentliche Hand
+    <div class="mat-headline-3" style="margin: 1rem 0 2rem 0; hyphens: auto">
+      Beratung zur Auswahl und Installation
     </div>
   </h1>
-
 </section>
 
-
-<section class="bg-white backdrop-white text-body container-fluid flex-grow-1 d-flex flex-column">
-
-  <h3 class="mat-body-1 text-primary text-center mt-3 mb-4">
-    Auf dieser Seite können Sie sich im Zuge der umweltverträglichen Beschaffung von Pkw umfassend informieren,
-    <br>
-    Ihre Vorüberlegungen dokumentieren und Empfehlungen zur Antriebsart und zum Fahrzeugsegment erhalten.
-  </h3>
-
-  <div class="row align-items-stretch mb-4">
-
-    <div class="col-12 col-sm-4 text-center d-flex flex-column justify-content-between gap-2">
-      <img src="assets/Startseite/fragezeichen_1%201.svg" alt="?" height="48">
-      <h4 class="mb-0">
-        <span class="fw-bold" style="hyphens: auto">Hintergrundinformationen erhalten</span><br>
-        Wie kann der Mobilitätsbedarf gedeckt werden?
-      </h4>
-      <p class="mt-sm-4 mt-md-auto" style="hyphens: auto">
-        <a mat-stroked-button color="primary" routerLink="/hintergrundinformationen">
-          Hintergrundinformationen
-        </a>
-      </p>
-    </div>
-
-    <div class="col-12 col-sm-4 text-center d-flex flex-column justify-content-between gap-2">
-      <img src="assets/Startseite/flotte_1%202.svg" alt="Flotte" height="48">
-
-      <h4>
-        <span class="fw-bold">Notwendigkeit der Beschaffung prüfen</span><br>
-        Kann der Fuhrpark verkleinert oder können andere
-        Verkehrsmittel genutzt werden?
-      </h4>
-
-      <p class="mt-sm-4 mt-md-auto">
-        <a mat-stroked-button color="primary" routerLink="/vorueberlegungen">
-          Vorüberlegungen
-        </a>
-      </p>
-    </div>
-
-    <div class="col-12 col-sm-4 text-center d-flex flex-column justify-content-between gap-2">
-      <img src="assets/Startseite/pkw_1%201.svg" alt="PKW" height="48">
-      <h4>
-        <span class="fw-bold">Pkw beschaffen</span><br>
-        Kann ein umweltverträgliches Fahrzeug beschafft werden?
-      </h4>
-
-      <p class="mt-sm-4 mt-md-auto">
-        <a mat-stroked-button color="primary" routerLink="/empfehlungen">
-          Empfehlungen
-        </a>
-      </p>
-    </div>
-
-  </div>
-
-
-  <mat-accordion class="mb-4" multi displayMode="flat" #accordion>
-
-    <mat-expansion-panel class="border-bottom border-top shadow-none" id="Über" (opened)="onPanelChange()" (closed)="onPanelChange()">
-      <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0">
-          Über das Online-Tool
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        Von der öffentlichen Hand werden in Deutschland pro Jahr über 20.000 Fahrzeuge
-        (ohne ÖPNV und Eigenbetriebe wie
-        Müllentsorgung) angeschafft (<a href="https://www.ifeu.de/methoden-tools/modelle/tremod/" target="_blank">TREMOD 2023</a>, Werte vom
-        <a href="https://www.kba.de/DE/Statistik/Fahrzeuge/Neuzulassungen/neuzulassungen_node.html" target="_blank">KBA</a> von 2022).
-        Dieses Finanz- und Nachfragevolumen begründet eine besondere Verantwortung der
-        öffentlichen Hand zur umweltverträglichen Beschaffung in diesem Bereich.
-      </p>
-      <p>
-        Mithilfe dieses Tools können
-        Sie
-        sich umfassend zu Themen der umweltverträglichen Beschaffung im Mobilitätsbereich informieren.
-
-        Der Fokus des Tools
-        liegt insbesondere auf den Vorüberlegungen vor einer Beschaffung und Empfehlungen zur Antriebsart und zum
-        Fahrzeugsegment bei einer Pkw-Beschaffung. Ihre Eingaben und die resultierenden Ergebnisse können Sie zur
-        Dokumentation herunterladen. Zudem werden mögliche Umweltanforderungen in der Ausschreibung von Pkw und ein
-        Lebenszykluskosten-Rechner für die Angebotswertung bereitgestellt.
-      </p>
-      <p>
-        In den drei Tooleinstiegen "Hintergrundinformationen", "Vorüberlegungen" und "Empfehlungen" werden ausschließlich Kraftfahrzeuge behandelt,
-        die als Pkw zugelassen sind (Fahrzeugklasse M1). Die Downloads (Umweltanforderungen, Lebenszykluskosten-Rechner) stehen ebenfalls für leichte Nutzfahrzeuge
-        (Fahrzeugklasse N1) zur Verfügung.
-      </p>
-      <p>
-        Dieses Online-Tool wurde im Rahmen des Projekts <a href="https://www.ifeu.de/projekt/beschaffung-pkw/" target="_blank">„Entwicklung
-        von Instrumenten für die umweltverträgliche
-        Beschaffung von Pkw durch öffentliche Stellen“</a> entwickelt.
-      </p>
-    </mat-expansion-panel>
-
-    <!--suppress JSUnusedGlobalSymbols -->
-    <mat-expansion-panel class="border-bottom shadow-none" id="Ansatzpunkte" #panelAnsatzpunkte (opened)="onPanelChange()" (closed)="onPanelChange()">
-      <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0">
-          Ansatzpunkte für die umweltverträgliche Beschaffung
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        Die Übersichtsgrafik zeigt, bei welchen Schritten des Beschaffungsprozesses welche Tool-Bestandteile (blaue
-        Kästen) Unterstützung bieten können.
-      </p>
-
-
-      <svg class="w-100 d-block me-auto"
-           style="max-width: 70rem"
-           fill-rule="evenodd"
-           stroke-linejoin="round"
-           stroke-width="28.222"
-           preserveAspectRatio="xMidYMid"
-           viewBox="0 0 45756 12454">
-
-        <g fill="#191c1d">
-          <path d="m8897 6653-39-38 310-310h-941v-54h941l-310-311 39-38 376 376z"/>
-          <path d="m18352 6653-39-38 309-310h-941v-54h941l-310-311 39-38 376 376z"/>
-          <path d="m27806 6653-39-38 311-310h-942v-54h942l-311-311 39-38 376 376z"/>
-          <path d="m37261 6653-40-38 311-310h-942v-54h942l-311-311 39-38 376 376z"/>
-          <path d="m32653 3873-38 40-310-310v942h-54v-942l-311 310-38-39 376-375z"/>
-          <path d="m4254 3803-37 39-310-310v943h-55v-943l-311 310-37-39 376-375z"/>
-          <path d="m3508 8616 38-39 311 310v-943h54v943l310-311 38 40-375 375z"/>
-          <path d="m13104 8616 37-39 311 310v-943h55v943l310-311 37 40-375 375z"/>
-        </g>
-
-        <g [routerLink]="['/vorueberlegungen']" role="button" tabindex="0">
-          <path
-            d="m35 600c0-312 253-565 565-565h6280c312 0 565 253 565 565v1976c0 312-253 565-565 565h-6280c-312 0-565-253-565-565z"
-            fill="#313ffd"/>
-          <path
-            d="m600 71h6280v-71h-6280zm6810 529v1976h70v-1976zm-530 2506h-6280v70h6280zm-6809-530v-1976h-71v1976zm529 530c-292 0-529-237-529-530h-71c0 332 269 600 600 600zm6810-530c0 293-237 530-530 530v70c332 0 600-268 600-600zm-530-2505c293 0 530 237 530 529h70c0-331-268-600-600-600zm-6280-71c-331 0-600 269-600 600h71c0-292 237-529 529-529z"
-            fill="#c7c5d0"/>
-          <g fill="#fff">
-            <path
-              d="m3464 2655v-26l53-35c-31 0-58-11-80-33-22-21-33-48-33-80v-329c0-43 21-75 63-94 42-20 109-29 202-29 95 0 163 9 204 28s62 51 62 95v329c0 32-11 59-33 80-22 22-49 33-81 33l54 35v26zm-20-334h451v-155h-451zm225 181c12 0 22-4 31-12 8-9 12-19 12-31s-4-22-13-30c-8-9-18-13-30-13s-22 4-30 13c-9 8-13 19-13 30 0 12 4 22 13 31 8 8 18 12 30 12z"/>
-            <path
-              d="m2798 2123c-15 0-29-5-40-16s-17-25-17-41 6-29 17-40c11-12 24-17 40-17s29 5 41 17c11 11 17 24 17 40s-6 29-17 41c-11 11-25 16-41 16zm-175 181 80 85v210h-40v-176l-123-101c-5-4-9-9-12-16s-5-15-5-22c0-8 2-15 5-21 4-7 8-12 12-17l105-105c5-5 11-9 19-12 7-3 15-5 24-5 8 0 16 2 24 5s14 7 18 12l68 68c16 16 35 29 56 40 22 12 46 18 72 19v41c-33-1-62-8-88-21-26-12-50-29-71-50l-39-40zm-182 78c47 0 86 16 117 47s47 69 47 115-16 85-47 116-70 47-117 47c-46 0-84-16-115-47-32-31-47-70-47-116s16-84 47-115 69-47 115-47zm0 290c37 0 67-13 92-37 24-24 37-55 37-91s-13-66-37-90c-25-25-55-37-92-37-36 0-66 12-91 37-24 24-36 54-36 90s12 67 36 91c25 24 55 37 91 37zm481-290c46 0 85 16 116 47s47 69 47 115-16 85-47 116-70 47-116 47-84-16-115-47-47-70-47-116 16-84 47-115 70-47 115-47zm0 290c36 0 67-13 91-37 25-24 37-55 37-91s-12-66-37-90c-24-25-55-37-91-37s-66 12-90 37c-25 24-37 54-37 90s12 67 37 91c24 24 54 37 90 37z"/>
-            <path
-              d="m4480 2651c-27 0-51-10-70-29s-29-43-29-70h-81v-365c0-16 6-29 16-40 11-10 24-16 39-16h570l230 226v195h-74c0 27-10 51-29 70s-43 29-70 29c-28 0-52-10-71-29s-29-43-29-70h-301c0 27-10 51-29 70-20 19-44 29-72 29zm356-321h221l-156-151h-65zm-244 0h198v-151h-198zm-245 0h199v-151h-199zm133 280c17 0 32-5 43-17 12-11 17-25 17-41 0-17-5-31-17-42-11-12-26-17-42-17-17 0-31 5-42 17-12 11-18 25-18 41 0 17 6 31 18 42 11 12 25 17 41 17zm502 0c16 0 30-5 41-17 12-11 18-25 18-41 0-17-6-31-17-42-12-12-26-17-42-17-17 0-31 5-42 17-12 11-17 25-17 41 0 17 5 31 17 42 11 12 25 17 42 17z"/>
-          </g>
-          <text class="text-uppercase pe-none" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="998" y="990"
-            >vorüberlegungen:
-            </tspan>
-          </text>
-          <text x="-2751" y="-28645" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="320" y="1696"
-            >Alternativen zum Pkw-Kauf
-            </tspan>
-          </text>
-        </g>
-
-        <g (click)="panelDownloads.open(); scrollTo(panelDownloads)" role="button" tabindex="0">
-          <path
-            d="m28505 670c0-311 252-564 564-564h6633c312 0 565 253 565 564v1977c0 312-253 564-565 564h-6633c-312 0-564-252-564-564z"
-            fill="#313ffd"/>
-          <path
-            d="m29069 141h6633v-70h-6633zm7162 529v1977h71v-1977zm-529 2506h-6633v71h6633zm-7162-529v-1977h-71v1977zm529 529c-292 0-529-237-529-529h-71c0 331 269 600 600 600zm7162-529c0 292-236 529-529 529v71c331 0 600-269 600-600zm-529-2506c293 0 529 237 529 529h71c0-331-269-599-600-599zm-6633-70c-331 0-600 268-600 599h71c0-292 237-529 529-529z"
-            fill="#c7c5d0"/>
-          <g fill="#fff" class="pe-none">
-            <path
-              d="m31732 2805c-100-33-182-93-247-179-64-86-97-185-97-297 0-28 3-56 7-84 5-27 12-54 22-81l-100 58-33-57 218-126 126 217-58 34-78-135c-12 28-21 56-27 85-6 30-9 59-9 90 0 98 29 185 88 261 58 76 132 128 223 156zm350-675v-66h155c-41-54-93-96-153-126-61-30-125-45-193-45-58 0-112 11-163 32-50 21-95 50-134 87l-34-60c45-39 95-70 151-92 55-22 115-33 179-33 73 0 142 14 207 44 67 29 123 71 171 126v-118h66v251zm-26 805-218-127 126-216 57 33-80 137c110-13 202-60 276-142s110-179 110-290c0-19-1-37-3-54-2-18-6-36-11-53h69c4 17 7 35 9 52 2 18 3 35 3 53 0 121-38 227-113 319-76 92-173 150-290 173l98 57z"/>
-            <path
-              d="m31963 2576c-46 0-88-13-124-39s-61-60-76-103h-83v-47h72c0-4-1-8-1-12v-23c0-4 1-8 1-12h-72v-47h83c15-41 40-75 76-102 36-26 78-39 124-39 27 0 52 5 77 14 24 10 45 23 64 40l-41 41c-14-11-29-20-46-27-17-6-35-9-54-9-30 0-56 7-80 22-25 16-43 35-55 60h135v47h-151c0 4-1 8-1 12-1 3-1 7-1 12 0 4 0 8 1 11 0 4 1 8 1 12h151v47h-135c12 26 30 46 55 61 24 15 50 23 80 23 19 0 37-4 54-10 18-7 33-16 46-27l41 41c-19 17-40 31-64 40-25 10-50 14-77 14z"/>
-            <path
-              d="m32826 2841v-954h954v954zm106-636h742v-212h-742zm283 266h177v-159h-177zm0 264h177v-159h-177zm-283-264h177v-159h-177zm566 0h176v-159h-176zm-566 264h177v-159h-177zm566 0h176v-159h-176z"/>
-          </g>
-          <text class="text-uppercase pe-none" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="29188" y="990"
-            >Lebenszykluskosten-
-            </tspan>
-          </text>
-          <text class="text-uppercase pe-none" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="31300" y="1520">Rechner
-            </tspan>
-          </text>
-        </g>
-
-        <g>
-          <path
-            d="m141 5221c0-234 190-423 424-423h6915c234 0 423 189 423 423v1977c0 234-189 423-423 423h-6915c-234 0-424-189-424-423z"
-            fill="#f7fafa"/>
-          <path
-            d="m565 4833h6915v-70h-6915zm7303 388v1976h71v-1976zm-388 2365h-6915v70h6915zm-7303-389v-1976h-71v1976zm388 389c-215 0-388-175-388-389h-71c0 253 205 459 459 459zm7303-389c0 214-174 389-388 389v70c253 0 459-206 459-459zm-388-2364c214 0 388 174 388 388h71c0-253-206-458-459-458zm-6915-70c-254 0-459 205-459 458h71c0-214 173-388 388-388z"
-            fill="#c7c5d0"/>
-          <text class="text-uppercase pe-none">
-            <tspan font-size="494" font-weight="400" x="2000" y="6141" style="fill:var(--bs-dark)">Definition des
-            </tspan>
-          </text>
-          <text class="text-uppercase pe-none">
-            <tspan font-size="494" font-weight="400" x="568" y="6846" style="fill:var(--bs-dark)">Auftragsgegenstandes
-            </tspan>
-          </text>
-        </g>
-
-        <g>
-          <path
-            d="m9596 5221c0-234 189-423 423-423h6916c233 0 423 189 423 423v1977c0 234-190 423-423 423h-6916c-234 0-423-189-423-423z"
-            fill="#f7fafa"/>
-          <path
-            d="m10019 4833h6916v-70h-6916zm7304 388v1976h70v-1976zm-388 2365h-6916v70h6916zm-7304-389v-1976h-71v1976zm388 389c-214 0-388-175-388-389h-71c0 253 206 459 459 459zm7304-389c0 214-174 389-388 389v70c253 0 458-206 458-459zm-388-2364c214 0 388 174 388 388h70c0-253-205-458-458-458zm-6916-70c-253 0-459 205-459 458h71c0-214 174-388 388-388z"
-            fill="#c7c5d0"/>
-          <text class="text-uppercase pe-none">
-            <tspan font-size="494" font-weight="400" x="10048" y="6494" style="fill:var(--bs-dark)">
-              Leistungsbeschreibung
-            </tspan>
-          </text>
-        </g>
-
-        <g>
-          <path
-            d="m19050 5221c0-234 190-423 424-423h6915c234 0 423 189 423 423v1977c0 234-189 423-423 423h-6915c-234 0-424-189-424-423z"
-            fill="#f7fafa"/>
-          <path
-            d="m19474 4833h6915v-70h-6915zm7303 388v1976h71v-1976zm-388 2365h-6915v70h6915zm-7304-389v-1976h-70v1976zm389 389c-215 0-389-175-389-389h-70c0 253 205 459 459 459zm7303-389c0 214-174 389-388 389v70c253 0 459-206 459-459zm-388-2364c214 0 388 174 388 388h71c0-253-206-458-459-458zm-6915-70c-254 0-459 205-459 458h70c0-214 174-388 389-388z"
-            fill="#c7c5d0"/>
-          <text class="text-uppercase pe-none">
-            <tspan font-size="494" font-weight="400" x="20363" y="6494" style="fill:var(--bs-dark)">Eignungsprüfung
-            </tspan>
-          </text>
-        </g>
-
-        <g>
-          <path
-            d="m28505 5221c0-234 189-423 423-423h6915c234 0 424 189 424 423v1977c0 234-190 423-424 423h-6915c-234 0-423-189-423-423z"
-            fill="#f7fafa"/>
-          <path
-            d="m28928 4833h6915v-70h-6915zm7303 388v1976h71v-1976zm-388 2365h-6915v70h6915zm-7303-389v-1976h-71v1976zm388 389c-214 0-388-175-388-389h-71c0 253 206 459 459 459zm7303-389c0 214-173 389-388 389v70c254 0 459-206 459-459zm-388-2364c215 0 388 174 388 388h71c0-253-205-458-459-458zm-6915-70c-253 0-459 205-459 458h71c0-214 174-388 388-388z"
-            fill="#c7c5d0"/>
-          <text class="text-uppercase pe-none">
-            <tspan font-size="494" font-weight="400" x="29700" y="6494" style="fill:var(--bs-dark)">Angebotswertung
-            </tspan>
-          </text>
-        </g>
-
-        <g>
-          <path
-            d="m37959 5221c0-234 190-423 423-423h6916c234 0 423 189 423 423v1977c0 234-189 423-423 423h-6916c-233 0-423-189-423-423z"
-            fill="#f7fafa"/>
-          <path
-            d="m38382 4833h6916v-70h-6916zm7304 388v1976h70v-1976zm-388 2365h-6916v70h6916zm-7304-389v-1976h-70v1976zm388 389c-214 0-388-175-388-389h-70c0 253 205 459 458 459zm7304-389c0 214-174 389-388 389v70c253 0 458-206 458-459zm-388-2364c214 0 388 174 388 388h70c0-253-205-458-458-458zm-6916-70c-253 0-458 205-458 458h70c0-214 174-388 388-388z"
-            fill="#c7c5d0"/>
-          <text class="text-uppercase pe-none">
-            <tspan font-size="494" font-weight="400" x="38662" y="6494" style="fill:var(--bs-dark)">Auftragsausführung
-            </tspan>
-          </text>
-        </g>
-
-        <g [routerLink]="['/empfehlungen']" role="button" tabindex="0">
-          <path
-            d="m141 9878c0-312 253-565 565-565h6633c312 0 564 253 564 565v1976c0 312-252 565-564 565h-6633c-312 0-565-253-565-565z"
-            fill="#313ffd"/>
-          <path
-            d="m706 9349h6633v-71h-6633zm7162 529v1976h71v-1976zm-529 2506h-6633v70h6633zm-7162-530v-1976h-71v1976zm529 530c-293 0-529-237-529-530h-71c0 332 269 600 600 600zm7162-530c0 293-237 530-529 530v70c331 0 600-268 600-600zm-529-2505c292 0 529 237 529 529h71c0-331-269-600-600-600zm-6633-71c-331 0-600 269-600 600h71c0-292 236-529 529-529z"
-            fill="#c7c5d0"/>
-
-          <text class="text-uppercase pe-none" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="1930" y="10445"
-            >Empfehlungen:
-            </tspan>
-          </text>
-          <text x="-2751" y="-28645" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="2163" y="11150"
-            >Antriebsart und
-            </tspan>
-          </text>
-          <text x="-2751" y="-28645" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="1882" y="11856"
-            >Fahrzeugsegment
-            </tspan>
-          </text>
-        </g>
-
-        <g [dialogTrigger]="popupUmweltanforderungen">
-          <path
-            d="m9596 9878c0-312 252-565 564-565h6633c312 0 565 253 565 565v1976c0 312-253 565-565 565h-6633c-312 0-564-253-564-565z"
-            fill="#313ffd"/>
-          <path
-            d="m10160 9349h6632v-71h-6632zm7163 529v1976h70v-1976zm-531 2506h-6632v70h6632zm-7161-530v-1976h-71v1976zm529 530c-292 0-529-237-529-530h-71c0 332 269 600 600 600zm7163-530c0 293-237 530-531 530v70c333 0 601-268 601-600zm-531-2505c294 0 531 237 531 529h70c0-331-268-600-601-600zm-6632-71c-331 0-600 269-600 600h71c0-292 237-529 529-529z"
-            fill="#c7c5d0"/>
-          <g fill="#fff" class="pe-none">
-            <path
-              d="m14093 11730-188-188 52-51 135 135 257-257 51 53zm0-449-188-188 52-51 135 135 257-257 51 53zm430 340v-74h501v74zm0-448v-74h501v74z"/>
-            <path
-              d="m12440 11885c-39 0-77-5-113-14s-71-22-103-40c26-105 65-206 117-301 51-96 119-178 201-248-97 52-181 121-253 205-72 85-121 181-147 288-4-4-8-7-11-10-4-4-8-7-12-12-42-42-74-90-97-143-22-54-33-110-33-168 0-63 12-125 36-183 25-58 59-110 104-154 72-74 166-122 280-144 115-22 285-25 512-11 16 220 13 388-10 506s-72 213-145 287c-46 46-96 81-152 105-56 25-114 37-174 37z"/>
-          </g>
-
-          <text class="text-uppercase pe-none" style="fill:var(--bs-white)">
-            <tspan font-size="494" font-weight="400" x="10110" y="10268">
-              Umweltanforderungen
-            </tspan>
-          </text>
-        </g>
-
-      </svg>
-
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="border-bottom shadow-none"
-                         id="Downloads"
-                         #panelDownloads
-                         (opened)="onPanelChange(); scrollTo(panelDownloads);"
-                         (closed)="onPanelChange()">
-      <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0">
-          Downloads: Umweltanforderungen, Lebenszykluskosten-Rechner und Abschlussbericht
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        Hier finden Sie weitere Produkte aus dem Projekt <a href="https://www.ifeu.de/projekt/beschaffung-pkw/" target="_blank">„Entwicklung
-        von Instrumenten für die umweltverträgliche Beschaffung von Pkw durch öffentliche Stellen“</a> zum Herunterladen.
-      </p>
-
-      <p class="fw-bold mb-1">Umweltanforderungen</p>
-      <p>
-        In dieser Auflistung finden Sie umweltbezogene Mindestanforderungen und
-        Zuschlagskriterien,
-        die Sie in die
-        Ausschreibung von Pkw und leichten Nutzfahrzeugen übernehmen können.
-        <br>
-        <a href="assets/downloads/Umweltanforderungen_Fahrzeugbeschaffung.pdf">Umweltanforderungen Fahrzeugbeschaffung</a>
-      </p>
-
-      <p class="fw-bold mt-3 mb-1">Lebenszykluskosten-Rechner</p>
-      <p>
-        Dieses Tool können Sie für die Wirtschaftlichkeitsberechnung im Zuge
-        der Angebotswertung
-        verwenden. Es
-        berechnet die Lebenszykluskosten von Pkw bzw. leichten Nutzfahrzeugen und ist für verschiedene Antriebsarten geeignet.
-      </p>
-       <p>
-        Hinweis: Für die korrekte Ausführung des Rechners wird mindestens die Excel-Version 2016 (oder aktueller) benötigt.
-      </p>
-      <table class="table table-borderless table-sm">
-        <thead>
-          <tr>
-            <th class="ps-0">Pkw</th>
-            <th>Leichte Nutzfahrzeuge (LNF)</th>
-          </tr>
-          <tr>
-            <td class="ps-0">Version 1.3 (Stand: 23.10.2024)</td>
-            <td>Version 1.0 (Stand: 23.10.2024)</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="ps-0"><a href="assets/downloads/LZK-Rechner_Pkw_V1.3.xlsx">LZK-Rechner Pkw</a></td>
-            <td><a href="assets/downloads/LZK-Rechner_LNF_V1.0.xlsx">LZK-Rechner LNF</a></td>
-            <td class="pe-0">Lebenszykluskosten-Rechner in Excel</td>
-          </tr>
-          <tr>
-            <td class="ps-0"><a href="assets/downloads/LZK-Rechner_Pkw_V1.3_Beispiel.xlsx">LZK-Rechner Pkw Beispiel</a></td>
-            <td><a href="assets/downloads/LZK-Rechner_LNF_V1.0_Beispiel.xlsx">LZK-Rechner LNF Beispiel</a></td>
-            <td class="pe-0">Lebenszykluskosten-Rechner beispielhaft mit Daten befüllt</td>
-          </tr>
-          <tr>
-            <td class="ps-0"><a href="assets/downloads/LZK-Rechner_Fahrzeuge_Dokumentation.pdf">LZK-Rechner Fahrzeuge Dokumentation</a></td>
-            <td><a href="assets/downloads/LZK-Rechner_Fahrzeuge_Dokumentation.pdf">LZK-Rechner Fahrzeuge Dokumentation</a></td>
-            <td class="pe-0">Dokumentation des Rechners, die der Ausschreibung beigefügt werden kann</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="d-table table table-borderless table-sm">
-        <div class="d-table-row-group">
-          <div class="d-table-row">
-            <div class="d-table-cell ps-0 fw-bold">Abschlussbericht</div>
+<div class="container mt-4 mb-5">
+  <!-- Main wizard tabs -->
+  <ul class="nav nav-tabs" id="mainWizardTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="building-tab" data-bs-toggle="tab" data-bs-target="#building" type="button" role="tab" aria-controls="building" aria-selected="true">
+        <i class="bi bi-house-door me-2"></i>Gebäude
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="rooms-tab" data-bs-toggle="tab" data-bs-target="#rooms" type="button" role="tab" aria-controls="rooms" aria-selected="false">
+        <i class="bi bi-grid-3x3-gap me-2"></i>Räume
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="results-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-controls="results" aria-selected="false">
+        <i class="bi bi-bar-chart me-2"></i>Ergebnis
+      </button>
+    </li>
+  </ul>
+  
+  <!-- Tab content -->
+  <div class="tab-content p-3 border border-top-0 rounded-bottom" id="mainWizardTabContent">
+    <!-- Building tab -->
+    <div class="tab-pane fade show active" id="building" role="tabpanel" aria-labelledby="building-tab">
+      <h3>Gebäudedaten</h3>
+      <p class="text-muted">Bitte geben Sie hier die grundlegenden Informationen zu Ihrem Gebäude ein.</p>
+      
+      <!-- Building data form -->
+      <form>
+        <!-- Basic building data -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <h5 class="mb-0">Basisdaten</h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="buildingType" class="form-label">Gebäudetyp</label>
+                <select class="form-select" id="buildingType">
+                  <option selected disabled value="">Bitte wählen...</option>
+                  <option value="EFH">Einfamilienhaus</option>
+                  <option value="MFH">Mehrfamilienhaus</option>
+                  <option value="RH">Reihenhaus</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="buildingYear" class="form-label">Baujahr</label>
+                <input type="number" class="form-control" id="buildingYear" placeholder="z.B. 1985">
+              </div>
+              <div class="col-md-6">
+                <label for="zipCode" class="form-label">PLZ (Standort)</label>
+                <input type="text" class="form-control" id="zipCode" placeholder="z.B. 10115">
+              </div>
+              <div class="col-md-6">
+                <label for="roofType" class="form-label">Dachform</label>
+                <select class="form-select" id="roofType">
+                  <option selected disabled value="">Bitte wählen...</option>
+                  <option value="Flachdach">Flachdach</option>
+                  <option value="Satteldach">Satteldach</option>
+                  <option value="Pultdach">Pultdach</option>
+                  <option value="Walmdach">Walmdach</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="d-table-row-group">
-          <div class="d-table-row">
-            <div class="d-table-cell ps-0">
-              Nachfolgend finden Sie den Abschlussbericht zum Projekt zur umweltverträglichen Pkw-Beschaffung sowie zum Folgeprojekt zur Beschaffung von Pkw und leichten Nutzfahrzeugen.
+        
+        <!-- Modernization measures -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <h5 class="mb-0">Modernisierungsmaßnahmen</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="exteriorWallRenovated">
+                <label class="form-check-label" for="exteriorWallRenovated">
+                  Außenwand wurde modernisiert
+                </label>
+              </div>
+              <div class="ms-4 mt-2 row g-3" id="exteriorWallDetails" style="display: none;">
+                <div class="col-md-6">
+                  <label for="exteriorWallYear" class="form-label">Jahr der Modernisierung</label>
+                  <input type="number" class="form-control" id="exteriorWallYear">
+                </div>
+                <div class="col-md-6">
+                  <label for="exteriorWallInsulation" class="form-label">Dämmstärke (cm)</label>
+                  <input type="number" class="form-control" id="exteriorWallInsulation">
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="windowsRenovated">
+                <label class="form-check-label" for="windowsRenovated">
+                  Fenster wurden erneuert
+                </label>
+              </div>
+              <div class="ms-4 mt-2 row g-3" id="windowsDetails" style="display: none;">
+                <div class="col-md-6">
+                  <label for="windowsYear" class="form-label">Jahr der Erneuerung</label>
+                  <input type="number" class="form-control" id="windowsYear">
+                </div>
+                <div class="col-md-6">
+                  <label for="windowsType" class="form-label">Fenstertyp</label>
+                  <select class="form-select" id="windowsType">
+                    <option value="zweifach">Zweifachverglasung</option>
+                    <option value="dreifach">Dreifachverglasung</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="roofRenovated">
+                <label class="form-check-label" for="roofRenovated">
+                  Dach wurde modernisiert
+                </label>
+              </div>
+              <div class="ms-4 mt-2 row g-3" id="roofDetails" style="display: none;">
+                <div class="col-md-6">
+                  <label for="roofYear" class="form-label">Jahr der Modernisierung</label>
+                  <input type="number" class="form-control" id="roofYear">
+                </div>
+                <div class="col-md-6">
+                  <label for="roofInsulation" class="form-label">Dämmstärke (cm)</label>
+                  <input type="number" class="form-control" id="roofInsulation">
+                </div>
+              </div>
             </div>
           </div>
-          <div class="d-table-row">
-            <div class="d-table-cell ps-0">
-              <a href="assets/downloads/Abschlussbericht_Umweltvertraegliche_Pkw-Beschaffung_ifeu.pdf">
-                Abschlussbericht Umweltverträgliche Pkw-Beschaffung
-              </a>
+        </div>
+        
+        <!-- Heating system -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <h5 class="mb-0">Heizsystem</h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="heatingType" class="form-label">Heizungsart</label>
+                <select class="form-select" id="heatingType">
+                  <option selected disabled value="">Bitte wählen...</option>
+                  <option value="radiator">Heizkörper</option>
+                  <option value="floor">Fußbodenheizung</option>
+                  <option value="mixed">Gemischt</option>
+                </select>
+                <div class="form-text">
+                  <i class="bi bi-info-circle"></i> Die vorhandene Art der Wärmeabgabe im Raum.
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="distributionSystem" class="form-label">Verteilsystem</label>
+                <select class="form-select" id="distributionSystem">
+                  <option selected disabled value="">Bitte wählen...</option>
+                  <option value="oneWay">Einrohr</option>
+                  <option value="twoWay">Zweirohr</option>
+                  <option value="unknown">Unbekannt</option>
+                </select>
+                <div class="form-text">
+                  <i class="bi bi-info-circle"></i> Bei Unklarheit wählen Sie "Unbekannt".
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="flowTemperature" class="form-label">Vorlauftemperatur (°C)</label>
+                <input type="number" class="form-control" id="flowTemperature" placeholder="z.B. 70">
+                <div class="form-text">
+                  <i class="bi bi-info-circle"></i> Falls bekannt, ansonsten leer lassen.
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="efficiencyClass" class="form-label">Effizienzklasse</label>
+                <select class="form-select" id="efficiencyClass">
+                  <option selected disabled value="">Bitte wählen...</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="unknown">Unbekannt</option>
+                </select>
+              </div>
             </div>
           </div>
-          <div class="d-table-row">
-            <div class="d-table-cell ps-0">
-              <a href="assets/downloads/Abschlussbericht_Folgeprojekt_Fahrzeugbeschaffung_ifeu.pdf">
-                Abschlussbericht Folgeprojekt Pkw- und LNF-Beschaffung
-              </a>
+        </div>
+        
+        <div class="d-flex justify-content-between mt-4">
+          <button class="btn btn-secondary" type="button" disabled>Zurück</button>
+          <button class="btn btn-primary" type="button" id="buildingNextBtn">Weiter zu Räume</button>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Rooms tab -->
+    <div class="tab-pane fade" id="rooms" role="tabpanel" aria-labelledby="rooms-tab">
+      <h3>Raumdaten</h3>
+      <p class="text-muted">Erfassen Sie hier die kritischen Räume ("Schlechtpunkträume") Ihres Gebäudes.</p>
+      
+      <!-- Room list -->
+      <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Raumliste</h5>
+          <button type="button" class="btn btn-sm btn-primary" id="addRoomBtn">
+            <i class="bi bi-plus-circle me-1"></i>Raum hinzufügen
+          </button>
+        </div>
+        <div class="card-body p-0">
+          <div class="alert alert-info m-3">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            Fügen Sie hier die Räume hinzu, die für die Wärmepumpenanalyse besonders relevant sind:
+            <ul class="mb-0 mt-2">
+              <li>Räume, die nicht ausreichend warm werden</li>
+              <li>Räume mit vielen Außenbauteilen</li>
+              <li>Räume mit großen Fensterflächen</li>
+              <li>Räume, die an Außenluft oder unbeheizte Bereiche grenzen</li>
+            </ul>
+          </div>
+          <ul class="list-group list-group-flush" id="roomList">
+            <li class="list-group-item text-muted">Noch keine Räume hinzugefügt</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Room details (initially hidden) -->
+      <div id="roomDetails" style="display: none;">
+        <div class="card mb-3">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Raumdetails: <span id="currentRoomName">Raum</span></h5>
+            <div>
+              <button class="btn btn-sm btn-outline-secondary me-2" id="prevRoomBtn">
+                <i class="bi bi-arrow-left"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-secondary" id="nextRoomBtn">
+                <i class="bi bi-arrow-right"></i>
+              </button>
             </div>
+          </div>
+          <div class="card-body">
+            <form id="roomDetailsForm">
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="roomName" class="form-label">Raumname</label>
+                  <input type="text" class="form-control" id="roomName" placeholder="z.B. Wohnzimmer">
+                </div>
+                <div class="col-md-6">
+                  <label for="roomArea" class="form-label">Raumfläche (m²)</label>
+                  <input type="number" class="form-control" id="roomArea">
+                </div>
+                <div class="col-md-6">
+                  <label for="roomHeight" class="form-label">Raumhöhe (m)</label>
+                  <input type="number" class="form-control" id="roomHeight" placeholder="z.B. 2.5">
+                </div>
+                <div class="col-md-6">
+                  <label for="targetTemperature" class="form-label">Gewünschte Raumtemperatur (°C)</label>
+                  <input type="number" class="form-control" id="targetTemperature" placeholder="z.B. 21">
+                </div>
+              </div>
+              
+              <!-- Adjacent areas -->
+              <div class="mb-3">
+                <label class="form-label">Angrenzende Bereiche</label>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="ceilingSituation" class="form-label">Decke grenzt an</label>
+                    <select class="form-select" id="ceilingSituation">
+                      <option value="heated">Beheizter Raum</option>
+                      <option value="unheated">Unbeheizter Raum</option>
+                      <option value="outdoor">Außenluft (Dach)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="floorSituation" class="form-label">Boden grenzt an</label>
+                    <select class="form-select" id="floorSituation">
+                      <option value="heated">Beheizter Raum</option>
+                      <option value="unheated">Unbeheizter Raum</option>
+                      <option value="ground">Erdreich</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Walls -->
+              <div class="mb-3">
+                <label class="form-label">Außenwände</label>
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <label for="wallLength" class="form-label">Gesamtlänge (m)</label>
+                    <input type="number" class="form-control" id="wallLength">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-check mt-4">
+                      <input class="form-check-input" type="checkbox" id="customWallInsulation">
+                      <label class="form-check-label" for="customWallInsulation">
+                        Abweichende Dämmstärke
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4" id="customWallInsulationField" style="display: none;">
+                    <label for="wallInsulation" class="form-label">Dämmstärke (cm)</label>
+                    <input type="number" class="form-control" id="wallInsulation">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Windows -->
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <label class="form-label mb-0">Fenster</label>
+                  <button type="button" class="btn btn-sm btn-outline-primary" id="addWindowBtn">
+                    <i class="bi bi-plus-circle me-1"></i>Weiteren Fenstertyp hinzufügen
+                  </button>
+                </div>
+                <div id="windowsContainer">
+                  <div class="card mb-2 window-entry">
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-md-4">
+                          <label class="form-label">Fenstertyp</label>
+                          <select class="form-select window-type">
+                            <option value="double">Zweifachverglasung</option>
+                            <option value="triple">Dreifachverglasung</option>
+                            <option value="single">Einfachverglasung</option>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">Anzahl</label>
+                          <input type="number" class="form-control window-count" value="1">
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">Breite (m)</label>
+                          <input type="number" class="form-control window-width">
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">Höhe (m)</label>
+                          <input type="number" class="form-control window-height">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Radiators -->
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <label class="form-label mb-0">Heizkörper</label>
+                  <button type="button" class="btn btn-sm btn-outline-primary" id="addRadiatorBtn">
+                    <i class="bi bi-plus-circle me-1"></i>Weiteren Heizkörpertyp hinzufügen
+                  </button>
+                </div>
+                <div id="radiatorsContainer">
+                  <div class="card mb-2 radiator-entry">
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-md-4">
+                          <label class="form-label">Heizkörpertyp</label>
+                          <select class="form-select radiator-type">
+                            <option value="panel">Plattenheizkörper</option>
+                            <option value="sectional">Glieder-Heizkörper</option>
+                            <option value="convector">Konvektor</option>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">Anzahl</label>
+                          <input type="number" class="form-control radiator-count" value="1">
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">Länge (m)</label>
+                          <input type="number" class="form-control radiator-length">
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">Höhe (m)</label>
+                          <input type="number" class="form-control radiator-height">
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">Tiefe (m)</label>
+                          <input type="number" class="form-control radiator-depth">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-
-
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="border-bottom shadow-none" id="Rechtliche-Einordnung"
-                         (opened)="onPanelChange()" (closed)="onPanelChange()">
-      <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0">
-          Rechtliche Einordnung
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        Den rechtlichen Rahmen für die öffentliche Pkw-Beschaffung gibt das <a
-        href="https://www.bmvi.de/SharedDocs/DE/Artikel/G/clean-vehicles-directive.html">SaubFahrzeugBeschG</a> vor. Es
-        fordert eine Quote von 38,5 %
-        für
-        die Beschaffung emissionsarmer, „sauberer“ Fahrzeuge. Als „sauber“ gelten dabei Pkw, die max. 50 g CO₂/km und
-        nur
-        80 % der nach Abgasnorm vorgeschriebenen Grenzwerte für Luftschadstoffe ausstoßen. Ab 2026 darf ein „sauberer“
-        Pkw
-        gar
-        kein CO₂ mehr ausstoßen, womit nur noch rein batterieelektrische Pkw (BEV) die Quote erfüllen können.
-      </p>
-      <p>Die
-        Empfehlungen zur Antriebsart in diesem Tool sollen bei der Erfüllung der Quote unterstützen. Die in diesem Tool
-        gelisteten <a [dialogTrigger]="popupUmweltanforderungen" href="assets/downloads/Umweltanforderungen_Fahrzeugbeschaffung.pdf">Umweltanforderungen</a>
-        für die Ausschreibung von
-        Pkw gelten zusätzlich zu den Anforderungen des
-        SaubFahrzeugBeschG, da sie teilweise darüber hinausgehen (z.B. die CO₂-Mindestanforderung für PHEV oder die Mindestanforderungen für
-        den
-        Energieverbrauch von E-Autos). Zudem werden hier weitere Mindestanforderungen für alle Fahrzeuge, die nicht unter die
-        Quote
-        fallen, vorgegeben (z.B. CO₂-Mindestanforderungen für Verbrenner).
-      </p>
-      <app-info-card-button #popupUmweltanforderungen cardTitle="Umweltanforderungen"
-                            pdfDownloadUrl="assets/downloads/Umweltanforderungen_Fahrzeugbeschaffung.pdf">
-        <!--suppress JSUnusedGlobalSymbols -->
-        <ng-template #dialogContent>
-          <app-popup-umweltanforderungen></app-popup-umweltanforderungen>
-        </ng-template>
-      </app-info-card-button>
-    </mat-expansion-panel>
-
-    <!-- Accordion Panel for Video-Tutorials and FAQ -->
-    <mat-expansion-panel class="border-bottom shadow-none" id="Video-Tutorials-FAQ" (opened)="onPanelChange()" (closed)="onPanelChange()">
-      <mat-expansion-panel-header class="h-auto p-3 px-4">
-        <mat-panel-title class="mat-headline-5 m-0">
-          Video-Tutorials und FAQ
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <p>Die Video-Tutorials helfen Ihnen beim Einstieg in die Nutzung der drei entwickelten Instrumente.</p>
-
-      <!-- 2x2 Grid Layout for Video Tutorials -->
-      <div class="grid" style="max-width: 120ch;">
-        <!-- Video 1: Online-Tool -->
-        <div class="g-col-5">
-          <p class="fw-bold mb-1">Online-Tool</p>
-          <figure class="ratio" style="--bs-aspect-ratio: 62.5%;">
-            <video class="w-100" controls preload="auto">
-              <source src="assets/Startseite/Tutorial_Online-Tool_Fahrzeugbeschaffung.webm" type="video/webm">
-              <source src="assets/Startseite/Tutorial_Online-Tool_Fahrzeugbeschaffung.mp4" type="video/mp4">
-            </video>
-          </figure>
+      
+      <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-secondary" type="button" id="roomsBackBtn">Zurück zu Gebäude</button>
+        <button class="btn btn-primary" type="button" id="roomsNextBtn">Weiter zu Ergebnis</button>
+      </div>
+    </div>
+    
+    <!-- Results tab -->
+    <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="results-tab">
+      <h3>Ergebnis der Analyse</h3>
+      <p class="text-muted">Basierend auf Ihren Eingaben haben wir folgende Analyse erstellt.</p>
+      
+      <!-- Loading placeholder -->
+      <div class="text-center py-5" id="resultsLoading">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Berechne...</span>
         </div>
-
-        <!-- Video 2: Umweltanforderungen -->
-        <div class="g-col-5 g-start-7">
-          <p class="fw-bold mb-1">Umweltanforderungen</p>
-          <figure class="ratio" style="--bs-aspect-ratio: 62.5%;">
-            <video class="w-100" controls preload="auto">
-              <source src="assets/Startseite/Tutorial_Umweltanforderungen_Fahrzeugbeschaffung.webm" type="video/webm">
-              <source src="assets/Startseite/Tutorial_Umweltanforderungen_Fahrzeugbeschaffung.mp4" type="video/mp4">
-            </video>
-          </figure>
-        </div>
-
-        <!-- Video 3: Lebenszykluskosten-Rechner -->
-        <div class="g-col-5">
-          <p class="fw-bold mb-1">Lebenszykluskosten-Rechner</p>
-          <figure class="ratio" style="--bs-aspect-ratio: 62.5%;">
-            <video class="w-100" controls preload="auto">
-              <source src="assets/Startseite/Tutorial_LZK-Rechner_Fahrzeugbeschaffung.webm" type="video/webm">
-              <source src="assets/Startseite/Tutorial_LZK-Rechner_Fahrzeugbeschaffung.mp4" type="video/mp4">
-            </video>
-          </figure>
-        </div>
-
-        <!-- Tile 4: FAQ Link -->
-        <div class="g-col-5 g-start-7">
-          <p class="fw-bold mb-1">&nbsp;</p>
-          <div class="ratio" style="--bs-aspect-ratio: 62.5%;">
-            <a routerLink="/FAQ" class="d-block btn btn-dark faq-tile">
-              Weitere Erläuterungen finden Sie in den FAQ.
-            </a>
+        <p class="mt-3">Berechnung läuft...</p>
+      </div>
+      
+      <!-- Results content (initially hidden) -->
+      <div id="resultsContent" style="display: none;">
+        <!-- Suitability assessment -->
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Eignungsbewertung für Wärmepumpe</h5>
           </div>
-
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-3 text-center">
+                <div class="display-1 text-success">
+                  <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <h4 class="mt-2 text-success">Geeignet</h4>
+              </div>
+              <div class="col-md-9">
+                <p>Ihr Gebäude ist grundsätzlich für den Einsatz einer Wärmepumpe geeignet. Basierend auf unserer Analyse empfehlen wir:</p>
+                <ul>
+                  <li><strong>Empfohlener Wärmepumpentyp:</strong> Luft-Wasser-Wärmepumpe</li>
+                  <li><strong>Niedertemperatur-Ready:</strong> Ja, mit kleineren Anpassungen</li>
+                  <li><strong>Empfohlene Maßnahmen:</strong> Siehe Details unten</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Heating load -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">Heizlastberechnung</h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <h6>Gesamte Heizlast</h6>
+                <div class="display-6">8,5 kW</div>
+                <p class="text-muted mt-2">Berechnete Heizlast für das gesamte Gebäude</p>
+              </div>
+              <div class="col-md-6">
+                <h6>Spezifische Heizlast</h6>
+                <div class="display-6">60 W/m²</div>
+                <p class="text-muted mt-2">Heizleistung pro Quadratmeter</p>
+              </div>
+            </div>
+            
+            <h6 class="mb-3">Heizlast pro Raum</h6>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Raum</th>
+                    <th>Fläche (m²)</th>
+                    <th>Heizlast (W)</th>
+                    <th>Spezifisch (W/m²)</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Wohnzimmer</td>
+                    <td>30</td>
+                    <td>1800</td>
+                    <td>60</td>
+                    <td><span class="badge bg-success">Gut</span></td>
+                  </tr>
+                  <tr>
+                    <td>Schlafzimmer</td>
+                    <td>20</td>
+                    <td>1400</td>
+                    <td>70</td>
+                    <td><span class="badge bg-success">Gut</span></td>
+                  </tr>
+                  <tr>
+                    <td>Badezimmer</td>
+                    <td>8</td>
+                    <td>800</td>
+                    <td>100</td>
+                    <td><span class="badge bg-warning text-dark">Prüfen</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recommendations -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">Handlungsempfehlungen</h5>
+          </div>
+          <div class="card-body">
+            <div class="alert alert-warning">
+              <h6><i class="bi bi-exclamation-triangle me-2"></i>Kritische Punkte</h6>
+              <p class="mb-0">Folgende Aspekte sollten vor der Installation einer Wärmepumpe beachtet werden:</p>
+              <ul class="mb-0 mt-2">
+                <li>Die Heizkörper im Badezimmer sind für Niedertemperatur-Betrieb nicht ausreichend dimensioniert.</li>
+                <li>Die Dämmung der Außenwand im Schlafzimmer ist schwächer als im Rest des Gebäudes.</li>
+              </ul>
+            </div>
+            
+            <h6 class="mt-4">Empfohlene Maßnahmen</h6>
+            <ol>
+              <li><strong>Heizkörpertausch im Badezimmer</strong><br>
+                Ersetzen Sie den vorhandenen Heizkörper durch einen größeren oder einen Niedertemperatur-geeigneten Typ.
+              </li>
+              <li><strong>Dämmung der Außenwand im Schlafzimmer prüfen</strong><br>
+                Eine zusätzliche Dämmung könnte die Effizienz der Wärmepumpe verbessern.
+              </li>
+              <li><strong>Hydraulischer Abgleich</strong><br>
+                Für eine optimale Wärmeverteilung im gesamten Heizsystem.
+              </li>
+            </ol>
+          </div>
+        </div>
+        
+        <div class="d-flex justify-content-between mt-4">
+          <button class="btn btn-secondary" type="button" id="resultsBackBtn">Zurück zu Räume</button>
+          <button class="btn btn-success" type="button" id="saveResultsBtn">
+            <i class="bi bi-download me-2"></i>Ergebnisse speichern
+          </button>
         </div>
       </div>
-    </mat-expansion-panel>
-
-  </mat-accordion>
-
-
-  <div class="mt-auto bg-light p-3 row justify-content-between">
-
-    <ul class="nav d-flex flex-row col-auto">
-      <li class="nav-item">
-        <span class="nav-link text-body">
-          Gefördert durch:
-        </span>
-      </li>
-      <li class="nav-item">
-        <a href="https://www.dbu.de/" class="nav-link" target="_blank">
-          <img src="assets/Startseite/DBU-Logo-gefoerdert-durch.svg" alt="DBU" height="106"/>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="https://www.berlin.de/sen/uvk/" class="nav-link" target="_blank">
-          <img src="assets/Startseite/Berlin_SEN_MVKU_Logo_DE_V_PW_4C-1.svg" alt="Berlin" height="106"/>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="https://mluk.brandenburg.de/mluk/de/" class="nav-link" target="_blank">
-          <img src="assets/Startseite/Logo_Brandenburg-1.png" alt="Land Brandenburg" height="106"/>
-        </a>
-      </li>
-    </ul>
-
-    <ul class="nav d-flex flex-row col-auto">
-
-      <li class="nav-item">
-        <span class="nav-link text-body">
-          Entwickelt von:
-        </span>
-      </li>
-      <li class="nav-item align-self-center d-flex flex-column align-items-stretch">
-        <a class="nav-link" href="https://www.ifeu.de" target="_blank">
-          <img src="assets/Startseite/ifeu_de.svg" alt="Ifeu" height="80"/>
-        </a>
-        <p class="mb-0">
-          <!-- Version -->
-          <span class="nav-link ms-auto disabled text-body lh-1" title="%VERSION_NAME%">
-            Toolversion Stand: %VERSION_UPDATED_AT_GERMAN%
-          </span>
-        </p>
-      </li>
-
-    </ul>
+    </div>
   </div>
-
-</section>
+</div>

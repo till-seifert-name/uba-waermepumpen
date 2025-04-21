@@ -39,7 +39,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/betatest/",
+              "baseHref": "/uba-waermepumpen/",
 
               "budgets": [
                 {
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dbu-online-tool:build"
+            "browserTarget": "uba-waermepumpen:build"
           }
         },
         "test": {

@@ -30,5 +30,5 @@ find ./dist -type f -exec sed -i "s/%GIT_COMMIT%/$COMMIT_HASH/g" {} \;
 find ./dist -type f -exec sed -i "s/%BRANCH_NAME%/$BRANCH/g" {} \;
 find ./dist -type f -exec sed -i "s/%VERSION_NAME%/$VERSION/g" {} \;
 
-rsync -avzO --ignore-times --checksum --delete-after --fuzzy ./dist/dbu-online-tool/browser/ \
- till.seifert.name@till.seifert.name:public_html/projects/dbu-online-tool/
+rsync -avzO --ignore-times --checksum --delete-after --fuzzy ./dist/uba-waermepumpen/browser/ \
+ till.seifert.name@till.seifert.name:public_html/projects/uba-waermepumpen/
