@@ -1,0 +1,71 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="15"></app-wizard-tabs>
+
+  <!-- Content -->
+  <div class="row">
+    <div class="col-lg-7">
+      <form>
+        <div class="mb-3">
+          <label for="raumNameGrenze" class="form-label">Ergänzen Sie falls vorhanden Räume deren Decke oder Boden an Außenluft oder unbeheizte Räume grenzt.</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="raumNameGrenze"
+                  placeholder="z.B. Kellerraum" [(ngModel)]="newBoundaryRoomName" name="raumNameGrenze">
+            <button class="btn btn-outline-primary" type="button" id="addRaumGrenze"
+                  (click)="addBoundaryRoom()" [disabled]="!newBoundaryRoomName">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="mb-3">
+          <label for="raumNameFenster" class="form-label">Ergänzen Sie falls vorhanden Räume mit viel Fensterfläche</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="raumNameFenster"
+                  placeholder="z.B. Wohnzimmer" [(ngModel)]="newWindowRoomName" name="raumNameFenster">
+            <button class="btn btn-outline-primary" type="button" id="addRaumFenster"
+                  (click)="addWindowRoom()" [disabled]="!newWindowRoomName">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="mb-3">
+          <label for="raumNameSonstige" class="form-label">Sonstige zu erfassende Räume</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="raumNameSonstige"
+                  placeholder="z.B. Bad" [(ngModel)]="newOtherRoomName" name="raumNameSonstige">
+            <button class="btn btn-outline-primary" type="button" id="addRaumSonstige"
+                  (click)="addOtherRoom()" [disabled]="!newOtherRoomName">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-5 mt-4 mt-lg-0">
+      <div class="card">
+        <div class="card-header">
+          Raumliste
+        </div>
+        <ul class="list-group list-group-flush" id="raumListeDisplay">
+          <li class="list-group-item" *ngFor="let room of roomList">
+            {{room.name}}
+            <button class="btn btn-sm btn-outline-danger float-end" (click)="removeRoom(room.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </li>
+          <li class="list-group-item list-group-item-secondary text-center" *ngIf="roomList.length === 0">
+            Noch keine Räume hinzugefügt
+          </li>
+        </ul>
+      </div>
+      <div class="text-end mt-4">
+        <button type="button" class="btn btn-secondary" routerLink="/raeume/liste-kriterien-1">Zurück</button>
+        <button type="button" class="btn btn-primary ms-2" routerLink="/raeume/intro">Räume detaillieren</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,67 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="40"></app-wizard-tabs>
+
+<!-- Content -->
+<h5 class="mb-4">Angaben zum Raum: {{ roomData.name }}</h5>
+
+<form #roomForm="ngForm">
+  <div class="mb-3 row align-items-center">
+    <label for="raumflaeche" class="col-sm-5 col-form-label">Raumfläche</label>
+    <div class="col-sm-7">
+      <div class="input-group">
+        <input type="number" step="0.1" class="form-control" id="raumflaeche"
+               name="raumflaeche" [(ngModel)]="roomData.area">
+        <span class="input-group-text">m²</span>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center">
+    <label for="raumhoehe" class="col-sm-5 col-form-label">Raumhöhe</label>
+    <div class="col-sm-7">
+      <div class="input-group">
+        <input type="number" step="0.01" class="form-control" id="raumhoehe"
+               name="raumhoehe" [(ngModel)]="roomData.height" value="2.50">
+        <span class="input-group-text">m</span>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center">
+    <label for="raumtemp" class="col-sm-5 col-form-label">Gewünschte Raumtemperatur</label>
+    <div class="col-sm-7">
+      <div class="input-group">
+        <input type="number" class="form-control" id="raumtemp"
+               name="raumtemp" [(ngModel)]="roomData.temperature" value="20">
+        <span class="input-group-text">°C</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3 row align-items-center">
+    <label for="decke_grenzt" class="col-sm-5 col-form-label">Decke grenzt an</label>
+    <div class="col-sm-7">
+      <select class="form-select" id="decke_grenzt" name="decke_grenzt" [(ngModel)]="roomData.ceilingType">
+        <option value="unbeheizt" selected>unbeheizt</option>
+        <option value="beheizt">Beheizt</option>
+        <option value="dach">Dach</option>
+        <option value="aussenluft">Außenluft</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row align-items-center">
+    <label for="boden_grenzt" class="col-sm-5 col-form-label">Boden grenzt an</label>
+    <div class="col-sm-7">
+      <select class="form-select" id="boden_grenzt" name="boden_grenzt" [(ngModel)]="roomData.floorType">
+        <option value="erdreich" selected>Erdreich</option>
+        <option value="unbeheizt">Unbeheizt</option>
+        <option value="beheizt">Beheizt</option>
+        <option value="aussenluft">Außenluft</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="text-end mt-4">
+    <button type="button" class="btn btn-secondary" routerLink="/raeume/intro">Zurück zur Raumliste</button>
+    <button type="button" class="btn btn-primary ms-2" (click)="onNext()">Weiter (Wände/Fenster)</button>
+  </div>
+</form>

@@ -1,0 +1,194 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="50"></app-wizard-tabs>
+
+  <!-- PO Comment Area (This would be removed in production) -->
+  <div class="po-comment float-end" style="max-width: 250px;">
+    Aufklappen der Eigenschaften, wenn Bauteil in Checkliste ausgewählt wurde.<br>
+    Modernisierungsjahr und Dämmstärke mit default Value. = f(BJ)
+  </div>
+
+  <!-- Content -->
+  <p>Wurde eines der folgenden Bauteile nachträglich gedämmt oder ausgetauscht?</p>
+
+  <form>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_aussenwand"
+            [(ngModel)]="retrofittingData.wallUpgraded" name="check_aussenwand">
+      <label class="form-check-label" for="check_aussenwand">Außenwand</label>
+
+      <!-- Conditional Section for Außenwand -->
+      <div class="conditional-section" *ngIf="retrofittingData.wallUpgraded">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_aw" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_aw"
+                  [(ngModel)]="retrofittingData.wallModYear" name="modjahr_aw">
+              <option>Bitte auswählen</option>
+              <option value="1969-1979">1969 - 1979</option>
+              <option value="1980-1983">1980 - 1983</option>
+              <option value="1984-1994">1984 - 1994</option>
+              <option value="1995-2002">1995 - 2002</option>
+              <option value="2003-2008" selected>2003 - 2008</option>
+              <option value="nach2009">nach 2009</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_aw" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control" id="daemmstaerke_aw"
+                    [(ngModel)]="retrofittingData.wallInsulationThickness" name="daemmstaerke_aw" value="6">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_fenster"
+            [(ngModel)]="retrofittingData.windowsUpgraded" name="check_fenster">
+      <label class="form-check-label" for="check_fenster">Fenster</label>
+      <!-- Conditional Section for Fenster (similar structure) -->
+      <div class="conditional-section" *ngIf="retrofittingData.windowsUpgraded">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_fenster" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_fenster"
+                  [(ngModel)]="retrofittingData.windowsModYear" name="modjahr_fenster">
+              <option>Bitte auswählen</option>
+              <option value="1969-1979">1969 - 1979</option>
+              <option value="1980-1983">1980 - 1983</option>
+              <option value="1984-1994">1984 - 1994</option>
+              <option value="1995-2002">1995 - 2002</option>
+              <option value="2003-2008" selected>2003 - 2008</option>
+              <option value="nach2009">nach 2009</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_dach"
+            [(ngModel)]="retrofittingData.roofUpgraded" name="check_dach">
+      <label class="form-check-label" for="check_dach">Dach</label>
+      <!-- Conditional Section for Dach (similar structure) -->
+      <div class="conditional-section" *ngIf="retrofittingData.roofUpgraded">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_dach" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_dach"
+                  [(ngModel)]="retrofittingData.roofModYear" name="modjahr_dach">
+              <option>Bitte auswählen</option>
+              <option value="1969-1979">1969 - 1979</option>
+              <option value="1980-1983">1980 - 1983</option>
+              <option value="1984-1994">1984 - 1994</option>
+              <option value="1995-2002">1995 - 2002</option>
+              <option value="2003-2008" selected>2003 - 2008</option>
+              <option value="nach2009">nach 2009</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_dach" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control" id="daemmstaerke_dach"
+                    [(ngModel)]="retrofittingData.roofInsulationThickness" name="daemmstaerke_dach" value="6">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_ogd"
+            [(ngModel)]="retrofittingData.topFloorUpgraded" name="check_ogd" checked>
+      <label class="form-check-label" for="check_ogd">Oberste Geschossdecke</label>
+      <!-- Conditional Section for OGD -->
+      <div class="conditional-section" *ngIf="retrofittingData.topFloorUpgraded">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_ogd" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_ogd"
+                  [(ngModel)]="retrofittingData.topFloorModYear" name="modjahr_ogd">
+              <option>Bitte auswählen</option>
+              <option value="1969-1979">1969 - 1979</option>
+              <option value="1980-1983">1980 - 1983</option>
+              <option value="1984-1994">1984 - 1994</option>
+              <option value="1995-2002">1995 - 2002</option>
+              <option value="2003-2008" selected>2003 - 2008</option>
+              <option value="nach2009">nach 2009</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_ogd" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control" id="daemmstaerke_ogd"
+                    [(ngModel)]="retrofittingData.topFloorInsulationThickness" name="daemmstaerke_ogd" value="6">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_keller"
+            [(ngModel)]="retrofittingData.basementUpgraded" name="check_keller">
+      <label class="form-check-label" for="check_keller">Kellerdecke / Fußboden</label>
+      <!-- Conditional Section for Keller -->
+      <div class="conditional-section" *ngIf="retrofittingData.basementUpgraded">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_keller" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_keller"
+                  [(ngModel)]="retrofittingData.basementModYear" name="modjahr_keller">
+              <option>Bitte auswählen</option>
+              <option value="1969-1979">1969 - 1979</option>
+              <option value="1980-1983">1980 - 1983</option>
+              <option value="1984-1994">1984 - 1994</option>
+              <option value="1995-2002">1995 - 2002</option>
+              <option value="2003-2008" selected>2003 - 2008</option>
+              <option value="nach2009">nach 2009</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_keller" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control" id="daemmstaerke_keller"
+                    [(ngModel)]="retrofittingData.basementInsulationThickness" name="daemmstaerke_keller" value="6">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-end mt-4">
+      <button type="button" class="btn btn-secondary" routerLink="/gebaeude/basisdaten">Zurück</button>
+      <button type="button" class="btn btn-primary ms-2" (click)="onSubmit()">Weiter</button>
+    </div>
+  </form>
+<style>
+.po-comment {
+  border: 1px dashed red;
+  background-color: #ffdddd;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #600;
+}
+.conditional-section {
+  padding-left: 20px;
+  margin-top: 10px;
+  border-left: 2px solid #eee;
+}
+</style>

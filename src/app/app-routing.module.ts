@@ -5,6 +5,26 @@ import {ImpressumComponent} from "./impressum/impressum.component";
 import {DatenschutzComponent} from "./datenschutz/datenschutz.component";
 import {KontaktComponent} from "./kontakt/kontakt.component";
 
+// Gebäude (Building) Components
+import {GebaeudeIntroComponent} from "./gebaeude/gebaeude-intro/gebaeude-intro.component";
+import {GebaeudeBasicComponent} from "./gebaeude/gebaeude-basic/gebaeude-basic.component";
+import {GebaeudeFeedbackEarlyComponent} from "./gebaeude/gebaeude-feedback-early/gebaeude-feedback-early.component";
+import {GebaeudeRetrofittingComponent} from "./gebaeude/gebaeude-retrofitting/gebaeude-retrofitting.component";
+import {GebaeudeHeatingComponent} from "./gebaeude/gebaeude-heating/gebaeude-heating.component";
+import {GebaeudeFeedbackHeatingComponent} from "./gebaeude/gebaeude-feedback-heating/gebaeude-feedback-heating.component";
+import {GebaeudeFlowTempComponent} from "./gebaeude/gebaeude-flow-temp/gebaeude-flow-temp.component";
+import {GebaeudeTransitionComponent} from "./gebaeude/gebaeude-transition/gebaeude-transition.component";
+
+// Räume (Rooms) Components
+import {RaeumeListCriteriaOneComponent} from "./raeume/raeume-list-criteria-one/raeume-list-criteria-one.component";
+import {RaeumeListCriteriaTwoComponent} from "./raeume/raeume-list-criteria-two/raeume-list-criteria-two.component";
+import {RaeumeIntroComponent} from "./raeume/raeume-intro/raeume-intro.component";
+import {RaumDetailBasicComponent} from "./raeume/raum-detail-basic/raum-detail-basic.component";
+import {RaumDetailWallsComponent} from "./raeume/raum-detail-walls/raum-detail-walls.component";
+
+// Ergebnis (Results) Component
+import {ErgebnisAssessmentComponent} from "./ergebnis/ergebnis-assessment/ergebnis-assessment.component";
+
 const routes: Routes = [
   {
     path: '',
@@ -12,6 +32,38 @@ const routes: Routes = [
     pathMatch: 'full',
     title: 'Wärmepumpen'
   },
+  // Building path with subroutes
+  {
+    path: 'gebaeude',
+    children: [
+      { path: '', component: GebaeudeIntroComponent, title: 'Gebäude-Einführung' },
+      { path: 'basisdaten', component: GebaeudeBasicComponent, title: 'Gebäude-Basisdaten' },
+      { path: 'feedback-early', component: GebaeudeFeedbackEarlyComponent, title: 'Gebäude-Feedback' },
+      { path: 'modernisierung', component: GebaeudeRetrofittingComponent, title: 'Gebäude-Modernisierung' },
+      { path: 'heizung', component: GebaeudeHeatingComponent, title: 'Gebäude-Heizung' },
+      { path: 'feedback-heizung', component: GebaeudeFeedbackHeatingComponent, title: 'Heizung-Feedback' },
+      { path: 'vorlauftemperatur', component: GebaeudeFlowTempComponent, title: 'Vorlauftemperatur' },
+      { path: 'transition', component: GebaeudeTransitionComponent, title: 'Übergang zu Räumen' }
+    ]
+  },
+  // Rooms path with subroutes
+  {
+    path: 'raeume',
+    children: [
+      { path: 'liste-kriterien-1', component: RaeumeListCriteriaOneComponent, title: 'Räume-Kriterien 1' },
+      { path: 'liste-kriterien-2', component: RaeumeListCriteriaTwoComponent, title: 'Räume-Kriterien 2' },
+      { path: 'intro', component: RaeumeIntroComponent, title: 'Räume-Einführung' },
+      { path: 'detail-basis/:id', component: RaumDetailBasicComponent, title: 'Raum-Details' },
+      { path: 'detail-wand/:id', component: RaumDetailWallsComponent, title: 'Raum-Wände' }
+    ]
+  },
+  // Results route
+  {
+    path: 'ergebnis',
+    component: ErgebnisAssessmentComponent,
+    title: 'Ergebnis'
+  },
+  // Static pages
   {
     path: 'impressum',
     component: ImpressumComponent,

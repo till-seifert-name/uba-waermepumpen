@@ -1,0 +1,74 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="80"></app-wizard-tabs>
+
+<!-- Content -->
+<form>
+  <div class="mb-3 p-3 border rounded">
+    <div class="form-check form-switch mb-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="check_vl_bekannt"
+             [(ngModel)]="flowTempData.knowsFlowTemp" name="check_vl_bekannt">
+      <label class="form-check-label" for="check_vl_bekannt">
+        Ich weiß, auf welche Vorlauftemperatur die Heizkurve der Heizung eingestellt ist
+      </label>
+    </div>
+    <!-- Conditional Section -->
+    <div class="conditional-section" *ngIf="flowTempData.knowsFlowTemp">
+      <div class="row align-items-center">
+        <label for="vl_auslegung" class="col-sm-5 col-form-label">Vorlauftemperatur am Auslegungspunkt</label>
+        <div class="col-sm-5">
+          <div class="input-group input-group-sm">
+            <input type="number" class="form-control" id="vl_auslegung"
+                   [(ngModel)]="flowTempData.designTemp" name="vl_auslegung">
+            <span class="input-group-text">°C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3 p-3 border rounded">
+    <div class="form-check form-switch mb-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="check_vl_gemessen"
+             [(ngModel)]="flowTempData.canMeasureTemp" name="check_vl_gemessen" checked>
+      <label class="form-check-label" for="check_vl_gemessen">
+        Ich kann im Heizungsraum die Vorlauftemperatur ablesen und die Außentemperatur messen
+      </label>
+    </div>
+    <!-- Conditional Section -->
+    <div class="conditional-section" *ngIf="flowTempData.canMeasureTemp">
+      <div class="row align-items-center mb-2">
+        <label for="vl_aktuell" class="col-sm-4 col-form-label">Vorlauftemperatur</label>
+        <div class="col-sm-5">
+          <div class="input-group input-group-sm">
+            <input type="number" class="form-control" id="vl_aktuell"
+                   [(ngModel)]="flowTempData.currentFlowTemp" name="vl_aktuell">
+            <span class="input-group-text">°C</span>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <label for="aussen_aktuell" class="col-sm-4 col-form-label">Außentemperatur</label>
+        <div class="col-sm-5">
+          <div class="input-group input-group-sm">
+            <input type="number" class="form-control" id="aussen_aktuell"
+                   [(ngModel)]="flowTempData.currentOutdoorTemp" name="aussen_aktuell">
+            <span class="input-group-text">°C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-end mt-4">
+    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/heizung">Zurück</button>
+    <button type="button" class="btn btn-primary ms-2" routerLink="/gebaeude/transition">Weiter zu Räumen</button>
+  </div>
+</form>
+
+<style>
+  .conditional-section {
+    padding-left: 20px;
+    margin-top: 10px;
+    border-left: 2px solid #EEE;
+  }
+</style>

@@ -1,4 +1,4 @@
-$font-family-base: 'Inter';
+$font-family-base: 'Kanit', sans-serif;
 
 // Bootstrap configuration
 $enable-negative-margins: true;
@@ -38,12 +38,9 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Inter, "Helvetica Neue", sans-serif;
-  font-display: swap;
   display: flex;
   flex-direction: column;
   max-width: var(--body-max-width);
-  background-color: rgb(var(--bs-dark-rgb));
 
   @media print {
     background-color: unset;

@@ -1,0 +1,149 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="70"></app-wizard-tabs>
+
+<!-- Content -->
+<h5 class="mb-4">Außenwände und Fenster: {{ roomData.name }}</h5>
+
+<form #wallForm="ngForm">
+  <div class="mb-3 row align-items-center">
+    <label for="aw_laenge" class="col-sm-5 col-form-label">Gesamtlänge der Außenwände</label>
+    <div class="col-sm-7">
+      <div class="input-group">
+        <input type="number" step="0.1" class="form-control" id="aw_laenge"
+               name="aw_laenge" [(ngModel)]="wallData.length">
+        <span class="input-group-text">m</span>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center">
+    <label for="aw_daemmung" class="col-sm-5 col-form-label">Abweichende Dämmstärke</label>
+    <div class="col-sm-7">
+      <div class="input-group">
+        <input type="number" class="form-control" id="aw_daemmung"
+               name="aw_daemmung" [(ngModel)]="wallData.insulationThickness"
+               value="6" aria-describedby="daemmungHelp">
+        <span class="input-group-text">cm</span>
+      </div>
+      <div id="daemmungHelp" class="form-text">Standardwert aus Gebäudeübernahme, falls abweichend hier ändern.</div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <h6>Geben Sie die Abmaße des ersten Fenstertyps an</h6>
+  <div class="row g-3 mb-3 align-items-center">
+    <div class="col-sm-6">
+      <label for="fenster1_breite" class="form-label visually-hidden">Breite Fenster 1</label>
+      <div class="input-group">
+        <span class="input-group-text" style="width: 90px;">Breite</span>
+        <input type="number" class="form-control" id="fenster1_breite"
+               name="fenster1_breite" [(ngModel)]="windowData.width">
+        <span class="input-group-text">cm</span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <label for="fenster1_hoehe" class="form-label visually-hidden">Höhe Fenster 1</label>
+      <div class="input-group">
+        <span class="input-group-text" style="width: 90px;">Höhe</span>
+        <input type="number" class="form-control" id="fenster1_hoehe"
+               name="fenster1_hoehe" [(ngModel)]="windowData.height">
+        <span class="input-group-text">cm</span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <label for="fenster1_baujahr" class="form-label visually-hidden">Baujahr Fenster 1</label>
+      <div class="input-group">
+        <span class="input-group-text" style="width: 90px;">Baujahr</span>
+        <select class="form-select" id="fenster1_baujahr"
+                name="fenster1_baujahr" [(ngModel)]="windowData.constructionYear">
+          <option>wie Gebäude</option>
+          <option value="1969-1979" selected>1969-1979</option>
+          <option value="1980-1983">1980-1983</option>
+          <option value="1984-1994">1984-1994</option>
+          <option value="1995-2002">1995-2002</option>
+          <option value="2003-2008">2003-2008</option>
+          <option value="nach2009">nach 2009</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <label for="fenster1_anzahl" class="form-label visually-hidden">Anzahl Fenster 1</label>
+      <div class="input-group">
+        <span class="input-group-text" style="width: 90px;">Anzahl</span>
+        <input type="number" class="form-control" id="fenster1_anzahl"
+               name="fenster1_anzahl" [(ngModel)]="windowData.count" value="1">
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <button type="button" class="btn btn-outline-secondary" (click)="addWindowType()">
+      <i class="bi bi-plus-lg"></i> Fenstertyp hinzufügen
+    </button>
+  </div>
+
+  <!-- Additional window types would be dynamically added here -->
+  <div *ngFor="let window of additionalWindows; let i = index" class="mb-4 p-3 border rounded">
+    <h6>Fenstertyp {{ i + 2 }}</h6>
+    <div class="row g-3 align-items-center">
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Breite</span>
+          <input type="number" class="form-control" [(ngModel)]="window.width"
+                 [name]="'fenster' + (i+2) + '_breite'">
+          <span class="input-group-text">cm</span>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Höhe</span>
+          <input type="number" class="form-control" [(ngModel)]="window.height"
+                 [name]="'fenster' + (i+2) + '_hoehe'">
+          <span class="input-group-text">cm</span>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Baujahr</span>
+          <select class="form-select" [(ngModel)]="window.constructionYear"
+                  [name]="'fenster' + (i+2) + '_baujahr'">
+            <option>wie Gebäude</option>
+            <option value="1969-1979">1969-1979</option>
+            <option value="1980-1983">1980-1983</option>
+            <option value="1984-1994">1984-1994</option>
+            <option value="1995-2002">1995-2002</option>
+            <option value="2003-2008" selected>2003-2008</option>
+            <option value="nach2009">nach 2009</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Anzahl</span>
+          <input type="number" class="form-control" [(ngModel)]="window.count"
+                 [name]="'fenster' + (i+2) + '_anzahl'" value="1">
+        </div>
+      </div>
+    </div>
+    <div class="text-end mt-2">
+      <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeWindowType(i)">
+        <i class="bi bi-trash"></i> Entfernen
+      </button>
+    </div>
+  </div>
+
+  <div class="text-end mt-4">
+    <button type="button" class="btn btn-secondary" [routerLink]="['/raeume/detail-basis', roomId]">Zurück (Raumdaten)</button>
+    
+    <!-- Dynamic button text based on whether this is the last room -->
+    <button type="button" class="btn btn-primary ms-2" (click)="onComplete()">
+      <ng-container *ngIf="hasNextRoom(); else lastRoom">
+        Speichern & nächster Raum
+      </ng-container>
+      <ng-template #lastRoom>
+        Speichern & zur Auswertung
+      </ng-template>
+    </button>
+  </div>
+</form>
+

@@ -1,7 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Waermepumpen_Eingabedaten, Waermepumpen_Empfehlungen, Waermepumpen_Hinweise} from "./data";
 import {ABS, CellContent, DataGrid, ISTLEER, ODER, UND, WAHR, WENN, WENNS} from "./data-grid";
-import {debounceTime, filter} from "rxjs";
+import {BehaviorSubject, Observable, debounceTime, filter} from "rxjs";
+
+// Shared Room interface for consistent use across components
+export interface Room {
+  id: string;
+  name: string;
+  type: string; // 'cold', 'exterior', 'ceiling', 'windows', 'other'
+  data?: any; // For storing room-specific data
+}
 
 const STORAGE_KEY = 'UBA-WAERMEPUMPEN-DATA';
 
@@ -11,6 +19,21 @@ const STORAGE_KEY = 'UBA-WAERMEPUMPEN-DATA';
 export class BerechnungService {
 
   public grid: DataGrid = new DataGrid();
+  
+  // Room management
+  private roomsSubject = new BehaviorSubject<Room[]>([
+    // Default sample rooms for development
+    { id: '1', name: 'Wohnzimmer', type: 'exterior' },
+    { id: '2', name: 'Kinderzimmer', type: 'cold' },
+    { id: '3', name: 'Schlafzimmer', type: 'exterior' }
+  ]);
+  
+  // Observable for components to subscribe to
+  public rooms$ = this.roomsSubject.asObservable();
+  
+  // Currently selected room
+  private selectedRoomSubject = new BehaviorSubject<string>('');
+  public selectedRoom$ = this.selectedRoomSubject.asObservable();
 
   constructor() {
     const grid = this.grid;
@@ -114,5 +137,60 @@ export class BerechnungService {
 
   resetInputs() {
     this.grid.clearListed(this.cellsToSave);
+  }
+  
+  // Room management methods
+  getRooms(): Room[] {
+    return this.roomsSubject.getValue();
+  }
+  
+  setSelectedRoom(roomId: string): void {
+    this.selectedRoomSubject.next(roomId);
+  }
+  
+  getSelectedRoomId(): string {
+    return this.selectedRoomSubject.getValue();
+  }
+  
+  getSelectedRoom(): Room | undefined {
+    const roomId = this.getSelectedRoomId();
+    return this.getRooms().find(room => room.id === roomId);
+  }
+  
+  addRoom(name: string, type: string): string {
+    const rooms = this.getRooms();
+    const newId = Date.now().toString();
+    
+    const newRoom: Room = {
+      id: newId,
+      name: name.trim(),
+      type: type
+    };
+    
+    this.roomsSubject.next([...rooms, newRoom]);
+    return newId;
+  }
+  
+  removeRoom(roomId: string): void {
+    const rooms = this.getRooms().filter(room => room.id !== roomId);
+    this.roomsSubject.next(rooms);
+    
+    // If the selected room was removed, select another one or none
+    if (this.getSelectedRoomId() === roomId) {
+      const newSelectedId = rooms.length > 0 ? rooms[0].id : '';
+      this.setSelectedRoom(newSelectedId);
+    }
+  }
+  
+  updateRoomData(roomId: string, data: any): void {
+    const rooms = this.getRooms();
+    const updatedRooms = rooms.map(room => {
+      if (room.id === roomId) {
+        return { ...room, data: { ...room.data, ...data } };
+      }
+      return room;
+    });
+    
+    this.roomsSubject.next(updatedRooms);
   }
 }

@@ -1,0 +1,36 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="40"></app-wizard-tabs>
+
+  <!-- PO Comment Area (This would be removed in production) -->
+  <div class="po-comment float-end" style="max-width: 250px;">
+    Beispiel Ausgabe vorzeitiger Ausstiegspunkt, hier aufgrund BJ > 2002
+  </div>
+
+  <!-- Content -->
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Super, Sie haben alle Gebäudedaten erfasst!</h4>
+  </div>
+
+  <p>Anhand der getroffenen Angaben zum Baujahr scheint Ihr Gebäude bereits für eine Wärmepumpe geeignet zu sein.</p>
+
+  <p>Wenn Ihr Gebäude mit Heizkörpern beheizt wird, können Sie das Tool weiter ausfüllen und mit der Erfassung der Einzelräume starten, um mehr über Ihre Heizlast oder Heizkörperleistung zu erfahren.</p>
+
+  <div class="alert alert-warning" role="alert">
+    Eingaben für Flächenheizungen sind im Tool hingegen nicht vorgesehen.
+  </div>
+
+  <div class="mt-4 text-end">
+    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/basisdaten">Zurück</button>
+    <button type="button" class="btn btn-primary ms-2" routerLink="/gebaeude/heizung">Weiter (Heizung)</button>
+  </div>
+
+<style>
+.po-comment {
+  border: 1px dashed red;
+  background-color: #ffdddd;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #600;
+}
+</style>

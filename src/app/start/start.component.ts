@@ -1,42 +1,29 @@
-import {Component} from '@angular/core';
-import {BerechnungService} from '../berechnung.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { BerechnungService } from '../berechnung.service';
 
 /**
- * NOTE: This is a simple UI implementation.
- * 
- * In the full implementation:
- * - All data should be stored and retrieved from the DataGrid in the BerechnungService
- * - The UI should directly bind to values in the grid where possible
- * - Minimal getters should be used to transform grid data for templates
- * - No complex models should be created - the grid is the single source of truth
+ * Start component that serves as the entry point to the application.
+ * It displays a landing page with a call-to-action button to start the wizard.
  */
 
 @Component({
-    selector: 'app-start',
-    templateUrl: './start.component.html',
-    styleUrls: ['./start.component.scss'],
-    standalone: false
+  selector: 'app-start',
+  templateUrl: './start.component.html',
+  styleUrls: ['./start.component.scss'],
+  standalone: false
 })
 export class StartComponent {
-  // Simple active tab tracking for the wizard
-  activeTab = 'building'; // Options: 'building', 'rooms', 'results'
-  
-  constructor(private berechnungService: BerechnungService) {}
-  
-  // Tab navigation
-  setActiveTab(tab: string): void {
-    this.activeTab = tab;
-  }
-  
-  // Simple placeholder methods to demonstrate functionality
-  addRoom(): void {
-    console.log('Add room clicked');
-    // In real implementation: Add room data to grid
-  }
-  
-  calculateResults(): void {
-    console.log('Calculate results');
-    // In real implementation: Run calculations on grid data
-    this.setActiveTab('results');
+  constructor(
+    private router: Router,
+    private berechnungService: BerechnungService
+  ) {}
+
+  /**
+   * Start the wizard by navigating to the first step
+   */
+  startWizard(): void {
+    // Navigate to the first step of the wizard
+    this.router.navigate(['/gebaeude']);
   }
 }

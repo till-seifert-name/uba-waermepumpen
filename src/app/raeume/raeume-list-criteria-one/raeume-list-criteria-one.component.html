@@ -1,0 +1,77 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="10"></app-wizard-tabs>
+
+  <!-- PO Comment Area (This would be removed in production) -->
+  <div class="po-comment float-end" style="max-width: 250px;">
+    Vorschlag: wenn + geklickt wird, wird Name der Liste hinzugefügt und das Feld wird geleert.<br>
+    &#64;Till: gern pragmatischen Vorschlag hinsichtlich einfacher Programmierung
+  </div>
+
+  <!-- Content -->
+  <div class="row">
+    <div class="col-lg-7">
+      <form>
+        <div class="mb-4 form-check form-switch ps-0">
+          <label class="form-check-label" for="nicht_warm">Gibt es Räume, die nicht ausreichend warm werden?</label>
+          <input class="form-check-input float-end me-1" type="checkbox" role="switch" id="nicht_warm"
+                [(ngModel)]="hasRoomsThatDontGetWarm" name="nicht_warm">
+        </div>
+
+        <div class="mb-3">
+          <label for="raumNameKalt" class="form-label">Eindeutiger Name:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="raumNameKalt" [(ngModel)]="newColdRoomName" name="raumNameKalt">
+            <button class="btn btn-outline-primary" type="button" id="addRaumKalt"
+                  (click)="addColdRoom()" [disabled]="!newColdRoomName">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="mb-3">
+          <label for="raumNameAussen" class="form-label">Ergänzen Sie weiterhin diejenigen Räume mit besonders vielen Außenbauteilen.</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="raumNameAussen" [(ngModel)]="newExteriorRoomName" name="raumNameAussen">
+            <button class="btn btn-outline-primary" type="button" id="addRaumAussen"
+                  (click)="addExteriorRoom()" [disabled]="!newExteriorRoomName">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-5 mt-4 mt-lg-0">
+      <div class="card">
+        <div class="card-header">
+          Raumliste
+        </div>
+        <ul class="list-group list-group-flush" id="raumListeDisplay">
+          <li class="list-group-item" *ngFor="let room of roomList">
+            {{room.name}}
+            <button class="btn btn-sm btn-outline-danger float-end" (click)="removeRoom(room.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </li>
+          <li class="list-group-item list-group-item-secondary text-center" *ngIf="roomList.length === 0">
+            Noch keine Räume hinzugefügt
+          </li>
+        </ul>
+      </div>
+      <div class="text-end mt-4">
+        <button type="button" class="btn btn-secondary" routerLink="/gebaeude/transition">Zurück</button>
+        <button type="button" class="btn btn-primary ms-2" routerLink="/raeume/liste-kriterien-2">Weiter</button>
+      </div>
+    </div>
+  </div>
+<style>
+.po-comment {
+  border: 1px dashed red;
+  background-color: #ffdddd;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #600;
+}
+</style>

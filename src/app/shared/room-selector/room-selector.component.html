@@ -1,0 +1,17 @@
+<select class="form-select mb-4" #roomSelect (change)="selectRoom(roomSelect.value)">
+  <option value="" disabled [selected]="!selectedRoomId">
+    Aktueller Raum:
+  </option>
+  <optgroup label="Räume">
+    <ng-container *ngIf="rooms.length > 0; else noRooms">
+      <option *ngFor="let room of rooms" [value]="room.id" [selected]="room.id === selectedRoomId">
+        {{ room.name }}
+      </option>
+    </ng-container>
+  </optgroup>
+  <ng-template #noRooms>
+    <option disabled>
+      Keine Räume vorhanden
+    </option>
+  </ng-template>
+</select>
