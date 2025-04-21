@@ -31,6 +31,7 @@
     "@angular/router": "^16.2.12",
     "@nguniversal/express-engine": "^16.0.0",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "express": "^4.15.2",
     "marked": "^4.3.0",
     "material-symbols": "^0.8.1",

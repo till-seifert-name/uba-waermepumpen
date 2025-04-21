@@ -1,54 +1,47 @@
-<section class="bg-dark text-bg-dark hero">
-  <h1 class="text-center">
-    <div class="mat-headline-4" style="margin: 4rem 0 0 0;">
-      UBA Wärmepumpen Tool
-    </div>
-    <div class="mat-headline-3" style="margin: 1rem 0 2rem 0; hyphens: auto">
-      Beratung zur Auswahl und Installation
-    </div>
-  </h1>
+<section class="py-5 bg-light text-center">
+  <div class="container">
+    <h1 class="display-4">UBA Wärmepumpen Tool</h1>
+    <p class="lead">Beratung zur Auswahl und Installation von Wärmepumpen</p>
+  </div>
 </section>
 
 <div class="container mt-4 mb-5">
-  <!-- Main wizard tabs -->
-  <ul class="nav nav-tabs" id="mainWizardTabs" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="building-tab" data-bs-toggle="tab" data-bs-target="#building" type="button" role="tab" aria-controls="building" aria-selected="true">
-        <i class="bi bi-house-door me-2"></i>Gebäude
+  <!-- Wizard Tabs -->
+  <ul class="nav nav-tabs" id="wizardTabs">
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'building'" (click)="setActiveTab('building')">
+        1. Gebäude
       </button>
     </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="rooms-tab" data-bs-toggle="tab" data-bs-target="#rooms" type="button" role="tab" aria-controls="rooms" aria-selected="false">
-        <i class="bi bi-grid-3x3-gap me-2"></i>Räume
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'rooms'" (click)="setActiveTab('rooms')">
+        2. Räume
       </button>
     </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="results-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-controls="results" aria-selected="false">
-        <i class="bi bi-bar-chart me-2"></i>Ergebnis
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'results'" (click)="setActiveTab('results')">
+        3. Ergebnis
       </button>
     </li>
   </ul>
   
-  <!-- Tab content -->
-  <div class="tab-content p-3 border border-top-0 rounded-bottom" id="mainWizardTabContent">
-    <!-- Building tab -->
-    <div class="tab-pane fade show active" id="building" role="tabpanel" aria-labelledby="building-tab">
+  <!-- Tab Contents -->
+  <div class="tab-content p-4 border border-top-0">
+    <!-- Building Tab -->
+    <div [hidden]="activeTab !== 'building'">
       <h3>Gebäudedaten</h3>
       <p class="text-muted">Bitte geben Sie hier die grundlegenden Informationen zu Ihrem Gebäude ein.</p>
       
-      <!-- Building data form -->
       <form>
-        <!-- Basic building data -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <h5 class="mb-0">Basisdaten</h5>
-          </div>
+        <!-- Basic Building Data -->
+        <div class="card mb-4">
+          <div class="card-header">Basisdaten</div>
           <div class="card-body">
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="buildingType" class="form-label">Gebäudetyp</label>
-                <select class="form-select" id="buildingType">
-                  <option selected disabled value="">Bitte wählen...</option>
+                <select class="form-select" id="buildingType" name="buildingType">
+                  <option value="" selected disabled>Bitte wählen...</option>
                   <option value="EFH">Einfamilienhaus</option>
                   <option value="MFH">Mehrfamilienhaus</option>
                   <option value="RH">Reihenhaus</option>
@@ -56,496 +49,172 @@
               </div>
               <div class="col-md-6">
                 <label for="buildingYear" class="form-label">Baujahr</label>
-                <input type="number" class="form-control" id="buildingYear" placeholder="z.B. 1985">
-              </div>
-              <div class="col-md-6">
-                <label for="zipCode" class="form-label">PLZ (Standort)</label>
-                <input type="text" class="form-control" id="zipCode" placeholder="z.B. 10115">
-              </div>
-              <div class="col-md-6">
-                <label for="roofType" class="form-label">Dachform</label>
-                <select class="form-select" id="roofType">
-                  <option selected disabled value="">Bitte wählen...</option>
-                  <option value="Flachdach">Flachdach</option>
-                  <option value="Satteldach">Satteldach</option>
-                  <option value="Pultdach">Pultdach</option>
-                  <option value="Walmdach">Walmdach</option>
-                </select>
+                <input type="number" class="form-control" id="buildingYear" name="buildingYear" placeholder="z.B. 1985">
               </div>
             </div>
           </div>
         </div>
         
-        <!-- Modernization measures -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <h5 class="mb-0">Modernisierungsmaßnahmen</h5>
-          </div>
-          <div class="card-body">
-            <div class="mb-3">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="exteriorWallRenovated">
-                <label class="form-check-label" for="exteriorWallRenovated">
-                  Außenwand wurde modernisiert
-                </label>
-              </div>
-              <div class="ms-4 mt-2 row g-3" id="exteriorWallDetails" style="display: none;">
-                <div class="col-md-6">
-                  <label for="exteriorWallYear" class="form-label">Jahr der Modernisierung</label>
-                  <input type="number" class="form-control" id="exteriorWallYear">
-                </div>
-                <div class="col-md-6">
-                  <label for="exteriorWallInsulation" class="form-label">Dämmstärke (cm)</label>
-                  <input type="number" class="form-control" id="exteriorWallInsulation">
-                </div>
-              </div>
-            </div>
-            
-            <div class="mb-3">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="windowsRenovated">
-                <label class="form-check-label" for="windowsRenovated">
-                  Fenster wurden erneuert
-                </label>
-              </div>
-              <div class="ms-4 mt-2 row g-3" id="windowsDetails" style="display: none;">
-                <div class="col-md-6">
-                  <label for="windowsYear" class="form-label">Jahr der Erneuerung</label>
-                  <input type="number" class="form-control" id="windowsYear">
-                </div>
-                <div class="col-md-6">
-                  <label for="windowsType" class="form-label">Fenstertyp</label>
-                  <select class="form-select" id="windowsType">
-                    <option value="zweifach">Zweifachverglasung</option>
-                    <option value="dreifach">Dreifachverglasung</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <div class="mb-3">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="roofRenovated">
-                <label class="form-check-label" for="roofRenovated">
-                  Dach wurde modernisiert
-                </label>
-              </div>
-              <div class="ms-4 mt-2 row g-3" id="roofDetails" style="display: none;">
-                <div class="col-md-6">
-                  <label for="roofYear" class="form-label">Jahr der Modernisierung</label>
-                  <input type="number" class="form-control" id="roofYear">
-                </div>
-                <div class="col-md-6">
-                  <label for="roofInsulation" class="form-label">Dämmstärke (cm)</label>
-                  <input type="number" class="form-control" id="roofInsulation">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Heating system -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <h5 class="mb-0">Heizsystem</h5>
-          </div>
+        <!-- Heating System -->
+        <div class="card mb-4">
+          <div class="card-header">Heizsystem</div>
           <div class="card-body">
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="heatingType" class="form-label">Heizungsart</label>
-                <select class="form-select" id="heatingType">
-                  <option selected disabled value="">Bitte wählen...</option>
+                <select class="form-select" id="heatingType" name="heatingType">
+                  <option value="" selected disabled>Bitte wählen...</option>
                   <option value="radiator">Heizkörper</option>
                   <option value="floor">Fußbodenheizung</option>
                   <option value="mixed">Gemischt</option>
                 </select>
-                <div class="form-text">
-                  <i class="bi bi-info-circle"></i> Die vorhandene Art der Wärmeabgabe im Raum.
-                </div>
               </div>
-              
-              <div class="col-md-6">
-                <label for="distributionSystem" class="form-label">Verteilsystem</label>
-                <select class="form-select" id="distributionSystem">
-                  <option selected disabled value="">Bitte wählen...</option>
-                  <option value="oneWay">Einrohr</option>
-                  <option value="twoWay">Zweirohr</option>
-                  <option value="unknown">Unbekannt</option>
-                </select>
-                <div class="form-text">
-                  <i class="bi bi-info-circle"></i> Bei Unklarheit wählen Sie "Unbekannt".
-                </div>
-              </div>
-              
               <div class="col-md-6">
                 <label for="flowTemperature" class="form-label">Vorlauftemperatur (°C)</label>
-                <input type="number" class="form-control" id="flowTemperature" placeholder="z.B. 70">
-                <div class="form-text">
-                  <i class="bi bi-info-circle"></i> Falls bekannt, ansonsten leer lassen.
-                </div>
-              </div>
-              
-              <div class="col-md-6">
-                <label for="efficiencyClass" class="form-label">Effizienzklasse</label>
-                <select class="form-select" id="efficiencyClass">
-                  <option selected disabled value="">Bitte wählen...</option>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                  <option value="E">E</option>
-                  <option value="F">F</option>
-                  <option value="G">G</option>
-                  <option value="unknown">Unbekannt</option>
-                </select>
+                <input type="number" class="form-control" id="flowTemperature" name="flowTemperature" placeholder="z.B. 70">
               </div>
             </div>
           </div>
         </div>
         
-        <div class="d-flex justify-content-between mt-4">
-          <button class="btn btn-secondary" type="button" disabled>Zurück</button>
-          <button class="btn btn-primary" type="button" id="buildingNextBtn">Weiter zu Räume</button>
+        <div class="mt-4 d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" disabled>Zurück</button>
+          <button type="button" class="btn btn-primary" (click)="setActiveTab('rooms')">Weiter zu Räume</button>
         </div>
       </form>
     </div>
     
-    <!-- Rooms tab -->
-    <div class="tab-pane fade" id="rooms" role="tabpanel" aria-labelledby="rooms-tab">
+    <!-- Rooms Tab -->
+    <div [hidden]="activeTab !== 'rooms'">
       <h3>Raumdaten</h3>
-      <p class="text-muted">Erfassen Sie hier die kritischen Räume ("Schlechtpunkträume") Ihres Gebäudes.</p>
+      <p class="text-muted">Erfassen Sie hier die Räume Ihres Gebäudes.</p>
       
-      <!-- Room list -->
+      <!-- Room List -->
       <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">Raumliste</h5>
-          <button type="button" class="btn btn-sm btn-primary" id="addRoomBtn">
+          <span>Raumliste</span>
+          <button type="button" class="btn btn-sm btn-primary" (click)="addRoom()">
             <i class="bi bi-plus-circle me-1"></i>Raum hinzufügen
           </button>
         </div>
-        <div class="card-body p-0">
-          <div class="alert alert-info m-3">
-            <i class="bi bi-info-circle-fill me-2"></i>
-            Fügen Sie hier die Räume hinzu, die für die Wärmepumpenanalyse besonders relevant sind:
-            <ul class="mb-0 mt-2">
-              <li>Räume, die nicht ausreichend warm werden</li>
-              <li>Räume mit vielen Außenbauteilen</li>
-              <li>Räume mit großen Fensterflächen</li>
-              <li>Räume, die an Außenluft oder unbeheizte Bereiche grenzen</li>
-            </ul>
+        <div class="card-body">
+          <div class="alert alert-info">
+            Fügen Sie hier die wichtigsten Räume hinzu, die für die Wärmepumpenanalyse relevant sind.
           </div>
-          <ul class="list-group list-group-flush" id="roomList">
-            <li class="list-group-item text-muted">Noch keine Räume hinzugefügt</li>
+          
+          <!-- Sample Room List -->
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong>Wohnzimmer</strong>
+                <span class="text-muted ms-2">30 m²</span>
+              </div>
+              <div>
+                <button class="btn btn-sm btn-outline-primary me-2">Bearbeiten</button>
+                <button class="btn btn-sm btn-outline-danger">Löschen</button>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong>Schlafzimmer</strong>
+                <span class="text-muted ms-2">20 m²</span>
+              </div>
+              <div>
+                <button class="btn btn-sm btn-outline-primary me-2">Bearbeiten</button>
+                <button class="btn btn-sm btn-outline-danger">Löschen</button>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
       
-      <!-- Room details (initially hidden) -->
-      <div id="roomDetails" style="display: none;">
-        <div class="card mb-3">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Raumdetails: <span id="currentRoomName">Raum</span></h5>
-            <div>
-              <button class="btn btn-sm btn-outline-secondary me-2" id="prevRoomBtn">
-                <i class="bi bi-arrow-left"></i>
-              </button>
-              <button class="btn btn-sm btn-outline-secondary" id="nextRoomBtn">
-                <i class="bi bi-arrow-right"></i>
-              </button>
+      <!-- Room Form (simplified) -->
+      <div class="card mb-4">
+        <div class="card-header">Raumdetails</div>
+        <div class="card-body">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="roomName" class="form-label">Raumname</label>
+                <input type="text" class="form-control" id="roomName" placeholder="z.B. Wohnzimmer">
+              </div>
+              <div class="col-md-6">
+                <label for="roomArea" class="form-label">Raumfläche (m²)</label>
+                <input type="number" class="form-control" id="roomArea">
+              </div>
+              <div class="col-md-6">
+                <label for="roomHeight" class="form-label">Raumhöhe (m)</label>
+                <input type="number" class="form-control" id="roomHeight" placeholder="z.B. 2.5">
+              </div>
+              <div class="col-md-6">
+                <label for="roomTemp" class="form-label">Raumtemperatur (°C)</label>
+                <input type="number" class="form-control" id="roomTemp" placeholder="z.B. 21">
+              </div>
             </div>
-          </div>
-          <div class="card-body">
-            <form id="roomDetailsForm">
-              <div class="row g-3 mb-3">
-                <div class="col-md-6">
-                  <label for="roomName" class="form-label">Raumname</label>
-                  <input type="text" class="form-control" id="roomName" placeholder="z.B. Wohnzimmer">
-                </div>
-                <div class="col-md-6">
-                  <label for="roomArea" class="form-label">Raumfläche (m²)</label>
-                  <input type="number" class="form-control" id="roomArea">
-                </div>
-                <div class="col-md-6">
-                  <label for="roomHeight" class="form-label">Raumhöhe (m)</label>
-                  <input type="number" class="form-control" id="roomHeight" placeholder="z.B. 2.5">
-                </div>
-                <div class="col-md-6">
-                  <label for="targetTemperature" class="form-label">Gewünschte Raumtemperatur (°C)</label>
-                  <input type="number" class="form-control" id="targetTemperature" placeholder="z.B. 21">
-                </div>
-              </div>
-              
-              <!-- Adjacent areas -->
-              <div class="mb-3">
-                <label class="form-label">Angrenzende Bereiche</label>
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <label for="ceilingSituation" class="form-label">Decke grenzt an</label>
-                    <select class="form-select" id="ceilingSituation">
-                      <option value="heated">Beheizter Raum</option>
-                      <option value="unheated">Unbeheizter Raum</option>
-                      <option value="outdoor">Außenluft (Dach)</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="floorSituation" class="form-label">Boden grenzt an</label>
-                    <select class="form-select" id="floorSituation">
-                      <option value="heated">Beheizter Raum</option>
-                      <option value="unheated">Unbeheizter Raum</option>
-                      <option value="ground">Erdreich</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Walls -->
-              <div class="mb-3">
-                <label class="form-label">Außenwände</label>
-                <div class="row g-3">
-                  <div class="col-md-4">
-                    <label for="wallLength" class="form-label">Gesamtlänge (m)</label>
-                    <input type="number" class="form-control" id="wallLength">
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-check mt-4">
-                      <input class="form-check-input" type="checkbox" id="customWallInsulation">
-                      <label class="form-check-label" for="customWallInsulation">
-                        Abweichende Dämmstärke
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md-4" id="customWallInsulationField" style="display: none;">
-                    <label for="wallInsulation" class="form-label">Dämmstärke (cm)</label>
-                    <input type="number" class="form-control" id="wallInsulation">
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Windows -->
-              <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <label class="form-label mb-0">Fenster</label>
-                  <button type="button" class="btn btn-sm btn-outline-primary" id="addWindowBtn">
-                    <i class="bi bi-plus-circle me-1"></i>Weiteren Fenstertyp hinzufügen
-                  </button>
-                </div>
-                <div id="windowsContainer">
-                  <div class="card mb-2 window-entry">
-                    <div class="card-body">
-                      <div class="row g-3">
-                        <div class="col-md-4">
-                          <label class="form-label">Fenstertyp</label>
-                          <select class="form-select window-type">
-                            <option value="double">Zweifachverglasung</option>
-                            <option value="triple">Dreifachverglasung</option>
-                            <option value="single">Einfachverglasung</option>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <label class="form-label">Anzahl</label>
-                          <input type="number" class="form-control window-count" value="1">
-                        </div>
-                        <div class="col-md-3">
-                          <label class="form-label">Breite (m)</label>
-                          <input type="number" class="form-control window-width">
-                        </div>
-                        <div class="col-md-3">
-                          <label class="form-label">Höhe (m)</label>
-                          <input type="number" class="form-control window-height">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Radiators -->
-              <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <label class="form-label mb-0">Heizkörper</label>
-                  <button type="button" class="btn btn-sm btn-outline-primary" id="addRadiatorBtn">
-                    <i class="bi bi-plus-circle me-1"></i>Weiteren Heizkörpertyp hinzufügen
-                  </button>
-                </div>
-                <div id="radiatorsContainer">
-                  <div class="card mb-2 radiator-entry">
-                    <div class="card-body">
-                      <div class="row g-3">
-                        <div class="col-md-4">
-                          <label class="form-label">Heizkörpertyp</label>
-                          <select class="form-select radiator-type">
-                            <option value="panel">Plattenheizkörper</option>
-                            <option value="sectional">Glieder-Heizkörper</option>
-                            <option value="convector">Konvektor</option>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <label class="form-label">Anzahl</label>
-                          <input type="number" class="form-control radiator-count" value="1">
-                        </div>
-                        <div class="col-md-2">
-                          <label class="form-label">Länge (m)</label>
-                          <input type="number" class="form-control radiator-length">
-                        </div>
-                        <div class="col-md-2">
-                          <label class="form-label">Höhe (m)</label>
-                          <input type="number" class="form-control radiator-height">
-                        </div>
-                        <div class="col-md-2">
-                          <label class="form-label">Tiefe (m)</label>
-                          <input type="number" class="form-control radiator-depth">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
+            
+            <div class="mt-3">
+              <button type="button" class="btn btn-primary">Raum speichern</button>
+            </div>
+          </form>
         </div>
       </div>
       
-      <div class="d-flex justify-content-between mt-4">
-        <button class="btn btn-secondary" type="button" id="roomsBackBtn">Zurück zu Gebäude</button>
-        <button class="btn btn-primary" type="button" id="roomsNextBtn">Weiter zu Ergebnis</button>
+      <div class="mt-4 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" (click)="setActiveTab('building')">Zurück zu Gebäude</button>
+        <button type="button" class="btn btn-primary" (click)="calculateResults()">Berechnung starten</button>
       </div>
     </div>
     
-    <!-- Results tab -->
-    <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="results-tab">
+    <!-- Results Tab -->
+    <div [hidden]="activeTab !== 'results'">
       <h3>Ergebnis der Analyse</h3>
       <p class="text-muted">Basierend auf Ihren Eingaben haben wir folgende Analyse erstellt.</p>
       
-      <!-- Loading placeholder -->
-      <div class="text-center py-5" id="resultsLoading">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Berechne...</span>
-        </div>
-        <p class="mt-3">Berechnung läuft...</p>
-      </div>
-      
-      <!-- Results content (initially hidden) -->
-      <div id="resultsContent" style="display: none;">
-        <!-- Suitability assessment -->
-        <div class="card mb-4">
-          <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Eignungsbewertung für Wärmepumpe</h5>
-          </div>
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col-md-3 text-center">
-                <div class="display-1 text-success">
-                  <i class="bi bi-check-circle-fill"></i>
-                </div>
-                <h4 class="mt-2 text-success">Geeignet</h4>
+      <!-- Suitability Assessment -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">Eignungsbewertung für Wärmepumpe</div>
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              <div class="display-1 text-success">
+                <i class="bi bi-check-circle-fill"></i>
               </div>
-              <div class="col-md-9">
-                <p>Ihr Gebäude ist grundsätzlich für den Einsatz einer Wärmepumpe geeignet. Basierend auf unserer Analyse empfehlen wir:</p>
-                <ul>
-                  <li><strong>Empfohlener Wärmepumpentyp:</strong> Luft-Wasser-Wärmepumpe</li>
-                  <li><strong>Niedertemperatur-Ready:</strong> Ja, mit kleineren Anpassungen</li>
-                  <li><strong>Empfohlene Maßnahmen:</strong> Siehe Details unten</li>
-                </ul>
-              </div>
+              <h4 class="mt-2 text-success">Geeignet</h4>
             </div>
-          </div>
-        </div>
-        
-        <!-- Heating load -->
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5 class="mb-0">Heizlastberechnung</h5>
-          </div>
-          <div class="card-body">
-            <div class="row mb-4">
-              <div class="col-md-6">
-                <h6>Gesamte Heizlast</h6>
-                <div class="display-6">8,5 kW</div>
-                <p class="text-muted mt-2">Berechnete Heizlast für das gesamte Gebäude</p>
-              </div>
-              <div class="col-md-6">
-                <h6>Spezifische Heizlast</h6>
-                <div class="display-6">60 W/m²</div>
-                <p class="text-muted mt-2">Heizleistung pro Quadratmeter</p>
-              </div>
-            </div>
-            
-            <h6 class="mb-3">Heizlast pro Raum</h6>
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Raum</th>
-                    <th>Fläche (m²)</th>
-                    <th>Heizlast (W)</th>
-                    <th>Spezifisch (W/m²)</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Wohnzimmer</td>
-                    <td>30</td>
-                    <td>1800</td>
-                    <td>60</td>
-                    <td><span class="badge bg-success">Gut</span></td>
-                  </tr>
-                  <tr>
-                    <td>Schlafzimmer</td>
-                    <td>20</td>
-                    <td>1400</td>
-                    <td>70</td>
-                    <td><span class="badge bg-success">Gut</span></td>
-                  </tr>
-                  <tr>
-                    <td>Badezimmer</td>
-                    <td>8</td>
-                    <td>800</td>
-                    <td>100</td>
-                    <td><span class="badge bg-warning text-dark">Prüfen</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Recommendations -->
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5 class="mb-0">Handlungsempfehlungen</h5>
-          </div>
-          <div class="card-body">
-            <div class="alert alert-warning">
-              <h6><i class="bi bi-exclamation-triangle me-2"></i>Kritische Punkte</h6>
-              <p class="mb-0">Folgende Aspekte sollten vor der Installation einer Wärmepumpe beachtet werden:</p>
-              <ul class="mb-0 mt-2">
-                <li>Die Heizkörper im Badezimmer sind für Niedertemperatur-Betrieb nicht ausreichend dimensioniert.</li>
-                <li>Die Dämmung der Außenwand im Schlafzimmer ist schwächer als im Rest des Gebäudes.</li>
+            <div class="col-md-9">
+              <p>Ihr Gebäude ist grundsätzlich für den Einsatz einer Wärmepumpe geeignet.</p>
+              <ul>
+                <li><strong>Empfohlener Typ:</strong> Luft-Wasser-Wärmepumpe</li>
+                <li><strong>Wirtschaftlichkeit:</strong> Gut</li>
               </ul>
             </div>
-            
-            <h6 class="mt-4">Empfohlene Maßnahmen</h6>
-            <ol>
-              <li><strong>Heizkörpertausch im Badezimmer</strong><br>
-                Ersetzen Sie den vorhandenen Heizkörper durch einen größeren oder einen Niedertemperatur-geeigneten Typ.
-              </li>
-              <li><strong>Dämmung der Außenwand im Schlafzimmer prüfen</strong><br>
-                Eine zusätzliche Dämmung könnte die Effizienz der Wärmepumpe verbessern.
-              </li>
-              <li><strong>Hydraulischer Abgleich</strong><br>
-                Für eine optimale Wärmeverteilung im gesamten Heizsystem.
-              </li>
-            </ol>
           </div>
         </div>
-        
-        <div class="d-flex justify-content-between mt-4">
-          <button class="btn btn-secondary" type="button" id="resultsBackBtn">Zurück zu Räume</button>
-          <button class="btn btn-success" type="button" id="saveResultsBtn">
-            <i class="bi bi-download me-2"></i>Ergebnisse speichern
-          </button>
+      </div>
+      
+      <!-- Recommendations -->
+      <div class="card mb-4">
+        <div class="card-header">Empfehlungen</div>
+        <div class="card-body">
+          <h5>Empfohlene Maßnahmen</h5>
+          <ol>
+            <li>
+              <strong>Heizkörpertausch im Badezimmer</strong><br>
+              Ersetzen Sie den vorhandenen Heizkörper durch einen größeren oder einen Niedertemperatur-geeigneten Typ.
+            </li>
+            <li>
+              <strong>Hydraulischer Abgleich</strong><br>
+              Für eine optimale Wärmeverteilung im gesamten Heizsystem.
+            </li>
+          </ol>
         </div>
+      </div>
+      
+      <div class="mt-4 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" (click)="setActiveTab('rooms')">Zurück zu Räume</button>
+        <button type="button" class="btn btn-success">
+          <i class="bi bi-download me-1"></i>Ergebnisse speichern
+        </button>
       </div>
     </div>
   </div>
