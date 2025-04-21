@@ -18,13 +18,13 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.13",
-    "@angular/cdk": "^16.0.0",
+    "@angular/cdk": "^18.0.0",
     "@angular/common": "^18.2.13",
     "@angular/compiler": "^18.2.13",
     "@angular/core": "^18.2.13",
     "@angular/forms": "^18.2.13",
     "@angular/localize": "^18.2.13",
-    "@angular/material": "^16.0.0",
+    "@angular/material": "^18.0.0",
     "@angular/platform-browser": "^18.2.13",
     "@angular/platform-browser-dynamic": "^18.2.13",
     "@angular/platform-server": "^18.2.13",
@@ -36,10 +36,10 @@
     "marked": "^4.3.0",
     "material-symbols": "^0.8.1",
     "minipass": "^7.1.2",
-    "ngx-markdown": "^16.0.0",
+    "ngx-markdown": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.18",
@@ -55,6 +55,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.4.5"
+    "typescript": "~5.5.0"
   }
 }
