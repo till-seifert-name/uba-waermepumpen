@@ -1,5 +1,5 @@
 {
-  "name": "dbu-online-tool",
+  "name": "uba-waermepumpen",
   "version": "2024.10.23",
   "VERSION_UPDATED_AT": "2024-10-23",
   "scripts": {
@@ -9,11 +9,11 @@
     "build-dev": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run dbu-online-tool:serve-ssr",
-    "serve:ssr": "node dist/dbu-online-tool/server/main.js",
-    "build:ssr": "ng build && ng run dbu-online-tool:server",
-    "prerender": "ng run dbu-online-tool:prerender",
-    "prerender-dev": "ng run dbu-online-tool:prerender:development"
+    "dev:ssr": "ng run uba-waermepumpen:serve-ssr",
+    "serve:ssr": "node dist/uba-waermepumpen/server/main.js",
+    "build:ssr": "ng build && ng run uba-waermepumpen:server",
+    "prerender": "ng run uba-waermepumpen:prerender",
+    "prerender-dev": "ng run uba-waermepumpen:prerender:development"
   },
   "private": true,
   "dependencies": {

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dbu-online-tool": {
+    "uba-waermepumpen": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dbu-online-tool/browser",
+            "outputPath": "dist/uba-waermepumpen/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -28,8 +28,7 @@
             "assets": [
               "src/favicon.ico",
               "src/favicon.svg",
-              "src/assets",
-              "src/Projektsteckbrief.pdf"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -57,7 +56,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "baseHref": "/dbu-online-tool/",
+              "baseHref": "/uba-waermepumpen/",
 
               "buildOptimizer": false,
               "optimization": false,
@@ -73,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "dbu-online-tool:build:production"
+              "browserTarget": "uba-waermepumpen:build:production"
             },
             "development": {
-              "browserTarget": "dbu-online-tool:build:development"
+              "browserTarget": "uba-waermepumpen:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -110,7 +109,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/dbu-online-tool/server",
+            "outputPath": "dist/uba-waermepumpen/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -132,12 +131,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "dbu-online-tool:build:development",
-              "serverTarget": "dbu-online-tool:server:development"
+              "browserTarget": "uba-waermepumpen:build:development",
+              "serverTarget": "uba-waermepumpen:server:development"
             },
             "production": {
-              "browserTarget": "dbu-online-tool:build:production",
-              "serverTarget": "dbu-online-tool:server:production"
+              "browserTarget": "uba-waermepumpen:build:production",
+              "serverTarget": "uba-waermepumpen:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -156,12 +155,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "dbu-online-tool:build:production",
-              "serverTarget": "dbu-online-tool:server:production"
+              "browserTarget": "uba-waermepumpen:build:production",
+              "serverTarget": "uba-waermepumpen:server:production"
             },
             "development": {
-              "browserTarget": "dbu-online-tool:build:development",
-              "serverTarget": "dbu-online-tool:server:development"
+              "browserTarget": "uba-waermepumpen:build:development",
+              "serverTarget": "uba-waermepumpen:server:development"
             }
           },
           "defaultConfiguration": "production"
