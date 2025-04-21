@@ -12,9 +12,10 @@ import {BerechnungService} from '../berechnung.service';
  */
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+    selector: 'app-start',
+    templateUrl: './start.component.html',
+    styleUrls: ['./start.component.scss'],
+    standalone: false
 })
 export class StartComponent {
   // Simple active tab tracking for the wizard
