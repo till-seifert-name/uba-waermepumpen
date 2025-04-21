@@ -1,41 +1,46 @@
-<mat-menu #menu="matMenu">
-  <a mat-menu-item routerLink="/"
-     routerLinkActive="mdc-list-item--activated" [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }">
-    Startseite
-  </a>
-  <mat-divider></mat-divider>
-  <a mat-menu-item routerLink="/kontakt"
-     routerLinkActive="mdc-list-item--activated">
-    Kontakt
-  </a>
-  <a mat-menu-item routerLink="/impressum"
-     routerLinkActive="mdc-list-item--activated">
-    Impressum
-  </a>
-  <a mat-menu-item routerLink="/datenschutz"
-     routerLinkActive="mdc-list-item--activated">
-    Datenschutz
-  </a>
-</mat-menu>
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">UBA Wärmepumpen Tool</a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Startseite</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/kontakt" routerLinkActive="active">Kontakt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/impressum" routerLinkActive="active">Impressum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/datenschutz" routerLinkActive="active">Datenschutz</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<!-- Toolbar -->
-<mat-toolbar
-  class="position-sticky top-0 flex-shrink-0 fixed-top mx-auto justify-content-end bg-dark backdrop-dark text-bg-dark d-print-none">
-
-  <a routerLink="/" id="logo" class="px-1 pe-3">
-    <img src="assets/Logo/Logo.svg" alt="" height="40">
-  </a>
-
-  <a id="title" class="flex-grow-1 mat-body-2 text-bg-dark text-decoration-none text-truncate" routerLink="/">
-    UBA Wärmepumpen Tool
-  </a>
-
-  <button class="text-bg-dark bg-dark bs-40 p-0" mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon fontSet="material-symbols-outlined" inline="true" class="opsz-48">menu</mat-icon>
-  </button>
-
-</mat-toolbar>
-
-<div class="flex-grow-1 d-flex flex-column bg-dark bg-print-none d-print-block">
+<!-- Main Content -->
+<div class="container-fluid mt-5 pt-3">
   <router-outlet></router-outlet>
 </div>
+
+<!-- Footer -->
+<footer class="mt-4 py-3 bg-light text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <a routerLink="/impressum" class="text-decoration-none me-3">Impressum</a>
+        <a routerLink="/datenschutz" class="text-decoration-none me-3">Datenschutz</a>
+        <a routerLink="/kontakt" class="text-decoration-none">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>

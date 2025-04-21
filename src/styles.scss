@@ -1,139 +1,26 @@
 $font-family-base: 'Inter';
 
-@use '@angular/material' as mat;
-
-@import "material-theme";
-
-// BS 5.2 body color
-$body-color: $dark-primary-text;
-// BS 5.2 contrast color. will be picked by automatic contrast color calculation if it fits
-$color-contrast-light: $body-color;
-
-// Define Bootstrap colors with Angular Material color functions
-$primary: mat.get-color-from-palette($blues, 700);
-$secondary: mat.get-color-from-palette($greens, A400);
-$success: mat.get-color-from-palette($greens, 600);
-$info: mat.get-color-from-palette($turquoise, 50);
-//$warning: mat.get-color-from-palette($greens, 700); // Color usually is orange or yellow, adjust?
-//$danger: mat.get-color-from-palette($blues, 800); // Color usually is red, adjust?
-$light: mat.get-color-from-palette($blues, 50);
-$dark: mat.get-color-from-palette($blues, 900);
-$dark-border-subtle: #777680;
-
-// Define Bootstrap contrast (text) colors with Angular Material color functions
-$primary-contrast: mat.get-contrast-color-from-palette($blues, 500);
-$secondary-contrast: mat.get-contrast-color-from-palette($greens, 500);
-$success-contrast: mat.get-contrast-color-from-palette($greens, 600);
-$info-contrast: mat.get-contrast-color-from-palette($turquoise, 50);
-$warning-contrast: mat.get-contrast-color-from-palette($greens, 700);
-$danger-contrast: mat.get-contrast-color-from-palette($blues, 800);
-$light-contrast: mat.get-contrast-color-from-palette($blues, 50);
-$dark-contrast: mat.get-contrast-color-from-palette($blues, 900);
-
-
-// Define utility classes for the primary, accent, and warn colors
-.mat-primary-text {
-  color: mat.get-color-from-palette($blues-palette, 500);
-}
-
-.mat-accent-text {
-  color: mat.get-color-from-palette($greens-palette, 'A400');
-}
-
-.mat-warn-text {
-  color: mat.get-color-from-palette($turquoise-palette, 600);
-}
-
-// Define utility classes for the primary, accent, and warn colors
-.mat-primary-text {
-  color: mat.get-color-from-palette($blues-palette, 500);
-}
-
-.mat-accent-text {
-  color: mat.get-color-from-palette($greens-palette, 'A400');
-}
-
-.mat-warn-text {
-  color: mat.get-color-from-palette($turquoise-palette, 600);
-}
-
-// Define a map with the color palettes
-$palettes: (
-  "blues": $blues-palette,
-  "greens": $greens-palette,
-  "turquoise": $turquoise-palette,
-);
-
-// Define the CSS variables
-:root {
-  @each $palette-name, $palette in $palettes {
-    @each $name, $color in $palette {
-      @if type-of($color) == color {
-        --color-#{$name}-#{$palette-name}: #{mat.get-color-from-palette($palette, $name)};
-        --contrast-#{$name}-#{$palette-name}: #{mat.get-contrast-color-from-palette($palette, $name)};
-      }
-    }
-  }
-}
-
-// Iterate over the palettes for utility classes
-@each $palette-name, $palette in $palettes {
-  @each $name, $color in $palette {
-    @if type-of($color) == color {
-      .text-#{$name}-#{$palette-name} {
-        color: var(--color-#{$name}-#{$palette-name});
-      }
-      .bg-#{$name}-#{$palette-name} {
-        background-color: var(--color-#{$name}-#{$palette-name}) !important;
-        color: var(--contrast-#{$name}-#{$palette-name}) !important;
-      }
-    }
-  }
-}
-
-//
-// override some MD3 styles
-//
-:root {
-  /* set material controls corner radius */
-  --mdc-text-button-container-shape: 24px;
-  --mdc-outlined-button-container-shape: 24px;
-  --mdc-filled-button-container-shape: 24px;
-  --mdc-shape-small: 6px;
-  --mdc-shape-medium: 12px;
-}
-
-// outlined buttons should use their primary color for the border
-.mat-mdc-outlined-button {
-  --mdc-outlined-button-outline-color: currentColor;
-}
-
-// outline input fields
-.mdc-text-field--outlined:not(.mdc-text-field--disabled) {
-  .mdc-notched-outline__leading,
-  .mdc-notched-outline__notch,
-  .mdc-notched-outline__trailing {
-    border-color: #777680;
-  }
-}
-
-
-//
-// override BS styles
-//
+// Bootstrap configuration
 $enable-negative-margins: true;
-$enable-transitions: false;
-$enable-caret: false;
-$enable-rfs: false;
-$enable-button-pointers: false;
-$enable-validation-icons: false;
+$enable-transitions: true;
+$enable-caret: true;
+$enable-rfs: true;
+$enable-button-pointers: true;
+$enable-validation-icons: true;
 $enable-cssgrid: true;
 
+// Custom Bootstrap colors
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
 
-//
 // Fonts
-//
-$font-size-base: 1rem !default;
+$font-size-base: 1rem;
 $h1-font-size: $font-size-base * 2.25;
 
 @import "bootstrap";
