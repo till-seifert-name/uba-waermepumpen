@@ -4,7 +4,7 @@
 <!-- Content -->
 <h5 class="mb-4">Außenwände und Fenster: {{ roomData.name }}</h5>
 
-<form #wallForm="ngForm">
+<form #wallForm="ngForm" (ngSubmit)="onComplete()" ngNativeValidate>
   <div class="mb-3 row align-items-center">
     <label for="aw_laenge" class="col-sm-5 col-form-label">Gesamtlänge der Außenwände</label>
     <div class="col-sm-7">
@@ -136,7 +136,7 @@
     <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-basis" [queryParams]="{room: roomId}">Zurück (Raumdaten)</button>
     
     <!-- Dynamic button text based on whether this is the last room -->
-    <button type="button" class="btn btn-primary ms-2" (click)="onComplete()">
+    <button type="submit" class="btn btn-primary ms-2">
       <ng-container *ngIf="hasNextRoom(); else lastRoom">
         Speichern & nächster Raum
       </ng-container>

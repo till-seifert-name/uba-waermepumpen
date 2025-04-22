@@ -18,6 +18,11 @@ $danger: #dc3545;
 $light: #f8f9fa;
 $dark: #212529;
 
+// show touched inputs' validation state
+input.ng-touched:invalid {
+  @extend .is-invalid;
+}
+
 // Fonts
 $font-family-sans-serif: 'Kanit', sans-serif;
 $font-size-base: 1rem;

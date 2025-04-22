@@ -10,7 +10,7 @@
   <!-- Content -->
   <p>Wurde eines der folgenden Bauteile nachträglich gedämmt oder ausgetauscht?</p>
 
-  <form>
+  <form (ngSubmit)="onSubmit()" ngNativeValidate>
     <div class="mb-3 form-check">
       <input type="checkbox" class="form-check-input" id="check_aussenwand"
             [(ngModel)]="retrofittingData.wallUpgraded" name="check_aussenwand">
@@ -174,7 +174,7 @@
 
     <div class="text-end mt-4">
       <button type="button" class="btn btn-secondary" routerLink="/gebaeude/basisdaten">Zurück</button>
-      <button type="button" class="btn btn-primary ms-2" (click)="onSubmit()">Weiter</button>
+      <button type="submit" class="btn btn-primary ms-2">Weiter</button>
     </div>
   </form>
 <style>

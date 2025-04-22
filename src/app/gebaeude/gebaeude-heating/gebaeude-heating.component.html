@@ -2,7 +2,7 @@
 <app-wizard-tabs [progress]="65"></app-wizard-tabs>
 
 <!-- Content -->
-<form>
+<form (ngSubmit)="onSubmit()" ngNativeValidate>
   <div class="mb-4 row align-items-center">
     <label for="effizienz" class="col-sm-5 col-form-label">Ist Ihnen die Effizienzklasse bekannt?</label>
     <div class="col-sm-7">
@@ -79,7 +79,7 @@
 
   <div class="text-end mt-4">
     <button type="button" class="btn btn-secondary" routerLink="/gebaeude/modernisierung">Zurück</button>
-    <button type="button" class="btn btn-primary ms-2" (click)="onSubmit()">Weiter</button>
+    <button type="submit" class="btn btn-primary ms-2">Weiter</button>
   </div>
 </form>
 

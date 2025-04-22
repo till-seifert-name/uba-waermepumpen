@@ -3,7 +3,7 @@
 
 <!-- Content -->
 
-<form #buildingForm="ngForm">
+<form #buildingForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
   <div class="mb-3 row align-items-center">
     <label for="plz" class="col-sm-5 col-form-label">Standort des Gebäudes (PLZ)</label>
     <div class="col-sm-7">
@@ -82,7 +82,7 @@
 
   <div class="text-end mt-4">
     <button type="button" class="btn btn-secondary" routerLink="/gebaeude">Zurück</button>
-    <button type="button" class="btn btn-primary ms-2" (click)="onSubmit()" [disabled]="!buildingForm.valid">Weiter</button>
+    <button type="submit" class="btn btn-primary ms-2">Weiter</button>
   </div>
 </form>
 
