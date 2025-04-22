@@ -59,10 +59,10 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
       })
     );
     
-    // Get room ID from route params
+    // Get room ID from query params
     this.subscriptions.push(
-      this.route.paramMap.subscribe(params => {
-        const id = params.get('id');
+      this.route.queryParams.subscribe(params => {
+        const id = params['room'];
         if (id) {
           this.roomId = id;
           this.berechnungService.setSelectedRoom(id);
@@ -155,7 +155,9 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
     if (this.hasNextRoom()) {
       // There's a next room - navigate to it
       const nextRoom = this.roomList[currentRoomIndex + 1];
-      this.router.navigate(['/raeume/detail-basis', nextRoom.id]);
+      this.router.navigate(['/raeume/detail-basis'], { 
+        queryParams: { room: nextRoom.id }
+      });
     } else {
       // This was the last room - navigate to results
       this.router.navigate(['/ergebnis']);

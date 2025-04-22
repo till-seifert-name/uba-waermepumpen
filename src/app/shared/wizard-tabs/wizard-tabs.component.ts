@@ -1,17 +1,18 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { BerechnungService, Room } from '../../berechnung.service';
-import { Subscription as RxSubscription } from 'rxjs';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {distinctUntilChanged, filter, startWith} from 'rxjs/operators';
+import {BerechnungService, Room} from '../../berechnung.service';
+import {combineLatest, Subscription} from 'rxjs';
 
 interface TabConfig {
   id: string;
   title: string;
-  route: string;
+  routePath: string;     // Base route path
+  queryParams?: any;     // Optional query parameters
   pathMatch: string;
   disabled?: boolean;
-  roomId?: string; // For room-specific tabs
-  icon?: string;   // Bootstrap icon class name (without 'bi-' prefix)
+  roomId?: string;       // For room-specific tabs
+  icon?: string;         // Bootstrap icon class name (without the 'bi-' prefix)
 }
 
 @Component({
@@ -25,9 +26,9 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
 
   // Base tabs (always present)
   baseTabs: TabConfig[] = [
-    { id: 'gebaeude', title: 'Gebäude', route: '/gebaeude', pathMatch: '/gebaeude', icon: 'house' },
-    { id: 'raeume', title: 'Räume', route: '/raeume/liste-kriterien-1', pathMatch: '/raeume', icon: 'grid' },
-    { id: 'ergebnis', title: 'Ergebnis', route: '/ergebnis', pathMatch: '/ergebnis', icon: 'check-circle' }
+    {id: 'gebaeude', title: 'Gebäude', routePath: '/gebaeude', pathMatch: '/gebaeude', icon: 'house'},
+    {id: 'raeume', title: 'Räume', routePath: '/raeume/liste-1', pathMatch: '/raeume', icon: 'grid'},
+    {id: 'ergebnis', title: 'Ergebnis', routePath: '/ergebnis', pathMatch: '/ergebnis', icon: 'check-circle'}
   ];
 
   // All tabs including dynamically generated room tabs
@@ -37,90 +38,97 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
   roomTabs: TabConfig[] = [];
   rooms: Room[] = [];
   currentRoomId: string = '';
-  private subscriptions: RxSubscription[] = [];
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private berechnungService: BerechnungService
-  ) {}
-
-  ngOnInit() {
-    // Listen to route changes to update the active tab
-    this.subscriptions.push(
-      this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd)
-      ).subscribe((event: any) => {
-        this.updateActiveTab(event.url);
-      })
-    );
-
-    // Subscribe to rooms list changes
-    this.subscriptions.push(
-      this.berechnungService.rooms$.subscribe(rooms => {
-        this.rooms = rooms;
-        this.updateRoomTabs();
-      })
-    );
-
-    // Subscribe to selected room changes
-    this.subscriptions.push(
-      this.berechnungService.selectedRoom$.subscribe(roomId => {
-        this.currentRoomId = roomId;
-        // If we have room ID selected but active tab isn't a room tab,
-        // update tabs but don't force navigation
-        if (roomId && !this.activeTabId.startsWith('room_')) {
-          this.updateRoomTabs();
-        }
-      })
-    );
-
-    // Initialize from current URL
-    this.updateActiveTab(this.router.url);
+  ) {
   }
 
+  ngOnInit() {
+    const rooms$ = this.berechnungService.rooms$.pipe(distinctUntilChanged());
+    const queryParams$ = this.route.queryParams.pipe(distinctUntilChanged());
+    const navEnd$ = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      startWith(null) // emit once on init
+    );
+    const selectedRoom$ = this.berechnungService.selectedRoom$.pipe(distinctUntilChanged());
+
+    this.subscriptions.push(
+      combineLatest([
+        rooms$,
+        queryParams$,
+        navEnd$,
+        selectedRoom$
+      ]).subscribe(([rooms, queryParams, _, selectedRoom]) => {
+        this.rooms = rooms;
+        this.currentRoomId = selectedRoom;
+        this.updateRoomTabs();
+
+        const roomId = queryParams['room'];
+        if (roomId) {
+          this.berechnungService.setSelectedRoom(roomId);
+        }
+
+        this.updateActiveTabFromUrl();
+      })
+    );
+  }
+
+  /**
+   * Updates the active tab based on the current URL path
+   */
+  updateActiveTabFromUrl(): void {
+
+    if (this.currentRoomId) {
+      for (const tab of this.tabs) {
+        if (tab.roomId == this.currentRoomId && this.router.url.includes(tab.pathMatch)) {
+          this.activeTabId = tab.id;
+          return;
+        }
+      }
+    }
+
+    // Look for base tab matches
+    for (const tab of this.tabs) {
+      if (this.router.url.includes(tab.pathMatch)) {
+        this.activeTabId = tab.id;
+        return;
+      }
+    }
+  }
+
+
   ngOnDestroy() {
-    // Clean up subscriptions
+    // Cleanup subscriptions
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   /**
-   * Updates the tabs list to include room-specific tabs
+   * Updates the tab list to include room-specific tabs
    */
   updateRoomTabs() {
     // Clear existing room tabs
     this.roomTabs = [];
 
-    if (this.rooms.length > 0) {
-      // Generate a tab for each room
-      this.rooms.forEach((room, index) => {
-        // Use numbered square icons (1-9) or regular square for numbers > 9
-        let icon = 'square';
-        if (index < 9) {
-          icon = `${index + 1}-square`;
-        }
-
-        this.roomTabs.push({
-          id: `room_${room.id}`,
-          title: room.name,
-          route: `/raeume/detail-basis/${room.id}`,
-          pathMatch: `/raeume/detail`,
-          roomId: room.id,
-          icon: icon
-        });
+    // Generate a tab for each room
+    this.rooms.forEach((room, index) => {
+      // Use numbered square icons (1-9) or regular square for numbers > 9
+      this.roomTabs.push({
+        id: `room_${room.id}`,
+        title: room.name,
+        routePath: '/raeume/detail-basis',
+        queryParams: {room: room.id},
+        pathMatch: '/raeume/detail',
+        roomId: room.id,
+        icon: this.getRoomTabIcon(index)
       });
+    });
 
-      // Rebuild tabs list with room tabs inserted after the räume tab
-      this.rebuildTabsList();
-    } else {
-      // No rooms, just use base tabs
-      this.tabs = [...this.baseTabs];
-    }
-  }
-
-  /**
-   * Rebuilds the tabs list to include room tabs in the correct position
-   */
-  rebuildTabsList() {
+    // Rebuild the tabs list with room tabs inserted after the räume tab
     // Insert room tabs after the "Räume" tab but before the "Ergebnis" tab
     const raumeIndex = this.baseTabs.findIndex(tab => tab.id === 'raeume');
 
@@ -136,50 +144,12 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateActiveTab(url: string): void {
-    // First check for room detail pages to set the active room tab
-    if (url.includes('/raeume/detail')) {
-      // Extract room ID from URL
-      const matches = url.match(/\/raeume\/detail[^\/]+\/([^\/]+)/);
-      if (matches && matches[1]) {
-        const roomId = matches[1];
-        this.berechnungService.setSelectedRoom(roomId);
-        this.activeTabId = `room_${roomId}`;
-
-        // Make sure room tabs are updated
-        this.updateRoomTabs();
-        return;
-      }
-    }
-
-    // Otherwise look for base tab matches
-    for (const tab of this.tabs) {
-      if (url.includes(tab.pathMatch)) {
-        this.activeTabId = tab.id;
-
-        // If we're on a room-related page, make sure room tabs are updated
-        if (tab.id === 'raeume' || tab.id.startsWith('room_')) {
-          this.updateRoomTabs();
-        }
-
-        break;
-      }
-    }
+  private getRoomTabIcon(index: number): string {
+    return index < 9 ? `${index + 1}-square` : 'square';
   }
 
   isTabActive(tabId: string): boolean {
     return this.activeTabId === tabId;
-  }
-
-  /**
-   * Returns the currently selected room name, if any
-   */
-  getCurrentRoomName(): string {
-    if (this.currentRoomId) {
-      const room = this.rooms.find(r => r.id === this.currentRoomId);
-      return room ? room.name : '';
-    }
-    return '';
   }
 
   /**

@@ -46,10 +46,10 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
       })
     );
     
-    // Get room ID from route params
+    // Get room ID from query params
     this.subscriptions.push(
-      this.route.paramMap.subscribe(params => {
-        const id = params.get('id');
+      this.route.queryParams.subscribe(params => {
+        const id = params['room'];
         if (id) {
           this.roomId = id;
           this.berechnungService.setSelectedRoom(id);
@@ -92,7 +92,9 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
   // Navigate to the next component (wall details)
   onNext(): void {
     this.saveRoomData();
-    this.router.navigate(['/raeume/detail-wand', this.roomId]);
+    this.router.navigate(['/raeume/detail-wand'], { 
+      queryParams: { room: this.roomId }
+    });
   }
   
   // Helper method for template to determine if this is the last room

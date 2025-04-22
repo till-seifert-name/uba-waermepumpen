@@ -6,7 +6,8 @@
          style="display: grid"
          [class.active]="isTabActive(tab.id)"
          [class.disabled]="isTabDisabled(i)"
-         [routerLink]="tab.route"
+         [routerLink]="tab.routePath"
+         [queryParams]="tab.queryParams"
          [ngClass]="{'room-tab': tab.id.startsWith('room_')}">
 
         <!-- Tab title -->

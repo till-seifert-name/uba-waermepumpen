@@ -50,11 +50,11 @@ const routes: Routes = [
   {
     path: 'raeume',
     children: [
-      { path: 'liste-kriterien-1', component: RaeumeListCriteriaOneComponent, title: 'Räume-Kriterien 1' },
-      { path: 'liste-kriterien-2', component: RaeumeListCriteriaTwoComponent, title: 'Räume-Kriterien 2' },
+      { path: 'liste-1', component: RaeumeListCriteriaOneComponent, title: 'Räume-Kriterien 1' },
+      { path: 'liste-2', component: RaeumeListCriteriaTwoComponent, title: 'Räume-Kriterien 2' },
       { path: 'intro', component: RaeumeIntroComponent, title: 'Räume-Einführung' },
-      { path: 'detail-basis/:id', component: RaumDetailBasicComponent, title: 'Raum-Details' },
-      { path: 'detail-wand/:id', component: RaumDetailWallsComponent, title: 'Raum-Wände' }
+      { path: 'detail-basis', component: RaumDetailBasicComponent, title: 'Raum-Details' },
+      { path: 'detail-wand', component: RaumDetailWallsComponent, title: 'Raum-Wände' }
     ]
   },
   // Results route

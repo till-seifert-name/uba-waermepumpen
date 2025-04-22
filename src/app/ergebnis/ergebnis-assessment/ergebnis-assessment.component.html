@@ -2,9 +2,8 @@
 <app-wizard-tabs [progress]="100"></app-wizard-tabs>
 
   <!-- Content -->
-  <h3 class="mb-3">Ergebnis der Analyse</h3>
-  <p class="text-muted">Basierend auf Ihren Eingaben haben wir folgende Analyse erstellt.</p>
-  
+  <h3 class="mb-3">Ergebnis</h3>
+
   <!-- Suitability Assessment -->
   <div class="card mb-4">
     <div class="card-header bg-primary text-white">Eignungsbewertung für Wärmepumpe</div>
@@ -32,66 +31,11 @@
         </div>
         <div class="col-md-9">
           <p>{{assessmentResult.summary}}</p>
-          <ul>
-            <li><strong>Empfohlener Typ:</strong> {{assessmentResult.recommendedType}}</li>
-            <li><strong>Wirtschaftlichkeit:</strong> {{assessmentResult.efficiency}}</li>
-            <li><strong>Vorlauftemperatur:</strong> {{assessmentResult.flowTemperature}}°C</li>
-          </ul>
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- Room-specific Recommendations -->
-  <div class="card mb-4">
-    <div class="card-header">Empfehlungen je Raum</div>
-    <div class="card-body">
-      <div *ngFor="let room of assessmentResult.roomRecommendations" class="mb-4">
-        <h5>{{room.name}}</h5>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h6 class="card-title">Status</h6>
-                <p class="card-text" [ngClass]="{
-                  'text-success': room.status === 'good',
-                  'text-warning': room.status === 'medium',
-                  'text-danger': room.status === 'problematic'
-                }">{{room.statusText}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="card h-100">
-              <div class="card-body">
-                <h6 class="card-title">Empfohlene Maßnahmen</h6>
-                <ul class="mb-0">
-                  <li *ngFor="let recommendation of room.recommendations">
-                    {{recommendation}}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- General Recommendations -->
-  <div class="card mb-4">
-    <div class="card-header">Allgemeine Empfehlungen</div>
-    <div class="card-body">
-      <h5>Empfohlene Maßnahmen</h5>
-      <ol>
-        <li *ngFor="let recommendation of assessmentResult.generalRecommendations">
-          <strong>{{recommendation.title}}</strong><br>
-          {{recommendation.description}}
-        </li>
-      </ol>
-    </div>
-  </div>
-  
+
   <!-- Buttons -->
   <div class="mt-4 d-flex justify-content-between">
     <button type="button" class="btn btn-secondary" routerLink="/raeume/intro">Zurück zu Räume</button>

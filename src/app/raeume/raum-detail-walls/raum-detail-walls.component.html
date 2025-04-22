@@ -133,7 +133,7 @@
   </div>
 
   <div class="text-end mt-4">
-    <button type="button" class="btn btn-secondary" [routerLink]="['/raeume/detail-basis', roomId]">Zurück (Raumdaten)</button>
+    <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-basis" [queryParams]="{room: roomId}">Zurück (Raumdaten)</button>
     
     <!-- Dynamic button text based on whether this is the last room -->
     <button type="button" class="btn btn-primary ms-2" (click)="onComplete()">
