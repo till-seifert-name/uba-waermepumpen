@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Waermepumpen_Eingabedaten, Waermepumpen_Empfehlungen, Waermepumpen_Hinweise} from "./data";
-import {ABS, CellContent, DataGrid, ISTLEER, ODER, UND, WAHR, WENN, WENNS} from "./data-grid";
-import {BehaviorSubject, Observable, debounceTime, filter} from "rxjs";
+import {DataGrid, WAHR, WENNS} from "./data-grid";
+import {BehaviorSubject, debounceTime, filter} from "rxjs";
+import {CustomLocalStorageService} from "./custom-local-storage.service";
 
 // Shared Room interface for consistent use across components
 export interface Room {
@@ -19,18 +20,20 @@ const STORAGE_KEY = 'UBA-WAERMEPUMPEN-DATA';
 export class BerechnungService {
 
   public grid: DataGrid = new DataGrid();
-  
+
+  private storage=inject(CustomLocalStorageService);
+
   // Room management
   private roomsSubject = new BehaviorSubject<Room[]>([
     // Default sample rooms for development
-    { id: '1', name: 'Wohnzimmer', type: 'exterior' },
-    { id: '2', name: 'Kinderzimmer', type: 'cold' },
-    { id: '3', name: 'Schlafzimmer', type: 'exterior' }
+    {id: '1', name: 'Wohnzimmer', type: 'exterior'},
+    {id: '2', name: 'Kinderzimmer', type: 'cold'},
+    {id: '3', name: 'Schlafzimmer', type: 'exterior'}
   ]);
-  
+
   // Observable for components to subscribe to
   public rooms$ = this.roomsSubject.asObservable();
-  
+
   // Currently selected room
   private selectedRoomSubject = new BehaviorSubject<string>('');
   public selectedRoom$ = this.selectedRoomSubject.asObservable();
@@ -76,7 +79,7 @@ export class BerechnungService {
         // Basic recommendation based on building type
         F_GB1 === A_GB1,
         E_WP1,
-        
+
         // Default case
         WAHR(),
         ""
@@ -95,7 +98,7 @@ export class BerechnungService {
         // Basic recommendation for buildings
         F_BJ1 !== "",
         E_EF1,
-        
+
         // Default case
         WAHR(),
         ""
@@ -111,11 +114,11 @@ export class BerechnungService {
       debounceTime(1000)
     ).subscribe(cellChange => {
       console.log(`Cell changed: ${cellChange.sheet}!${cellChange.cell} = ${cellChange.value}`);
-      localStorage.setItem(STORAGE_KEY, grid.serializeWhitelistedCells(this.cellsToSave));
+      this.storage.set<string>(STORAGE_KEY, grid.serializeWhitelistedCells(this.cellsToSave));
     });
 
     // Restore cells from localStorage if available
-    const serializedData = localStorage.getItem(STORAGE_KEY);
+    const serializedData = this.storage.get<string>(STORAGE_KEY);
     if (serializedData) {
       grid.restoreCells(serializedData);
       console.log(`Input restored: ${serializedData}`);
@@ -131,66 +134,53 @@ export class BerechnungService {
     'F_BJ1', // Baujahr
     'F_WF1', // Wohnfläche
     'F_HK1', // Heizungsart
-    
+
     // These will be expanded as the tool is developed
   ];
 
   resetInputs() {
     this.grid.clearListed(this.cellsToSave);
   }
-  
-  // Room management methods
-  getRooms(): Room[] {
-    return this.roomsSubject.getValue();
-  }
-  
+
+// Room management methods
   setSelectedRoom(roomId: string): void {
     this.selectedRoomSubject.next(roomId);
   }
-  
-  getSelectedRoomId(): string {
-    return this.selectedRoomSubject.getValue();
-  }
-  
-  getSelectedRoom(): Room | undefined {
-    const roomId = this.getSelectedRoomId();
-    return this.getRooms().find(room => room.id === roomId);
-  }
-  
+
   addRoom(name: string, type: string): string {
-    const rooms = this.getRooms();
+    const rooms = this.roomsSubject.getValue();
     const newId = Date.now().toString();
-    
+
     const newRoom: Room = {
       id: newId,
       name: name.trim(),
       type: type
     };
-    
+
     this.roomsSubject.next([...rooms, newRoom]);
     return newId;
   }
-  
+
   removeRoom(roomId: string): void {
-    const rooms = this.getRooms().filter(room => room.id !== roomId);
+    const rooms = this.roomsSubject.getValue().filter(room => room.id !== roomId);
     this.roomsSubject.next(rooms);
-    
+
     // If the selected room was removed, select another one or none
-    if (this.getSelectedRoomId() === roomId) {
+    if (this.selectedRoomSubject.getValue() === roomId) {
       const newSelectedId = rooms.length > 0 ? rooms[0].id : '';
       this.setSelectedRoom(newSelectedId);
     }
   }
-  
+
   updateRoomData(roomId: string, data: any): void {
-    const rooms = this.getRooms();
+    const rooms = this.roomsSubject.getValue();
     const updatedRooms = rooms.map(room => {
       if (room.id === roomId) {
-        return { ...room, data: { ...room.data, ...data } };
+        return {...room, data: {...room.data, ...data}};
       }
       return room;
     });
-    
+
     this.roomsSubject.next(updatedRooms);
   }
 }
