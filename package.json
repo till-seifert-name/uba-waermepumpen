@@ -5,15 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build  --configuration production",
-    "build-dev": "ng build --configuration development",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "dev:ssr": "ng run uba-waermepumpen:serve-ssr",
-    "serve:ssr": "node dist/uba-waermepumpen/server/main.js",
-    "build:ssr": "ng build && ng run uba-waermepumpen:server",
-    "prerender": "ng run uba-waermepumpen:prerender",
-    "prerender-dev": "ng run uba-waermepumpen:prerender:development"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +23,6 @@
     "@angular/platform-browser-dynamic": "^19.2.7",
     "@angular/platform-server": "^19.2.7",
     "@angular/router": "^19.2.7",
-    "@angular/ssr": "^19.2.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "express": "^4.15.2",
@@ -46,6 +39,7 @@
     "@angular-devkit/schematics": "^19.2.8",
     "@angular/cli": "~19.2.8",
     "@angular/compiler-cli": "^19.2.7",
+    "@angular/ssr": "^19.2.8",
     "@npmcli/fs": "^4.0.0",
     "@types/express": "^4.17.0",
     "@types/jasmine": "~4.3.0",

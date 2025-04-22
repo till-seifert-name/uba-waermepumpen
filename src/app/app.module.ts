@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, provideClientHydration, withEventReplay} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -42,7 +42,7 @@ import '@angular/common/locales/global/de';
     ImpressumComponent,
     DatenschutzComponent,
     KontaktComponent,
-    
+
     // Gebäude (Building) Components
     GebaeudeIntroComponent,
     GebaeudeBasicComponent,
@@ -52,17 +52,17 @@ import '@angular/common/locales/global/de';
     GebaeudeFeedbackHeatingComponent,
     GebaeudeFlowTempComponent,
     GebaeudeTransitionComponent,
-    
+
     // Räume (Rooms) Components
     RaeumeListCriteriaOneComponent,
     RaeumeListCriteriaTwoComponent,
     RaeumeIntroComponent,
     RaumDetailBasicComponent,
     RaumDetailWallsComponent,
-    
+
     // Ergebnis (Results) Component
     ErgebnisAssessmentComponent,
-    
+
     // Shared Components
     WizardTabsComponent
   ],
@@ -72,7 +72,9 @@ import '@angular/common/locales/global/de';
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    provideClientHydration(withEventReplay())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

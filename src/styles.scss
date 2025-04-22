@@ -133,19 +133,3 @@ body > app-root {
   }
 }
 
-/* create multicolumn text helper classes */
-@for $i from 2 through 4 {
-  .multicolumn-#{$i} {
-    column-count: $i;
-    column-gap: $spacer;
-  }
-
-  @each $breakpoint-name, $breakpoint-value in $grid-breakpoints {
-    @include media-breakpoint-up($breakpoint-name) {
-      .multicolumn-#{$breakpoint-name}-#{$i} {
-        column-count: $i;
-        column-gap: $spacer;
-      }
-    }
-  }
-}

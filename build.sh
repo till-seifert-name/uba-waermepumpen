@@ -20,7 +20,7 @@ fi
 BUILD_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 COMMIT_HASH=$(git rev-parse HEAD)
 
-npm run prerender-dev
+npm run build
 
 # Replace placeholder strings in the /dist folder
 find ./dist -type f -exec sed -i "s/%BUILD_TIME%/$BUILD_TIME/g" {} \;
