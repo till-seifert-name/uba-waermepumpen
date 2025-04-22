@@ -1,27 +1,78 @@
-# DauOnlineTool
+# UBA Wärmepumpen-Tool
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+Ein Online-Beratungstool für die Wärmepumpen-Eignung von Gebäuden.
 
-## Development server
+## Projektübersicht
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Das Wärmepumpen-Tool ist eine webbasierte Anwendung zur Analyse und Bewertung der Eignung von Gebäuden für Wärmepumpen. 
+Es werden Gebäudeinformationen, Raumdaten und Heizkörperinformationen erfasst, um passende Wärmepumpen-Empfehlungen zu geben.
 
-## Code scaffolding
+## Technische Details
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Framework**: Angular 19.2.7
+- **UI-Framework**: Bootstrap 5.3.3 mit Bootstrap Icons 1.11.3
+- **Build-System**: Angular CLI 19.2.8
+- **Hosting**: Express.js basierter Node.js Server
 
-## Build
+## Komponenten und Struktur
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Das Tool folgt einem Wizard-Ansatz mit folgenden Hauptabschnitten:
 
-## Running unit tests
+1. **Gebäude**: Erfassung allgemeiner Gebäudedaten
+2. **Räume**: Eingabe von raumspezifischen Daten
+3. **Ergebnis**: Auswertung
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Entwicklungsumgebung einrichten
 
-## Running end-to-end tests
+### Voraussetzungen
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Node.js (v20 oder höher)
+- npm (wird mit Node.js installiert)
 
-## Further help
+### Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Repository klonen:
+   ```bash
+   git clone https://github.com/.../uba-waermepumpen.git
+   cd uba-waermepumpen
+   ```
+
+2. Abhängigkeiten installieren:
+   ```bash
+   npm install
+   ```
+
+3. Entwicklungsserver starten:
+   ```bash
+   npm start
+   ```
+   Die Anwendung ist dann unter `http://localhost:4200/uba-waermepumpen/` erreichbar (`baseHref`-Konfiguration in angular.json).
+
+## Build und Deployment
+
+### Produktions-Build
+
+```bash
+npm run build
+```
+
+Die Build-Artefakte werden im `dist/uba-waermepumpen/` Verzeichnis erstellt.
+
+Alternativ kann der gesamte Build-Prozess mit dem build.sh Script ausgeführt werden, welches zusätzlich **Version-Informationen** in die Build-Dateien einfügt:
+
+```bash
+./build.sh
+```
+
+## Projektstruktur
+
+- `src/app/gebaeude/`: Komponenten für die Gebäudeerfassung
+- `src/app/raeume/`: Komponenten für die Raumerfassung
+- `src/app/ergebnis/`: Komponenten für die Ergebnisdarstellung
+- `src/app/shared/`: Gemeinsam genutzte Komponenten wie Tabs
+- `src/app/berechnung.service.ts`: Zentrale Datenhaltung und Berechnungslogik
+
+## Datenhaltung
+
+Die Anwendung speichert Benutzereingaben in localStorage. Die Eingaben werden bei Änderungen automatisch gespeichert und beim Laden der Anwendung wiederhergestellt.
+
