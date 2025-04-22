@@ -1,4 +1,3 @@
-$font-family-base: 'Kanit', sans-serif;
 
 // Bootstrap configuration
 $enable-negative-margins: true;
@@ -10,7 +9,7 @@ $enable-validation-icons: true;
 $enable-cssgrid: true;
 
 // Custom Bootstrap colors
-$primary: #0d6efd;
+$primary: #00609C;
 $secondary: #6c757d;
 $success: #198754;
 $info: #0dcaf0;
@@ -20,10 +19,11 @@ $light: #f8f9fa;
 $dark: #212529;
 
 // Fonts
+$font-family-sans-serif: 'Kanit', sans-serif;
 $font-size-base: 1rem;
 $h1-font-size: $font-size-base * 2.25;
 
-@import "bootstrap";
+@import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 @import "fonts";
