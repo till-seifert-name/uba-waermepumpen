@@ -148,19 +148,9 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
     // Save current room data
     this.saveRoomData();
     
-    // Find the index of the current room
-    const currentRoomIndex = this.roomList.findIndex(room => room.id === this.roomId);
-    
-    // Check if there's a next room to navigate to
-    if (this.hasNextRoom()) {
-      // There's a next room - navigate to it
-      const nextRoom = this.roomList[currentRoomIndex + 1];
-      this.router.navigate(['/raeume/detail-basis'], { 
-        queryParams: { room: nextRoom.id }
-      });
-    } else {
-      // This was the last room - navigate to results
-      this.router.navigate(['/ergebnis']);
-    }
+    // Navigate to the Heizflächen tab for this room
+    this.router.navigate(['/raeume/detail-heizflaechen'], {
+      queryParams: { room: this.roomId }
+    });
   }
 }

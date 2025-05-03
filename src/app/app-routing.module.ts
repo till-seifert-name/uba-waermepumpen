@@ -21,6 +21,8 @@ import {RaeumeListCriteriaTwoComponent} from "./raeume/raeume-list-criteria-two/
 import {RaeumeIntroComponent} from "./raeume/raeume-intro/raeume-intro.component";
 import {RaumDetailBasicComponent} from "./raeume/raum-detail-basic/raum-detail-basic.component";
 import {RaumDetailWallsComponent} from "./raeume/raum-detail-walls/raum-detail-walls.component";
+import {RaumDetailHeizflaechenComponent} from "./raeume/raum-detail-heizflaechen/raum-detail-heizflaechen.component";
+import {RaumDetailErgebnisComponent} from "./raeume/raum-detail-ergebnis/raum-detail-ergebnis.component";
 
 // Ergebnis (Results) Component
 import {ErgebnisAssessmentComponent} from "./ergebnis/ergebnis-assessment/ergebnis-assessment.component";
@@ -54,7 +56,9 @@ const routes: Routes = [
       { path: 'liste-2', component: RaeumeListCriteriaTwoComponent, title: 'Räume-Kriterien 2' },
       { path: 'intro', component: RaeumeIntroComponent, title: 'Räume-Einführung' },
       { path: 'detail-basis', component: RaumDetailBasicComponent, title: 'Raum-Details' },
-      { path: 'detail-wand', component: RaumDetailWallsComponent, title: 'Raum-Wände' }
+      { path: 'detail-wand', component: RaumDetailWallsComponent, title: 'Raum-Wände' },
+      { path: 'detail-heizflaechen', component: RaumDetailHeizflaechenComponent, title: 'Raum-Heizflächen' },
+      { path: 'detail-ergebnis', component: RaumDetailErgebnisComponent, title: 'Raum-Ergebnis' }
     ]
   },
   // Results route

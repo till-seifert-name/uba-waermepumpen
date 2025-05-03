@@ -26,6 +26,8 @@ import {RaeumeListCriteriaTwoComponent} from "./raeume/raeume-list-criteria-two/
 import {RaeumeIntroComponent} from "./raeume/raeume-intro/raeume-intro.component";
 import {RaumDetailBasicComponent} from "./raeume/raum-detail-basic/raum-detail-basic.component";
 import {RaumDetailWallsComponent} from "./raeume/raum-detail-walls/raum-detail-walls.component";
+import {RaumDetailHeizflaechenComponent} from "./raeume/raum-detail-heizflaechen/raum-detail-heizflaechen.component";
+import {RaumDetailErgebnisComponent} from "./raeume/raum-detail-ergebnis/raum-detail-ergebnis.component";
 
 // Ergebnis (Results) Component
 import {ErgebnisAssessmentComponent} from "./ergebnis/ergebnis-assessment/ergebnis-assessment.component";
@@ -59,6 +61,8 @@ import '@angular/common/locales/global/de';
     RaeumeIntroComponent,
     RaumDetailBasicComponent,
     RaumDetailWallsComponent,
+    RaumDetailHeizflaechenComponent,
+    RaumDetailErgebnisComponent,
 
     // Ergebnis (Results) Component
     ErgebnisAssessmentComponent,

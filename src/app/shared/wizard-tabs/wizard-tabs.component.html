@@ -1,5 +1,6 @@
 <!-- Wizard Tabs Navigation -->
-<div class="wizard-tabs-container position-relative mb-4">
+<div class="wizard-tabs-container position-relative" [class.mb-4]="!showRoomSubTabs">
+  <!-- Main Tabs -->
   <ul class="nav nav-tabs position-relative">
     <li class="nav-item position-relative" *ngFor="let tab of tabs; let i = index">
       <a class="nav-link"
@@ -19,7 +20,7 @@
           </span>
 
           <!-- Room tabs are indented and use their room name with specific icons -->
-          <span *ngIf="tab.id.startsWith('room_')" class="ms-3">
+          <span *ngIf="tab.id.startsWith('room_')">
             <i *ngIf="tab.icon" class="bi bi-{{ tab.icon }} me-1"></i>
             {{ tab.title }}
           </span>
@@ -33,6 +34,21 @@
                [attr.aria-valuenow]="progress"
                aria-valuemin="0" aria-valuemax="100"></div>
         </div>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Room Sub-Tabs (only shown when a room tab is active) -->
+  <ul class="nav nav-tabs position-relative mt-2 mb-3" *ngIf="showRoomSubTabs">
+    <li class="nav-item position-relative" *ngFor="let subTab of roomSubTabs">
+      <a class="nav-link py-1" style="display: grid"
+         [class.active]="activeRoomSubTab === subTab.id"
+         [routerLink]="['/raeume', subTab.path]"
+         [queryParams]="{room: currentRoomId}">
+          <span>
+            <i *ngIf="subTab.icon" class="bi bi-{{ subTab.icon }} me-1"></i>
+            {{ subTab.title }}
+          </span>
       </a>
     </li>
   </ul>

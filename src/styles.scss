@@ -34,6 +34,19 @@ $h1-font-size: $font-size-base * 2.25;
 
 @import "fonts";
 
+// Custom navigation footer style
+.navigation-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--bs-body-bg);
+  padding: 1rem 0;
+  border-top: 1px solid var(--bs-border-color);
+  z-index: 1000;
+}
+
 html, body {
   height: 100%;
 }

@@ -14,11 +14,22 @@
     <p class="lead" *ngIf="!selectedRoomName">Bitte wählen Sie einen Raum aus</p>
   </div>
 
-  <div class="mt-5 text-center">
-    <button type="button" class="btn btn-primary ms-2 btn-lg"
-            routerLink="/raeume/detail-basis" 
-            [queryParams]="{room: selectedRoomId}"
-            [disabled]="!selectedRoomId">Erfassung starten</button>
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+  
+  <!-- Footer Navigation Container -->
+  <div class="navigation-footer">
+    <div class="container d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" routerLink="/raeume/liste-2">
+        <i class="bi bi-arrow-left me-1"></i> Zurück
+      </button>
+      <button type="button" class="btn btn-primary"
+              routerLink="/raeume/detail-basis" 
+              [queryParams]="{room: selectedRoomId}"
+              [disabled]="!selectedRoomId">
+        Weiter <i class="bi bi-arrow-right ms-1"></i>
+      </button>
+    </div>
   </div>
 <style>
 .po-comment {

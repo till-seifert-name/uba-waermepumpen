@@ -1,5 +1,5 @@
 <!-- Wizard Tabs -->
-<app-wizard-tabs [progress]="70"></app-wizard-tabs>
+<app-wizard-tabs [progress]="70" activeRoomSubTab="verluste"></app-wizard-tabs>
 
 <!-- Content -->
 <h5 class="mb-4">Außenwände und Fenster: {{ roomData.name }}</h5>
@@ -132,18 +132,19 @@
     </div>
   </div>
 
-  <div class="text-end mt-4">
-    <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-basis" [queryParams]="{room: roomId}">Zurück (Raumdaten)</button>
-    
-    <!-- Dynamic button text based on whether this is the last room -->
-    <button type="submit" class="btn btn-primary ms-2">
-      <ng-container *ngIf="hasNextRoom(); else lastRoom">
-        Speichern & nächster Raum
-      </ng-container>
-      <ng-template #lastRoom>
-        Speichern & zur Auswertung
-      </ng-template>
-    </button>
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+  
+  <!-- Footer Navigation Container -->
+  <div class="navigation-footer">
+    <div class="container d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-basis" [queryParams]="{room: roomId}">
+        <i class="bi bi-arrow-left me-1"></i> Zurück
+      </button>
+      <button type="submit" class="btn btn-primary">
+        Weiter <i class="bi bi-arrow-right ms-1"></i>
+      </button>
+    </div>
   </div>
 </form>
 

@@ -11,7 +11,17 @@
 
   <p><strong>Diese Räume werden in einer Liste gesammelt und dann im Detail erfasst. Dies dauert je Raum circa 5 Minuten. Sie können gern später weitere Räume ergänzen.</strong></p>
 
-  <div class="mt-4 text-end">
-    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/vorlauftemperatur">Zurück</button>
-    <button type="button" class="btn btn-primary ms-2" routerLink="/raeume/liste-1">Räume erfassen</button>
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+  
+  <!-- Footer Navigation Container -->
+  <div class="navigation-footer">
+    <div class="container d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" routerLink="/gebaeude/vorlauftemperatur">
+        <i class="bi bi-arrow-left me-1"></i> Zurück
+      </button>
+      <button type="button" class="btn btn-primary" routerLink="/raeume/liste-1">
+        Räume erfassen <i class="bi bi-arrow-right ms-1"></i>
+      </button>
+    </div>
   </div>

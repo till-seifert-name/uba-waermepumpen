@@ -32,11 +32,11 @@ export class BerechnungService {
   ]);
 
   // Observable for components to subscribe to
-  public rooms$ = this.roomsSubject.asObservable();
+  public rooms$ = this.roomsSubject;
 
   // Currently selected room
   private selectedRoomSubject = new BehaviorSubject<string>('');
-  public selectedRoom$ = this.selectedRoomSubject.asObservable();
+  public selectedRoom$ = this.selectedRoomSubject;
 
   constructor() {
     const grid = this.grid;

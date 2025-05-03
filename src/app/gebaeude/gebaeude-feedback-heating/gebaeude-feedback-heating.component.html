@@ -28,9 +28,19 @@
 
   <p><strong>Tipp:</strong> Unter Umständen kann die Umrüstung auf raumweise Luft-Luft Wärmepumpen für Sie eine Alternative zum Umstieg auf eine Wärmepumpen-Heizsystem darstellen.</p>
 
-  <div class="mt-4 text-end">
-    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/heizung">Zurück</button>
-    <button type="button" class="btn btn-primary ms-2" routerLink="/gebaeude/vorlauftemperatur">Weiter (simuliert)</button>
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+  
+  <!-- Footer Navigation Container -->
+  <div class="navigation-footer">
+    <div class="container d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" routerLink="/gebaeude/heizung">
+        <i class="bi bi-arrow-left me-1"></i> Zurück
+      </button>
+      <button type="button" class="btn btn-primary" routerLink="/gebaeude/vorlauftemperatur">
+        Weiter <i class="bi bi-arrow-right ms-1"></i>
+      </button>
+    </div>
   </div>
 
 <style>

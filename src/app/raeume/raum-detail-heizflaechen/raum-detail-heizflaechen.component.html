@@ -1,0 +1,27 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="60" activeRoomSubTab="heizflaechen"></app-wizard-tabs>
+
+<!-- Content -->
+<h5 class="mb-4">Heizflächen für Raum: {{ roomData.name }}</h5>
+
+<div class="card mb-4">
+  <div class="card-header">Heizflächen</div>
+  <div class="card-body">
+    <p class="text-muted">Hier werden Eingabefelder für Heizflächen und Heizkörper platziert.</p>
+  </div>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-wand" [queryParams]="{room: roomId}">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary" (click)="onNext()">
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </div>
+</div>

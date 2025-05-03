@@ -1,0 +1,38 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="100" activeRoomSubTab="ergebnis"></app-wizard-tabs>
+
+<!-- Content -->
+<h5 class="mb-4">Ergebnis für Raum: {{ roomData.name }}</h5>
+
+
+
+<!--  Assessment -->
+<div class="card mb-4">
+  <div class="card-header bg-primary text-white">bewertung</div>
+  <div class="card-body">
+  </div>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex">
+    <!-- Back button aligned to the left -->
+    <button type="button" class="btn btn-secondary me-auto" routerLink="/raeume/detail-heizflaechen" [queryParams]="{room: roomId}">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    
+    <!-- "Add Room" button shown only for the last room -->
+    <button *ngIf="!hasNextRoom()" type="button" class="btn btn-outline-primary me-2" routerLink="/raeume/liste-1">
+      <i class="bi bi-plus-lg me-1"></i> Weiteren Raum hinzufügen
+    </button>
+    
+    <!-- Main action button aligned to the right -->
+    <button type="button" class="btn btn-primary" (click)="onContinue()">
+      {{ hasNextRoom() ? 'Nächster Raum' : 'Zur Gesamtauswertung' }}
+      <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </div>
+</div>

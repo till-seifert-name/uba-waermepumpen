@@ -24,7 +24,9 @@ The UBA Wärmepumpen-Tool is an Angular-based web application that helps users a
 - **Build for production**: `npm run build`
   - Output: dist/uba-waermepumpen/
 - **Full build with version info**: `./build.sh`
-- **Create component**: `npm run ng generate component component-name`
+- **Create component**: `npm run ng generate component component-name --standalone=false --skip-tests`
+  - Use the `--standalone=false` flag since the app uses NgModule-based architecture
+  - Use the `--skip-tests` flag to skip generating test files when not needed
 - **Run tests**: `npm test`
 
 ## Core Components and Structure

@@ -23,6 +23,7 @@ interface TabConfig {
 })
 export class WizardTabsComponent implements OnInit, OnDestroy {
   @Input() progress: number = 0; // Progress for active tab (0-100)
+  @Input() activeRoomSubTab: string = 'gebaeude'; // Active sub-tab for room details
 
   // Base tabs (always present)
   baseTabs: TabConfig[] = [
@@ -38,6 +39,17 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
   roomTabs: TabConfig[] = [];
   rooms: Room[] = [];
   currentRoomId: string = '';
+  
+  // Flag to show room sub-tabs when a room tab is active
+  showRoomSubTabs: boolean = false;
+  
+  // Room sub-tabs configuration
+  roomSubTabs = [
+    {id: 'gebaeude', title: 'Gebäude', path: 'detail-basis', icon: 'house-door'},
+    {id: 'verluste', title: 'Verluste', path: 'detail-wand', icon: 'thermometer-snow'},
+    {id: 'heizflaechen', title: 'Heizflächen', path: 'detail-heizflaechen', icon: 'thermometer-half'},
+    {id: 'ergebnis', title: 'Ergebnis', path: 'detail-ergebnis', icon: 'check'}
+  ];
 
   private subscriptions: Subscription[] = [];
 
@@ -82,11 +94,16 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
    * Updates the active tab based on the current URL path
    */
   updateActiveTabFromUrl(): void {
-
+    let foundActiveTab = false;
+    
+    // First check if we have a selected room
     if (this.currentRoomId) {
       for (const tab of this.tabs) {
-        if (tab.roomId == this.currentRoomId && this.router.url.includes(tab.pathMatch)) {
+        if (tab.roomId === this.currentRoomId && this.router.url.includes(tab.pathMatch)) {
           this.activeTabId = tab.id;
+          this.showRoomSubTabs = true;
+          this.updateActiveRoomSubTab();
+          foundActiveTab = true;
           return;
         }
       }
@@ -96,9 +113,30 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
     for (const tab of this.tabs) {
       if (this.router.url.includes(tab.pathMatch)) {
         this.activeTabId = tab.id;
+        this.showRoomSubTabs = false;
+        foundActiveTab = true;
         return;
       }
     }
+    
+    // If no tab was found as active, hide sub-tabs
+    if (!foundActiveTab) {
+      this.showRoomSubTabs = false;
+    }
+  }
+  
+  /**
+   * Determines the active room sub-tab based on the current URL
+   */
+  updateActiveRoomSubTab(): void {
+    for (const subTab of this.roomSubTabs) {
+      if (this.router.url.includes(subTab.path)) {
+        this.activeRoomSubTab = subTab.id;
+        return;
+      }
+    }
+    // Default to first tab if none matches
+    this.activeRoomSubTab = this.roomSubTabs[0].id;
   }
 
 

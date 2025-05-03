@@ -59,9 +59,19 @@
           </li>
         </ul>
       </div>
-      <div class="text-end mt-4">
-        <button type="button" class="btn btn-secondary" routerLink="/gebaeude/transition">Zurück</button>
-        <button type="button" class="btn btn-primary ms-2" routerLink="/raeume/liste-2">Weiter</button>
+      <!-- Spacer to prevent content from being hidden behind fixed footer -->
+      <div class="pb-5 mb-5"></div>
+      
+      <!-- Footer Navigation Container -->
+      <div class="navigation-footer">
+        <div class="container d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" routerLink="/gebaeude/transition">
+            <i class="bi bi-arrow-left me-1"></i> Zurück
+          </button>
+          <button type="button" class="btn btn-primary" routerLink="/raeume/liste-2">
+            Weiter <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>

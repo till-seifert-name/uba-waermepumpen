@@ -19,9 +19,19 @@
     Eingaben für Flächenheizungen sind im Tool hingegen nicht vorgesehen.
   </div>
 
-  <div class="mt-4 text-end">
-    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/basisdaten">Zurück</button>
-    <button type="button" class="btn btn-primary ms-2" routerLink="/gebaeude/heizung">Weiter (Heizung)</button>
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+  
+  <!-- Footer Navigation Container -->
+  <div class="navigation-footer">
+    <div class="container d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" routerLink="/gebaeude/basisdaten">
+        <i class="bi bi-arrow-left me-1"></i> Zurück
+      </button>
+      <button type="button" class="btn btn-primary" routerLink="/gebaeude/heizung">
+        Weiter <i class="bi bi-arrow-right ms-1"></i>
+      </button>
+    </div>
   </div>
 
 <style>
