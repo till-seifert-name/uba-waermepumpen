@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule, provideClientHydration, withEventReplay} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -72,9 +72,7 @@ import '@angular/common/locales/global/de';
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [
-    provideClientHydration(withEventReplay())
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

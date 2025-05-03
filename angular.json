@@ -41,14 +41,7 @@
                 "node_modules"
               ]
             },
-            "scripts": [
-              "node_modules/marked/marked.min.js"
-            ],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -68,7 +61,6 @@
               "outputHashing": "all"
             },
             "development": {
-              "baseHref": "/uba-waermepumpen/",
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
