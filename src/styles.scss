@@ -3,9 +3,10 @@
 $enable-negative-margins: true;
 $enable-transitions: true;
 $enable-caret: true;
-$enable-rfs: true;
+$enable-rfs: false;
 $enable-button-pointers: true;
-$enable-validation-icons: true;
+$enable-validation-icons: false;
+$enable-deprecation-messages: false;
 $enable-cssgrid: true;
 
 // Custom Bootstrap colors
