@@ -5,22 +5,30 @@
 <ul class="nav nav-pills mb-4">
   <li class="nav-item">
     <button class="nav-link" [class.active]="activeTab === 'rooms'"
-            (click)="setActiveTab('rooms')">Raumübersicht
+            (click)="setActiveTab('rooms')">
+      <i class="bi bi-grid me-1"></i>
+      Raumübersicht
     </button>
   </li>
   <li class="nav-item">
     <button class="nav-link" [class.active]="activeTab === 'nt-readiness'"
-            (click)="setActiveTab('nt-readiness')">NT-Readiness Gebäude
+            (click)="setActiveTab('nt-readiness')">
+      <i class="bi bi-speedometer2 me-1"></i>
+      NT-Readiness Gebäude
     </button>
   </li>
   <li class="nav-item">
     <button class="nav-link" [class.active]="activeTab === 'radiators'"
-            (click)="setActiveTab('radiators')">Heizkörpertausch
+            (click)="setActiveTab('radiators')">
+      <i class="bi bi-bookshelf me-1 radiator-icon"></i>
+      Heizkörpertausch
     </button>
   </li>
   <li class="nav-item">
     <button class="nav-link" [class.active]="activeTab === 'envelope'"
-            (click)="setActiveTab('envelope')">Gebäudehülle
+            (click)="setActiveTab('envelope')">
+      <i class="bi bi-house me-1"></i>
+      Gebäudehülle
     </button>
   </li>
 </ul>
@@ -320,8 +328,8 @@
     <button type="button" class="btn btn-secondary" routerLink="/raeume/intro">
       <i class="bi bi-arrow-left me-1"></i> Zurück
     </button>
-    <button type="button" class="btn btn-success">
+   <!-- <button type="button" class="btn btn-success">
       <i class="bi bi-download me-1"></i> Speichern
-    </button>
+    </button>-->
   </div>
 </div>

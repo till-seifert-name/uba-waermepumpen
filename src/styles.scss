@@ -94,61 +94,7 @@ body > app-root {
   calc(-1 * var(--body-max-width) + 1px) 0 0 0 rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
 }
 
-@media print {
-  @page {
-    size: A4;
-    margin: 1cm 1cm 2cm 1cm;
-  }
-
-  .mat-mdc-card {
-    break-inside: avoid;
-
-    &.mat-card-main-content {
-      break-inside: unset;
-    }
-
-    &.mat-card-print {
-      display: block; /* workaround for printing bug in FF */
-      border: none !important;
-      background: transparent !important;
-      box-shadow: none !important;
-
-      > .mat-mdc-card-header {
-        display: block; /* workaround for printing bug in FF */
-        padding: 0;
-      }
-
-      > .mat-mdc-card-content {
-        padding: 0;
-      }
-    }
-  }
-
-
-  .col-12-print {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-
-  .bg-print-none {
-    background: transparent !important;
-  }
-
-  .p-print-none {
-    padding: 0 !important;
-  }
-
-  .h-print-auto {
-    height: unset !important;
-  }
-
-  .print-break-avoid {
-    break-inside: avoid-page;
-    position: relative;
-  }
-  .print-break-before {
-    break-before: page;
-    position: relative;
-  }
+// Rotated bookshelf for radiator icon
+.bi-bookshelf::before {
+  transform: rotate(90deg);
 }
-

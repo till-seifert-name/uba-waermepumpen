@@ -39,9 +39,9 @@
   </ul>
 
   <!-- Room Sub-Tabs (only shown when a room tab is active) -->
-  <ul class="nav nav-tabs position-relative mt-2 mb-3" *ngIf="showRoomSubTabs">
+  <ul class="nav nav-pills position-relative mt-4 mb-4" *ngIf="showRoomSubTabs">
     <li class="nav-item position-relative" *ngFor="let subTab of roomSubTabs">
-      <a class="nav-link py-1" style="display: grid"
+      <a class="nav-link" style="display: grid"
          [class.active]="activeRoomSubTab === subTab.id"
          [routerLink]="['/raeume', subTab.path]"
          [queryParams]="{room: currentRoomId}">

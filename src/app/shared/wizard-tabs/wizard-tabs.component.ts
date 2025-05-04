@@ -39,15 +39,15 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
   roomTabs: TabConfig[] = [];
   rooms: Room[] = [];
   currentRoomId: string = '';
-  
+
   // Flag to show room sub-tabs when a room tab is active
   showRoomSubTabs: boolean = false;
-  
+
   // Room sub-tabs configuration
   roomSubTabs = [
     {id: 'gebaeude', title: 'Gebäude', path: 'detail-basis', icon: 'house-door'},
     {id: 'verluste', title: 'Verluste', path: 'detail-wand', icon: 'thermometer-snow'},
-    {id: 'heizflaechen', title: 'Heizflächen', path: 'detail-heizflaechen', icon: 'thermometer-half'},
+    {id: 'heizflaechen', title: 'Heizflächen', path: 'detail-heizflaechen', icon: 'bookshelf'},
     {id: 'ergebnis', title: 'Ergebnis', path: 'detail-ergebnis', icon: 'check'}
   ];
 
@@ -95,7 +95,7 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
    */
   updateActiveTabFromUrl(): void {
     let foundActiveTab = false;
-    
+
     // First check if we have a selected room
     if (this.currentRoomId) {
       for (const tab of this.tabs) {
@@ -118,13 +118,13 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
         return;
       }
     }
-    
+
     // If no tab was found as active, hide sub-tabs
     if (!foundActiveTab) {
       this.showRoomSubTabs = false;
     }
   }
-  
+
   /**
    * Determines the active room sub-tab based on the current URL
    */
