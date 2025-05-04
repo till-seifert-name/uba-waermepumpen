@@ -1,52 +1,327 @@
 <!-- Wizard Tabs -->
 <app-wizard-tabs [progress]="100"></app-wizard-tabs>
 
-  <!-- Content -->
-  <h3 class="mb-3">Ergebnis</h3>
+<!-- Tab Pills for Dashboard Views -->
+<ul class="nav nav-pills mb-4">
+  <li class="nav-item">
+    <button class="nav-link" [class.active]="activeTab === 'rooms'"
+            (click)="setActiveTab('rooms')">Raumübersicht
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" [class.active]="activeTab === 'nt-readiness'"
+            (click)="setActiveTab('nt-readiness')">NT-Readiness Gebäude
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" [class.active]="activeTab === 'radiators'"
+            (click)="setActiveTab('radiators')">Heizkörpertausch
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" [class.active]="activeTab === 'envelope'"
+            (click)="setActiveTab('envelope')">Gebäudehülle
+    </button>
+  </li>
+</ul>
 
-  <!-- Suitability Assessment -->
-  <div class="card mb-4">
-    <div class="card-header bg-primary text-white">Eignungsbewertung für Wärmepumpe</div>
-    <div class="card-body">
-      <div class="row align-items-center">
-        <div class="col-md-3 text-center">
-          <div class="display-1" [ngClass]="{
-            'text-success': assessmentResult.suitability === 'high',
-            'text-warning': assessmentResult.suitability === 'medium',
-            'text-danger': assessmentResult.suitability === 'low'
-          }">
-            <i class="bi" [ngClass]="{
-              'bi-check-circle-fill': assessmentResult.suitability === 'high',
-              'bi-exclamation-triangle-fill': assessmentResult.suitability === 'medium',
-              'bi-x-circle-fill': assessmentResult.suitability === 'low'
-            }"></i>
+<!-- Room Dashboard View -->
+<div *ngIf="activeTab === 'rooms'">
+  <h4 class="mb-3">Raumübersicht</h4>
+
+  <!-- For each room -->
+  <div *ngFor="let room of roomAssessments" class="mb-4 room-dashboard-card">
+
+    <div class="card border">
+      <div class="card-body">
+        <h5 class="card-title">{{ room.name }}</h5>
+        <div class="row">
+          <!-- Left column: Heizkörper -->
+          <div class="col-md-6">
+            <h5>Heizkörper</h5>
+
+            <!-- Radiator value box -->
+            <div class="value-box mb-3 d-inline-block px-3 py-2 rounded"
+                 [ngClass]="getStatusColor(room.aktuellHK.deckungProzent)">
+              {{ room.aktuellHK.watt }} W | {{ room.aktuellHK.deckungProzent }}%
+            </div>
+
+            <!-- Radiator assessment -->
+            <div class="d-flex align-items-center">
+              <!-- Icon area -->
+              <div class="text-center me-3" style="width: 60px;">
+                <!-- Regular radiator icon (using bookshelf rotated) -->
+                <span *ngIf="room.radiatorAction !== 'vergrößern'" class="d-inline-block">
+                <i class="bi bi-bookshelf fs-2 radiator-icon" [ngClass]="getIconColor(room.aktuellHK.deckungProzent)"></i>
+              </span>
+
+                <!-- Radiator with + icon for enlarging -->
+                <span *ngIf="room.radiatorAction === 'vergrößern'" class="position-relative d-inline-block">
+                <i class="bi bi-bookshelf fs-2 radiator-icon" [ngClass]="getIconColor(room.aktuellHK.deckungProzent)"></i>
+                <i class="bi bi-plus-circle-fill text-primary position-absolute top-0 start-100 translate-middle"></i>
+              </span>
+
+                <!-- Action caption -->
+                <p *ngIf="room.radiatorAction !== 'okay'" class="small text-muted mt-1">
+                  {{ room.radiatorAction === 'vergrößern' ? 'vergrößern' : 'verbessern' }}
+                </p>
+              </div>
+
+              <!-- Text area -->
+              <div>
+                <p [ngClass]="getTextColor(room.aktuellHK.deckungProzent)">
+                  <ng-container [ngSwitch]="room.radiatorStatus">
+                    <ng-container *ngSwitchCase="'success'">
+                      Der Heizkörper ist ausreichend dimensioniert und für Niedertemperaturbetrieb geeignet.
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'warning'">
+                      Ohne einen besseren Heizkörper muss die Vorlauftemperatur
+                      erhöht werden, was die Effizienz der Wärmepumpe reduziert.
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'danger'">
+                      Der Heizkörper ist deutlich unterdimensioniert.
+                      {{ room.radiatorAction === 'vergrößern' ? 'Eine Vergrößerung ist notwendig.' : 'Ein leistungsfähigerer Typ ist erforderlich.' }}
+                    </ng-container>
+                  </ng-container>
+                </p>
+              </div>
+            </div>
           </div>
-          <h4 class="mt-2" [ngClass]="{
-            'text-success': assessmentResult.suitability === 'high',
-            'text-warning': assessmentResult.suitability === 'medium',
-            'text-danger': assessmentResult.suitability === 'low'
-          }">
-            {{assessmentResult.suitabilityText}}
-          </h4>
+
+          <!-- Right column: Gebäudehülle -->
+          <div class="col-md-6">
+            <h5>Gebäudehülle</h5>
+
+            <!-- Heat density value box -->
+            <div class="value-box mb-3 d-inline-block px-3 py-2 rounded"
+                 [ngClass]="getStatusColor(100 - room.heizlast_w_m2)">
+              {{ room.heizlast_w }} W | {{ room.heizlast_w_m2 }} W/m²
+            </div>
+
+            <!-- Building envelope assessment -->
+            <div class="d-flex align-items-center">
+              <!-- Icon area -->
+              <div class="text-center me-3" style="width: 60px;">
+                <i class="bi bi-house-door fs-2" [ngClass]="getIconColor(100 - room.heizlast_w_m2)"></i>
+              </div>
+
+              <!-- Text area -->
+              <div>
+                <p [ngClass]="getTextColor(100 - room.heizlast_w_m2)">
+                  <ng-container [ngSwitch]="room.heatDensityStatus">
+                    <ng-container *ngSwitchCase="'success'">
+                      Die Gebäudehülle ist gut gedämmt und für den Einsatz einer Wärmepumpe geeignet.
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'warning'">
+                      Die <span [ngClass]="getTextColor(100 - room.heizlast_w_m2)">{{ room.worstEnvelopeComponent }}</span> haben einen erhöhten Wärmeverlust.
+                      Eine Verbesserung würde die Effizienz steigern.
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'danger'">
+                      Die <span [ngClass]="getTextColor(100 - room.heizlast_w_m2)">{{ room.worstEnvelopeComponent }}</span> haben einen sehr hohen Wärmeverlust.
+                      Eine Verbesserung ist für den effizienten Einsatz einer Wärmepumpe notwendig.
+                    </ng-container>
+                  </ng-container>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-9">
-          <p>{{assessmentResult.summary}}</p>
+
+        <!-- Room details link -->
+        <div class="text-end mt-3">
+          <button class="btn btn-sm btn-outline-primary" (click)="navigateToRoom(room.id)">
+            Details anzeigen <i class="bi bi-arrow-right"></i>
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Spacer to prevent content from being hidden behind fixed footer -->
-  <div class="pb-5 mb-5"></div>
-  
-  <!-- Footer Navigation Container -->
-  <div class="navigation-footer">
-    <div class="container d-flex justify-content-between">
-      <button type="button" class="btn btn-secondary" routerLink="/raeume/intro">
-        <i class="bi bi-arrow-left me-1"></i> Zurück
-      </button>
-      <button type="button" class="btn btn-success">
-        <i class="bi bi-download me-1"></i> Speichern
-      </button>
+  <!-- No rooms message -->
+  <div *ngIf="roomAssessments.length === 0" class="alert alert-info">
+    <p>Es wurden keine Räume erfasst.</p>
+    <button class="btn btn-primary" routerLink="/raeume/intro">
+      <i class="bi bi-plus-lg me-1"></i> Räume erfassen
+    </button>
+  </div>
+</div>
+
+<!-- NT-Readiness Gebäude View -->
+<div *ngIf="activeTab === 'nt-readiness'">
+  <h3 class="mb-4">NT-Readiness Gebäude</h3>
+
+  <!-- NT-Readiness Gauge -->
+  <div class="col-md-10 col-lg-8 mx-auto">
+    <app-band-tacho
+      [maxValue]="100"
+      [zones]="ntReadinessZones"
+      [pins]="[{ value: getOverallNTReadiness(), tooltip: 'Gesamtbewertung' }]">
+    </app-band-tacho>
+  </div>
+
+  <!-- Textual Explanation -->
+  <h5 class="mb-3">{{ getNTReadinessTitle() }}</h5>
+  <p>Gute Basis – mit Potenzial</p>
+  <p>
+    Ein niedertemperaturfähiges Gebäude sollte auch an kalten Wintertagen
+    in allen Räumen mit einer Vorlauftemperatur von unter 55°C auskommen.
+    Im jetzigen Zustand des Gebäudes ist die erforderliche Vorlauftemperatur
+    {{ getNTReadinessDescription() === 'größtenteils gut' ? 'teilweise' : 'überwiegend' }} zu hoch.
+  </p>
+  <p>
+    {{ getNTReadinessRoomCount() }} erfüllen bereits die Anforderungen für niedrigere
+    Vorlauftemperaturen. {{ getBadRoomCount() === 'keine weiteren Räume' ? 'Alle anderen Räume brauchen' : getBadRoomCount() + ' brauchen' }} jedoch eine höhere
+    Vorlauftemperatur. Mit {{ getNTReadinessDescription() === 'noch nicht ausreichend' ? 'umfangreichen' : 'gezielten' }} Maßnahmen kann das
+    gesamte Gebäude NT-ready werden.
+  </p>
+
+</div>
+
+<!-- Heizkörpertausch View -->
+<div *ngIf="activeTab === 'radiators'">
+  <h3 class="mb-3">Heizkörpertausch</h3>
+
+  <h5 class="mb-3">{{ getRadiatorSummaryTitle() }}</h5>
+
+  <p>
+    Hier ist ein Heizkörpertausch notwendig.
+  </p>
+
+  <p>
+    {{ getRadiatorReplacementSummary() }} der in Ihrem Gebäude
+    erfassten Räume benötigen aktuell eine sehr hohe
+    Vorlauftemperatur. Damit eine Wärmepumpe
+    effizient arbeiten kann, sollten Sie diese Heizkörper
+    durch größere oder leistungsstärkere Modelle
+    ersetzen.
+  </p>
+
+  <!-- Info Note -->
+  <div class="alert alert-warning mt-4">
+    <div class="d-flex">
+      <div class="me-3">
+        <i class="bi bi-lightbulb fs-4"></i>
+      </div>
+      <div>
+        <p class="mb-0">
+          Hinweis: Sie können weitere Räume eingeben, um ein vollständigeres
+          Bild zu erhalten. Wenn nicht, sollte die Heizkörperbewertung im Rahmen
+          der konkreten Planung erfolgen
+        </p>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- Gebäudehülle View -->
+<div *ngIf="activeTab === 'envelope'">
+  <h3 class="mb-3">Gebäudehülle</h3>
+
+  <h5 class="mb-3">Wärmeschutz ausbaufähig – Maßnahmen empfehlenswert</h5>
+
+  <p>
+    Die Gebäudehülle zeigt in mehreren Bereichen erhöhte Wärmeverluste.
+    Durch gezielte energetische Verbesserungen kann der Heizwärmebedarf
+    signifikant reduziert werden, was zu einer besseren Niedertemperaturfähigkeit führt.
+  </p>
+
+  <!-- Außenwand -->
+  <hr class="my-5">
+  <div class="row align-items-center">
+    <div class="col-md-3 text-center">
+      <i class="bi bi-bricks fs-1" [ngClass]="getIconColor(60)"></i>
+      <p class="small text-muted mt-2">Hohe Verluste in {{ getComponentRoomCount('Außenwände') }} Räumen</p>
+    </div>
+    <div class="col-md-9">
+      <h6>Hohe Wärmeverluste über die Außenwand</h6>
+      <p>
+        Die Außenwände weisen einen hohen U-Wert auf, was zu erheblichen Wärmeverlusten führt.
+        Eine Dämmung der Außenwände mit mindestens 14 cm Wärmedämmverbundsystem
+        würde den U-Wert deutlich verbessern und den Heizwärmebedarf erheblich senken.
+      </p>
+    </div>
+  </div>
+
+  <!-- Fenster -->
+  <hr class="my-5">
+  <div class="row align-items-center">
+    <div class="col-md-3 text-center">
+      <i class="bi bi-window fs-1" [ngClass]="getIconColor(50)"></i>
+      <p class="small text-muted mt-2">Betrifft {{ getComponentRoomCount('Fenster') }} Räume</p>
+    </div>
+    <div class="col-md-9">
+      <h6>Veraltete Fenster mit hohem Wärmeverlust</h6>
+      <p>
+        Die vorhandenen Fenster haben eine geringe Wärmedämmwirkung.
+        Ein Austausch gegen moderne Fenster mit 3-fach-Verglasung (U-Wert ≤ 0,8 W/(m²·K))
+        würde die Wärmeverluste reduzieren und gleichzeitig den Wohnkomfort verbessern.
+      </p>
+    </div>
+  </div>
+
+  <!-- Dach -->
+  <hr class="my-5">
+  <div class="row align-items-center">
+    <div class="col-md-3 text-center">
+      <i class="bi bi-houses fs-1" [ngClass]="getIconColor(65)"></i>
+      <p class="small text-muted mt-2">Betrifft {{ getComponentRoomCount('Decke') }} Räume</p>
+    </div>
+    <div class="col-md-9">
+      <h6>Dachflächen/Geschossdecken mit Verbesserungspotential</h6>
+      <p>
+        Die oberen Geschossdecken bzw. Dachflächen weisen erhöhte Wärmeverluste auf.
+        Eine Dämmung dieser Flächen ist oft kostengünstig umsetzbar und
+        führt zu einer deutlichen Reduktion des Heizwärmebedarfs.
+      </p>
+    </div>
+  </div>
+
+  <!-- Boden -->
+  <hr class="my-5">
+  <div class="row align-items-center">
+    <div class="col-md-3 text-center">
+      <i class="bi bi-border-bottom fs-1" [ngClass]="getIconColor(70)"></i>
+      <p class="small text-muted mt-2">Im Erdgeschoss</p>
+    </div>
+    <div class="col-md-9">
+      <h6>Wärmeverluste über Kellerdecke/Bodenplatte</h6>
+      <p>
+        Die Kellerdecke bzw. Bodenplatte zeigt erhöhte Wärmeverluste.
+        Eine nachträgliche Dämmung der Kellerdecke von unten ist meist
+        einfach umzusetzen und verbessert die Energieeffizienz spürbar.
+      </p>
+    </div>
+  </div>
+
+  <!-- Info Note -->
+  <hr class="my-5">
+  <div class="alert alert-warning">
+    <div class="d-flex">
+      <div class="me-3">
+        <i class="bi bi-lightbulb fs-4"></i>
+      </div>
+      <div>
+        <p class="mb-0">
+          Hinweis: Diese Bewertung basiert auf den erfassten Räumen und bietet eine
+          erste Orientierung. Für eine detaillierte Analyse und Maßnahmenplanung
+          empfehlen wir eine umfassende energetische Fachberatung.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/raeume/intro">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-success">
+      <i class="bi bi-download me-1"></i> Speichern
+    </button>
+  </div>
+</div>

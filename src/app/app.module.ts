@@ -34,6 +34,7 @@ import {ErgebnisAssessmentComponent} from "./ergebnis/ergebnis-assessment/ergebn
 
 // Shared Components
 import {WizardTabsComponent} from "./shared/wizard-tabs/wizard-tabs.component";
+import {BandTachoComponent} from "./shared/band-tacho/band-tacho.component";
 
 import '@angular/common/locales/global/de';
 
@@ -68,7 +69,8 @@ import '@angular/common/locales/global/de';
     ErgebnisAssessmentComponent,
 
     // Shared Components
-    WizardTabsComponent
+    WizardTabsComponent,
+    BandTachoComponent
   ],
   imports: [
     BrowserModule,

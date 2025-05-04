@@ -1,0 +1,69 @@
+:host {
+  --band-tacho-zone1-color: #00BD56;
+  --band-tacho-zone2-color: #E7D126;
+  --band-tacho-zone3-color: #E66618;
+  --band-tacho-zone4-color: #C9401B;
+  --band-tacho-pin-color: #0D6EFD;
+}
+
+
+.gauge-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 3rem; /* Space for labels */
+
+
+  .pin {
+    top: -1em;
+  }
+}
+
+/* The main gauge bar */
+.gauge-bar {
+  position: relative;
+  display: flex;
+  height: 1.25rem;
+  width: 100%;
+  /*border-radius: 4px;*/
+  overflow: hidden;
+}
+
+/* Individual colored segments */
+.gauge-segment {
+  height: 100%;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Pin positioning adjustment */
+.bi-caret-down-fill {
+  position: relative;
+  top: -0.5rem;
+  transition: left 0.3s ease-in-out;
+}
+
+/* Labels container */
+.gauge-labels {
+  position: relative;
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--bs-gray-600);
+  height: 2rem;
+}
+
+/* Individual label */
+.gauge-label {
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+
+  .gauge-label-marker {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 0.5rem;
+    background-color: var(--bs-gray-500);
+  }
+}

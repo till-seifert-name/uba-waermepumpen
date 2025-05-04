@@ -1,0 +1,30 @@
+<div class="gauge-container mb-4">
+  <!-- Gauge Bar with Gradient -->
+  <div class="gauge-bar" [style.background]="gaugeGradient"></div>
+
+  <!-- Pins (Any Number) -->
+  <div *ngFor="let pin of pins; let i = index"
+       class="pin position-absolute"
+       [style.left.%]="calculatePositionPercent(pin.value)"
+       [style.transform]="'translateX(-50%)'"
+       [title]="pin.tooltip"
+       data-bs-toggle="tooltip">
+    <i class="bi bi-caret-down-fill fs-4" [style.color]="getPinColor(pin)"></i>
+  </div>
+
+  <!-- Labels (Integrated with Zones) -->
+  <div class="gauge-labels">
+    @for (zone of zones; track zone.label) {
+      @if (zone.label) {
+        <span
+          class="gauge-label"
+          [style.left.%]="calculatePositionPercent(zone.value)"
+          style="transform: translateX(-50%);"
+        >
+        {{ zone.label }}
+      </span>
+      }
+    }
+  </div>
+
+</div>

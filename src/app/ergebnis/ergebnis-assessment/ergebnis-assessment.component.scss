@@ -1,0 +1,70 @@
+// Tab navigation
+.nav-pills {
+  margin-bottom: 2rem;
+  
+  .nav-link {
+    border-radius: 50rem;
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    
+    &.active {
+      background-color: var(--bs-primary);
+    }
+  }
+}
+
+// Room dashboard styling
+.room-dashboard-card {
+  h3 {
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+  }
+  
+  .value-box {
+    font-weight: 600;
+    min-width: 150px;
+    text-align: center;
+    color: white;
+  }
+}
+
+// NT-Readiness view styling
+.gauge-container {
+  margin-bottom: 2rem;
+}
+
+// Icon colors
+.icon-success {
+  color: var(--bs-success);
+}
+
+.icon-warning {
+  color: var(--bs-warning);
+}
+
+.icon-danger {
+  color: var(--bs-danger);
+}
+
+// Building envelope icons
+.bi-bricks, .bi-window, .bi-houses, .bi-border-bottom {
+  color: var(--bs-secondary);
+}
+
+// Rotated bookshelf for radiator icon
+.radiator-icon {
+  transform: rotate(90deg);
+}
+
+// Navigation footer styling
+.navigation-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-top: 1px solid #dee2e6;
+  padding: 1rem 0;
+  z-index: 1000;
+}

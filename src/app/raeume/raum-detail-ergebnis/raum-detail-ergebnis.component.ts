@@ -11,7 +11,42 @@ import {Subscription} from 'rxjs';
 })
 export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   roomId: string = '';
-  roomData: any = {};
+
+  // Room data interface for type safety
+  private _currentRoomData: any = {};
+
+  // Getter that combines actual room data with generated dummy values
+  get roomData(): {
+    id: string;
+    name: string;
+    heizlast_w: number;
+    heizlast_w_m2: number;
+    aktuellHK: {
+      watt: number;
+      deckungProzent: number;
+    };
+    besserHK: {
+      watt: number;
+      deckungProzent: number;
+    };
+  } {
+    return {
+      ...(this._currentRoomData || {}),
+      name: this._currentRoomData?.name || 'Raum 1',
+      heizlast_w: this._currentRoomData?.heizlast_w || 2500,
+      heizlast_w_m2: this._currentRoomData?.heizlast_w_m2 || 80,
+      aktuellHK: {
+        ...(this._currentRoomData?.aktuellHK || {}),
+        watt: this._currentRoomData?.aktuellHK?.watt || 1800,
+        deckungProzent: this._currentRoomData?.aktuellHK?.deckungProzent || 40
+      },
+      besserHK: {
+        ...(this._currentRoomData?.besserHK || {}),
+        watt: this._currentRoomData?.besserHK?.watt || 2200,
+        deckungProzent: this._currentRoomData?.besserHK?.deckungProzent || 90
+      }
+    };
+  }
 
   // Room assessment data (placeholder for calculations)
   assessment = {
@@ -22,13 +57,36 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
     recommendations: [] as string[] // Recommendations for improvement
   };
 
+  // Gauge configurations
+  // Heat density gauge zones with integrated labels
+  get heizlastZones() {
+    return [
+      {value: 0, label: '0'},           // Min value point (needed for proper gradient)
+      {value: 25, label: '50'},         // First transition point: good -> warning
+      {value: 50, label: '70'},         // Second transition point: warning -> danger
+      {value: 75, label: '90 W/m²'}   // Max value point (matches maxValue input)
+    ];
+  }
+
+  // Heater capability gauge zones with integrated labels
+  get heizkoerperZones() {
+    return [
+      {value: 0, label: ''},
+      {value: 25, label: 'NT-ready'},
+      {value: 50, label: 'eingeschränkt geeignet'},
+      {value: 75, label: 'noch nicht gut geeignet'},
+      {value: 100, label: ''},
+    ];
+  }
+
   private subscriptions: Subscription[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private berechnungService: BerechnungService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     // Subscribe to query params to get room ID
@@ -51,7 +109,9 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
     const room = rooms.find(r => r.id === this.roomId);
 
     if (room) {
-      this.roomData = room;
+      // Store the actual room data - the getter will handle adding defaults
+      this._currentRoomData = room;
+
       // Set a placeholder recommendation - detailed implementation will come later
       this.assessment.recommendations = ['Raum grundsätzlich geeignet für Wärmepumpenbetrieb'];
     }
@@ -71,7 +131,7 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
     if (this.hasNextRoom()) {
       // Navigate to next room's basic data
       const nextRoom = rooms[currentRoomIndex + 1];
-      this.router.navigate(['/raeume/detail-basis'], { queryParams: { room: nextRoom.id } });
+      this.router.navigate(['/raeume/detail-basis'], {queryParams: {room: nextRoom.id}});
     } else {
       // Navigate to the final results page
       this.router.navigate(['/ergebnis']);
