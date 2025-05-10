@@ -1,13 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BerechnungService } from '../../berechnung.service';
-
-interface HeatingData {
-  efficiencyClass: string;
-  historicBuilding: boolean;
-  heatingType: string;
-  distributionType: string;
-}
+import { DataGrid } from '../../data-grid';
 
 @Component({
   selector: 'app-gebaeude-heating',
@@ -15,34 +9,42 @@ interface HeatingData {
   templateUrl: './gebaeude-heating.component.html',
   styleUrl: './gebaeude-heating.component.scss'
 })
-export class GebaeudeHeatingComponent implements OnInit {
-  heatingData: HeatingData = {
-    efficiencyClass: '',
-    historicBuilding: false,
-    heatingType: 'radiator',
-    distributionType: 'zwei'
-  };
+export class GebaeudeHeatingComponent {
+  // Expose grid property for template binding
+  public grid: DataGrid;
 
   constructor(
     private router: Router,
     private berechnungService: BerechnungService
-  ) {}
+  ) {
+    this.grid = berechnungService.grid;
+  }
 
-  ngOnInit(): void {
-    // Here we would load existing data from the grid
-    // For the mockup, we use hardcoded defaults
+  // Getter for Effizienzklasse options from the Daten sheet (E31-E40)
+  get effizienzklassen(): string[] {
+    try {
+      // Get the values from the Daten sheet
+      return this.grid.getCells('Daten', 'E31', 'E40')
+        .map(row => row[0].toString())
+        .filter(value => value !== ""); // Filter out empty values
+    } catch (error) {
+      console.error('Error loading Effizienzklassen:', error);
+      return [];
+    }
   }
 
   onSubmit(): void {
-    // Here we would save data to the grid
-    // For the mockup, we'll conditionally navigate based on heating type
-    
     // If storage heater is selected, route to special feedback
-    if (this.heatingData.heatingType === 'storage') {
+    const heatingType = this.grid.getCell('IN_build', 'P14');
+    if (heatingType === 'Nachtspeicherheizung') {
       this.router.navigate(['/gebaeude/feedback-heizung']);
     } else {
       // Otherwise continue to flow temperature
       this.router.navigate(['/gebaeude/vorlauftemperatur']);
     }
+  }
+
+  checked(event: Event): boolean {
+    return (event.target as HTMLInputElement)?.checked ?? false;
   }
 }

@@ -1,13 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BerechnungService } from '../../berechnung.service';
-
-// Reusing same Room interface as in the first criteria component
-// In a real application, this would be in a shared model
-interface Room {
-  id: string;
-  name: string;
-  type: string; // 'cold', 'exterior', 'boundary', 'windows', 'other'
-}
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BerechnungService, Room } from '../../berechnung.service';
+import { Subscription } from 'rxjs';
+import { DataGrid } from '../../data-grid';
 
 @Component({
   selector: 'app-raeume-list-criteria-two',
@@ -15,66 +9,75 @@ interface Room {
   templateUrl: './raeume-list-criteria-two.component.html',
   styleUrl: './raeume-list-criteria-two.component.scss'
 })
-export class RaeumeListCriteriaTwoComponent implements OnInit {
+export class RaeumeListCriteriaTwoComponent implements OnInit, OnDestroy {
   newBoundaryRoomName: string = '';
   newWindowRoomName: string = '';
   newOtherRoomName: string = '';
-  
-  // In a real application, this would be shared with the other room list component
-  // via a shared service or state management
-  roomList: Room[] = [
-    { id: '1', name: 'Wohnzimmer', type: 'exterior' },
-    { id: '2', name: 'Kinderzimmer', type: 'cold' },
-    { id: '3', name: 'Schlafzimmer', type: 'exterior' }
-  ];
 
-  constructor(private berechnungService: BerechnungService) {}
+  roomList: Room[] = [];
+  public grid: DataGrid;
+  private subscription: Subscription | null = null;
 
-  ngOnInit(): void {
-    // Here we would load room data from the service or grid
-    // For the mockup, we use the hardcoded default list
+  constructor(private berechnungService: BerechnungService) {
+    this.grid = berechnungService.grid;
   }
 
+  ngOnInit(): void {
+    // Subscribe to room list changes
+    this.subscription = this.berechnungService.rooms$.subscribe(rooms => {
+      this.roomList = rooms;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  // Room management functions
   addBoundaryRoom(): void {
     if (!this.newBoundaryRoomName.trim()) return;
-    
-    const newRoomId = Date.now().toString();
-    this.roomList.push({
-      id: newRoomId,
-      name: this.newBoundaryRoomName,
-      type: 'boundary'
-    });
-    
+
+    // Add a new room with 'boundary' type
+    this.berechnungService.addRoom(this.newBoundaryRoomName.trim(), 'boundary');
+
+    // Clear the input field
     this.newBoundaryRoomName = '';
   }
 
   addWindowRoom(): void {
     if (!this.newWindowRoomName.trim()) return;
-    
-    const newRoomId = Date.now().toString();
-    this.roomList.push({
-      id: newRoomId,
-      name: this.newWindowRoomName,
-      type: 'windows'
-    });
-    
+
+    // Add a new room with 'windows' type
+    this.berechnungService.addRoom(this.newWindowRoomName.trim(), 'windows');
+
+    // Clear the input field
     this.newWindowRoomName = '';
   }
 
   addOtherRoom(): void {
     if (!this.newOtherRoomName.trim()) return;
-    
-    const newRoomId = Date.now().toString();
-    this.roomList.push({
-      id: newRoomId,
-      name: this.newOtherRoomName,
-      type: 'other'
-    });
-    
+
+    // Add a new room with 'other' type
+    this.berechnungService.addRoom(this.newOtherRoomName.trim(), 'other');
+
+    // Clear the input field
     this.newOtherRoomName = '';
   }
 
   removeRoom(roomId: string): void {
-    this.roomList = this.roomList.filter(room => room.id !== roomId);
+    this.berechnungService.removeRoom(roomId);
+  }
+
+  // Method to rename a room
+  renameRoom(roomId: string, newName: string): void {
+    if (!newName || !newName.trim()) return;
+    this.berechnungService.setRoomName(roomId, newName.trim());
+  }
+
+  // Helper method for handling checkbox events
+  checked(event: Event): boolean {
+    return (event.target as HTMLInputElement)?.checked ?? false;
   }
 }

@@ -3,15 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BerechnungService, Room } from '../../berechnung.service';
 import { Subscription } from 'rxjs';
 
-interface RoomDetailData {
-  name: string;
-  area: number;
-  height: number;
-  temperature: number;
-  ceilingType: string;
-  floorType: string;
-}
-
 @Component({
   selector: 'app-raum-detail-basic',
   standalone: false,
@@ -21,16 +12,8 @@ interface RoomDetailData {
 export class RaumDetailBasicComponent implements OnInit, OnDestroy {
   roomId: string = '';
   roomList: Room[] = [];
+  roomName: string = '';
   private subscriptions: Subscription[] = [];
-  
-  roomData: RoomDetailData = {
-    name: '',
-    area: 0,
-    height: 2.5, // Default values
-    temperature: 20, // Default values
-    ceilingType: 'unbeheizt',
-    floorType: 'erdreich'
-  };
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +28,7 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
         this.roomList = rooms;
       })
     );
-    
+
     // Get room ID from query params
     this.subscriptions.push(
       this.route.queryParams.subscribe(params => {
@@ -53,7 +36,7 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
         if (id) {
           this.roomId = id;
           this.berechnungService.setSelectedRoom(id);
-          this.loadRoomData(id);
+          this.loadRoomName(id);
         } else {
           // No ID provided, redirect to room list
           this.router.navigate(['/raeume/intro']);
@@ -61,42 +44,70 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
       })
     );
   }
-  
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-  
-  loadRoomData(roomId: string): void {
-    const room = this.roomList.find(r => r.id === roomId);
-    if (room) {
-      this.roomData.name = room.name;
-      
-      // If this room has saved data, load it
-      if (room.data) {
-        this.roomData = {
-          ...this.roomData,
-          ...room.data
-        };
-      }
-    } else {
+
+  loadRoomName(roomId: string): void {
+    try {
+      // Get room name directly from the grid
+      this.roomName = this.berechnungService.getRoomName(roomId);
+    } catch (error) {
+      console.error('Error loading room:', error);
       // Room not found, redirect to room list
       this.router.navigate(['/raeume/intro']);
     }
   }
-  
-  // Save room data when navigating away or making changes
-  saveRoomData(): void {
-    this.berechnungService.updateRoomData(this.roomId, this.roomData);
+
+  // Direct access to room data through BerechnungService
+  get area(): number {
+    return this.berechnungService.getRoomArea(this.roomId);
   }
-  
+
+  set area(value: number) {
+    this.berechnungService.setRoomArea(this.roomId, value);
+  }
+
+  get height(): number {
+    return this.berechnungService.getRoomHeight(this.roomId);
+  }
+
+  set height(value: number) {
+    this.berechnungService.setRoomHeight(this.roomId, value);
+  }
+
+  get temperature(): number {
+    return this.berechnungService.getRoomTemperature(this.roomId);
+  }
+
+  set temperature(value: number) {
+    this.berechnungService.setRoomTemperature(this.roomId, value);
+  }
+
+  get ceilingType(): string {
+    return this.berechnungService.getRoomCeilingType(this.roomId);
+  }
+
+  set ceilingType(value: string) {
+    this.berechnungService.setRoomCeilingType(this.roomId, value);
+  }
+
+  get floorType(): string {
+    return this.berechnungService.getRoomFloorType(this.roomId);
+  }
+
+  set floorType(value: string) {
+    this.berechnungService.setRoomFloorType(this.roomId, value);
+  }
+
   // Navigate to the next component (wall details)
   onNext(): void {
-    this.saveRoomData();
-    this.router.navigate(['/raeume/detail-wand'], { 
+    this.router.navigate(['/raeume/detail-wand'], {
       queryParams: { room: this.roomId }
     });
   }
-  
+
   // Helper method for template to determine if this is the last room
   isLastRoom(): boolean {
     const currentRoomIndex = this.roomList.findIndex(room => room.id === this.roomId);

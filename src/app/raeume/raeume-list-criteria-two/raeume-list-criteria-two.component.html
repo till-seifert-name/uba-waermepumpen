@@ -9,7 +9,8 @@
           <label for="raumNameGrenze" class="form-label">Ergänzen Sie falls vorhanden Räume deren Decke oder Boden an Außenluft oder unbeheizte Räume grenzt.</label>
           <div class="input-group">
             <input type="text" class="form-control" id="raumNameGrenze"
-                  placeholder="z.B. Kellerraum" [(ngModel)]="newBoundaryRoomName" name="raumNameGrenze">
+                  placeholder="z.B. Kellerraum" [(ngModel)]="newBoundaryRoomName" name="raumNameGrenze"
+                  maxlength="30" minlength="2" required>
             <button class="btn btn-outline-primary" type="button" id="addRaumGrenze"
                   (click)="addBoundaryRoom()" [disabled]="!newBoundaryRoomName">
               <i class="bi bi-plus-lg"></i>
@@ -23,7 +24,8 @@
           <label for="raumNameFenster" class="form-label">Ergänzen Sie falls vorhanden Räume mit viel Fensterfläche</label>
           <div class="input-group">
             <input type="text" class="form-control" id="raumNameFenster"
-                  placeholder="z.B. Wohnzimmer" [(ngModel)]="newWindowRoomName" name="raumNameFenster">
+                  placeholder="z.B. Wohnzimmer" [(ngModel)]="newWindowRoomName" name="raumNameFenster"
+                  maxlength="30" minlength="2" required>
             <button class="btn btn-outline-primary" type="button" id="addRaumFenster"
                   (click)="addWindowRoom()" [disabled]="!newWindowRoomName">
               <i class="bi bi-plus-lg"></i>
@@ -37,7 +39,8 @@
           <label for="raumNameSonstige" class="form-label">Sonstige zu erfassende Räume</label>
           <div class="input-group">
             <input type="text" class="form-control" id="raumNameSonstige"
-                  placeholder="z.B. Bad" [(ngModel)]="newOtherRoomName" name="raumNameSonstige">
+                  placeholder="z.B. Bad" [(ngModel)]="newOtherRoomName" name="raumNameSonstige"
+                  maxlength="30" minlength="2" required>
             <button class="btn btn-outline-primary" type="button" id="addRaumSonstige"
                   (click)="addOtherRoom()" [disabled]="!newOtherRoomName">
               <i class="bi bi-plus-lg"></i>
@@ -48,15 +51,27 @@
     </div>
     <div class="col-lg-5 mt-4 mt-lg-0">
       <div class="card">
-        <div class="card-header">
-          Raumliste
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span>Raumliste</span>
+          <small class="text-muted"><i class="bi bi-info-circle"></i> Raumnamen anklicken zum Bearbeiten</small>
         </div>
         <ul class="list-group list-group-flush" id="raumListeDisplay">
-          <li class="list-group-item" *ngFor="let room of roomList">
-            {{room.name}}
-            <button class="btn btn-sm btn-outline-danger float-end" (click)="removeRoom(room.id)">
-              <i class="bi bi-trash"></i>
-            </button>
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let room of roomList; let isLast = last">
+            <div class="editable-room-name"
+                 #editableField
+                 [contentEditable]="true"
+                 (blur)="renameRoom(room.id, editableField.textContent || '')"
+                 title="Klicken zum Bearbeiten">
+              {{room.name}}
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-outline-danger"
+                   (click)="removeRoom(room.id)"
+                   *ngIf="isLast"
+                   title="{{isLast ? 'Raum entfernen' : 'Nur der letzte Raum kann entfernt werden'}}">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
           </li>
           <li class="list-group-item list-group-item-secondary text-center" *ngIf="roomList.length === 0">
             Noch keine Räume hinzugefügt

@@ -2,15 +2,23 @@
 <app-wizard-tabs [progress]="70" activeRoomSubTab="verluste"></app-wizard-tabs>
 
 <!-- Content -->
-<h5 class="mb-4">Außenwände und Fenster: {{ roomData.name }}</h5>
+<h5 class="mb-4">Außenwände und Fenster: {{ berechnungService.getRoomName(roomId) }}</h5>
 
-<form #wallForm="ngForm" (ngSubmit)="onComplete()" ngNativeValidate>
+<p>Geben Sie die
+  Außenwände und darin enthaltene Fenster ein.
+  Die Fensterfläche wird in der Berechnung von
+  der Wandfläche abgezogen. Fenster in Dach
+  undGaube werden separaterfasst.</p>
+
+<form (ngSubmit)="onComplete()" ngNativeValidate>
   <div class="mb-3 row align-items-center">
     <label for="aw_laenge" class="col-sm-5 col-form-label">Gesamtlänge der Außenwände</label>
     <div class="col-sm-7">
       <div class="input-group">
         <input type="number" step="0.1" class="form-control" id="aw_laenge"
-               name="aw_laenge" [(ngModel)]="wallData.length">
+               name="aw_laenge" [ngModel]="berechnungService.getRoomWallLength(roomId)"
+               (ngModelChange)="berechnungService.setRoomWallLength(roomId, $event)" required
+               min="0.5" max="100">
         <span class="input-group-text">m</span>
       </div>
     </div>
@@ -20,121 +28,510 @@
     <div class="col-sm-7">
       <div class="input-group">
         <input type="number" class="form-control" id="aw_daemmung"
-               name="aw_daemmung" [(ngModel)]="wallData.insulationThickness"
-               value="6" aria-describedby="daemmungHelp">
+               name="aw_daemmung" [ngModel]="berechnungService.getRoomWallInsulationThickness(roomId)"
+               (ngModelChange)="berechnungService.setRoomWallInsulationThickness(roomId, $event)"
+               aria-describedby="daemmungHelp"
+               min="0" max="50" step="0.5"
+               [placeholder]="buildingInsulationThickness">
         <span class="input-group-text">cm</span>
       </div>
-      <div id="daemmungHelp" class="form-text">Standardwert aus Gebäudeübernahme, falls abweichend hier ändern.</div>
+      <div id="daemmungHelp" class="form-text">
+        {{ buildingInsulationThickness > 0 ? 'Gebäude hat ' + buildingInsulationThickness + 'cm Dämmung. Bei abweichender Dämmstärke hier ändern.' : 'Gebäudedämmung nicht angegeben. Raum-spezifische Dämmstärke eingeben.' }}
+      </div>
     </div>
   </div>
 
   <hr class="my-4">
 
-  <h6>Geben Sie die Abmaße des ersten Fenstertyps an</h6>
-  <div class="row g-3 mb-3 align-items-center">
-    <div class="col-sm-6">
-      <label for="fenster1_breite" class="form-label visually-hidden">Breite Fenster 1</label>
-      <div class="input-group">
-        <span class="input-group-text" style="width: 90px;">Breite</span>
-        <input type="number" class="form-control" id="fenster1_breite"
-               name="fenster1_breite" [(ngModel)]="windowData.width">
-        <span class="input-group-text">cm</span>
+  <div class=" mb-4">
+    <h6>Fenstertyp 1</h6>
+    <div class="row g-3 align-items-center">
+      <div class="col-sm-6">
+        <label for="fenster1_breite" class="form-label visually-hidden">Breite Fenster 1</label>
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Breite</span>
+          <input type="number" class="form-control" id="fenster1_breite"
+                 name="fenster1_breite" [ngModel]="berechnungService.getWindowWidth(roomId, 1)"
+                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event, 1)" required
+                 min="20" max="400" step="1">
+          <span class="input-group-text">cm</span>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <label for="fenster1_hoehe" class="form-label visually-hidden">Höhe Fenster 1</label>
-      <div class="input-group">
-        <span class="input-group-text" style="width: 90px;">Höhe</span>
-        <input type="number" class="form-control" id="fenster1_hoehe"
-               name="fenster1_hoehe" [(ngModel)]="windowData.height">
-        <span class="input-group-text">cm</span>
+      <div class="col-sm-6">
+        <label for="fenster1_hoehe" class="form-label visually-hidden">Höhe Fenster 1</label>
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Höhe</span>
+          <input type="number" class="form-control" id="fenster1_hoehe"
+                 name="fenster1_hoehe" [ngModel]="berechnungService.getWindowHeight(roomId, 1)"
+                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event, 1)" required
+                 min="20" max="400" step="1">
+          <span class="input-group-text">cm</span>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <label for="fenster1_baujahr" class="form-label visually-hidden">Baujahr Fenster 1</label>
-      <div class="input-group">
-        <span class="input-group-text" style="width: 90px;">Baujahr</span>
-        <select class="form-select" id="fenster1_baujahr"
-                name="fenster1_baujahr" [(ngModel)]="windowData.constructionYear">
-          <option>wie Gebäude</option>
-          <option value="1969-1979" selected>1969-1979</option>
-          <option value="1980-1983">1980-1983</option>
-          <option value="1984-1994">1984-1994</option>
-          <option value="1995-2002">1995-2002</option>
-          <option value="2003-2008">2003-2008</option>
-          <option value="nach2009">nach 2009</option>
-        </select>
+      <div class="form-text">Geben Sie die Abmaße des ersten Fenstertyps an</div>
+      <div class="col-sm-6">
+        <label for="fenster1_baujahr" class="form-label visually-hidden">Baujahr Fenster 1</label>
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Baujahr</span>
+          <select class="form-select" id="fenster1_baujahr"
+                  name="fenster1_baujahr" [ngModel]="berechnungService.getWindowYear(roomId, 1)"
+                  (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 1)">
+            <option *ngFor="let year of windowYearOptions" [value]="year">{{ getWindowYearLabel(year) }}</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <label for="fenster1_anzahl" class="form-label visually-hidden">Anzahl Fenster 1</label>
-      <div class="input-group">
-        <span class="input-group-text" style="width: 90px;">Anzahl</span>
-        <input type="number" class="form-control" id="fenster1_anzahl"
-               name="fenster1_anzahl" [(ngModel)]="windowData.count" value="1">
+      <div class="col-sm-6">
+        <label for="fenster1_anzahl" class="form-label visually-hidden">Anzahl Fenster 1</label>
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Anzahl</span>
+          <input type="number" class="form-control" id="fenster1_anzahl"
+                 name="fenster1_anzahl" [ngModel]="berechnungService.getWindowCount(roomId, 1) || 1"
+                 (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 1)" required
+                 min="1" max="20" step="1">
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="mb-4">
-    <button type="button" class="btn btn-outline-secondary" (click)="addWindowType()">
-      <i class="bi bi-plus-lg"></i> Fenstertyp hinzufügen
-    </button>
-  </div>
-
-  <!-- Additional window types would be dynamically added here -->
-  <div *ngFor="let window of additionalWindows; let i = index" class="mb-4 p-3 border rounded">
-    <h6>Fenstertyp {{ i + 2 }}</h6>
+  <!-- Window type 2 (shown only when visible) -->
+  <div *ngIf="window2Visible" class="mb-4">
+    <h6>Fenstertyp 2</h6>
     <div class="row g-3 align-items-center">
       <div class="col-sm-6">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Breite</span>
-          <input type="number" class="form-control" [(ngModel)]="window.width"
-                 [name]="'fenster' + (i+2) + '_breite'">
+          <input type="number" class="form-control"
+                 [ngModel]="berechnungService.getWindowWidth(roomId, 2)"
+                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event, 2)"
+                 name="fenster2_breite" min="20" max="400" step="1" required>
           <span class="input-group-text">cm</span>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Höhe</span>
-          <input type="number" class="form-control" [(ngModel)]="window.height"
-                 [name]="'fenster' + (i+2) + '_hoehe'">
+          <input type="number" class="form-control"
+                 [ngModel]="berechnungService.getWindowHeight(roomId, 2)"
+                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event, 2)"
+                 name="fenster2_hoehe" min="20" max="400" step="1" required>
           <span class="input-group-text">cm</span>
         </div>
       </div>
+      <div class="form-text">Geben Sie die Abmaße des zweiten Fenstertyps an</div>
       <div class="col-sm-6">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Baujahr</span>
-          <select class="form-select" [(ngModel)]="window.constructionYear"
-                  [name]="'fenster' + (i+2) + '_baujahr'">
-            <option>wie Gebäude</option>
-            <option value="1969-1979">1969-1979</option>
-            <option value="1980-1983">1980-1983</option>
-            <option value="1984-1994">1984-1994</option>
-            <option value="1995-2002">1995-2002</option>
-            <option value="2003-2008" selected>2003-2008</option>
-            <option value="nach2009">nach 2009</option>
+          <select class="form-select"
+                  [ngModel]="berechnungService.getWindowYear(roomId, 2)"
+                  (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 2)"
+                  name="fenster2_baujahr">
+            <option *ngFor="let year of windowYearOptions" [value]="year">{{ getWindowYearLabel(year) }}</option>
           </select>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Anzahl</span>
-          <input type="number" class="form-control" [(ngModel)]="window.count"
-                 [name]="'fenster' + (i+2) + '_anzahl'" value="1">
+          <input type="number" class="form-control"
+                 [ngModel]="berechnungService.getWindowCount(roomId, 2) || 1"
+                 (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 2)"
+                 name="fenster2_anzahl" min="1" max="20" step="1" required>
         </div>
       </div>
     </div>
-    <div class="text-end mt-2">
-      <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeWindowType(i)">
+    <div class="text-end mt-2" *ngIf="!window3Visible">
+      <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeWindowType(2)">
         <i class="bi bi-trash"></i> Entfernen
       </button>
     </div>
   </div>
 
+  <!-- Window type 3 (shown only when visible) -->
+  <div *ngIf="window3Visible" class="mb-4">
+    <h6>Fenstertyp 3</h6>
+    <div class="row g-3 align-items-center">
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Breite</span>
+          <input type="number" class="form-control"
+                 [ngModel]="berechnungService.getWindowWidth(roomId, 3)"
+                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event, 3)"
+                 name="fenster3_breite" min="20" max="400" step="1" required>
+          <span class="input-group-text">cm</span>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Höhe</span>
+          <input type="number" class="form-control"
+                 [ngModel]="berechnungService.getWindowHeight(roomId, 3)"
+                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event, 3)"
+                 name="fenster3_hoehe" min="20" max="400" step="1" required>
+          <span class="input-group-text">cm</span>
+        </div>
+      </div>
+      <div class="form-text">Geben Sie die Abmaße des dritten Fenstertyps an</div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Baujahr</span>
+          <select class="form-select"
+                  [ngModel]="berechnungService.getWindowYear(roomId, 3)"
+                  (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 3)"
+                  name="fenster3_baujahr">
+            <option *ngFor="let year of windowYearOptions" [value]="year">{{ getWindowYearLabel(year) }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-text" style="width: 90px;">Anzahl</span>
+          <input type="number" class="form-control"
+                 [ngModel]="berechnungService.getWindowCount(roomId, 3) || 1"
+                 (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 3)"
+                 name="fenster3_anzahl" min="1" max="20" step="1" required>
+        </div>
+      </div>
+    </div>
+    <div class="text-end mt-2">
+      <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeWindowType(3)">
+        <i class="bi bi-trash"></i> Entfernen
+      </button>
+    </div>
+  </div>
+
+  <div class="mb-4" *ngIf="!window3Visible">
+    <button type="button" class="btn btn-outline-secondary" (click)="addWindowType()">
+      <i class="bi bi-plus-lg"></i> Gibtes weitere Fenster, die von
+      dem eingegebenen Fenster
+      abweichen?
+    </button>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Interior Walls Section -->
+  <div class="mb-3 row align-items-center">
+    <label for="iw_vorhanden" class="col-sm-5 col-form-label">Innenwände gegen unbeheizt vorhanden?</label>
+    <div class="col-sm-7">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="iw_vorhanden" id="iw_vorhanden_ja"
+               [value]="true" [checked]="berechnungService.hasInteriorWalls(roomId)"
+               (change)="berechnungService.setHasInteriorWalls(roomId, true)">
+        <label class="form-check-label" for="iw_vorhanden_ja">Ja</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="iw_vorhanden" id="iw_vorhanden_nein"
+               [value]="false" [checked]="!berechnungService.hasInteriorWalls(roomId)"
+               (change)="berechnungService.setHasInteriorWalls(roomId, false)">
+        <label class="form-check-label" for="iw_vorhanden_nein">Nein</label>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Interior Walls Details (shown only when hasInteriorWalls is true) -->
+  <div *ngIf="berechnungService.hasInteriorWalls(roomId)" class="mb-3">
+    <div class="row align-items-center mb-3">
+      <label for="iw_laenge" class="col-sm-5 col-form-label">Gesamtlänge der Innenwände gegen unbeheizte Räume</label>
+      <div class="col-sm-7">
+        <div class="input-group">
+          <input type="number" step="0.1" class="form-control" id="iw_laenge"
+                 name="iw_laenge" [ngModel]="berechnungService.getInteriorWallLength(roomId)"
+                 (ngModelChange)="berechnungService.setInteriorWallLength(roomId, $event)" required
+                 min="0.5" max="100">
+          <span class="input-group-text">m</span>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <label for="iw_daemmung" class="col-sm-5 col-form-label">Dämmung vorhanden?</label>
+      <div class="col-sm-7">
+        <div class="input-group">
+          <input type="number" class="form-control" id="iw_daemmung"
+                 name="iw_daemmung" [ngModel]="berechnungService.getInteriorWallInsulationThickness(roomId)"
+                 (ngModelChange)="berechnungService.setInteriorWallInsulationThickness(roomId, $event)"
+                 min="0" max="50" step="0.5">
+          <span class="input-group-text">cm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+
+  <!-- Roof Slope Section (hidden for buildings with flat roofs) -->
+  <div *ngIf="!berechnungService.hasFlatRoof()" class="mb-3 row align-items-center">
+    <label for="roof_vorhanden" class="col-sm-5 col-form-label">Dachschräge vorhanden?</label>
+    <div class="col-sm-7">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="roof_vorhanden" id="roof_vorhanden_ja"
+               [value]="true" [checked]="berechnungService.getEXIST_roof(roomId)"
+               (change)="berechnungService.setEXIST_roof(roomId, true)">
+        <label class="form-check-label" for="roof_vorhanden_ja">Ja</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="roof_vorhanden" id="roof_vorhanden_nein"
+               [value]="false" [checked]="!berechnungService.getEXIST_roof(roomId)"
+               (change)="berechnungService.setEXIST_roof(roomId, false)">
+        <label class="form-check-label" for="roof_vorhanden_nein">Nein</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Roof Details (shown only when EXIST_roof is true and building doesn't have a flat roof) -->
+  <div *ngIf="!berechnungService.hasFlatRoof() && berechnungService.getEXIST_roof(roomId)" class="mb-3">
+    <!-- Multiple Roof Slopes Question -->
+    <div class="row align-items-center mb-3">
+      <label for="roof_multiple" class="col-sm-5 col-form-label">Hat der Raum mehr als 1 Dachschräge?</label>
+      <div class="col-sm-7">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="roof_multiple" id="roof_multiple_ja"
+                 [value]="true" [checked]="berechnungService.getNO_roof_slop(roomId)"
+                 (change)="berechnungService.setNO_roof_slop(roomId, true)">
+          <label class="form-check-label" for="roof_multiple_ja">Ja</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="roof_multiple" id="roof_multiple_nein"
+                 [value]="false" [checked]="!berechnungService.getNO_roof_slop(roomId)"
+                 (change)="berechnungService.setNO_roof_slop(roomId, false)">
+          <label class="form-check-label" for="roof_multiple_nein">Nein</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roof Dimensions -->
+    <div class="row align-items-center mb-3">
+      <label for="roof_dimensions" class="col-sm-5 col-form-label">Dachschrägendimensionen</label>
+      <div class="col-sm-7">
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="input-group">
+              <span class="input-group-text" style="width: 70px;">Länge</span>
+              <input type="number" step="0.1" class="form-control" id="roof_length"
+                     name="roof_length" [ngModel]="berechnungService.getL_roof_wid(roomId)"
+                     (ngModelChange)="berechnungService.setL_roof_wid(roomId, $event)" required
+                     min="1" max="20">
+              <span class="input-group-text">m</span>
+            </div>
+            <div class="form-text">Bei mehreren Dachflächen bitte summieren</div>
+          </div>
+          <div class="col-6">
+            <div class="input-group">
+              <span class="input-group-text" style="width: 70px;">Höhe</span>
+              <input type="number" step="0.1" class="form-control" id="roof_height"
+                     name="roof_height" [ngModel]="berechnungService.getL_roof_hei(roomId)"
+                     (ngModelChange)="berechnungService.setL_roof_hei(roomId, $event)" required
+                     min="1" max="4">
+              <span class="input-group-text">m</span>
+            </div>
+            <div class="form-text">Bei mehreren Dachflächen bitte nicht summieren</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Ceiling Section -->
+    <div class="row align-items-center mb-3">
+      <label for="topceil_dimensions" class="col-sm-5 col-form-label">Ist eine horizontale Decke vorhanden? Geben Sie bitte Breite und Länge an</label>
+      <div class="col-sm-7">
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="input-group">
+              <span class="input-group-text" style="width: 70px;">Breite</span>
+              <input type="number" step="0.1" class="form-control" id="topceil_width"
+                     name="topceil_width" [ngModel]="berechnungService.getL_topceil__wid(roomId)"
+                     (ngModelChange)="berechnungService.setL_topceil__wid(roomId, $event)"
+                     min="0" max="20">
+              <span class="input-group-text">m</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="input-group">
+              <span class="input-group-text" style="width: 70px;">Länge</span>
+              <input type="number" step="0.1" class="form-control" id="topceil_length"
+                     name="topceil_length" [ngModel]="berechnungService.getL_topceil__len(roomId)"
+                     (ngModelChange)="berechnungService.setL_topceil__len(roomId, $event)"
+                     min="0" max="20">
+              <span class="input-group-text">m</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-text">Lassen Sie die Felder leer, wenn keine horizontale Decke vorhanden ist</div>
+      </div>
+    </div>
+
+    <!-- Knee Wall (Drempelwand/Kniestock) -->
+    <div class="row align-items-center mb-3">
+      <label for="knee_wall_height" class="col-sm-5 col-form-label">Falls eine Drempelwand bzw. Kniestock vorhanden ist, geben Sie die Höhe an</label>
+      <div class="col-sm-7">
+        <div class="input-group">
+          <input type="number" step="0.1" class="form-control" id="knee_wall_height"
+                 name="knee_wall_height" [ngModel]="berechnungService.getL_roof_jamb_hei(roomId)"
+                 (ngModelChange)="berechnungService.setL_roof_jamb_hei(roomId, $event)"
+                 min="0" max="2">
+          <span class="input-group-text">m</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center mb-3">
+      <label for="knee_wall_hollow" class="col-sm-5 col-form-label">Klopfen Sie gegen die senkrechte Wand unter der Dachschräge. Klingt es hohl?</label>
+      <div class="col-sm-7">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="knee_wall_hollow" id="knee_wall_hollow_ja"
+                 [value]="true" [checked]="berechnungService.getTYP_jamb_hei(roomId)"
+                 (change)="berechnungService.setTYP_jamb_hei(roomId, true)">
+          <label class="form-check-label" for="knee_wall_hollow_ja">Ja</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="knee_wall_hollow" id="knee_wall_hollow_nein"
+                 [value]="false" [checked]="!berechnungService.getTYP_jamb_hei(roomId)"
+                 (change)="berechnungService.setTYP_jamb_hei(roomId, false)">
+          <label class="form-check-label" for="knee_wall_hollow_nein">Nein</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dormer Question -->
+    <div class="row align-items-center mb-3">
+      <label for="dormer_exists" class="col-sm-5 col-form-label">Ist eine Gaube in der Dachschräge vorhanden?</label>
+      <div class="col-sm-7">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="dormer_exists" id="dormer_exists_ja"
+                 [value]="true" [checked]="berechnungService.getEXIST_dormer(roomId)"
+                 (change)="berechnungService.setEXIST_dormer(roomId, true)">
+          <label class="form-check-label" for="dormer_exists_ja">Ja</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="dormer_exists" id="dormer_exists_nein"
+                 [value]="false" [checked]="!berechnungService.getEXIST_dormer(roomId)"
+                 (change)="berechnungService.setEXIST_dormer(roomId, false)">
+          <label class="form-check-label" for="dormer_exists_nein">Nein</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roof Window type 1 -->
+    <div class="mb-4">
+      <h6>Dachfenster: Falls vorhanden geben Sie in den
+        Dachflächen enthaltene Fenster ein. Die
+        Fensterfläche wird in der Berechnung von der
+        Dachfläche abgezogen.</h6>
+
+      <h6>Dachfenstertyp 1</h6>
+      <div class="row g-3 align-items-center">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Breite</span>
+            <input type="number" class="form-control"
+                   [ngModel]="berechnungService.getL_roof_win1_wid(roomId)"
+                   (ngModelChange)="berechnungService.setL_roof_win1_wid(roomId, $event)"
+                   name="roof_window1_breite" min="20" max="400" step="1">
+            <span class="input-group-text">cm</span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Höhe</span>
+            <input type="number" class="form-control"
+                   [ngModel]="berechnungService.getL_roof_win1_hei(roomId)"
+                   (ngModelChange)="berechnungService.setL_roof_win1_hei(roomId, $event)"
+                   name="roof_window1_hoehe" min="20" max="400" step="1">
+            <span class="input-group-text">cm</span>
+          </div>
+        </div>
+        <div class="form-text">Geben Sie die Abmaße des ersten Fenstertyps an</div>
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Baujahr</span>
+            <select class="form-select"
+                    [ngModel]="berechnungService.getYEAR_roof_win1(roomId)"
+                    (ngModelChange)="berechnungService.setYEAR_roof_win1(roomId, $event)"
+                    name="roof_window1_baujahr">
+              <option *ngFor="let year of windowYearOptions" [value]="year">{{ getWindowYearLabel(year) }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Anzahl</span>
+            <input type="number" class="form-control"
+                   [ngModel]="berechnungService.getNO_roof_win1(roomId)"
+                   (ngModelChange)="berechnungService.setNO_roof_win1(roomId, $event)"
+                   name="roof_window1_anzahl" min="0" max="20" step="1">
+          </div>
+        </div>
+      </div>
+      <div class="form-text mb-2">
+        Lassen Sie die Felder leer, wenn keine Dachfenster vorhanden sind
+      </div>
+    </div>
+
+    <!-- Add second roof window button -->
+    <div class="mb-4" *ngIf="!roofWindow2Visible">
+      <button type="button" class="btn btn-outline-secondary" (click)="showRoofWindow2()">
+        <i class="bi bi-plus-lg"></i> Gibt es weitere Dachfenster, die von dem eingegebenen Fenster abweichen?
+      </button>
+    </div>
+
+    <!-- Roof Window type 2 (shown only when visible) -->
+    <div *ngIf="roofWindow2Visible" class="mb-4">
+      <h6>Dachfenstertyp 2</h6>
+      <div class="row g-3 align-items-center">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Breite</span>
+            <input type="number" class="form-control"
+                   [ngModel]="berechnungService.getL_roof_win2_wid(roomId)"
+                   (ngModelChange)="berechnungService.setL_roof_win2_wid(roomId, $event)"
+                   name="roof_window2_breite" min="20" max="400" step="1">
+            <span class="input-group-text">cm</span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Höhe</span>
+            <input type="number" class="form-control"
+                   [ngModel]="berechnungService.getL_roof_win2_hei(roomId)"
+                   (ngModelChange)="berechnungService.setL_roof_win2_hei(roomId, $event)"
+                   name="roof_window2_hoehe" min="20" max="400" step="1">
+            <span class="input-group-text">cm</span>
+          </div>
+        </div>
+        <div class="form-text">Geben Sie die Abmaße des zweiten Fenstertyps an</div>
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Baujahr</span>
+            <select class="form-select"
+                    [ngModel]="berechnungService.getYEAR_roof_win2(roomId)"
+                    (ngModelChange)="berechnungService.setYEAR_roof_win2(roomId, $event)"
+                    name="roof_window2_baujahr">
+              <option *ngFor="let year of windowYearOptions" [value]="year">{{ getWindowYearLabel(year) }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-text" style="width: 90px;">Anzahl</span>
+            <input type="number" class="form-control"
+                   [ngModel]="berechnungService.getNO_roof_win2(roomId)"
+                   (ngModelChange)="berechnungService.setNO_roof_win2(roomId, $event)"
+                   name="roof_window2_anzahl" min="0" max="20" step="1">
+          </div>
+        </div>
+      </div>
+      <div class="text-end mt-2">
+        <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeRoofWindowType(2)">
+          <i class="bi bi-trash"></i> Entfernen
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Spacer to prevent content from being hidden behind fixed footer -->
   <div class="pb-5 mb-5"></div>
-  
+
   <!-- Footer Navigation Container -->
   <div class="navigation-footer">
     <div class="container d-flex justify-content-between">
@@ -147,4 +544,3 @@
     </div>
   </div>
 </form>
-

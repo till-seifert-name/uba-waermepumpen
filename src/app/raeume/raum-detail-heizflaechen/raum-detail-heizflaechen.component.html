@@ -2,26 +2,88 @@
 <app-wizard-tabs [progress]="60" activeRoomSubTab="heizflaechen"></app-wizard-tabs>
 
 <!-- Content -->
-<h5 class="mb-4">Heizflächen für Raum: {{ roomData.name }}</h5>
+<h5 class="mb-4">Heizflächen für Raum: {{ berechnungService.getRoomName(roomId) }}</h5>
 
-<div class="card mb-4">
-  <div class="card-header">Heizflächen</div>
-  <div class="card-body">
-    <p class="text-muted">Hier werden Eingabefelder für Heizflächen und Heizkörper platziert.</p>
+<!-- Information Section -->
+<div class="alert alert-info" style="columns: 3;">
+  <div style="break-inside: avoid">
+    <h6><i class="bi bi-fire"></i> Warum die Heizkörperdaten wichtig sind</h6>
+    <p>Die Wärme des Heizkreiswassers wird über die Oberfläche der
+      Heizkörper an den Raum abgegeben.
+      Je größer die Übertragungsfläche eines Heizkörpers ist, desto
+      mehr Wärme kann bei gleicher Vorlauftemperatur abgegeben werden.</p>
+  </div>
+  <div style="break-inside: avoid">
+    <p><i class="bi bi-arrow-right-square"></i> Das bedeutet: Größere oder leistungsstärkere Heizkörper
+      ermöglichen eine niedrigere Vorlauftemperatur – und machen
+      den effizienten Betrieb einer Wärmepumpe überhaupt erst möglich.</p>
+  </div>
+  <div style="break-inside: avoid">
+    <h6><i class="bi bi-calculator"></i> Was wird geprüft?</h6>
+    <p>Um zu beurteilen, ob Ihr Gebäude niedertemperaturfähig ist,
+      wird berechnet, ob die installierte Heizkörperleistung ausreicht,
+      um die Wärmeverluste des Raums bei einer maximalen
+      Vorlauftemperatur von 55°C auszugleichen.</p>
+  </div>
+  <div style="break-inside: avoid">
+    <h6><i class="bi bi-rulers"></i> Welche Angaben sind dafür nötig?</h6>
+    <p>Für die Berechnung der Heizkörperleistung benötigen wir:</p>
+    <ul>
+      <li>den Typ des Heizkörpers (z.B. Flach, Glieder, Rippen)</li>
+      <li>und die Abmessungen (Breite, Höhe, Tiefe)</li>
+    </ul>
   </div>
 </div>
 
-<!-- Spacer to prevent content from being hidden behind fixed footer -->
-<div class="pb-5 mb-5"></div>
-
-<!-- Footer Navigation Container -->
-<div class="navigation-footer">
-  <div class="container d-flex justify-content-between">
-    <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-wand" [queryParams]="{room: roomId}">
-      <i class="bi bi-arrow-left me-1"></i> Zurück
-    </button>
-    <button type="button" class="btn btn-primary" (click)="onNext()">
-      Weiter <i class="bi bi-arrow-right ms-1"></i>
+<form (ngSubmit)="onNext()" ngNativeValidate>
+  <div class="mb-4" *ngIf="!heater1Visible && !heater2Visible">
+    <button type="button" class="btn btn-outline-secondary" (click)="addHeaterType()">
+      <i class="bi bi-plus-lg"></i> Heizfläche hinzufügen
     </button>
   </div>
-</div>
+
+  <!-- Heater type 1 (shown only when visible) -->
+  <app-heater-form
+    [roomId]="roomId"
+    [heaterNumber]="1"
+    [visible]="heater1Visible"
+    (remove)="removeHeaterType(1)">
+  </app-heater-form>
+
+  <!-- Heater type 2 (shown only when visible) -->
+  <app-heater-form
+    [roomId]="roomId"
+    [heaterNumber]="2"
+    [visible]="heater2Visible"
+    (remove)="removeHeaterType(2)">
+  </app-heater-form>
+
+  <!-- Heater type 3 (shown only when visible) -->
+  <app-heater-form
+    [roomId]="roomId"
+    [heaterNumber]="3"
+    [visible]="heater3Visible"
+    (remove)="removeHeaterType(3)">
+  </app-heater-form>
+
+  <div class="mb-4" *ngIf="(heater1Visible && !heater2Visible) || (heater2Visible && !heater3Visible)">
+    <button type="button" class="btn btn-outline-secondary" (click)="addHeaterType()">
+      <i class="bi bi-plus-lg"></i> Gibt es weitere Heizflächen, die von der eingegebenen Heizfläche abweichen?
+    </button>
+  </div>
+
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+
+  <!-- Footer Navigation Container -->
+  <div class="navigation-footer">
+    <div class="container d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-wand" [queryParams]="{room: roomId}">
+        <i class="bi bi-arrow-left me-1"></i> Zurück
+      </button>
+      <button type="submit" class="btn btn-primary">
+        Weiter <i class="bi bi-arrow-right ms-1"></i>
+      </button>
+    </div>
+  </div>
+</form>

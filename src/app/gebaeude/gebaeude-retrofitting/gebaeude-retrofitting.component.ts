@@ -1,32 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BerechnungService } from '../../berechnung.service';
-
-interface RetrofittingData {
-  // Wall
-  wallUpgraded: boolean;
-  wallModYear: string;
-  wallInsulationThickness: number;
-  
-  // Windows
-  windowsUpgraded: boolean;
-  windowsModYear: string;
-  
-  // Roof
-  roofUpgraded: boolean;
-  roofModYear: string;
-  roofInsulationThickness: number;
-  
-  // Top Floor Ceiling
-  topFloorUpgraded: boolean;
-  topFloorModYear: string;
-  topFloorInsulationThickness: number;
-  
-  // Basement/Floor
-  basementUpgraded: boolean;
-  basementModYear: string;
-  basementInsulationThickness: number;
-}
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {BerechnungService} from '../../berechnung.service';
+import {DataGrid} from '../../data-grid';
 
 @Component({
   selector: 'app-gebaeude-retrofitting',
@@ -35,40 +10,38 @@ interface RetrofittingData {
   styleUrl: './gebaeude-retrofitting.component.scss'
 })
 export class GebaeudeRetrofittingComponent implements OnInit {
-  retrofittingData: RetrofittingData = {
-    wallUpgraded: false,
-    wallModYear: '2003-2008',
-    wallInsulationThickness: 6,
-    
-    windowsUpgraded: false,
-    windowsModYear: '2003-2008',
-    
-    roofUpgraded: false,
-    roofModYear: '2003-2008',
-    roofInsulationThickness: 6,
-    
-    topFloorUpgraded: true, // Default checked in mockup
-    topFloorModYear: '2003-2008',
-    topFloorInsulationThickness: 6,
-    
-    basementUpgraded: false,
-    basementModYear: '2003-2008',
-    basementInsulationThickness: 6
-  };
+  // Expose grid property for template binding
+  public grid: DataGrid;
 
   constructor(
     private router: Router,
     private berechnungService: BerechnungService
-  ) {}
+  ) {
+    this.grid = berechnungService.grid;
+  }
 
   ngOnInit(): void {
-    // Here we would load existing data from the grid
-    // For the mockup, we're using hardcoded defaults
+    // Nothing to initialize specifically
   }
-  
+
+  // Getter for Modernisierungsjahr from the Daten sheet (B19-B24)
+  get Modernisierungsjahr(): string[] {
+    try {
+      // Get the values from the Daten sheet
+      return this.grid.getCells('Daten', 'B19', 'B24').map(row => row[0].toString());
+    } catch (error) {
+      console.error('Error loading Modernisierungsjahr:', error);
+      return [
+      ];
+    }
+  }
+
   onSubmit(): void {
-    // Here we would save data to the grid
     // For the mockup, we'll just navigate to the next step
     this.router.navigate(['/gebaeude/heizung']);
+  }
+
+  checked(event: Event): boolean {
+    return (event.target as HTMLInputElement)?.checked ?? false;
   }
 }

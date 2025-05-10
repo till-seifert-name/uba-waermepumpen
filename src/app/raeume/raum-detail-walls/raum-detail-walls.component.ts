@@ -1,19 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BerechnungService, Room } from '../../berechnung.service';
-import { Subscription } from 'rxjs';
-
-interface WindowData {
-  width: number;
-  height: number;
-  constructionYear: string;
-  count: number;
-}
-
-interface WallData {
-  length: number;
-  insulationThickness: number;
-}
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {BerechnungService, Room} from '../../berechnung.service';
+import {Subscription} from 'rxjs';
+import {DataGrid} from '../../data-grid';
 
 @Component({
   selector: 'app-raum-detail-walls',
@@ -24,32 +13,39 @@ interface WallData {
 export class RaumDetailWallsComponent implements OnInit, OnDestroy {
   roomId: string = '';
   roomList: Room[] = [];
+  public grid: DataGrid;
   private subscriptions: Subscription[] = [];
-  
-  roomData = {
-    name: ''
-  };
-  
-  wallData: WallData = {
-    length: 0,
-    insulationThickness: 6 // Default from mockup
-  };
-  
-  windowData: WindowData = {
-    width: 0,
-    height: 0,
-    constructionYear: '1969-1979', // Default from mockup
-    count: 1
-  };
-  
-  // Additional window types
-  additionalWindows: WindowData[] = [];
+
+  // Getter for window year options from Daten sheet (same as building years)
+  get windowYearOptions(): string[] {
+    // Get the values from the Daten sheet
+    const Baujahre = this.grid.getCells('Daten', 'E17', 'E28').map(row => row[0].toString());
+    // Add 'wie Gebäude' option at the beginning
+    return ['', ...Baujahre];
+  }
+
+  // Helper to get display text for building year option
+  getWindowYearLabel(year: string): string {
+    if (year === '') {
+      return `wie Gebäude (${this.grid.getCell('IN_build', 'P5').toString() || 'nicht angegeben'})`;
+    }
+    return year;
+  }
+
+  // Track visible window types
+  window2Visible: boolean = false;
+  window3Visible: boolean = false;
+
+  // Track visible roof window types
+  roofWindow2Visible: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private berechnungService: BerechnungService
-  ) {}
+    public berechnungService: BerechnungService
+  ) {
+    this.grid = berechnungService.grid;
+  }
 
   ngOnInit(): void {
     // Subscribe to room list changes
@@ -58,7 +54,7 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
         this.roomList = rooms;
       })
     );
-    
+
     // Get room ID from query params
     this.subscriptions.push(
       this.route.queryParams.subscribe(params => {
@@ -74,83 +70,94 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
       })
     );
   }
-  
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-  
+
   loadRoomData(roomId: string): void {
-    const room = this.roomList.find(r => r.id === roomId);
-    if (room) {
-      this.roomData.name = room.name;
-      
-      // If this room has saved data, load it
-      if (room.data) {
-        // Load wall and window data if available
-        if (room.data.wallData) {
-          this.wallData = { ...this.wallData, ...room.data.wallData };
-        }
-        
-        if (room.data.windowData) {
-          this.windowData = { ...this.windowData, ...room.data.windowData };
-        }
-        
-        if (room.data.additionalWindows) {
-          this.additionalWindows = [...room.data.additionalWindows];
-        }
-      }
-    } else {
-      // Room not found, redirect to room list
-      this.router.navigate(['/raeume/intro']);
+    // Check if window types 2 and 3 have any data and should be shown
+    this.window2Visible = this.berechnungService.getWindowWidth(roomId, 2) > 0;
+    this.window3Visible = this.berechnungService.getWindowWidth(roomId, 3) > 0;
+
+    // Check if roof window type 2 has any data and should be shown
+    this.roofWindow2Visible = this.berechnungService.getL_roof_win2_wid(roomId) > 0;
+  }
+
+  // Get the building insulation thickness from the service
+  get buildingInsulationThickness(): number {
+    return this.berechnungService.getBuildingWallInsulationThickness();
+  }
+
+  addWindowType(): void {
+    // Show the next window type and copy values from window type 1
+    const sourceWidth = this.berechnungService.getWindowWidth(this.roomId, 1);
+    const sourceHeight = this.berechnungService.getWindowHeight(this.roomId, 1);
+    const sourceYear = this.berechnungService.getWindowYear(this.roomId, 1);
+    const sourceCount = this.berechnungService.getWindowCount(this.roomId, 1) || 1;
+
+    if (!this.window2Visible) {
+      // Initialize window type 2 with values from window type 1
+      this.window2Visible = true;
+      this.berechnungService.setWindowWidth(this.roomId, sourceWidth, 2);
+      this.berechnungService.setWindowHeight(this.roomId, sourceHeight, 2);
+      this.berechnungService.setWindowYear(this.roomId, sourceYear, 2);
+      this.berechnungService.setWindowCount(this.roomId, sourceCount, 2);
+    } else if (!this.window3Visible) {
+      // Initialize window type 3 with values from window type 1
+      this.window3Visible = true;
+      this.berechnungService.setWindowWidth(this.roomId, sourceWidth, 3);
+      this.berechnungService.setWindowHeight(this.roomId, sourceHeight, 3);
+      this.berechnungService.setWindowYear(this.roomId, sourceYear, 3);
+      this.berechnungService.setWindowCount(this.roomId, sourceCount, 3);
     }
   }
-  
-  addWindowType(): void {
-    // Add a new window type
-    this.additionalWindows.push({
-      width: 0,
-      height: 0,
-      constructionYear: '2003-2008',
-      count: 1
-    });
+
+  removeWindowType(windowType: number): void {
+    // Hide the window type and clear its data
+    if (windowType === 2) {
+      this.window2Visible = false;
+      this.berechnungService.setWindowWidth(this.roomId, 0, 2);
+      this.berechnungService.setWindowHeight(this.roomId, 0, 2);
+      this.berechnungService.setWindowCount(this.roomId, 0, 2);
+    } else if (windowType === 3) {
+      this.window3Visible = false;
+      this.berechnungService.setWindowWidth(this.roomId, 0, 3);
+      this.berechnungService.setWindowHeight(this.roomId, 0, 3);
+      this.berechnungService.setWindowCount(this.roomId, 0, 3);
+    }
   }
-  
-  removeWindowType(index: number): void {
-    // Remove a window type by index
-    this.additionalWindows.splice(index, 1);
+
+  // Method to show the second roof window type
+  showRoofWindow2(): void {
+    // Show the second roof window type and copy values from the first one
+    const sourceWidth = this.berechnungService.getL_roof_win1_wid(this.roomId);
+    const sourceHeight = this.berechnungService.getL_roof_win1_hei(this.roomId);
+    const sourceYear = this.berechnungService.getYEAR_roof_win1(this.roomId);
+    const sourceCount = this.berechnungService.getNO_roof_win1(this.roomId) || 1;
+
+    this.roofWindow2Visible = true;
+    this.berechnungService.setL_roof_win2_wid(this.roomId, sourceWidth);
+    this.berechnungService.setL_roof_win2_hei(this.roomId, sourceHeight);
+    this.berechnungService.setYEAR_roof_win2(this.roomId, sourceYear);
+    this.berechnungService.setNO_roof_win2(this.roomId, sourceCount);
   }
-  
-  // Save room data before leaving
-  saveRoomData(): void {
-    // Create a complete data object with all wall and window details
-    const completeData = {
-      wallData: this.wallData,
-      windowData: this.windowData,
-      additionalWindows: this.additionalWindows
-    };
-    
-    this.berechnungService.updateRoomData(this.roomId, completeData);
+
+  // Method to remove the second roof window type
+  removeRoofWindowType(windowType: number): void {
+    if (windowType === 2) {
+      this.roofWindow2Visible = false;
+      this.berechnungService.setL_roof_win2_wid(this.roomId, "");
+      this.berechnungService.setL_roof_win2_hei(this.roomId, "");
+      this.berechnungService.setYEAR_roof_win2(this.roomId, "");
+      this.berechnungService.setNO_roof_win2(this.roomId, "");
+    }
   }
-  
-  // Helper method to check if this is the last room
-  isLastRoom(): boolean {
-    const currentRoomIndex = this.roomList.findIndex(room => room.id === this.roomId);
-    return currentRoomIndex === this.roomList.length - 1;
-  }
-  
-  // Helper method to check if there are more rooms
-  hasNextRoom(): boolean {
-    const currentRoomIndex = this.roomList.findIndex(room => room.id === this.roomId);
-    return currentRoomIndex < this.roomList.length - 1;
-  }
-  
+
   onComplete(): void {
-    // Save current room data
-    this.saveRoomData();
-    
     // Navigate to the Heizflächen tab for this room
     this.router.navigate(['/raeume/detail-heizflaechen'], {
-      queryParams: { room: this.roomId }
+      queryParams: {room: this.roomId}
     });
   }
 }

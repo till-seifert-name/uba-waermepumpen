@@ -35,6 +35,7 @@ import {ErgebnisAssessmentComponent} from "./ergebnis/ergebnis-assessment/ergebn
 // Shared Components
 import {WizardTabsComponent} from "./shared/wizard-tabs/wizard-tabs.component";
 import {BandTachoComponent} from "./shared/band-tacho/band-tacho.component";
+import {HeaterFormComponent} from "./shared/heater-form/heater-form.component";
 
 import '@angular/common/locales/global/de';
 
@@ -70,7 +71,8 @@ import '@angular/common/locales/global/de';
 
     // Shared Components
     WizardTabsComponent,
-    BandTachoComponent
+    BandTachoComponent,
+    HeaterFormComponent
   ],
   imports: [
     BrowserModule,

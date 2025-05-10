@@ -1,43 +1,28 @@
 <!-- Wizard Tabs -->
 <app-wizard-tabs [progress]="20"></app-wizard-tabs>
 
-  <!-- PO Comment Area (This would be removed in production) -->
-  <div class="po-comment float-end" style="max-width: 250px;">
-    Navigation zwischen Räumen jetzt über die Tabs im oberen Bereich<br>
-    Die Raumliste wird aus dem zentralen Service geladen
-  </div>
 
-  <!-- Content -->
-  <div class="text-center">
-    <h1 class="display-5">Eingaben Raumebene – Wärmeverluste</h1>
-    <p class="lead" *ngIf="selectedRoomName">für Raum: {{selectedRoomName}}</p>
-    <p class="lead" *ngIf="!selectedRoomName">Bitte wählen Sie einen Raum aus</p>
-  </div>
+<!-- Content -->
+<div class="text-center">
+  <h1 class="display-5">Eingaben Raumebene – Wärmeverluste</h1>
+  <p class="lead" *ngIf="selectedRoomName">für Raum: {{ selectedRoomName }}</p>
+  <p class="lead" *ngIf="!selectedRoomName">Bitte wählen Sie einen Raum aus</p>
+</div>
 
-  <!-- Spacer to prevent content from being hidden behind fixed footer -->
-  <div class="pb-5 mb-5"></div>
-  
-  <!-- Footer Navigation Container -->
-  <div class="navigation-footer">
-    <div class="container d-flex justify-content-between">
-      <button type="button" class="btn btn-secondary" routerLink="/raeume/liste-2">
-        <i class="bi bi-arrow-left me-1"></i> Zurück
-      </button>
-      <button type="button" class="btn btn-primary"
-              routerLink="/raeume/detail-basis" 
-              [queryParams]="{room: selectedRoomId}"
-              [disabled]="!selectedRoomId">
-        Weiter <i class="bi bi-arrow-right ms-1"></i>
-      </button>
-    </div>
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/raeume/liste-2">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary"
+            routerLink="/raeume/detail-basis"
+            [queryParams]="{room: selectedRoomId}"
+            [disabled]="!selectedRoomId">
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
   </div>
-<style>
-.po-comment {
-  border: 1px dashed red;
-  background-color: #ffdddd;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: #600;
-}
-</style>
+</div>

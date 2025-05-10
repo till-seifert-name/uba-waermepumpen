@@ -54,17 +54,20 @@ export class DataGrid {
     return JSON.stringify(this.cells);
   }
 
-  // Method to serialize only the whitelisted cells for all sheets
-  serializeWhitelistedCells(whitelist: string[]): string {
+  // Method to serialize cells based on parsed cell references
+  serializeWhitelistedCells(parsedReferences: [string, string][]): string {
     const whitelistedSheets: Record<string, Sheet> = {};
 
-    for (const sheetName in this.cells) {
-      whitelistedSheets[sheetName] = {};
-      for (const cell in this.cells[sheetName]) {
-        if (whitelist.includes(cell)) {
-          whitelistedSheets[sheetName][cell] = this.cells[sheetName][cell];
-        }
+    for (const [sheetName, cellName] of parsedReferences) {
+      // Skip if the sheet or cell doesn't exist
+      if (!this.cells[sheetName] || this.cells[sheetName][cellName] === undefined) {
+        continue;
       }
+
+      // Initialize sheet if needed
+      whitelistedSheets[sheetName] = whitelistedSheets[sheetName] || {};
+      // Save the cell value
+      whitelistedSheets[sheetName][cellName] = this.cells[sheetName][cellName];
     }
 
     return JSON.stringify(whitelistedSheets);
@@ -94,21 +97,6 @@ export class DataGrid {
   }
 
   /**
-   * Method to set all listed cells to one value
-   * @param list
-   * @param value
-   */
-  clearListed(list: string[], value = ''): void {
-    for (const sheetName in this.cells) {
-      for (const cell in this.cells[sheetName]) {
-        if (list.includes(cell)) {
-          this.setCell(sheetName, cell, value);
-        }
-      }
-    }
-  }
-
-  /**
    * Sets the content of the specified cell in the specified sheet.
    */
   setCell(sheet: string, cell: string, value: CellContent): void {
@@ -118,7 +106,8 @@ export class DataGrid {
     this.cells[sheet] ??= {};
 
     if (typeof value === 'string' && /^[0-9\-]*[.,]?[0-9Ee\-]+$/.test(value)) {
-      value = parseFloat(value.replace(/[.,]/, '.'));
+    // not used, we will try to use native html5 number inputs
+    //  value = parseFloat(value.replace(/[.,]/, '.'));
     }
 
     this.cells[sheet][cell] = value;
@@ -164,6 +153,30 @@ export class DataGrid {
       return this.resolveFunction(sheet, cell, cellContent);
     }
     return cellContent ?? "";
+  }
+
+  /**
+   * Gets the contents of a range of cells in the specified sheet.
+   * Returns a 2D array with the values.
+   */
+  getCells(sheet: string, from: string, to: string): (number | string)[][] {
+    const $x1 = this.COLUMN(from);
+    const $y1 = this.ROW(from);
+    const $x2 = this.COLUMN(to);
+    const $y2 = this.ROW(to);
+
+    const result: (number | string)[][] = [];
+
+    for (let row = $y1; row <= $y2; row++) {
+      const rowData: (number | string)[] = [];
+      for (let col = $x1; col <= $x2; col++) {
+        const cell = DataGrid.index2cell(col, row);
+        rowData.push(this.getCell(sheet, cell));
+      }
+      result.push(rowData);
+    }
+
+    return result;
   }
 
   private resolveFunction(sheet: string, cell: string, func: CellFunc): number {
@@ -321,3 +334,14 @@ export function ISTLEER(value: unknown) {
 
 export const ABS = (wert: number) => Math.abs(wert);
 
+/**
+ * Parses a cell reference in the format "Sheet!Cell" to [sheet, cell]
+ */
+export function parseCellReference(reference: string): [string, string] {
+    const parts = reference.split('!');
+    if (parts.length === 2) {
+      return [parts[0], parts[1]];
+    }
+    // Default to Names sheet if no sheet specified
+    return ["", reference];
+  }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BerechnungService } from '../../berechnung.service';
+import { DataGrid } from '../../data-grid';
 
 interface FlowTempData {
   knowsFlowTemp: boolean;
@@ -16,6 +17,9 @@ interface FlowTempData {
   styleUrl: './gebaeude-flow-temp.component.scss'
 })
 export class GebaeudeFlowTempComponent implements OnInit {
+  // Expose grid property for template binding
+  public grid: DataGrid;
+
   flowTempData: FlowTempData = {
     knowsFlowTemp: false,
     designTemp: null,
@@ -24,10 +28,16 @@ export class GebaeudeFlowTempComponent implements OnInit {
     currentOutdoorTemp: null
   };
 
-  constructor(private berechnungService: BerechnungService) {}
+  constructor(private berechnungService: BerechnungService) {
+    this.grid = berechnungService.grid;
+  }
 
   ngOnInit(): void {
     // Here we would load existing data from the grid
     // For the mockup, we use hardcoded defaults
+  }
+
+  checked(event: Event): boolean {
+    return (event.target as HTMLInputElement)?.checked ?? false;
   }
 }

@@ -6,19 +6,23 @@
   <div class="mb-3 p-3 border rounded">
     <div class="form-check form-switch mb-2">
       <input class="form-check-input" type="checkbox" role="switch" id="check_vl_bekannt"
-             [(ngModel)]="flowTempData.knowsFlowTemp" name="check_vl_bekannt">
+             [checked]="grid.getCell('IN_build', 'P16') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'P16', checked($event) ? 'Ja' : 'Nein')"
+             name="check_vl_bekannt">
       <label class="form-check-label" for="check_vl_bekannt">
         Ich weiß, auf welche Vorlauftemperatur die Heizkurve der Heizung eingestellt ist
       </label>
     </div>
     <!-- Conditional Section -->
-    <div class="conditional-section" *ngIf="flowTempData.knowsFlowTemp">
+    <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'P16') === 'Ja'">
       <div class="row align-items-center">
         <label for="vl_auslegung" class="col-sm-5 col-form-label">Vorlauftemperatur am Auslegungspunkt</label>
         <div class="col-sm-5">
           <div class="input-group input-group-sm">
             <input type="number" class="form-control" id="vl_auslegung"
-                   [(ngModel)]="flowTempData.designTemp" name="vl_auslegung">
+                   [ngModel]="grid.getCellNumeric('IN_build', 'P17')"
+                   (ngModelChange)="grid.setCell('IN_build', 'P17', $event)"
+                   name="vl_auslegung">
             <span class="input-group-text">°C</span>
           </div>
         </div>
@@ -29,19 +33,23 @@
   <div class="mb-3 p-3 border rounded">
     <div class="form-check form-switch mb-2">
       <input class="form-check-input" type="checkbox" role="switch" id="check_vl_gemessen"
-             [(ngModel)]="flowTempData.canMeasureTemp" name="check_vl_gemessen" checked>
+             [checked]="grid.getCell('IN_build', 'P18') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'P18', checked($event) ? 'Ja' : 'Nein')"
+             name="check_vl_gemessen">
       <label class="form-check-label" for="check_vl_gemessen">
         Ich kann im Heizungsraum die Vorlauftemperatur ablesen und die Außentemperatur messen
       </label>
     </div>
     <!-- Conditional Section -->
-    <div class="conditional-section" *ngIf="flowTempData.canMeasureTemp">
+    <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'P18') === 'Ja'">
       <div class="row align-items-center mb-2">
         <label for="vl_aktuell" class="col-sm-4 col-form-label">Vorlauftemperatur</label>
         <div class="col-sm-5">
           <div class="input-group input-group-sm">
             <input type="number" class="form-control" id="vl_aktuell"
-                   [(ngModel)]="flowTempData.currentFlowTemp" name="vl_aktuell">
+                   [ngModel]="grid.getCellNumeric('IN_build', 'P19')"
+                   (ngModelChange)="grid.setCell('IN_build', 'P19', $event)"
+                   name="vl_aktuell">
             <span class="input-group-text">°C</span>
           </div>
         </div>
@@ -51,7 +59,9 @@
         <div class="col-sm-5">
           <div class="input-group input-group-sm">
             <input type="number" class="form-control" id="aussen_aktuell"
-                   [(ngModel)]="flowTempData.currentOutdoorTemp" name="aussen_aktuell">
+                   [ngModel]="grid.getCellNumeric('IN_build', 'P20')"
+                   (ngModelChange)="grid.setCell('IN_build', 'P20', $event)"
+                   name="aussen_aktuell">
             <span class="input-group-text">°C</span>
           </div>
         </div>
@@ -61,7 +71,7 @@
 
   <!-- Spacer to prevent content from being hidden behind fixed footer -->
   <div class="pb-5 mb-5"></div>
-  
+
   <!-- Footer Navigation Container -->
   <div class="navigation-footer">
     <div class="container d-flex justify-content-between">

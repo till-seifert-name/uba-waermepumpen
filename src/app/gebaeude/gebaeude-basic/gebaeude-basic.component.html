@@ -3,13 +3,15 @@
 
 <!-- Content -->
 
-<form #buildingForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+<form (ngSubmit)="onSubmit()" ngNativeValidate>
   <div class="mb-3 row align-items-center">
     <label for="plz" class="col-sm-5 col-form-label">Standort des Gebäudes (PLZ)</label>
     <div class="col-sm-7">
       <input type="text" class="form-control" id="plz" name="plz"
-             [(ngModel)]="buildingData.plz"
-             inputmode="numeric" pattern="[0-9]*">
+             [ngModel]="grid.getCell('IN_build', 'P2')"
+             (ngModelChange)="grid.setCell('IN_build', 'P2', $event)"
+             [ngModelOptions]="{ updateOn: 'blur' }"
+             pattern="[0-9]{5}">
     </div>
   </div>
 
@@ -18,17 +20,23 @@
     <div class="col-sm-7">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="gebaeudetyp" id="typ_efh"
-               [(ngModel)]="buildingData.buildingType" value="EFH" checked>
+               [value]="'Ein- oder Zweifamilienhaus'"
+               [checked]="grid.getCell('IN_build', 'P3') === 'Ein- oder Zweifamilienhaus'"
+               (change)="grid.setCell('IN_build', 'P3', 'Ein- oder Zweifamilienhaus')">
         <label class="form-check-label" for="typ_efh">Ein- oder Zweifamilienhaus</label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="gebaeudetyp" id="typ_rh"
-               [(ngModel)]="buildingData.buildingType" value="RH">
+               [value]="'Reihenhaus'"
+               [checked]="grid.getCell('IN_build', 'P3') === 'Reihenhaus'"
+               (change)="grid.setCell('IN_build', 'P3', 'Reihenhaus')">
         <label class="form-check-label" for="typ_rh">Reihenhaus</label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="gebaeudetyp" id="typ_mfh"
-               [(ngModel)]="buildingData.buildingType" value="MFH">
+               [value]="'Mehrfamilienhaus'"
+               [checked]="grid.getCell('IN_build', 'P3') === 'Mehrfamilienhaus'"
+               (change)="grid.setCell('IN_build', 'P3', 'Mehrfamilienhaus')">
         <label class="form-check-label" for="typ_mfh">Mehrfamilienhaus</label>
       </div>
     </div>
@@ -39,22 +47,30 @@
     <div class="col-sm-7">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="dachform" id="dach_flach"
-               [(ngModel)]="buildingData.roofType" value="flach" checked>
+               [value]="'Flach bzw. Flachdach'"
+               [checked]="grid.getCell('IN_build', 'P4') === 'Flach bzw. Flachdach'"
+               (change)="grid.setCell('IN_build', 'P4', 'Flach bzw. Flachdach')">
         <label class="form-check-label" for="dach_flach">Flach oder Flachdach</label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="dachform" id="dach_geneigt"
-               [(ngModel)]="buildingData.roofType" value="geneigt">
+               [value]="'geneigt'"
+               [checked]="grid.getCell('IN_build', 'P4') === 'geneigt'"
+               (change)="grid.setCell('IN_build', 'P4', 'geneigt')">
         <label class="form-check-label" for="dach_geneigt">geneigt</label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="dachform" id="dach_steil"
-               [(ngModel)]="buildingData.roofType" value="steil">
+               [value]="'steil'"
+               [checked]="grid.getCell('IN_build', 'P4') === 'steil'"
+               (change)="grid.setCell('IN_build', 'P4', 'steil')">
         <label class="form-check-label" for="dach_steil">steil</label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="dachform" id="dach_sehrsteil"
-               [(ngModel)]="buildingData.roofType" value="sehrsteil">
+               [value]="'sehr steil'"
+               [checked]="grid.getCell('IN_build', 'P4') === 'sehr steil'"
+               (change)="grid.setCell('IN_build', 'P4', 'sehr steil')">
         <label class="form-check-label" for="dach_sehrsteil">sehr steil</label>
       </div>
     </div>
@@ -63,26 +79,18 @@
   <div class="mb-3 row align-items-center">
     <label for="baujahr" class="col-sm-5 col-form-label">Baujahr</label>
     <div class="col-sm-7">
-      <select class="form-select" id="baujahr" name="baujahr" [(ngModel)]="buildingData.constructionYear">
+      <select class="form-select" id="baujahr" name="baujahr"
+              [ngModel]="grid.getCell('IN_build', 'P5')"
+              (ngModelChange)="grid.setCell('IN_build', 'P5', $event)">
         <option value="" selected>Bitte auswählen</option>
-        <option value="vor1859">vor 1859</option>
-        <option value="1860-1918">1860 - 1918</option>
-        <option value="1919-1948">1919 - 1948</option>
-        <option value="1949-1957">1949 - 1957</option>
-        <option value="1958-1968">1958 - 1968</option>
-        <option value="1969-1979">1969 - 1979</option>
-        <option value="1980-1983">1980 - 1983</option>
-        <option value="1984-1994">1984 - 1994</option>
-        <option value="1995-2002">1995 - 2002</option>
-        <option value="2003-2008">2003 - 2008</option>
-        <option value="nach2009">nach 2009</option>
+        <option *ngFor="let jahr of baualtersklassen" [value]="jahr">{{jahr}}</option>
       </select>
     </div>
   </div>
 
   <!-- Spacer to prevent content from being hidden behind fixed footer -->
   <div class="pb-5 mb-5"></div>
-  
+
   <!-- Footer Navigation Container -->
   <div class="navigation-footer">
     <div class="container d-flex justify-content-between">
