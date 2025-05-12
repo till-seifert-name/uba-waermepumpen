@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BerechnungService, Room} from '../../berechnung.service';
+import {BerechnungService} from '../../berechnung.service';
 import {Subscription} from 'rxjs';
 import {DataGrid} from '../../data-grid';
 
@@ -12,7 +12,6 @@ import {DataGrid} from '../../data-grid';
 })
 export class RaumDetailWallsComponent implements OnInit, OnDestroy {
   roomId: string = '';
-  roomList: Room[] = [];
   public grid: DataGrid;
   private subscriptions: Subscription[] = [];
 
@@ -48,12 +47,6 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Subscribe to room list changes
-    this.subscriptions.push(
-      this.berechnungService.rooms$.subscribe(rooms => {
-        this.roomList = rooms;
-      })
-    );
 
     // Get room ID from query params
     this.subscriptions.push(

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BerechnungService, Room } from '../../berechnung.service';
+import { BerechnungService } from '../../berechnung.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 })
 export class RaumDetailBasicComponent implements OnInit, OnDestroy {
   roomId: string = '';
-  roomList: Room[] = [];
   roomName: string = '';
   private subscriptions: Subscription[] = [];
 
@@ -22,13 +21,6 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to room list changes
-    this.subscriptions.push(
-      this.berechnungService.rooms$.subscribe(rooms => {
-        this.roomList = rooms;
-      })
-    );
-
     // Get room ID from query params
     this.subscriptions.push(
       this.route.queryParams.subscribe(params => {
@@ -108,9 +100,5 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Helper method for template to determine if this is the last room
-  isLastRoom(): boolean {
-    const currentRoomIndex = this.roomList.findIndex(room => room.id === this.roomId);
-    return currentRoomIndex === this.roomList.length - 1;
-  }
+
 }

@@ -1,0 +1,17 @@
+.editable-room-name {
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+  flex-grow: 1;
+  
+  &:hover {
+    background-color: #f8f9fa;
+  }
+  
+  &:focus {
+    outline: none;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: 2px 5px;
+  }
+}

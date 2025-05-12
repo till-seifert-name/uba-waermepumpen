@@ -155,12 +155,7 @@ export class BerechnungService {
   private storage=inject(CustomLocalStorageService);
 
   // Room management
-  private roomsSubject = new BehaviorSubject<Room[]>([
-    // Default sample rooms for development
-    {id: '1', name: 'Wohnzimmer', type: 'exterior'},
-    {id: '2', name: 'Kinderzimmer', type: 'cold'},
-    {id: '3', name: 'Schlafzimmer', type: 'exterior'}
-  ]);
+  private roomsSubject = new BehaviorSubject<Room[]>([]);
 
   // Observable for components to subscribe to
   public rooms$ = this.roomsSubject;
@@ -1020,11 +1015,6 @@ export class BerechnungService {
     return subtypes;
   }
 
-  // Building properties methods
-  getBuildingYear(): string {
-    return this.grid.getCell('IN_build', 'P5').toString();
-  }
-
   // Check if building has a flat roof
   hasFlatRoof(): boolean {
     return this.grid.getCell('IN_build', 'P4') === 'Flach bzw. Flachdach';
@@ -1048,7 +1038,7 @@ export class BerechnungService {
   }
 
   // Get all rooms from DataGrid
-  getAllRooms(): Room[] {
+  public getAllRooms(): Room[] {
     const rooms: Room[] = [];
 
     // Check each possible room column (R to AF, corresponding to roomIds 1-15)
@@ -1062,7 +1052,7 @@ export class BerechnungService {
         rooms.push({
           id: roomId.toString(),
           name: name,
-          type: 'exterior' // Default type
+          type: '?' // Default type TODO: type is not saved, Absicht?
         });
       }
     }
@@ -1159,9 +1149,6 @@ export class BerechnungService {
       console.warn('Only the last room can be removed. Please remove rooms in reverse order.');
       return;
     }
-
-    // Get the column for this room
-    const column = this.getRoomColumn(id);
 
     // Set area to 0 to mark it as inactive/removed
     this.setRoomArea(id, 0);

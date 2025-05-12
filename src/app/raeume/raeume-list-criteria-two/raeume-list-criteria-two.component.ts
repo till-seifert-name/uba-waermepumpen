@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BerechnungService, Room } from '../../berechnung.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { BerechnungService } from '../../berechnung.service';
 import { DataGrid } from '../../data-grid';
 
 @Component({
@@ -9,71 +8,60 @@ import { DataGrid } from '../../data-grid';
   templateUrl: './raeume-list-criteria-two.component.html',
   styleUrl: './raeume-list-criteria-two.component.scss'
 })
-export class RaeumeListCriteriaTwoComponent implements OnInit, OnDestroy {
+export class RaeumeListCriteriaTwoComponent implements OnInit {
   newBoundaryRoomName: string = '';
   newWindowRoomName: string = '';
   newOtherRoomName: string = '';
 
-  roomList: Room[] = [];
   public grid: DataGrid;
-  private subscription: Subscription | null = null;
 
   constructor(private berechnungService: BerechnungService) {
     this.grid = berechnungService.grid;
   }
 
   ngOnInit(): void {
-    // Subscribe to room list changes
-    this.subscription = this.berechnungService.rooms$.subscribe(rooms => {
-      this.roomList = rooms;
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    // Initialize the component
   }
 
   // Room management functions
   addBoundaryRoom(): void {
     if (!this.newBoundaryRoomName.trim()) return;
 
-    // Add a new room with 'boundary' type
-    this.berechnungService.addRoom(this.newBoundaryRoomName.trim(), 'boundary');
-
-    // Clear the input field
+    // Clear the input field after adding the room
+    const name = this.newBoundaryRoomName.trim();
     this.newBoundaryRoomName = '';
+
+    // The actual room addition is now handled by the room-list component
+    this.onAddRoom(name, 'boundary');
   }
 
   addWindowRoom(): void {
     if (!this.newWindowRoomName.trim()) return;
 
-    // Add a new room with 'windows' type
-    this.berechnungService.addRoom(this.newWindowRoomName.trim(), 'windows');
-
-    // Clear the input field
+    // Clear the input field after adding the room
+    const name = this.newWindowRoomName.trim();
     this.newWindowRoomName = '';
+
+    // The actual room addition is now handled by the room-list component
+    this.onAddRoom(name, 'windows');
   }
 
   addOtherRoom(): void {
     if (!this.newOtherRoomName.trim()) return;
 
-    // Add a new room with 'other' type
-    this.berechnungService.addRoom(this.newOtherRoomName.trim(), 'other');
-
-    // Clear the input field
+    // Clear the input field after adding the room
+    const name = this.newOtherRoomName.trim();
     this.newOtherRoomName = '';
+
+    // The actual room addition is now handled by the room-list component
+    this.onAddRoom(name, 'other');
   }
 
-  removeRoom(roomId: string): void {
-    this.berechnungService.removeRoom(roomId);
-  }
-
-  // Method to rename a room
-  renameRoom(roomId: string, newName: string): void {
-    if (!newName || !newName.trim()) return;
-    this.berechnungService.setRoomName(roomId, newName.trim());
+  // Event handlers for room-list component events
+  onAddRoom(name: string, type: string): void {
+    if (!name || !name.trim()) return;
+    // Call the service directly since we need to specify the type
+    this.berechnungService.addRoom(name, type);
   }
 
   // Helper method for handling checkbox events

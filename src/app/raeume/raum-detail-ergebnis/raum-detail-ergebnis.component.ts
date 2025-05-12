@@ -105,7 +105,7 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   }
 
   loadRoomData(): void {
-    const rooms = this.berechnungService.rooms$.getValue();
+    const rooms = this.berechnungService.getAllRooms();
     const room = rooms.find(r => r.id === this.roomId);
 
     if (room) {
@@ -118,7 +118,7 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   }
 
   hasNextRoom(): boolean {
-    const rooms = this.berechnungService.rooms$.getValue();
+    const rooms = this.berechnungService.getAllRooms();
     const currentRoomIndex = rooms.findIndex(r => r.id === this.roomId);
     return currentRoomIndex < rooms.length - 1;
   }
