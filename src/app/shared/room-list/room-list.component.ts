@@ -38,7 +38,16 @@ export class RoomListComponent   {
    * @param newName The new name for the room
    */
   renameRoom(roomId: string, newName: string): void {
-    if (!newName || !newName.trim()) return;
+    if (!newName || !newName.trim()) {
+      // If the name is empty, restore the previous name
+      // We shouldn't allow empty names since they're used to determine room existence
+      const currentRooms = this.berechnungService.getAllRooms();
+      const currentRoom = currentRooms.find(room => room.id === roomId);
+      if (currentRoom) {
+        // There must be a name since the room exists
+        return;
+      }
+    }
 
     this.berechnungService.setRoomName(roomId, newName.trim());
   }

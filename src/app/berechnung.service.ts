@@ -121,8 +121,8 @@ import {databaseRanges, explicitNamedRanges, namedExpressions, sheetsData} from 
  * 4. Subscribe to rooms$ observable to react to room list changes
  *
  * ### Room Management:
- * - Rooms are considered active when their area is > 0
- * - Inactive rooms (area = 0) are not displayed in room lists
+ * - Rooms are considered active when they have a non-empty name
+ * - Inactive rooms (empty name) are not displayed in room lists
  * - Only the last room in the list can be removed (to maintain contiguous IDs)
  * - New rooms are added in the first available slot (column)
  *
@@ -1041,10 +1041,9 @@ export class BerechnungService {
     for (let roomId = 1; roomId <= 15; roomId++) {
       const column = this.getRoomColumn(roomId);
       const name = this.grid.getCell('IN_rooms', `${column}3`).toString();
-      const area = this.grid.getCellNumeric('IN_rooms', `${column}4`);
-
-      // If the room has an area > 0, consider it as an active room
-      if (area > 0) {
+      
+      // If the room has a non-empty name, consider it as an active room
+      if (name && name.trim() !== '') {
         rooms.push({
           id: roomId.toString(),
           name: name,
@@ -1061,10 +1060,10 @@ export class BerechnungService {
     // Find the first available room slot (column)
     for (let roomId = 1; roomId <= 15; roomId++) {
       const column = this.getRoomColumn(roomId);
-      const area = this.grid.getCellNumeric('IN_rooms', `${column}4`);
+      const existingName = this.grid.getCell('IN_rooms', `${column}3`).toString();
 
-      // If area is 0 or NaN, this slot is available
-      if (!area || area <= 0 || isNaN(area)) {
+      // If the room name is empty or blank, this slot is available
+      if (!existingName || existingName.trim() === '') {
         // Found an empty slot, add the room
         this.setRoomName(roomId, name.trim());
 
@@ -1146,8 +1145,8 @@ export class BerechnungService {
       return;
     }
 
-    // Set area to 0 to mark it as inactive/removed
-    this.setRoomArea(id, 0);
+    // Set name to empty to mark it as inactive/removed
+    this.setRoomName(id, '');
 
     // Update the roomsSubject
     const updatedRooms = this.getAllRooms();

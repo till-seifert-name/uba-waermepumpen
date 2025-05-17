@@ -8,8 +8,8 @@
       <div class="editable-room-name"
            #editableField
            [contentEditable]="true"
-           (blur)="renameRoom(room.id, editableField.textContent || '')"
-           title="Klicken zum Bearbeiten">
+           (blur)="renameRoom(room.id, editableField.textContent || ''); editableField.textContent = room.name"
+           title="Klicken zum Bearbeiten - der Name darf nicht leer sein">
         {{room.name}}
       </div>
       <div class="btn-group">
