@@ -194,17 +194,8 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
    * Determines if a tab should be disabled based on progression
    */
   isTabDisabled(index: number): boolean {
-    // Only disable future tabs - allow users to go back
-    if (index === 0) return false; // First tab always enabled
+    return false;
 
-    const activeIndex = this.tabs.findIndex(tab => tab.id === this.activeTabId);
-
-    // For room tabs, enable them if we've reached the Räume step
-    if (this.tabs[index].id.startsWith('room_')) {
-      const raumeIndex = this.tabs.findIndex(tab => tab.id === 'raeume');
-      return activeIndex < raumeIndex; // Disable room tabs if we haven't reached Räume yet
-    }
-
-    return index > activeIndex + 1; // Allow current and next tab
+    // TODO: disbale tab if some input is yet missing
   }
 }
