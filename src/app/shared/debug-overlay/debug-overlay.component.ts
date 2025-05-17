@@ -66,14 +66,13 @@ export class DebugOverlayComponent implements OnInit, OnDestroy {
   }
 
   updateCellValues(): void {
-    for (let i = 0; i < this.cellReferences.length; i++) {
-      const ref = this.cellReferences[i];
-
+    this.berechnungService.grid.clearResults();
+    for (const ref of this.cellReferences) {
       if (ref.sheet && ref.cell) {
         try {
-          ref.value = this.berechnungService.getCellValue(ref.sheet, ref.cell);
+          ref.value = this.berechnungService.grid.g(ref.sheet, ref.cell);
         } catch (error) {
-          ref.value = 'Error' + error;
+          ref.value = 'Error: ' + error;
         }
       }
     }

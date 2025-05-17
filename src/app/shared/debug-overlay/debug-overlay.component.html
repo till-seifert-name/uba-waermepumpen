@@ -7,16 +7,16 @@
   <div class="debug-item" *ngFor="let cellRef of cellReferences; let i = index">
     <div class="input-group">
       <input type="text" class="form-control form-control-sm" placeholder="Blatt"
-             [(ngModel)]="cellRef.sheet" (change)="onInputChange()" [name]="'sheet-' + i">
+             [(ngModel)]="cellRef.sheet" (input)="onInputChange()" [name]="'sheet-' + i">
       <input type="text" class="form-control form-control-sm" placeholder="Zelle (z.B. A1)"
-             [(ngModel)]="cellRef.cell" (change)="onInputChange()" [name]="'cell-' + i">
+             [(ngModel)]="cellRef.cell" (input)="onInputChange()" [name]="'cell-' + i">
       <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeCellRef(i)">
         <i class="bi bi-trash"></i>
       </button>
     </div>
 
     <div class="cell-value" *ngIf="cellRef.sheet && cellRef.cell">
-      <strong>Wert:</strong> [{{ cellRef.value }}]
+      <strong>Wert:</strong> [{{ cellRef.value | json }}]
     </div>
   </div>
 

@@ -1045,18 +1045,6 @@ export class BerechnungService {
     return this.grid.getCell('IN_build', 'P4') === 'Flach bzw. Flachdach';
   }
 
-  /**
-   * Get the value of a specific cell from the DataGrid
-   * Used by the debug overlay to show cell values
-   *
-   * @param sheet The sheet name
-   * @param cell The cell reference (e.g., 'A1')
-   * @returns The cell value
-   */
-  getCellValue(sheet: string, cell: string): any {
-    return this.grid.getCell(sheet, cell);
-  }
-
   getBuildingWallInsulationThickness(): number {
     // Check if wall was retrofitted
     const wasRetrofitted = this.grid.getCell('IN_build', 'Q7') === 'Ja';
