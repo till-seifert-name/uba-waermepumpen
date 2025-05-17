@@ -1,7 +1,5 @@
 // Sheet: PAR
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "A1":  /* unknown */ "Bezeichnung",
   "B1":  /* unknown */ "Parameter",
   "C1":  /* unknown */ "Einheit",
@@ -113,7 +111,7 @@ export const data: Record<string, any> = {
   "C2":  /* unknown */ "W/(mK)",
   "D2":  /* unknown */ "Annahme für lambda Wert der nachträglich aufgebrachten Dämmebene ",
   "F2":  /* unknown */ "Parameter",
-  "G2":  /* unknown */ 0.045,
+  "G2":  /* unknown */ 0.04,
   "H2":  /* unknown */ 1,
   "I2":  /* unknown */ 20,
   "J2":  /* unknown */ 24,
@@ -160,4 +158,4 @@ export const data: Record<string, any> = {
   "J4":  /* unknown */ "Norm-Raumtemperatur Badezimmer",
   "F5":  /* unknown */ "Kommentar ",
   "F10":  /* formula */ "INDEX(PAR[T_air_norm],1)",
-};
+} as const;

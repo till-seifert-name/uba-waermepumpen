@@ -192,12 +192,11 @@ async function convertXlsxToTsModules() {
 
     for (const {name, data, fileName} of namedFilesInfo) {
       let content = `// ${name.replace(/([A-Z])/g, ' $1').trim()} from FODS\n`;
-      content += `// Generated on: ${generationTimestamp}\n\n`;
-      content += `export const ${name}: Record<string, string> = {\n`;
+      content += `export const ${name} = {\n`;
       for (const [key, value] of Object.entries(data)) {
         content += `  ${JSON.stringify(key)}: ${JSON.stringify(value)},\n`;
       }
-      content += '};\n';
+      content += '} as const;\n';
       fs.writeFileSync(path.join(baseOutputDir, fileName), content);
       console.log(`Generated ${path.join(baseOutputDir, fileName)}`);
     }
@@ -216,8 +215,7 @@ async function convertXlsxToTsModules() {
       sheetFileInfos.push({originalName: originalSheetName, varName: sanitizedVarName, fileName: sanitizedFilename});
 
       let sheetFileContent = `// Sheet: ${originalSheetName}\n`;
-      sheetFileContent += `// Generated on: ${generationTimestamp}\n\n`;
-      sheetFileContent += `export const data: Record<string, any> = {\n`;
+      sheetFileContent += `export const data = {\n`;
 
       worksheet.eachRow({includeEmpty: true}, (row, rowNumber) => { // true to get all cell addresses if needed by formulas
         row.eachCell({includeEmpty: true}, (cell, colNumber) => {
@@ -247,14 +245,13 @@ async function convertXlsxToTsModules() {
           }
         });
       });
-      sheetFileContent += '};\n';
+      sheetFileContent += '} as const;\n';
       fs.writeFileSync(path.join(baseOutputDir, sanitizedFilename), sheetFileContent);
       console.log(`Generated ${path.join(baseOutputDir, sanitizedFilename)}`);
     });
 
     // --- 4. Generate master.ts ---
     let masterFileContent = `// Master file aggregating all spreadsheet data\n`;
-    masterFileContent += `// Generated on: ${generationTimestamp}\n\n`;
 
     // Imports for sheets
     sheetFileInfos.forEach(info => {

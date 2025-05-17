@@ -1,7 +1,5 @@
 // Sheet: clc_flat
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "B2":  /* unknown */ "Heizkörper 1 in Raum 1",
   "B3":  /* unknown */ "Typ",
   "C3":  /* formula */ "IN_rooms!R49",
@@ -57,7 +55,7 @@ export const data: Record<string, any> = {
   "R7":  /* unknown */ "Rücklauftemperatur des vorliegenden Systems",
   "S7":  /* unknown */ "Rücklauftemperatur des vorliegenden Systems",
   "B8":  /* unknown */ "Berechnungs-Raumtemperatur",
-  "C8":  /* formula */ "clc_load!M10",
+  "C8":  /* formula */ "clc_load!I10",
   "D8":  /* unknown */ "°C",
   "E8":  /* richtext_as_string */ "ϑi",
   "F8":  /* unknown */ "=",
@@ -150,7 +148,7 @@ export const data: Record<string, any> = {
   "C17":  /* formula */ "(SUMIFS(tabelle1[Wärmeleistung (75/65/20)  in W/m],tabelle1[Heizkörper_Typ],C3,tabelle1[Heizkörper_Subtyp],\"Typ_33\",tabelle1[Höhe H in mm],C6,tabelle1[Bautiefe T in mm],155)*C7/1000)*((O16/O15)^SUMIFS(tabelle1[[Heizkörperexponent n ]],tabelle1[Heizkörper_Typ],C3,tabelle1[Heizkörper_Subtyp],\"Typ_33\",tabelle1[Höhe H in mm],C6,tabelle1[Bautiefe T in mm],155))",
   "D17":  /* unknown */ "W",
   "F17":  /* unknown */ "=",
-  "G17":  /* formula */ "clc_load!$M$72/clc_load!#REF!",
+  "G17":  /* formula */ "clc_load!$I$72/clc_load!#REF!",
   "H17":  /* unknown */ "W",
   "I17":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
   "J17":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
@@ -275,7 +273,7 @@ export const data: Record<string, any> = {
   "C31":  /* formula */ "IF(C23=\"Flachheizkörper\",SUMIFS(Data_radiator!$Z$5:$Z$385,Data_radiator!$C$5:$C$385,clc_flat!C23,Data_radiator!$D$5:$D$385,clc_flat!C24,Data_radiator!$F$5:$F$385,clc_flat!C25,Data_radiator!$G$5:$G$385,clc_flat!C26,Data_radiator!$L$5:$L$385,clc_flat!C28)*C27/1000,\"Siehe Berechnungsreiter entsprechend Heizkörpertyp\")",
   "D31":  /* unknown */ "W",
   "B32":  /* formula */ "B8",
-  "C32":  /* formula */ "clc_load!$M$10",
+  "C32":  /* formula */ "clc_load!$I$10",
   "D32":  /* unknown */ "°C",
   "B33":  /* formula */ "B9",
   "C33":  /* unknown */ 55,
@@ -331,7 +329,7 @@ export const data: Record<string, any> = {
   "R36":  /* unknown */ "Logarithmische Übertemperatur unter Betriebsbedingungen",
   "S36":  /* unknown */ "Logarithmische Übertemperatur unter Betriebsbedingungen",
   "F37":  /* unknown */ "=",
-  "G37":  /* formula */ "clc_load!$M$72/clc_load!#REF!",
+  "G37":  /* formula */ "clc_load!$I$72/clc_load!#REF!",
   "H37":  /* unknown */ "W",
   "I37":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
   "J37":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
@@ -367,4 +365,4 @@ export const data: Record<string, any> = {
   "R40":  /* unknown */ "Leistungsabgabe des Heizkörpers unter den Auslegungsbedingungen",
   "S40":  /* unknown */ "Leistungsabgabe des Heizkörpers unter den Auslegungsbedingungen",
   "B43":  /* unknown */ "Heizkörper X in Raum Y",
-};
+} as const;

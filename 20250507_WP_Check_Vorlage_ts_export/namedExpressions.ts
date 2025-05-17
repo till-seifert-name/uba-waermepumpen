@@ -1,7 +1,5 @@
 // named Expressions from FODS
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const namedExpressions: Record<string, string> = {
+export const namedExpressions = {
   "Deckenheizung": "#REF!",
   "DropdownlisteHeizungsrohre": "#REF!",
   "Flachheizkörper": "Daten!K4:K10",
@@ -21,4 +19,4 @@ export const namedExpressions: Record<string, string> = {
   "TRL_Ziel": "45",
   "TVL_Ziel": "55",
   "Wandheizung": "#REF!",
-};
+} as const;

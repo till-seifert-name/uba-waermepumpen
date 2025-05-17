@@ -1,7 +1,5 @@
 // Sheet: Normaußentemperatur_12831
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "D2":  /* unknown */ "Ort",
   "E2":  /* unknown */ "Plz",
   "F2":  /* unknown */ "Außentemperatur °C",
@@ -3127,4 +3125,4 @@ export const data: Record<string, any> = {
   "D1042":  /* error_value */ "#VALUE!",
   "D1043":  /* error_value */ "#VALUE!",
   "D1044":  /* error_value */ "#VALUE!",
-};
+} as const;

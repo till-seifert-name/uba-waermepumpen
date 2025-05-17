@@ -1,7 +1,5 @@
 // Sheet: Data_radiator
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "B4":  /* unknown */ "Lfd. Nr.",
   "C4":  /* unknown */ "Spalte1",
   "D4":  /* unknown */ "Heizkörper Subtyp",
@@ -4261,4 +4259,4 @@ export const data: Record<string, any> = {
   "AD528":  /* unknown */ "Output :",
   "AE528":  /* formula */ "INDEX($AE$518:$AS$518,,MATCH(AE527*60,INDEX($AE$519:$AS$522,MATCH(AE526,$AD$519:$AD$522,0),),1))",
   "AG528":  /* unknown */ "",
-};
+} as const;

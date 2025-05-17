@@ -1,7 +1,5 @@
 // Sheet: U_GEG_A.7
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "C8":  /* unknown */ "WG & NWG >19°C",
   "D8":  /* unknown */ "NWG",
   "C9":  /* unknown */ "Umax [W/(m²K)]",
@@ -70,4 +68,4 @@ export const data: Record<string, any> = {
   "B25":  /* unknown */ "DE_unten",
   "C25":  /* unknown */ 0.24,
   "D25":  /* unknown */ 0.35,
-};
+} as const;

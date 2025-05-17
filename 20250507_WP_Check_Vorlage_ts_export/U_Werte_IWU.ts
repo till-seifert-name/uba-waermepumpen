@@ -1,7 +1,5 @@
 // Sheet: U_Werte_IWU
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "B1":  /* unknown */ "Kürzel für die Datenbank",
   "C1":  /* unknown */ "EFH_A",
   "D1":  /* unknown */ "EFH_B",
@@ -2906,4 +2904,4 @@ export const data: Record<string, any> = {
   "E262":  /* unknown */ "Decke",
   "F262":  /* unknown */ 0.22,
   "G262":  /* unknown */ "M",
-};
+} as const;

@@ -1,7 +1,5 @@
 // Sheet: clc_tube
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "B2":  /* unknown */ "Heizkörper 1 in Raum 1",
   "B3":  /* formula */ "IN_rooms!#REF!",
   "C3":  /* formula */ "IN_rooms!R49",
@@ -93,7 +91,7 @@ export const data: Record<string, any> = {
   "C11":  /* formula */ "_xlfn.IFS(C24=\"Stahlrohrradiator\",\n    (SUMIFS(Data_radiator!$AA$5:$AA$385, Data_radiator!$C$5:$C$385, clc_tube!C3, Data_radiator!$D$5:$D$385, clc_tube!C4, Data_radiator!$G$5:$G$385, clc_tube!C6, Data_radiator!$L$5:$L$385, clc_tube!C8)),C4=\"Fensterbankradiator\",(SUMIFS(Data_radiator!$Y$5:$Y$385, Data_radiator!$C$5:$C$385, clc_tube!C3, Data_radiator!$D$5:$D$385, clc_tube!C4, Data_radiator!$G$5:$G$385, clc_tube!C6, Data_radiator!$L$5:$L$385, clc_tube!C8,Data_radiator!$H$5:$H$385,clc_tube!C7)),\n\n    C4=\"Handtuchradiator\",\n    919 * ((IN_rooms!R51*IN_rooms!R52) / 10^6) + 76.691,\n\n    AND(C4<>\"Stahlrohrradiator\", C4<>\"Fensterbankradiator\", C4<>\"Handtuchradiator\"),\n    \"Siehe Berechnungsreiter entsprechend Heizkörpertyp\",C4=\"Fensterbankradiator\",\n    (SUMIFS(Data_radiator!$Y$5:$Y$385, Data_radiator!$C$5:$C$385, clc_tube!C3, Data_radiator!$D$5:$D$385, clc_tube!C4, Data_radiator!$G$5:$G$385, clc_tube!C6, Data_radiator!$L$5:$L$385, clc_tube!C8,Data_radiator!$H$5:$H$385,clc_tube!C7))\n)",
   "D11":  /* unknown */ "WENNS(\n    C4=\"Stahlrohrradiator\";\n    SUMMEWENNS(Tabelle1[Wärmeleistung (75/65/20)  in W] (75/65/20) in W]; Tabelle1[Heizkörper Typ]; Berechnung_Rohrradiatoren!C3; Tabelle1[Heizkörper Subtyp]; Berechnung_Rohrradiatoren!C4; Tabelle1[Höhe H in mm]; Berechnung_Rohrradiatoren!C6; Tabelle1[Bautiefe T in mm]; Berechnung_Rohrradiatoren!C8; Tabelle1[Bautiefe T in mm]; Berechnung_Rohrradiatoren!C7);\n\n    C4=\"Fensterbankradiator\";\n    SUMMEWENNS(Tabelle1[Wärmeleistung (75/65/20) in W]; Tabelle1[Heizkörper Typ]; Berechnung_Rohrradiatoren!C3; Tabelle1[Heizkörper Subtyp]; Berechnung_Rohrradiatoren!C4; Tabelle1[Höhe H in mm]; Berechnung_Rohrradiatoren!C6; Tabelle1[Bautiefe T in mm]; Berechnung_Rohrradiatoren!C8; Tabelle1[Bautiefe T in mm]; Berechnung_Rohrradiatoren!C7);\n\n    C4=\"Handtuchradiator\";\n    919 * ((Frontend_Räume!D35 * Frontend_Räume!D36) / 10^6) + 76,691;\n\n    UND(C4<>\"Stahlrohrradiator\"; C4<>\"Fensterbankradiator\"; C4<>\"Handtuchradiator\");\n    \"Siehe Berechnungsreiter entsprechend Heizkörpertyp\"\n)",
   "B12":  /* unknown */ "Berechnungs-Raumtemperatur",
-  "C12":  /* formula */ "clc_load!$M$10",
+  "C12":  /* formula */ "clc_load!$I$10",
   "D12":  /* unknown */ "°C",
   "B13":  /* unknown */ "θ,Vlneu",
   "C13":  /* unknown */ 55,
@@ -149,7 +147,7 @@ export const data: Record<string, any> = {
   "R16":  /* unknown */ "Logarithmische Übertemperatur unter Betriebsbedingungen",
   "S16":  /* unknown */ "Logarithmische Übertemperatur unter Betriebsbedingungen",
   "F17":  /* unknown */ "=",
-  "G17":  /* formula */ "clc_load!$M$72/clc_load!#REF!",
+  "G17":  /* formula */ "clc_load!$I$72/clc_load!#REF!",
   "H17":  /* unknown */ "W",
   "I17":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
   "J17":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
@@ -274,7 +272,7 @@ export const data: Record<string, any> = {
   "C31":  /* formula */ "_xlfn.IFS(C24=\"Stahlrohrradiator\",\n    (SUMIFS(Data_radiator!$AA$5:$AA$385, Data_radiator!$C$5:$C$385, clc_tube!C23, Data_radiator!$D$5:$D$385, clc_tube!C24, Data_radiator!$G$5:$G$385, clc_tube!C26, Data_radiator!$L$5:$L$385, clc_tube!C28)),C24=\"Fensterbankradiator\",(SUMIFS(Data_radiator!$Y$5:$Y$385, Data_radiator!$C$5:$C$385, clc_tube!C23, Data_radiator!$D$5:$D$385, clc_tube!C24, Data_radiator!$G$5:$G$385, clc_tube!C26, Data_radiator!$L$5:$L$385, clc_tube!C28,Data_radiator!$H$5:$H$385,clc_tube!C27)),\n\n    C24=\"Handtuchradiator\",\n    919 * ((IN_rooms!R58*IN_rooms!R59) / 10^6) + 76.691,\n\n    AND(C24<>\"Stahlrohrradiator\", C24<>\"Fensterbankradiator\", C24<>\"Handtuchradiator\"),\n    \"Siehe Berechnungsreiter entsprechend Heizkörpertyp\",C4=\"Fensterbankradiator\",\n    (SUMIFS(Data_radiator!$Y$5:$Y$385, Data_radiator!$C$5:$C$385, clc_tube!C23, Data_radiator!$D$5:$D$385, clc_tube!C24, Data_radiator!$G$5:$G$385, clc_tube!C26, Data_radiator!$L$5:$L$385, clc_tube!C28,Data_radiator!$H$5:$H$385,clc_tube!C27))\n)",
   "D31":  /* unknown */ "W",
   "B32":  /* formula */ "B12",
-  "C32":  /* formula */ "clc_load!$M$10",
+  "C32":  /* formula */ "clc_load!$I$10",
   "D32":  /* unknown */ "°C",
   "B33":  /* formula */ "B13",
   "C33":  /* unknown */ 55,
@@ -330,7 +328,7 @@ export const data: Record<string, any> = {
   "R36":  /* unknown */ "Logarithmische Übertemperatur unter Betriebsbedingungen",
   "S36":  /* unknown */ "Logarithmische Übertemperatur unter Betriebsbedingungen",
   "F37":  /* unknown */ "=",
-  "G37":  /* formula */ "clc_load!$M$72/clc_load!#REF!",
+  "G37":  /* formula */ "clc_load!$I$72/clc_load!#REF!",
   "H37":  /* unknown */ "W",
   "I37":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
   "J37":  /* unknown */ "Benötigte Leistung pro Heizkörper ( Anzahl der Heizkörper x Leistung der Heizkörper ≥ Heizlast",
@@ -366,4 +364,4 @@ export const data: Record<string, any> = {
   "R40":  /* unknown */ "Leistungsabgabe des Heizkörpers unter den Auslegungsbedingungen",
   "S40":  /* unknown */ "Leistungsabgabe des Heizkörpers unter den Auslegungsbedingungen",
   "B43":  /* unknown */ "Heizkörper X in Raum Y",
-};
+} as const;

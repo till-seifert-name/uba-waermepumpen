@@ -1,7 +1,5 @@
 // Sheet: Windregionen
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "C2":  /* unknown */ "Original aus 1946-6",
   "D2":  /* unknown */ "Windstarke Landkreise nach DIN 1946-6",
   "F2":  /* unknown */ "PLZ Name (short)",
@@ -44917,4 +44915,4 @@ export const data: Record<string, any> = {
   "H8936":  /* unknown */ 14521,
   "I8936":  /* unknown */ "Sachsen",
   "J8936":  /* unknown */ "Erzgebirgskreis",
-};
+} as const;

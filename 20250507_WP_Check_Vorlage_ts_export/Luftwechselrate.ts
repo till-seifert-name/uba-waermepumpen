@@ -1,7 +1,5 @@
 // Sheet: Luftwechselrate
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "A1":  /* unknown */ "Sanierungszustand",
   "B1":  /* unknown */ "Lüftungskategorie",
   "C1":  /* unknown */ "Luftwechselrate bei 50 Pa",
@@ -23,4 +21,4 @@ export const data: Record<string, any> = {
   "A7":  /* unknown */ "Bestandsgebäude",
   "B7":  /* unknown */ "freie Lüftung",
   "C7":  /* unknown */ 4.5,
-};
+} as const;

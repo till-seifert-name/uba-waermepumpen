@@ -1,9 +1,7 @@
 // database Ranges from FODS
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const databaseRanges: Record<string, string> = {
+export const databaseRanges = {
   "Abschlag_Heizlast": "Daten!E111:Daten!F114",
-  "Baualtersklassen": "Daten!E16:Daten!E28",
+  "Baualtersklassen": "Daten!E16:Daten!E29",
   "DD_Bauteil_grenz": "Daten!E105:Daten!F109",
   "Deckenstrahlplatten_Wärmedämmung": "Daten!AB47:Daten!AB54",
   "Fensterbankradiator": "Daten!V23:Daten!V27",
@@ -14,14 +12,16 @@ export const databaseRanges: Record<string, string> = {
   "Glattwandig": "Daten!R23:Daten!R27",
   "Gliederheizkörper": "Daten!M3:Daten!M5",
   "Gussradiator": "Daten!S23:Daten!S28",
+  "Gussradiator_hb": "Daten!AC12:Daten!AD25",
   "Gussradiator_t": "Daten!S14:Daten!S19",
   "Handtuchradiator": "Daten!W23:Daten!W50",
   "Heizkoerpertyp": "Daten!I3:Daten!I8",
   "IWU": "U_Werte_IWU!B29:U_Werte_IWU!G262",
-  "Modernisierungsjahr_Bauteil": "Daten!B18:Daten!B24",
+  "Modernisierungsjahr_Bauteil": "Daten!B18:Daten!B25",
   "PAR": "PAR!F1:PAR!DB5",
   "Stahlradiator": "Daten!T23:Daten!T27",
-  "Stahlradiator_t": "Daten!T14:Daten!T19",
+  "Stahlradiator_hb": "Daten!AE12:Daten!AF23",
+  "Stahlradiator_t": "Daten!T14:Daten!T17",
   "Stahlrohrradiator": "Daten!U23:Daten!U36",
   "Stahlrohrradiator_t": "Daten!U14:Daten!U19",
   "Standardkonvektor": "Daten!AA23:Daten!AA27",
@@ -69,6 +69,7 @@ export const databaseRanges: Record<string, string> = {
   "Typ_33": "Daten!Q23:Daten!Q27",
   "Typ_33_t": "Daten!Q14:Daten!Q15",
   "UWert_Mod": "Daten!M62:Daten!S86",
-  "__Anonymous_Sheet_DB__5": "IN_rooms!B1:IN_rooms!Y69",
-  "__Anonymous_Sheet_DB__6": "clc_load!A1:clc_load!U76",
-};
+  "__Anonymous_Sheet_DB__6": "IN_rooms!B1:IN_rooms!Y69",
+  "__Anonymous_Sheet_DB__7": "clc_load!A1:clc_load!Q76",
+  "__Anonymous_Sheet_DB__11": "TXT_rooms!A1:TXT_rooms!E1",
+} as const;

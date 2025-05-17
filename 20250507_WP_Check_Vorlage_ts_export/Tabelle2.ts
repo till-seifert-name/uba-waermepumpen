@@ -1,7 +1,5 @@
 // Sheet: Tabelle2
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "L19":  /* unknown */ "Fensterbankradiatoren",
   "Q19":  /* unknown */ "Handtuchradiatoren",
   "X19":  /* unknown */ "Stahlrippenrohre",
@@ -720,4 +718,4 @@ export const data: Record<string, any> = {
   "H84":  /* unknown */ 403,
   "I84":  /* unknown */ 6.27,
   "J84":  /* unknown */ 10.97,
-};
+} as const;

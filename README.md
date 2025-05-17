@@ -28,6 +28,7 @@ Das Tool folgt einem Wizard-Ansatz mit folgenden Hauptabschnitten:
 
 - Node.js (v20 oder höher)
 - npm (wird mit Node.js installiert)
+- LibreOffice (für Excel-Konvertierung)
 
 ### Installation
 
@@ -75,4 +76,32 @@ Alternativ kann der gesamte Build-Prozess mit dem build.sh Script ausgeführt we
 ## Datenhaltung
 
 Die Anwendung speichert Benutzereingaben in localStorage. Die Eingaben werden bei Änderungen automatisch gespeichert und beim Laden der Anwendung wiederhergestellt.
+
+## Datenquellen und Excel-Konvertierung
+
+Die Anwendung verwendet Excel-Tabellen als Datenquelle für Berechnungsmodelle und Referenzwerte. Diese werden mit einem speziellen Tool in TypeScript-Module konvertiert.
+
+### Excel zu TypeScript Konvertierung
+
+Um Excel-Dateien in TypeScript-Module zu konvertieren, wird folgendes Kommando verwendet:
+
+```bash
+npx tsx xlsx-to-json.ts -i [Excel-Datei].xlsx -o [Ausgabeverzeichnis]
+```
+
+Beispiel:
+```bash
+npx tsx xlsx-to-json.ts -i *_Vorlage.xlsx -o 20250507_WP_Check_Vorlage_ts_export
+```
+
+Der Konvertierungsprozess:
+
+1. Konvertiert die Excel-Datei temporär zu LibreOffice FODS Format
+2. Extrahiert benannte Bereiche, Formeln und Datenbanktabellen
+3. Liest alle Zellwerte und Formeln aus der Excel-Datei
+4. Generiert für jedes Arbeitsblatt ein TypeScript-Modul
+5. Erstellt zusätzliche TS-Module für benannte Bereiche und Datenbanktabellen
+6. Erzeugt eine `master.ts` Datei, die alle Module exportiert
+
+Alle konvertierten Daten werden im Verzeichnis `[Excel-Dateiname]_ts_export` abgelegt und können direkt in der Angular-Anwendung importiert werden.
 

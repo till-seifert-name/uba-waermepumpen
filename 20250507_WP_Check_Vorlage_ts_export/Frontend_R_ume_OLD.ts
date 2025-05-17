@@ -1,7 +1,5 @@
 // Sheet: Frontend_Räume_OLD
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "A1":  /* unknown */ "Bauteil (ifeu intern) ",
   "K1":  /* unknown */ "Decke",
   "L1":  /* unknown */ "Fußboden",
@@ -1208,4 +1206,4 @@ export const data: Record<string, any> = {
   "BB27":  /* unknown */ "Multiplikator aufnehmen",
   "BF27":  /* unknown */ "Multiplikator aufnehmen",
   "BF28":  /* unknown */ "ggf. 4. Fenstertyp ergänzen? ",
-};
+} as const;

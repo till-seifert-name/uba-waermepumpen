@@ -1,8 +1,7 @@
 // Master file aggregating all spreadsheet data
-// Generated on: 2025-05-10T13:08:38.977Z
-
 import { data as PARData } from './PAR';
 import { data as SyntaxData } from './Syntax';
+import { data as logData } from './log';
 import { data as Frontend_allg_OLDData } from './Frontend_allg_OLD';
 import { data as Frontend_R_ume_OLDData } from './Frontend_R_ume_OLD';
 import { data as IN_buildData } from './IN_build';
@@ -25,9 +24,9 @@ import { data as res_tubeData } from './res_tube';
 import { data as U_GEG_A_7Data } from './U_GEG_A.7';
 import { data as DatenData } from './Daten';
 import { data as Data_radiatorData } from './Data_radiator';
-import { data as Tabelle2Data } from './Tabelle2';
 import { data as U_Werte_IWUData } from './U_Werte_IWU';
 import { data as Normau_entemperatur_12831Data } from './Normau_entemperatur_12831';
+import { data as Tabelle2Data } from './Tabelle2';
 import { data as WindregionenData } from './Windregionen';
 import { data as LuftwechselrateData } from './Luftwechselrate';
 import { data as Tabelle1Data } from './Tabelle1';
@@ -37,9 +36,10 @@ import { namedExpressions } from './namedExpressions';
 import { explicitNamedRanges } from './explicitNamedRanges';
 import { databaseRanges } from './databaseRanges';
 
-export const sheetsData: Record<string, Record<string, any>> = {
+export const sheetsData = {
   "PAR": PARData,
   "Syntax": SyntaxData,
+  "log": logData,
   "Frontend_allg_OLD": Frontend_allg_OLDData,
   "Frontend_Räume_OLD": Frontend_R_ume_OLDData,
   "IN_build": IN_buildData,
@@ -62,15 +62,15 @@ export const sheetsData: Record<string, Record<string, any>> = {
   "U_GEG_A.7": U_GEG_A_7Data,
   "Daten": DatenData,
   "Data_radiator": Data_radiatorData,
-  "Tabelle2": Tabelle2Data,
   "U_Werte_IWU": U_Werte_IWUData,
   "Normaußentemperatur_12831": Normau_entemperatur_12831Data,
+  "Tabelle2": Tabelle2Data,
   "Windregionen": WindregionenData,
   "Luftwechselrate": LuftwechselrateData,
   "Tabelle1": Tabelle1Data,
   "Ausgabetexte": AusgabetexteData,
   "Anmerkungen": AnmerkungenData,
-};
+} as const;
 
 export {
   namedExpressions,

@@ -1,7 +1,5 @@
 // Sheet: IN_build
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "A1":  /* unknown */ "Bezeichnung",
   "B1":  /* unknown */ "Gruppe ",
   "C1":  /* unknown */ "Subgruppe",
@@ -46,7 +44,7 @@ export const data: Record<string, any> = {
   "G4":  /* unknown */ "Radio Button + Grafik",
   "J4":  /* unknown */ "String",
   "K4":  /* unknown */ 1,
-  "P4":  /* unknown */ "steil",
+  "P4":  /* unknown */ "geneigt",
   "W4":  /* unknown */ "geneigt: 25°, steil: 40°, sehr steil: 55°",
   "B5":  /* unknown */ "build",
   "D5":  /* unknown */ "YEAR_build_bj",
@@ -64,7 +62,7 @@ export const data: Record<string, any> = {
   "E7":  /* unknown */ "Außenwand",
   "G7":  /* unknown */ "siehe Mockups",
   "K7":  /* unknown */ 0,
-  "Q7":  /* unknown */ "Nein",
+  "Q7":  /* unknown */ "Ja",
   "R7":  /* formula */ "_xlfn.IFS(AND(RIGHT($P$5,4)<=\"1978\",$Q$7=\"Ja\"),Daten!$M$65,AND(RIGHT($P$5,4)>\"1978\",$Q$7=\"Ja\"),Daten!$M$66,$Q$7=\"Nein\",$P$5)",
   "S7":  /* formula */ "$R7",
   "T7":  /* formula */ "IF(Q7=\"Ja\",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E7)*(UWert_Mod[Modernisierungsjahr]=S7), UWert_Mod[d_ins]),0)",
@@ -77,7 +75,7 @@ export const data: Record<string, any> = {
   "K8":  /* unknown */ 0,
   "Q8":  /* unknown */ "Nein",
   "R8":  /* formula */ "_xlfn.IFS(AND(RIGHT($P$5,4)<=\"1978\",$Q$8=\"Ja\"),Daten!$M$66,AND(RIGHT($P$5,4)>\"1978\",$Q$8=\"Ja\"),U_Werte_IWU!$D$78,$Q$8=\"Nein\",$P$5)",
-  "S8":  /* unknown */ "ab 2023",
+  "S8":  /* formula */ "$R8",
   "B9":  /* unknown */ "build",
   "C9":  /* unknown */ "san",
   "D9":  /* unknown */ "_build_roof_san",
@@ -86,7 +84,7 @@ export const data: Record<string, any> = {
   "K9":  /* unknown */ 0,
   "Q9":  /* unknown */ "Nein",
   "R9":  /* formula */ "_xlfn.IFS(AND(RIGHT($P$5,4)<=\"1978\",$Q$9=\"Ja\"),Daten!$M$65,AND(RIGHT($P$5,4)>\"1978\",$Q$9=\"Ja\"),Daten!$M$66,$Q$9=\"Nein\",$P$5)",
-  "S9":  /* unknown */ "ab 2023",
+  "S9":  /* formula */ "$R9",
   "T9":  /* formula */ "IF(Q9=\"Ja\",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E9)*(UWert_Mod[Modernisierungsjahr]=S9), UWert_Mod[d_ins]),0)",
   "U9":  /* formula */ "$T9",
   "B10":  /* unknown */ "build",
@@ -97,7 +95,7 @@ export const data: Record<string, any> = {
   "K10":  /* unknown */ 0,
   "Q10":  /* unknown */ "Nein",
   "R10":  /* formula */ "_xlfn.IFS(AND(RIGHT($P$5,4)<=\"1978\",$Q$10=\"Ja\"),Daten!$M$77,AND(RIGHT($P$5,4)>\"1978\",$Q$10=\"Ja\"),Daten!$M$78,$Q$10=\"Nein\",$P$5)",
-  "S10":  /* unknown */ "2003 - 2008",
+  "S10":  /* formula */ "$R10",
   "T10":  /* formula */ "IF(Q10=\"Ja\",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E10)*(UWert_Mod[Modernisierungsjahr]=S10), UWert_Mod[d_ins]),0)",
   "U10":  /* formula */ "$T10",
   "B11":  /* unknown */ "build",
@@ -196,4 +194,4 @@ export const data: Record<string, any> = {
   "P22":  /* formula */ "IF(P16=\"Ja\",P17<=55,IF(P18=\"Ja\",P19<P21,FALSE))",
   "B25":  /* unknown */ ">>> Filterung EXIST_T_VL_set und EXIST_T_VL_meas in Frontend umsetzen >>> ",
   "B26":  /* unknown */ ">>> Filterung Räume / list_rooms in Frontend umsetzen  >>>",
-};
+} as const;

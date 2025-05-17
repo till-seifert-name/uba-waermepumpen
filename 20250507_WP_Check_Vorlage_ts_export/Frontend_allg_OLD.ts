@@ -1,7 +1,5 @@
 // Sheet: Frontend_allg_OLD
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "A1":  /* unknown */ "Bauteil (ifeu intern) ",
   "A2":  /* unknown */ "Frage (ifeu intern)",
   "C2":  /* unknown */ "Zur Person",
@@ -153,4 +151,4 @@ export const data: Record<string, any> = {
   "E27":  /* unknown */ "Todo",
   "G27":  /* unknown */ "ggf. nach unten schieben",
   "AO69":  /* formula */ "IF(AO17=\"elektrische Nachtspeicherheizung\",\"Frage 1.5 nicht stellen\",IF(AO17=\"Luftheizung\",\"Frage nicht stellen!\",\"\"))",
-};
+} as const;

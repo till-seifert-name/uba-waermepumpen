@@ -1,10 +1,8 @@
 // Sheet: res_tube
-// Generated on: 2025-05-10T13:08:38.977Z
-
-export const data: Record<string, any> = {
+export const data = {
   "B2":  /* formula */ "clc_load!#REF!",
   "B3":  /* unknown */ "Heizlast",
-  "C3":  /* formula */ "clc_load!$M$72/1000",
+  "C3":  /* formula */ "clc_load!$I$72/1000",
   "D3":  /* unknown */ "[kW]",
   "B4":  /* unknown */ "Norm-Heizleistung aller Heizkörper",
   "C4":  /* formula */ "(clc_tube!C11+clc_tube!C31)/1000",
@@ -55,4 +53,4 @@ export const data: Record<string, any> = {
   "B35":  /* formula */ "B29",
   "D35":  /* unknown */ "[-]",
   "B36":  /* formula */ "B30",
-};
+} as const;
