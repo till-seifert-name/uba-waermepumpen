@@ -7,7 +7,7 @@ export type CellContent = string | CellFunc | number;
 /**
  * A function that can be used as the content of a cell in the DataGrid.
  */
-export type CellFunc = (sheet: string, cell: string, grid: DataGrid) => number | string | null;
+export type CellFunc = (sheet: string, cell: string, grid: DataGrid) => number | string | boolean | null;
 
 export type Sheet = Record<string, CellContent>;
 export type CellChange = { sheet: string; cell: string; value: any };
@@ -34,12 +34,14 @@ export class DataGrid {
   results: Record<string, Record<string, any>>;
   private cellChangedSubject: Subject<CellChange> = new Subject();
   g: (sheet: string, cell: string) => number | string;
+  n: (sheet: string, cell: string) => number ;
 
   constructor() {
     this.cells = {};
     this.results = {};
 
     this.g = this.getCell.bind(this);
+    this.n = this.getCellNumeric.bind(this);
   }
 
 
@@ -398,8 +400,22 @@ export class DataGrid {
     return conditions.some(cond => cond);
   }
 
+  UND(...conditions: boolean[]) {
+    return conditions.every(cond => cond);
+  }
+
   WAHR(): boolean {
     return true;
+  }
+  FALSCH(): boolean {
+    return false;
+  }
+
+  /**
+   * Returns the last n characters of a string.
+   */
+  RECHTS(value: string|number, n: number): string {
+    return value.toString().slice(-n);
   }
 
   WENNS(...args: any[]): any {

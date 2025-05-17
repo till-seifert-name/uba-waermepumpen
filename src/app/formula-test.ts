@@ -1,6 +1,6 @@
-import { DataGrid } from './data-grid';
-import { applyFormulaOverlays } from './formula-overlay';
-import { databaseRanges, explicitNamedRanges, namedExpressions, sheetsData } from '../../20250507_WP_Check_Vorlage_ts_export/master';
+import {DataGrid} from './data-grid';
+import {databaseRanges, explicitNamedRanges, namedExpressions, sheetsData} from '../../20250507_WP_Check_Vorlage_ts_export/master';
+import {applyFormulaOverlays as applyAllOverlays} from "./formula-overlays";
 
 /**
  * Test script to verify formula implementations
@@ -31,13 +31,24 @@ function setupTestDataGrid(): DataGrid {
     }
   }
 
-  // Apply test values
+  // Setup test values
   g.setCell('IN_rooms', 'R10', '');  // Wall insulation thickness for room 1
   g.setCell('Daten', 'B19', 'Nicht angegeben');
   g.setCell('Daten', 'B20', 'Original');
   g.setCell('IN_build', 'Q7', 'Ja');  // Wall retrofitted
+  g.setCell('IN_build', 'Q9', 'Ja');  // Roof retrofitted
   g.setCell('IN_build', 'S7', 2005);  // Wall modernization year
-  g.setCell('IN_build', 'P5', 1980);  // Building year
+  g.setCell('IN_build', 'P5', '1979 - 1983');  // Building year
+  g.setCell('IN_build', 'E7', 'Außenwand');  // Wall component name
+  g.setCell('IN_build', 'E9', 'Dach');       // Roof component name
+
+  // Setup test values for Daten sheet
+  g.setCell('Daten', 'M65', '1995 - 2002');  // Modernization year reference for older buildings
+  g.setCell('Daten', 'M66', '2003 - 2008');  // Modernization year reference for newer buildings
+  g.setCell('Daten', 'M77', '1995 - 2002');  // Modernization year reference for floor, older buildings
+  g.setCell('Daten', 'M78', '2003 - 2008');  // Modernization year reference for floor, newer buildings
+  g.setCell('Daten', 'N63', 0.45);  // U-Wert for Daten!R63
+  g.setCell('Daten', 'Q63', 2);     // U_no_ins for Daten!R63
 
   // Setup a mockup UWert_Mod database if needed
   g.setCell('U_Werte_IWU', 'A1', 'Bauteil');
@@ -46,26 +57,37 @@ function setupTestDataGrid(): DataGrid {
   g.setCell('U_Werte_IWU', 'A2', 'Außenwand');
   g.setCell('U_Werte_IWU', 'B2', 2005);
   g.setCell('U_Werte_IWU', 'C2', 12);
-  
+  g.setCell('U_Werte_IWU', 'A3', 'Dach');
+  g.setCell('U_Werte_IWU', 'B3', '1995 - 2002');
+  g.setCell('U_Werte_IWU', 'C3', 16);
+  g.setCell('U_Werte_IWU', 'D78', '2009 - 2022');  // Window year reference
+
   // Setup named references for Daten sheet formulas
-  g.setCell('Names', 'UWert_Mod', 'U_Werte_IWU!A1:C2');
-  g.setCell('Names', 'PAR[lambda_ins_thick]', ['0.045']);
-  
-  // Setup test values for Daten sheet
-  g.setCell('Daten', 'N63', 0.45);  // U-Wert for Daten!R63
-  g.setCell('Daten', 'Q63', 2);     // U_no_ins for Daten!R63
-  
+  g.setCell('Names', 'UWert_Mod', 'U_Werte_IWU!A1:C3');
+  g.setCell('Names', 'PAR[lambda_ins_thick]', '0.045');
+
   // Mock the DB_THIS_ROW function
   g.DB_THIS_ROW = (cell, db, column) => {
     if (db === "UWert_Mod") {
+      // For Daten sheet formulas
       if (column === "U-Wert" && cell === "R63") return 0.45;
       if (column === "U_no_ins" && cell === "R63") return 2;
+
+      // For IN_build T7 formula (wall)
+      if (column === "Bauteil" && cell.startsWith('T7')) return "Außenwand";
+      if (column === "Modernisierungsjahr" && cell.startsWith('T7')) return g.g('IN_build', 'S7');
+      if (column === "d_ins" && cell.startsWith('T7')) return 12;
+
+      // For IN_build T9 formula (roof)
+      if (column === "Bauteil" && cell.startsWith('T9')) return "Dach";
+      if (column === "Modernisierungsjahr" && cell.startsWith('T9')) return g.g('IN_build', 'S9');
+      if (column === "d_ins" && cell.startsWith('T9')) return 16;
     }
     return null;
   };
 
   // Apply formula overlays
-  applyFormulaOverlays(g);
+  applyAllOverlays(g);
 
   return g;
 }
@@ -85,10 +107,17 @@ function runTests(): void {
   console.log('Testing IN_rooms formulas:');
   testFormula(g, 'IN_rooms', 'R73');  // Wall modernization year
   testFormula(g, 'IN_rooms', 'R74');  // Wall insulation thickness
-  
+
   // Test Daten formulas
   console.log('\nTesting Daten formulas:');
   testFormula(g, 'Daten', 'R63');  // Insulation thickness calculation
+
+  // Test IN_build formulas
+  console.log('\nTesting IN_build formulas:');
+  testFormula(g, 'IN_build', 'R7');  // Wall modernization year
+  testFormula(g, 'IN_build', 'T7');  // Wall insulation thickness
+  testFormula(g, 'IN_build', 'R9');  // Roof modernization year
+  testFormula(g, 'IN_build', 'T9');  // Roof insulation thickness
 
   console.log('\nTests completed.');
 }

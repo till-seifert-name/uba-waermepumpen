@@ -3,7 +3,7 @@ import {DataGrid, parseCellReference} from "./data-grid";
 import {BehaviorSubject, debounceTime, filter} from "rxjs";
 import {CustomLocalStorageService} from "./custom-local-storage.service";
 import {databaseRanges, explicitNamedRanges, namedExpressions, sheetsData} from '../../20250507_WP_Check_Vorlage_ts_export/master';
-import {applyFormulaOverlays} from "./formula-overlay";
+import {applyFormulaOverlays} from "./formula-overlays";
 
 /**
  * UBA Wärmepumpen Berechnungsservice - Data Model Documentation
@@ -193,7 +193,6 @@ export class BerechnungService {
         grid.setCell(sheet, cell, content);
       }
     }
-
 
     /**
      * Berechnungslogik
@@ -1045,11 +1044,11 @@ export class BerechnungService {
   hasFlatRoof(): boolean {
     return this.grid.getCell('IN_build', 'P4') === 'Flach bzw. Flachdach';
   }
-  
+
   /**
    * Get the value of a specific cell from the DataGrid
    * Used by the debug overlay to show cell values
-   * 
+   *
    * @param sheet The sheet name
    * @param cell The cell reference (e.g., 'A1')
    * @returns The cell value
