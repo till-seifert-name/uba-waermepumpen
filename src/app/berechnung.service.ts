@@ -140,7 +140,12 @@ export interface Room {
   type: string;   // Room type: 'cold', 'exterior', 'ceiling', 'windows', 'other'
 }
 
-export type HeaterType = 'Flachheizkoerper_glatt' | 'Flachheizkoerper_senkrecht_profiliert' | 'Gliederheizkörper' | 'Rohrradiator' | 'Rohrheizkörper' | 'Konvektor';
+export type HeaterType =
+  | typeof sheetsData.Daten['I4']
+  | typeof sheetsData.Daten['I5']
+  | typeof sheetsData.Daten['I6']
+  | typeof sheetsData.Daten['I7']
+  | typeof sheetsData.Daten['I8'];
 
 
 const STORAGE_KEY = 'UBA-WAERMEPUMPEN-DATA';
@@ -450,9 +455,9 @@ export class BerechnungService {
   }
 
   // Get wall insulation thickness from DataGrid
-  getRoomWallInsulationThickness(roomId: number | string): number {
+  getRoomWallInsulationThickness(roomId: number | string): number | string {
     const column = this.getRoomColumn(roomId);
-    return this.grid.getCellNumeric('IN_rooms', `${column}11`);
+    return this.grid.getCellNumeric('IN_rooms', `${column}11`) || "";
   }
 
   // Set wall insulation thickness in DataGrid
@@ -794,7 +799,7 @@ export class BerechnungService {
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
-  setHeatingHeight(roomId: number | string, height: number, heatingType: number = 1): void {
+  setHeatingHeight(roomId: number | string, height: number | string, heatingType: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 52 + (heatingType - 1) * 7; // L_rad1_height in row 52, L_rad2_height in row 59, L_rad3_height in row 66
     this.grid.setCell('IN_rooms', `${column}${row}`, height);
@@ -834,7 +839,7 @@ export class BerechnungService {
   }
 
   // Set depth of heating element (L_rad(N)_thick in row 53, 60, 67)
-  setHeatingDepth(roomId: number | string, depth: number, heatingType: number = 1): void {
+  setHeatingDepth(roomId: number | string, depth: number | string, heatingType: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 53 + (heatingType - 1) * 7; // L_rad1_thick in row 53, L_rad2_thick in row 60, L_rad3_thick in row 67
     this.grid.setCell('IN_rooms', `${column}${row}`, depth);
@@ -869,7 +874,7 @@ export class BerechnungService {
    * @param subtype - The subtype of heater (optional)
    * @returns Array of possible values or empty array if no standardized values exist
    */
-  getHeaterDimensionOptions(dimensionType: "Höhe" | "Breite" | "Tiefe" | "Glieder", heaterType: string, subtype?: string): number[] {
+  getHeizkoerperDimensionOptions(dimensionType: "Höhe" | "Breite" | "Tiefe" | "Glieder", heaterType: string, subtype?: string): number[] {
 
     // Define explicit ranges for each subtype/dimension combination
     let startCell = '';
@@ -979,40 +984,31 @@ export class BerechnungService {
   }
 
   /**
-   * Gets the available subtypes for a given heater type based on the data model
-   * This method uses the data structure in the Daten sheet where:
-   * - Row 3 contains the main heater types
-   * - Rows 4-10 contain the subtypes for each heater type in their respective columns
+   * INDIRECT lookup formula logic similar to Excel.
    *
-   * @param heaterType - The type of heater to get subtypes for
-   * @returns Array of subtypes for the given heater type
+   * @param name - The type of heater to get subtypes for
+   * @returns Array of values for the named expression. if 2 dim, only first col is returned
    */
-  getHeaterSubtypes(heaterType: HeaterType): string[] {
-    // Column mapping from heater type to column in the Daten sheet
-    const typeToColumn: {[key in HeaterType]: string} = {
-      'Flachheizkoerper_senkrecht_profiliert': 'K',
-      'Flachheizkoerper_glatt': 'L',
-      'Gliederheizkörper': 'M',
-      'Rohrradiator': 'N',
-      'Rohrheizkörper': 'O',
-      'Konvektor': 'P'
-    };
+  getNamesExpressionValueList(name: string): string[] {
+    // Try to get the range reference from the Names sheet
+    const rangeRef = this.grid.getCell('Names', name);
 
-    const column = typeToColumn[heaterType];
-    if (!column) {
+    if (typeof rangeRef !== 'string') {
       return [];
     }
 
-    // Get subtypes from rows 4-10 (only if they exist)
-    const subtypes: string[] = [];
-    for (let row = 4; row <= 10; row++) {
-      const cellValue = this.grid.getCell('Daten', `${column}${row}`);
-      if (cellValue && cellValue.toString().trim() !== '') {
-        subtypes.push(cellValue.toString());
-      }
-    }
+    // Parse the range reference (format: "Daten!K4:K10" or "Daten!P4")
+    const [, sheet, startCell, endSheet, endCell] = rangeRef.match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+)(?::(?:(\w[\w\s]*)!)?([A-Za-z]+\d+))?/) ?? [];
 
-    return subtypes;
+    // Get cells from the range
+    // Determine if this is a database range (has header)
+    // Skip the header row if it's a database range
+    const startIndex = name in databaseRanges ? 1 : 0;
+
+    // Extract the first column values using flatMap
+    return this.grid.getCells(sheet, startCell, endCell ?? startCell)
+      .slice(startIndex)  // Skip header if needed
+      .flatMap(row => row[0].toString());
   }
 
   // Check if building has a flat roof

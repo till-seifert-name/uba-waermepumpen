@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BerechnungService } from '../../berechnung.service';
 import { Subscription } from 'rxjs';
+import { data as Daten } from '../../../../20250507_WP_Check_Vorlage_ts_export/Daten';
 
 @Component({
   selector: 'app-raum-detail-basic',
@@ -91,6 +92,40 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
 
   set floorType(value: string) {
     this.berechnungService.setRoomFloorType(this.roomId, value);
+  }
+
+  // Getter für Decken-Grenzen aus dem Daten-Sheet (E106-E108)
+  get deckenGrenzen(): string[] {
+    try {
+      // Werte aus dem Daten-Sheet abrufen (ohne Erdreich)
+      return this.berechnungService.grid.getCells('Daten', 'E106', 'E108')
+        .map(row => row[0].toString());
+    } catch (error) {
+      console.error('Fehler beim Laden der Decken-Grenzen:', error);
+      return [];
+    }
+  }
+
+  // Getter für Boden-Grenzen aus dem Daten-Sheet (E106-E109)
+  get bodenGrenzen(): string[] {
+    try {
+      // Werte aus dem Daten-Sheet abrufen (mit Erdreich)
+      return this.berechnungService.grid.getCells('Daten', 'E106', 'E109')
+        .map(row => row[0].toString());
+    } catch (error) {
+      console.error('Fehler beim Laden der Boden-Grenzen:', error);
+      return [];
+    }
+  }
+
+  // Methode zum Abbilden von internen Werten auf Anzeigelabels für die Benutzeroberfläche
+  getBauteilGrenzeLabel(value: string): string {
+    // Mapping von internen Werten zu Benutzeroberflächen-Labels
+    if (value === 'beheizt ') return 'beheizter Raum';
+    if (value === 'unbeheizt') return 'unbeheizter Raum';
+    if (value === 'Außenluft') return 'Außenluft';
+    if (value === 'Erdreich') return 'Erdreich';
+    return value;
   }
 
   // Navigate to the next component (wall details)

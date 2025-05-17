@@ -1,46 +1,35 @@
 <!-- Wizard Tabs -->
 <app-wizard-tabs [progress]="40"></app-wizard-tabs>
 
-  <!-- PO Comment Area (This would be removed in production) -->
-  <div class="po-comment float-end" style="max-width: 250px;">
-    Beispiel Ausgabe vorzeitiger Ausstiegspunkt, hier aufgrund BJ > 2002
+<!-- vorzeitiger Ausstiegspunkt, hier aufgrund BJ > 2002 -->
+
+<!-- Content -->
+<div class="alert alert-success" role="alert">
+  <p class="mb-0">✅ Gebäudedaten vollständig – gute Voraussetzungen!</p>
+</div>
+
+<p class="fw-bold">Super, Sie haben alle Gebäudedaten erfasst.</p>
+
+<p>Auf Basis Ihres Baujahrs sieht es so aus, als wäre Ihr Gebäude bereits gut für den Einsatz einer Wärmepumpe geeignet.</p>
+
+<h5>👉 Was Sie jetzt tun können:</h5>
+<ul>
+  <li>Wenn Sie Heizkörper nutzen, starten Sie mit der <a routerLink="/gebaeude/heizung">Erfassung der Einzelräume</a>, um die Heizlast und die Leistung Ihrer Heizkörper zu prüfen.</li>
+  <li><strong>Hinweis:</strong> Für Flächenheizungen (z. B. Fußbodenheizung) ist das Tool aktuell nicht ausgelegt, da diese Gebäude bereits niedertemperaturfähig sind.</li>
+</ul>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/basisdaten">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary" routerLink="/gebaeude/heizung">
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
   </div>
+</div>
 
-  <!-- Content -->
-  <div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Super, Sie haben alle Gebäudedaten erfasst!</h4>
-  </div>
-
-  <p>Anhand der getroffenen Angaben zum Baujahr scheint Ihr Gebäude bereits für eine Wärmepumpe geeignet zu sein.</p>
-
-  <p>Wenn Ihr Gebäude mit Heizkörpern beheizt wird, können Sie das Tool weiter ausfüllen und mit der Erfassung der Einzelräume starten, um mehr über Ihre Heizlast oder Heizkörperleistung zu erfahren.</p>
-
-  <div class="alert alert-warning" role="alert">
-    Eingaben für Flächenheizungen sind im Tool hingegen nicht vorgesehen.
-  </div>
-
-  <!-- Spacer to prevent content from being hidden behind fixed footer -->
-  <div class="pb-5 mb-5"></div>
-  
-  <!-- Footer Navigation Container -->
-  <div class="navigation-footer">
-    <div class="container d-flex justify-content-between">
-      <button type="button" class="btn btn-secondary" routerLink="/gebaeude/basisdaten">
-        <i class="bi bi-arrow-left me-1"></i> Zurück
-      </button>
-      <button type="button" class="btn btn-primary" routerLink="/gebaeude/heizung">
-        Weiter <i class="bi bi-arrow-right ms-1"></i>
-      </button>
-    </div>
-  </div>
-
-<style>
-.po-comment {
-  border: 1px dashed red;
-  background-color: #ffdddd;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: #600;
-}
-</style>

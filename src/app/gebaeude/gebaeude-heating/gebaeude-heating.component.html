@@ -9,7 +9,6 @@
       <select class="form-select" id="effizienz" name="effizienz"
               [ngModel]="grid.getCell('IN_build', 'P12')"
               (ngModelChange)="grid.setCell('IN_build', 'P12', $event)">
-        <option value="" selected>Bitte auswählen</option>
         <option *ngFor="let klasse of effizienzklassen" [value]="klasse">{{klasse}}</option>
       </select>
     </div>
@@ -28,35 +27,11 @@
   <div class="mb-4 row">
     <label class="col-sm-5 col-form-label pt-0">Wie werden die Räume erwärmt?</label>
     <div class="col-sm-7">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="heizungsart" id="heiz_hk"
-               [checked]="grid.getCell('IN_build', 'P14') === 'Heizkörper'"
-               (change)="grid.setCell('IN_build', 'P14', 'Heizkörper')">
-        <label class="form-check-label" for="heiz_hk">Heizkörper</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="heizungsart" id="heiz_fbh"
-               [checked]="grid.getCell('IN_build', 'P14') === 'Fußbodenheizung'"
-               (change)="grid.setCell('IN_build', 'P14', 'Fußbodenheizung')">
-        <label class="form-check-label" for="heiz_fbh">Fußbodenheizung (Flächenheizung)</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="heizungsart" id="heiz_kombi"
-               [checked]="grid.getCell('IN_build', 'P14') === 'Heizkörper und Flächenheizung'"
-               (change)="grid.setCell('IN_build', 'P14', 'Heizkörper und Flächenheizung')">
-        <label class="form-check-label" for="heiz_kombi">Heizkörper und Flächenheizung</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="heizungsart" id="heiz_nacht"
-               [checked]="grid.getCell('IN_build', 'P14') === 'Nachtspeicherheizung'"
-               (change)="grid.setCell('IN_build', 'P14', 'Nachtspeicherheizung')">
-        <label class="form-check-label" for="heiz_nacht">Nachtspeicherheizung (Stromdirektheizung)</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="heizungsart" id="heiz_andere"
-               [checked]="grid.getCell('IN_build', 'P14') === 'Andere'"
-               (change)="grid.setCell('IN_build', 'P14', 'Andere')">
-        <label class="form-check-label" for="heiz_andere">Andere</label>
+      <div *ngFor="let uebergabetyp of waermeuebergabeTypen; let i = index" class="form-check">
+        <input class="form-check-input" type="radio" name="heizungsart" [id]="'heiz_' + i"
+               [checked]="grid.getCell('IN_build', 'P14') === uebergabetyp"
+               (change)="grid.setCell('IN_build', 'P14', uebergabetyp)">
+        <label class="form-check-label" [for]="'heiz_' + i">{{uebergabetyp}}</label>
       </div>
     </div>
   </div>
@@ -64,17 +39,11 @@
   <div class="mb-3 row">
     <label class="col-sm-5 col-form-label pt-0">Wie wird die Wärme verteilt?</label>
     <div class="col-sm-7">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="verteilung" id="verteil_zwei"
-               [checked]="grid.getCell('IN_build', 'P15') === 'Zweirohrheizung'"
-               (change)="grid.setCell('IN_build', 'P15', 'Zweirohrheizung')">
-        <label class="form-check-label" for="verteil_zwei">Zweirohrheizung</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="verteilung" id="verteil_ein"
-               [checked]="grid.getCell('IN_build', 'P15') === 'Einrohrheizung'"
-               (change)="grid.setCell('IN_build', 'P15', 'Einrohrheizung')">
-        <label class="form-check-label" for="verteil_ein">Einrohrheizung</label>
+      <div *ngFor="let kreislauftyp of heizkreislaufTypen; let i = index" class="form-check">
+        <input class="form-check-input" type="radio" name="verteilung" [id]="'verteil_' + i"
+               [checked]="grid.getCell('IN_build', 'P15') === kreislauftyp"
+               (change)="grid.setCell('IN_build', 'P15', kreislauftyp)">
+        <label class="form-check-label" [for]="'verteil_' + i">{{kreislauftyp}}</label>
       </div>
     </div>
   </div>

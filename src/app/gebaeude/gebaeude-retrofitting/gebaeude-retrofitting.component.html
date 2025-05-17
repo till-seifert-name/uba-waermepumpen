@@ -19,8 +19,7 @@
             <select class="form-select form-select-sm" id="modjahr_aw" name="modjahr_aw"
                   [ngModel]="grid.getCell('IN_build', 'S7')"
                   (ngModelChange)="grid.setCell('IN_build', 'S7', $event)">
-              <option>Bitte auswählen</option>
-              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{jahr}}</option>
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
             </select>
           </div>
         </div>
@@ -51,8 +50,7 @@
             <select class="form-select form-select-sm" id="modjahr_fenster" name="modjahr_fenster"
                   [ngModel]="grid.getCell('IN_build', 'S8')"
                   (ngModelChange)="grid.setCell('IN_build', 'S8', $event)">
-              <option>Bitte auswählen</option>
-              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{jahr}}</option>
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
             </select>
           </div>
         </div>
@@ -72,8 +70,7 @@
             <select class="form-select form-select-sm" id="modjahr_dach" name="modjahr_dach"
                   [ngModel]="grid.getCell('IN_build', 'S9')"
                   (ngModelChange)="grid.setCell('IN_build', 'S9', $event)">
-              <option>Bitte auswählen</option>
-              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{jahr}}</option>
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
             </select>
           </div>
         </div>
@@ -104,8 +101,7 @@
             <select class="form-select form-select-sm" id="modjahr_ogd" name="modjahr_ogd"
                   [ngModel]="grid.getCell('IN_build', 'S11')"
                   (ngModelChange)="grid.setCell('IN_build', 'S11', $event)">
-              <option>Bitte auswählen</option>
-              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{jahr}}</option>
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
             </select>
           </div>
         </div>
@@ -136,8 +132,7 @@
             <select class="form-select form-select-sm" id="modjahr_keller" name="modjahr_keller"
                   [ngModel]="grid.getCell('IN_build', 'S10')"
                   (ngModelChange)="grid.setCell('IN_build', 'S10', $event)">
-              <option>Bitte auswählen</option>
-              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{jahr}}</option>
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
             </select>
           </div>
         </div>

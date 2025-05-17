@@ -36,7 +36,7 @@
         <span class="input-group-text">cm</span>
       </div>
       <div id="daemmungHelp" class="form-text">
-        {{ buildingInsulationThickness > 0 ? 'Gebäude hat ' + buildingInsulationThickness + 'cm Dämmung. Bei abweichender Dämmstärke hier ändern.' : 'Gebäudedämmung nicht angegeben. Raum-spezifische Dämmstärke eingeben.' }}
+        {{ buildingInsulationThickness ? 'Gebäude hat ' + buildingInsulationThickness + 'cm Dämmung. Bei abweichender Dämmstärke hier ändern.' : 'Gebäudedämmung nicht angegeben. Raum-spezifische Dämmstärke eingeben.' }}
       </div>
     </div>
   </div>

@@ -44,10 +44,7 @@
     <label for="decke_grenzt" class="col-sm-5 col-form-label">Decke grenzt an</label>
     <div class="col-sm-7">
       <select class="form-select" id="decke_grenzt" name="decke_grenzt" [(ngModel)]="ceilingType">
-        <option value="unbeheizt" selected>unbeheizter Raum</option>
-        <option value="beheizt">beheizter Raum</option>
-        <option value="aussenluft">Außenluft</option>
-        <option value="dach">Dach</option>
+        <option *ngFor="let grenze of deckenGrenzen" [value]="grenze">{{getBauteilGrenzeLabel(grenze)}}</option>
       </select>
     </div>
   </div>
@@ -56,10 +53,7 @@
     <label for="boden_grenzt" class="col-sm-5 col-form-label">Boden grenzt an</label>
     <div class="col-sm-7">
       <select class="form-select" id="boden_grenzt" name="boden_grenzt" [(ngModel)]="floorType">
-        <option value="unbeheizt" selected>unbeheizter Raum</option>
-        <option value="erdreich">Erdreich</option>
-        <option value="beheizt">beheizter Raum</option>
-        <option value="aussenluft">Außenluft</option>
+        <option *ngFor="let grenze of bodenGrenzen" [value]="grenze">{{getBauteilGrenzeLabel(grenze)}}</option>
       </select>
     </div>
   </div>

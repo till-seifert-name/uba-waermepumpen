@@ -44,13 +44,6 @@
                   <circle cx="80" cy="65" r="5" fill="none" stroke="#666" stroke-width="2"/>
                 </svg>
               </div>
-              <div *ngIf="type === 'Rohrheizkörper'" class="placeholder-image">
-                <svg width="80" height="80" viewBox="0 0 100 100">
-                  <path d="M20,20 h60 M20,30 h60 M20,40 h60 M20,50 h60 M20,60 h60 M20,70 h60 M20,80 h60" stroke="#666" stroke-width="3" fill="none"/>
-                  <path d="M20,20 v60 M80,20 v60" stroke="#666" stroke-width="3" fill="none"/>
-                  <circle cx="80" cy="75" r="5" fill="none" stroke="#666" stroke-width="2"/>
-                </svg>
-              </div>
               <div *ngIf="type === 'Konvektor'" class="placeholder-image">
                 <svg width="80" height="80" viewBox="0 0 100 100">
                   <rect x="20" y="20" width="60" height="60" fill="#eee" stroke="#666" stroke-width="2"/>
@@ -73,10 +66,10 @@
       <div class="input-group">
         <span class="input-group-text" style="width: 90px;">Subtyp</span>
         <select class="form-select"
-                [(ngModel)]="heaterSubtype"
+                [(ngModel)]="heizfleacheSubtype"
                 (ngModelChange)="updateDimensionOptions()"
                 [name]="'heater' + heaterNumber + '_subtype'" required>
-          <option *ngFor="let subtype of berechnungService.getHeaterSubtypes(berechnungService.getHeatingType(roomId, heaterNumber))"
+          <option *ngFor="let subtype of berechnungService.getNamesExpressionValueList(berechnungService.getHeatingType(roomId, heaterNumber))"
                   [value]="subtype">{{ subtype }}</option>
         </select>
       </div>
@@ -95,44 +88,40 @@
 
     <!-- Abmessungen - mit unterschiedlichen Bedingungen pro Typ -->
     <div class="row g-2">
-      <!-- Breite/Länge - nur bei bestimmten Typen -->
-      <div class="col mb-3" *ngIf="widthOptions.length > 0">
+      <!-- Breite/Länge - Number input always shown -->
+      <div class="col mb-3">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Breite</span>
-          <!-- Select dropdown if we have standard width options -->
-          <select class="form-select"
+          <input type="number" class="form-control"
                  [ngModel]="berechnungService.getHeatingLength(roomId, heaterNumber)"
                  (ngModelChange)="berechnungService.setHeatingLength(roomId, $event, heaterNumber)"
-                 [name]="'heater' + heaterNumber + '_length'" required>
-            <option *ngFor="let width of widthOptions" [ngValue]="width">{{ width }} cm</option>
-          </select>
+                 [name]="'heater' + heaterNumber + '_length'" min="10" max="2000" step="1" required>
+          <span class="input-group-text">cm</span>
         </div>
       </div>
 
-      <!-- Höhe - für alle Typen -->
-      <div class="col mb-3" *ngIf="heightOptions.length > 0">
+      <!-- Höhe - Dropdown with options from INDIREKT(subtype) -->
+      <div class="col mb-3" *ngIf="hoeheOptions.length > 0">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Höhe</span>
-          <!-- Select dropdown if we have standard height options -->
           <select class="form-select"
                  [ngModel]="berechnungService.getHeatingHeight(roomId, heaterNumber)"
                  (ngModelChange)="berechnungService.setHeatingHeight(roomId, $event, heaterNumber)"
                  [name]="'heater' + heaterNumber + '_height'" required>
-            <option *ngFor="let height of heightOptions" [ngValue]="height">{{ height }} cm</option>
+            <option *ngFor="let height of hoeheOptions" [ngValue]="height">{{ height }} cm</option>
           </select>
         </div>
       </div>
 
-      <!-- Tiefe - nur bei bestimmten Typen -->
-      <div class="col mb-3" *ngIf="depthOptions.length > 0">
+      <!-- Tiefe - Dropdown with options from INDIREKT(subtype&"_t") -->
+      <div class="col mb-3" *ngIf="tiefeOptions.length > 0">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Tiefe</span>
-          <!-- Select dropdown if we have standard depth options -->
           <select class="form-select"
                  [ngModel]="berechnungService.getHeatingDepth(roomId, heaterNumber)"
                  (ngModelChange)="berechnungService.setHeatingDepth(roomId, $event, heaterNumber)"
                  [name]="'heater' + heaterNumber + '_depth'" required>
-            <option *ngFor="let depth of depthOptions" [ngValue]="depth">{{ depth }} cm</option>
+            <option *ngFor="let depth of tiefeOptions" [ngValue]="depth">{{ depth }} cm</option>
           </select>
         </div>
       </div>
@@ -141,15 +130,12 @@
       <div class="col mb-3" *ngIf="berechnungService.getHeatingType(roomId, heaterNumber) === 'Gliederheizkörper'">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Glieder</span>
-          <!-- Number input -->
           <input type="number" class="form-control"
                  [ngModel]="berechnungService.getn_rad_col(roomId, heaterNumber) || 10"
                  (ngModelChange)="berechnungService.setn_rad_col(roomId, $event, heaterNumber)"
                  [name]="'n_rad' + heaterNumber + '_col'" min="1" max="20" step="1" required>
         </div>
-        <div class="form-text">Geben Sie die Anzahl der Glieder des Heizkörpers an</div>
       </div>
-
     </div>
   </div>
 

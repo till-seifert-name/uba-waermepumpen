@@ -19,13 +19,11 @@ export class HeaterFormComponent implements OnInit, OnChanges {
   // We'll get subtypes dynamically from the service
 
   // Selected heater subtype
-  heaterSubtype: string = '';
+  heizfleacheSubtype: string = '';
 
   // Dimension options for select dropdowns
-  heightOptions: number[] = [];
-  widthOptions: number[] = [];
-  depthOptions: number[] = [];
-  elementCountOptions: number[] = [];
+  hoeheOptions: string[] = [];
+  tiefeOptions: string[] = [];
 
   constructor(public berechnungService: BerechnungService) { }
 
@@ -38,17 +36,13 @@ export class HeaterFormComponent implements OnInit, OnChanges {
 
   // Update available options for dimensions based on current heater type and subtype
   updateDimensionOptions(): void {
-    const heaterType = this.berechnungService.getHeatingType(this.roomId, this.heaterNumber);
+    if(!this.heizfleacheSubtype) return;
 
-    if (!heaterType) return;
+    // Get height values using INDIREKT(subtype)
+    this.hoeheOptions = this.berechnungService.getNamesExpressionValueList(this.heizfleacheSubtype);
 
-    // Get standard dimension values
-    this.heightOptions = this.berechnungService.getHeaterDimensionOptions('Höhe', heaterType, this.heaterSubtype);
-    this.widthOptions = this.berechnungService.getHeaterDimensionOptions('Breite', heaterType, this.heaterSubtype);
-    this.depthOptions = this.berechnungService.getHeaterDimensionOptions('Tiefe', heaterType, this.heaterSubtype);
-
-    // For Gliederheizkörper, get standard count values
-    this.elementCountOptions = this.berechnungService.getHeaterDimensionOptions('Glieder', heaterType)
+    // Get depth values using INDIREKT(subtype&"_t")
+    this.tiefeOptions = this.berechnungService.getNamesExpressionValueList(this.heizfleacheSubtype + "_t");
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -61,9 +55,9 @@ export class HeaterFormComponent implements OnInit, OnChanges {
     const heaterType = this.berechnungService.getHeatingType(this.roomId, this.heaterNumber);
     // Set default subtype if needed
     if (heaterType) {
-      const subtypes = this.berechnungService.getHeaterSubtypes(heaterType);
-      if (subtypes.length > 0 && !this.heaterSubtype) {
-        this.heaterSubtype = subtypes[0];
+      const subtypes = this.berechnungService.getNamesExpressionValueList(heaterType);
+      if (subtypes.length > 0 && !this.heizfleacheSubtype) {
+        this.heizfleacheSubtype = subtypes[0];
       }
     }
   }
@@ -76,7 +70,6 @@ export class HeaterFormComponent implements OnInit, OnChanges {
       'Flachheizkoerper_senkrecht_profiliert': 'Flachheizkörper profiliert',
       'Gliederheizkörper': 'Gliederheizkörper',
       'Rohrradiator': 'Rohrradiator',
-      'Rohrheizkörper': 'Rohrheizkörper',
       'Konvektor': 'Konvektor'
     };
     return displayNames[type] || type;
@@ -85,19 +78,30 @@ export class HeaterFormComponent implements OnInit, OnChanges {
   // Handle heater type change
   onHeaterTypeChange(heaterType: HeaterType): void {
     this.berechnungService.setHeatingType(this.roomId, heaterType, this.heaterNumber);
-    const subtypes = this.berechnungService.getHeaterSubtypes(heaterType);
-    this.heaterSubtype = subtypes.length > 0 ? subtypes[0] : '';
 
-    // Initialize Glieder count if switching to Gliederheizkörper
+    // Get subtypes for the selected heater type
+    const subtypes = this.berechnungService.getNamesExpressionValueList(heaterType);
+    this.heizfleacheSubtype = subtypes.length > 0 ? subtypes[0] : '';
+
+    // Set default values based on heater type
     if (heaterType === 'Gliederheizkörper') {
-      // Only set if not already set
+      // Initialize Glieder count if not already set
       if (!this.berechnungService.getn_rad_col(this.roomId, this.heaterNumber)) {
         this.berechnungService.setn_rad_col(this.roomId, 10, this.heaterNumber); // Default to 10 elements
       }
     }
 
-    // Update dimension options based on the new heater type
+    // Update dimension options based on the new heater type and selected subtype
     this.updateDimensionOptions();
+
+    // Set default height and depth if options are available
+    if (this.hoeheOptions.length > 0 && !this.berechnungService.getHeatingHeight(this.roomId, this.heaterNumber)) {
+      this.berechnungService.setHeatingHeight(this.roomId, this.hoeheOptions[0], this.heaterNumber);
+    }
+
+    if (this.tiefeOptions.length > 0 && !this.berechnungService.getHeatingDepth(this.roomId, this.heaterNumber)) {
+      this.berechnungService.setHeatingDepth(this.roomId, this.tiefeOptions[0], this.heaterNumber);
+    }
   }
 
   // Handle remove button click

@@ -18,7 +18,7 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
   // Getter for window year options from Daten sheet (same as building years)
   get windowYearOptions(): string[] {
     // Get the values from the Daten sheet
-    const Baujahre = this.grid.getCells('Daten', 'E17', 'E28').map(row => row[0].toString());
+    const Baujahre = this.grid.getCells('Daten', 'E17', 'E29').map(row => row[0].toString());
     // Add 'wie Gebäude' option at the beginning
     return ['', ...Baujahre];
   }
@@ -78,8 +78,9 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
   }
 
   // Get the building insulation thickness from the service
-  get buildingInsulationThickness(): number {
-    return this.berechnungService.getBuildingWallInsulationThickness();
+  get buildingInsulationThickness(): number | string {
+    // TODO: use cell R74 and so on
+    return this.berechnungService.getBuildingWallInsulationThickness() || "";
   }
 
   addWindowType(): void {

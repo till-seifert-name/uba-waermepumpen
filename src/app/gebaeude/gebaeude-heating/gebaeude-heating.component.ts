@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BerechnungService } from '../../berechnung.service';
 import { DataGrid } from '../../data-grid';
+import { data as Daten } from '../../../../20250507_WP_Check_Vorlage_ts_export/Daten';
 
 @Component({
   selector: 'app-gebaeude-heating',
@@ -24,22 +25,42 @@ export class GebaeudeHeatingComponent {
   get effizienzklassen(): string[] {
     try {
       // Get the values from the Daten sheet
-      return this.grid.getCells('Daten', 'E31', 'E40')
-        .map(row => row[0].toString())
-        .filter(value => value !== ""); // Filter out empty values
+      return this.grid.getCells('Daten', 'E31', 'E40').map(row => row[0].toString())
     } catch (error) {
       console.error('Error loading Effizienzklassen:', error);
       return [];
     }
   }
+  
+  // Getter für Wärmeübergabe-Typen aus dem Daten-Sheet (E57-E63)
+  get waermeuebergabeTypen(): string[] {
+    try {
+      // Werte aus dem Daten-Sheet abrufen
+      return this.grid.getCells('Daten', 'E57', 'E63').map(row => row[0].toString());
+    } catch (error) {
+      console.error('Fehler beim Laden der Wärmeübergabe-Typen:', error);
+      return [];
+    }
+  }
+  
+  // Getter für Heizkreislauf-Typen aus dem Daten-Sheet (E70-E71)
+  get heizkreislaufTypen(): string[] {
+    try {
+      // Werte aus dem Daten-Sheet abrufen
+      return this.grid.getCells('Daten', 'E70', 'E71').map(row => row[0].toString());
+    } catch (error) {
+      console.error('Fehler beim Laden der Heizkreislauf-Typen:', error);
+      return [];
+    }
+  }
 
   onSubmit(): void {
-    // If storage heater is selected, route to special feedback
-    const heatingType = this.grid.getCell('IN_build', 'P14');
-    if (heatingType === 'Nachtspeicherheizung') {
+    // Wenn Nachtspeicherheizung ausgewählt wurde, zu speziellem Feedback navigieren
+    const heizungstyp = this.grid.getCell('IN_build', 'P14');
+    if (heizungstyp === Daten['E60']) { // Nachtspeicherheizung
       this.router.navigate(['/gebaeude/feedback-heizung']);
     } else {
-      // Otherwise continue to flow temperature
+      // Ansonsten zur Vorlauftemperatur weiterleiten
       this.router.navigate(['/gebaeude/vorlauftemperatur']);
     }
   }

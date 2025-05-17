@@ -24,16 +24,23 @@ export class GebaeudeRetrofittingComponent implements OnInit {
     // Nothing to initialize specifically
   }
 
-  // Getter for Modernisierungsjahr from the Daten sheet (B19-B24)
+  // Getter for Modernisierungsjahr from the Daten sheet (E17-E29)
   get Modernisierungsjahr(): string[] {
     try {
       // Get the values from the Daten sheet
-      return this.grid.getCells('Daten', 'B19', 'B24').map(row => row[0].toString());
+      return this.grid.getCells('Daten', 'E17', 'E29').map(row => row[0].toString());
     } catch (error) {
       console.error('Error loading Modernisierungsjahr:', error);
-      return [
-      ];
+      return [];
     }
+  }
+
+  // Method to get user-friendly display labels for modernisierungsjahr values
+  getModernisierungsjahrLabel(value: string): string {
+    if (value === '') {
+      return 'unbekannt';
+    }
+    return value;
   }
 
   onSubmit(): void {

@@ -18,26 +18,12 @@
   <div class="mb-3 row">
     <label class="col-sm-5 col-form-label">Das Gebäude ist ein ...</label>
     <div class="col-sm-7">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gebaeudetyp" id="typ_efh"
-               [value]="'Ein- oder Zweifamilienhaus'"
-               [checked]="grid.getCell('IN_build', 'P3') === 'Ein- oder Zweifamilienhaus'"
-               (change)="grid.setCell('IN_build', 'P3', 'Ein- oder Zweifamilienhaus')">
-        <label class="form-check-label" for="typ_efh">Ein- oder Zweifamilienhaus</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gebaeudetyp" id="typ_rh"
-               [value]="'Reihenhaus'"
-               [checked]="grid.getCell('IN_build', 'P3') === 'Reihenhaus'"
-               (change)="grid.setCell('IN_build', 'P3', 'Reihenhaus')">
-        <label class="form-check-label" for="typ_rh">Reihenhaus</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gebaeudetyp" id="typ_mfh"
-               [value]="'Mehrfamilienhaus'"
-               [checked]="grid.getCell('IN_build', 'P3') === 'Mehrfamilienhaus'"
-               (change)="grid.setCell('IN_build', 'P3', 'Mehrfamilienhaus')">
-        <label class="form-check-label" for="typ_mfh">Mehrfamilienhaus</label>
+      <div *ngFor="let gebaeudetyp of gebaeudetypen; let i = index" class="form-check">
+        <input class="form-check-input" type="radio" name="gebaeudetyp" [id]="'typ_' + i"
+               [value]="gebaeudetyp"
+               [checked]="grid.getCell('IN_build', 'P3') === gebaeudetyp"
+               (change)="grid.setCell('IN_build', 'P3', gebaeudetyp)">
+        <label class="form-check-label" [for]="'typ_' + i">{{gebaeudetyp}}</label>
       </div>
     </div>
   </div>
@@ -45,33 +31,12 @@
   <div class="mb-3 row">
     <label class="col-sm-5 col-form-label">Dachform</label>
     <div class="col-sm-7">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="dachform" id="dach_flach"
-               [value]="'Flach bzw. Flachdach'"
-               [checked]="grid.getCell('IN_build', 'P4') === 'Flach bzw. Flachdach'"
-               (change)="grid.setCell('IN_build', 'P4', 'Flach bzw. Flachdach')">
-        <label class="form-check-label" for="dach_flach">Flach oder Flachdach</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="dachform" id="dach_geneigt"
-               [value]="'geneigt'"
-               [checked]="grid.getCell('IN_build', 'P4') === 'geneigt'"
-               (change)="grid.setCell('IN_build', 'P4', 'geneigt')">
-        <label class="form-check-label" for="dach_geneigt">geneigt</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="dachform" id="dach_steil"
-               [value]="'steil'"
-               [checked]="grid.getCell('IN_build', 'P4') === 'steil'"
-               (change)="grid.setCell('IN_build', 'P4', 'steil')">
-        <label class="form-check-label" for="dach_steil">steil</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="dachform" id="dach_sehrsteil"
-               [value]="'sehr steil'"
-               [checked]="grid.getCell('IN_build', 'P4') === 'sehr steil'"
-               (change)="grid.setCell('IN_build', 'P4', 'sehr steil')">
-        <label class="form-check-label" for="dach_sehrsteil">sehr steil</label>
+      <div *ngFor="let dachtyp of dachtypen; let i = index" class="form-check">
+        <input class="form-check-input" type="radio" name="dachform" [id]="'dach_' + i"
+               [value]="dachtyp"
+               [checked]="grid.getCell('IN_build', 'P4') === dachtyp"
+               (change)="grid.setCell('IN_build', 'P4', dachtyp)">
+        <label class="form-check-label" [for]="'dach_' + i">{{dachtyp}}</label>
       </div>
     </div>
   </div>
@@ -81,9 +46,9 @@
     <div class="col-sm-7">
       <select class="form-select" id="baujahr" name="baujahr"
               [ngModel]="grid.getCell('IN_build', 'P5')"
-              (ngModelChange)="grid.setCell('IN_build', 'P5', $event)">
-        <option value="" selected>Bitte auswählen</option>
-        <option *ngFor="let jahr of baualtersklassen" [value]="jahr">{{jahr}}</option>
+              (ngModelChange)="grid.setCell('IN_build', 'P5', $event)"
+              required>
+        <option *ngFor="let jahr of baualtersklassen" [value]="jahr">{{getBaualtersklasseLabel(jahr)}}</option>
       </select>
     </div>
   </div>
