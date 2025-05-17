@@ -1,0 +1,60 @@
+.debug-overlay {
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  width: 400px;
+  background-color: rgba(245, 245, 245, 0.95);
+  border: 1px solid #DDD;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  padding: 12px;
+  max-height: 80vh;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+
+  .debug-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #EEE;
+
+    h5 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+
+  .debug-item {
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 6px;
+
+
+    .cell-value {
+      font-family: monospace;
+      font-size: 14px;
+      padding: 6px;
+      background-color: #F8F9FA;
+      border-radius: 4px;
+      overflow-wrap: break-word;
+    }
+  }
+
+  .debug-controls {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
+  .debug-footer {
+    text-align: center;
+  }
+}

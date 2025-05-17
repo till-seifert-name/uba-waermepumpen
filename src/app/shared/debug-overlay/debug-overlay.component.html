@@ -1,0 +1,32 @@
+<div class="debug-overlay" *ngIf="isVisible">
+  <div class="debug-header">
+    <h5>Debug-Overlay</h5>
+    <button type="button" class="btn-close" aria-label="Schließen" (click)="toggleVisibility()"></button>
+  </div>
+
+  <div class="debug-item" *ngFor="let cellRef of cellReferences; let i = index">
+    <div class="input-group">
+      <input type="text" class="form-control form-control-sm" placeholder="Blatt"
+             [(ngModel)]="cellRef.sheet" (change)="onInputChange()" [name]="'sheet-' + i">
+      <input type="text" class="form-control form-control-sm" placeholder="Zelle (z.B. A1)"
+             [(ngModel)]="cellRef.cell" (change)="onInputChange()" [name]="'cell-' + i">
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeCellRef(i)">
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+
+    <div class="cell-value" *ngIf="cellRef.sheet && cellRef.cell">
+      <strong>Wert:</strong> [{{ cellRef.value }}]
+    </div>
+  </div>
+
+  <div class="debug-controls">
+    <button type="button" class="btn btn-primary btn-sm" (click)="addCellRef()">
+      <i class="bi bi-plus-circle"></i> Zellreferenz hinzufügen
+    </button>
+  </div>
+
+  <div class="debug-footer" *ngIf="cellReferences.length === 0">
+    <small class="text-muted">Blattnamen und die Zellreferenz eingeben, um Wert anzuzeigen</small>
+  </div>
+</div>
