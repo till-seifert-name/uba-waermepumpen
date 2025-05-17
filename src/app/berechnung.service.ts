@@ -221,7 +221,8 @@ export class BerechnungService {
     // Restore cells from localStorage if available
     const serializedData = this.storage.get<string>(STORAGE_KEY);
     if (serializedData) {
-      grid.restoreCells(serializedData);
+      // Only restore cells that are in the whitelist
+      grid.restoreCells(serializedData, this.cellsToSave.map(ref => parseCellReference(ref)));
       console.log(`Input restored: ${serializedData}`);
     }
 
@@ -338,8 +339,8 @@ export class BerechnungService {
     'IN_build!P17', // Vorlauftemperatur am Auslegungspunkt
     'IN_build!P18', // Kann Vorlauftemperatur messen (Ja/Nein)
     'IN_build!P19', // Aktuelle Vorlauftemperatur
-    'IN_build!P20', // Aktuelle Außentemperatur
-    'IN_build!P21', // Gibt es Räume, die nicht ausreichend warm werden (Ja/Nein)
+   // 'IN_build!P20', // Aktuelle Außentemperatur
+   // 'IN_build!P21', // Gibt es Räume, die nicht ausreichend warm werden (Ja/Nein)
 
     // Room properties
     // For each of the 15 possible rooms (R through AF), we save the basic properties.

@@ -77,17 +77,32 @@ export class DataGrid {
 
 
   /**
-   * Method to restore cells from serialized data
+   * Method to restore cells from serialized data, optionally filtering by a whitelist
+   * 
+   * @param json - The serialized cell data as a JSON string
+   * @param parsedReferences - Optional array of [sheet, cell] pairs to restrict restoration to
    */
-  restoreCells(json: string) {
+  restoreCells(json: string, parsedReferences?: [string, string][]) {
     try {
       const restoredSheets = JSON.parse(json);
       if (!isRestoredSheets(restoredSheets)) {
         throw new Error('Invalid data format for restored cells');
       }
+      
       for (const sheetName in restoredSheets) {
         this.cells[sheetName] ??= {};
         for (const cell in restoredSheets[sheetName]) {
+          // If parsedReferences is provided, only restore cells in the whitelist
+          if (parsedReferences) {
+            const isInWhitelist = parsedReferences.some(
+              ([refSheet, refCell]) => refSheet === sheetName && refCell === cell
+            );
+            
+            if (!isInWhitelist) {
+              continue; // Skip this cell as it's not in the whitelist
+            }
+          }
+          
           if (restoredSheets[sheetName][cell] !== null) {
             this.setCell(sheetName, cell, restoredSheets[sheetName][cell]);
           }
