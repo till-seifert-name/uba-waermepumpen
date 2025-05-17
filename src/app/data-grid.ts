@@ -106,8 +106,8 @@ export class DataGrid {
     this.cells[sheet] ??= {};
 
     if (typeof value === 'string' && /^[0-9\-]*[.,]?[0-9Ee\-]+$/.test(value)) {
-    // not used, we will try to use native html5 number inputs
-    //  value = parseFloat(value.replace(/[.,]/, '.'));
+      // not used, we will try to use native html5 number inputs
+      //  value = parseFloat(value.replace(/[.,]/, '.'));
     }
 
     this.cells[sheet][cell] = value;
@@ -126,14 +126,14 @@ export class DataGrid {
     if (Array.isArray(content)) {
       for (let col = $x1; col <= $x2; col++) {
         for (let row = $y1; row <= $y2; row++) {
-          const cell = DataGrid.index2cell(col, row);
+          const cell = index2cell(col, row);
           this.setCell(sheet, cell, content[row - $y1][col - $x1] || 0);
         }
       }
     } else {
       for (let col = $x1; col <= $x2; col++) {
         for (let row = $y1; row <= $y2; row++) {
-          const cell = DataGrid.index2cell(col, row);
+          const cell = index2cell(col, row);
           this.setCell(sheet, cell, content);
         }
       }
@@ -170,7 +170,7 @@ export class DataGrid {
     for (let row = $y1; row <= $y2; row++) {
       const rowData: (number | string)[] = [];
       for (let col = $x1; col <= $x2; col++) {
-        const cell = DataGrid.index2cell(col, row);
+        const cell = index2cell(col, row);
         rowData.push(this.getCell(sheet, cell));
       }
       result.push(rowData);
@@ -222,52 +222,13 @@ export class DataGrid {
     }, 0);
   }
 
-  // Static helper methods
-
-  static charCodeOfA = 'A'.charCodeAt(0);
-  static alphabetLength = 'Z'.charCodeAt(0) - DataGrid.charCodeOfA + 1;
-
-  /**
-   * Converts a column name to a numeric column index.
-   */
-  static columnNameToColNumber(cell: string): number {
-    let result = 0;
-    cell = cell.replace(/[^A-Z]/g, '');
-    for (let i = 0; i < cell.length; i++) {
-      result *= DataGrid.alphabetLength;
-      result += cell.charCodeAt(i) - DataGrid.charCodeOfA + 1;
-    }
-    return result;
-  }
-
-  /**
-   * Extracts the row number from a cell name.
-   */
-  static cellNameToRowNumber(cell: string): number {
-    return parseInt(cell.replace(/[^0-9]/g, ''));
-  }
-
-  /**
-   * Converts a numeric column index to an Excel-style column name.
-   */
-  static getExcelColumnName(number: number): string {
-    let sb = '';
-    let num = number - 1;
-    while (num >= 0) {
-      sb = String.fromCharCode((num % DataGrid.alphabetLength) + DataGrid.charCodeOfA) + sb;
-      num = Math.floor(num / DataGrid.alphabetLength) - 1;
-    }
-    return sb;
-  }
-
-
   // Implementations of Excel functions
   COLUMN(cell: string): number {
-    return DataGrid.columnNameToColNumber(cell);
+    return columnNameToColNumber(cell);
   }
 
   ROW(cell: string): number {
-    return DataGrid.cellNameToRowNumber(cell);
+    return cellNameToRowNumber(cell);
   }
 
   /**
@@ -277,7 +238,7 @@ export class DataGrid {
     const x = this.COLUMN(cell1) + (col - 1);
     const y = this.ROW(cell1) + (row - 1);
 
-    return this.getCell(sheet, DataGrid.index2cell(x, y));
+    return this.getCell(sheet, index2cell(x, y));
   }
 
   SVERWEIS(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number): string | number | null {
@@ -290,58 +251,253 @@ export class DataGrid {
 
     for (let y = yStart; y <= yEnd; y++) {
       if (found) break;
-      const v = this.getCell(sheet, DataGrid.index2cell(x, y));
+      const v = this.getCell(sheet, index2cell(x, y));
       if (v == value) {
         found = true;
-        result = this.getCell(sheet, DataGrid.index2cell(x + col - 1, y));
+        result = this.getCell(sheet, index2cell(x + col - 1, y));
       }
     }
     return result;
   }
 
   /**
-   * Converts a row and column index to an Excel-style cell name.
+   * Excel-style XVERWEIS: accepts array-based args instead of cell references.
    */
-  static index2cell(x: number, y: number): string {
-    return DataGrid.getExcelColumnName(x) + y;
+  XVERWEIS(
+    value: string | number | null,
+    lookupArray: (string | number | null)[],
+    returnArray: (string | number | null)[],
+    options?: {
+      ifNotFound?: string | number | null | (() => any),
+      matchMode?: 'exact' | 'exactOrNextSmaller' | 'exactOrNextLarger',
+      searchMode?: 'first' | 'last';
+    }
+  ): string | number | null {
+    const matchMode = options?.matchMode ?? 'exact';
+    const searchMode = options?.searchMode ?? 'first';
+
+    if (lookupArray.length !== returnArray.length) {
+      throw new Error('lookupArray and returnArray must be the same length');
+    }
+
+    const indices = [...lookupArray.keys()];
+    if (searchMode === 'last') indices.reverse();
+
+    let bestIndex: number | null = null;
+
+    for (const i of indices) {
+      const lookupCell = lookupArray[i];
+      const returnCell = returnArray[i];
+
+      const match = (lookupCell == value); // == for Excel-style comparison
+
+      if (matchMode === 'exact' && match) return returnCell;
+
+      if (typeof value === 'number' && typeof lookupCell === 'number') {
+        if (matchMode === 'exactOrNextSmaller') {
+          if (lookupCell === value) return returnCell;
+          if (lookupCell < value) {
+            if (
+              bestIndex === null ||
+              lookupCell > (lookupArray[bestIndex] as number)
+            ) {
+              bestIndex = i;
+            }
+          }
+        } else if (matchMode === 'exactOrNextLarger') {
+          if (lookupCell === value) return returnCell;
+          if (lookupCell > value) {
+            if (
+              bestIndex === null ||
+              lookupCell < (lookupArray[bestIndex] as number)
+            ) {
+              bestIndex = i;
+            }
+          }
+        }
+      }
+    }
+
+    if (bestIndex !== null) {
+      return returnArray[bestIndex];
+    }
+
+    if (typeof options?.ifNotFound === 'function') {
+      return (options.ifNotFound as () => any)();
+    }
+
+    return options?.ifNotFound ?? null;
+  }
+
+
+  /**
+   * Extracts a column from a named database-like range by header name.
+   *
+   * @param name - The name expression referring to a 2D range
+   * @param column - The column name (from the header row) to extract
+   * @returns The column values without the header row
+   */
+  INDIREKT_DB_REF(name: string, column: string): (string | number)[] {
+    const rangeRef = this.getCell('Names', name);
+    if (typeof rangeRef !== 'string') return [];
+
+    const [, sheet, startCell, , endCell] =
+    rangeRef.match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+)(?::(?:(\w[\w\s]*)!)?([A-Za-z]+\d+))?/) ?? [];
+
+    if (!sheet || !startCell) return [];
+
+    const startX = columnNameToColNumber(startCell);
+    const startY = cellNameToRowNumber(startCell);
+    const endX = columnNameToColNumber(endCell ?? startCell);
+
+    const startRowLastCell = index2cell(endX, startY);
+    const headerRow = this.getCells(sheet, startCell, startRowLastCell)[0];
+    if (!headerRow) return [];
+
+    const colIndex = headerRow.indexOf(column);
+    if (colIndex === -1) return [];
+
+    const colX = startX + colIndex;
+    const endY = cellNameToRowNumber(endCell ?? startCell);
+
+    const values: (string | number)[] = [];
+    for (let y = startY + 1; y <= endY; y++) {
+      const cellRef = index2cell(colX, y);
+      const value = this.getCell(sheet, cellRef);
+      values.push(value ?? '');
+    }
+
+    return values;
+  }
+
+  /**
+   * Resolves a value from a DB range in the current row, by column name.
+   */
+  DB_THIS_ROW(cell: string, dbName: string, column: string): string | number | null {
+    const rowIndex = this.ROW(cell);
+    const rangeRef = this.getCell('Names', dbName);
+    if (typeof rangeRef !== 'string') return null;
+
+    const [, sheet, startCell, , endCell] =
+    rangeRef.match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+)(?::(?:(\w[\w\s]*)!)?([A-Za-z]+\d+))?/) ?? [];
+    if (!sheet || !startCell) return null;
+
+    const dbStartRow = this.ROW(startCell);
+    const offset = rowIndex - dbStartRow - 1; // -1 wegen Header
+    if (offset < 0) return null;
+
+    const columnValues = this.INDIREKT_DB_REF(dbName, column);
+    return columnValues[offset] ?? null;
+  }
+
+  WENN<T>(cond: boolean, thenVal: T, elseVal: T): T {
+    return cond ? thenVal : elseVal;
+  }
+
+  ODER(...conditions: boolean[]) {
+    return conditions.some(cond => cond);
+  }
+
+  WAHR(): boolean {
+    return true;
+  }
+
+  WENNS(...args: any[]): any {
+    for (let i = 0; i < args.length - 1; i += 2) {
+      if (args[i]) return args[i + 1];
+    }
+    return args[args.length - 1];
+  }
+
+  ISTLEER(value: unknown) {
+    return value === '' || value === null || value === undefined;
+  }
+
+  ABS(wert: number) {
+    return Math.abs(wert)
+  };
+
+  /**
+   * Resolves a named range to a flat list of values.
+   */
+  INDIREKT(name: string): string[] {
+    const rangeRef = this.getCell('Names', name);
+    if (typeof rangeRef !== 'string') return [];
+
+    const [, sheet, startCell, endSheet, endCell] =
+    rangeRef.match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+)(?::(?:(\w[\w\s]*)!)?([A-Za-z]+\d+))?/) ?? [];
+
+    const matrix = this.getCells(sheet, startCell, endCell ?? startCell);
+    if (!matrix) return [];
+
+    return matrix.flat().map(v => v?.toString?.() ?? '');
+  }
+
+  GLEICH(a: (string|number)[] | string | number, b: string | number): boolean[] {
+    if (Array.isArray(a)) return a.map(x => x == b); // lockerer Vergleich wie in Excel
+    return [a == b];
+  }
+
+  /**
+   * Multiplies two vectors elementwise.
+   */
+  MULT(a: (boolean | number)[], b: (boolean | number)[]): number[] {
+    return a.map((v, i) => Number(v) * Number(b[i]));
   }
 }
 
-export const WENN = (bedingung: boolean, wertWennWahr: any, wertWennFalsch: any = "") => bedingung ? wertWennWahr : wertWennFalsch;
+// helper methods
+const charCodeOfA = 'A'.charCodeAt(0);
+const alphabetLength = 'Z'.charCodeAt(0) - charCodeOfA + 1;
 
-export function UND(...conditions: boolean[]) {
-  return conditions.every((condition) => condition);
-}
-
-export function WAHR(): boolean {
-  return true;
-}
-
-export function WENNS(...args: any[]): any {
-  for (let i = 0; i < args.length - 1; i += 2) {
-    if (args[i]) return args[i + 1];
+/**
+ * Converts a column name to a numeric column index.
+ */
+function columnNameToColNumber(cell: string): number {
+  let result = 0;
+  cell = cell.replace(/[^A-Z]/g, '');
+  for (let i = 0; i < cell.length; i++) {
+    result *= alphabetLength;
+    result += cell.charCodeAt(i) - charCodeOfA + 1;
   }
-  return args[args.length - 1];
+  return result;
 }
 
-export function ODER(...conditions: boolean[]) {
-  return conditions.some(cond => cond);
+/**
+ * Extracts the row number from a cell name.
+ */
+function cellNameToRowNumber(cell: string): number {
+  return parseInt(cell.replace(/[^0-9]/g, ''));
 }
 
-export function ISTLEER(value: unknown) {
-  return value === '' || value === null || value === undefined;
+/**
+ * Converts a numeric column index to an Excel-style column name.
+ */
+function getExcelColumnName(number: number): string {
+  let sb = '';
+  let num = number - 1;
+  while (num >= 0) {
+    sb = String.fromCharCode((num % alphabetLength) + charCodeOfA) + sb;
+    num = Math.floor(num / alphabetLength) - 1;
+  }
+  return sb;
 }
 
-export const ABS = (wert: number) => Math.abs(wert);
+/**
+ * Converts a row and column index to an Excel-style cell name.
+ */
+function index2cell(x: number, y: number): string {
+  return getExcelColumnName(x) + y;
+}
 
 /**
  * Parses a cell reference in the format "Sheet!Cell" to [sheet, cell]
  */
 export function parseCellReference(reference: string): [string, string] {
-    const parts = reference.split('!');
-    if (parts.length === 2) {
-      return [parts[0], parts[1]];
-    }
-    // Default to Names sheet if no sheet specified
-    return ["", reference];
+  const parts = reference.split('!');
+  if (parts.length === 2) {
+    return [parts[0], parts[1]];
   }
+  // Default to Names sheet if no sheet specified
+  return ["", reference];
+}

@@ -3,6 +3,7 @@ import {DataGrid, parseCellReference} from "./data-grid";
 import {BehaviorSubject, debounceTime, filter} from "rxjs";
 import {CustomLocalStorageService} from "./custom-local-storage.service";
 import {databaseRanges, explicitNamedRanges, namedExpressions, sheetsData} from '../../20250507_WP_Check_Vorlage_ts_export/master';
+import {applyFormulaOverlays} from "./formula-overlay";
 
 /**
  * UBA Wärmepumpen Berechnungsservice - Data Model Documentation
@@ -197,8 +198,9 @@ export class BerechnungService {
     /**
      * Berechnungslogik
      * -----------------------------
-     * Placeholder for calculation functions.
+     * Apply formula overlays to implement excel-like calculations
      */
+    applyFormulaOverlays(grid);
 
     // load saved state
 
@@ -1011,9 +1013,49 @@ export class BerechnungService {
       .flatMap(row => row[0].toString());
   }
 
+  /**
+   * Extracts a column from a named database-like range by header name.
+   *
+   * @param name - The name expression referring to a 2D range
+   * @param column - The column name (from the header row) to extract
+   * @returns The column values without the header row
+   */
+  getNamesExpressionColumn(name: string, column: string): string[] {
+    // Resolve the named range reference like "Daten!A1:C10"
+    const rangeRef = this.grid.getCell('Names', name);
+    if (typeof rangeRef !== 'string') return [];
+
+    const [, sheet, startCell, endSheet, endCell] =
+    rangeRef.match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+)(?::(?:(\w[\w\s]*)!)?([A-Za-z]+\d+))?/) ?? [];
+
+    const matrix = this.grid.getCells(sheet, startCell, endCell ?? startCell);
+    if (!matrix || matrix.length === 0) return [];
+
+    // First row = headers
+    const headers = matrix[0];
+    const colIndex = headers.indexOf(column);
+    if (colIndex === -1) return [];
+
+    // Return all rows in that column excluding the header
+    return matrix.slice(1).map(row => row[colIndex]?.toString?.() ?? '');
+  }
+
+
   // Check if building has a flat roof
   hasFlatRoof(): boolean {
     return this.grid.getCell('IN_build', 'P4') === 'Flach bzw. Flachdach';
+  }
+  
+  /**
+   * Get the value of a specific cell from the DataGrid
+   * Used by the debug overlay to show cell values
+   * 
+   * @param sheet The sheet name
+   * @param cell The cell reference (e.g., 'A1')
+   * @returns The cell value
+   */
+  getCellValue(sheet: string, cell: string): any {
+    return this.grid.getCell(sheet, cell);
   }
 
   getBuildingWallInsulationThickness(): number {
@@ -1041,7 +1083,7 @@ export class BerechnungService {
     for (let roomId = 1; roomId <= 15; roomId++) {
       const column = this.getRoomColumn(roomId);
       const name = this.grid.getCell('IN_rooms', `${column}3`).toString();
-      
+
       // If the room has a non-empty name, consider it as an active room
       if (name && name.trim() !== '') {
         rooms.push({
