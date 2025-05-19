@@ -17,6 +17,36 @@ The UBA Wärmepumpen-Tool is an Angular-based web application that helps users a
 - **State Management**: Local storage persistence with DataGrid-based calculation model
 - **Routing**: Angular Router with query parameter approach for room navigation
 
+## Data Architecture
+
+### Excel to Angular Integration
+- **DataGrid Class**: Core calculation engine that mimics Excel functionality
+  - Implements sheets, cells, and Excel formula evaluation
+  - Supports cell references, numeric operations, and range expressions
+  - Includes Excel-compatible functions (SUM, SUMIF, INDEX, etc.)
+  - Provides serialization/deserialization for localStorage persistence
+
+- **FormulaOverlays**: Translate Excel formulas to TypeScript
+  - Each sheet has its own overlay implementation (e.g., ClcLoadOverlay, InRoomsOverlay)
+  - Complex Excel formulas are converted to TypeScript function calls
+  - Excel formula syntax must be followed as closely as possible
+  - Overlay pattern ensures separation between data and calculation logic
+
+- **Excel Data Sources**: 
+  - Excel sheets exported to TypeScript files in `20250507_WP_Check_Vorlage_ts_export/`
+  - Named ranges defined in `databaseRanges.ts`
+  - Master imports consolidated in `master.ts`
+
+### Implementation Guidelines for Excel Formula Translation
+1. **Strict Adherence to Excel Logic**: When implementing formula overlays, the original Excel formula logic must be preserved exactly
+2. **Review DataGrid Methods First**: Before implementing formulas, check DataGrid.ts for existing Excel-equivalent methods
+3. **Document Original Formulas**: Include the original Excel formula in comments before implementation
+4. **LET Functions Exception**: Excel LET functions need special handling in JavaScript/TypeScript
+5. **Use g.WENN Instead of if Statements**: Maintain the declarative style of Excel by using DataGrid equivalents to Excel functions
+6. **Match Excel Function Names**: German Excel function names should use German equivalents (WENN for IF, SUMMEWENN for SUMIF, etc.)
+7. **Add Missing Functions as Needed**: If an Excel function doesn't have an equivalent, implement it in DataGrid.ts
+8. **Maintain Original Cell References**: Preserve original cell references in comments for traceability
+
 ## Important Development Commands
 
 - **Start development server**: `npm start` 
@@ -43,6 +73,7 @@ The UBA Wärmepumpen-Tool is an Angular-based web application that helps users a
 - `src/app/berechnung.service.ts`: Primary service for data management and calculations
   - Manages rooms collection and active room selection
   - Handles DataGrid-based calculation model
+  - Integrates all Excel calculation logic via formula overlays
 
 ## UI Component Guidelines
 
@@ -88,3 +119,38 @@ The UBA Wärmepumpen-Tool is an Angular-based web application that helps users a
 3. Update the wizard progress indicators appropriately
 4. Maintain proper subscription management with OnDestroy lifecycle hooks
 5. Use proper typings for all data structures
+6. When using Bash commands like grep or find, avoid backslash characters (\) in patterns or parameters as they may not work correctly - choose patterns that don't require escaping
+
+## Searching Excel Data in TypeScript Files
+
+When searching for specific Excel cell data in the exported TypeScript files:
+
+1. **Use -E for Extended Regex**: Use `grep -E` with simple patterns that don't require escaping:
+   ```bash
+   # Find cells I2-I9 in column I
+   grep -E '"I[2-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+   
+   # Find cells I10-I19 in column I
+   grep -E '"I1[0-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+   
+   # Find specific cell I20
+   grep -E '"I20"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+   ```
+
+
+2. **Search by Comment Types**: Look for specific formula or data types:
+   ```bash
+   grep -E " formula " 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+   ```
+
+## Checking Formula Overlay Implementation Completeness
+
+To verify if all Excel formulas have been implemented in the formula overlays:
+
+```bash
+# Compare source cells with overlay implementations (replace X with the column letter)
+diff <(grep formula /path/to/source_file.ts | grep -o '"X[0-9][0-9]*"' | tr -d '"' | sort -V) \
+     <(grep -o "Row [0-9][0-9]*" /path/to/overlay_file.ts | sed 's/Row /X/' | sort -V)
+```
+
+The command extracts all formula cell references from the source file and compares them with the implemented rows in the overlay. The output shows cells that exist in the source but not in the overlay (missing implementations) and vice versa.
