@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BerechnungService} from '../../berechnung.service';
 import {Subscription} from 'rxjs';
+import {DataGrid} from '../../data-grid';
 
 @Component({
   selector: 'app-raum-detail-ergebnis',
@@ -11,51 +12,35 @@ import {Subscription} from 'rxjs';
 })
 export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   roomId: string = '';
-
-  // Room data interface for type safety
-  private _currentRoomData: any = {};
-
-  // Getter that combines actual room data with generated dummy values
-  get roomData(): {
-    id: string;
-    name: string;
-    heizlast_w: number;
-    heizlast_w_m2: number;
-    aktuellHK: {
-      watt: number;
-      deckungProzent: number;
-    };
-    besserHK: {
-      watt: number;
-      deckungProzent: number;
-    };
-  } {
-    return {
-      ...(this._currentRoomData || {}),
-      name: this._currentRoomData?.name || 'Raum 1',
-      heizlast_w: this._currentRoomData?.heizlast_w || 2500,
-      heizlast_w_m2: this._currentRoomData?.heizlast_w_m2 || 80,
-      aktuellHK: {
-        ...(this._currentRoomData?.aktuellHK || {}),
-        watt: this._currentRoomData?.aktuellHK?.watt || 1800,
-        deckungProzent: this._currentRoomData?.aktuellHK?.deckungProzent || 40
-      },
-      besserHK: {
-        ...(this._currentRoomData?.besserHK || {}),
-        watt: this._currentRoomData?.besserHK?.watt || 2200,
-        deckungProzent: this._currentRoomData?.besserHK?.deckungProzent || 90
-      }
-    };
+  
+  // Direct DataGrid access for templates
+  get grid(): DataGrid {
+    return this.berechnungService.grid;
   }
 
-  // Room assessment data (placeholder for calculations)
-  assessment = {
-    heatLoss: 0,      // W - total heat loss
-    heatDensity: 0,   // W/m² - heat loss per square meter
-    heatingPower: 0,  // W - total heating power available
-    suitable: true,   // Whether room is suitable for heat pump
-    recommendations: [] as string[] // Recommendations for improvement
-  };
+  // Helper method to get the room column in OUT_rooms sheet
+  getRoomOutColumn(): string {
+    // OUT_rooms columns H-V for rooms 1-15
+    const outRoomsCols = ['H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'];
+    const roomIndex = parseInt(this.roomId, 10) - 1;
+    
+    // Return corresponding column or default to first column if out of bounds
+    return roomIndex >= 0 && roomIndex < outRoomsCols.length 
+      ? outRoomsCols[roomIndex] 
+      : outRoomsCols[0];
+  }
+  
+  // Helper method to get the room column in clc_build sheet
+  getRoomBuildColumn(): string {
+    // clc_build columns G-U for rooms 1-15
+    const clcBuildCols = ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'];
+    const roomIndex = parseInt(this.roomId, 10) - 1;
+    
+    // Return corresponding column or default to first column if out of bounds
+    return roomIndex >= 0 && roomIndex < clcBuildCols.length 
+      ? clcBuildCols[roomIndex] 
+      : clcBuildCols[0];
+  }
 
   // Gauge configurations
   // Heat density gauge zones with integrated labels
@@ -84,7 +69,7 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private berechnungService: BerechnungService
+    public berechnungService: BerechnungService
   ) {
   }
 
@@ -95,26 +80,12 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
         if (params['room']) {
           this.roomId = params['room'];
           this.berechnungService.setSelectedRoom(this.roomId);
-          this.loadRoomData();
         } else {
           // No room ID provided, redirect to room list
           this.router.navigate(['/raeume/intro']);
         }
       })
     );
-  }
-
-  loadRoomData(): void {
-    const rooms = this.berechnungService.getAllRooms();
-    const room = rooms.find(r => r.id === this.roomId);
-
-    if (room) {
-      // Store the actual room data - the getter will handle adding defaults
-      this._currentRoomData = room;
-
-      // Set a placeholder recommendation - detailed implementation will come later
-      this.assessment.recommendations = ['Raum grundsätzlich geeignet für Wärmepumpenbetrieb'];
-    }
   }
 
   hasNextRoom(): boolean {

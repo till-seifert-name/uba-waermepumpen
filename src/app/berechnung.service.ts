@@ -4,6 +4,7 @@ import {BehaviorSubject, debounceTime, filter} from "rxjs";
 import {CustomLocalStorageService} from "./custom-local-storage.service";
 import {databaseRanges, explicitNamedRanges, namedExpressions, sheetsData} from '../../20250507_WP_Check_Vorlage_ts_export/master';
 import {applyFormulaOverlays} from "./formula-overlays";
+import {roomColumns} from "./formula-overlays/base-overlay";
 
 /**
  * UBA Wärmepumpen Berechnungsservice - Data Model Documentation
@@ -223,7 +224,6 @@ export class BerechnungService {
     if (serializedData) {
       // Only restore cells that are in the whitelist
       grid.restoreCells(serializedData, this.cellsToSave.map(ref => parseCellReference(ref)));
-      console.log(`Input restored: ${serializedData}`);
     }
 
     // Initialize rooms from the DataGrid
@@ -233,15 +233,13 @@ export class BerechnungService {
   // Dynamically generate a list of cells to save for room data
   private generateRoomCellsToSave(): string[] {
     const cells: string[] = [];
-    const columns = ['R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF'];
-
     // Basic room properties (rows 3-9)
     for (let row = 3; row <= 9; row++) {
-      columns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
 
     // Wall insulation thickness (row 11)
-    columns.forEach(col => cells.push(`IN_rooms!${col}11`));
+    roomColumns.forEach(col => cells.push(`IN_rooms!${col}11`));
 
     // Window properties for 3 window types (rows 13-26)
     // Type 1: rows 13-16
@@ -250,7 +248,7 @@ export class BerechnungService {
     for (let windowType = 0; windowType < 3; windowType++) {
       for (let i = 0; i < 4; i++) { // 4 properties per window type: width, height, year, count
         const row = 13 + (windowType * 5) + i; // 5 row spacing between types
-        columns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+        roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
       }
     }
 
@@ -259,34 +257,30 @@ export class BerechnungService {
     // Row 26: Interior wall length (m)
     // Row 27: Interior wall insulation thickness (cm)
     for (let row = 25; row <= 27; row++) {
-      columns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
 
     // Roof-related properties (rows 28-35, 39, and 40)
     // Add specific rows for roof properties
     for (let row = 28; row <= 35; row++) {
-      columns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
-    // Row 39: Internal knee wall height
-    columns.forEach(col => cells.push(`IN_rooms!${col}39`));
-    // Row 40: Has dormer
-    columns.forEach(col => cells.push(`IN_rooms!${col}40`));
 
     // Roof window properties (rows 41-48)
     // Type 1: rows 41-44
     // Type 2: rows 45-48
     for (let row = 41; row <= 48; row++) {
-      columns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
 
-    // Heating elements for 3 heating types (rows 50-67)
-    // Type 1: rows 50-55 (Type_rad1, L_rad1_len, L_rad1_height, L_rad1_thick, n_rad1_col, n_rad1)
-    // Type 2: rows 57-62 (Type_rad2, L_rad2_len, L_rad2_height, L_rad2_thick, n_rad2_col, n_rad2)
-    // Type 3: rows 64-69 (Type_rad3, L_rad3_len, L_rad3_height, L_rad3_thick, n_rad3_col, n_rad3)
+    // Heating elements for 3 heating types (rows 49-69)
+    // Type 1: rows 49-55 (TYP_1_rad1, TYP_2_rad1, L_rad1_hei, L_rad1_wid, L_rad1_thick, n_rad1_col, n_rad1)
+    // Type 2: rows 56-62 (TYP_1_rad2, TYP_2_rad2, L_rad2_hei, L_rad2_wid, L_rad2_thick, n_rad2_col, n_rad2)
+    // Type 3: rows 63-69 (TYP_1_rad3, TYP_2_rad3, L_rad3_hei, L_rad3_wid, L_rad3_thick, n_rad3_col, n_rad3)
     for (let heatingType = 0; heatingType < 3; heatingType++) {
-      for (let i = 0; i < 6; i++) { // 6 properties per heating type: type, length, height, depth, element count, count
-        const row = 50 + (heatingType * 7) + i; // 7 row spacing between types
-        columns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      for (let i = 0; i < 7; i++) { // 7 properties per heating type: main type, subtype, height, width, depth, element count, count
+        const row = 49 + (heatingType * 7) + i; // 7 row spacing between types
+        roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
       }
     }
 
@@ -300,7 +294,7 @@ export class BerechnungService {
     // Basic building properties
     'IN_build!P2', // PLZ/Standort des Gebäudes
     'IN_build!P3', // Gebäudetyp (Ein- oder Zweifamilienhaus, Reihenhaus, Mehrfamilienhaus)
-    'IN_build!P4', // Dachform (Flach bzw. Flachdach, geneigt, steil, sehr steil)
+    'IN_build!P4', // Dachform (Flach bzw. Flachdach, Geneigt, Steil, Sehr steil)
     'IN_build!P5', // Baujahr
 
     // Retrofitting properties
@@ -372,97 +366,129 @@ export class BerechnungService {
     return String.fromCharCode(columnIndex > 90 ? columnIndex - 26 + 64 : columnIndex);
   }
 
-  // Get room name from DataGrid
+  /**
+   * Gets room name from IN_rooms row 3 (TXT_room_name) 
+   */
   getRoomName(roomId: number | string): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}3`).toString();
   }
 
-  // Set room name in DataGrid
+  /**
+   * Sets room name in IN_rooms row 3 (TXT_room_name)
+   */
   setRoomName(roomId: number | string, name: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}3`, name);
   }
 
-  // Get room area from DataGrid
+  /**
+   * Gets room area from IN_rooms row 4 (A_floor) in m²
+   */
   getRoomArea(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}4`);
   }
 
-  // Set room area in DataGrid
+  /**
+   * Sets room area in IN_rooms row 4 (A_floor) in m²
+   */
   setRoomArea(roomId: number | string, area: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}4`, area);
   }
 
-  // Get room height from DataGrid
+  /**
+   * Gets room height from IN_rooms row 5 (L_hei) in m
+   */
   getRoomHeight(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}5`);
   }
 
-  // Set room height in DataGrid
+  /**
+   * Sets room height in IN_rooms row 5 (L_hei) in m
+   */
   setRoomHeight(roomId: number | string, height: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}5`, height);
   }
 
-  // Get room temperature from DataGrid
+  /**
+   * Gets room temperature from IN_rooms row 6 (T_air_set) in °C
+   */
   getRoomTemperature(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}6`);
   }
 
-  // Set room temperature in DataGrid
+  /**
+   * Sets room temperature in IN_rooms row 6 (T_air_set) in °C
+   */
   setRoomTemperature(roomId: number | string, temperature: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}6`, temperature);
   }
 
-  // Get ceiling type from DataGrid
+  /**
+   * Gets ceiling type from IN_rooms row 7 (TYP_V_above)
+   */
   getRoomCeilingType(roomId: number | string): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}7`).toString();
   }
 
-  // Set ceiling type in DataGrid
+  /**
+   * Sets ceiling type in IN_rooms row 7 (TYP_V_above)
+   */
   setRoomCeilingType(roomId: number | string, ceilingType: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}7`, ceilingType);
   }
 
-  // Get floor type from DataGrid
+  /**
+   * Gets floor type from IN_rooms row 8 (TYP_V_below)
+   */
   getRoomFloorType(roomId: number | string): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}8`).toString();
   }
 
-  // Set floor type in DataGrid
+  /**
+   * Sets floor type in IN_rooms row 8 (TYP_V_below)
+   */
   setRoomFloorType(roomId: number | string, floorType: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}8`, floorType);
   }
 
-  // Get wall length from DataGrid
+  /**
+   * Gets wall length from IN_rooms row 9 (L_wall_tot) in m
+   */
   getRoomWallLength(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}9`);
   }
 
-  // Set wall length in DataGrid
+  /**
+   * Sets wall length in IN_rooms row 9 (L_wall_tot) in m
+   */
   setRoomWallLength(roomId: number | string, wallLength: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}9`, wallLength);
   }
 
-  // Get wall insulation thickness from DataGrid
+  /**
+   * Gets wall insulation thickness from IN_rooms row 11 (UI_L_wall_ins) in cm
+   */
   getRoomWallInsulationThickness(roomId: number | string): number | string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}11`) || "";
   }
 
-  // Set wall insulation thickness in DataGrid
+  /**
+   * Sets wall insulation thickness in IN_rooms row 11 (UI_L_wall_ins) in cm
+   */
   setRoomWallInsulationThickness(roomId: number | string, thickness: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}11`, thickness);
@@ -470,123 +496,163 @@ export class BerechnungService {
 
   // Interior walls methods
 
-  // Check if room has interior walls against unheated spaces
+  /**
+   * Checks if room has interior walls against unheated spaces (IN_rooms row 25/EXIST_innerwall)
+   */
   hasInteriorWalls(roomId: number | string): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}25`) === 'Ja';
   }
 
-  // Set if room has interior walls against unheated spaces
+  /**
+   * Sets if room has interior walls against unheated spaces (IN_rooms row 25/EXIST_innerwall)
+   */
   setHasInteriorWalls(roomId: number | string, hasWalls: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}25`, hasWalls ? 'Ja' : 'Nein');
   }
 
-  // Get interior wall length against unheated spaces
+  /**
+   * Gets interior wall length against unheated spaces (IN_rooms row 26/L_innerwall_tot) in m
+   */
   getInteriorWallLength(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}26`);
   }
 
-  // Set interior wall length against unheated spaces
+  /**
+   * Sets interior wall length against unheated spaces (IN_rooms row 26/L_innerwall_tot) in m
+   */
   setInteriorWallLength(roomId: number | string, length: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}26`, length);
   }
 
-  // Get interior wall insulation thickness
+  /**
+   * Gets interior wall insulation thickness (IN_rooms row 27/L_innerwall_ins) in cm
+   */
   getInteriorWallInsulationThickness(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}27`);
   }
 
-  // Set interior wall insulation thickness
+  /**
+   * Sets interior wall insulation thickness (IN_rooms row 27/L_innerwall_ins) in cm
+   */
   setInteriorWallInsulationThickness(roomId: number | string, thickness: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}27`, thickness);
   }
 
-  // Roof-related methods (row 28)
+  // Roof-related methods
 
-  // Check if room has roof slope (Dachschräge) - EXIST_roof
+  /**
+   * Checks if room has roof slope/Dachschräge (IN_rooms row 28/EXIST_roof)
+   */
   getEXIST_roof(roomId: number | string): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}28`) === 'Ja';
   }
 
-  // Set if room has roof slope - EXIST_roof
+  /**
+   * Sets if room has roof slope/Dachschräge (IN_rooms row 28/EXIST_roof)
+   */
   setEXIST_roof(roomId: number | string, hasSlope: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}28`, hasSlope ? 'Ja' : 'Nein');
   }
 
-  // Check if room has multiple roof slopes - NO_roof_slop
+  /**
+   * Checks if room has multiple roof slopes (IN_rooms row 29/NO_roof_slop)
+   */
   getNO_roof_slop(roomId: number | string): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}29`) === 'Ja';
   }
 
-  // Set if room has multiple roof slopes - NO_roof_slop
+  /**
+   * Sets if room has multiple roof slopes (IN_rooms row 29/NO_roof_slop)
+   */
   setNO_roof_slop(roomId: number | string, hasMultiple: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}29`, hasMultiple ? 'Ja' : 'Nein');
   }
 
-  // Get roof width - L_roof_wid
+  /**
+   * Gets roof width (IN_rooms row 30/L_roof_wid) in m
+   */
   getL_roof_wid(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}30`);
   }
 
-  // Set roof width - L_roof_wid
+  /**
+   * Sets roof width (IN_rooms row 30/L_roof_wid) in m
+   */
   setL_roof_wid(roomId: number | string, width: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}30`, width);
   }
 
-  // Get roof height - L_roof_hei
+  /**
+   * Gets roof height (IN_rooms row 31/L_roof_hei) in m
+   */
   getL_roof_hei(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}31`);
   }
 
-  // Set roof height - L_roof_hei
+  /**
+   * Sets roof height (IN_rooms row 31/L_roof_hei) in m
+   */
   setL_roof_hei(roomId: number | string, height: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}31`, height);
   }
 
-  // Get knee wall height (Drempelwand/Kniestock) - L_roof_jamb_hei
+  /**
+   * Gets knee wall/Drempelwand/Kniestock height (IN_rooms row 34/L_roof_jamb_hei) in m
+   */
   getL_roof_jamb_hei(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}34`);
   }
 
-  // Set knee wall height - L_roof_jamb_hei
+  /**
+   * Sets knee wall/Drempelwand/Kniestock height (IN_rooms row 34/L_roof_jamb_hei) in m
+   */
   setL_roof_jamb_hei(roomId: number | string, height: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}34`, height);
   }
 
-  // Check if knee wall is hollow - TYP_jamb_hei
+  /**
+   * Checks if knee wall is hollow (IN_rooms row 35/TYP_jamb_hei)
+   */
   getTYP_jamb_hei(roomId: number | string): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}35`) === 'Ja';
   }
 
-  // Set if knee wall is hollow - TYP_jamb_hei
+  /**
+   * Sets if knee wall is hollow (IN_rooms row 35/TYP_jamb_hei)
+   */
   setTYP_jamb_hei(roomId: number | string, isHollow: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}35`, isHollow ? 'Ja' : 'Nein');
   }
 
-  // Check if room has dormer - EXIST_dormer
+  /**
+   * Checks if room has dormer/Gaube (IN_rooms row 40/EXIST_dormer)
+   */
   getEXIST_dormer(roomId: number | string): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}40`) === 'Ja';
   }
 
-  // Set if room has dormer - EXIST_dormer
+  /**
+   * Sets if room has dormer/Gaube (IN_rooms row 40/EXIST_dormer)
+   */
   setEXIST_dormer(roomId: number | string, hasDormer: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}40`, hasDormer ? 'Ja' : 'Nein');
@@ -594,49 +660,65 @@ export class BerechnungService {
 
   // Roof window methods - Type 1 (rows 41-44)
 
-  // Get roof window width - L_roof_win1_wid
+  /**
+   * Gets roof window width (IN_rooms row 41/L_roof_win1_wid) in cm
+   */
   getL_roof_win1_wid(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}41`);
   }
 
-  // Set roof window width - L_roof_win1_wid
+  /**
+   * Sets roof window width (IN_rooms row 41/L_roof_win1_wid) in cm
+   */
   setL_roof_win1_wid(roomId: number | string, width: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}41`, width);
   }
 
-  // Get roof window height - L_roof_win1_hei
+  /**
+   * Gets roof window height (IN_rooms row 42/L_roof_win1_hei) in cm
+   */
   getL_roof_win1_hei(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}42`);
   }
 
-  // Set roof window height - L_roof_win1_hei
+  /**
+   * Sets roof window height (IN_rooms row 42/L_roof_win1_hei) in cm
+   */
   setL_roof_win1_hei(roomId: number | string, height: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}42`, height);
   }
 
-  // Get roof window year - YEAR_roof_win1
+  /**
+   * Gets roof window year (IN_rooms row 43/YEAR_roof_win1) as string
+   */
   getYEAR_roof_win1(roomId: number | string): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}43`).toString();
   }
 
-  // Set roof window year - YEAR_roof_win1
+  /**
+   * Sets roof window year (IN_rooms row 43/YEAR_roof_win1)
+   */
   setYEAR_roof_win1(roomId: number | string, year: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}43`, year);
   }
 
-  // Get roof window count - NO_roof_win1
+  /**
+   * Gets roof window count (IN_rooms row 44/NO_roof_win1)
+   */
   getNO_roof_win1(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}44`);
   }
 
-  // Set roof window count - NO_roof_win1
+  /**
+   * Sets roof window count (IN_rooms row 44/NO_roof_win1)
+   */
   setNO_roof_win1(roomId: number | string, count: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}44`, count);
@@ -644,49 +726,65 @@ export class BerechnungService {
 
   // Roof window methods - Type 2 (rows 45-48)
 
-  // Get roof window width - L_roof_win2_wid
+  /**
+   * Gets second roof window width (IN_rooms row 45/L_roof_win2_wid) in cm
+   */
   getL_roof_win2_wid(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}45`);
   }
 
-  // Set roof window width - L_roof_win2_wid
+  /**
+   * Sets second roof window width (IN_rooms row 45/L_roof_win2_wid) in cm
+   */
   setL_roof_win2_wid(roomId: number | string, width: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}45`, width);
   }
 
-  // Get roof window height - L_roof_win2_hei
+  /**
+   * Gets second roof window height (IN_rooms row 46/L_roof_win2_hei) in cm
+   */
   getL_roof_win2_hei(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}46`);
   }
 
-  // Set roof window height - L_roof_win2_hei
+  /**
+   * Sets second roof window height (IN_rooms row 46/L_roof_win2_hei) in cm
+   */
   setL_roof_win2_hei(roomId: number | string, height: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}46`, height);
   }
 
-  // Get roof window year - YEAR_roof_win2
+  /**
+   * Gets second roof window year (IN_rooms row 47/YEAR_roof_win2)
+   */
   getYEAR_roof_win2(roomId: number | string): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}47`).toString();
   }
 
-  // Set roof window year - YEAR_roof_win2
+  /**
+   * Sets second roof window year (IN_rooms row 47/YEAR_roof_win2)
+   */
   setYEAR_roof_win2(roomId: number | string, year: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}47`, year);
   }
 
-  // Get roof window count - NO_roof_win2
+  /**
+   * Gets second roof window count (IN_rooms row 48/NO_roof_win2)
+   */
   getNO_roof_win2(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}48`);
   }
 
-  // Set roof window count - NO_roof_win2
+  /**
+   * Sets second roof window count (IN_rooms row 48/NO_roof_win2)
+   */
   setNO_roof_win2(roomId: number | string, count: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}48`, count);
@@ -694,25 +792,33 @@ export class BerechnungService {
 
   // Horizontal ceiling methods (topceil)
 
-  // Get topceil width
+  /**
+   * Gets horizontal ceiling width (IN_rooms row 32/L_topceil_int_wid) in m
+   */
   getL_topceil__wid(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}32`);
   }
 
-  // Set topceil width
+  /**
+   * Sets horizontal ceiling width (IN_rooms row 32/L_topceil_int_wid) in m
+   */
   setL_topceil__wid(roomId: number | string, width: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}32`, width);
   }
 
-  // Get topceil length
+  /**
+   * Gets horizontal ceiling length (IN_rooms row 33/L_topceil_int_len) in m
+   */
   getL_topceil__len(roomId: number | string): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}33`);
   }
 
-  // Set topceil length
+  /**
+   * Sets horizontal ceiling length (IN_rooms row 33/L_topceil_int_len) in m
+   */
   setL_topceil__len(roomId: number | string, length: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}33`, length);
@@ -720,131 +826,232 @@ export class BerechnungService {
 
 
 
-  // Window data access methods
-  // Window type 1
+  /**
+   * Window access methods - all window types
+   */
+
+  /**
+   * Gets window width (IN_rooms rows 13,17,21/L_win*_ext_wid) in cm
+   * @param windowType 1-3 corresponds to rows 13+4*(type-1)
+   */
   getWindowWidth(roomId: number | string, windowType: number = 1): number {
     const column = this.getRoomColumn(roomId);
-    const row = 13 + (windowType - 1) * 5; // Types are positioned 5 rows apart starting at row 13
+    const row = 13 + (windowType - 1) * 4; // Types are positioned 4 rows apart starting at row 13
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
+  /**
+   * Sets window width (IN_rooms rows 13,17,21/L_win*_ext_wid) in cm
+   * @param windowType 1-3 corresponds to rows 13+4*(type-1)
+   */
   setWindowWidth(roomId: number | string, width: number, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 13 + (windowType - 1) * 5;
+    const row = 13 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, width);
   }
 
+  /**
+   * Gets window height (IN_rooms rows 14,18,22/L_win*_ext_hei) in cm
+   * @param windowType 1-3 corresponds to rows 14+4*(type-1)
+   */
   getWindowHeight(roomId: number | string, windowType: number = 1): number {
     const column = this.getRoomColumn(roomId);
-    const row = 14 + (windowType - 1) * 5;
+    const row = 14 + (windowType - 1) * 4;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
+  /**
+   * Sets window height (IN_rooms rows 14,18,22/L_win*_ext_hei) in cm
+   * @param windowType 1-3 corresponds to rows 14+4*(type-1)
+   */
   setWindowHeight(roomId: number | string, height: number, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 14 + (windowType - 1) * 5;
+    const row = 14 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, height);
   }
 
+  /**
+   * Gets window installation year (IN_rooms rows 15,19,23/YEAR_win*_ext)
+   * @param windowType 1-3 corresponds to rows 15+4*(type-1)
+   */
   getWindowYear(roomId: number | string, windowType: number = 1): string {
     const column = this.getRoomColumn(roomId);
-    const row = 15 + (windowType - 1) * 5;
+    const row = 15 + (windowType - 1) * 4;
     return this.grid.getCell('IN_rooms', `${column}${row}`).toString();
   }
 
+  /**
+   * Sets window installation year (IN_rooms rows 15,19,23/YEAR_win*_ext)
+   * @param windowType 1-3 corresponds to rows 15+4*(type-1)
+   */
   setWindowYear(roomId: number | string, year: string, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 15 + (windowType - 1) * 5;
+    const row = 15 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, year);
   }
 
+  /**
+   * Gets window count (IN_rooms rows 16,20,24/NO_win*_ext)
+   * @param windowType 1-3 corresponds to rows 16+4*(type-1)
+   */
   getWindowCount(roomId: number | string, windowType: number = 1): number {
     const column = this.getRoomColumn(roomId);
-    const row = 16 + (windowType - 1) * 5;
+    const row = 16 + (windowType - 1) * 4;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
+  /**
+   * Sets window count (IN_rooms rows 16,20,24/NO_win*_ext)
+   * @param windowType 1-3 corresponds to rows 16+4*(type-1)
+   */
   setWindowCount(roomId: number | string, count: number, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 16 + (windowType - 1) * 5;
+    const row = 16 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, count);
   }
 
-  // Heating element data access methods
-  getHeatingType(roomId: number | string, heatingType: number = 1): HeaterType {
+  /**
+   * Heating element access methods - for all heater types
+   */
+
+  /**
+   * Gets heater main type (IN_rooms rows 49,56,63/TYP_1_rad*)
+   * @param heaterNum 1-3 corresponds to rows 49+7*(heaterNum-1)
+   */
+  getHeatingMainType(roomId: number | string, heaterNum: number = 1): string {
     const column = this.getRoomColumn(roomId);
-    const row = 50 + (heatingType - 1) * 7; // Type_rad1 in row 50, Type_rad2 in row 57, Type_rad3 in row 64
-    return this.grid.getCell('IN_rooms', `${column}${row}`).toString() as HeaterType;
+    const row = 49 + (heaterNum - 1) * 7; // TYP_1_rad1 in row 49, TYP_1_rad2 in row 56, TYP_1_rad3 in row 63
+    return this.grid.getCell('IN_rooms', `${column}${row}`).toString();
   }
 
-  setHeatingType(roomId: number | string, type: string, heatingType: number = 1): void {
+  /**
+   * Sets heater main type (IN_rooms rows 49,56,63/TYP_1_rad*)
+   * @param heaterNum 1-3 corresponds to rows 49+7*(heaterNum-1)
+   */
+  setHeatingMainType(roomId: number | string, type: string, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 50 + (heatingType - 1) * 7; // Type_rad1 in row 50, Type_rad2 in row 57, Type_rad3 in row 64
+    const row = 49 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, type);
   }
 
-  getHeatingLength(roomId: number | string, heatingType: number = 1): number {
+  /**
+   * Gets heater subtype (IN_rooms rows 50,57,64/TYP_2_rad*)
+   * @param heaterNum 1-3 corresponds to rows 50+7*(heaterNum-1)
+   */
+  getHeatingSubType(roomId: number | string, heaterNum: number = 1): HeaterType {
     const column = this.getRoomColumn(roomId);
-    const row = 51 + (heatingType - 1) * 7; // L_rad1_len in row 51, L_rad2_len in row 58, L_rad3_len in row 65
+    const row = 50 + (heaterNum - 1) * 7;
+    return this.grid.getCell('IN_rooms', `${column}${row}`).toString() as HeaterType;
+  }
+
+  /**
+   * Sets heater subtype (IN_rooms rows 50,57,64/TYP_2_rad*)
+   * @param heaterNum 1-3 corresponds to rows 50+7*(heaterNum-1)
+   */
+  setHeatingSubType(roomId: number | string, type: string, heaterNum: number = 1): void {
+    const column = this.getRoomColumn(roomId);
+    const row = 50 + (heaterNum - 1) * 7;
+    this.grid.setCell('IN_rooms', `${column}${row}`, type);
+  }
+
+  /**
+   * Gets heater height (IN_rooms rows 51,58,65/L_rad*_hei) in cm
+   * @param heaterNum 1-3 corresponds to rows 51+7*(heaterNum-1)
+   */
+  getHeatingHeight(roomId: number | string, heaterNum: number = 1): number {
+    const column = this.getRoomColumn(roomId);
+    const row = 51 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
-  setHeatingLength(roomId: number | string, length: number, heatingType: number = 1): void {
+  /**
+   * Sets heater height (IN_rooms rows 51,58,65/L_rad*_hei) in cm
+   * @param heaterNum 1-3 corresponds to rows 51+7*(heaterNum-1)
+   */
+  setHeatingHeight(roomId: number | string, height: number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 51 + (heatingType - 1) * 7; // L_rad1_len in row 51, L_rad2_len in row 58, L_rad3_len in row 65
-    this.grid.setCell('IN_rooms', `${column}${row}`, length);
-  }
-
-  getHeatingHeight(roomId: number | string, heatingType: number = 1): number {
-    const column = this.getRoomColumn(roomId);
-    const row = 52 + (heatingType - 1) * 7; // L_rad1_height in row 52, L_rad2_height in row 59, L_rad3_height in row 66
-    return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
-  }
-
-  setHeatingHeight(roomId: number | string, height: number | string, heatingType: number = 1): void {
-    const column = this.getRoomColumn(roomId);
-    const row = 52 + (heatingType - 1) * 7; // L_rad1_height in row 52, L_rad2_height in row 59, L_rad3_height in row 66
+    const row = 51 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, height);
   }
 
-  getHeatingCount(roomId: number | string, heatingType: number = 1): number {
+  /**
+   * Gets heater width (IN_rooms rows 52,59,66/L_rad*_wid) in cm
+   * @param heaterNum 1-3 corresponds to rows 52+7*(heaterNum-1)
+   */
+  getHeatingWidth(roomId: number | string, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
-    const row = 55 + (heatingType - 1) * 7; // Row for heater count (n_rad1 in row 55, n_rad2 in row 62, etc.)
+    const row = 52 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
-  setHeatingCount(roomId: number | string, count: number, heatingType: number = 1): void {
+  /**
+   * Sets heater width (IN_rooms rows 52,59,66/L_rad*_wid) in cm
+   * @param heaterNum 1-3 corresponds to rows 52+7*(heaterNum-1)
+   */
+  setHeatingWidth(roomId: number | string, width: string | number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 55 + (heatingType - 1) * 7; // Row for heater count (n_rad1 in row 55, n_rad2 in row 62, etc.)
+    const row = 52 + (heaterNum - 1) * 7;
+    this.grid.setCell('IN_rooms', `${column}${row}`, typeof width == 'number' ? width : parseInt(width));
+  }
+
+  /**
+   * Gets heater count (IN_rooms rows 55,62,69/n_rad*)
+   * @param heaterNum 1-3 corresponds to rows 55+7*(heaterNum-1)
+   */
+  getHeatingCount(roomId: number | string, heaterNum: number = 1): number {
+    const column = this.getRoomColumn(roomId);
+    const row = 55 + (heaterNum - 1) * 7;
+    return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
+  }
+
+  /**
+   * Sets heater count (IN_rooms rows 55,62,69/n_rad*)
+   * @param heaterNum 1-3 corresponds to rows 55+7*(heaterNum-1)
+   */
+  setHeatingCount(roomId: number | string, count: number, heaterNum: number = 1): void {
+    const column = this.getRoomColumn(roomId);
+    const row = 55 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, count);
   }
 
-  // Get number of radiator elements - n_rad(N)_col
-  getn_rad_col(roomId: number | string, heatingType: number = 1): number {
+  /**
+   * Gets radiator element count (IN_rooms rows 54,61,68/n_rad*_col)
+   * @param heaterNum 1-3 corresponds to rows 54+7*(heaterNum-1)
+   */
+  getn_rad_col(roomId: number | string, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
-    const row = 54 + (heatingType - 1) * 7; // Position of n_rad1_col in row 54, n_rad2_col in row 61, etc.
+    const row = 54 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
-  // Set number of radiator elements - n_rad(N)_col
-  setn_rad_col(roomId: number | string, count: number, heatingType: number = 1): void {
+  /**
+   * Sets radiator element count (IN_rooms rows 54,61,68/n_rad*_col)
+   * @param heaterNum 1-3 corresponds to rows 54+7*(heaterNum-1)
+   */
+  setn_rad_col(roomId: number | string, count: number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 54 + (heatingType - 1) * 7; // Position of n_rad1_col in row 54, n_rad2_col in row 61, etc.
+    const row = 54 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, count);
   }
 
-  // Get depth of heating element (L_rad(N)_thick in row 53, 60, 67)
-  getHeatingDepth(roomId: number | string, heatingType: number = 1): number {
+  /**
+   * Gets heater depth (IN_rooms rows 53,60,67/L_rad*_thick) in cm
+   * @param heaterNum 1-3 corresponds to rows 53+7*(heaterNum-1)
+   */
+  getHeatingDepth(roomId: number | string, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
-    const row = 53 + (heatingType - 1) * 7; // L_rad1_thick in row 53, L_rad2_thick in row 60, L_rad3_thick in row 67
+    const row = 53 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
   }
 
-  // Set depth of heating element (L_rad(N)_thick in row 53, 60, 67)
-  setHeatingDepth(roomId: number | string, depth: number | string, heatingType: number = 1): void {
+  /**
+   * Sets heater depth (IN_rooms rows 53,60,67/L_rad*_thick) in cm
+   * @param heaterNum 1-3 corresponds to rows 53+7*(heaterNum-1)
+   */
+  setHeatingDepth(roomId: number | string, depth: string | number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
-    const row = 53 + (heatingType - 1) * 7; // L_rad1_thick in row 53, L_rad2_thick in row 60, L_rad3_thick in row 67
-    this.grid.setCell('IN_rooms', `${column}${row}`, depth);
+    const row = 53 + (heaterNum - 1) * 7;
+    this.grid.setCell('IN_rooms', `${column}${row}`, typeof depth == 'number' ? depth : parseInt(depth));
   }
 
   /**
@@ -868,130 +1075,12 @@ export class BerechnungService {
   }
 
   /**
-   * Gets all standardized values for a heater dimension (height, width, or depth)
-   * Uses specific ranges in the Daten sheet based on the subtype and dimension
-   *
-   * @param dimensionType - The dimension type ('Höhe', 'Breite', 'Tiefe', 'Glieder')
-   * @param heaterType - The type of heater
-   * @param subtype - The subtype of heater (optional)
-   * @returns Array of possible values or empty array if no standardized values exist
-   */
-  getHeizkoerperDimensionOptions(dimensionType: "Höhe" | "Breite" | "Tiefe" | "Glieder", heaterType: string, subtype?: string): number[] {
-
-    // Define explicit ranges for each subtype/dimension combination
-    let startCell = '';
-    let endCell = '';
-
-    // Big if-tree for all possible subtype and dimension combinations
-    if (dimensionType === 'Höhe') {
-      if (subtype === 'Typ_10') {
-        startCell = 'K24';
-        endCell = 'K27';  // Values: 350, 500, 600, 900
-      } else if (subtype === 'Typ_11') {
-        startCell = 'L24';
-        endCell = 'L27';  // Values: 350, 500, 600, 900
-      } else if (subtype === 'Typ_20') {
-        startCell = 'M24';
-        endCell = 'M27';  // Values: 350, 500, 600, 900
-      } else if (subtype === 'Typ_21') {
-        startCell = 'N24';
-        endCell = 'N27';  // Values: 350, 500, 600, 900
-      } else if (subtype === 'Typ_22') {
-        startCell = 'O24';
-        endCell = 'O27';  // Values: 350, 500, 600, 900
-      } else if (subtype === 'Typ_30') {
-        startCell = 'P24';
-        endCell = 'P27';  // Values: 350, 500, 600, 900
-      } else if (subtype === 'Typ_33') {
-        startCell = 'Q24';
-        endCell = 'Q27';  // Values: 350, 500, 600, 900
-      } else if (subtype === 'Gussradiator') {
-        startCell = 'S24';
-        endCell = 'S28';  // Values: 280, 430, 580, 680, 980
-      } else if (subtype === 'Stahlradiator') {
-        startCell = 'T24';
-        endCell = 'T27';  // Values: 300, 450, 600, 1000
-      } else if (subtype === 'Stahlrohrradiator') {
-        startCell = 'U24';
-        endCell = 'U36';  // Values: 190, 260, 300, 400, 500, 600, 750, 900, 1000, 1200, 1500, 2000, 2500
-      } else if (subtype === 'Fensterbankradiator') {
-        startCell = 'V24';
-        endCell = 'V27';  // Values: 180, 225, 270, 315
-      } else if (subtype === 'Handtuchradiator') {
-        startCell = 'W24';
-        endCell = 'W38';  // Values: 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800
-      } else if (subtype === 'Standardkonvektor') {
-        startCell = 'AA24';
-        endCell = 'AA27';  // Values: 70, 140, 210, 280
-      }
-    } else if (dimensionType === 'Tiefe') {
-      if (subtype === 'Typ_10') {
-        startCell = 'K15';
-        endCell = 'K15';  // Value: 65
-      } else if (subtype === 'Typ_11') {
-        startCell = 'L15';
-        endCell = 'L15';  // Value: 65
-      } else if (subtype === 'Typ_20') {
-        startCell = 'M15';
-        endCell = 'M15';  // Value: 100
-      } else if (subtype === 'Typ_21') {
-        startCell = 'N15';
-        endCell = 'N15';  // Value: 100
-      } else if (subtype === 'Typ_22') {
-        startCell = 'O15';
-        endCell = 'O15';  // Value: 100
-      } else if (subtype === 'Typ_30') {
-        startCell = 'P15';
-        endCell = 'P15';  // Value: 155
-      } else if (subtype === 'Typ_33') {
-        startCell = 'Q15';
-        endCell = 'Q15';  // Value: 155
-      } else if (subtype === 'Gussradiator') {
-        startCell = 'S15';
-        endCell = 'S19';  // Values: 70, 110, 160, 220, 250
-      } else if (subtype === 'Stahlradiator') {
-        startCell = 'T15';
-        endCell = 'T19';  // Values: 70, 110, 160, 220, 250
-      } else if (subtype === 'Stahlrohrradiator') {
-        startCell = 'U15';
-        endCell = 'U19';  // Values: 65, 105, 145, 185, 225
-      } else if (subtype === 'Fensterbankradiator') {
-        startCell = 'V15';
-        endCell = 'V19';  // Values: 145, 185, 225, 265
-      } else if (subtype === 'Standardkonvektor') {
-        startCell = 'AA15';
-        endCell = 'AA18';  // Values: 73, 134, 196, 257
-      }
-    } else if (dimensionType === 'Breite') {
-      if (heaterType === 'Flachheizkoerper_senkrecht_profiliert') {
-        startCell = 'K57';
-        endCell = 'K60';  // Values: 300, 450, 550, 850 TODO: prüfen mit Jakob ob das stimmt
-      } else if (['Flachheizkoerper_glatt', 'Rohrradiator', 'Rohrheizkörper'].includes(heaterType)) {
-        startCell = 'R57';
-        endCell = 'R60';  // Values: 300, 450, 550, 850
-      }
-      // Gliederheizkörper and Konvektor have no standard widths (keep startCell/endCell empty)
-    }
-
-    // If we found a range, get the values
-    if (startCell && endCell) {
-      return this.grid.getCells('Daten', startCell, endCell)
-        .flatMap(row => [row[0]])
-        .filter(value => typeof value === 'number')
-        .filter(value => !isNaN(value) && value > 0);
-    }
-
-    // No range found, return empty array
-    return [];
-  }
-
-  /**
    * INDIRECT lookup formula logic similar to Excel.
    *
    * @param name - The type of heater to get subtypes for
    * @returns Array of values for the named expression. if 2 dim, only first col is returned
    */
-  getNamesExpressionValueList(name: string): string[] {
+  getNamesExpressionValueList(name: string): (string | number)[] {
     // Try to get the range reference from the Names sheet
     const rangeRef = this.grid.getCell('Names', name);
 
@@ -1001,7 +1090,9 @@ export class BerechnungService {
 
     // Parse the range reference (format: "Daten!K4:K10" or "Daten!P4")
     const [, sheet, startCell, endSheet, endCell] = rangeRef.match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+)(?::(?:(\w[\w\s]*)!)?([A-Za-z]+\d+))?/) ?? [];
-
+    if (!startCell) {
+      return [];
+    }
     // Get cells from the range
     // Determine if this is a database range (has header)
     // Skip the header row if it's a database range
@@ -1010,38 +1101,10 @@ export class BerechnungService {
     // Extract the first column values using flatMap
     return this.grid.getCells(sheet, startCell, endCell ?? startCell)
       .slice(startIndex)  // Skip header if needed
-      .flatMap(row => row[0].toString());
+      .flatMap(row => row[0]);
   }
 
-  /**
-   * Extracts a column from a named database-like range by header name.
-   *
-   * @param name - The name expression referring to a 2D range
-   * @param column - The column name (from the header row) to extract
-   * @returns The column values without the header row
-   */
-  getNamesExpressionColumn(name: string, column: string): string[] {
-    // Resolve the named range reference like "Daten!A1:C10"
-    const rangeRef = this.grid.getCell('Names', name);
-    if (typeof rangeRef !== 'string') return [];
-
-    const [, sheet, startCell, endSheet, endCell] =
-    rangeRef.match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+)(?::(?:(\w[\w\s]*)!)?([A-Za-z]+\d+))?/) ?? [];
-
-    const matrix = this.grid.getCells(sheet, startCell, endCell ?? startCell);
-    if (!matrix || matrix.length === 0) return [];
-
-    // First row = headers
-    const headers = matrix[0];
-    const colIndex = headers.indexOf(column);
-    if (colIndex === -1) return [];
-
-    // Return all rows in that column excluding the header
-    return matrix.slice(1).map(row => row[colIndex]?.toString?.() ?? '');
-  }
-
-
-  // Check if building has a flat roof
+// Check if building has a flat roof
   hasFlatRoof(): boolean {
     return this.grid.getCell('IN_build', 'P4') === 'Flach bzw. Flachdach';
   }

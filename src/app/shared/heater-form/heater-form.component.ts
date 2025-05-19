@@ -22,8 +22,8 @@ export class HeaterFormComponent implements OnInit, OnChanges {
   heizfleacheSubtype: string = '';
 
   // Dimension options for select dropdowns
-  hoeheOptions: string[] = [];
-  tiefeOptions: string[] = [];
+  hoeheOptions: number[] = [];
+  tiefeOptions: number[] = [];
 
   constructor(public berechnungService: BerechnungService) { }
 
@@ -38,11 +38,14 @@ export class HeaterFormComponent implements OnInit, OnChanges {
   updateDimensionOptions(): void {
     if(!this.heizfleacheSubtype) return;
 
+    // Save the subtype to the data model
+    this.berechnungService.setHeatingSubType(this.roomId, this.heizfleacheSubtype, this.heaterNumber);
+
     // Get height values using INDIREKT(subtype)
-    this.hoeheOptions = this.berechnungService.getNamesExpressionValueList(this.heizfleacheSubtype);
+    this.hoeheOptions = this.berechnungService.getNamesExpressionValueList(this.heizfleacheSubtype).map(v => typeof v == 'number' ? v : parseInt(v));
 
     // Get depth values using INDIREKT(subtype&"_t")
-    this.tiefeOptions = this.berechnungService.getNamesExpressionValueList(this.heizfleacheSubtype + "_t");
+    this.tiefeOptions = this.berechnungService.getNamesExpressionValueList(this.heizfleacheSubtype + "_t").map(v => typeof v == 'number' ? v : parseInt(v));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -52,12 +55,20 @@ export class HeaterFormComponent implements OnInit, OnChanges {
   }
 
   loadHeaterData(): void {
-    const heaterType = this.berechnungService.getHeatingType(this.roomId, this.heaterNumber);
-    // Set default subtype if needed
-    if (heaterType) {
-      const subtypes = this.berechnungService.getNamesExpressionValueList(heaterType);
+    const mainType = this.berechnungService.getHeatingMainType(this.roomId, this.heaterNumber);
+    const subType = this.berechnungService.getHeatingSubType(this.roomId, this.heaterNumber);
+    
+    // Try to get subtype from the data model first
+    if (subType) {
+      this.heizfleacheSubtype = subType.toString();
+    } 
+    // Fall back to main type and first available subtype
+    else if (mainType) {
+      const subtypes = this.berechnungService.getNamesExpressionValueList(mainType);
       if (subtypes.length > 0 && !this.heizfleacheSubtype) {
-        this.heizfleacheSubtype = subtypes[0];
+        this.heizfleacheSubtype = subtypes[0]?.toString();
+        // Save the subtype to the data model
+        this.berechnungService.setHeatingSubType(this.roomId, this.heizfleacheSubtype, this.heaterNumber);
       }
     }
   }
@@ -77,11 +88,15 @@ export class HeaterFormComponent implements OnInit, OnChanges {
 
   // Handle heater type change
   onHeaterTypeChange(heaterType: HeaterType): void {
-    this.berechnungService.setHeatingType(this.roomId, heaterType, this.heaterNumber);
+    // Set main type
+    this.berechnungService.setHeatingMainType(this.roomId, heaterType, this.heaterNumber);
+    
+    // Set sub type with same value initially (will be updated properly in updateDimensionOptions)
+    this.berechnungService.setHeatingSubType(this.roomId, heaterType, this.heaterNumber);
 
     // Get subtypes for the selected heater type
     const subtypes = this.berechnungService.getNamesExpressionValueList(heaterType);
-    this.heizfleacheSubtype = subtypes.length > 0 ? subtypes[0] : '';
+    this.heizfleacheSubtype = subtypes.length > 0 ? subtypes[0]?.toString() : '';
 
     // Set default values based on heater type
     if (heaterType === 'Gliederheizkörper') {

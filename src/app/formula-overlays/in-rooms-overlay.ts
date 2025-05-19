@@ -14,6 +14,222 @@ export class InRoomsOverlay implements FormulaOverlay {
     // Add formulas for each room column
     roomColumns.forEach(col => {
       /**
+       * Row 3: Empty string
+       * Original Excel formula:
+       * =""
+       */
+      grid.setCell('IN_rooms', `${col}3`, (s, c, g) => "");
+
+      /**
+       * Row 5: Copy from column Q
+       * Original Excel formula:
+       * =$Q$5
+       */
+      grid.setCell('IN_rooms', `${col}5`, (s, c, g) =>
+        g.g(s, 'Q5')
+      );
+
+      /**
+       * Row 6: Copy from column Q
+       * Original Excel formula:
+       * =$Q$6
+       */
+      grid.setCell('IN_rooms', `${col}6`, (s, c, g) =>
+        g.g(s, 'Q6')
+      );
+
+      /**
+       * Row 7: Copy from column Q
+       * Original Excel formula:
+       * =$Q7
+       */
+      grid.setCell('IN_rooms', `${col}7`, (s, c, g) =>
+        g.g(s, 'Q7')
+      );
+
+      /**
+       * Row 8: Copy from column Q
+       * Original Excel formula:
+       * =$Q8
+       */
+      grid.setCell('IN_rooms', `${col}8`, (s, c, g) =>
+        g.g(s, 'Q8')
+      );
+
+      /**
+       * Row 12: Copy from column Q
+       * Original Excel formula:
+       * =$Q12
+       */
+      grid.setCell('IN_rooms', `${col}12`, (s, c, g) =>
+        g.g(s, 'Q12')
+      );
+
+      /**
+       * Row 16: Copy from column Q
+       * Original Excel formula:
+       * =$Q16
+       */
+      grid.setCell('IN_rooms', `${col}16`, (s, c, g) =>
+        g.g(s, 'Q16')
+      );
+
+      /**
+       * Row 20: Copy from column Q
+       * Original Excel formula:
+       * =$Q20
+       */
+      grid.setCell('IN_rooms', `${col}20`, (s, c, g) =>
+        g.g(s, 'Q20')
+      );
+
+      /**
+       * Row 24: Copy from column Q
+       * Original Excel formula:
+       * =$Q24
+       */
+      grid.setCell('IN_rooms', `${col}24`, (s, c, g) =>
+        g.g(s, 'Q24')
+      );
+
+      /**
+       * Row 25: Copy from column Q
+       * Original Excel formula:
+       * =$Q25
+       */
+      grid.setCell('IN_rooms', `${col}25`, (s, c, g) =>
+        g.g(s, 'Q25')
+      );
+
+      /**
+       * Row 27: Copy from column Q
+       * Original Excel formula:
+       * =$Q$27
+       */
+      grid.setCell('IN_rooms', `${col}27`, (s, c, g) =>
+        g.g(s, 'Q27')
+      );
+
+      /**
+       * Row 29: Copy from column Q
+       * Original Excel formula:
+       * =$Q$29
+       */
+      grid.setCell('IN_rooms', `${col}29`, (s, c, g) =>
+        g.g(s, 'Q29')
+      );
+
+      /**
+       * Row 35: Copy from column Q
+       * Original Excel formula:
+       * =$Q$35
+       */
+      grid.setCell('IN_rooms', `${col}35`, (s, c, g) =>
+        g.g(s, 'Q35')
+      );
+
+      /**
+       * Row 36: EXIST_roof_knee_eff - Checks if room has knee wall
+       * Original Excel formula:
+       * =IF(R$35="Nein","Ja","Nein")
+       * 
+       * This formula checks if the room's "Klopfen Sie gegen die senkrechte Wand unter der Dachschräge. Klingt es hohl?" is "Nein"
+       * If it's "Nein", then roof knee wall exists ("Ja"), otherwise it doesn't ("Nein")
+       */
+      grid.setCell('IN_rooms', `${col}36`, (s, c, g) =>
+        g.WENN(
+          g.g(s, `${col}35`) === "Nein",
+          "Ja",
+          "Nein"
+        )
+      );
+
+      /**
+       * Row 37: L_roof_knee_hei_eff - Effective knee wall height
+       * Original Excel formula:
+       * =IF(R$35="Ja",0,R$34)
+       * 
+       * If the wall is hollow ("Ja" in cell 35), then height is 0
+       * Otherwise, use the height value from cell 34
+       */
+      grid.setCell('IN_rooms', `${col}37`, (s, c, g) =>
+        g.WENN(
+          g.g(s, `${col}35`) === "Ja",
+          0,
+          g.g(s, `${col}34`)
+        )
+      );
+
+      /**
+       * Row 38: EXIST_roof_jamb_eff - Checks if room has hollow knee wall
+       * Original Excel formula:
+       * =IF(R$35="Nein","Nein","Ja")
+       * 
+       * This formula is the opposite of row 36 (knee wall existence)
+       * If wall is not hollow ("Nein" in cell 35), then hollow knee wall doesn't exist ("Nein")
+       * Otherwise, hollow knee wall exists ("Ja")
+       */
+      grid.setCell('IN_rooms', `${col}38`, (s, c, g) =>
+        g.WENN(
+          g.g(s, `${col}35`) === "Nein",
+          "Nein",
+          "Ja"
+        )
+      );
+
+      /**
+       * Row 39: L_roof_jamb_hei_eff - Effective hollow knee wall height
+       * Original Excel formula:
+       * =IF(R$35="Nein",0,R$34)
+       * 
+       * If the wall is not hollow ("Nein" in cell 35), then hollow height is 0
+       * Otherwise, use the height value from cell 34
+       */
+      grid.setCell('IN_rooms', `${col}39`, (s, c, g) =>
+        g.WENN(
+          g.g(s, `${col}35`) === "Nein",
+          0,
+          g.g(s, `${col}34`)
+        )
+      );
+
+      /**
+       * Row 48: Copy from column Q
+       * Original Excel formula:
+       * =$Q48
+       */
+      grid.setCell('IN_rooms', `${col}48`, (s, c, g) =>
+        g.g(s, 'Q48')
+      );
+
+      /**
+       * Row 55: Copy from column Q
+       * Original Excel formula:
+       * =$Q$55
+       */
+      grid.setCell('IN_rooms', `${col}55`, (s, c, g) =>
+        g.g(s, 'Q55')
+      );
+
+      /**
+       * Row 62: Copy from column Q
+       * Original Excel formula:
+       * =$Q$62
+       */
+      grid.setCell('IN_rooms', `${col}62`, (s, c, g) =>
+        g.g(s, 'Q62')
+      );
+
+      /**
+       * Row 69: Copy from column Q
+       * Original Excel formula:
+       * =$Q$69
+       */
+      grid.setCell('IN_rooms', `${col}69`, (s, c, g) =>
+        g.g(s, 'Q69')
+      );
+
+      /**
        * Modernization year for walls (e.g., R73, S73, etc.)
        * Original Excel formula:
        * =IF(OR(R$10=Daten!$B$19,R$10=""),IF(IN_build!Q7="Ja",IN_build!$S$7,IN_build!$P$5),IF(OR(R$10<IN_build!$P$5,R$10=Daten!$B$20),IN_build!$P$5,R$10))

@@ -9,7 +9,7 @@
         <div class="heater-type-option">
           <input type="radio" class="btn-check" [id]="'heater' + heaterNumber + '_type_' + type"
                  [name]="'heater' + heaterNumber + '_type'"
-                 [value]="type" [checked]="berechnungService.getHeatingType(roomId, heaterNumber) === type"
+                 [value]="type" [checked]="berechnungService.getHeatingMainType(roomId, heaterNumber) === type"
                  (change)="onHeaterTypeChange(type)">
           <label [for]="'heater' + heaterNumber + '_type_' + type" class="btn btn-outline-secondary d-block p-2">
             <div class="border rounded mb-2 image-container">
@@ -69,7 +69,7 @@
                 [(ngModel)]="heizfleacheSubtype"
                 (ngModelChange)="updateDimensionOptions()"
                 [name]="'heater' + heaterNumber + '_subtype'" required>
-          <option *ngFor="let subtype of berechnungService.getNamesExpressionValueList(berechnungService.getHeatingType(roomId, heaterNumber))"
+          <option *ngFor="let subtype of berechnungService.getNamesExpressionValueList(berechnungService.getHeatingMainType(roomId, heaterNumber))"
                   [value]="subtype">{{ subtype }}</option>
         </select>
       </div>
@@ -93,8 +93,8 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Breite</span>
           <input type="number" class="form-control"
-                 [ngModel]="berechnungService.getHeatingLength(roomId, heaterNumber)"
-                 (ngModelChange)="berechnungService.setHeatingLength(roomId, $event, heaterNumber)"
+                 [ngModel]="berechnungService.getHeatingWidth(roomId, heaterNumber)"
+                 (ngModelChange)="berechnungService.setHeatingWidth(roomId, $event, heaterNumber)"
                  [name]="'heater' + heaterNumber + '_length'" min="10" max="2000" step="1" required>
           <span class="input-group-text">cm</span>
         </div>
@@ -127,7 +127,7 @@
       </div>
 
       <!-- Anzahl Glieder - nur bei Gliederheizkörper -->
-      <div class="col mb-3" *ngIf="berechnungService.getHeatingType(roomId, heaterNumber) === 'Gliederheizkörper'">
+      <div class="col mb-3" *ngIf="berechnungService.getHeatingMainType(roomId, heaterNumber) === 'Gliederheizkörper'">
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Glieder</span>
           <input type="number" class="form-control"

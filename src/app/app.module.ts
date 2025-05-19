@@ -1,5 +1,6 @@
-import {NgModule} from '@angular/core';
+import {NgModule, SecurityContext} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -38,6 +39,10 @@ import {BandTachoComponent} from "./shared/band-tacho/band-tacho.component";
 import {HeaterFormComponent} from "./shared/heater-form/heater-form.component";
 import {RoomListComponent} from "./shared/room-list/room-list.component";
 import {DebugOverlayComponent} from "./shared/debug-overlay/debug-overlay.component";
+
+// Markdown Support
+import { MarkdownModule } from 'ngx-markdown';
+import 'marked';
 
 import '@angular/common/locales/global/de';
 
@@ -82,7 +87,11 @@ import '@angular/common/locales/global/de';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.HTML
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,87 +2,30 @@
 <app-wizard-tabs [progress]="100" activeRoomSubTab="ergebnis"></app-wizard-tabs>
 
 <!-- Content -->
-<h5 class="mb-4">Ergebnis für Raum: {{ roomData.name }}</h5>
-
-
+<h5 class="mb-4">Ergebnis für Raum: {{ berechnungService.getRoomName(roomId) }}</h5>
 
 <!--  Assessment -->
 <div class="card mb-4">
   <div class="card-header bg-primary text-white">Bewertung</div>
   <div class="card-body">
-    <!-- R1: NT-Readiness -->
-    <h5>Nicht niedertemperaturfähig (NT-ready)</h5>
-    <p>Noch nicht geeignet, sehr hohe Vorlauftemperatur nötig.
-      In diesem Zustand kann der Raum nur sehr ineffizient mit einer Wärmepumpe
-      beheizt werden – der Stromverbrauch wäre deutlich zu hoch. Nachfolgend
-      finden Sie Hinweise, wie sich die Eignung Ihres Gebäudes verbessern lässt.</p>
+    <!-- R1: NT-Readiness - Dynamic text from OUT_rooms row 3 (overall assessment) -->
+    <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '3').toString()"></markdown>
 
     <hr class="my-4">
 
-    <!-- Raumheizlast -->
-    <h6>Kalkulierte Raumheizlast</h6>
-    <div class="text-center mb-3">
-      {{ roomData.heizlast_w }} Watt | {{ roomData.heizlast_w_m2 }} W/m²
-    </div>
-
-    <app-band-tacho
-      [maxValue]="100"
-      [zones]="heizlastZones"
-      [pins]="[{ value: roomData.heizlast_w_m2, tooltip: 'Wärmelast pro m²' }]">
-    </app-band-tacho>
-
-    <hr class="my-4">
-
-    <!-- R2: Maßnahmen -->
-    <div class="row">
-      <div class="col-md-3 text-center">
-        <div class="grid mb-2" style="--bs-columns: 2">
-          <i class="bi bi-house-door fs-2 text-muted mx-1"></i>
-          <i class="bi bi-window fs-2 text-muted mx-1"></i>
-          <i class="bi bi-shop-window fs-2 text-muted mx-1"></i>
-          <i class="bi bi-border-bottom fs-2 text-muted mx-1"></i>
-        </div>
-      </div>
-      <div class="col-md-9">
-        <h5>Noch nicht geeignet ohne Maßnahmen</h5>
-        <p>Jetzt ist Optimierung gefragt.
-          Die Heizlast ist sehr hoch. Für den sinnvollen Einsatz
-          einer Wärmepumpe ist eine energetische
-          Verbesserung der Gebäudehülle – insbesondere durch
-          [Dämmung der Außenwand und … ] – voraussichtlich
-          notwendig.</p>
-      </div>
-    </div>
-
-    <hr class="my-4">
-
-    <!-- RW: Warning -->
-    <div class="alert border-danger">
-      <h5><i class="bi bi-exclamation-triangle-fill me-2"></i>Achtung! Hohe Raumtemperatur gewählt</h5>
-      <p>Die angegebene Raumtemperatur ist vergleichsweise hoch.
-        Typischerweise werden 20 °C in Wohnräumen und 24 °C in Bädern
-        angesetzt.
-        Handelt es sich um ein Badezimmer? Testen Sie die Eignung bei 20 °C
-        Raumtemperatur. Sollte die Heizfläche dann ausreichen, genügt es zumeist,
-        dass an sehr kalten Tagen mit einem Infrarotstrahler oder einem Heizlüfter
-        unterstützt wird.</p>
-    </div>
-
-    <hr class="my-5">
-
-    <!-- Heizkörper Eignung -->
+    <!-- Heizkörper Eignung - Use values from OUT_rooms rows 14-17 for gauges/badges -->
     <h5>Wie gut sind die Heizkörper geeignet?</h5>
 
     <div class="d-flex mb-3">
         <div class="d-flex align-items-center mb-2">
           <span>Besserer Heizkörper (Typ 33)</span>
-          <span class="badge bg-primary ms-2">{{ roomData.besserHK.watt }} Watt</span>
-          <span class="badge bg-success ms-2">{{ roomData.besserHK.deckungProzent }}% Deckung</span>
+          <span class="badge bg-primary ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '15') }}</span>
+          <span class="badge bg-success ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '17') }}</span>
         </div>
         <div class="ms-auto d-flex align-items-center mb-2">
           <span>Aktueller Heizkörper</span>
-          <span class="badge bg-primary ms-2">{{ roomData.aktuellHK.watt }} Watt</span>
-          <span class="badge bg-warning ms-2">{{ roomData.aktuellHK.deckungProzent }}% Deckung</span>
+          <span class="badge bg-primary ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '14') }}</span>
+          <span class="badge bg-warning ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '16') }}</span>
         </div>
     </div>
 
@@ -90,14 +33,14 @@
       [maxValue]="100"
       [zones]="heizkoerperZones"
       [pins]="[
-        { value: roomData.aktuellHK.deckungProzent, tooltip: 'Aktueller Heizkörper' },
-        { value: roomData.besserHK.deckungProzent, tooltip: 'Besserer Heizkörper' }
+        { value: grid.getCellNumeric('clc_build', getRoomBuildColumn() + '39') * 100, tooltip: 'Aktueller Heizkörper' },
+        { value: grid.getCellNumeric('clc_build', getRoomBuildColumn() + '40') * 100, tooltip: 'Besserer Heizkörper' }
       ]">
     </app-band-tacho>
 
     <hr class="my-4">
 
-    <!-- R3: Leistung -->
+    <!-- R3: Leistung - Use OUT_rooms row 10 for heater recommendation -->
     <div class="row">
       <div class="col-md-3 text-center">
         <div class="d-flex flex-column align-items-center justify-content-center mb-2">
@@ -112,15 +55,48 @@
         </div>
       </div>
       <div class="col-md-9">
-        <h5>Deutlich zu geringe Leistung</h5>
-        <p>Ein Tausch bringt viel.
-          Ein neuer Heizkörper mit [deutlich mehr] Leistung kann
-          die Effizienz einer Wärmepumpe in diesem Raum
-          erheblich verbessern. Der neue Heizkörper müsste
-          größer dimensioniert sein, um die Raumheizlast zu
-          decken. Ein besserer Heizkörper (Typ 33) gleicher Größe
-          ist wahrscheinlich nicht ausreichend.</p>
+        <h5>Heizköperleistung</h5>
+        <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '10').toString()"></markdown>
       </div>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Raumheizlast - Use the formatted value from OUT_rooms row 13 -->
+    <h6>Kalkulierte Raumheizlast</h6>
+    <div class="text-center mb-3">
+      {{ grid.getCell('OUT_rooms', getRoomOutColumn() + '13') }}
+    </div>
+
+    <app-band-tacho
+      [maxValue]="100"
+      [zones]="heizlastZones"
+      [pins]="[{ value: grid.getCellNumeric('clc_build', getRoomBuildColumn() + '8'), tooltip: 'Wärmelast pro m²' }]">
+    </app-band-tacho>
+
+    <hr class="my-4">
+
+    <!-- R2: Maßnahmen - Use OUT_rooms row 6 for component analysis -->
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <div class="grid mb-2" style="--bs-columns: 2">
+          <i class="bi bi-house-door fs-2 text-muted mx-1"></i>
+          <i class="bi bi-window fs-2 text-muted mx-1"></i>
+          <i class="bi bi-shop-window fs-2 text-muted mx-1"></i>
+          <i class="bi bi-border-bottom fs-2 text-muted mx-1"></i>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <h5>Bauteilbewertung</h5>
+        <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '6').toString()"></markdown>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- RW: Warning - Show warning if room temperature is high, using markdown for text from TXT_rooms E20 -->
+    <div class="alert border-danger" *ngIf="berechnungService.getRoomTemperature(roomId) > 22">
+      <markdown [data]="grid.getCell('TXT_rooms', 'E20').toString()"></markdown>
     </div>
   </div>
 </div>

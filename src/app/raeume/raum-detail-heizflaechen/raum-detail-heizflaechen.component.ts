@@ -49,13 +49,20 @@ export class RaumDetailHeizflaechenComponent implements OnInit, OnDestroy {
 
   loadRoomData(): void {
     // Check if heating types have any data and should be shown
-    this.heater1Visible = this.berechnungService.getHeatingLength(this.roomId, 1) > 0;
-    this.heater2Visible = this.berechnungService.getHeatingLength(this.roomId, 2) > 0;
-    this.heater3Visible = this.berechnungService.getHeatingLength(this.roomId, 3) > 0;
+    this.heater1Visible = this.berechnungService.getHeatingWidth(this.roomId, 1) > 0;
+    this.heater2Visible = this.berechnungService.getHeatingWidth(this.roomId, 2) > 0;
+    this.heater3Visible = this.berechnungService.getHeatingWidth(this.roomId, 3) > 0;
 
     // Set default values if no data exists
     if (!this.heater1Visible) {
-      this.berechnungService.setHeatingType(this.roomId, 'Flachheizkoerper_glatt', 1);
+      // Set main type
+      this.berechnungService.setHeatingMainType(this.roomId, 'Flachheizkoerper_glatt', 1);
+      
+      // Get first available subtype for this main type
+      const subtypes = this.berechnungService.getNamesExpressionValueList('Flachheizkoerper_glatt');
+      if (subtypes.length > 0) {
+        this.berechnungService.setHeatingSubType(this.roomId, subtypes[0].toString(), 1);
+      }
     }
   }
 
@@ -64,47 +71,59 @@ export class RaumDetailHeizflaechenComponent implements OnInit, OnDestroy {
     if (!this.heater1Visible) {
       // Initialize first heater with default values
       this.heater1Visible = true;
-      this.berechnungService.setHeatingType(this.roomId, 'Flachheizkoerper_glatt', 1);
-      this.berechnungService.setHeatingLength(this.roomId, 100, 1);
+      // Set main type
+      this.berechnungService.setHeatingMainType(this.roomId, 'Flachheizkoerper_glatt', 1);
+      
+      // Get first available subtype for this main type
+      const subtypes = this.berechnungService.getNamesExpressionValueList('Flachheizkoerper_glatt');
+      if (subtypes.length > 0) {
+        this.berechnungService.setHeatingSubType(this.roomId, subtypes[0].toString(), 1);
+      }
+      
+      this.berechnungService.setHeatingWidth(this.roomId, 100, 1);
       this.berechnungService.setHeatingHeight(this.roomId, 60, 1);
       this.berechnungService.setHeatingCount(this.roomId, 1, 1);
       // Initialize n_rad_col for Gliederheizkörper if needed
-      if (this.berechnungService.getHeatingType(this.roomId, 1) === 'Gliederheizkörper') {
+      if (this.berechnungService.getHeatingMainType(this.roomId, 1) === 'Gliederheizkörper') {
         this.berechnungService.setn_rad_col(this.roomId, 10, 1); // Default to 10 elements
       }
     } else if (!this.heater2Visible) {
       // Get values from heater 1 to initialize heater 2
-      const sourceType = this.berechnungService.getHeatingType(this.roomId, 1) || 'Flachheizkoerper_glatt';
-      const sourceLength = this.berechnungService.getHeatingLength(this.roomId, 1) || 100;
+      const sourceMainType = this.berechnungService.getHeatingMainType(this.roomId, 1) || 'Flachheizkoerper_glatt';
+      const sourceSubType = this.berechnungService.getHeatingSubType(this.roomId, 1);
+      const sourceLength = this.berechnungService.getHeatingWidth(this.roomId, 1) || 100;
       const sourceHeight = this.berechnungService.getHeatingHeight(this.roomId, 1) || 60;
       const sourceCount = this.berechnungService.getHeatingCount(this.roomId, 1) || 1;
 
       // Initialize heater 2 with values from heater 1
       this.heater2Visible = true;
-      this.berechnungService.setHeatingType(this.roomId, sourceType, 2);
-      this.berechnungService.setHeatingLength(this.roomId, sourceLength, 2);
+      this.berechnungService.setHeatingMainType(this.roomId, sourceMainType, 2);
+      this.berechnungService.setHeatingSubType(this.roomId, sourceSubType, 2);
+      this.berechnungService.setHeatingWidth(this.roomId, sourceLength, 2);
       this.berechnungService.setHeatingHeight(this.roomId, sourceHeight, 2);
       this.berechnungService.setHeatingCount(this.roomId, sourceCount, 2);
       // If it's a Gliederheizkörper, also copy the elements count
-      if (sourceType === 'Gliederheizkörper') {
+      if (sourceMainType === 'Gliederheizkörper') {
         const sourceElements = this.berechnungService.getn_rad_col(this.roomId, 1) || 10;
         this.berechnungService.setn_rad_col(this.roomId, sourceElements, 2);
       }
     } else if (!this.heater3Visible) {
       // Get values from heater 2 to initialize heater 3
-      const sourceType = this.berechnungService.getHeatingType(this.roomId, 2) || 'Flachheizkoerper_glatt';
-      const sourceLength = this.berechnungService.getHeatingLength(this.roomId, 2) || 100;
+      const sourceMainType = this.berechnungService.getHeatingMainType(this.roomId, 2) || 'Flachheizkoerper_glatt';
+      const sourceSubType = this.berechnungService.getHeatingSubType(this.roomId, 2);
+      const sourceLength = this.berechnungService.getHeatingWidth(this.roomId, 2) || 100;
       const sourceHeight = this.berechnungService.getHeatingHeight(this.roomId, 2) || 60;
       const sourceCount = this.berechnungService.getHeatingCount(this.roomId, 2) || 1;
 
       // Initialize heater 3 with values from heater 2
       this.heater3Visible = true;
-      this.berechnungService.setHeatingType(this.roomId, sourceType, 3);
-      this.berechnungService.setHeatingLength(this.roomId, sourceLength, 3);
+      this.berechnungService.setHeatingMainType(this.roomId, sourceMainType, 3);
+      this.berechnungService.setHeatingSubType(this.roomId, sourceSubType, 3);
+      this.berechnungService.setHeatingWidth(this.roomId, sourceLength, 3);
       this.berechnungService.setHeatingHeight(this.roomId, sourceHeight, 3);
       this.berechnungService.setHeatingCount(this.roomId, sourceCount, 3);
       // If it's a Gliederheizkörper, also copy the elements count
-      if (sourceType === 'Gliederheizkörper') {
+      if (sourceMainType === 'Gliederheizkörper') {
         const sourceElements = this.berechnungService.getn_rad_col(this.roomId, 2) || 10;
         this.berechnungService.setn_rad_col(this.roomId, sourceElements, 3);
       }
@@ -117,86 +136,92 @@ export class RaumDetailHeizflaechenComponent implements OnInit, OnDestroy {
       // If we have a heater 2, move it to position 1
       if (this.heater2Visible) {
         // Copy heater 2 data to heater 1
-        const type2 = this.berechnungService.getHeatingType(this.roomId, 2);
-        const length2 = this.berechnungService.getHeatingLength(this.roomId, 2);
+        const mainType2 = this.berechnungService.getHeatingMainType(this.roomId, 2);
+        const subType2 = this.berechnungService.getHeatingSubType(this.roomId, 2);
+        const length2 = this.berechnungService.getHeatingWidth(this.roomId, 2);
         const height2 = this.berechnungService.getHeatingHeight(this.roomId, 2);
         const count2 = this.berechnungService.getHeatingCount(this.roomId, 2);
 
-        this.berechnungService.setHeatingType(this.roomId, type2, 1);
-        this.berechnungService.setHeatingLength(this.roomId, length2, 1);
+        this.berechnungService.setHeatingMainType(this.roomId, mainType2, 1);
+        this.berechnungService.setHeatingSubType(this.roomId, subType2, 1);
+        this.berechnungService.setHeatingWidth(this.roomId, length2, 1);
         this.berechnungService.setHeatingHeight(this.roomId, height2, 1);
         this.berechnungService.setHeatingCount(this.roomId, count2, 1);
         // Also move n_rad_col if it's a Gliederheizkörper
-        if (type2 === 'Gliederheizkörper') {
+        if (mainType2 === 'Gliederheizkörper') {
           const elementsCount = this.berechnungService.getn_rad_col(this.roomId, 2) || 10;
           this.berechnungService.setn_rad_col(this.roomId, elementsCount, 1);
         }
 
         // If we have a heater 3, move it to position 2
         if (this.heater3Visible) {
-          const type3 = this.berechnungService.getHeatingType(this.roomId, 3);
-          const length3 = this.berechnungService.getHeatingLength(this.roomId, 3);
+          const mainType3 = this.berechnungService.getHeatingMainType(this.roomId, 3);
+          const subType3 = this.berechnungService.getHeatingSubType(this.roomId, 3);
+          const length3 = this.berechnungService.getHeatingWidth(this.roomId, 3);
           const height3 = this.berechnungService.getHeatingHeight(this.roomId, 3);
           const count3 = this.berechnungService.getHeatingCount(this.roomId, 3);
 
-          this.berechnungService.setHeatingType(this.roomId, type3, 2);
-          this.berechnungService.setHeatingLength(this.roomId, length3, 2);
+          this.berechnungService.setHeatingMainType(this.roomId, mainType3, 2);
+          this.berechnungService.setHeatingSubType(this.roomId, subType3, 2);
+          this.berechnungService.setHeatingWidth(this.roomId, length3, 2);
           this.berechnungService.setHeatingHeight(this.roomId, height3, 2);
           this.berechnungService.setHeatingCount(this.roomId, count3, 2);
           // Also move n_rad_col if it's a Gliederheizkörper
-          if (type3 === 'Gliederheizkörper') {
+          if (mainType3 === 'Gliederheizkörper') {
             const elementsCount = this.berechnungService.getn_rad_col(this.roomId, 3) || 10;
             this.berechnungService.setn_rad_col(this.roomId, elementsCount, 2);
           }
 
           // Clear heater 3
           this.heater3Visible = false;
-          this.berechnungService.setHeatingLength(this.roomId, 0, 3);
+          this.berechnungService.setHeatingWidth(this.roomId, 0, 3);
           this.berechnungService.setHeatingHeight(this.roomId, 0, 3);
           this.berechnungService.setHeatingCount(this.roomId, 0, 3);
         } else {
           // Clear heater 2
           this.heater2Visible = false;
-          this.berechnungService.setHeatingLength(this.roomId, 0, 2);
+          this.berechnungService.setHeatingWidth(this.roomId, 0, 2);
           this.berechnungService.setHeatingHeight(this.roomId, 0, 2);
           this.berechnungService.setHeatingCount(this.roomId, 0, 2);
         }
       } else {
         // Just clear heater 1
         this.heater1Visible = false;
-        this.berechnungService.setHeatingLength(this.roomId, 0, 1);
+        this.berechnungService.setHeatingWidth(this.roomId, 0, 1);
         this.berechnungService.setHeatingHeight(this.roomId, 0, 1);
         this.berechnungService.setHeatingCount(this.roomId, 0, 1);
       }
     } else if (heaterType === 2) {
       // If we have a heater 3, move it to position 2
       if (this.heater3Visible) {
-        const type3 = this.berechnungService.getHeatingType(this.roomId, 3);
-        const length3 = this.berechnungService.getHeatingLength(this.roomId, 3);
+        const mainType3 = this.berechnungService.getHeatingMainType(this.roomId, 3);
+        const subType3 = this.berechnungService.getHeatingSubType(this.roomId, 3);
+        const length3 = this.berechnungService.getHeatingWidth(this.roomId, 3);
         const height3 = this.berechnungService.getHeatingHeight(this.roomId, 3);
         const count3 = this.berechnungService.getHeatingCount(this.roomId, 3);
 
-        this.berechnungService.setHeatingType(this.roomId, type3, 2);
-        this.berechnungService.setHeatingLength(this.roomId, length3, 2);
+        this.berechnungService.setHeatingMainType(this.roomId, mainType3, 2);
+        this.berechnungService.setHeatingSubType(this.roomId, subType3, 2);
+        this.berechnungService.setHeatingWidth(this.roomId, length3, 2);
         this.berechnungService.setHeatingHeight(this.roomId, height3, 2);
         this.berechnungService.setHeatingCount(this.roomId, count3, 2);
 
         // Clear heater 3
         this.heater3Visible = false;
-        this.berechnungService.setHeatingLength(this.roomId, 0, 3);
+        this.berechnungService.setHeatingWidth(this.roomId, 0, 3);
         this.berechnungService.setHeatingHeight(this.roomId, 0, 3);
         this.berechnungService.setHeatingCount(this.roomId, 0, 3);
       } else {
         // Just clear heater 2
         this.heater2Visible = false;
-        this.berechnungService.setHeatingLength(this.roomId, 0, 2);
+        this.berechnungService.setHeatingWidth(this.roomId, 0, 2);
         this.berechnungService.setHeatingHeight(this.roomId, 0, 2);
         this.berechnungService.setHeatingCount(this.roomId, 0, 2);
       }
     } else if (heaterType === 3) {
       // Clear heater 3
       this.heater3Visible = false;
-      this.berechnungService.setHeatingLength(this.roomId, 0, 3);
+      this.berechnungService.setHeatingWidth(this.roomId, 0, 3);
       this.berechnungService.setHeatingHeight(this.roomId, 0, 3);
       this.berechnungService.setHeatingCount(this.roomId, 0, 3);
     }
