@@ -18,6 +18,7 @@ export class DebugOverlayComponent implements OnInit, OnDestroy {
   isVisible = false;
   cellReferences: CellReference[] = [];
   subscriptions: Subscription[] = [];
+  downloadJsonHref: string = '';
 
   constructor(private berechnungService: BerechnungService) {}
 
@@ -43,8 +44,8 @@ export class DebugOverlayComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
-    // Meta (Windows key) + D
-    if (event.metaKey && event.key === 'd') {
+    // Meta (Windows key) + D or Ctrl + Alt + D
+    if ((event.metaKey && event.key === 'd') || (event.ctrlKey && event.altKey && event.key === 'd')) {
       event.preventDefault();
       this.toggleVisibility();
     }
@@ -76,6 +77,27 @@ export class DebugOverlayComponent implements OnInit, OnDestroy {
         }
       }
     }
+  }
+  
+  downloadResults(): void {
+    const resultsJson = this.berechnungService.grid.serializeResults(true);
+    
+    // Create a Blob with the JSON data
+    const blob = new Blob([resultsJson], { type: 'application/json' });
+    
+    // Create a URL for the Blob
+    const url = window.URL.createObjectURL(blob);
+    
+    // Create a temporary link element
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `grid-results-${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.json`;
+    
+    // Append to the document, click, and cleanup
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   }
 
   onInputChange(): void {
