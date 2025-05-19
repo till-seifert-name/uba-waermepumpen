@@ -3,7 +3,7 @@
   <div class="gauge-bar" [style.background]="gaugeGradient"></div>
 
   <!-- Pins (Any Number) -->
-  <div *ngFor="let pin of pins; let i = index"
+  <div *ngFor="let pin of pins"
        class="pin position-absolute"
        [style.left.%]="calculatePositionPercent(pin.value)"
        [style.transform]="'translateX(-50%)'"
@@ -14,7 +14,7 @@
 
   <!-- Labels (Integrated with Zones) -->
   <div class="gauge-labels">
-    @for (zone of zones; track zone.label) {
+    @for (zone of zones; track $index) {
       @if (zone.label) {
         <span
           class="gauge-label"
