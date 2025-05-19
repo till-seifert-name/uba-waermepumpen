@@ -34,7 +34,8 @@ export class DataGrid {
   results: Record<string, Record<string, any>>;
   private cellChangedSubject: Subject<CellChange> = new Subject();
   g: (sheet: string, cell: string) => number | string;
-  n: (sheet: string, cell: string) => number ;
+  n: (sheet: string, cell: string) => number;
+  private cellRefStack: string[] = [];
 
   constructor() {
     this.cells = {};
@@ -54,6 +55,14 @@ export class DataGrid {
    */
   serializeCells(): string {
     return JSON.stringify(this.cells);
+  }
+
+  /**
+   * Method to serialize the results
+   * @param pretty Whether to pretty-print the JSON
+   */
+  serializeResults(pretty: boolean = false): string {
+    return JSON.stringify(this.results, null, pretty ? 2 : 0);
   }
 
   // Method to serialize cells based on parsed cell references
@@ -78,7 +87,7 @@ export class DataGrid {
 
   /**
    * Method to restore cells from serialized data, optionally filtering by a whitelist
-   * 
+   *
    * @param json - The serialized cell data as a JSON string
    * @param parsedReferences - Optional array of [sheet, cell] pairs to restrict restoration to
    */
@@ -88,7 +97,9 @@ export class DataGrid {
       if (!isRestoredSheets(restoredSheets)) {
         throw new Error('Invalid data format for restored cells');
       }
-      
+
+      const restoredCells: Record<string, any> = {};
+
       for (const sheetName in restoredSheets) {
         this.cells[sheetName] ??= {};
         for (const cell in restoredSheets[sheetName]) {
@@ -97,17 +108,19 @@ export class DataGrid {
             const isInWhitelist = parsedReferences.some(
               ([refSheet, refCell]) => refSheet === sheetName && refCell === cell
             );
-            
+
             if (!isInWhitelist) {
               continue; // Skip this cell as it's not in the whitelist
             }
           }
-          
+
           if (restoredSheets[sheetName][cell] !== null) {
             this.setCell(sheetName, cell, restoredSheets[sheetName][cell]);
+            restoredCells[`${sheetName}.${cell}`] = restoredSheets[sheetName][cell];
           }
         }
       }
+      console.log('Input restored:', restoredCells);
     } catch (error) {
       console.error('Error restoring cells:', error);
     }
@@ -199,22 +212,66 @@ export class DataGrid {
   private resolveFunction(sheet: string, cell: string, func: CellFunc): number {
     this.results[sheet] ??= {};
 
-    // null marks that the cell is part of the stack that is just evaluated, to detect loops
-    if (this.results[sheet][cell] === null) {
-      //throw new Error(`Circular dependency detected at ${sheet}!${cell}`);
+    const cellRef = `${sheet}!${cell}`;
+
+    // Check for circular dependencies using the stack
+    const circularIndex = this.cellRefStack.indexOf(cellRef);
+    if (circularIndex !== -1) {
+      // Construct the cycle for better logging
+      const cycle = [...this.cellRefStack.slice(circularIndex), cellRef];
+      console.error(`Circular dependency detected: ${cycle.join(' → ')}`);
+
+      // Reset the stack if we hit a circular dependency
+      this.cellRefStack = [];
+      return NaN; // Return NaN for circular dependencies
     }
 
-    this.results[sheet][cell] = null;
-    this.results[sheet][cell] = func(sheet, cell, this);
-    return this.results[sheet][cell];
+    // Add current cell to the reference stack
+    this.cellRefStack.push(cellRef);
+
+    try {
+      const wasFirstCall = this.cellRefStack.length === 1;
+      const result = func(sheet, cell, this);
+      this.results[sheet][cell] = result;
+
+      if (Number.isNaN(result)) {
+        console.debug(`Error in formula at ${cellRef}: Result is NaN.`);
+      }
+
+      // Remove the cell from the stack when done if we were the first call
+      if (wasFirstCall) {
+        this.cellRefStack = [];
+      } else {
+        // Just remove this cell from the stack
+        this.cellRefStack.pop();
+      }
+
+      return this.results[sheet][cell];
+    } catch (error) {
+      console.error(`Error evaluating formula at ${cellRef}: ${error instanceof Error ? error.message : String(error)}`);
+      console.error(`Cell reference stack: ${this.cellRefStack.join(' → ')}`);
+
+      // Reset the stack on error
+      this.cellRefStack = [];
+      this.results[sheet][cell] = NaN;
+      return NaN;
+    }
   }
 
   /**
-   * Gets the content of the specified cell in the specified sheetas a Number or NaN if it is not
+   * Gets the content of the specified cell in the specified sheet as a Number or NaN if it is not
    */
   getCellNumeric(sheet: string, cell: string): number {
     const value = this.getCell(sheet, cell);
-    return (typeof value === 'number' || typeof value === 'bigint') ? value : NaN;
+    if (value === "" || value === undefined) {
+      return 0;
+    } else if (typeof value === 'number' || typeof value === 'bigint') {
+      return value;
+    } else if (typeof value === 'string') {
+      const parsedValue = parseFloat(value);
+      return isNaN(parsedValue) ? NaN : parsedValue;
+    }
+    return NaN;
   }
 
   /**
@@ -239,6 +296,219 @@ export class DataGrid {
     }, 0);
   }
 
+  /**
+   * Converts a range string like "A1:A10" or "Sheet!B2:B5" into a flat array of values.
+   */
+  resolveRange(sheet: string, input: (string | number)[] | string): (string | number)[] {
+    if (Array.isArray(input)) return input;
+
+    const match = input.match(/(?:(\w[\w\s]*)!)?\$?([A-Za-z]+\$?\d+):\$?([A-Za-z]+\$?\d+)/);
+    if (!match) {
+      console.warn(`Input does not match expected range format: ${input}`);
+      return [];
+    }
+
+    const [, maybeSheet, from, to] = match;
+    const targetSheet = maybeSheet || sheet;
+
+    const matrix = this.getCells(targetSheet, from, to);
+    return matrix.flat();
+  }
+
+  /**
+   * Summe aller Werte aus sumRange, deren entsprechendes Element in criteriaRange dem Kriterium entspricht.
+   * Unterstützt auch Excel-Range-Notation als String.
+   */
+  SUMIF(
+    criteriaRange: string | (string | number)[],
+    criteria: string | number,
+    sumRange: string | (string | number)[],
+    sheet: string = ''
+  ): number {
+    const criteriaArray = this.resolveRange(sheet, criteriaRange);
+
+    // Wenn sumRange ein Array ist, alles normal behandeln
+    if (Array.isArray(sumRange)) {
+      if (criteriaArray.length !== sumRange.length) {
+        throw new Error("SUMIF: Mismatched array lengths");
+      }
+
+      let sum = 0;
+      for (let i = 0; i < criteriaArray.length; i++) {
+        if (criteriaArray[i] == criteria) {
+          const val = Number(sumRange[i]);
+          if (!isNaN(val)) sum += val;
+        }
+      }
+      return sum;
+    }
+
+    // sumRange ist ein String (Excel-Notation)
+    const match = (sumRange as string).match(/(?:(\w[\w\s]*)!)?([A-Za-z]+\d+):([A-Za-z]+\d+)/);
+    if (!match) throw new Error("SUMIF: Invalid sumRange");
+
+    const [, maybeSheet, from, to] = match;
+    const sumSheet = maybeSheet || sheet;
+
+    const fromX = columnNameToColNumber(from);
+    const fromY = cellNameToRowNumber(from);
+    const toX = columnNameToColNumber(to);
+    const toY = cellNameToRowNumber(to);
+
+    const width = toX - fromX + 1;
+    const height = toY - fromY + 1;
+
+    if (criteriaArray.length !== width * height) {
+      throw new Error(`SUMIF: criteriaRange length (${criteriaArray.length}, ${criteriaRange}) doesn't match sumRange (${sumRange}) shape (expected ${width * height} based on range from ${from} to ${to})`);
+    }
+
+    let sum = 0;
+    let index = 0;
+    for (let y = fromY; y <= toY; y++) {
+      for (let x = fromX; x <= toX; x++) {
+        if (criteriaArray[index] == criteria) {
+          const cell = index2cell(x, y);
+          const val = Number(this.getCell(sumSheet, cell));
+          if (!isNaN(val)) sum += val;
+        }
+        index++;
+      }
+    }
+
+    return sum;
+  }
+
+  /** Deutsche Alias-Version */
+  SUMMEWENN(
+    kriterienbereich: (string | number)[] | string,
+    kriterium: string | number,
+    summenbereich: (number | string)[] | string,
+    sheet: string = ''
+  ): number {
+    return this.SUMIF(kriterienbereich, kriterium, summenbereich, sheet);
+  }
+
+  SUMMEWENNS(sumRange: (string | number)[], ...pairs: ((string | number)[] | string | number)[]): number {
+    if (pairs.length % 2 !== 0) throw new Error("SUMMEWENNS: must receive pairs of criteriaRange and criteria");
+
+    const criteriaRanges: (string | number)[][] = [];
+    const criteriaValues: (string | number)[] = [];
+
+    for (let i = 0; i < pairs.length; i += 2) {
+      const range = pairs[i];
+      const crit = pairs[i + 1];
+
+      if (!Array.isArray(range)) throw new Error("SUMMEWENNS: criteriaRange must be array");
+      criteriaRanges.push(range);
+
+      if (Array.isArray(crit)) {
+        if (crit.length !== 1) throw new Error("SUMMEWENNS: criteria must be scalar or single-element array");
+        criteriaValues.push(crit[0]);
+      } else {
+        criteriaValues.push(crit);
+      }
+    }
+
+    let total = 0;
+    for (let i = 0; i < sumRange.length; i++) {
+      const match = criteriaRanges.every((range, idx) => range[i] == criteriaValues[idx]);
+      if (match) {
+        const v = Number(sumRange[i]);
+        if (!isNaN(v)) total += v;
+      }
+    }
+
+    return total;
+  }
+
+
+  /**
+   * Performs aggregate functions over a range, similar to Excel's AGGREGAT function.
+   * Function numbers based on Excel:
+   * 1 = AVERAGE, 2 = COUNT, 3 = COUNTA, 4 = MAX, 5 = MIN, 6 = PRODUCT,
+   * 7 = STDEV.S, 8 = STDEV.P, 9 = SUM, 10 = VAR.S, 11 = VAR.P,
+   * 12 = MEDIAN, 13 = MODE.SNGL, 14 = LARGE, 15 = SMALL,
+   * 16 = PERCENTILE.INC, 17 = QUARTILE.INC, 18 = PERCENTILE.EXC, 19 = QUARTILE.EXC
+   */
+  AGGREGATE(functionNum: number, range: (number | string)[] | string, sheet: string = '', param?: number): number {
+    const values = this.resolveRange(sheet, range)
+      .map(v => typeof v === 'number' ? v : Number(v))
+      .filter(v => !isNaN(v));
+
+    switch (functionNum) {
+      case 1:
+        return values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0;
+      case 2:
+        return values.length;
+      case 3:
+        return this.resolveRange(sheet, range).filter(v => v !== null && v !== '').length;
+      case 4:
+        return Math.max(...values);
+      case 5:
+        return Math.min(...values);
+      case 6:
+        return values.reduce((a, b) => a * b, 1);
+      case 7: // STDEV.S
+        const mean7 = values.reduce((a, b) => a + b, 0) / values.length;
+        return Math.sqrt(values.reduce((acc, v) => acc + (v - mean7) ** 2, 0) / (values.length - 1));
+      case 8: // STDEV.P
+        const mean8 = values.reduce((a, b) => a + b, 0) / values.length;
+        return Math.sqrt(values.reduce((acc, v) => acc + (v - mean8) ** 2, 0) / values.length);
+      case 9:
+        return values.reduce((a, b) => a + b, 0);
+      case 10: // VAR.S
+        const mean10 = values.reduce((a, b) => a + b, 0) / values.length;
+        return values.reduce((acc, v) => acc + (v - mean10) ** 2, 0) / (values.length - 1);
+      case 11: // VAR.P
+        const mean11 = values.reduce((a, b) => a + b, 0) / values.length;
+        return values.reduce((acc, v) => acc + (v - mean11) ** 2, 0) / values.length;
+      case 12: // MEDIAN
+        const sorted = [...values].sort((a, b) => a - b);
+        const mid = Math.floor(sorted.length / 2);
+        return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+      case 13: // MODE.SNGL
+        const freq: Record<number, number> = {};
+        values.forEach(v => freq[v] = (freq[v] || 0) + 1);
+        return Object.entries(freq).reduce((a, b) => b[1] > a[1] ? b : a)[0] as unknown as number;
+      case 14: // LARGE
+        if (!param) throw new Error("AGGREGATE 14 requires a rank parameter");
+        return [...values].sort((a, b) => b - a)[param - 1] ?? NaN;
+      case 15: // SMALL
+        if (!param) throw new Error("AGGREGATE 15 requires a rank parameter");
+        return [...values].sort((a, b) => a - b)[param - 1] ?? NaN;
+      case 16: // PERCENTILE.INC
+      case 17: // QUARTILE.INC
+        if (param == null) throw new Error("AGGREGATE 16/17 requires a percentile");
+        const sortedInc = [...values].sort((a, b) => a - b);
+        const pInc = functionNum === 16 ? param : param / 4;
+        const idxInc = (sortedInc.length - 1) * pInc;
+        const lowerInc = Math.floor(idxInc);
+        const upperInc = Math.ceil(idxInc);
+        return lowerInc === upperInc
+          ? sortedInc[lowerInc]
+          : sortedInc[lowerInc] + (sortedInc[upperInc] - sortedInc[lowerInc]) * (idxInc - lowerInc);
+      case 18: // PERCENTILE.EXC
+      case 19: // QUARTILE.EXC
+        if (param == null) throw new Error("AGGREGATE 18/19 requires a percentile");
+        const sortedExc = [...values].sort((a, b) => a - b);
+        const n = sortedExc.length;
+        const pExc = functionNum === 18 ? param : param / 4;
+        const idxExc = pExc * (n + 1) - 1;
+        const lowerExc = Math.floor(idxExc);
+        const upperExc = Math.ceil(idxExc);
+        return lowerExc < 0 || upperExc >= n
+          ? NaN
+          : sortedExc[lowerExc] + (sortedExc[upperExc] - sortedExc[lowerExc]) * (idxExc - lowerExc);
+      default:
+        throw new Error(`AGGREGATE: Unsupported function number ${functionNum}`);
+    }
+  }
+
+  // Deutsche Alias
+  AGGREGAT(...args: Parameters<DataGrid['AGGREGATE']>): number {
+    return this.AGGREGATE(...args);
+  }
+
   // Implementations of Excel functions
   COLUMN(cell: string): number {
     return columnNameToColNumber(cell);
@@ -258,24 +528,76 @@ export class DataGrid {
     return this.getCell(sheet, index2cell(x, y));
   }
 
-  SVERWEIS(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number): string | number | null {
+  SVERWEIS(sheet: string, value: string | number | null, cell1: string, cell2: string, col: number, approx: boolean = false): string | number | null {
     const x = this.COLUMN(cell1);
     const yStart = this.ROW(cell1);
     const yEnd = this.ROW(cell2);
 
     let result: string | number | null = null;
-    let found = false;
+    let bestMatchValue: string | number | null = null;
 
     for (let y = yStart; y <= yEnd; y++) {
-      if (found) break;
-      const v = this.getCell(sheet, index2cell(x, y));
-      if (v == value) {
-        found = true;
-        result = this.getCell(sheet, index2cell(x + col - 1, y));
+      const lookupVal = this.getCell(sheet, index2cell(x, y));
+      const returnVal = this.getCell(sheet, index2cell(x + col - 1, y));
+
+      if (!approx) {
+        if (lookupVal == value) return returnVal;
+      } else {
+        if (
+          typeof value === 'number' &&
+          typeof lookupVal === 'number' &&
+          lookupVal <= value &&
+          (bestMatchValue === null || lookupVal > bestMatchValue)
+        ) {
+          bestMatchValue = lookupVal;
+          result = returnVal;
+        }
       }
     }
+
     return result;
   }
+
+  WVERWEIS(
+    sheet: string,
+    value: string | number | null,
+    cell1: string,
+    cell2: string,
+    row: number,
+    approx: boolean = false
+  ): string | number | null {
+    const y = this.ROW(cell1);
+    const xStart = this.COLUMN(cell1);
+    const xEnd = this.COLUMN(cell2);
+
+    let result: string | number | null = null;
+    let bestMatchValue: string | number | null = null;
+
+    for (let x = xStart; x <= xEnd; x++) {
+      const lookupVal = this.getCell(sheet, index2cell(x, y));
+      const returnVal = this.getCell(sheet, index2cell(x, y + row - 1));
+
+      if (!approx) {
+        if (lookupVal == value) return returnVal;
+      } else {
+        if (
+          typeof value === 'number' &&
+          typeof lookupVal === 'number' &&
+          lookupVal <= value &&
+          (bestMatchValue === null || lookupVal > bestMatchValue)
+        ) {
+          bestMatchValue = lookupVal;
+          result = returnVal;
+        }
+      }
+    }
+
+    return result;
+  }
+
+  HLOOKUP = this.WVERWEIS;
+  VLOOKUP = this.SVERWEIS;
+
 
   /**
    * Excel-style XVERWEIS: accepts array-based args instead of cell references.
@@ -354,7 +676,7 @@ export class DataGrid {
    * @param column - The column name (from the header row) to extract
    * @returns The column values without the header row
    */
-  INDIREKT_DB_REF(name: string, column: string): (string | number)[] {
+  INDIREKT_DB_REF(name: string, column: string = ""): (string | number)[] {
     const rangeRef = this.getCell('Names', name);
     if (typeof rangeRef !== 'string') return [];
 
@@ -371,8 +693,19 @@ export class DataGrid {
     const headerRow = this.getCells(sheet, startCell, startRowLastCell)[0];
     if (!headerRow) return [];
 
-    const colIndex = headerRow.indexOf(column);
-    if (colIndex === -1) return [];
+    let colIndex: number;
+
+    if (column === "") {
+      // akzeptiere "" nur, wenn es exakt eine Spalte gibt
+      if (headerRow.length !== 1) {
+        console.warn('Column name omitted and DB range wider than 1');
+        return [];
+      }
+      colIndex = 0;
+    } else {
+      colIndex = headerRow.indexOf(column);
+      if (colIndex === -1) return [];
+    }
 
     const colX = startX + colIndex;
     const endY = cellNameToRowNumber(endCell ?? startCell);
@@ -407,7 +740,8 @@ export class DataGrid {
     return columnValues[offset] ?? null;
   }
 
-  WENN<T>(cond: boolean, thenVal: T, elseVal: T): T {
+  WENN<T extends number | string | boolean | null, U extends number | string | boolean | null>(
+    cond: boolean, thenVal: T, elseVal: U): T | U {
     return cond ? thenVal : elseVal;
   }
 
@@ -419,18 +753,89 @@ export class DataGrid {
     return conditions.every(cond => cond);
   }
 
-  WAHR(): boolean {
+  WAHR() {
     return true;
   }
-  FALSCH(): boolean {
+  FALSCH() {
     return false;
+  }
+
+  /**
+   * Returns the maximum value in a list of values.
+   * Implementation of Excel's MAX function.
+   */
+  MAX(...values: (number | number[])[]): number {
+    const flatValues = values.flat().filter(v => typeof v === 'number' && !isNaN(v));
+    return Math.max(...flatValues);
+  }
+
+  /**
+   * Returns the kth largest value in a list of values.
+   * Implementation of Excel's LARGE function.
+   */
+  LARGE(values: number[] | number[][], k: number): number {
+    const flatValues = Array.isArray(values[0]) ? (values as number[][]).flat() : values as number[];
+    const sortedValues = [...flatValues].sort((a, b) => b - a); // Sort in descending order
+    return sortedValues[k - 1] || NaN; // k is 1-indexed in Excel
+  }
+
+  /**
+   * Returns the kth smallest value in a list of values.
+   * Implementation of Excel's SMALL function.
+   */
+  SMALL(values: number[] | number[][], k: number): number {
+    const flatValues = Array.isArray(values[0]) ? (values as number[][]).flat() : values as number[];
+    const sortedValues = [...flatValues].sort((a, b) => a - b); // Sort in ascending order
+    return sortedValues[k - 1] || NaN; // k is 1-indexed in Excel
+  }
+
+  /**
+   * Formats a number as text according to a specified format.
+   * Implementation of Excel's TEXT function.
+   * @param value The number to format
+   * @param format The formatting string
+   * @returns The formatted number as a string
+   */
+  TEXT(value: number, format: string): string {
+    // Handle basic numeric formats
+    if (format === "0") {
+      return Math.round(value).toString();
+    }
+
+    if (format === "0.0") {
+      return value.toFixed(1);
+    }
+
+    if (format === "0.00") {
+      return value.toFixed(2);
+    }
+
+    // More complex formats can be added as needed
+
+    // Default case
+    return value.toString();
   }
 
   /**
    * Returns the last n characters of a string.
    */
-  RECHTS(value: string|number, n: number): string {
+  RECHTS(value: string | number, n: number): string {
     return value.toString().slice(-n);
+  }
+
+  /**
+   * Returns the first n characters of a string.
+   */
+  LINKS(value: string|number, n: number): string {
+    return value.toString().slice(0, n);
+  }
+
+  /**
+   * Returns the natural logarithm of a number.
+   * Implementation of Excel's LN function.
+   */
+  LN(value: number): number {
+    return Math.log(value);
   }
 
   WENNS(...args: any[]): any {
@@ -449,6 +854,72 @@ export class DataGrid {
   };
 
   /**
+   * Returns the minimum value in a list of values.
+   * Implementation of Excel's MIN function.
+   */
+  MIN(...values: (number | number[])[]): number {
+    const flatValues = values.flat().filter(v => typeof v === 'number' && !isNaN(v));
+    return Math.min(...flatValues);
+  }
+
+  /**
+   * Returns the position (index) of a specified value in an array.
+   * Implementation of Excel's XMATCH function.
+   * @param lookupValue The value to look for
+   * @param lookupArray The range to search
+   * @param matchType 0 = exact match, -1 = exact or next smaller, 1 = exact or next larger
+   * @param searchType 1 = first to last, -1 = last to first, 2 = binary search (requires sorted data)
+   * @returns The position (1-based) of the matched value or #N/A if not found
+   */
+  XMATCH(
+    lookupValue: string | number,
+    lookupArray: (string | number)[],
+    matchType: number = 0,
+    searchType: number = 1
+  ): number {
+    // Convert matchType to our enum values
+    const matchMode = matchType === 0 ? 'exact' :
+                     matchType < 0 ? 'exactOrNextSmaller' : 'exactOrNextLarger';
+
+    // Convert searchType to our enum values
+    const searchMode = searchType >= 0 ? 'first' : 'last';
+
+    const indices = [...lookupArray.keys()];
+    if (searchMode === 'last') indices.reverse();
+
+    let bestIndex: number | null = null;
+    let bestDistance = Number.MAX_VALUE;
+
+    for (const i of indices) {
+      const currentValue = lookupArray[i];
+
+      // Exact match case
+      if (currentValue == lookupValue) {
+        return i + 1; // Excel uses 1-based indexing
+      }
+
+      // Next smaller/larger match cases
+      if (typeof lookupValue === 'number' && typeof currentValue === 'number') {
+        if (matchMode === 'exactOrNextSmaller' && currentValue < lookupValue) {
+          const distance = lookupValue - currentValue;
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            bestIndex = i;
+          }
+        } else if (matchMode === 'exactOrNextLarger' && currentValue > lookupValue) {
+          const distance = currentValue - lookupValue;
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            bestIndex = i;
+          }
+        }
+      }
+    }
+
+    return bestIndex !== null ? bestIndex + 1 : 0; // Excel uses 1-based indexing, 0 for not found
+  }
+
+  /**
    * Resolves a named range to a flat list of values.
    */
   INDIREKT(name: string): string[] {
@@ -464,9 +935,14 @@ export class DataGrid {
     return matrix.flat().map(v => v?.toString?.() ?? '');
   }
 
-  GLEICH(a: (string|number)[] | string | number, b: string | number): boolean[] {
-    if (Array.isArray(a)) return a.map(x => x == b); // lockerer Vergleich wie in Excel
-    return [a == b];
+  /**
+   * Returns element-wise equality of two arrays or values.
+   */
+  GLEICH(a: (string | number)[] | string | number, b: (string | number)[] | string | number): boolean[] {
+    if (!Array.isArray(a)) a = [a];
+    if (!Array.isArray(b)) b = [b];
+    const len = Math.max(a.length, b.length);
+    return Array.from({length: len}, (_, i) => a[i % a.length] == b[i % b.length]);
   }
 
   /**
@@ -475,6 +951,54 @@ export class DataGrid {
   MULT(a: (boolean | number)[], b: (boolean | number)[]): number[] {
     return a.map((v, i) => Number(v) * Number(b[i]));
   }
+
+  /**
+   * Element-wise multiplication of boolean arrays (true = 1, false = 0).
+   */
+  MULTIPLY(...args: (boolean[] | number[])[]): number[] {
+    const len = Math.max(...args.map(arr => arr.length));
+    return Array.from({length: len}, (_, i) =>
+      args.reduce((acc, arr) => acc * (arr[i % arr.length] ? 1 : 0), 1)
+    );
+  }
+
+  /**
+   * Filters values based on a numeric mask (0 = exclude, 1 = include).
+   */
+  DIVIDE(values: (number | string)[], mask: number[]): number[] {
+    return values.filter((_, i) => mask[i] > 0).map(v => Number(v)).filter(v => !isNaN(v));
+  }
+
+  /**
+   * Resolves a range string into a flat array.
+   */
+  RANGE(range: string, sheet: string): (number | string)[] {
+    const [sheetName, coords] = range.includes('!') ? range.split('!') : [sheet, range];
+    const [start, end] = coords.split(':');
+    return this.getCells(sheetName, start, end).flat();
+  }
+
+  MIN_INDEX(values: number[]): number {
+    let min = Infinity;
+    let idx = -1;
+    for (let i = 0; i < values.length; i++) {
+      if (values[i] < min) {
+        min = values[i];
+        idx = i;
+      }
+    }
+    return idx;
+  }
+
+  ABS_ARRAY(values: number[]): number[] {
+    return values.map(v => Math.abs(v));
+  }
+
+  WENN_ARRAY(condition: boolean[], ifTrue: number[], ifFalse: number[] = []): number[] {
+    return condition.map((c, i) => c ? ifTrue[i] : (ifFalse[i] ?? 0));
+  }
+
+
 }
 
 // helper methods

@@ -13,6 +13,7 @@ import { ClcTubeOverlay } from './clc-tube-overlay';
 import { ResColOverlay } from './res-col-overlay';
 import { ResTubeOverlay } from './res-tube-overlay';
 import { ResFlatOverlay } from './res-flat-overlay';
+import { Normaussentemperatur12831Overlay } from './normaussentemperatur-12831-overlay';
 
 // Create overlay instances
 const overlays: FormulaOverlay[] = [
@@ -28,7 +29,8 @@ const overlays: FormulaOverlay[] = [
   new ClcTubeOverlay(),
   new ResColOverlay(),
   new ResTubeOverlay(),
-  new ResFlatOverlay()
+  new ResFlatOverlay(),
+  new Normaussentemperatur12831Overlay()
 ];
 
 /**
