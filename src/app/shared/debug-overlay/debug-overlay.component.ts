@@ -19,6 +19,7 @@ export class DebugOverlayComponent implements OnInit, OnDestroy {
   cellReferences: CellReference[] = [];
   subscriptions: Subscription[] = [];
   downloadJsonHref: string = '';
+  sheetNames: string[] = [];
 
   constructor(private berechnungService: BerechnungService) {}
 
@@ -57,8 +58,23 @@ export class DebugOverlayComponent implements OnInit, OnDestroy {
   }
 
   addCellRef(): void {
-    this.cellReferences.push({ sheet: '', cell: '', value: null });
+    // Get values from the last row if available
+    const lastRef = this.cellReferences.length > 0 
+      ? this.cellReferences[this.cellReferences.length - 1] 
+      : null;
+      
+    this.cellReferences.push({
+      sheet: lastRef?.sheet || '',
+      cell: lastRef?.cell || '',
+      value: null
+    });
+    
     this.saveToSessionStorage();
+    
+    // Update the value immediately if sheet and cell are provided
+    if (lastRef?.sheet && lastRef?.cell) {
+      this.updateCellValues();
+    }
   }
 
   removeCellRef(index: number): void {
@@ -68,6 +84,9 @@ export class DebugOverlayComponent implements OnInit, OnDestroy {
 
   updateCellValues(): void {
     this.berechnungService.grid.clearResults();
+    // Update the list of sheet names
+    this.sheetNames = this.berechnungService.grid.getSheetNames().sort();
+    
     for (const ref of this.cellReferences) {
       if (ref.sheet && ref.cell) {
         try {

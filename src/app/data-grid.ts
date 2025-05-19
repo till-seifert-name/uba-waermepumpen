@@ -65,6 +65,13 @@ export class DataGrid {
     return JSON.stringify(this.results, null, pretty ? 2 : 0);
   }
 
+  /**
+   * Returns an array of all sheet names currently in the grid
+   */
+  getSheetNames(): string[] {
+    return Object.keys(this.cells);
+  }
+
   // Method to serialize cells based on parsed cell references
   serializeWhitelistedCells(parsedReferences: [string, string][]): string {
     const whitelistedSheets: Record<string, Sheet> = {};
