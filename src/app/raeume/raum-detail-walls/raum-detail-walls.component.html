@@ -51,8 +51,8 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Breite</span>
           <input type="number" class="form-control" id="fenster1_breite"
-                 name="fenster1_breite" [ngModel]="berechnungService.getWindowWidth(roomId, 1)"
-                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event, 1)" required
+                 name="fenster1_breite" [ngModel]="berechnungService.getWindowWidth(roomId, 1) * 100"
+                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event / 100, 1)" required
                  min="20" max="400" step="1">
           <span class="input-group-text">cm</span>
         </div>
@@ -62,8 +62,8 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Höhe</span>
           <input type="number" class="form-control" id="fenster1_hoehe"
-                 name="fenster1_hoehe" [ngModel]="berechnungService.getWindowHeight(roomId, 1)"
-                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event, 1)" required
+                 name="fenster1_hoehe" [ngModel]="berechnungService.getWindowHeight(roomId, 1) * 100"
+                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event / 100, 1)" required
                  min="20" max="400" step="1">
           <span class="input-group-text">cm</span>
         </div>
@@ -101,8 +101,8 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Breite</span>
           <input type="number" class="form-control"
-                 [ngModel]="berechnungService.getWindowWidth(roomId, 2)"
-                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event, 2)"
+                 [ngModel]="berechnungService.getWindowWidth(roomId, 2) * 100"
+                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event / 100, 2)"
                  name="fenster2_breite" min="20" max="400" step="1" required>
           <span class="input-group-text">cm</span>
         </div>
@@ -111,8 +111,8 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Höhe</span>
           <input type="number" class="form-control"
-                 [ngModel]="berechnungService.getWindowHeight(roomId, 2)"
-                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event, 2)"
+                 [ngModel]="berechnungService.getWindowHeight(roomId, 2) * 100"
+                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event / 100, 2)"
                  name="fenster2_hoehe" min="20" max="400" step="1" required>
           <span class="input-group-text">cm</span>
         </div>
@@ -154,8 +154,8 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Breite</span>
           <input type="number" class="form-control"
-                 [ngModel]="berechnungService.getWindowWidth(roomId, 3)"
-                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event, 3)"
+                 [ngModel]="berechnungService.getWindowWidth(roomId, 3) * 100"
+                 (ngModelChange)="berechnungService.setWindowWidth(roomId, $event / 100, 3)"
                  name="fenster3_breite" min="20" max="400" step="1" required>
           <span class="input-group-text">cm</span>
         </div>
@@ -164,8 +164,8 @@
         <div class="input-group">
           <span class="input-group-text" style="width: 90px;">Höhe</span>
           <input type="number" class="form-control"
-                 [ngModel]="berechnungService.getWindowHeight(roomId, 3)"
-                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event, 3)"
+                 [ngModel]="berechnungService.getWindowHeight(roomId, 3) * 100"
+                 (ngModelChange)="berechnungService.setWindowHeight(roomId, $event / 100, 3)"
                  name="fenster3_hoehe" min="20" max="400" step="1" required>
           <span class="input-group-text">cm</span>
         </div>
@@ -427,8 +427,8 @@
           <div class="input-group">
             <span class="input-group-text" style="width: 90px;">Breite</span>
             <input type="number" class="form-control"
-                   [ngModel]="berechnungService.getL_roof_win1_wid(roomId)"
-                   (ngModelChange)="berechnungService.setL_roof_win1_wid(roomId, $event)"
+                   [ngModel]="berechnungService.getL_roof_win1_wid(roomId) * 100"
+                   (ngModelChange)="berechnungService.setL_roof_win1_wid(roomId, $event / 100)"
                    name="roof_window1_breite" min="20" max="400" step="1">
             <span class="input-group-text">cm</span>
           </div>
@@ -437,8 +437,8 @@
           <div class="input-group">
             <span class="input-group-text" style="width: 90px;">Höhe</span>
             <input type="number" class="form-control"
-                   [ngModel]="berechnungService.getL_roof_win1_hei(roomId)"
-                   (ngModelChange)="berechnungService.setL_roof_win1_hei(roomId, $event)"
+                   [ngModel]="berechnungService.getL_roof_win1_hei(roomId) * 100"
+                   (ngModelChange)="berechnungService.setL_roof_win1_hei(roomId, $event / 100)"
                    name="roof_window1_hoehe" min="20" max="400" step="1">
             <span class="input-group-text">cm</span>
           </div>
@@ -485,8 +485,8 @@
           <div class="input-group">
             <span class="input-group-text" style="width: 90px;">Breite</span>
             <input type="number" class="form-control"
-                   [ngModel]="berechnungService.getL_roof_win2_wid(roomId)"
-                   (ngModelChange)="berechnungService.setL_roof_win2_wid(roomId, $event)"
+                   [ngModel]="berechnungService.getL_roof_win2_wid(roomId) * 100"
+                   (ngModelChange)="berechnungService.setL_roof_win2_wid(roomId, $event / 100)"
                    name="roof_window2_breite" min="20" max="400" step="1">
             <span class="input-group-text">cm</span>
           </div>
@@ -495,8 +495,8 @@
           <div class="input-group">
             <span class="input-group-text" style="width: 90px;">Höhe</span>
             <input type="number" class="form-control"
-                   [ngModel]="berechnungService.getL_roof_win2_hei(roomId)"
-                   (ngModelChange)="berechnungService.setL_roof_win2_hei(roomId, $event)"
+                   [ngModel]="berechnungService.getL_roof_win2_hei(roomId) * 100"
+                   (ngModelChange)="berechnungService.setL_roof_win2_hei(roomId, $event / 100)"
                    name="roof_window2_hoehe" min="20" max="400" step="1">
             <span class="input-group-text">cm</span>
           </div>
