@@ -79,10 +79,10 @@ export class ClcPowerOverlay implements FormulaOverlay {
        */
       grid.setCell('clc_power', `${clcPowerCol}7`, (s, c, g) =>
         g.WENN(
-          g.n(s, `${clcPowerCol}4`) === 0,
+          g.g(s, `${clcPowerCol}4`) == 0,
           0,
           g.XVERWEIS(
-            g.n(s, `${clcPowerCol}4`) + "_Tiefe",
+            g.g(s, `${clcPowerCol}4`) + "_Tiefe",
             g.getCells('Daten', 'K14', 'Q14').flat(),
             g.getCells('Daten', 'K15', 'Q15').flat(),
             { ifNotFound: 0 }
@@ -1108,10 +1108,10 @@ export class ClcPowerOverlay implements FormulaOverlay {
        */
       grid.setCell('clc_power', `${clcPowerCol}73`, (s, c, g) =>
         g.WENN(
-          g.n(s, `${clcPowerCol}70`) === 0,
+          g.g(s, `${clcPowerCol}70`) == 0,
           0,
           g.XVERWEIS(
-            g.n(s, `${clcPowerCol}70`) + "_Tiefe",
+            g.g(s, `${clcPowerCol}70`) + "_Tiefe",
             g.getCells('Daten', 'K14', 'Q14').flat(),
             g.getCells('Daten', 'K15', 'Q15').flat(),
             { ifNotFound: 0 }
@@ -2064,10 +2064,10 @@ export class ClcPowerOverlay implements FormulaOverlay {
        */
       grid.setCell('clc_power', `${clcPowerCol}140`, (s, c, g) =>
         g.WENN(
-          g.n(s, `${clcPowerCol}137`) === 0,
+          g.g(s, `${clcPowerCol}137`) == 0,
           0,
           g.XVERWEIS(
-            g.n(s, `${clcPowerCol}137`) + "_Tiefe",
+            g.g(s, `${clcPowerCol}137`) + "_Tiefe",
             g.getCells('Daten', 'K14', 'Q14').flat(),
             g.getCells('Daten', 'K15', 'Q15').flat(),
             { ifNotFound: 0 }
