@@ -49,7 +49,7 @@
       <div class="col-sm-6">
         <label for="fenster1_breite" class="form-label visually-hidden">Breite Fenster 1</label>
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Breite</span>
+          <label for="fenster1_breite" class="input-group-text" style="width: 90px;">Breite</label>
           <input type="number" class="form-control" id="fenster1_breite"
                  name="fenster1_breite" [ngModel]="berechnungService.getWindowWidth(roomId, 1) * 100"
                  (ngModelChange)="berechnungService.setWindowWidth(roomId, $event / 100, 1)" required
@@ -60,7 +60,7 @@
       <div class="col-sm-6">
         <label for="fenster1_hoehe" class="form-label visually-hidden">Höhe Fenster 1</label>
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Höhe</span>
+          <label for="fenster1_hoehe" class="input-group-text" style="width: 90px;">Höhe</label>
           <input type="number" class="form-control" id="fenster1_hoehe"
                  name="fenster1_hoehe" [ngModel]="berechnungService.getWindowHeight(roomId, 1) * 100"
                  (ngModelChange)="berechnungService.setWindowHeight(roomId, $event / 100, 1)" required
@@ -72,7 +72,7 @@
       <div class="col-sm-6">
         <label for="fenster1_baujahr" class="form-label visually-hidden">Baujahr Fenster 1</label>
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Baujahr</span>
+          <label for="fenster1_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
           <select class="form-select" id="fenster1_baujahr"
                   name="fenster1_baujahr" [ngModel]="berechnungService.getWindowYear(roomId, 1)"
                   (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 1)">
@@ -81,9 +81,9 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <label for="fenster1_anzahl" class="form-label visually-hidden">Anzahl Fenster 1</label>
+        <label class="form-label visually-hidden">Anzahl Fenster 1</label>
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Anzahl</span>
+          <label for="fenster1_anzahl" class="input-group-text" style="width: 90px;">Anzahl</label>
           <input type="number" class="form-control" id="fenster1_anzahl"
                  name="fenster1_anzahl" [ngModel]="berechnungService.getWindowCount(roomId, 1) || 1"
                  (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 1)" required
@@ -99,8 +99,8 @@
     <div class="row g-3 align-items-center">
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Breite</span>
-          <input type="number" class="form-control"
+          <label for="fenster2_breite" class="input-group-text" style="width: 90px;">Breite</label>
+          <input type="number" class="form-control" id="fenster2_breite"
                  [ngModel]="berechnungService.getWindowWidth(roomId, 2) * 100"
                  (ngModelChange)="berechnungService.setWindowWidth(roomId, $event / 100, 2)"
                  name="fenster2_breite" min="20" max="400" step="1" required>
@@ -109,8 +109,8 @@
       </div>
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Höhe</span>
-          <input type="number" class="form-control"
+          <label for="fenster2_hoehe" class="input-group-text" style="width: 90px;">Höhe</label>
+          <input type="number" class="form-control" id="fenster2_hoehe"
                  [ngModel]="berechnungService.getWindowHeight(roomId, 2) * 100"
                  (ngModelChange)="berechnungService.setWindowHeight(roomId, $event / 100, 2)"
                  name="fenster2_hoehe" min="20" max="400" step="1" required>
@@ -120,8 +120,8 @@
       <div class="form-text">Geben Sie die Abmaße des zweiten Fenstertyps an</div>
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Baujahr</span>
-          <select class="form-select"
+          <label for="fenster2_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
+          <select class="form-select" id="fenster2_baujahr"
                   [ngModel]="berechnungService.getWindowYear(roomId, 2)"
                   (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 2)"
                   name="fenster2_baujahr">
@@ -131,8 +131,8 @@
       </div>
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Anzahl</span>
-          <input type="number" class="form-control"
+          <label for="fenster2_anzahl" class="input-group-text" style="width: 90px;">Anzahl</label>
+          <input type="number" class="form-control" id="fenster2_anzahl"
                  [ngModel]="berechnungService.getWindowCount(roomId, 2) || 1"
                  (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 2)"
                  name="fenster2_anzahl" min="1" max="20" step="1" required>
@@ -152,8 +152,8 @@
     <div class="row g-3 align-items-center">
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Breite</span>
-          <input type="number" class="form-control"
+          <label for="fenster3_breite" class="input-group-text" style="width: 90px;">Breite</label>
+          <input type="number" class="form-control" id="fenster3_breite"
                  [ngModel]="berechnungService.getWindowWidth(roomId, 3) * 100"
                  (ngModelChange)="berechnungService.setWindowWidth(roomId, $event / 100, 3)"
                  name="fenster3_breite" min="20" max="400" step="1" required>
@@ -162,8 +162,8 @@
       </div>
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Höhe</span>
-          <input type="number" class="form-control"
+          <label for="fenster3_hoehe" class="input-group-text" style="width: 90px;">Höhe</label>
+          <input type="number" class="form-control" id="fenster3_hoehe"
                  [ngModel]="berechnungService.getWindowHeight(roomId, 3) * 100"
                  (ngModelChange)="berechnungService.setWindowHeight(roomId, $event / 100, 3)"
                  name="fenster3_hoehe" min="20" max="400" step="1" required>
@@ -173,8 +173,8 @@
       <div class="form-text">Geben Sie die Abmaße des dritten Fenstertyps an</div>
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Baujahr</span>
-          <select class="form-select"
+          <label for="fenster3_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
+          <select class="form-select" id="fenster3_baujahr"
                   [ngModel]="berechnungService.getWindowYear(roomId, 3)"
                   (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 3)"
                   name="fenster3_baujahr">
@@ -184,8 +184,8 @@
       </div>
       <div class="col-sm-6">
         <div class="input-group">
-          <span class="input-group-text" style="width: 90px;">Anzahl</span>
-          <input type="number" class="form-control"
+          <label for="fenster3_anzahl" class="input-group-text" style="width: 90px;">Anzahl</label>
+          <input type="number" class="form-control" id="fenster3_anzahl"
                  [ngModel]="berechnungService.getWindowCount(roomId, 3) || 1"
                  (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 3)"
                  name="fenster3_anzahl" min="1" max="20" step="1" required>
@@ -425,8 +425,8 @@
       <div class="row g-3 align-items-center">
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Breite</span>
-            <input type="number" class="form-control"
+            <label for="roof_window1_breite" class="input-group-text" style="width: 90px;">Breite</label>
+            <input type="number" class="form-control" id="roof_window1_breite"
                    [ngModel]="berechnungService.getL_roof_win1_wid(roomId) * 100"
                    (ngModelChange)="berechnungService.setL_roof_win1_wid(roomId, $event / 100)"
                    name="roof_window1_breite" min="20" max="400" step="1">
@@ -435,8 +435,8 @@
         </div>
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Höhe</span>
-            <input type="number" class="form-control"
+            <label for="roof_window1_hoehe" class="input-group-text" style="width: 90px;">Höhe</label>
+            <input type="number" class="form-control" id="roof_window1_hoehe"
                    [ngModel]="berechnungService.getL_roof_win1_hei(roomId) * 100"
                    (ngModelChange)="berechnungService.setL_roof_win1_hei(roomId, $event / 100)"
                    name="roof_window1_hoehe" min="20" max="400" step="1">
@@ -446,8 +446,8 @@
         <div class="form-text">Geben Sie die Abmaße des ersten Fenstertyps an</div>
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Baujahr</span>
-            <select class="form-select"
+            <label for="roof_window1_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
+            <select class="form-select" id="roof_window1_baujahr"
                     [ngModel]="berechnungService.getYEAR_roof_win1(roomId)"
                     (ngModelChange)="berechnungService.setYEAR_roof_win1(roomId, $event)"
                     name="roof_window1_baujahr">
@@ -457,8 +457,8 @@
         </div>
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Anzahl</span>
-            <input type="number" class="form-control"
+            <label for="roof_window1_anzahl" class="input-group-text" style="width: 90px;">Anzahl</label>
+            <input type="number" class="form-control" id="roof_window1_anzahl"
                    [ngModel]="berechnungService.getNO_roof_win1(roomId)"
                    (ngModelChange)="berechnungService.setNO_roof_win1(roomId, $event)"
                    name="roof_window1_anzahl" min="0" max="20" step="1">
@@ -483,8 +483,8 @@
       <div class="row g-3 align-items-center">
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Breite</span>
-            <input type="number" class="form-control"
+            <label for="roof_window2_breite" class="input-group-text" style="width: 90px;">Breite</label>
+            <input type="number" class="form-control" id="roof_window2_breite"
                    [ngModel]="berechnungService.getL_roof_win2_wid(roomId) * 100"
                    (ngModelChange)="berechnungService.setL_roof_win2_wid(roomId, $event / 100)"
                    name="roof_window2_breite" min="20" max="400" step="1">
@@ -493,8 +493,8 @@
         </div>
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Höhe</span>
-            <input type="number" class="form-control"
+            <label for="roof_window2_hoehe" class="input-group-text" style="width: 90px;">Höhe</label>
+            <input type="number" class="form-control" id="roof_window2_hoehe"
                    [ngModel]="berechnungService.getL_roof_win2_hei(roomId) * 100"
                    (ngModelChange)="berechnungService.setL_roof_win2_hei(roomId, $event / 100)"
                    name="roof_window2_hoehe" min="20" max="400" step="1">
@@ -504,8 +504,8 @@
         <div class="form-text">Geben Sie die Abmaße des zweiten Fenstertyps an</div>
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Baujahr</span>
-            <select class="form-select"
+            <label for="roof_window2_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
+            <select class="form-select" id="roof_window2_baujahr"
                     [ngModel]="berechnungService.getYEAR_roof_win2(roomId)"
                     (ngModelChange)="berechnungService.setYEAR_roof_win2(roomId, $event)"
                     name="roof_window2_baujahr">
@@ -515,8 +515,8 @@
         </div>
         <div class="col-sm-6">
           <div class="input-group">
-            <span class="input-group-text" style="width: 90px;">Anzahl</span>
-            <input type="number" class="form-control"
+            <label for="roof_window2_anzahl" class="input-group-text" style="width: 90px;">Anzahl</label>
+            <input type="number" class="form-control" id="roof_window2_anzahl"
                    [ngModel]="berechnungService.getNO_roof_win2(roomId)"
                    (ngModelChange)="berechnungService.setNO_roof_win2(roomId, $event)"
                    name="roof_window2_anzahl" min="0" max="20" step="1">
