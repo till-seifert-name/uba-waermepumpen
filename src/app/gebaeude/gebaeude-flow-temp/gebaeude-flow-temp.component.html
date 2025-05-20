@@ -19,7 +19,7 @@
         <label for="vl_auslegung" class="col-sm-5 col-form-label">Vorlauftemperatur am Auslegungspunkt</label>
         <div class="col-sm-5">
           <div class="input-group input-group-sm">
-            <input type="number" class="form-control" id="vl_auslegung"
+            <input type="number" class="form-control text-end" id="vl_auslegung"
                    [ngModel]="grid.g('IN_build', 'P17')"
                    (ngModelChange)="grid.setCell('IN_build', 'P17', $event)"
                    name="vl_auslegung"
@@ -47,7 +47,7 @@
         <label for="vl_aktuell" class="col-sm-4 col-form-label">Vorlauftemperatur</label>
         <div class="col-sm-5">
           <div class="input-group input-group-sm">
-            <input type="number" class="form-control" id="vl_aktuell"
+            <input type="number" class="form-control text-end" id="vl_aktuell"
                    [ngModel]="grid.g('IN_build', 'P19')"
                    (ngModelChange)="grid.setCell('IN_build', 'P19', $event)"
                    name="vl_aktuell"
@@ -60,7 +60,7 @@
         <label for="aussen_aktuell" class="col-sm-4 col-form-label">Außentemperatur</label>
         <div class="col-sm-5">
           <div class="input-group input-group-sm">
-            <input type="number" class="form-control" id="aussen_aktuell"
+            <input type="number" class="form-control text-end" id="aussen_aktuell"
                    [ngModel]="grid.g('IN_build', 'P20')"
                    (ngModelChange)="grid.setCell('IN_build', 'P20', $event)"
                    name="aussen_aktuell"

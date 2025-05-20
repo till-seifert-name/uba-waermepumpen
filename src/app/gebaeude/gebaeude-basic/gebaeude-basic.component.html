@@ -44,7 +44,7 @@
   <div class="mb-3 row align-items-center">
     <label for="baujahr" class="col-sm-5 col-form-label">Baujahr</label>
     <div class="col-sm-7">
-      <select class="form-select" id="baujahr" name="baujahr"
+      <select class="form-select text-end" id="baujahr" name="baujahr"
               [ngModel]="grid.getCell('IN_build', 'P5')"
               (ngModelChange)="grid.setCell('IN_build', 'P5', $event)"
               required>

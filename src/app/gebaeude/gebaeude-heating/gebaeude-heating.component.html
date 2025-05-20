@@ -6,7 +6,7 @@
   <div class="mb-4 row align-items-center">
     <label for="effizienz" class="col-sm-5 col-form-label">Ist Ihnen die Effizienzklasse bekannt?</label>
     <div class="col-sm-7">
-      <select class="form-select" id="effizienz" name="effizienz"
+      <select class="form-select text-end" id="effizienz" name="effizienz"
               [ngModel]="grid.getCell('IN_build', 'P12')"
               (ngModelChange)="grid.setCell('IN_build', 'P12', $event)">
         <option *ngFor="let klasse of effizienzklassen" [value]="klasse">{{klasse}}</option>
