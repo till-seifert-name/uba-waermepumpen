@@ -12,7 +12,7 @@ import {DataGrid} from '../../data-grid';
 })
 export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   roomId: string = '';
-  
+
   // Direct DataGrid access for templates
   get grid(): DataGrid {
     return this.berechnungService.grid;
@@ -23,22 +23,22 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
     // OUT_rooms columns H-V for rooms 1-15
     const outRoomsCols = ['H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'];
     const roomIndex = parseInt(this.roomId, 10) - 1;
-    
+
     // Return corresponding column or default to first column if out of bounds
-    return roomIndex >= 0 && roomIndex < outRoomsCols.length 
-      ? outRoomsCols[roomIndex] 
+    return roomIndex >= 0 && roomIndex < outRoomsCols.length
+      ? outRoomsCols[roomIndex]
       : outRoomsCols[0];
   }
-  
+
   // Helper method to get the room column in clc_build sheet
   getRoomBuildColumn(): string {
     // clc_build columns G-U for rooms 1-15
     const clcBuildCols = ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'];
     const roomIndex = parseInt(this.roomId, 10) - 1;
-    
+
     // Return corresponding column or default to first column if out of bounds
-    return roomIndex >= 0 && roomIndex < clcBuildCols.length 
-      ? clcBuildCols[roomIndex] 
+    return roomIndex >= 0 && roomIndex < clcBuildCols.length
+      ? clcBuildCols[roomIndex]
       : clcBuildCols[0];
   }
 
@@ -56,11 +56,11 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   // Heater capability gauge zones with integrated labels
   get heizkoerperZones() {
     return [
-      {value: 0, label: ''},
-      {value: 25, label: 'NT-ready'},
-      {value: 50, label: 'eingeschränkt geeignet'},
-      {value: 75, label: 'noch nicht gut geeignet'},
-      {value: 100, label: ''},
+      {value: 100 - 100, label: ''},
+      {value: 100 - 75, label: 'NT-ready'},
+      {value: 100 - 50, label: 'eingeschränkt geeignet'},
+      {value: 100 - 25, label: 'noch nicht gut geeignet'},
+      {value: 100 - 0, label: ''},
     ];
   }
 

@@ -30,11 +30,12 @@
     </div>
 
     <app-band-tacho
+      [minValue]="0"
       [maxValue]="100"
       [zones]="heizkoerperZones"
       [pins]="[
-        { value: grid.getCellNumeric('clc_build', getRoomBuildColumn() + '39') * 100, tooltip: 'Aktueller Heizkörper' },
-        { value: grid.getCellNumeric('clc_build', getRoomBuildColumn() + '40') * 100, tooltip: 'Besserer Heizkörper' }
+        { value: 100 - grid.getCellNumeric('clc_build', getRoomBuildColumn() + '39') * 100, tooltip: 'Aktueller Heizkörper' },
+        { value: 100 - grid.getCellNumeric('clc_build', getRoomBuildColumn() + '40') * 100, tooltip: 'Besserer Heizkörper' }
       ]">
     </app-band-tacho>
 
