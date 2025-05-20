@@ -315,4 +315,6 @@ export const data = {
   "A26":  /* unknown */ "A_win > A_wall ",
   "A27":  /* unknown */ "A_roof_win > A_roof ",
   "A28":  /* unknown */ "kein Heizkörper angelegt ",
+  "A29":  /* unknown */ "L_roof_jamb_hei > L_wall_hei",
+  "A30":  /* unknown */ "Geometrie Dachfläche (Hypotenuse <Ankatete)",
 } as const;

@@ -31,18 +31,18 @@ export class GebaeudeHeatingComponent {
       return [];
     }
   }
-  
+
   // Getter für Wärmeübergabe-Typen aus dem Daten-Sheet (E57-E63)
   get waermeuebergabeTypen(): string[] {
     try {
       // Werte aus dem Daten-Sheet abrufen
-      return this.grid.getCells('Daten', 'E57', 'E63').map(row => row[0].toString());
+      return this.grid.getCells('Daten', 'E57', 'E61').map(row => row[0].toString());
     } catch (error) {
       console.error('Fehler beim Laden der Wärmeübergabe-Typen:', error);
       return [];
     }
   }
-  
+
   // Getter für Heizkreislauf-Typen aus dem Daten-Sheet (E70-E71)
   get heizkreislaufTypen(): string[] {
     try {

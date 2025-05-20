@@ -1,0 +1,20 @@
+// Sheet: Debug
+export const data = {
+  "A1":  /* unknown */ "Datum",
+  "B1":  /* unknown */ "Sheet",
+  "C1":  /* unknown */ "Zeile",
+  "D1":  /* unknown */ "Bug",
+  "E1":  /* unknown */ "Fix",
+  "F1":  /* unknown */ "Status",
+  "G1":  /* unknown */ "Kommentar",
+  "A2":  /* unknown */ new Date("2025-05-20T00:00:00.000Z"),
+  "B2":  /* unknown */ "clc_load",
+  "D2":  /* unknown */ "U-Wert Berechnung Dach, Decke, Fußboden, Fenstern wird nicht akzeptiert. In Typescript resultiert immer = 1",
+  "A3":  /* unknown */ new Date("2025-05-20T00:00:00.000Z"),
+  "B3":  /* unknown */ "clc_load",
+  "D3":  /* unknown */ "Abmaße Fenster intern z.T. noch in cm verarbeitet, z.T. bereits in m ",
+  "A4":  /* unknown */ new Date("2025-05-20T00:00:00.000Z"),
+  "B4":  /* unknown */ "clc_load",
+  "D4":  /* unknown */ "Abweichung Flächenberechnung Außenwand und Dachfläche Excel vs. Typescript\nUrsache liegt nicht bei Fenster-Abmaßen (Einfluss identisch), sondern  bei Berechnung anhand Dachneigung, Giebel, Drempel usw.",
+  "G4":  /* unknown */ "Todo Jakob: Fälle durchspielen für Debugging Berechnung ",
+} as const;

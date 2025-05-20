@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BerechnungService } from '../../berechnung.service';
 import { DataGrid } from '../../data-grid';
+import { Router } from '@angular/router';
 
 interface FlowTempData {
   knowsFlowTemp: boolean;
@@ -28,7 +29,10 @@ export class GebaeudeFlowTempComponent implements OnInit {
     currentOutdoorTemp: null
   };
 
-  constructor(private berechnungService: BerechnungService) {
+  constructor(
+    private router: Router,
+    private berechnungService: BerechnungService
+  ) {
     this.grid = berechnungService.grid;
   }
 
@@ -39,5 +43,11 @@ export class GebaeudeFlowTempComponent implements OnInit {
 
   checked(event: Event): boolean {
     return (event.target as HTMLInputElement)?.checked ?? false;
+  }
+  
+  onNext(): void {
+    // Form validation will happen automatically thanks to ngNativeValidate
+    // This method will only be called if the form is valid
+    this.router.navigate(['/gebaeude/transition']);
   }
 }

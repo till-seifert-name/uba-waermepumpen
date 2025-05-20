@@ -2,7 +2,6 @@
 export const data = {
   "A1":  /* unknown */ "Gruppe",
   "B1":  /* unknown */ "Variable ",
-  "C1":  /* unknown */ "Einheit",
   "D1":  /* unknown */ "Kommentar",
   "E1":  /* unknown */ "INPUT_TXT_rooms",
   "A2":  /* unknown */ "R1",
@@ -49,7 +48,7 @@ export const data = {
   "E15":  /* unknown */ "Deutlich zu geringe Leistung\nEin Tausch bringt viel.\nEin neuer Heizkörper mit",
   "A16":  /* unknown */ "R3",
   "B16":  /* unknown */ "TXT_room_R3_suffchangeobl_2",
-  "E16":  /* unknown */ "Leistung kann die Effizienz einer Wärmepumpe in diesem Raum erheblich verbessern. Der neue Heizkörper müsste größer dimensioniert sein, um die Raumheizlast zu decken. Ein besserer Heizkörper (Typ 33) gleicher Größe ist wahrscheinlich nicht ausreichend",
+  "E16":  /* unknown */ "Leistung kann die Effizienz einer Wärmepumpe in diesem Raum erheblich verbessern. Der neue Heizkörper müsste größer dimensioniert sein, um die Raumheizlast zu decken. Auch ein besserer Heizkörper (Typ 33) gleicher Größe ist wahrscheinlich nicht ausreichend",
   "A17":  /* unknown */ "R3",
   "B17":  /* unknown */ "TXT_room_R3_suffchange_1",
   "E17":  /* unknown */ "Etwas zu geringe Leistung.\nMit dem richtigen Typ klappt’s.\nEin Heizkörpertausch kann hier viel bewirken – ein Modell mit",

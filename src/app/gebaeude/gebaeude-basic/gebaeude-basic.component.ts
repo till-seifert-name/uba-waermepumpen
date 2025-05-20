@@ -31,18 +31,18 @@ export class GebaeudeBasicComponent {
       return [];
     }
   }
-  
+
   // Getter für Gebäudetypen aus dem Daten-Sheet (E10-E14)
   get gebaeudetypen(): string[] {
     try {
       // Werte aus dem Daten-Sheet abrufen
-      return this.grid.getCells('Daten', 'E10', 'E14').map(row => row[0].toString());
+      return this.grid.getCells('Daten', 'E10', 'E12').map(row => row[0].toString());
     } catch (error) {
       console.error('Fehler beim Laden der Gebäudetypen:', error);
       return [];
     }
   }
-  
+
   // Getter für Dachtypen aus dem Daten-Sheet (B10-B13)
   get dachtypen(): string[] {
     try {
@@ -53,7 +53,7 @@ export class GebaeudeBasicComponent {
       return [];
     }
   }
-  
+
   // Method to get user-friendly display labels for baualtersklassen
   getBaualtersklasseLabel(value: string): string {
     if (value === '') {
