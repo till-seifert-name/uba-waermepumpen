@@ -132,7 +132,7 @@ export class InRoomsOverlay implements FormulaOverlay {
        * Row 36: EXIST_roof_knee_eff - Checks if room has knee wall
        * Original Excel formula:
        * =IF(R$35="Nein","Ja","Nein")
-       * 
+       *
        * This formula checks if the room's "Klopfen Sie gegen die senkrechte Wand unter der Dachschräge. Klingt es hohl?" is "Nein"
        * If it's "Nein", then roof knee wall exists ("Ja"), otherwise it doesn't ("Nein")
        */
@@ -148,7 +148,7 @@ export class InRoomsOverlay implements FormulaOverlay {
        * Row 37: L_roof_knee_hei_eff - Effective knee wall height
        * Original Excel formula:
        * =IF(R$35="Ja",0,R$34)
-       * 
+       *
        * If the wall is hollow ("Ja" in cell 35), then height is 0
        * Otherwise, use the height value from cell 34
        */
@@ -164,7 +164,7 @@ export class InRoomsOverlay implements FormulaOverlay {
        * Row 38: EXIST_roof_jamb_eff - Checks if room has hollow knee wall
        * Original Excel formula:
        * =IF(R$35="Nein","Nein","Ja")
-       * 
+       *
        * This formula is the opposite of row 36 (knee wall existence)
        * If wall is not hollow ("Nein" in cell 35), then hollow knee wall doesn't exist ("Nein")
        * Otherwise, hollow knee wall exists ("Ja")
@@ -181,7 +181,7 @@ export class InRoomsOverlay implements FormulaOverlay {
        * Row 39: L_roof_jamb_hei_eff - Effective hollow knee wall height
        * Original Excel formula:
        * =IF(R$35="Nein",0,R$34)
-       * 
+       *
        * If the wall is not hollow ("Nein" in cell 35), then hollow height is 0
        * Otherwise, use the height value from cell 34
        */
@@ -288,8 +288,8 @@ export class InRoomsOverlay implements FormulaOverlay {
       grid.setCell('IN_rooms', `${col}75`, (s, c, g) =>
         g.WENN(
           g.n(s, `${col}11`) <= 0,
-          g.g(s, `${col}74`),
-          g.g(s, `${col}11`)
+          g.n(s, `${col}74`),
+          g.n(s, `${col}11`)
         )
       );
 

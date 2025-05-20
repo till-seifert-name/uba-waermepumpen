@@ -270,7 +270,7 @@ export class DataGrid {
    */
   getCellNumeric(sheet: string, cell: string): number {
     const value = this.getCell(sheet, cell);
-    if (value === "" || value === undefined) {
+    if (value === "" || value === undefined || value === null) {
       return 0;
     } else if (typeof value === 'number' || typeof value === 'bigint') {
       return value;

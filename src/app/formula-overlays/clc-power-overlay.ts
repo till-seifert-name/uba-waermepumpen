@@ -181,108 +181,160 @@ export class ClcPowerOverlay implements FormulaOverlay {
       );
 
       /**
-       * Row 14: Is power sufficient? (if room heat demand <= radiator power at target temperature = 1, else 0)
-       * Original Excel formula: "IF(clc_load!J$19<=H$13,1,0)"
+       * Row 14: Alternative radiator calculation (Type 33, height from G5)
+       * Original Excel formula: "_xlfn.LET(
+       *   _xlpm.leistung, IN_rooms!R$55 * SUMIFS(
+       *     INDIRECT(\"tabelle1[Wärmeleistung (75/65/20)  in W/m]\"),
+       *     INDIRECT(\"tabelle1[Heizkörper_Typ]\"), \"Flachheizkoerper_senkrecht_profiliert\",
+       *     INDIRECT(\"tabelle1[Heizkörper_Subtyp]\"), \"Typ_33\",
+       *     INDIRECT(\"tabelle1[Höhe H in mm]\"), G$5,
+       *     INDIRECT(\"tabelle1[Bautiefe T in mm]\"), 155
+       *   ) * G$6 / 1000 * ((G$12 / Log_ÜT_Norm) ^ SUMIFS(
+       *     INDIRECT(\"tabelle1[Heizkörperexponent n ]\"),
+       *     INDIRECT(\"tabelle1[Heizkörper_Typ]\"), \"Flachheizkoerper_senkrecht_profiliert\",
+       *     INDIRECT(\"tabelle1[Heizkörper_Subtyp]\"), \"Typ_33\",
+       *     INDIRECT(\"tabelle1[Höhe H in mm]\"), G$5,
+       *     INDIRECT(\"tabelle1[Bautiefe T in mm]\"), 155
+       *   )),
+       *   IF(_xlpm.leistung > 0, _xlpm.leistung, 0)
+       * )"
        */
-      grid.setCell('clc_power', `${clcPowerCol}14`, (s, c, g) =>
-        g.WENN(g.n('clc_load', `${clcLoadCol}19`) <= g.n(s, `${clcPowerCol}13`), 1, 0)
+      grid.setCell('clc_power', `${clcPowerCol}14`, (s, c, g) => {
+        // Calculate the exponent using SUMIFS
+        let exponent = g.SUMMEWENNS(
+          g.INDIREKT_DB_REF("tabelle1", "Heizkörperexponent n "),
+          g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Typ"), ["Flachheizkoerper_senkrecht_profiliert"],
+          g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Subtyp"), ["Typ_33"],
+          g.INDIREKT_DB_REF("tabelle1", "Höhe H in mm"), [g.g(s, `${clcPowerCol}5`)],
+          g.INDIREKT_DB_REF("tabelle1", "Bautiefe T in mm"), [155]
+        );
+
+        // Calculate the power
+        let leistung = g.n('IN_rooms', `${roomCol}55`) * g.SUMMEWENNS(
+          g.INDIREKT_DB_REF("tabelle1", "Wärmeleistung (75/65/20)  in W/m"),
+          g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Typ"), ["Flachheizkoerper_senkrecht_profiliert"],
+          g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Subtyp"), ["Typ_33"],
+          g.INDIREKT_DB_REF("tabelle1", "Höhe H in mm"), [g.g(s, `${clcPowerCol}5`)],
+          g.INDIREKT_DB_REF("tabelle1", "Bautiefe T in mm"), [155]
+        ) * g.n(s, `${clcPowerCol}6`) / 1000 * ((g.n(s, `${clcPowerCol}12`) / g.n('Names', 'Log_ÜT_Norm')) ** exponent);
+
+        return g.WENN(leistung > 0, leistung, 0);
+      });
+
+      /**
+       * Row 15: Cast iron radiator type (from IN_rooms)
+       * Original Excel formula: "IF(IN_rooms!R$49=\"Gliederheizkörper\",IN_rooms!R$49,\"\")"
+       */
+      grid.setCell('clc_power', `${clcPowerCol}15`, (s, c, g) =>
+        g.WENN(
+          g.g('IN_rooms', `${roomCol}49`) === "Gliederheizkörper",
+          g.g('IN_rooms', `${roomCol}49`),
+          ""
+        )
       );
 
       /**
-       * Row 15: Required flow temperature
-       * Original Excel formula: "IF(H$13>0,(((clc_load!J$19/H$9)^(1/H$8))*Log_ÜT_Norm)+clc_load!J$10,0)"
+       * Row 16: Radiator subtype (from IN_rooms)
+       * Original Excel formula: "IN_rooms!R$50"
        */
-      grid.setCell('clc_power', `${clcPowerCol}15`, (s, c, g) => {
-        // Check if radiator power is > 0
-        return g.WENN(
-          g.n(s, `${clcPowerCol}13`) > 0,
-          // If yes, calculate required flow temperature
-          (((g.n('clc_load', `${clcLoadCol}19`) / g.n(s, `${clcPowerCol}9`)) ** (1 / g.n(s, `${clcPowerCol}8`))) * g.n('Names', 'Log_ÜT_Norm')) + g.n('clc_load', `${clcLoadCol}10`),
-          // If no, return 0
-          0
-        );
-      });
+      grid.setCell('clc_power', `${clcPowerCol}16`, (s, c, g) =>
+        g.g('IN_rooms', `${roomCol}50`)
+      );
 
       /**
-       * Row 16: For which temperature should radiator be designed?
-       * Original Excel formula: "IF(H$13=0,0,IF(H$15<=55,55,IF(H$15<=75,75,H$15)))"
-       */
-      grid.setCell('clc_power', `${clcPowerCol}16`, (s, c, g) => {
-        // If radiator power is 0, return 0
-        return g.WENN(
-          g.n(s, `${clcPowerCol}13`) === 0,
-          0,
-          // Else if required flow temperature <= 55, return 55
-          g.WENN(
-            g.n(s, `${clcPowerCol}15`) <= 55,
-            55,
-            // Else if required flow temperature <= 75, return 75
-            g.WENN(
-              g.n(s, `${clcPowerCol}15`) <= 75,
-              75,
-              // Else return the calculated temperature
-              g.n(s, `${clcPowerCol}15`)
-            )
-          )
-        );
-      });
-
-      /**
-       * Row 17: Radiator height (copied from IN_rooms)
-       * Original Excel formula: "IN_rooms!S$51"
+       * Row 17: Radiator height (from IN_rooms)
+       * Original Excel formula: "IN_rooms!R$51"
        */
       grid.setCell('clc_power', `${clcPowerCol}17`, (s, c, g) =>
         g.g('IN_rooms', `${roomCol}51`)
       );
 
       /**
-       * Row 18: Flow temperature for target system
-       * Original Excel formula: "H$16"
+       * Row 18: Radiator depth calculation based on type
+       * Original Excel formula: "_xlfn.IFS(IN_rooms!R$53=0,0,
+       *  G16 = \"Stahlradiator\",
+       *  INDEX(Daten!$AF$13:$AF$23,_xlfn.XMATCH(MIN(IF(Daten!$AE$13:$AE$23=G17,ABS(Daten!$AF$13:$AF$23-IN_rooms!R$53))),
+       *                                  IF(Daten!$AE$13:$AE$23=G17,ABS(Daten!$AF$13:$AF$23-IN_rooms!R$53)),
+       *                                  0)),
+       *  G16 = \"Gussradiator\",
+       *  INDEX(Daten!$AD$13:$AD$25,_xlfn.XMATCH(MIN(IF(Daten!$AC$13:$AC$25=G17,ABS(Daten!$AD$13:$AD$25-IN_rooms!R$53))),
+       *                                   IF(Daten!$AC$13:$AC$25=G17,ABS(Daten!$AD$13:$AD$25-IN_rooms!R$53)),
+       *                                   0)),
+       *  TRUE, IN_rooms!R$53)"
        */
-      grid.setCell('clc_power', `${clcPowerCol}18`, (s, c, g) =>
-        g.g(s, `${clcPowerCol}16`)
-      );
+      grid.setCell('clc_power', `${clcPowerCol}18`, (s, c, g) => {
+        const radius = g.n("IN_rooms", `${roomCol}53`);
+        const typ = g.g(s, `${clcPowerCol}16`);
+        const size = g.g(s, `${clcPowerCol}17`);
 
-      /**
-       * Row 19: Return temperature for target system (Flow temp - 20)
-       * Original Excel formula: "H$18-20"
-       */
-      grid.setCell('clc_power', `${clcPowerCol}19`, (s, c, g) =>
-        g.n(s, `${clcPowerCol}18`) - 20
-      );
+        return g.WENNS(
+          radius === 0, 0,
 
-      /**
-       * Row 20: Logarithmic mean temperature difference for target system
-       * Original Excel formula: "_xlfn.LET(
-       *   _xlpm.TVL, H$18,
-       *   _xlpm.TRL, H$19,
-       *   _xlpm.Ti, clc_load!J$10,
-       *   (_xlpm.TVL-_xlpm.TRL)/(LN((_xlpm.TVL-_xlpm.Ti)/(_xlpm.TRL-_xlpm.Ti)))
-       * )"
-       */
-      grid.setCell('clc_power', `${clcPowerCol}20`, (s, c, g) => {
-        // Using JavaScript let to match Excel LET function
-        let TVL = g.n(s, `${clcPowerCol}18`);
-        let TRL = g.n(s, `${clcPowerCol}19`);
-        let Ti = g.n('clc_load', `${clcLoadCol}10`);
+          typ === "Stahlradiator", (() => {
+            const rawValues = g.RANGE("Daten!AF13:AF23", s).map(Number);
+            const condition = g.GLEICH(g.RANGE("Daten!AE13:AE23", s), size);
+            const filtered = g.WENN_ARRAY(condition, g.ABS_ARRAY(rawValues.map(v => v - radius)));
+            const idx = g.MIN_INDEX(filtered);
+            return rawValues[idx];
+          })(),
 
-        return (TVL - TRL) / g.LN((TVL - Ti) / (TRL - Ti));
+          typ === "Gussradiator", (() => {
+            const rawValues = g.RANGE("Daten!AD13:AD25", s).map(Number);
+            const condition = g.GLEICH(g.RANGE("Daten!AC13:AC25", s), size);
+            const filtered = g.WENN_ARRAY(condition, g.ABS_ARRAY(rawValues.map(v => v - radius)));
+            const idx = g.MIN_INDEX(filtered);
+            return rawValues[idx];
+          })(),
+
+          g.WAHR(), radius
+        );
       });
 
       /**
-       * Row 21: Radiator power at target system temperatures
-       * Original Excel formula: "IF(H$9*((H$20/Log_ÜT_Norm)^H$8)>0,H$9*((H$20/Log_ÜT_Norm)^H$8),0)"
+       * Row 19: Number of elements from IN_rooms
+       * Original Excel formula: "IN_rooms!R$54"
        */
-      grid.setCell('clc_power', `${clcPowerCol}21`, (s, c, g) =>
-        g.WENN(
-          g.n(s, `${clcPowerCol}9`) * ((g.n(s, `${clcPowerCol}20`) / g.n('Names', 'Log_ÜT_Norm')) ** g.n(s, `${clcPowerCol}8`)) > 0,
-          g.n(s, `${clcPowerCol}9`) * ((g.n(s, `${clcPowerCol}20`) / g.n('Names', 'Log_ÜT_Norm')) ** g.n(s, `${clcPowerCol}8`)),
-          0
-        )
+      grid.setCell('clc_power', `${clcPowerCol}19`, (s, c, g) =>
+        g.g('IN_rooms', `${roomCol}54`)
       );
 
       /**
-       * Row 22: Flow temperature - target heat pump (from Named cell)
+       * Row 20: Radiator exponent fixed value
+       * Original Excel formula: "1.3"
+       */
+      grid.setCell('clc_power', `${clcPowerCol}20`, (s, c, g) => 1.3);
+
+      /**
+       * Row 21: Cast iron radiator power at 75/65/20
+       * Original Excel formula: "_xlfn.LET(
+       *   _xlpm.wärmeleistung, SUMIFS(
+       *     INDIRECT(\"tabelle1[Wärmeleistung (75/65/20)  in W/Glied]\"),
+       *     INDIRECT(\"tabelle1[Heizkörper_Typ]\"), clc_power!G$15,
+       *     INDIRECT(\"tabelle1[Heizkörper_Subtyp]\"), clc_power!G$16,
+       *     INDIRECT(\"tabelle1[Höhe H in mm]\"), clc_power!G$17,
+       *     INDIRECT(\"tabelle1[Bautiefe T in mm]\"), clc_power!G$18
+       *   ),
+       *   _xlpm.leistung, IN_rooms!R$55 * _xlpm.wärmeleistung * G$19,
+       *   IF(_xlpm.leistung > 0, _xlpm.leistung, 0)
+       * )"
+       */
+      grid.setCell('clc_power', `${clcPowerCol}21`, (s, c, g) => {
+        // Calculate using LET equivalent
+        let wärmeleistung = g.SUMMEWENNS(
+          g.INDIREKT_DB_REF("tabelle1", "Wärmeleistung (75/65/20)  in W/Glied"),
+          g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Typ"), [g.g(s, `${clcPowerCol}15`)],
+          g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Subtyp"), [g.g(s, `${clcPowerCol}16`)],
+          g.INDIREKT_DB_REF("tabelle1", "Höhe H in mm"), [g.g(s, `${clcPowerCol}17`)],
+          g.INDIREKT_DB_REF("tabelle1", "Bautiefe T in mm"), [g.g(s, `${clcPowerCol}18`)]
+        );
+
+        let leistung = g.n('IN_rooms', `${roomCol}55`) * wärmeleistung * g.n(s, `${clcPowerCol}19`);
+
+        return g.WENN(leistung > 0, leistung, 0);
+      });
+
+      /**
+       * Row 22: Target flow temperature from Named cell
        * Original Excel formula: "TVL_Ziel"
        */
       grid.setCell('clc_power', `${clcPowerCol}22`, (s, c, g) =>
@@ -290,7 +342,7 @@ export class ClcPowerOverlay implements FormulaOverlay {
       );
 
       /**
-       * Row 23: Return temperature - target heat pump (from Named cell)
+       * Row 23: Target return temperature from Named cell
        * Original Excel formula: "TRL_Ziel"
        */
       grid.setCell('clc_power', `${clcPowerCol}23`, (s, c, g) =>
@@ -298,8 +350,8 @@ export class ClcPowerOverlay implements FormulaOverlay {
       );
 
       /**
-       * Row 24: Logarithmic mean temperature difference for heat pump
-       * Original Excel formula: "(H$22-H$23)/(LN((H$22-clc_load!J$10)/(clc_power!H$23-clc_load!J$10)))"
+       * Row 24: Logarithmic mean temperature difference
+       * Original Excel formula: "(G$22-G$23)/(LN((G$22-clc_load!I$10)/(G$23-clc_load!I$10)))"
        */
       grid.setCell('clc_power', `${clcPowerCol}24`, (s, c, g) => {
         // Using Excel formula structure directly
@@ -309,29 +361,29 @@ export class ClcPowerOverlay implements FormulaOverlay {
       });
 
       /**
-       * Row 25: Radiator power with heat pump temperatures
-       * Original Excel formula: "IF(H$21*((H$24/Log_ÜT_Norm)^H$20)>0,H$21*((H$24/Log_ÜT_Norm)^H$20),0)"
+       * Row 25: Cast iron radiator power at heat pump temperatures
+       * Original Excel formula: "IF(G$21*((G$24/Log_ÜT_Norm)^G$20)>0,G$21*((G$24/Log_ÜT_Norm)^G$20),0)"
        */
       grid.setCell('clc_power', `${clcPowerCol}25`, (s, c, g) =>
         g.WENN(
-          g.n(s, `${clcPowerCol}21`) * ((g.n(s, `${clcPowerCol}24`) / g.n('Names', 'Log_ÜT_Norm')) ** g.n(s, `${clcPowerCol}8`)) > 0,
-          g.n(s, `${clcPowerCol}21`) * ((g.n(s, `${clcPowerCol}24`) / g.n('Names', 'Log_ÜT_Norm')) ** g.n(s, `${clcPowerCol}8`)),
+          g.n(s, `${clcPowerCol}21`) * ((g.n(s, `${clcPowerCol}24`) / g.n('Names', 'Log_ÜT_Norm')) ** g.n(s, `${clcPowerCol}20`)) > 0,
+          g.n(s, `${clcPowerCol}21`) * ((g.n(s, `${clcPowerCol}24`) / g.n('Names', 'Log_ÜT_Norm')) ** g.n(s, `${clcPowerCol}20`)),
           0
         )
       );
 
       /**
-       * Row 26: Alternative radiator calculation for heat pump
+       * Row 26: Alternative radiator calculation
        * Original Excel formula: "_xlfn.LET(
        *   _xlpm.typ, "Flachheizkoerper_senkrecht_profiliert",
        *   _xlpm.subtyp, "Typ_33",
-       *   _xlpm.höhe, _xlfn.XLOOKUP(H$17, Data_radiator!$G$5:$G$32, Data_radiator!$G$5:$G$32, 1000000, 1, 1),
+       *   _xlpm.höhe, _xlfn.XLOOKUP(G$17, Data_radiator!$G$5:$G$32, Data_radiator!$G$5:$G$32, 1000000, 1, 1),
        *   _xlpm.tiefe, 155,
-       *   _xlpm.glieder, H$19,
-       *   _xlpm.radiatorart, H$16,
+       *   _xlpm.glieder, G$19,
+       *   _xlpm.radiatorart, G$16,
        *   _xlpm.tempfaktor, IF(_xlpm.radiatorart = "Gussradiator", 50, 60),
-       *   _xlpm.überschuss, H$24,
-       *   _xlpm.leistung, IN_rooms!S$55 *
+       *   _xlpm.überschuss, G$24,
+       *   _xlpm.leistung, IN_rooms!R$55 *
        *     SUMIFS(
        *       INDIRECT("tabelle1[Wärmeleistung (75/65/20)  in W/m]"),
        *       INDIRECT("tabelle1[Heizkörper_Typ]"), _xlpm.typ,
@@ -453,30 +505,30 @@ export class ClcPowerOverlay implements FormulaOverlay {
 
       /**
        * Row 32: Tube radiator elements
-       * Original Excel formula: "IF(H$31=\"\",\"\",IN_rooms!S$52)"
+       * Original Excel formula: "IN_rooms!R$54"
        */
       grid.setCell('clc_power', `${clcPowerCol}32`, (s, c, g) =>
-        g.WENN(g.g(s, `${clcPowerCol}31`) === "",
-               "",
-               g.g('IN_rooms', `${roomCol}52`))
+        g.g('IN_rooms', `${roomCol}54`)
       );
 
       /**
-       * Row 33: Tube radiator element power
-       * Original Excel formula: "IF(H$31=\"\",\"\",SUMIFS(
-       *   INDIRECT(\"tabelle1[Wärmeleistung (75/65/20) in W/Element]\"),
-       *   INDIRECT(\"tabelle1[Heizkörper_Typ]\"),H$27,
-       *   INDIRECT(\"tabelle1[Heizkörper_Subtyp]\"),H$28
-       * ))"
+       * Row 33: Radiator exponent based on radiator type
+       * Original Excel formula: "_xlfn.IFS(
+       *   G$28 = \"Stahlrohrradiator\", 1.3,
+       *   G$28= \"Fensterbankradiator\", 1.3,
+       *   G$28 = \"Handtuchradiator\", 1.21,
+       *   G$27 = \"\", 0
+       * )"
        */
       grid.setCell('clc_power', `${clcPowerCol}33`, (s, c, g) =>
-        g.WENN(g.g(s, `${clcPowerCol}31`) === "",
-               "",
-               g.SUMMEWENNS(
-                 g.INDIREKT_DB_REF("tabelle1", "Wärmeleistung (75/65/20) in W/Element"),
-                 g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Typ"), [g.g(s, `${clcPowerCol}27`)],
-                 g.INDIREKT_DB_REF("tabelle1", "Heizkörper_Subtyp"), [g.g(s, `${clcPowerCol}28`)]
-               ))
+        g.WENNS(
+          g.g(s, `${clcPowerCol}28`) === "Stahlrohrradiator", 1.3,
+          g.g(s, `${clcPowerCol}28`) === "Fensterbankradiator", 1.3,
+          g.g(s, `${clcPowerCol}28`) === "Handtuchradiator", 1.21,
+          g.g(s, `${clcPowerCol}27`) === "", 0,
+          // Default
+          0
+        )
       );
 
       /**
@@ -564,23 +616,12 @@ export class ClcPowerOverlay implements FormulaOverlay {
       });
 
       /**
-       * Row 35: Radiator power with heat pump temperatures
-       * Original Excel formula: "IF(OR(H$9>0,H$34>0),IF(H$9>0,H$25,IF(H$34>0,H$34*((H$24/Log_ÜT_Norm)^1.3),0)),0)"
+       * Row 35: Target flow temperature from Named cell
+       * Original Excel formula: "TVL_Ziel"
        */
       grid.setCell('clc_power', `${clcPowerCol}35`, (s, c, g) =>
-        g.WENN(
-          g.ODER(g.n(s, `${clcPowerCol}9`) > 0, g.n(s, `${clcPowerCol}34`) > 0),
-          g.WENN(
-            g.n(s, `${clcPowerCol}9`) > 0,
-            g.n(s, `${clcPowerCol}25`),
-            g.WENN(
-              g.n(s, `${clcPowerCol}34`) > 0,
-              g.n(s, `${clcPowerCol}34`) * ((g.n(s, `${clcPowerCol}24`) / g.n('Names', 'Log_ÜT_Norm')) ** 1.3),
-              0
-            )
-          ),
-          0
-        )
+        g.g('Names', 'TVL_Ziel')
+
       );
 
       /**
@@ -596,18 +637,16 @@ export class ClcPowerOverlay implements FormulaOverlay {
        * Original Excel formula: "(H$35-H$36)/(LN((H$35-clc_load!J$10)/(clc_power!H$36-clc_load!J$10)))"
        */
       grid.setCell('clc_power', `${clcPowerCol}37`, (s, c, g) => {
-        // Using the Excel formula directly
-        const numerator = g.n(s, `${clcPowerCol}35`) - g.n('clc_load', `${clcLoadCol}10`);
-        const denominator = g.n(s, `${clcPowerCol}36`) - g.n('clc_load', `${clcLoadCol}10`);
-        const logInput = numerator / denominator;
+        const logNumerator = g.n(s, `${clcPowerCol}35`) - g.n('clc_load', `${clcLoadCol}10`);
+        const logDenominator = g.n(s, `${clcPowerCol}36`) - g.n('clc_load', `${clcLoadCol}10`);
+        const logInput = logNumerator / logDenominator;
 
-        if (logInput < 0) {
-          // FIXME: Handle case where LN log input is negative
+        if (logInput <= 0) {
+          // Handle case where LN log input is negative or zero
           return 0;
         }
 
-        return (g.n(s, `${clcPowerCol}35`) - g.n(s, `${clcPowerCol}36`)) /
-          g.LN(logInput);
+        return (g.n(s, `${clcPowerCol}35`) - g.n(s, `${clcPowerCol}36`)) / g.LN(logInput);
       });
 
       /**
