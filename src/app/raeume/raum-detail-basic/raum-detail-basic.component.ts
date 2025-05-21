@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BerechnungService } from '../../berechnung.service';
 import { Subscription } from 'rxjs';
-import { data as Daten } from '../../../../20250507_WP_Check_Vorlage_ts_export/Daten';
 
 @Component({
   selector: 'app-raum-detail-basic',
@@ -116,6 +115,34 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
       console.error('Fehler beim Laden der Boden-Grenzen:', error);
       return [];
     }
+  }
+
+  // Getter for Modernisierungsjahr from the Daten sheet (B19-B25)
+  get modernisierungsjahr(): string[] {
+    try {
+      // Get the values from the Daten sheet
+      return this.berechnungService.grid.getCells('Daten', 'B19', 'B25').map(row => row[0].toString());
+    } catch (error) {
+      console.error('Error loading Modernisierungsjahr:', error);
+      return [];
+    }
+  }
+
+  // Method to get user-friendly display labels for modernisierungsjahr values
+  getModernisierungsjahrLabel(value: string): string {
+    if (value === '') {
+      return 'unbekannt';
+    }
+    return value;
+  }
+
+  // Getter and Setter for Room Modernisierungsjahr (IN_rooms row 10)
+  get roomModernisierungsjahr(): string | number {
+    return this.berechnungService.grid.getCell('IN_rooms', this.roomId + '10') || '';
+  }
+
+  set roomModernisierungsjahr(value: string | number) {
+    this.berechnungService.grid.setCell('IN_rooms', this.roomId + '10', value);
   }
 
   // Methode zum Abbilden von internen Werten auf Anzeigelabels für die Benutzeroberfläche
