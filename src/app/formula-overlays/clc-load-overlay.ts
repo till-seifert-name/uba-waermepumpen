@@ -147,6 +147,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
        *     IN_build!$P$4 = \"Steil\", 40,
        *     IN_build!$P$4 = \"Sehr steil\", 55),
        *   _xlpm.A_win, (IN_rooms!R$13 * IN_rooms!R$14 + IN_rooms!R$17 * IN_rooms!R$18 + IN_rooms!R$21 * IN_rooms!R$22),
+       *   _xlpm.A_knee, IF(_xlpm.is_jamb, 0, _xlpm.h_knee *  IN_rooms!R$30),
        *   _xlpm.A_no_slop, IN_rooms!R$9 * IN_rooms!R$5 - _xlpm.A_win,
        *    _xlpm.A_big_rect, _xlpm.h_roof * _xlpm.b_ceil,
        *   _xlpm.A_triangle, IF(_xlpm.h_roof < _xlpm.L_giebel - _xlpm.b_ceil,0, 1/2 * (_xlpm.L_giebel - _xlpm.b_ceil) * SQRT(_xlpm.h_roof^2 - (_xlpm.L_giebel - _xlpm.b_ceil)^2)),
@@ -159,12 +160,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
        *   _xlpm.giebel_1_slop_2, AND(IN_rooms!R$29 = \"Ja\", _xlpm.L_wall / 1.5 <= _xlpm.b_room),
        *   _xlpm.giebel_2_slop_2, AND(IN_rooms!R$29 = \"Ja\", _xlpm.L_wall / 1.5 > _xlpm.b_room),
        *
-       *   MIN(_xlfn.IFS(
+       *   MAX(MIN(_xlfn.IFS(
        *     _xlpm.giebel_1_slop_1, _xlpm.A_big_rect + _xlpm.A_slop_tot - _xlpm.A_win,
        *     _xlpm.giebel_2_slop_1, 2 * (_xlpm.A_big_rect + _xlpm.A_slop_tot) - _xlpm.A_win,
        *     _xlpm.giebel_1_slop_2, _xlpm.A_big_rect + 2 * _xlpm.A_slop_tot - _xlpm.A_win,
        *     _xlpm.giebel_2_slop_2, 2 * (_xlpm.A_big_rect + 2 * _xlpm.A_slop_tot) - _xlpm.A_win,
-       *     TRUE, _xlpm.A_no_slop),_xlpm.A_no_slop)
+       *     TRUE, _xlpm.A_no_slop),_xlpm.A_no_slop) + _xlpm.A_knee,0)
        * ))"
        */
       grid.setCell('clc_load', `${clcLoadCol}14`, (s, c, g) => {
@@ -212,6 +213,9 @@ export class ClcLoadOverlay implements FormulaOverlay {
             let win3 = g.n('IN_rooms', `${roomCol}21`) * g.n('IN_rooms', `${roomCol}22`);
             let A_win = (win1 + win2 + win3);
 
+            // Added A_knee calculation
+            let A_knee = is_jamb ? 0 : h_knee * g.n('IN_rooms', `${roomCol}30`);
+            
             let A_no_slop = L_wall * h_room - A_win;
             let A_big_rect = h_roof * b_ceil;
 
@@ -227,13 +231,19 @@ export class ClcLoadOverlay implements FormulaOverlay {
             let giebel_1_slop_2 = g.g('IN_rooms', `${roomCol}29`) === 'Ja' && L_wall / 1.5 <= b_room;
             let giebel_2_slop_2 = g.g('IN_rooms', `${roomCol}29`) === 'Ja' && L_wall / 1.5 > b_room;
 
-            return Math.min(g.WENNS(
-              giebel_1_slop_1, A_big_rect + A_slop_tot - A_win,
-              giebel_2_slop_1, 2 * (A_big_rect + A_slop_tot) - A_win,
-              giebel_1_slop_2, A_big_rect + 2 * A_slop_tot - A_win,
-              giebel_2_slop_2, 2 * (A_big_rect + 2 * A_slop_tot) - A_win,
-              g.WAHR(), A_no_slop
-            ), A_no_slop)
+            // Calculate area and ensure it's not negative with MAX
+            const result = Math.max(
+              Math.min(g.WENNS(
+                giebel_1_slop_1, A_big_rect + A_slop_tot - A_win,
+                giebel_2_slop_1, 2 * (A_big_rect + A_slop_tot) - A_win,
+                giebel_1_slop_2, A_big_rect + 2 * A_slop_tot - A_win,
+                giebel_2_slop_2, 2 * (A_big_rect + 2 * A_slop_tot) - A_win,
+                g.WAHR(), A_no_slop
+              ), A_no_slop) + A_knee, 
+              0
+            );
+            
+            return result;
           })()
         );
       });
@@ -483,7 +493,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 28: U-Wert_Berechnung
        * Original Excel formula:
-       * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=\"Dach\")*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$27,\n_xlpm.d_ins,IN_build!U$9,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
+       * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=\"Dach\")*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$27,\n_xlpm.d_ins,IN_build!$T$9,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
        */
       grid.setCell('clc_load', `${clcLoadCol}28`, (s, c, g) => {
         const U_no_ins = g.XVERWEIS(
@@ -496,7 +506,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
         );
 
         const U_IWU = g.n(s, `${clcLoadCol}27`);
-        const d_ins = g.n('IN_build', 'U9');
+        const d_ins = g.n('IN_build', 'T9');
 
         if(typeof U_no_ins != 'number') return NaN;
 
@@ -584,7 +594,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 34: U-Wert_Berechnung
        * Original Excel formula:
-       * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=$A$34)*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$33,\n_xlpm.d_ins,IN_build!U$11,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
+       * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=$A$34)*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$33,\n_xlpm.d_ins,IN_build!$T$11,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
        */
       grid.setCell('clc_load', `${clcLoadCol}34`, (s, c, g) => {
         const U_no_ins = g.XVERWEIS(
@@ -597,7 +607,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
         );
 
         const U_IWU = g.n(s, `${clcLoadCol}33`);
-        const d_ins = g.n('IN_build', 'U11');
+        const d_ins = g.n('IN_build', 'T11');
 
         if(typeof U_no_ins != 'number') return NaN;
 
