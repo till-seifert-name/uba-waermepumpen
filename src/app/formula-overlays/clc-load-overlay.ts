@@ -698,7 +698,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 39: U-Wert Berechnung
        * Original Excel formula:
-       * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=$A$39)*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$38,\n_xlpm.d_ins,IN_build!U$10,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
+       * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=$A$39)*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$38,\n_xlpm.d_ins,IN_build!$T$10,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
        */
       grid.setCell('clc_load', `${clcLoadCol}39`, (s, c, g) => {
         const U_no_ins = g.XVERWEIS(
@@ -711,7 +711,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
         );
 
         const U_IWU = g.n(s, `${clcLoadCol}38`);
-        const d_ins = g.n('IN_build', 'U10');
+        const d_ins = g.n('IN_build', 'T10');
 
         if(typeof U_no_ins != 'number') return NaN;
 
