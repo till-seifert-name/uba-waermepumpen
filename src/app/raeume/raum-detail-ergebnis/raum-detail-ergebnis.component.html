@@ -17,16 +17,16 @@
     <h5>Wie gut sind die Heizkörper geeignet?</h5>
 
     <div class="d-flex mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <span>Besserer Heizkörper (Typ 33)</span>
-          <span class="badge bg-primary ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '15') }}</span>
-          <span class="badge bg-success ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '17') }}</span>
-        </div>
-        <div class="ms-auto d-flex align-items-center mb-2">
-          <span>Aktueller Heizkörper</span>
-          <span class="badge bg-primary ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '14') }}</span>
-          <span class="badge bg-warning ms-2">{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '16') }}</span>
-        </div>
+      <div class="d-flex flex-column align-items-start mb-2 alert alert-info">
+        <div>Besserer Heizkörper (Typ 33)</div>
+        <div>{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '15') }}</div>
+        <div>{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '17') }}</div>
+      </div>
+      <div class="ms-auto d-flex flex-column align-items-end mb-2 alert alert-info">
+        <div>Aktueller Heizkörper</div>
+        <div>{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '14') }}</div>
+        <div>{{ grid.getCell('OUT_rooms', getRoomOutColumn() + '16') }}</div>
+      </div>
     </div>
 
     <app-band-tacho
@@ -65,8 +65,10 @@
 
     <!-- Raumheizlast - Use the formatted value from OUT_rooms row 13 -->
     <h6>Kalkulierte Raumheizlast</h6>
-    <div class="text-center mb-3">
-      {{ grid.getCell('OUT_rooms', getRoomOutColumn() + '13') }}
+    <div class="d-flex justify-content-center">
+      <div class="text-center mb-3 alert alert-info">
+        {{ grid.getCell('OUT_rooms', getRoomOutColumn() + '13') }}
+      </div>
     </div>
 
     <app-band-tacho
