@@ -104,7 +104,7 @@
       <div class="col mb-3" *ngIf="hoeheOptions.length > 0">
         <div class="input-group">
           <label [for]="'heater' + heaterNumber + '_height'" class="input-group-text" style="width: 90px;">Höhe</label>
-          <select class="form-select text-end" [id]="'heater' + heaterNumber + '_height'"
+          <select class="form-select" [id]="'heater' + heaterNumber + '_height'"
                  [ngModel]="berechnungService.getHeatingHeight(roomId, heaterNumber)"
                  (ngModelChange)="berechnungService.setHeatingHeight(roomId, $event, heaterNumber)"
                  [name]="'heater' + heaterNumber + '_height'" required>
@@ -117,7 +117,7 @@
       <div class="col mb-3" *ngIf="tiefeOptions.length > 0">
         <div class="input-group">
           <label [for]="'heater' + heaterNumber + '_depth'" class="input-group-text" style="width: 90px;">Tiefe</label>
-          <select class="form-select text-end" [id]="'heater' + heaterNumber + '_depth'"
+          <select class="form-select" [id]="'heater' + heaterNumber + '_depth'"
                  [ngModel]="berechnungService.getHeatingDepth(roomId, heaterNumber)"
                  (ngModelChange)="berechnungService.setHeatingDepth(roomId, $event, heaterNumber)"
                  [name]="'heater' + heaterNumber + '_depth'" required>

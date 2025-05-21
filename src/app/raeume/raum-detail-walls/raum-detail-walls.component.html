@@ -73,7 +73,7 @@
         <label for="fenster1_baujahr" class="form-label visually-hidden">Baujahr Fenster 1</label>
         <div class="input-group">
           <label for="fenster1_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
-          <select class="form-select text-end" id="fenster1_baujahr"
+          <select class="form-select" id="fenster1_baujahr"
                   name="fenster1_baujahr" [ngModel]="berechnungService.getWindowYear(roomId, 1)"
                   (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 1)">
             <option *ngFor="let year of windowYearOptions" [value]="year">{{ getWindowYearLabel(year) }}</option>
@@ -121,7 +121,7 @@
       <div class="col-sm-6">
         <div class="input-group">
           <label for="fenster2_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
-          <select class="form-select text-end" id="fenster2_baujahr"
+          <select class="form-select" id="fenster2_baujahr"
                   [ngModel]="berechnungService.getWindowYear(roomId, 2)"
                   (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 2)"
                   name="fenster2_baujahr">
@@ -174,7 +174,7 @@
       <div class="col-sm-6">
         <div class="input-group">
           <label for="fenster3_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
-          <select class="form-select text-end" id="fenster3_baujahr"
+          <select class="form-select" id="fenster3_baujahr"
                   [ngModel]="berechnungService.getWindowYear(roomId, 3)"
                   (ngModelChange)="berechnungService.setWindowYear(roomId, $event, 3)"
                   name="fenster3_baujahr">
@@ -447,7 +447,7 @@
         <div class="col-sm-6">
           <div class="input-group">
             <label for="roof_window1_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
-            <select class="form-select text-end" id="roof_window1_baujahr"
+            <select class="form-select" id="roof_window1_baujahr"
                     [ngModel]="berechnungService.getYEAR_roof_win1(roomId)"
                     (ngModelChange)="berechnungService.setYEAR_roof_win1(roomId, $event)"
                     name="roof_window1_baujahr">
@@ -505,7 +505,7 @@
         <div class="col-sm-6">
           <div class="input-group">
             <label for="roof_window2_baujahr" class="input-group-text" style="width: 90px;">Baujahr</label>
-            <select class="form-select text-end" id="roof_window2_baujahr"
+            <select class="form-select" id="roof_window2_baujahr"
                     [ngModel]="berechnungService.getYEAR_roof_win2(roomId)"
                     (ngModelChange)="berechnungService.setYEAR_roof_win2(roomId, $event)"
                     name="roof_window2_baujahr">

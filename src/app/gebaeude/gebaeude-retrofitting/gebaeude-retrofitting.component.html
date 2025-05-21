@@ -16,7 +16,7 @@
         <div class="mb-3 row align-items-center">
           <label for="modjahr_aw" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
           <div class="col-sm-8">
-            <select class="form-select form-select-sm text-end" id="modjahr_aw" name="modjahr_aw"
+            <select class="form-select form-select-sm" id="modjahr_aw" name="modjahr_aw"
                   [ngModel]="grid.getCell('IN_build', 'S7')"
                   (ngModelChange)="grid.setCell('IN_build', 'S7', $event)">
               <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
@@ -29,7 +29,8 @@
             <div class="input-group input-group-sm">
               <input type="number" class="form-control text-end" id="daemmstaerke_aw" name="daemmstaerke_aw"
                     [ngModel]="grid.getCellNumeric('IN_build', 'U7')"
-                    (ngModelChange)="grid.setCell('IN_build', 'U7', $event)">
+                    (ngModelChange)="grid.setCell('IN_build', 'U7', $event)"
+                    min="0" max="40">
               <span class="input-group-text">cm</span>
             </div>
           </div>
@@ -47,7 +48,7 @@
         <div class="mb-3 row align-items-center">
           <label for="modjahr_fenster" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
           <div class="col-sm-8">
-            <select class="form-select form-select-sm text-end" id="modjahr_fenster" name="modjahr_fenster"
+            <select class="form-select form-select-sm" id="modjahr_fenster" name="modjahr_fenster"
                   [ngModel]="grid.getCell('IN_build', 'S8')"
                   (ngModelChange)="grid.setCell('IN_build', 'S8', $event)">
               <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
@@ -67,7 +68,7 @@
         <div class="mb-3 row align-items-center">
           <label for="modjahr_dach" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
           <div class="col-sm-8">
-            <select class="form-select form-select-sm text-end" id="modjahr_dach" name="modjahr_dach"
+            <select class="form-select form-select-sm" id="modjahr_dach" name="modjahr_dach"
                   [ngModel]="grid.getCell('IN_build', 'S9')"
                   (ngModelChange)="grid.setCell('IN_build', 'S9', $event)">
               <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
@@ -80,7 +81,8 @@
             <div class="input-group input-group-sm">
               <input type="number" class="form-control text-end" id="daemmstaerke_dach" name="daemmstaerke_dach"
                     [ngModel]="grid.getCellNumeric('IN_build', 'U9')"
-                    (ngModelChange)="grid.setCell('IN_build', 'U9', $event)">
+                    (ngModelChange)="grid.setCell('IN_build', 'U9', $event)"
+                    min="0" max="40">
               <span class="input-group-text">cm</span>
             </div>
           </div>
@@ -98,7 +100,7 @@
         <div class="mb-3 row align-items-center">
           <label for="modjahr_ogd" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
           <div class="col-sm-8">
-            <select class="form-select form-select-sm text-end" id="modjahr_ogd" name="modjahr_ogd"
+            <select class="form-select form-select-sm" id="modjahr_ogd" name="modjahr_ogd"
                   [ngModel]="grid.getCell('IN_build', 'S11')"
                   (ngModelChange)="grid.setCell('IN_build', 'S11', $event)">
               <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
@@ -111,7 +113,8 @@
             <div class="input-group input-group-sm">
               <input type="number" class="form-control text-end" id="daemmstaerke_ogd" name="daemmstaerke_ogd"
                     [ngModel]="grid.getCellNumeric('IN_build', 'U11')"
-                    (ngModelChange)="grid.setCell('IN_build', 'U11', $event)">
+                    (ngModelChange)="grid.setCell('IN_build', 'U11', $event)"
+                    min="0" max="40">
               <span class="input-group-text">cm</span>
             </div>
           </div>
@@ -129,7 +132,7 @@
         <div class="mb-3 row align-items-center">
           <label for="modjahr_keller" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
           <div class="col-sm-8">
-            <select class="form-select form-select-sm text-end" id="modjahr_keller" name="modjahr_keller"
+            <select class="form-select form-select-sm" id="modjahr_keller" name="modjahr_keller"
                   [ngModel]="grid.getCell('IN_build', 'S10')"
                   (ngModelChange)="grid.setCell('IN_build', 'S10', $event)">
               <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
@@ -142,7 +145,8 @@
             <div class="input-group input-group-sm">
               <input type="number" class="form-control text-end" id="daemmstaerke_keller" name="daemmstaerke_keller"
                     [ngModel]="grid.getCellNumeric('IN_build', 'U10')"
-                    (ngModelChange)="grid.setCell('IN_build', 'U10', $event)">
+                    (ngModelChange)="grid.setCell('IN_build', 'U10', $event)"
+                    min="0" max="40">
               <span class="input-group-text">cm</span>
             </div>
           </div>
