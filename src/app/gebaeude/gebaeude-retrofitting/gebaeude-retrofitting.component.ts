@@ -24,11 +24,11 @@ export class GebaeudeRetrofittingComponent implements OnInit {
     // Nothing to initialize specifically
   }
 
-  // Getter for Modernisierungsjahr from the Daten sheet (B19-B25)
+  // Getter for Modernisierungsjahr from the Daten sheet (E17-E29)
   get Modernisierungsjahr(): string[] {
     try {
-      // Get the values from the Daten sheet
-      return this.grid.getCells('Daten', 'B19', 'B25').map(row => row[0].toString());
+      // Get the values from the Daten sheet (changed from B19-B25 to E17-E29)
+      return this.grid.getCells('Daten', 'E17', 'E29').map(row => row[0].toString());
     } catch (error) {
       console.error('Error loading Modernisierungsjahr:', error);
       return [];
