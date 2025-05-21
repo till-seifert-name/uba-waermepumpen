@@ -771,28 +771,25 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 44: U-Wert ausgetauschte Fenster
        * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A44)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A44)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$76)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}44`, (s, c, g) => {
-        return g.WENN(
-          g.n('IN_build', 'S8') === 0,
-          0,
-          g.AGGREGATE(
-            15, // SMALL
-            g.MULTIPLY(
-              g.DIVIDE(
-                g.RANGE('U_Werte_IWU!F30:F262', s),
+        return g.AGGREGATE(
+          15, // SMALL
+          g.MULTIPLY(
+            g.DIVIDE(
+              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.MULTIPLY(
+                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A44')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A44')),
-                  g.MULTIPLY(
-                    g.GLEICH(g.g(s, `${clcLoadCol}3`), g.RANGE('U_Werte_IWU!C30:C262', s)),
-                    g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.n('IN_build', 'S8'))
-                  )
+                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}76`)),
+                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
                 )
               )
-            ),
-            s,
-            1
-          )
+            )
+          ),
+          s,
+          1
         );
       });
 
@@ -863,28 +860,25 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 50: U-Wert ausgetauschte Fenster
        * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A50)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A50)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$77)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}50`, (s, c, g) => {
-        return g.WENN(
-          g.n('IN_build', 'S8') === 0,
-          0,
-          g.AGGREGATE(
-            15, // SMALL
-            g.MULTIPLY(
-              g.DIVIDE(
-                g.RANGE('U_Werte_IWU!F30:F262', s),
+        return g.AGGREGATE(
+          15, // SMALL
+          g.MULTIPLY(
+            g.DIVIDE(
+              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.MULTIPLY(
+                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A50')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A50')),
-                  g.MULTIPLY(
-                    g.GLEICH(g.g(s, `${clcLoadCol}3`), g.RANGE('U_Werte_IWU!C30:C262', s)),
-                    g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.n('IN_build', 'S8'))
-                  )
+                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}77`)),
+                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
                 )
               )
-            ),
-            s,
-            1
-          )
+            )
+          ),
+          s,
+          1
         );
       });
 
@@ -955,28 +949,25 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 56: U-Wert ausgetauschte Fenster
        * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A56)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A56)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$78)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}56`, (s, c, g) => {
-        return g.WENN(
-          g.n('IN_build', 'S8') === 0,
-          0,
-          g.AGGREGATE(
-            15, // SMALL
-            g.MULTIPLY(
-              g.DIVIDE(
-                g.RANGE('U_Werte_IWU!F30:F262', s),
+        return g.AGGREGATE(
+          15, // SMALL
+          g.MULTIPLY(
+            g.DIVIDE(
+              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.MULTIPLY(
+                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A56')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A56')),
-                  g.MULTIPLY(
-                    g.GLEICH(g.g(s, `${clcLoadCol}3`), g.RANGE('U_Werte_IWU!C30:C262', s)),
-                    g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.n('IN_build', 'S8'))
-                  )
+                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}78`)),
+                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
                 )
               )
-            ),
-            s,
-            1
-          )
+            )
+          ),
+          s,
+          1
         );
       });
 
@@ -1047,28 +1038,25 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 62: U-Wert ausgetauschte Fenster
        * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A62)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A62)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$79)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}62`, (s, c, g) => {
-        return g.WENN(
-          g.n('IN_build', 'S8') === 0,
-          0,
-          g.AGGREGATE(
-            15, // SMALL
-            g.MULTIPLY(
-              g.DIVIDE(
-                g.RANGE('U_Werte_IWU!F30:F262', s),
+        return g.AGGREGATE(
+          15, // SMALL
+          g.MULTIPLY(
+            g.DIVIDE(
+              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.MULTIPLY(
+                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A62')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A62')),
-                  g.MULTIPLY(
-                    g.GLEICH(g.g(s, `${clcLoadCol}3`), g.RANGE('U_Werte_IWU!C30:C262', s)),
-                    g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.n('IN_build', 'S8'))
-                  )
+                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}79`)),
+                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
                 )
               )
-            ),
-            s,
-            1
-          )
+            )
+          ),
+          s,
+          1
         );
       });
 
@@ -1135,28 +1123,25 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 68: U-Wert ausgetauschte Fenster
        * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A68)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A68)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$80)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}68`, (s, c, g) => {
-        return g.WENN(
-          g.n('IN_build', 'S8') === 0,
-          0,
-          g.AGGREGATE(
-            15, // SMALL
-            g.MULTIPLY(
-              g.DIVIDE(
-                g.RANGE('U_Werte_IWU!F30:F262', s),
+        return g.AGGREGATE(
+          15, // SMALL
+          g.MULTIPLY(
+            g.DIVIDE(
+              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.MULTIPLY(
+                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A68')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A68')),
-                  g.MULTIPLY(
-                    g.GLEICH(g.g(s, `${clcLoadCol}3`), g.RANGE('U_Werte_IWU!C30:C262', s)),
-                    g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.n('IN_build', 'S8'))
-                  )
+                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}80`)),
+                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
                 )
               )
-            ),
-            s,
-            1
-          )
+            )
+          ),
+          s,
+          1
         );
       });
 
