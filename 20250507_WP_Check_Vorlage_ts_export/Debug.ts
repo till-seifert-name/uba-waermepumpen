@@ -17,4 +17,7 @@ export const data = {
   "B4":  /* unknown */ "clc_load",
   "D4":  /* unknown */ "Abweichung Flächenberechnung Außenwand und Dachfläche Excel vs. Typescript\nUrsache liegt nicht bei Fenster-Abmaßen (Einfluss identisch), sondern  bei Berechnung anhand Dachneigung, Giebel, Drempel usw.",
   "G4":  /* unknown */ "Todo Jakob: Fälle durchspielen für Debugging Berechnung ",
+  "A5":  /* unknown */ new Date("2025-05-21T00:00:00.000Z"),
+  "B5":  /* unknown */ "clc_power",
+  "D5":  /* unknown */ "Felder Breite und Tiefe scheinen in UI vertauscht, zumindest für Gliederheizkörper >> daher findet die Look-Up Funktion keinen Wert für nominale Leistung G21 usw",
 } as const;

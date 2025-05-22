@@ -265,7 +265,7 @@ async function convertXlsxToTsModules() {
     masterFileContent += '\n';
 
     // Export sheetsData object
-    masterFileContent += 'export const sheetsData: Record<string, Record<string, any>> = {\n';
+    masterFileContent += 'export const sheetsData = {\n';
     sheetFileInfos.forEach(info => {
       masterFileContent += `  ${JSON.stringify(info.originalName)}: ${info.varName},\n`;
     });
@@ -276,7 +276,7 @@ async function convertXlsxToTsModules() {
     namedFilesInfo.forEach(info => {
       masterFileContent += `  ${info.name},\n`;
     });
-    masterFileContent += '};\n';
+    masterFileContent += '} as const;\n';
 
     fs.writeFileSync(path.join(baseOutputDir, 'master.ts'), masterFileContent);
     console.log(`Generated ${path.join(baseOutputDir, 'master.ts')}`);

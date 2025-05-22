@@ -16,7 +16,7 @@ export const databaseRanges = {
   "Gussradiator_t": "Daten!S14:Daten!S19",
   "Handtuchradiator": "Daten!W23:Daten!W50",
   "Heizkoerpertyp": "Daten!I3:Daten!I8",
-  "IWU": "U_Werte_IWU!B29:U_Werte_IWU!G262",
+  "IWU": "U_Werte_IWU!B29:U_Werte_IWU!G267",
   "IWU_72": "U_Werte_IWU_raw!B29:U_Werte_IWU_raw!G262",
   "Modernisierungsjahr_Bauteil": "Daten!B18:Daten!B25",
   "PAR": "PAR!F1:PAR!DB5",

@@ -39,4 +39,7 @@ export const data = {
   "D10":  /* unknown */ 3,
   "B11":  /* unknown */ "Heizkörper Subtyp als Radio Button mit Grafik oder Info-Button mit Grafik",
   "D11":  /* unknown */ 3,
+  "A12":  /* unknown */ "IN_rooms",
+  "B12":  /* unknown */ "Heizkörperhöhe bei Typ Rohrradiator, Subtyp Handtuchradiator als Freifeld statt Dropdown",
+  "D12":  /* unknown */ 2,
 } as const;
