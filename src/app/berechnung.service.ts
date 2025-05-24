@@ -213,17 +213,13 @@ export class BerechnungService {
       debounceTime(1000)
     ).subscribe(cellChange => {
       console.log(`Cell changed: ${cellChange.sheet}!${cellChange.cell} = ${cellChange.value}`);
-      // Parse all references and use DataGrid.serializeWhitelistedCells
-      this.storage.set<string>(STORAGE_KEY, grid.serializeWhitelistedCells(
-        this.cellsToSave.map(ref => parseCellReference(ref))
-      ));
+      this.storage.set<string>(STORAGE_KEY, this.serializeData());
     });
 
     // Restore cells from localStorage if available
     const serializedData = this.storage.get<string>(STORAGE_KEY);
     if (serializedData) {
-      // Only restore cells that are in the whitelist
-      grid.restoreCells(serializedData, this.cellsToSave.map(ref => parseCellReference(ref)));
+      this.restoreData(serializedData);
     }
 
     // Initialize rooms from the DataGrid
@@ -353,6 +349,19 @@ export class BerechnungService {
     });
   }
 
+  serializeData(): string {
+    return this.grid.serializeWhitelistedCells(
+      this.cellsToSave.map(ref => parseCellReference(ref))
+    );
+  }
+
+  restoreData(json: string): void {
+    this.grid.restoreCells(
+      json,
+      this.cellsToSave.map(ref => parseCellReference(ref))
+    );
+  }
+
 // Helper methods for room data access
 
   // Convert room ID (1-15) to a column letter (R-AF)
@@ -367,7 +376,7 @@ export class BerechnungService {
   }
 
   /**
-   * Gets room name from IN_rooms row 3 (TXT_room_name) 
+   * Gets room name from IN_rooms row 3 (TXT_room_name)
    */
   getRoomName(roomId: number | string): string {
     const column = this.getRoomColumn(roomId);

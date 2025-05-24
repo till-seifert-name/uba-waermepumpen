@@ -6,6 +6,17 @@
     <div id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
+          <button class="btn btn-link nav-link" (click)="exportData()" title="Daten exportieren">
+            <i class="bi bi-download"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-link nav-link" (click)="triggerImport()" title="Daten importieren">
+            <i class="bi bi-upload"></i>
+          </button>
+          <input #fileInput type="file" accept=".json" (change)="importData($event)" style="display: none;">
+        </li>
+        <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Startseite</a>
         </li>
         <li class="nav-item">
