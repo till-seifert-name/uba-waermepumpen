@@ -1,55 +1,124 @@
 <!-- Wizard Tabs -->
 <app-wizard-tabs [progress]="70"></app-wizard-tabs>
 
-  <!-- PO Comment Area (This would be removed in production) -->
-  <div class="po-comment float-end" style="max-width: 250px;">
-    Beispiel Ausgabe eingeschränkte Eingabemöglichkeiten Nachtspeicherheizung
+<!-- Feedback page for night storage heating systems -->
+
+<!-- Content -->
+<div class="alert alert-warning" role="alert">
+  <p class="mb-0">🚧 Hinweis: Kein wasserführendes Heizsystem erkannt</p>
+</div>
+
+<p class="fw-bold">Super, Sie haben alle Gebäudedaten erfasst!</p>
+
+<p>Ihr bisheriges Heizsystem enthält kein wasserführendes Wärmeverteilsystem (z. B. klassische Heizkörper oder Fußbodenheizung). Solche Systeme sind jedoch notwendig, wenn Sie eine Luft/Wasser- oder Sole/Wasser-Wärmepumpe einsetzen
+  möchten.</p>
+
+<h5>🔄 Was Sie jetzt tun können:</h5>
+<p>Sie können das Tool trotzdem weiter nutzen – indem Sie eine mögliche Umrüstung auf wasserführende Heizkörper simulieren.</p>
+
+<h5>👉 So funktioniert's:</h5>
+<ul>
+  <li>Wählen Sie bei der Heizkörper-Eingabe einen <strong>Flachheizkörper, senkrecht profiliert, Typ 33</strong> aus.</li>
+  <li>Geben Sie bei den Abmessungen den verfügbaren Platz in der Heizkörpernische an (z.B. unter dem Fenster).</li>
+  <li>Ziehen Sie dabei jeweils ca. <strong>25 cm von der Fensterbreite und der Brüstungshöhe</strong> ab, um realistische Einbaugrößen zu schätzen.</li>
+</ul>
+
+<div class="text-center my-3">
+  <!-- Radiator dimension diagram -->
+  <svg width="500" height="180" viewBox="0 0 400 180" class="border rounded bg-light">
+
+
+    <!-- Window frame (light blue background) -->
+    <rect x="50" y="20" width="200" height="100" fill="#b3d9f2" stroke="#6c757d" stroke-width="1"/>
+
+    <!-- Radiator -->
+    <g transform="translate(50, 70)">
+      <!-- Main radiator body -->
+      <rect x="0" y="0" width="200" height="60" fill="#ffffff" stroke="#495057" stroke-width="2"/>
+
+      <!-- Radiator fins/sections -->
+      <g stroke="#495057" stroke-width="1.5" fill="none">
+        <line x1="15" y1="5" x2="15" y2="55"/>
+        <line x1="25" y1="5" x2="25" y2="55"/>
+        <line x1="35" y1="5" x2="35" y2="55"/>
+        <line x1="45" y1="5" x2="45" y2="55"/>
+        <line x1="55" y1="5" x2="55" y2="55"/>
+        <line x1="65" y1="5" x2="65" y2="55"/>
+        <line x1="75" y1="5" x2="75" y2="55"/>
+        <line x1="85" y1="5" x2="85" y2="55"/>
+        <line x1="95" y1="5" x2="95" y2="55"/>
+        <line x1="105" y1="5" x2="105" y2="55"/>
+        <line x1="115" y1="5" x2="115" y2="55"/>
+        <line x1="125" y1="5" x2="125" y2="55"/>
+        <line x1="135" y1="5" x2="135" y2="55"/>
+        <line x1="145" y1="5" x2="145" y2="55"/>
+        <line x1="155" y1="5" x2="155" y2="55"/>
+        <line x1="165" y1="5" x2="165" y2="55"/>
+        <line x1="175" y1="5" x2="175" y2="55"/>
+        <line x1="185" y1="5" x2="185" y2="55"/>
+      </g>
+    </g>
+
+    <!-- Dimension arrows and labels -->
+    <!-- Width dimension -->
+    <g fill="#333">
+      <!-- Arrow line -->
+      <line stroke="#333" stroke-width="1" x1="50" y1="150" x2="250" y2="150" marker-start="url(#arrowstart)" marker-end="url(#arrowend)"/>
+      <!-- Arrow markers -->
+      <defs>
+        <marker id="arrowstart" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="10 0, 10 7, 0 3.5" fill="#333"/>
+        </marker>
+        <marker id="arrowend" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+          <polygon points="0 0, 0 7, 10 3.5" fill="#333"/>
+        </marker>
+      </defs>
+      <!-- Label -->
+      <text x="150" y="167" text-anchor="middle" font-size="12">
+        Fensterbreite − 25 cm
+      </text>
+    </g>
+
+    <!-- Height dimension -->
+    <g fill="#333">
+      <!-- Arrow line -->
+      <line stroke="#333" stroke-width="1" x1="270" y1="70" x2="270" y2="130" marker-start="url(#arrowstart)" marker-end="url(#arrowend)"/>
+      <!-- Label -->
+      <text x="282" y="80" text-anchor="start" font-size="12">
+        <tspan x="282" dy="0">Brüstungshöhe</tspan>
+        <tspan x="282" dy="15">− 25 cm</tspan>
+      </text>
+    </g>
+  </svg>
+</div>
+
+<div class="alert alert-danger" role="alert">
+  <p class="mb-0">⚠️ <strong>Wichtig:</strong> Die Ergebnisse stellen dann keinen Ist-Zustand dar, sondern eine mögliche Umrüstungsvariante.</p>
+</div>
+
+<h5>💡 Zusätzliche Hinweise zur Planung</h5>
+
+<div class="alert alert-info" role="alert">
+  <p class="mb-2"><strong>Mehrfamilienhaus?</strong> Wenn Sie ein wasserführendes Heizsystem nachrüsten, prüfen Sie auch die Möglichkeit, die zentrale Warmwasserbereitung auf dezentrale Frischwasserstationen umzustellen.</p>
+  <p class="mb-0">→ Das senkt die Temperaturanforderung und verbessert die Effizienz der Wärmepumpe.</p>
+</div>
+
+<div class="alert alert-secondary" role="alert">
+  <p class="mb-0"><strong>Alternative Lösung:</strong> Unter bestimmten Bedingungen kann auch die Umrüstung auf raumweise Luft-Luft-Wärmepumpen eine sinnvolle Option sein – etwa in Gebäuden ohne bestehende Wasserverteilung. Bedenken Sie
+    hierbei, dass dann eine separate Lösung für eine effiziente Warmwasser-Bereitstellung erforderlich ist, beispielsweise mittels einer zentralen Trinkwarmwasser-Wärmepumpe.</p>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/heizung">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary" routerLink="/gebaeude/transition">
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
   </div>
-
-  <!-- Content -->
-  <div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Super, Sie haben alle Gebäudedaten erfasst!</h4>
-  </div>
-
-  <p>Ihr bisheriges Heizsystem enthält kein Wärmeverteilsystem und keine wasserführenden Heizkörper. Diese sind für die Installation einer Luft/Wasser- oder Sole/Wasser-Wärmepumpe notwendig. Für die nächsten Berechnungsschritte können Sie einfach so tun, als ob schon wasserführende Heizkörper installiert wären.</p>
-
-  <div class="alert alert-info" role="alert">
-    <h5 class="alert-heading">Hinweis:</h5>
-    <p>Wählen Sie hierfür bei der Eingabe der Heizkörper jeweils einen Flachheizkörper, Senkrechtprofiliert vom Typ 33 aus und geben Sie bei der Abfrage der Abmaße den in der Heizkörpernische / unter dem Fenster potenziell verfügbaren Platz an. Ziehen sie hierfür jeweils 25 cm von der Fensterbreite und von der Brüstungshöhe ab.</p>
-    <div class="text-center my-3">
-      <!-- Placeholder for the image -->
-      <img src="https://via.placeholder.com/400x200/dee2e6/6c757d.png?text=Diagramm+Heizkörpermaß" class="img-fluid border rounded" alt="Schema Heizkörpermaß">
-      <p class="small text-muted mt-1">Fensterbreite - 25 cm | Brüstungshöhe - 25 cm</p>
-    </div>
-    <p>Wenn Sie diese Einschränkungen berücksichtigen, können Sie das Tool weiter anwenden. Die Ergebnisse stellen dann <strong>nicht</strong> den Ist-Zustand Ihres Gebäudes dar, sondern eine mögliche Umrüstung des Gebäudes auf wasserführende Flachheizkörper.</p>
-  </div>
-
-  <p><strong>Tipp:</strong> Sollten Sie die Umrüstung auf ein wasserführendes Heizsystem planen, empfiehlt es sich – insbesondere im Mehrfamilienhaus – auch die Option einer Umstellung der Trinkwarmwasser-Bereitstellung auf dezentrale Frischwasserstationen zu prüfen. Hierdurch wird die Temperaturanforderung an die Wärmepumpe verringert und somit die Gesamteffizienz verbessert.</p>
-
-  <p><strong>Tipp:</strong> Unter Umständen kann die Umrüstung auf raumweise Luft-Luft Wärmepumpen für Sie eine Alternative zum Umstieg auf eine Wärmepumpen-Heizsystem darstellen.</p>
-
-  <!-- Spacer to prevent content from being hidden behind fixed footer -->
-  <div class="pb-5 mb-5"></div>
-  
-  <!-- Footer Navigation Container -->
-  <div class="navigation-footer">
-    <div class="container d-flex justify-content-between">
-      <button type="button" class="btn btn-secondary" routerLink="/gebaeude/heizung">
-        <i class="bi bi-arrow-left me-1"></i> Zurück
-      </button>
-      <button type="button" class="btn btn-primary" routerLink="/gebaeude/vorlauftemperatur">
-        Weiter <i class="bi bi-arrow-right ms-1"></i>
-      </button>
-    </div>
-  </div>
-
-<style>
-.po-comment {
-  border: 1px dashed red;
-  background-color: #ffdddd;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: #600;
-}
-</style>
+</div>

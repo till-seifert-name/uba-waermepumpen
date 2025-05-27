@@ -16,6 +16,10 @@ import {GebaeudeIntroComponent} from "./gebaeude/gebaeude-intro/gebaeude-intro.c
 import {GebaeudeBasicComponent} from "./gebaeude/gebaeude-basic/gebaeude-basic.component";
 import {GebaeudeFeedbackEarlyComponent} from "./gebaeude/gebaeude-feedback-early/gebaeude-feedback-early.component";
 import {GebaeudeFeedbackEfficiencyComponent} from "./gebaeude/gebaeude-feedback-efficiency/gebaeude-feedback-efficiency.component";
+import {GebaeudeFeedbackEinrohrComponent} from "./gebaeude/gebaeude-feedback-einrohr/gebaeude-feedback-einrohr.component";
+import {GebaeudeFeedbackFlowTempComponent} from "./gebaeude/gebaeude-feedback-flow-temp/gebaeude-feedback-flow-temp.component";
+import {GebaeudeFinalComponent} from "./gebaeude/gebaeude-final/gebaeude-final.component";
+import {GebaeudeFeedbackFloorHeatingComponent} from "./gebaeude/gebaeude-feedback-floor-heating/gebaeude-feedback-floor-heating.component";
 import {GebaeudeRetrofittingComponent} from "./gebaeude/gebaeude-retrofitting/gebaeude-retrofitting.component";
 import {GebaeudeHeatingComponent} from "./gebaeude/gebaeude-heating/gebaeude-heating.component";
 import {GebaeudeFeedbackHeatingComponent} from "./gebaeude/gebaeude-feedback-heating/gebaeude-feedback-heating.component";
@@ -60,6 +64,10 @@ import '@angular/common/locales/global/de';
     GebaeudeBasicComponent,
     GebaeudeFeedbackEarlyComponent,
     GebaeudeFeedbackEfficiencyComponent,
+    GebaeudeFeedbackEinrohrComponent,
+    GebaeudeFeedbackFlowTempComponent,
+    GebaeudeFinalComponent,
+    GebaeudeFeedbackFloorHeatingComponent,
     GebaeudeRetrofittingComponent,
     GebaeudeHeatingComponent,
     GebaeudeFeedbackHeatingComponent,

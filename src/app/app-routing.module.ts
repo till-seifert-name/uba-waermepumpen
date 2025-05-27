@@ -10,6 +10,10 @@ import {GebaeudeIntroComponent} from "./gebaeude/gebaeude-intro/gebaeude-intro.c
 import {GebaeudeBasicComponent} from "./gebaeude/gebaeude-basic/gebaeude-basic.component";
 import {GebaeudeFeedbackEarlyComponent} from "./gebaeude/gebaeude-feedback-early/gebaeude-feedback-early.component";
 import {GebaeudeFeedbackEfficiencyComponent} from "./gebaeude/gebaeude-feedback-efficiency/gebaeude-feedback-efficiency.component";
+import {GebaeudeFeedbackEinrohrComponent} from "./gebaeude/gebaeude-feedback-einrohr/gebaeude-feedback-einrohr.component";
+import {GebaeudeFeedbackFlowTempComponent} from "./gebaeude/gebaeude-feedback-flow-temp/gebaeude-feedback-flow-temp.component";
+import {GebaeudeFinalComponent} from "./gebaeude/gebaeude-final/gebaeude-final.component";
+import {GebaeudeFeedbackFloorHeatingComponent} from "./gebaeude/gebaeude-feedback-floor-heating/gebaeude-feedback-floor-heating.component";
 import {GebaeudeRetrofittingComponent} from "./gebaeude/gebaeude-retrofitting/gebaeude-retrofitting.component";
 import {GebaeudeHeatingComponent} from "./gebaeude/gebaeude-heating/gebaeude-heating.component";
 import {GebaeudeFeedbackHeatingComponent} from "./gebaeude/gebaeude-feedback-heating/gebaeude-feedback-heating.component";
@@ -43,10 +47,14 @@ const routes: Routes = [
       { path: 'basisdaten', component: GebaeudeBasicComponent, title: 'Gebäude-Basisdaten' },
       { path: 'feedback-early', component: GebaeudeFeedbackEarlyComponent, title: 'Gebäude-Feedback' },
       { path: 'feedback-efficiency', component: GebaeudeFeedbackEfficiencyComponent, title: 'Effizienzklasse-Feedback' },
+      { path: 'feedback-einrohr', component: GebaeudeFeedbackEinrohrComponent, title: 'Einrohrheizung-Feedback' },
+      { path: 'feedback-flow-temp', component: GebaeudeFeedbackFlowTempComponent, title: 'Vorlauftemperatur-Feedback' },
+      { path: 'feedback-floor-heating', component: GebaeudeFeedbackFloorHeatingComponent, title: 'Fußbodenheizung-Feedback' },
       { path: 'modernisierung', component: GebaeudeRetrofittingComponent, title: 'Gebäude-Modernisierung' },
       { path: 'heizung', component: GebaeudeHeatingComponent, title: 'Gebäude-Heizung' },
       { path: 'feedback-heizung', component: GebaeudeFeedbackHeatingComponent, title: 'Heizung-Feedback' },
       { path: 'vorlauftemperatur', component: GebaeudeFlowTempComponent, title: 'Vorlauftemperatur' },
+      { path: 'final', component: GebaeudeFinalComponent, title: 'Gebäudeerfassung Abschluss' },
       { path: 'transition', component: GebaeudeTransitionComponent, title: 'Übergang zu Räumen' }
     ]
   },

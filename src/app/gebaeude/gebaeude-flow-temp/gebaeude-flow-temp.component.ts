@@ -48,6 +48,16 @@ export class GebaeudeFlowTempComponent implements OnInit {
   onNext(): void {
     // Form validation will happen automatically thanks to ngNativeValidate
     // This method will only be called if the form is valid
-    this.router.navigate(['/gebaeude/transition']);
+    
+    // Check if flow temperature is under 55°C
+    const knowsFlowTemp = this.grid.getCell('IN_build', 'P16');
+    const designTemp = this.grid.getCell('IN_build', 'P17');
+    
+    if (knowsFlowTemp === 'Ja' && designTemp && Number(designTemp) < 55) {
+      this.router.navigate(['/gebaeude/feedback-flow-temp']);
+      return;
+    }
+    
+    this.router.navigate(['/gebaeude/final']);
   }
 }

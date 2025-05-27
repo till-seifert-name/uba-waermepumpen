@@ -1,27 +1,45 @@
 <!-- Wizard Tabs -->
-<app-wizard-tabs [progress]="90"></app-wizard-tabs>
+<app-wizard-tabs [progress]="95"></app-wizard-tabs>
 
-  <!-- Content -->
-  <h5 class="mb-3">Raumliste</h5>
+<!-- Content -->
+<div class="alert alert-info" role="alert">
+  <p class="mb-0">🌡️ Warum die Erfassung einzelner Räume wichtig ist</p>
+</div>
 
-  <p>Je geringer die Heizkreistemperatur, desto effizienter ist eine Wärmepumpe. Eine gute Effizienz wird typischerweise erreicht, wenn die Vorlauftemperatur im Heizkreis am kältesten Tag unter 55°C liegt, dann ist Ihr Gebäude Niedertemperatur-ready.</p>
-  <p>Um zu überprüfen, ob die Vorlauftemperatur in Ihrem Gebäude niedrig genug ist oder mit welchen Mitteln sie abgesenkt werden kann, muss ermittelt werden, welche Temperatur in den einzelen Räumen benötigt wird.</p>
+<p>Je niedriger die Vorlauftemperatur im Heizkreis, desto effizienter arbeitet eine Wärmepumpe.</p>
 
-  <p>Die Heizkörper in allen Räumen werden mit genauso warmem Heizkreiswasser versorgt. Zumeist kommen viele Räume mit einer geringeren Temperatur aus, während nur einige Räume des Gebäudes eine höhere Temperatur benötigen. Daher ist es entscheidend in diesen Räumen - den Schlechtpunkträumen - die erforderliche Heizkreistemperatur zu überprüfen und abzusenken.</p>
+<p>Ein Gebäude gilt als <strong>NT-ready (niedertemperaturfähig)</strong>, wenn es auch an kalten Wintertagen mit einer Vorlauftemperatur unter 55°C beheizt werden kann.</p>
 
-  <p><strong>Diese Räume werden in einer Liste gesammelt und dann im Detail erfasst. Dies dauert je Raum circa 5 Minuten. Sie können gern später weitere Räume ergänzen.</strong></p>
+<h5>🧭 Was wir jetzt überprüfen:</h5>
+<p>Um herauszufinden, ob Ihr Gebäude diesen Wert einhält – oder wie sich die Temperatur noch senken lässt –, schauen wir auf die erforderliche Vorlauftemperatur in den einzelnen Räumen.</p>
 
-  <!-- Spacer to prevent content from being hidden behind fixed footer -->
-  <div class="pb-5 mb-5"></div>
-  
-  <!-- Footer Navigation Container -->
-  <div class="navigation-footer">
-    <div class="container d-flex justify-content-between">
-      <button type="button" class="btn btn-secondary" routerLink="/gebaeude/vorlauftemperatur">
-        <i class="bi bi-arrow-left me-1"></i> Zurück
-      </button>
-      <button type="button" class="btn btn-primary" routerLink="/raeume/liste-1">
-        Räume erfassen <i class="bi bi-arrow-right ms-1"></i>
-      </button>
-    </div>
+<p><strong>In der Praxis ist es oft so:</strong></p>
+<p>Viele Räume kommen bereits mit niedriger Temperatur aus, aber einige wenige kritische Räume benötigen mehr – und bestimmen damit die nötige Temperatur für das ganze Gebäude.</p>
+
+<h5>📋 Wie geht es weiter?</h5>
+<div class="alert alert-success" role="alert">
+  <ul class="mb-0">
+    <li>Die kritischsten Räume werden nun gesammelt und einzeln erfasst</li>
+    <li>Die Eingabe dauert pro Raum etwa <strong>5-7 Minuten</strong></li>
+    <li>Sie können jederzeit später weitere Räume ergänzen</li>
+  </ul>
+</div>
+
+<div class="alert alert-warning" role="alert">
+  <p class="mb-0"><strong>Tipp:</strong> Konzentrieren Sie sich zuerst auf Räume mit großen Außenflächen oder alten Heizkörpern – hier steckt oft das größte Optimierungspotenzial.</p>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/final">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary" routerLink="/raeume/liste-1">
+      Räume erfassen <i class="bi bi-arrow-right ms-1"></i>
+    </button>
   </div>
+</div>

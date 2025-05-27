@@ -131,6 +131,10 @@ Alternativ kann der gesamte Build-Prozess mit dem build.sh Script ausgeführt we
 /gebaeude/basisdaten         → GebaeudeBasicComponent (PLZ, Typ, Baujahr)
 /gebaeude/feedback-early     → GebaeudeFeedbackEarlyComponent (Erste Bewertung)
 /gebaeude/feedback-efficiency → GebaeudeFeedbackEfficiencyComponent (Effizienzklasse-Bewertung)
+/gebaeude/feedback-einrohr → GebaeudeFeedbackEinrohrComponent (Einrohrheizung-Bewertung)
+/gebaeude/feedback-flow-temp → GebaeudeFeedbackFlowTempComponent (Vorlauftemperatur-Bewertung)
+/gebaeude/feedback-floor-heating → GebaeudeFeedbackFloorHeatingComponent (Fußbodenheizung-Bewertung)
+/gebaeude/final → GebaeudeFinalComponent (Gebäudeerfassung Abschluss)
 /gebaeude/modernisierung     → GebaeudeRetrofittingComponent (Sanierungsmaßnahmen)
 /gebaeude/heizung           → GebaeudeHeatingComponent (Heizsystem-Details)
 /gebaeude/feedback-heizung  → GebaeudeFeedbackHeatingComponent (Heizung-Bewertung)
@@ -177,23 +181,44 @@ flowchart TD
     %% Modernisierung zu Heizung
     E --> F["/gebaeude/heizung"]
     
-    %% Bedingte Navigation basierend auf Effizienzklasse und Heizungstyp
-    F --> COND2{Effizienzklasse<br/>A+, A oder B?}
-    COND2 -->|Ja<br/>E31-E33| F1["/gebaeude/feedback-efficiency"]
-    COND2 -->|Nein| COND3{Nachtspeicher-<br/>heizung?}
+    %% Bedingte Navigation basierend auf Heizungstyp und Effizienzklasse
+    F --> COND2{Fußbodenheizung?}
+    COND2 -->|Ja<br/>E58| F0["/gebaeude/feedback-floor-heating"]
+    COND2 -->|Nein| COND2B{Effizienzklasse<br/>A+, A oder B?}
+    COND2B -->|Ja<br/>E31-E33| F1["/gebaeude/feedback-efficiency"]
+    COND2B -->|Nein| COND3{Nachtspeicher-<br/>heizung?}
     
-    %% Nach Efficiency-Feedback zur Vorlauftemperatur
-    F1 --> H["/gebaeude/vorlauftemperatur"]
+    %% Nach Floor-Heating-Feedback zur Transition
+    F0 --> I["/gebaeude/transition"]
+    
+    %% Nach Efficiency-Feedback direkt zur Transition
+    F1 --> I["/gebaeude/transition"]
+    
+    %% Einrohrheizung-Check
+    COND3 --> COND4{Einrohrheizung?}
+    COND4 -->|Ja<br/>E71| F2["/gebaeude/feedback-einrohr"]
+    COND4 -->|Nein| COND5{Nachtspeicher-<br/>heizung?}
+    
+    %% Nach Einrohr-Feedback direkt zur Transition
+    F2 --> I
     
     %% Nachtspeicherheizung-Check
-    COND3 -->|Ja<br/>E60| G["/gebaeude/feedback-heizung"]
-    COND3 -->|Nein<br/>andere| H
+    COND5 -->|Ja<br/>E60| G["/gebaeude/feedback-heizung"]
+    COND5 -->|Nein<br/>andere| H["/gebaeude/vorlauftemperatur"]
     
-    %% Nach Heizung-Feedback zur Vorlauftemperatur
-    G --> H
+    %% Nach Heizung-Feedback direkt zur Transition
+    G --> I
     
-    %% Vorlauftemperatur zu Transition
-    H --> I["/gebaeude/transition"]
+    %% Vorlauftemperatur mit bedingter Navigation
+    H --> COND6{"Vorlauftemperatur<br/>< 55°C?"}
+    COND6 -->|Ja<br/>P17 < 55| F3["/gebaeude/feedback-flow-temp"]
+    COND6 -->|Nein oder unbekannt| FINAL["/gebaeude/final"]
+    
+    %% Nach Flow-Temp-Feedback direkt zur Transition
+    F3 --> I
+    
+    %% Final zu Transition (nur wenn kein Early Feedback)
+    FINAL --> I
     
     %% Übergang zu Räumen
     I --> J["/raeume/liste-1"]
@@ -207,29 +232,14 @@ flowchart TD
     O --> P["/raeume/detail-ergebnis?room=X"]
     
     %% Raum-Wiederholung oder Abschluss
-    P --> COND4{Weitere Räume<br/>vorhanden?}
-    COND4 -->|"Ja"| M
-    COND4 -->|Nein| R["/ergebnis"]
+    P --> COND_WR{Weitere Räume<br/>vorhanden?}
+    COND_WR -->|"Ja"| M
+    COND_WR -->|Nein| R["/ergebnis"]
     
     %% Statische Seiten (jederzeit erreichbar)
     S1["/impressum"] 
     S2["/datenschutz"]
     S3["/kontakt"]
-    
-    %% Styling für verschiedene Node-Typen
-    classDef startNode fill:#e1f5fe
-    classDef gebaeudeNode fill:#f3e5f5
-    classDef raeumeNode fill:#e8f5e8
-    classDef ergebnisNode fill:#fff3e0
-    classDef staticNode fill:#fafafa
-    classDef conditionNode fill:#ffeb3b,stroke:#f57f17,stroke-width:2px
-    
-    class A startNode
-    class B,C,D,E,F,G,H,I gebaeudeNode
-    class J,K,L,M,N,O,P raeumeNode
-    class R ergebnisNode
-    class S1,S2,S3 staticNode
-    class COND1,COND2,COND3 conditionNode
 ```
 
 

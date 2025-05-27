@@ -55,6 +55,13 @@ export class GebaeudeHeatingComponent {
   }
 
   onSubmit(): void {
+    // Check for floor heating first (highest priority)
+    const heizungstyp = this.grid.getCell('IN_build', 'P14');
+    if (heizungstyp === Daten['E58']) { // Fußbodenheizung (Flächenheizung)
+      this.router.navigate(['/gebaeude/feedback-floor-heating']);
+      return;
+    }
+
     // Check if efficiency class is B or better (A+, A, B)
     const effizienzklasse = this.grid.getCell('IN_build', 'P12');
     if (effizienzklasse === Daten['E31'] || // A+
@@ -64,8 +71,14 @@ export class GebaeudeHeatingComponent {
       return;
     }
 
+    // Check for Einrohrheizung
+    const verteilungstyp = this.grid.getCell('IN_build', 'P15');
+    if (verteilungstyp === Daten['E71']) { // Einrohrheizung
+      this.router.navigate(['/gebaeude/feedback-einrohr']);
+      return;
+    }
+
     // Wenn Nachtspeicherheizung ausgewählt wurde, zu speziellem Feedback navigieren
-    const heizungstyp = this.grid.getCell('IN_build', 'P14');
     if (heizungstyp === Daten['E60']) { // Nachtspeicherheizung
       this.router.navigate(['/gebaeude/feedback-heizung']);
     } else {
