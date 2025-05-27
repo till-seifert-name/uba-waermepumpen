@@ -59,21 +59,14 @@ The UBA Wärmepumpen-Tool is an Angular-based web application that helps users a
   - Use the `--skip-tests` flag to skip generating test files when not needed
 - **Run tests**: `npm test`
 
-## Core Components and Structure
+## Project Structure
 
-### Main Sections
-- `src/app/gebaeude/`: Building-related components
-- `src/app/raeume/`: Room-related components
-- `src/app/ergebnis/`: Results components
-
-### Shared Components
-- `src/app/shared/wizard-tabs/`: Navigation tabs with progress indicators
-
-### Services
-- `src/app/berechnung.service.ts`: Primary service for data management and calculations
-  - Manages rooms collection and active room selection
-  - Handles DataGrid-based calculation model
-  - Integrates all Excel calculation logic via formula overlays
+See `README.md` for complete file documentation including:
+- Core services (BerechnungService, DataGrid, LocalStorage)
+- Formula overlay system (14 overlay classes)
+- Component architecture (30+ Angular components)
+- Auto-generated Excel data files (40+ TypeScript modules)
+- Build tools and configuration
 
 ## UI Component Guidelines
 
@@ -123,25 +116,15 @@ The UBA Wärmepumpen-Tool is an Angular-based web application that helps users a
 
 ## Searching Excel Data in TypeScript Files
 
-When searching for specific Excel cell data in the exported TypeScript files:
+**Use -E for Extended Regex** with simple patterns (avoids backslash escaping issues):
+```bash
+# Find cell ranges: I2-I9, I10-I19, specific cells
+grep -E '"I[2-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+grep -E '"I1[0-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
 
-1. **Use -E for Extended Regex**: Use `grep -E` with simple patterns that don't require escaping:
-   ```bash
-   # Find cells I2-I9 in column I
-   grep -E '"I[2-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
-   
-   # Find cells I10-I19 in column I
-   grep -E '"I1[0-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
-   
-   # Find specific cell I20
-   grep -E '"I20"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
-   ```
-
-
-2. **Search by Comment Types**: Look for specific formula or data types:
-   ```bash
-   grep -E " formula " 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
-   ```
+# Search by content type
+grep -E " formula " 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+```
 
 ## Checking Formula Overlay Implementation Completeness
 
