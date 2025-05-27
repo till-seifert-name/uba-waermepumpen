@@ -1,0 +1,34 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="70"></app-wizard-tabs>
+
+<!-- Feedback page for good efficiency class (B or better) -->
+
+<!-- Content -->
+<div class="alert alert-success" role="alert">
+  <p class="mb-0">✅ Gebäudedaten vollständig – gute Voraussetzungen!</p>
+</div>
+
+<p class="fw-bold">Super, Sie haben alle Gebäudedaten erfasst.</p>
+
+<p>Basierend auf der angegebenen Effizienzklasse ist Ihr Gebäude voraussichtlich bereits gut für den Einsatz einer Wärmepumpe geeignet.</p>
+
+<h5>👉 Was Sie jetzt tun können:</h5>
+<ul>
+  <li>Wenn Ihr Gebäude mit Heizkörpern beheizt wird, lohnt sich die Erfassung der Einzelräume. So erhalten Sie eine genauere Einschätzung zur Heizlast und zur Heizkörperleistung.</li>
+  <li><strong>Hinweis:</strong> Für Flächenheizungen (z. B. Fußbodenheizung) ist das Tool derzeit nicht vorgesehen, da diese Gebäude bereits niedertemperaturfähig sind.</li>
+</ul>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/heizung">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary" routerLink="/gebaeude/vorlauftemperatur">
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </div>
+</div>

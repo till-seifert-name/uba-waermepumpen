@@ -130,6 +130,7 @@ Alternativ kann der gesamte Build-Prozess mit dem build.sh Script ausgeführt we
 /gebaeude                    → GebaeudeIntroComponent (Einführung)
 /gebaeude/basisdaten         → GebaeudeBasicComponent (PLZ, Typ, Baujahr)
 /gebaeude/feedback-early     → GebaeudeFeedbackEarlyComponent (Erste Bewertung)
+/gebaeude/feedback-efficiency → GebaeudeFeedbackEfficiencyComponent (Effizienzklasse-Bewertung)
 /gebaeude/modernisierung     → GebaeudeRetrofittingComponent (Sanierungsmaßnahmen)
 /gebaeude/heizung           → GebaeudeHeatingComponent (Heizsystem-Details)
 /gebaeude/feedback-heizung  → GebaeudeFeedbackHeatingComponent (Heizung-Bewertung)
@@ -176,10 +177,17 @@ flowchart TD
     %% Modernisierung zu Heizung
     E --> F["/gebaeude/heizung"]
     
-    %% Bedingte Navigation basierend auf Heizungstyp
-    F --> COND2{Nachtspeicher-<br/>heizung?}
-    COND2 -->|Ja<br/>E60| G["/gebaeude/feedback-heizung"]
-    COND2 -->|Nein<br/>andere| H["/gebaeude/vorlauftemperatur"]
+    %% Bedingte Navigation basierend auf Effizienzklasse und Heizungstyp
+    F --> COND2{Effizienzklasse<br/>A+, A oder B?}
+    COND2 -->|Ja<br/>E31-E33| F1["/gebaeude/feedback-efficiency"]
+    COND2 -->|Nein| COND3{Nachtspeicher-<br/>heizung?}
+    
+    %% Nach Efficiency-Feedback zur Vorlauftemperatur
+    F1 --> H["/gebaeude/vorlauftemperatur"]
+    
+    %% Nachtspeicherheizung-Check
+    COND3 -->|Ja<br/>E60| G["/gebaeude/feedback-heizung"]
+    COND3 -->|Nein<br/>andere| H
     
     %% Nach Heizung-Feedback zur Vorlauftemperatur
     G --> H
@@ -199,9 +207,9 @@ flowchart TD
     O --> P["/raeume/detail-ergebnis?room=X"]
     
     %% Raum-Wiederholung oder Abschluss
-    P --> COND3{Weitere Räume<br/>vorhanden?}
-    COND3 -->|"Ja"| M
-    COND3 -->|Nein| R["/ergebnis"]
+    P --> COND4{Weitere Räume<br/>vorhanden?}
+    COND4 -->|"Ja"| M
+    COND4 -->|Nein| R["/ergebnis"]
     
     %% Statische Seiten (jederzeit erreichbar)
     S1["/impressum"] 

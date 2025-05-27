@@ -9,6 +9,7 @@ import {KontaktComponent} from "./kontakt/kontakt.component";
 import {GebaeudeIntroComponent} from "./gebaeude/gebaeude-intro/gebaeude-intro.component";
 import {GebaeudeBasicComponent} from "./gebaeude/gebaeude-basic/gebaeude-basic.component";
 import {GebaeudeFeedbackEarlyComponent} from "./gebaeude/gebaeude-feedback-early/gebaeude-feedback-early.component";
+import {GebaeudeFeedbackEfficiencyComponent} from "./gebaeude/gebaeude-feedback-efficiency/gebaeude-feedback-efficiency.component";
 import {GebaeudeRetrofittingComponent} from "./gebaeude/gebaeude-retrofitting/gebaeude-retrofitting.component";
 import {GebaeudeHeatingComponent} from "./gebaeude/gebaeude-heating/gebaeude-heating.component";
 import {GebaeudeFeedbackHeatingComponent} from "./gebaeude/gebaeude-feedback-heating/gebaeude-feedback-heating.component";
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: '', component: GebaeudeIntroComponent, title: 'Gebäude-Einführung' },
       { path: 'basisdaten', component: GebaeudeBasicComponent, title: 'Gebäude-Basisdaten' },
       { path: 'feedback-early', component: GebaeudeFeedbackEarlyComponent, title: 'Gebäude-Feedback' },
+      { path: 'feedback-efficiency', component: GebaeudeFeedbackEfficiencyComponent, title: 'Effizienzklasse-Feedback' },
       { path: 'modernisierung', component: GebaeudeRetrofittingComponent, title: 'Gebäude-Modernisierung' },
       { path: 'heizung', component: GebaeudeHeatingComponent, title: 'Gebäude-Heizung' },
       { path: 'feedback-heizung', component: GebaeudeFeedbackHeatingComponent, title: 'Heizung-Feedback' },

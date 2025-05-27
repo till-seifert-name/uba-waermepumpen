@@ -55,6 +55,15 @@ export class GebaeudeHeatingComponent {
   }
 
   onSubmit(): void {
+    // Check if efficiency class is B or better (A+, A, B)
+    const effizienzklasse = this.grid.getCell('IN_build', 'P12');
+    if (effizienzklasse === Daten['E31'] || // A+
+        effizienzklasse === Daten['E32'] || // A  
+        effizienzklasse === Daten['E33']) { // B
+      this.router.navigate(['/gebaeude/feedback-efficiency']);
+      return;
+    }
+
     // Wenn Nachtspeicherheizung ausgewählt wurde, zu speziellem Feedback navigieren
     const heizungstyp = this.grid.getCell('IN_build', 'P14');
     if (heizungstyp === Daten['E60']) { // Nachtspeicherheizung

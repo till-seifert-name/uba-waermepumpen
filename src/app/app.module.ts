@@ -15,6 +15,7 @@ import {KontaktComponent} from './kontakt/kontakt.component';
 import {GebaeudeIntroComponent} from "./gebaeude/gebaeude-intro/gebaeude-intro.component";
 import {GebaeudeBasicComponent} from "./gebaeude/gebaeude-basic/gebaeude-basic.component";
 import {GebaeudeFeedbackEarlyComponent} from "./gebaeude/gebaeude-feedback-early/gebaeude-feedback-early.component";
+import {GebaeudeFeedbackEfficiencyComponent} from "./gebaeude/gebaeude-feedback-efficiency/gebaeude-feedback-efficiency.component";
 import {GebaeudeRetrofittingComponent} from "./gebaeude/gebaeude-retrofitting/gebaeude-retrofitting.component";
 import {GebaeudeHeatingComponent} from "./gebaeude/gebaeude-heating/gebaeude-heating.component";
 import {GebaeudeFeedbackHeatingComponent} from "./gebaeude/gebaeude-feedback-heating/gebaeude-feedback-heating.component";
@@ -58,6 +59,7 @@ import '@angular/common/locales/global/de';
     GebaeudeIntroComponent,
     GebaeudeBasicComponent,
     GebaeudeFeedbackEarlyComponent,
+    GebaeudeFeedbackEfficiencyComponent,
     GebaeudeRetrofittingComponent,
     GebaeudeHeatingComponent,
     GebaeudeFeedbackHeatingComponent,
