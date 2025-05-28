@@ -1,7 +1,10 @@
-// Tab navigation
-.nav-pills {
-  .nav-link {
-    border-radius: 50rem;
+// Active nav state when sections are targeted
+$sections: 'rooms', 'nt-readiness', 'radiators', 'envelope';
+
+@each $section in $sections {
+  :host:has(##{$section}-section:target) .nav-link[fragment="#{$section}-section"] {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: var(--bs-nav-pills-link-active-bg);
   }
 }
 
@@ -21,10 +24,6 @@
   }
 }
 
-// NT-Readiness view styling
-.gauge-container {
-  margin-bottom: 2rem;
-}
 
 // Icon colors
 .icon-success {
@@ -37,16 +36,4 @@
 
 .icon-danger {
   color: var(--bs-danger);
-}
-
-// Navigation footer styling
-.navigation-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: white;
-  border-top: 1px solid #dee2e6;
-  padding: 1rem 0;
-  z-index: 1000;
 }

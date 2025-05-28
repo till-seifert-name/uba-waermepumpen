@@ -49,8 +49,6 @@ export class ErgebnisAssessmentComponent implements OnInit {
   // Detailed room-by-room assessments
   roomAssessments: RoomAssessment[] = [];
 
-  // Tab navigation
-  activeTab: 'rooms' | 'nt-readiness' | 'radiators' | 'envelope' = 'rooms';
 
   // NT-Readiness gauge configuration
   ntReadinessZones = [
@@ -294,12 +292,6 @@ export class ErgebnisAssessmentComponent implements OnInit {
     }
   }
 
-  /**
-   * Set active tab
-   */
-  setActiveTab(tab: 'rooms' | 'nt-readiness' | 'radiators' | 'envelope'): void {
-    this.activeTab = tab;
-  }
 
   /**
    * Navigate to room detail page
@@ -500,4 +492,6 @@ export class ErgebnisAssessmentComponent implements OnInit {
     if (value >= 50) return 'icon-warning';
     return 'icon-danger';
   }
+
+  protected readonly location = location;
 }

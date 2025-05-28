@@ -1,40 +1,40 @@
 <!-- Wizard Tabs -->
-<app-wizard-tabs [progress]="100"></app-wizard-tabs>
+<div class="position-sticky bg-white z-1 pt-2 mt-n2" style="top: 56px">
+  <app-wizard-tabs [progress]="100"></app-wizard-tabs>
 
-<!-- Tab Pills for Dashboard Views -->
-<ul class="nav nav-pills mb-4">
-  <li class="nav-item">
-    <button class="nav-link" [class.active]="activeTab === 'rooms'"
-            (click)="setActiveTab('rooms')">
-      <i class="bi bi-grid me-1"></i>
-      Raumübersicht
-    </button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" [class.active]="activeTab === 'nt-readiness'"
-            (click)="setActiveTab('nt-readiness')">
-      <i class="bi bi-speedometer2 me-1"></i>
-      NT-Readiness Gebäude
-    </button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" [class.active]="activeTab === 'radiators'"
-            (click)="setActiveTab('radiators')">
-      <i class="bi bi-bookshelf me-1 radiator-icon"></i>
-      Heizkörpertausch
-    </button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" [class.active]="activeTab === 'envelope'"
-            (click)="setActiveTab('envelope')">
-      <i class="bi bi-house me-1"></i>
-      Gebäudehülle
-    </button>
-  </li>
-</ul>
+  <!-- Sticky Tab Pills for Dashboard Views -->
+  <div class="mb-4 pb-2 border-bottom">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="rooms-section" (click)="location.hash = 'rooms-section';">
+          <i class="bi bi-grid me-1"></i>
+          Raumübersicht
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="nt-readiness-section" (click)="location.hash = 'nt-readiness-section';">
+          <i class="bi bi-speedometer2 me-1"></i>
+          NT-Readiness Gebäude
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="radiators-section" (click)="location.hash = 'radiators-section';">
+          <i class="bi bi-bookshelf me-1 radiator-icon"></i>
+          Heizkörpertausch
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="envelope-section" (click)="location.hash = 'envelope-section';">
+          <i class="bi bi-house me-1"></i>
+          Gebäudehülle
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 
 <!-- Room Dashboard View -->
-<div *ngIf="activeTab === 'rooms'">
+<section id="rooms-section">
   <h4 class="mb-3">Raumübersicht</h4>
 
   <!-- For each room -->
@@ -152,10 +152,10 @@
       <i class="bi bi-plus-lg me-1"></i> Räume erfassen
     </button>
   </div>
-</div>
+</section>
 
 <!-- NT-Readiness Gebäude View -->
-<div *ngIf="activeTab === 'nt-readiness'">
+<section id="nt-readiness-section">
   <h3 class="mb-4">NT-Readiness Gebäude</h3>
 
   <!-- NT-Readiness Gauge -->
@@ -182,11 +182,10 @@
     Vorlauftemperatur. Mit {{ getNTReadinessDescription() === 'noch nicht ausreichend' ? 'umfangreichen' : 'gezielten' }} Maßnahmen kann das
     gesamte Gebäude NT-ready werden.
   </p>
-
-</div>
+</section>
 
 <!-- Heizkörpertausch View -->
-<div *ngIf="activeTab === 'radiators'">
+<section id="radiators-section">
   <h3 class="mb-3">Heizkörpertausch</h3>
 
   <h5 class="mb-3">{{ getRadiatorSummaryTitle() }}</h5>
@@ -219,10 +218,10 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- Gebäudehülle View -->
-<div *ngIf="activeTab === 'envelope'">
+<section id="envelope-section">
   <h3 class="mb-3">Gebäudehülle</h3>
 
   <h5 class="mb-3">Wärmeschutz ausbaufähig – Maßnahmen empfehlenswert</h5>
@@ -317,7 +316,7 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- Spacer to prevent content from being hidden behind fixed footer -->
 <div class="pb-5 mb-5"></div>
