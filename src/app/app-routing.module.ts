@@ -27,6 +27,7 @@ import {RaeumeIntroComponent} from "./raeume/raeume-intro/raeume-intro.component
 import {RaumDetailBasicComponent} from "./raeume/raum-detail-basic/raum-detail-basic.component";
 import {RaumDetailWallsComponent} from "./raeume/raum-detail-walls/raum-detail-walls.component";
 import {RaumDetailHeizflaechenComponent} from "./raeume/raum-detail-heizflaechen/raum-detail-heizflaechen.component";
+import {RaumDetailHeizkoerperInfoComponent} from "./raeume/raum-detail-heizkoerper-info/raum-detail-heizkoerper-info.component";
 import {RaumDetailErgebnisComponent} from "./raeume/raum-detail-ergebnis/raum-detail-ergebnis.component";
 
 // Ergebnis (Results) Component
@@ -67,6 +68,7 @@ const routes: Routes = [
       { path: 'intro', component: RaeumeIntroComponent, title: 'Räume-Einführung' },
       { path: 'detail-basis', component: RaumDetailBasicComponent, title: 'Raum-Details' },
       { path: 'detail-wand', component: RaumDetailWallsComponent, title: 'Raum-Wände' },
+      { path: 'detail-heizkoerper-info', component: RaumDetailHeizkoerperInfoComponent, title: 'Heizkörper-Info' },
       { path: 'detail-heizflaechen', component: RaumDetailHeizflaechenComponent, title: 'Raum-Heizflächen' },
       { path: 'detail-ergebnis', component: RaumDetailErgebnisComponent, title: 'Raum-Ergebnis' }
     ]

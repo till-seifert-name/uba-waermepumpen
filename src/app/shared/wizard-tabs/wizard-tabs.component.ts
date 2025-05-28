@@ -23,7 +23,7 @@ interface TabConfig {
 })
 export class WizardTabsComponent implements OnInit, OnDestroy {
   @Input() progress: number = 0; // Progress for active tab (0-100)
-  @Input() activeRoomSubTab: string = 'gebaeude'; // Active sub-tab for room details
+  @Input() activeRoomSubTab: string = ''; // Active sub-tab for room details
 
   // Base tabs (always present)
   baseTabs: TabConfig[] = [
@@ -135,8 +135,6 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
         return;
       }
     }
-    // Default to first tab if none matches
-    this.activeRoomSubTab = this.roomSubTabs[0].id;
   }
 
 

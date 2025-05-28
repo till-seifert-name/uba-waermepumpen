@@ -149,8 +149,8 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
   }
 
   onComplete(): void {
-    // Navigate to the Heizflächen tab for this room
-    this.router.navigate(['/raeume/detail-heizflaechen'], {
+    // Navigate to the Heizkörper info page for this room
+    this.router.navigate(['/raeume/detail-heizkoerper-info'], {
       queryParams: {room: this.roomId}
     });
   }

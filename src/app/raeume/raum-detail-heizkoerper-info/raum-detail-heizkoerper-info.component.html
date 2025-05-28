@@ -1,0 +1,41 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="75"></app-wizard-tabs>
+
+<!-- Content -->
+<div class="alert alert-info" role="alert">
+  <p class="mb-0">🔥 Warum die Heizkörperdaten wichtig sind</p>
+</div>
+
+<p>Die Wärme des Heizkreiswassers wird über die Oberfläche der Heizkörper an den Raum abgegeben.</p>
+
+<p>Je größer die Übertragungsfläche eines Heizkörpers ist, desto mehr Wärme kann bei gleicher Vorlauftemperatur abgegeben werden.</p>
+
+<div class="alert alert-success" role="alert">
+  <p class="mb-0"><strong>👉 Das bedeutet:</strong> Größere oder leistungsstärkere Heizkörper ermöglichen eine niedrigere Vorlauftemperatur – und machen den effizienten Betrieb einer Wärmepumpe überhaupt erst möglich.</p>
+</div>
+
+<h5>🧮 Was wird geprüft?</h5>
+<p>Um zu beurteilen, ob Ihr Gebäude niedertemperaturfähig ist, wird berechnet, ob die installierte Heizkörperleistung ausreicht, um die Wärmeverluste des Raums bei einer maximalen Vorlauftemperatur von 55°C auszugleichen.</p>
+
+<h5>📏 Welche Angaben sind dafür nötig?</h5>
+<p>Für die Berechnung der Heizkörperleistung benötigen wir:</p>
+<ul>
+  <li>den Typ des Heizkörpers (z.B. Flach, Glieder, Rippen)</li>
+  <li>und die Abmessungen (Breite, Höhe, Tiefe)</li>
+</ul>
+<p>Diese Daten erfassen Sie im nächsten Schritt.</p>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/raeume/detail-wand" [queryParams]="{room: roomId}">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary" routerLink="/raeume/detail-heizflaechen" [queryParams]="{room: roomId}">
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </div>
+</div>

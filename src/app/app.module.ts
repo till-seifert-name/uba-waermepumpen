@@ -33,6 +33,7 @@ import {RaeumeIntroComponent} from "./raeume/raeume-intro/raeume-intro.component
 import {RaumDetailBasicComponent} from "./raeume/raum-detail-basic/raum-detail-basic.component";
 import {RaumDetailWallsComponent} from "./raeume/raum-detail-walls/raum-detail-walls.component";
 import {RaumDetailHeizflaechenComponent} from "./raeume/raum-detail-heizflaechen/raum-detail-heizflaechen.component";
+import {RaumDetailHeizkoerperInfoComponent} from "./raeume/raum-detail-heizkoerper-info/raum-detail-heizkoerper-info.component";
 import {RaumDetailErgebnisComponent} from "./raeume/raum-detail-ergebnis/raum-detail-ergebnis.component";
 
 // Ergebnis (Results) Component
@@ -80,6 +81,7 @@ import '@angular/common/locales/global/de';
     RaeumeIntroComponent,
     RaumDetailBasicComponent,
     RaumDetailWallsComponent,
+    RaumDetailHeizkoerperInfoComponent,
     RaumDetailHeizflaechenComponent,
     RaumDetailErgebnisComponent,
 

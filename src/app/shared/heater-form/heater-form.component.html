@@ -11,8 +11,8 @@
                  [name]="'heater' + heaterNumber + '_type'"
                  [value]="type" [checked]="berechnungService.getHeatingMainType(roomId, heaterNumber) === type"
                  (change)="onHeaterTypeChange(type)">
-          <label [for]="'heater' + heaterNumber + '_type_' + type" class="btn btn-outline-secondary d-block p-2">
-            <div class="border rounded mb-2 image-container">
+          <label [for]="'heater' + heaterNumber + '_type_' + type" class="btn btn-outline-secondary">
+            <div class="image-container">
               <!-- Placeholder for images - to be replaced with SVG later -->
               <div *ngIf="type === 'Flachheizkoerper_senkrecht_profiliert'" class="placeholder-image">
                 <svg width="80" height="80" viewBox="0 0 100 100">

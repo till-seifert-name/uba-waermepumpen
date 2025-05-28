@@ -4,37 +4,6 @@
 <!-- Content -->
 <h5 class="mb-4">Heizflächen für Raum: {{ berechnungService.getRoomName(roomId) }}</h5>
 
-<!-- Information Section -->
-<div class="alert alert-info" style="columns: 3;">
-  <div style="break-inside: avoid">
-    <h6><i class="bi bi-fire"></i> Warum die Heizkörperdaten wichtig sind</h6>
-    <p>Die Wärme des Heizkreiswassers wird über die Oberfläche der
-      Heizkörper an den Raum abgegeben.
-      Je größer die Übertragungsfläche eines Heizkörpers ist, desto
-      mehr Wärme kann bei gleicher Vorlauftemperatur abgegeben werden.</p>
-  </div>
-  <div style="break-inside: avoid">
-    <p><i class="bi bi-arrow-right-square"></i> Das bedeutet: Größere oder leistungsstärkere Heizkörper
-      ermöglichen eine niedrigere Vorlauftemperatur – und machen
-      den effizienten Betrieb einer Wärmepumpe überhaupt erst möglich.</p>
-  </div>
-  <div style="break-inside: avoid">
-    <h6><i class="bi bi-calculator"></i> Was wird geprüft?</h6>
-    <p>Um zu beurteilen, ob Ihr Gebäude niedertemperaturfähig ist,
-      wird berechnet, ob die installierte Heizkörperleistung ausreicht,
-      um die Wärmeverluste des Raums bei einer maximalen
-      Vorlauftemperatur von 55°C auszugleichen.</p>
-  </div>
-  <div style="break-inside: avoid">
-    <h6><i class="bi bi-rulers"></i> Welche Angaben sind dafür nötig?</h6>
-    <p>Für die Berechnung der Heizkörperleistung benötigen wir:</p>
-    <ul>
-      <li>den Typ des Heizkörpers (z.B. Flach, Glieder, Rippen)</li>
-      <li>und die Abmessungen (Breite, Höhe, Tiefe)</li>
-    </ul>
-  </div>
-</div>
-
 <form (ngSubmit)="onNext()" ngNativeValidate>
   <div class="mb-4" *ngIf="!heater1Visible && !heater2Visible">
     <button type="button" class="btn btn-outline-secondary" (click)="addHeaterType()">
