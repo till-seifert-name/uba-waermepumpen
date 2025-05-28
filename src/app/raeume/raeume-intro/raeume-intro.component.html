@@ -4,10 +4,19 @@
 
 <!-- Content -->
 <div class="text-center">
-  <h1 class="display-5">Eingaben Raumebene – Wärmeverluste</h1>
-  <p class="lead" *ngIf="selectedRoomName">für Raum: {{ selectedRoomName }}</p>
-  <p class="lead" *ngIf="!selectedRoomName">Bitte wählen Sie einen Raum aus</p>
+  <h1 class="display-5">Information Erfassung Einzelräume</h1>
 </div>
+
+<h5>📐 Warum Außenflächen erfasst werden müssen</h5>
+<p>Um die Wärmeverluste eines Raumes zu bestimmen, braucht es Informationen über die Größe und Art der Außenflächen – also z. B. Außenwände, Fenster, Dach oder Decken.</p>
+<p>Die Verluste hängen vom sogenannten U-Wert (Wärmedurchgangskoeffizient) der Bauteile ab. Dieser beschreibt, wie gut ein Bauteil gedämmt ist, und wird im Tool automatisch auf Basis Ihrer Gebäudedaten berechnet.</p>
+
+<h5>🧱 Innenwände müssen nicht erfasst werden</h5>
+<p>Wände zu beheizten Nachbarräumen müssen nicht angegeben werden. Das Tool geht davon aus, dass zwischen beheizten Räumen kein nennenswerter Wärmeaustausch stattfindet – diese Annahme ist in der Praxis meist ausreichend.</p>
+
+<h5>⚠️ Sonderfall: unbeheizter Nachbarraum</h5>
+<p>Grenzt ein Raum an einen nicht beheizten Raum (z.B. unter 15°C, wie ein Abstellraum oder Keller), dann geben Sie diese Wand bitte als:</p>
+<p><strong>➡️ „Innenwand gegen unbeheizt" ein.</strong></p>
 
 <!-- Spacer to prevent content from being hidden behind fixed footer -->
 <div class="pb-5 mb-5"></div>
