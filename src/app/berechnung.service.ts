@@ -4,7 +4,7 @@ import {BehaviorSubject, debounceTime, filter, tap} from "rxjs";
 import {CustomLocalStorageService} from "./custom-local-storage.service";
 import {databaseRanges, explicitNamedRanges, namedExpressions, sheetsData} from '../../20250507_WP_Check_Vorlage_ts_export/master';
 import {applyFormulaOverlays} from "./formula-overlays";
-import {roomColumns} from "./formula-overlays/base-overlay";
+import {IN_ROOM_COLS} from "./formula-overlays/base-overlay";
 
 /**
  * UBA Wärmepumpen Berechnungsservice - Data Model Documentation
@@ -233,11 +233,11 @@ export class BerechnungService {
     const cells: string[] = [];
     // Basic room properties (rows 3-9)
     for (let row = 3; row <= 9; row++) {
-      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      IN_ROOM_COLS.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
 
     // Wall insulation thickness (row 11)
-    roomColumns.forEach(col => cells.push(`IN_rooms!${col}11`));
+    IN_ROOM_COLS.forEach(col => cells.push(`IN_rooms!${col}11`));
 
     // Window properties for 3 window types (rows 13-26)
     // Type 1: rows 13-16
@@ -246,7 +246,7 @@ export class BerechnungService {
     for (let windowType = 0; windowType < 3; windowType++) {
       for (let i = 0; i < 4; i++) { // 4 properties per window type: width, height, year, count
         const row = 13 + (windowType * 5) + i; // 5 row spacing between types
-        roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+        IN_ROOM_COLS.forEach(col => cells.push(`IN_rooms!${col}${row}`));
       }
     }
 
@@ -255,20 +255,20 @@ export class BerechnungService {
     // Row 26: Interior wall length (m)
     // Row 27: Interior wall insulation thickness (cm)
     for (let row = 25; row <= 27; row++) {
-      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      IN_ROOM_COLS.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
 
     // Roof-related properties (rows 28-35, 39, and 40)
     // Add specific rows for roof properties
     for (let row = 28; row <= 35; row++) {
-      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      IN_ROOM_COLS.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
 
     // Roof window properties (rows 41-48)
     // Type 1: rows 41-44
     // Type 2: rows 45-48
     for (let row = 41; row <= 48; row++) {
-      roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+      IN_ROOM_COLS.forEach(col => cells.push(`IN_rooms!${col}${row}`));
     }
 
     // Heating elements for 3 heating types (rows 49-69)
@@ -278,7 +278,7 @@ export class BerechnungService {
     for (let heatingType = 0; heatingType < 3; heatingType++) {
       for (let i = 0; i < 7; i++) { // 7 properties per heating type: main type, subtype, height, width, depth, element count, count
         const row = 49 + (heatingType * 7) + i; // 7 row spacing between types
-        roomColumns.forEach(col => cells.push(`IN_rooms!${col}${row}`));
+        IN_ROOM_COLS.forEach(col => cells.push(`IN_rooms!${col}${row}`));
       }
     }
 

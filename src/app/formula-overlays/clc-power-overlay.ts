@@ -1,19 +1,13 @@
 // noinspection JSUnusedLocalSymbols,JSNonASCIINames
 
 import {DataGrid} from '../data-grid';
-import {FormulaOverlay} from './base-overlay';
+import {CLC_LOAD_COLS, CLC_POWER_COLS, FormulaOverlay, IN_ROOM_COLS} from './base-overlay';
 
 /**
  * clc_power sheet formula overlay
  * Contains formula implementations for the clc_power sheet
  */
 export class ClcPowerOverlay implements FormulaOverlay {
-  // Columns H-U for rooms 1-15
-  private clcPowerCols = ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'];
-  // Columns R-AF for rooms 1-15 in IN_rooms sheet
-  private roomCols =     ['R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF'];
-  // Columns I-W for rooms 1-15 in clc_load sheet
-  private clcLoadCols =  ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W'];
 
   /**
    * Apply clc_power formulas to the data grid
@@ -21,10 +15,10 @@ export class ClcPowerOverlay implements FormulaOverlay {
    */
   applyFormulas(grid: DataGrid): void {
     // Implement formulas for each room column
-    for (let i = 0; i < this.clcPowerCols.length; i++) {
-      const clcPowerCol = this.clcPowerCols[i];
-      const roomCol = this.roomCols[i];
-      const clcLoadCol = this.clcLoadCols[i];
+    for (let i = 0; i < CLC_POWER_COLS.length; i++) {
+      const clcPowerCol = CLC_POWER_COLS[i];
+      const roomCol = IN_ROOM_COLS[i];
+      const clcLoadCol = CLC_LOAD_COLS[i];
 
       /**
        * Row 1: Room header text

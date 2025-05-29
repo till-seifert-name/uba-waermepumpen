@@ -1,15 +1,11 @@
 import {DataGrid} from '../data-grid';
-import {FormulaOverlay} from './base-overlay';
+import {CLC_LOAD_COLS, FormulaOverlay, IN_ROOM_COLS} from './base-overlay';
 
 /**
  * clc_load sheet formula overlay
  * Contains formula implementations for the clc_load sheet
  */
 export class ClcLoadOverlay implements FormulaOverlay {
-  // Columns I-W for rooms 1-15
-  private clcLoadCols = ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W'];
-  // Columns R-AF for rooms 1-15
-  private roomCols = ['R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF'];
 
   /**
    * Apply clc_load formulas to the data grid
@@ -17,9 +13,9 @@ export class ClcLoadOverlay implements FormulaOverlay {
    */
   applyFormulas(grid: DataGrid): void {
     // Implement formulas for each room column
-    for (let i = 0; i < this.clcLoadCols.length; i++) {
-      const clcLoadCol = this.clcLoadCols[i];
-      const roomCol = this.roomCols[i];
+    for (let i = 0; i < CLC_LOAD_COLS.length; i++) {
+      const clcLoadCol = CLC_LOAD_COLS[i];
+      const roomCol = IN_ROOM_COLS[i];
 
       /**
        * Row 2: Room ID

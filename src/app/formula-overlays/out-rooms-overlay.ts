@@ -1,17 +1,11 @@
-import { DataGrid } from '../data-grid';
-import { FormulaOverlay } from './base-overlay';
+import {DataGrid} from '../data-grid';
+import {CLC_BUILD_COLS, CLC_LOAD_COLS, FormulaOverlay, OUT_ROOMS_COLS} from './base-overlay';
 
 /**
  * OUT_rooms sheet formula overlay
  * Contains formula implementations for the OUT_rooms sheet
  */
 export class OutRoomsOverlay implements FormulaOverlay {
-  // Columns H-V for rooms 1-15
-  private outRoomsCols = ['H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'];
-  // Columns G-U in clc_build for rooms 1-15
-  private clcBuildCols = ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'];
-  // Columns I-W in clc_load for rooms 1-15
-  private clcLoadCols = ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W'];
 
   /**
    * Apply OUT_rooms formulas to the data grid
@@ -19,10 +13,10 @@ export class OutRoomsOverlay implements FormulaOverlay {
    */
   applyFormulas(grid: DataGrid): void {
     // Implement formulas for each room column
-    for (let i = 0; i < this.outRoomsCols.length; i++) {
-      const outRoomsCol = this.outRoomsCols[i];
-      const clcBuildCol = this.clcBuildCols[i];
-      const clcLoadCol = this.clcLoadCols[i];
+    for (let i = 0; i < OUT_ROOMS_COLS.length; i++) {
+      const outRoomsCol = OUT_ROOMS_COLS[i];
+      const clcBuildCol = CLC_BUILD_COLS[i];
+      const clcLoadCol = CLC_LOAD_COLS[i];
 
       /**
        * Row 3: Ausgabe zur Wärmepumpeneignung
@@ -330,9 +324,9 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
         return g.WENNS(
           deck_ist >= 1, 0.125,
-          g.UND(deck_ist <= 0.8, deck_ist >= 1), deck_ist * 0.245,
-          g.UND(deck_ist < 0.8, deck_ist >= 0.6), deck_ist * 0.495,
-          deck_ist < 0.6, deck_ist * 0.745,
+          (0.8 >= deck_ist) && (deck_ist < 1), deck_ist * 0.245,
+          (0.8 < deck_ist) && (deck_ist >= 0.6), deck_ist * 0.495,
+          0.6 < deck_ist, deck_ist * 0.745,
 
           // Default fallback
           0.125
@@ -355,9 +349,9 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
         return g.WENNS(
           deck_Typ33 > 1, 0.125,
-          g.UND(deck_Typ33 <= 0.8, deck_Typ33 >= 1), deck_Typ33 * 0.245,
-          g.UND(deck_Typ33 < 0.8, deck_Typ33 >= 0.6), deck_Typ33 * 0.495,
-          deck_Typ33 < 0.6, deck_Typ33 * 0.745,
+          (0.8 >= deck_Typ33) && (deck_Typ33 < 1), deck_Typ33 * 0.245,
+          (0.8 < deck_Typ33) && (deck_Typ33 >= 0.6), deck_Typ33 * 0.495,
+          0.6 < deck_Typ33, deck_Typ33 * 0.745,
 
           // Default fallback
           0.125

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BerechnungService} from '../../berechnung.service';
 import {Subscription} from 'rxjs';
 import {DataGrid} from '../../data-grid';
+import {OUT_ROOMS_COLS} from "../../formula-overlays/base-overlay";
 
 @Component({
   selector: 'app-raum-detail-ergebnis',
@@ -21,49 +22,15 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   // Helper method to get the room column in OUT_rooms sheet
   getRoomOutColumn(): string {
     // OUT_rooms columns H-V for rooms 1-15
-    const outRoomsCols = ['H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'];
     const roomIndex = parseInt(this.roomId, 10) - 1;
 
     // Return corresponding column or default to first column if out of bounds
-    return roomIndex >= 0 && roomIndex < outRoomsCols.length
-      ? outRoomsCols[roomIndex]
-      : outRoomsCols[0];
+    return roomIndex >= 0 && roomIndex < OUT_ROOMS_COLS.length
+      ? OUT_ROOMS_COLS[roomIndex]
+      : OUT_ROOMS_COLS[0];
   }
 
   // Helper method to get the room column in clc_build sheet
-  getRoomBuildColumn(): string {
-    // clc_build columns G-U for rooms 1-15
-    const clcBuildCols = ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'];
-    const roomIndex = parseInt(this.roomId, 10) - 1;
-
-    // Return corresponding column or default to first column if out of bounds
-    return roomIndex >= 0 && roomIndex < clcBuildCols.length
-      ? clcBuildCols[roomIndex]
-      : clcBuildCols[0];
-  }
-
-  // Gauge configurations
-  // Heat density gauge zones with integrated labels
-  get heizlastZones() {
-    return [
-      {value: 0, label: '0'},           // Min value point (needed for proper gradient)
-      {value: 25, label: '50'},         // First transition point: good -> warning
-      {value: 50, label: '70'},         // Second transition point: warning -> danger
-      {value: 75, label: '90 W/m²'}   // Max value point (matches maxValue input)
-    ];
-  }
-
-  // Heater capability gauge zones with integrated labels
-  get heizkoerperZones() {
-    return [
-      {value: 100 - 100, label: ''},
-      {value: 100 - 75, label: 'NT-ready'},
-      {value: 100 - 50, label: 'eingeschränkt geeignet'},
-      {value: 100 - 25, label: 'noch nicht gut geeignet'},
-      {value: 100 - 0, label: ''},
-    ];
-  }
-
   private subscriptions: Subscription[] = [];
 
   constructor(

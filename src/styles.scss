@@ -57,6 +57,14 @@ html, body {
 
 :root {
   --body-max-width: 92rem;
+
+  // Rating colors for icons/emojis in markdown content
+  --rating-red: #dc3545;
+  --rating-orange: #fd7e14;
+  --rating-yellow: #ffc107;
+  --rating-green: #198754;
+  --rating-blue: #0d6efd;
+  --lightbulb-yellow: #ffc107;
 }
 
 body {
@@ -103,12 +111,48 @@ body > app-root {
   transform: rotate(90deg);
 }
 
+// Rating color classes for icons/emojis in markdown content
+.rating-red {
+  color: var(--rating-red) !important;
+}
+
+.rating-orange {
+  color: var(--rating-orange) !important;
+}
+
+.rating-yellow {
+  color: var(--rating-yellow) !important;
+}
+
+.rating-green {
+  color: var(--rating-green) !important;
+}
+
+.rating-blue {
+  color: var(--rating-blue) !important;
+}
+
+// Special styling for lightbulb icons
+.bi-lightbulb-fill {
+  color: var(--lightbulb-yellow) !important;
+}
+
+// Yellow triangle warning icons
+.bi-exclamation-triangle-fill-yellow {
+  color: var(--rating-yellow) !important;
+}
+
 // Markdown styling
 markdown {
-  display: block;
+  display: contents;
 
-  // Ensure newlines in the content are preserved
-  white-space: pre-line;
+  h2 {
+    font-size: 1.25rem;
+  }
+  h3 {
+    font-size: 1rem;
+
+  }
 
   // Make sure first heading doesn't have top margin
   h1:first-child, h2:first-child, h3:first-child,

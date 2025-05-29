@@ -1,17 +1,11 @@
 import {DataGrid} from '../data-grid';
-import {FormulaOverlay} from './base-overlay';
+import {CLC_BUILD_COLS, CLC_LOAD_COLS, FormulaOverlay, IN_ROOM_COLS} from './base-overlay';
 
 /**
  * clc_build sheet formula overlay
  * Contains formula implementations for the clc_build sheet
  */
 export class ClcBuildOverlay implements FormulaOverlay {
-  // Columns G-U for rooms 1-15
-  private clcBuildRoomCols = ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'];
-  // Corresponding columns I-W in clc_load for rooms 1-15
-  private clcLoadCols = ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W'];
-  // Corresponding columns R-AF in IN_rooms for rooms 1-15
-  private roomCols = ['R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF'];
 
   /**
    * Apply clc_build formulas to the data grid
@@ -19,10 +13,10 @@ export class ClcBuildOverlay implements FormulaOverlay {
    */
   applyFormulas(grid: DataGrid): void {
     // Implement formulas for each room column
-    for (let i = 0; i < this.clcBuildRoomCols.length; i++) {
-      const clcBuildCol = this.clcBuildRoomCols[i];
-      const clcLoadCol = this.clcLoadCols[i];
-      const roomCol = this.roomCols[i];
+    for (let i = 0; i < CLC_BUILD_COLS.length; i++) {
+      const clcBuildCol = CLC_BUILD_COLS[i];
+      const clcLoadCol = CLC_LOAD_COLS[i];
+      const roomCol = IN_ROOM_COLS[i];
 
       /**
        * Row 3: Heizlast Transmission [W]

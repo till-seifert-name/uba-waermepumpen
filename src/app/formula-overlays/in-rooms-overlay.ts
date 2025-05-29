@@ -1,5 +1,5 @@
-import { DataGrid } from '../data-grid';
-import { FormulaOverlay, roomColumns } from './base-overlay';
+import {DataGrid} from '../data-grid';
+import {FormulaOverlay, IN_ROOM_COLS} from './base-overlay';
 
 /**
  * IN_rooms sheet formula overlay
@@ -12,7 +12,7 @@ export class InRoomsOverlay implements FormulaOverlay {
    */
   applyFormulas(grid: DataGrid): void {
     // Add formulas for each room column
-    roomColumns.forEach(col => {
+    IN_ROOM_COLS.forEach(col => {
       /**
        * Row 3: Empty string
        * Excel:

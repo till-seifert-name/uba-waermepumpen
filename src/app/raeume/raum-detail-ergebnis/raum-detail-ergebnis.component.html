@@ -1,20 +1,13 @@
 <!-- Wizard Tabs -->
 <app-wizard-tabs [progress]="100" activeRoomSubTab="ergebnis"></app-wizard-tabs>
 
-<!-- Content -->
 <h5 class="mb-4">Ergebnis für Raum: {{ berechnungService.getRoomName(roomId) }}</h5>
 
-<!--  Assessment -->
-<div class="card mb-4">
-  <div class="card-header bg-primary text-white">Bewertung</div>
-  <div class="card-body">
+
     <!-- R1: NT-Readiness - Dynamic text from OUT_rooms row 3 (overall assessment) -->
     <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '3').toString()"></markdown>
 
     <hr class="my-4">
-
-    <!-- Heizkörper Eignung - Use values from OUT_rooms rows 14-17 for gauges/badges -->
-    <h5>Wie gut sind die Heizkörper geeignet?</h5>
 
     <div class="d-flex mb-3">
       <div class="d-flex flex-column align-items-start mb-2 alert alert-info">
@@ -32,10 +25,16 @@
     <app-band-tacho
       [minValue]="0"
       [maxValue]="100"
-      [zones]="heizkoerperZones"
+      [zones]="[
+        {value: 100 - 100, label: ''},
+        {value: 100 - 75, label: 'NT-ready'},
+        {value: 100 - 50, label: 'eingeschränkt geeignet'},
+        {value: 100 - 25, label: 'noch nicht gut geeignet'},
+        {value: 100 - 0, label: ''},
+      ]"
       [pins]="[
-        { value: 100 - grid.getCellNumeric('clc_build', getRoomBuildColumn() + '39') * 100, tooltip: 'Aktueller Heizkörper' },
-        { value: 100 - grid.getCellNumeric('clc_build', getRoomBuildColumn() + '40') * 100, tooltip: 'Besserer Heizkörper' }
+        { value: 100 - grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '35') * 100, tooltip: 'Aktueller Heizkörper' },
+        { value: 100 - grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '36') * 100, tooltip: 'Besserer Heizkörper' }
       ]">
     </app-band-tacho>
 
@@ -45,18 +44,14 @@
     <div class="row">
       <div class="col-md-3 text-center">
         <div class="d-flex flex-column align-items-center justify-content-center mb-2">
-          <span class="position-relative d-inline-block mb-3">
-            <i class="bi bi-radiator fs-2 text-muted"></i>
-          </span>
           <span class="position-relative d-inline-block mb-2">
-            <i class="bi bi-radiator fs-2 text-muted"></i>
-            <i class="bi bi-plus-circle-fill text-primary position-absolute top-0 start-100 translate-middle"></i>
+            <i class="bi bi-bookshelf fs-1 text-muted"></i>
+            <i class="bi bi-plus text-muted position-absolute top-50 start-100 translate-middle"></i>
           </span>
           <p class="small text-muted">Heizkörper vergrößern</p>
         </div>
       </div>
       <div class="col-md-9">
-        <h5>Heizköperleistung</h5>
         <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '10').toString()"></markdown>
       </div>
     </div>
@@ -72,9 +67,15 @@
     </div>
 
     <app-band-tacho
-      [maxValue]="100"
-      [zones]="heizlastZones"
-      [pins]="[{ value: grid.getCellNumeric('clc_build', getRoomBuildColumn() + '8'), tooltip: 'Wärmelast pro m²' }]">
+      [minValue]="30"
+      [maxValue]="110"
+      [zones]="[
+        {value: 30, label: '30'},
+        {value: 50, label: '50'},
+        {value: 70, label: '70'},
+        {value: 90, label: '90 W/m²'}
+      ]"
+      [pins]="[{ value: grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '37'), tooltip: 'Wärmelast pro m²' }]">
     </app-band-tacho>
 
     <hr class="my-4">
@@ -95,14 +96,13 @@
       </div>
     </div>
 
-    <hr class="my-4">
+    <hr *ngIf="berechnungService.getRoomTemperature(roomId) > 22" class="my-4">
 
     <!-- RW: Warning - Show warning if room temperature is high, using markdown for text from TXT_rooms E20 -->
     <div class="alert border-danger" *ngIf="berechnungService.getRoomTemperature(roomId) > 22">
       <markdown [data]="grid.getCell('TXT_rooms', 'E20').toString()"></markdown>
     </div>
-  </div>
-</div>
+
 
 <!-- Spacer to prevent content from being hidden behind fixed footer -->
 <div class="pb-5 mb-5"></div>
