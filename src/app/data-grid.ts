@@ -292,15 +292,17 @@ export class DataGrid {
 
   /**
    * Calculates the sum of the specified cells in the specified sheet.
+   * Or a vector.
    */
-  SUM(sheet: string, cells: string[]): number {
-    return cells.reduce((sum, cell) => {
-      const add = this.getCell(sheet, cell);
-      if (typeof add === 'number') {
-        return sum + add;
+  SUM(sheet: string, cellsOrValues: (string | number)[]): number {
+    const values = cellsOrValues.map(item => {
+      if (typeof item === 'string') {
+        return this.n(sheet, item);
       }
-      return NaN;
-    }, 0);
+      return item;
+    });
+
+    return values.reduce((sum, value) => sum + value, 0);
   }
 
   /**
@@ -1005,7 +1007,149 @@ export class DataGrid {
     return condition.map((c, i) => c ? ifTrue[i] : (ifFalse[i] ?? 0));
   }
 
+  /**
+   * Excel CHOOSE function - returns a value from a list based on index position
+   */
+  CHOOSE(indexNum: number, ...values: any[]): any {
+    if (indexNum < 1 || indexNum > values.length || !Number.isInteger(indexNum)) {
+      return null;
+    }
+    return values[indexNum - 1]; // Excel uses 1-based indexing
+  }
 
+  /**
+   * Excel FILTER function - filters an array based on a boolean criteria array
+   */
+  FILTER(array: any[], criteria: boolean[]): any[] {
+    return array.filter((_, index) => criteria[index]);
+  }
+
+  /**
+   * Excel SUMPRODUCT function - multiplies corresponding components and sums the products
+   */
+  SUMPRODUCT(...arrays: (number[] | boolean[])[]): number {
+    if (arrays.length === 0) return 0;
+
+    const length = Math.min(...arrays.map(arr => arr.length));
+    let sum = 0;
+
+    for (let i = 0; i < length; i++) {
+      let product = 1;
+      for (const array of arrays) {
+        const value = typeof array[i] === 'boolean' ? (array[i] ? 1 : 0) : Number(array[i]);
+        product *= isNaN(value) ? 0 : value;
+      }
+      sum += product;
+    }
+
+    return sum;
+  }
+
+  /**
+   * Excel COUNTIF function - counts cells that meet a criteria
+   */
+  COUNTIF(sheet: string, range: string, criteria: string | number |boolean): number {
+    const cells = this.getCellRange(sheet, range);
+    let count = 0;
+
+    for (const cell of cells) {
+      const value = typeof cell === 'number' ? cell : Number(cell);
+      if (this.matchesCriteria(value, criteria)) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+
+  /**
+   * Excel COUNTIFS function - counts cells that meet multiple criteria
+   */
+  COUNTIFS(sheet: string, ...args: (string | number)[]): number {
+    // Args come in pairs: range1, criteria1, range2, criteria2, etc.
+    if (args.length % 2 !== 0) return 0;
+
+    const ranges: any[][] = [];
+    const criterias: (string | number)[] = [];
+
+    for (let i = 0; i < args.length; i += 2) {
+      ranges.push(this.getCellRange(sheet,  args[i] as string));
+      criterias.push(args[i + 1]);
+    }
+
+    if (ranges.length === 0) return 0;
+
+    const length = ranges[0].length;
+    let count = 0;
+
+    for (let i = 0; i < length; i++) {
+      let allMatch = true;
+      for (let j = 0; j < ranges.length; j++) {
+        const value = typeof ranges[j][i] === 'number' ? ranges[j][i] : Number(ranges[j][i]);
+        if (!this.matchesCriteria(value, criterias[j])) {
+          allMatch = false;
+          break;
+        }
+      }
+      if (allMatch) count++;
+    }
+
+    return count;
+  }
+
+  /**
+   * Helper function to check if a value matches Excel criteria
+   */
+  private matchesCriteria(value: number|boolean, criteria: string | number | boolean): boolean {
+    if (typeof criteria === 'number') {
+      return value === criteria;
+    }
+    if (typeof criteria === 'boolean') {
+      return value == criteria;
+    }
+
+    const criteriaStr = criteria.toString();
+
+    if (criteriaStr.startsWith('>=')) {
+      return Number(value) >= Number(criteriaStr.substring(2));
+    } else if (criteriaStr.startsWith('<=')) {
+      return Number(value) <= Number(criteriaStr.substring(2));
+    } else if (criteriaStr.startsWith('>')) {
+      return Number(value) > Number(criteriaStr.substring(1));
+    } else if (criteriaStr.startsWith('<')) {
+      return Number(value) < Number(criteriaStr.substring(1));
+    } else if (criteriaStr.startsWith('=')) {
+      return Number(value) === Number(criteriaStr.substring(1));
+    } else {
+      return Number(value) === Number(criteriaStr);
+    }
+  }
+
+  /**
+   * Helper function to get cell range values
+   */
+  private getCellRange(sheet: string, range: string): any[] {
+    const [start, end] = range.split(':');
+    if (!end) {
+      // Single cell
+      return [this.getCell(sheet, start)];
+    }
+
+    const startCol = columnNameToColNumber(start);
+    const startRow = cellNameToRowNumber(start);
+    const endCol = columnNameToColNumber(end);
+    const endRow = cellNameToRowNumber(end);
+
+    const values: any[] = [];
+
+    for (let row = startRow; row <= endRow; row++) {
+      for (let col = startCol; col <= endCol; col++) {
+        values.push(this.getCell(sheet, index2cell(col, row)));
+      }
+    }
+
+    return values;
+  }
 }
 
 // helper methods

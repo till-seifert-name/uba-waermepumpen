@@ -269,14 +269,14 @@ async function convertXlsxToTsModules() {
     sheetFileInfos.forEach(info => {
       masterFileContent += `  ${JSON.stringify(info.originalName)}: ${info.varName},\n`;
     });
-    masterFileContent += '};\n\n';
+    masterFileContent += '} as const;\n\n';
 
     // Re-export named items
     masterFileContent += 'export {\n';
     namedFilesInfo.forEach(info => {
       masterFileContent += `  ${info.name},\n`;
     });
-    masterFileContent += '} as const;\n';
+    masterFileContent += '};\n';
 
     fs.writeFileSync(path.join(baseOutputDir, 'master.ts'), masterFileContent);
     console.log(`Generated ${path.join(baseOutputDir, 'master.ts')}`);

@@ -23,48 +23,48 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 2: Room ID
-       * Original Excel formula: "IN_rooms!R2"
+       * Excel: "IN_rooms!R2"
        */
       grid.setCell('clc_load', `${clcLoadCol}2`, (s, c, g) =>
         g.g('IN_rooms', `${roomCol}2`));
 
       /**
        * Row 3: Building type
-       * Original Excel formula: "IN_build!$P$3"
+       * Excel: "IN_build!$P$3"
        */
       grid.setCell('clc_load', `${clcLoadCol}3`, (s, c, g) =>
         g.g('IN_build', 'P3'));
 
       /**
        * Row 4: Building year
-       * Original Excel formula: "IN_build!$P$5"
+       * Excel: "IN_build!$P$5"
        */
       grid.setCell('clc_load', `${clcLoadCol}4`, (s, c, g) =>
         g.g('IN_build', 'P5'));
 
       /**
        * Row 5: Room name
-       * Original Excel formula: "IN_rooms!R3"
+       * Excel: "IN_rooms!R3"
        */
       grid.setCell('clc_load', `${clcLoadCol}5`, (s, c, g) =>
         g.g('IN_rooms', `${roomCol}3`));
 
       /**
        * Row 6: Room volume
-       * Original Excel formula: "IN_rooms!R$4*IN_rooms!R$5"
+       * Excel: "IN_rooms!R$4*IN_rooms!R$5"
        */
       grid.setCell('clc_load', `${clcLoadCol}6`, (s, c, g) =>
         g.n('IN_rooms', `${roomCol}4`) * g.n('IN_rooms', `${roomCol}5`));
 
       /**
        * Row 7: Luftwechselrate
-       * Original Excel formula: "0.5"
+       * Excel: "0.5"
        */
       grid.setCell('clc_load', `${clcLoadCol}7`, (s, c, g) => 0.5);
 
       /**
        * Row 8: Wärmebrückenkoeffizient ∆U,TB
-       * Original Excel formula:
+       * Excel:
        * "IF(AND(I$16<=U_GEG_A.7!$C$10,
        * I$28<=AVERAGE(U_GEG_A.7!$C$21:$C$22,
        * I$34<=U_GEG_A.7!$C$21,I$39<=U_GEG_A.7!$C$25),
@@ -90,13 +90,13 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 9: ρ*cp pauschal nach 12831
-       * Original Excel formula: "0.34"
+       * Excel: "0.34"
        */
       grid.setCell('clc_load', `${clcLoadCol}9`, (s, c, g) => 0.34);
 
       /**
        * Row 10: Berechnungs-Raumtemperatur
-       * Original Excel formula: "IF(IN_rooms!R$6<>20,IN_rooms!R$6,20)"
+       * Excel: "IF(IN_rooms!R$6<>20,IN_rooms!R$6,20)"
        */
       grid.setCell('clc_load', `${clcLoadCol}10`, (s, c, g) =>
         g.WENN(g.g('IN_rooms', `${roomCol}6`) != 20,
@@ -105,14 +105,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 11: Mindes-Luftvolumenstrom qv,min
-       * Original Excel formula: "I$7*I$6"
+       * Excel: "I$7*I$6"
        */
       grid.setCell('clc_load', `${clcLoadCol}11`, (s, c, g) =>
         g.n('clc_load', `${clcLoadCol}7`) * g.n('clc_load', `${clcLoadCol}6`));
 
       /**
        * Row 12: Heizlast Ventilation [W]
-       * Original Excel formula: "I$9*I$11*(I$10-Normaußentemperatur_12831!$B$6)"
+       * Excel: "I$9*I$11*(I$10-Normaußentemperatur_12831!$B$6)"
        */
       grid.setCell('clc_load', `${clcLoadCol}12`, (s, c, g) =>
         g.n('clc_load', `${clcLoadCol}9`) *
@@ -121,14 +121,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 13: Anteil an Raumheizlast
-       * Original Excel formula: "I$12/I$72"
+       * Excel: "I$12/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}13`, (s, c, g) =>
         g.n('clc_load', `${clcLoadCol}12`) / g.n('clc_load', `${clcLoadCol}72`));
 
       /**
        * Row 14: Wand-Außenfläche [m²]
-       * Original Excel formula:
+       * Excel:
        * "IF(
        *     OR(IN_rooms!R$28=\"Nein\",IN_rooms!R$31=0,IN_rooms!R$30 = 0,  IN_rooms!R$9 = 0,IN_build!$P$4 = \"Flach bzw. Flachdach\"),
        *     IN_rooms!R$9 * IN_rooms!R$5 - (IN_rooms!R$13 * IN_rooms!R$14 +
@@ -215,7 +215,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
             // Added A_knee calculation
             let A_knee = is_jamb ? 0 : h_knee * g.n('IN_rooms', `${roomCol}30`);
-            
+
             let A_no_slop = L_wall * h_room - A_win;
             let A_big_rect = h_roof * b_ceil;
 
@@ -239,10 +239,10 @@ export class ClcLoadOverlay implements FormulaOverlay {
                 giebel_1_slop_2, A_big_rect + 2 * A_slop_tot - A_win,
                 giebel_2_slop_2, 2 * (A_big_rect + 2 * A_slop_tot) - A_win,
                 g.WAHR(), A_no_slop
-              ), A_no_slop) + A_knee, 
+              ), A_no_slop) + A_knee,
               0
             );
-            
+
             return result;
           })()
         );
@@ -250,7 +250,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 15: U-Wert Außenwand [W/(m²K)]
-       * Original Excel formula: "IF(I14=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A$14,9))*(U_Werte_IWU!$D$30:$D$262=clc_load!I4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I3)),1))"
+       * Excel: "IF(I14=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A$14,9))*(U_Werte_IWU!$D$30:$D$262=clc_load!I4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I3)),1))"
        */
       grid.setCell('clc_load', `${clcLoadCol}15`, (s, c, g) => {
         return g.WENN(
@@ -276,7 +276,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 16: U-Wert Außenwand (mit Dämmung) [W/(m²K)]
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.LET(
        * _xlpm.U_no_ins, _xlfn.XLOOKUP(1,
        *   (INDIRECT(\"UWert_Mod[Bauteil]\")=$A$16)*
@@ -311,7 +311,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 17: Heizlast Außenwand [W]
-       * Original Excel formula:
+       * Excel:
        * "IF(I14=0,0,I14*(I16+I$8)*_xlfn.XLOOKUP(IN_rooms!R12,Daten!$E$106:$E$109,Daten!$F$106:$F$109,\"FEHLER\",0,1)*(I$10-Normaußentemperatur_12831!$B$6))"
        */
       grid.setCell('clc_load', `${clcLoadCol}17`, (s, c, g) => {
@@ -332,14 +332,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 18: Anteil an Raumheizlast
-       * Original Excel formula: "I$17/I$72"
+       * Excel: "I$17/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}18`, (s, c, g) =>
         g.n(s, `${clcLoadCol}17`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 19: Fläche [m²]
-       * Original Excel formula: "IF(IN_rooms!R25=\"Nein\",0,IN_rooms!R26*IN_rooms!R5)"
+       * Excel: "IF(IN_rooms!R25=\"Nein\",0,IN_rooms!R26*IN_rooms!R5)"
        */
       grid.setCell('clc_load', `${clcLoadCol}19`, (s, c, g) =>
         g.WENN(
@@ -350,14 +350,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 20: U-Wert_IWU
-       * Original Excel formula: "INDEX(INDIRECT(\"PAR[U_inwall]\"),1)"
+       * Excel: "INDEX(INDIRECT(\"PAR[U_inwall]\"),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}20`, (s, c, g) =>
         (g.INDIREKT_DB_REF('PAR', 'U_inwall')[0] as number));
 
       /**
        * Row 21: U-Wert_Berechnung
-       * Original Excel formula: "IF(IN_rooms!R$27>0,1/(1/I$20+IN_rooms!R$27*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"),1)),I$20)"
+       * Excel: "IF(IN_rooms!R$27>0,1/(1/I$20+IN_rooms!R$27*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"),1)),I$20)"
        */
       grid.setCell('clc_load', `${clcLoadCol}21`, (s, c, g) => {
         return g.WENN(
@@ -373,7 +373,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 22: Heizlast Transmission
-       * Original Excel formula: "IF(I19=0,0,(I19*(I21+I$8)*0.5*(I$10-IF(IN_rooms!R$28=\"Ja\",15,5))))"
+       * Excel: "IF(I19=0,0,(I19*(I21+I$8)*0.5*(I$10-IF(IN_rooms!R$28=\"Ja\",15,5))))"
        */
       grid.setCell('clc_load', `${clcLoadCol}22`, (s, c, g) => {
         return g.WENN(
@@ -388,7 +388,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 23: Anteil an Raumheizlast
-       * Original Excel formula: "IF(I$22=0,0,I$22/I$72)"
+       * Excel: "IF(I$22=0,0,I$22/I$72)"
        */
       grid.setCell('clc_load', `${clcLoadCol}23`, (s, c, g) =>
         g.WENN(
@@ -399,7 +399,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 24: ZWISCHENERGEBNIS Heizlast Transmission
-       * Original Excel formula: "IF(I$25<=0,0,0.3239*I$28^(2)-1.3851*I$28+3.0537)"
+       * Excel: "IF(I$25<=0,0,0.3239*I$28^(2)-1.3851*I$28+3.0537)"
        */
       grid.setCell('clc_load', `${clcLoadCol}24`, (s, c, g) =>
         g.WENN(
@@ -410,7 +410,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 25: Volumen Gaube
-       * Original Excel formula: "IF(IN_rooms!R$40=\"Ja\",MAX(0,0.4183*I$26-1.3793,0),0)"
+       * Excel: "IF(IN_rooms!R$40=\"Ja\",MAX(0,0.4183*I$26-1.3793,0),0)"
        */
       grid.setCell('clc_load', `${clcLoadCol}25`, (s, c, g) =>
         g.WENN(
@@ -421,7 +421,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 26: Fläche [m²]
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.IFS(\n   IN_rooms!R$28<>\"Ja\",\n    0,\n    IN_build!$P$4 = \"Flach bzw. Flachdach\",\n      IN_rooms!R$4     - (IN_rooms!R$41 * IN_rooms!R$42 / 10000)\n      - (IN_rooms!R$45 * IN_rooms!R$46 / 10000),\n  IN_rooms!R$39>0,\n    IN_rooms!R$30 * IN_rooms!R$31\n      * IF(IN_rooms!R$29=\"Nein\",1,2)\n    + IN_rooms!R$39\n      / SIN(\n          _xlfn.IFS(\n            IN_build!$P$4=\"Geneigt\",   25,\n            IN_build!$P$4=\"Steil\",     40,\n            IN_build!$P$4=\"Sehr steil\",55\n          )\n          * PI() / 180\n        )\n      * IN_rooms!R$30\n    - (IN_rooms!R$41 * IN_rooms!R$42 / 10000)\n    - (IN_rooms!R$45 * IN_rooms!R$46 / 10000),\n\n  OR(\n    IN_rooms!R$39=0,\n    IN_rooms!R$37>0\n  ),\n    IN_rooms!R$30 * IN_rooms!R$31\n    - (IN_rooms!R$41 * IN_rooms!R$42 / 10000)\n    - (IN_rooms!R$45 * IN_rooms!R$46 / 10000)\n)"
        */
       grid.setCell('clc_load', `${clcLoadCol}26`, (s, c, g) => {
@@ -467,7 +467,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 27: U-Wert_IWU
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A27,4))*(U_Werte_IWU!$D$30:$D$262=clc_load!I4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}27`, (s, c, g) => {
@@ -492,7 +492,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 28: U-Wert_Berechnung
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=\"Dach\")*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$27,\n_xlpm.d_ins,IN_build!$T$9,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
        */
       grid.setCell('clc_load', `${clcLoadCol}28`, (s, c, g) => {
@@ -519,7 +519,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 29: Heizlast Transmission
-       * Original Excel formula: "IF(I26=0,0,I26*(I28+I$8)*(I$10-Normaußentemperatur_12831!$B$6)+I$24)"
+       * Excel: "IF(I26=0,0,I26*(I28+I$8)*(I$10-Normaußentemperatur_12831!$B$6)+I$24)"
        */
       grid.setCell('clc_load', `${clcLoadCol}29`, (s, c, g) =>
         g.WENN(
@@ -533,14 +533,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 30: Anteil an Raumheizlast
-       * Original Excel formula: "I$29/I$72"
+       * Excel: "I$29/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}30`, (s, c, g) =>
         g.n(s, `${clcLoadCol}29`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 31: Abzgl. Dachschräge vorhandene Deckenfläche
-       * Original Excel formula: "IF(IN_rooms!R$28=\"Nein\",IN_rooms!R$4,IN_rooms!R$32*IN_rooms!R$33)"
+       * Excel: "IF(IN_rooms!R$28=\"Nein\",IN_rooms!R$4,IN_rooms!R$32*IN_rooms!R$33)"
        */
       grid.setCell('clc_load', `${clcLoadCol}31`, (s, c, g) =>
         g.WENN(
@@ -551,7 +551,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 32: Fläche [m²]
-       * Original Excel formula: "IF(AND(IN_build!$P$4=\"Flach bzw. Flachdach\",IN_rooms!R28=\"Ja\"),0,clc_load!I$31)"
+       * Excel: "IF(AND(IN_build!$P$4=\"Flach bzw. Flachdach\",IN_rooms!R28=\"Ja\"),0,clc_load!I$31)"
        */
       grid.setCell('clc_load', `${clcLoadCol}32`, (s, c, g) =>
         g.WENN(
@@ -565,7 +565,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 33: U-Wert_IWU
-       * Original Excel formula: "IF(I$32=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A33,5))*(U_Werte_IWU!$D$30:$D$262=clc_load!I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I$3)),1))"
+       * Excel: "IF(I$32=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A33,5))*(U_Werte_IWU!$D$30:$D$262=clc_load!I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I$3)),1))"
        */
       grid.setCell('clc_load', `${clcLoadCol}33`, (s, c, g) => {
         return g.WENN(
@@ -593,7 +593,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 34: U-Wert_Berechnung
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=$A$34)*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$33,\n_xlpm.d_ins,IN_build!$T$11,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
        */
       grid.setCell('clc_load', `${clcLoadCol}34`, (s, c, g) => {
@@ -620,7 +620,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 35: Heizlast Transmission
-       * Original Excel formula: "IF(OR(I$32=\"entfällt\",I$32=0),0,(I$32*(I$34+I$8)*_xlfn.XLOOKUP(IN_rooms!R$7,Daten!$E$106:$E$109,Daten!$F$106:$F$109,\"FEHLER\",0,1))*(I$10-Normaußentemperatur_12831!$B$6))"
+       * Excel: "IF(OR(I$32=\"entfällt\",I$32=0),0,(I$32*(I$34+I$8)*_xlfn.XLOOKUP(IN_rooms!R$7,Daten!$E$106:$E$109,Daten!$F$106:$F$109,\"FEHLER\",0,1))*(I$10-Normaußentemperatur_12831!$B$6))"
        */
       grid.setCell('clc_load', `${clcLoadCol}35`, (s, c, g) => {
         return g.WENN(
@@ -643,14 +643,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 36: Anteil an Raumheizlast
-       * Original Excel formula: "I$35/I$72"
+       * Excel: "I$35/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}36`, (s, c, g) =>
         g.n(s, `${clcLoadCol}35`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 37: Fläche [m²]
-       * Original Excel formula: "IF(IN_rooms!R$39=0,IN_rooms!R$4,IN_rooms!R$4+IN_rooms!R$39/TAN(_xlfn.IFS(IN_build!$P$4=\"Flach bzw. Flachdach\",90,IN_build!$P$4=\"Geneigt\",25,IN_build!$P$4=\"Steil\",40,IN_build!$P$4=\"Sehr steil\",55)*PI()/180)*IN_rooms!R$30)"
+       * Excel: "IF(IN_rooms!R$39=0,IN_rooms!R$4,IN_rooms!R$4+IN_rooms!R$39/TAN(_xlfn.IFS(IN_build!$P$4=\"Flach bzw. Flachdach\",90,IN_build!$P$4=\"Geneigt\",25,IN_build!$P$4=\"Steil\",40,IN_build!$P$4=\"Sehr steil\",55)*PI()/180)*IN_rooms!R$30)"
        */
       grid.setCell('clc_load', `${clcLoadCol}37`, (s, c, g) => {
         const roofAngle = g.WENNS(
@@ -673,7 +673,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 38: U-Wert_IWU
-       * Original Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A38)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A38)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}38`, (s, c, g) => {
         return g.AGGREGATE(
@@ -697,7 +697,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 39: U-Wert Berechnung
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.LET(\n_xlpm.U_no_ins, _xlfn.XLOOKUP(1,\n  (INDIRECT(\"UWert_Mod[Bauteil]\")=$A$39)*\n  (INDIRECT(\"UWert_Mod[Modernisierungsjahr]\")=\"1983 - 1994\"),\n  INDIRECT(\"UWert_Mod[U_no_ins]\")),\n_xlpm.U_IWU, I$38,\n_xlpm.d_ins,IN_build!$T$10,\nIF(_xlpm.d_ins>0,1/(1/_xlpm.U_no_ins+_xlpm.d_ins*0.01/INDEX(INDIRECT(\"PAR[lambda_ins_thick]\"), 1)),_xlpm.U_IWU))"
        */
       grid.setCell('clc_load', `${clcLoadCol}39`, (s, c, g) => {
@@ -724,7 +724,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 40: Heizlast Transmission
-       * Original Excel formula: "I$37*(I$38+I$8)*_xlfn.XLOOKUP(IN_rooms!R8,Daten!$E$106:$E$109,Daten!$F$106:$F$109,\"FEHLER\",0,1)*(I$10-Normaußentemperatur_12831!$B$6)"
+       * Excel: "I$37*(I$38+I$8)*_xlfn.XLOOKUP(IN_rooms!R8,Daten!$E$106:$E$109,Daten!$F$106:$F$109,\"FEHLER\",0,1)*(I$10-Normaußentemperatur_12831!$B$6)"
        */
       grid.setCell('clc_load', `${clcLoadCol}40`, (s, c, g) => {
         return g.n(s, `${clcLoadCol}37`) *
@@ -740,14 +740,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 41: Anteil an Raumheizlast
-       * Original Excel formula: "I$40/I$72"
+       * Excel: "I$40/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}41`, (s, c, g) =>
         g.n(s, `${clcLoadCol}40`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 42: Fläche
-       * Original Excel formula: "IN_rooms!R$13*IN_rooms!R$14*IN_rooms!R$16"
+       * Excel: "IN_rooms!R$13*IN_rooms!R$14*IN_rooms!R$16"
        */
       grid.setCell('clc_load', `${clcLoadCol}42`, (s, c, g) =>
         g.n('IN_rooms', `${roomCol}13`) *
@@ -756,7 +756,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 43: U-Wert_IWU
-       * Original Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A43)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A43)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}43`, (s, c, g) => {
         return g.AGGREGATE(
@@ -780,8 +780,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 44: U-Wert ausgetauschte Fenster
-       * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A44)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
-       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A44)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$76)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A44)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A44)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$76)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}44`, (s, c, g) => {
         return g.AGGREGATE(
@@ -805,7 +805,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 45: U-Wert_Berechnung
-       * Original Excel formula: "IF(I44>0,I44,MIN(I44,I43))"
+       * Excel: "IF(I44>0,I44,MIN(I44,I43))"
        */
       grid.setCell('clc_load', `${clcLoadCol}45`, (s, c, g) =>
         g.WENN(
@@ -816,7 +816,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 46: Heizlast Transmission
-       * Original Excel formula: "IF(I$42=0,0,I$42*(I$45+I$8)*(I$10-Normaußentemperatur_12831!$B$6))"
+       * Excel: "IF(I$42=0,0,I$42*(I$45+I$8)*(I$10-Normaußentemperatur_12831!$B$6))"
        */
       grid.setCell('clc_load', `${clcLoadCol}46`, (s, c, g) =>
         g.WENN(
@@ -829,14 +829,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 47: Anteil an Raumheizlast
-       * Original Excel formula: "I$46/I$72"
+       * Excel: "I$46/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}47`, (s, c, g) =>
         g.n(s, `${clcLoadCol}46`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 48: Fläche
-       * Original Excel formula: "IN_rooms!R$17*IN_rooms!R$18*IN_rooms!R$20"
+       * Excel: "IN_rooms!R$17*IN_rooms!R$18*IN_rooms!R$20"
        */
       grid.setCell('clc_load', `${clcLoadCol}48`, (s, c, g) =>
         g.n('IN_rooms', `${roomCol}17`) *
@@ -845,7 +845,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 49: U-Wert_IWU
-       * Original Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A49)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A49)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}49`, (s, c, g) => {
         return g.AGGREGATE(
@@ -869,8 +869,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 50: U-Wert ausgetauschte Fenster
-       * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A50)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
-       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A50)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$77)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A50)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A50)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$77)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}50`, (s, c, g) => {
         return g.AGGREGATE(
@@ -894,7 +894,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 51: U-Wert_Berechnung
-       * Original Excel formula: "IF(I$50>0,I$50,MIN(I$50,I$49))"
+       * Excel: "IF(I$50>0,I$50,MIN(I$50,I$49))"
        */
       grid.setCell('clc_load', `${clcLoadCol}51`, (s, c, g) =>
         g.WENN(
@@ -905,7 +905,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 52: Heizlast Transmission
-       * Original Excel formula: "IF(I$48=0,0,I$48*(I$50+I$8)*(I$10-Normaußentemperatur_12831!$B$6))"
+       * Excel: "IF(I$48=0,0,I$48*(I$50+I$8)*(I$10-Normaußentemperatur_12831!$B$6))"
        */
       grid.setCell('clc_load', `${clcLoadCol}52`, (s, c, g) =>
         g.WENN(
@@ -918,14 +918,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 53: Anteil an Raumheizlast
-       * Original Excel formula: "I$52/I$72"
+       * Excel: "I$52/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}53`, (s, c, g) =>
         g.n(s, `${clcLoadCol}52`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 54: Fläche
-       * Original Excel formula: "IN_rooms!R$21*IN_rooms!R$22*IN_rooms!R$24"
+       * Excel: "IN_rooms!R$21*IN_rooms!R$22*IN_rooms!R$24"
        */
       grid.setCell('clc_load', `${clcLoadCol}54`, (s, c, g) =>
         g.n('IN_rooms', `${roomCol}21`) *
@@ -934,7 +934,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 55: U-Wert_IWU
-       * Original Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A55)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A55)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}55`, (s, c, g) => {
         return g.AGGREGATE(
@@ -958,8 +958,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 56: U-Wert ausgetauschte Fenster
-       * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A56)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
-       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A56)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$78)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A56)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A56)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$78)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}56`, (s, c, g) => {
         return g.AGGREGATE(
@@ -983,7 +983,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 57: U-Wert_Berechnung
-       * Original Excel formula: "IF(I$56>0,I$56,MIN(I$56,I$55))"
+       * Excel: "IF(I$56>0,I$56,MIN(I$56,I$55))"
        */
       grid.setCell('clc_load', `${clcLoadCol}57`, (s, c, g) =>
         g.WENN(
@@ -994,7 +994,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 58: Heizlast Transmission
-       * Original Excel formula: "IF(I$54=0,0,I$42*(I$57+I$8)*(I$10-Normaußentemperatur_12831!$B$6))"
+       * Excel: "IF(I$54=0,0,I$42*(I$57+I$8)*(I$10-Normaußentemperatur_12831!$B$6))"
        */
       grid.setCell('clc_load', `${clcLoadCol}58`, (s, c, g) =>
         g.WENN(
@@ -1007,14 +1007,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 59: Anteil an Raumheizlast
-       * Original Excel formula: "I$58/I$72"
+       * Excel: "I$58/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}59`, (s, c, g) =>
         g.n(s, `${clcLoadCol}58`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 60: Fläche
-       * Original Excel formula: "IN_rooms!R$41*IN_rooms!R$42*IN_rooms!R$44"
+       * Excel: "IN_rooms!R$41*IN_rooms!R$42*IN_rooms!R$44"
        */
       grid.setCell('clc_load', `${clcLoadCol}60`, (s, c, g) =>
         g.n('IN_rooms', `${roomCol}41`) *
@@ -1023,7 +1023,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 61: U-Wert_IWU
-       * Original Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A61)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A61)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}61`, (s, c, g) => {
         return g.AGGREGATE(
@@ -1047,8 +1047,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 62: U-Wert ausgetauschte Fenster
-       * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A62)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
-       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A62)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$79)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A62)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A62)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$79)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}62`, (s, c, g) => {
         return g.AGGREGATE(
@@ -1072,7 +1072,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 63: U-Wert_Berechnung
-       * Original Excel formula: "IF(I$62>0,I$62,MIN(I$62,I$61))"
+       * Excel: "IF(I$62>0,I$62,MIN(I$62,I$61))"
        */
       grid.setCell('clc_load', `${clcLoadCol}63`, (s, c, g) =>
         g.WENN(
@@ -1083,7 +1083,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 64: Heizlast Transmission
-       * Original Excel formula: "I$60*(I$63+I$8)*(I$10-Normaußentemperatur_12831!$B$6)"
+       * Excel: "I$60*(I$63+I$8)*(I$10-Normaußentemperatur_12831!$B$6)"
        */
       grid.setCell('clc_load', `${clcLoadCol}64`, (s, c, g) =>
         g.n(s, `${clcLoadCol}60`) *
@@ -1092,14 +1092,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 65: Anteil an Raumheizlast
-       * Original Excel formula: "I$64/I$72"
+       * Excel: "I$64/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}65`, (s, c, g) =>
         g.n(s, `${clcLoadCol}64`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 66: Fläche
-       * Original Excel formula: "IN_rooms!R$45*IN_rooms!R$46*IN_rooms!R$48"
+       * Excel: "IN_rooms!R$45*IN_rooms!R$46*IN_rooms!R$48"
        */
       grid.setCell('clc_load', `${clcLoadCol}66`, (s, c, g) =>
         g.n('IN_rooms', `${roomCol}45`) *
@@ -1108,7 +1108,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 67: U-Wert_IWU
-       * Original Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A67)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A67)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}67`, (s, c, g) => {
         return g.AGGREGATE(
@@ -1132,8 +1132,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 68: U-Wert ausgetauschte Fenster
-       * Original Excel formula: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A68)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
-       * Updated Excel formula: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A68)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$80)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "IF(IN_build!$S$8=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A68)*(clc_load!$I$3=U_Werte_IWU!$C$30:$C$262)*(U_Werte_IWU!$D$30:$D$262=IN_build!$S$8)),1))"
+       * Updated Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A68)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$80)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}68`, (s, c, g) => {
         return g.AGGREGATE(
@@ -1157,7 +1157,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 69: U-Wert_Berechnung
-       * Original Excel formula: "IF(I$68>0,I$68,MIN(I$68,I$67))"
+       * Excel: "IF(I$68>0,I$68,MIN(I$68,I$67))"
        */
       grid.setCell('clc_load', `${clcLoadCol}69`, (s, c, g) =>
         g.WENN(
@@ -1168,7 +1168,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 70: Heizlast Transmission
-       * Original Excel formula: "I$66*(I$69+I$8)*(I$10-Normaußentemperatur_12831!$B$6)"
+       * Excel: "I$66*(I$69+I$8)*(I$10-Normaußentemperatur_12831!$B$6)"
        */
       grid.setCell('clc_load', `${clcLoadCol}70`, (s, c, g) =>
         g.n(s, `${clcLoadCol}66`) *
@@ -1177,14 +1177,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 71: Anteil an Raumheizlast
-       * Original Excel formula: "I70/I$72"
+       * Excel: "I70/I$72"
        */
       grid.setCell('clc_load', `${clcLoadCol}71`, (s, c, g) =>
         g.n(s, `${clcLoadCol}70`) / g.n(s, `${clcLoadCol}72`));
 
       /**
        * Row 72: Absolute Raumheizlast [W]
-       * Original Excel formula: "SUMIF($B$3:$B$71,$B$17,I3:I71)+I12"
+       * Excel: "SUMIF($B$3:$B$71,$B$17,I3:I71)+I12"
        */
       grid.setCell('clc_load', `${clcLoadCol}72`, (s, c, g) =>
         g.SUMMEWENN('$B$3:$B$71', g.g('clc_load', 'B17'), `${clcLoadCol}3:${clcLoadCol}71`, 'clc_load') +
@@ -1192,14 +1192,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 73: Heizlast_spezifisch / qdot_room [W/m²]
-       * Original Excel formula: "I$72/IN_rooms!R$4"
+       * Excel: "I$72/IN_rooms!R$4"
        */
       grid.setCell('clc_load', `${clcLoadCol}73`, (s, c, g) =>
         g.n(s, `${clcLoadCol}72`) / g.n('IN_rooms', `${roomCol}4`));
 
       /**
        * Row 74: Heizlast mit Abschlag / Qdot_room_cor [W]
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.IFS(I$73<Daten!$E$112,clc_load!I$72*(1-Daten!$F$112),
        * AND(clc_load!I$73>=Daten!$E$112,clc_load!I$73<Daten!$E$113),clc_load!I$72*(1-Daten!$F$113),
        * AND(clc_load!I$73>=Daten!$E$113,clc_load!I$73<Daten!$E$114),clc_load!I$72*(1-Daten!$F$114),
@@ -1232,14 +1232,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 75: Heizlast_spez mit Abschlag / qdot_room_cor [W/m²]
-       * Original Excel formula: "I$74/IN_rooms!R$4"
+       * Excel: "I$74/IN_rooms!R$4"
        */
       grid.setCell('clc_load', `${clcLoadCol}75`, (s, c, g) =>
         g.n(s, `${clcLoadCol}74`) / g.n('IN_rooms', `${roomCol}4`));
 
       /**
        * Row 76: Kontrolle / r_Qdot_room
-       * Original Excel formula: "SUMIF($B$3:$B$71,$B$18,I$3:I$71)"
+       * Excel: "SUMIF($B$3:$B$71,$B$18,I$3:I$71)"
        */
       grid.setCell('clc_load', `${clcLoadCol}76`, (s, c, g) =>
         g.SUMMEWENN('$B$3:$B$71', g.g('clc_load', 'B18'), `${clcLoadCol}3:${clcLoadCol}71`, 'clc_load'));

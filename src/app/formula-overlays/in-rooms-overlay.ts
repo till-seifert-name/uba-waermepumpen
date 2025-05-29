@@ -15,14 +15,14 @@ export class InRoomsOverlay implements FormulaOverlay {
     roomColumns.forEach(col => {
       /**
        * Row 3: Empty string
-       * Original Excel formula:
+       * Excel:
        * =""
        */
       grid.setCell('IN_rooms', `${col}3`, (s, c, g) => "");
 
       /**
        * Row 5: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$5
        */
       grid.setCell('IN_rooms', `${col}5`, (s, c, g) =>
@@ -31,7 +31,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 6: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$6
        */
       grid.setCell('IN_rooms', `${col}6`, (s, c, g) =>
@@ -40,7 +40,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 7: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q7
        */
       grid.setCell('IN_rooms', `${col}7`, (s, c, g) =>
@@ -49,7 +49,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 8: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q8
        */
       grid.setCell('IN_rooms', `${col}8`, (s, c, g) =>
@@ -58,7 +58,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 12: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q12
        */
       grid.setCell('IN_rooms', `${col}12`, (s, c, g) =>
@@ -67,7 +67,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 16: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q16
        */
       grid.setCell('IN_rooms', `${col}16`, (s, c, g) =>
@@ -76,7 +76,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 20: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q20
        */
       grid.setCell('IN_rooms', `${col}20`, (s, c, g) =>
@@ -85,7 +85,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 24: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q24
        */
       grid.setCell('IN_rooms', `${col}24`, (s, c, g) =>
@@ -94,7 +94,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 25: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q25
        */
       grid.setCell('IN_rooms', `${col}25`, (s, c, g) =>
@@ -103,7 +103,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 27: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$27
        */
       grid.setCell('IN_rooms', `${col}27`, (s, c, g) =>
@@ -112,7 +112,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 29: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$29
        */
       grid.setCell('IN_rooms', `${col}29`, (s, c, g) =>
@@ -121,7 +121,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 35: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$35
        */
       grid.setCell('IN_rooms', `${col}35`, (s, c, g) =>
@@ -130,7 +130,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 36: EXIST_roof_knee_eff - Checks if room has knee wall
-       * Original Excel formula:
+       * Excel:
        * =IF(R$35="Nein","Ja","Nein")
        *
        * This formula checks if the room's "Klopfen Sie gegen die senkrechte Wand unter der Dachschräge. Klingt es hohl?" is "Nein"
@@ -146,7 +146,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 37: L_roof_knee_hei_eff - Effective knee wall height
-       * Original Excel formula:
+       * Excel:
        * =IF(R$35="Ja",0,R$34)
        *
        * If the wall is hollow ("Ja" in cell 35), then height is 0
@@ -162,7 +162,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 38: EXIST_roof_jamb_eff - Checks if room has hollow knee wall
-       * Original Excel formula:
+       * Excel:
        * =IF(R$35="Nein","Nein","Ja")
        *
        * This formula is the opposite of row 36 (knee wall existence)
@@ -179,7 +179,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 39: L_roof_jamb_hei_eff - Effective hollow knee wall height
-       * Original Excel formula:
+       * Excel:
        * =IF(R$35="Nein",0,R$34)
        *
        * If the wall is not hollow ("Nein" in cell 35), then hollow height is 0
@@ -195,7 +195,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 48: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q48
        */
       grid.setCell('IN_rooms', `${col}48`, (s, c, g) =>
@@ -204,7 +204,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 55: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$55
        */
       grid.setCell('IN_rooms', `${col}55`, (s, c, g) =>
@@ -213,7 +213,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 62: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$62
        */
       grid.setCell('IN_rooms', `${col}62`, (s, c, g) =>
@@ -222,7 +222,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 69: Copy from column Q
-       * Original Excel formula:
+       * Excel:
        * =$Q$69
        */
       grid.setCell('IN_rooms', `${col}69`, (s, c, g) =>
@@ -231,7 +231,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Modernization year for walls (e.g., R73, S73, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(OR(R$10=Daten!$B$19,R$10=""),IF(IN_build!Q7="Ja",IN_build!$S$7,IN_build!$P$5),IF(OR(R$10<IN_build!$P$5,R$10=Daten!$B$20),IN_build!$P$5,R$10))
        */
       grid.setCell('IN_rooms', `${col}73`, (s, c, g) =>
@@ -258,7 +258,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Wall insulation thickness (e.g., R74, S74, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(R73=IN_build!$P$5, 0, _xlfn.XLOOKUP(1,
        *   (INDIRECT("UWert_Mod[Bauteil]")="Außenwand") *
        *   (INDIRECT("UWert_Mod[Modernisierungsjahr]")=R73),
@@ -282,7 +282,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Wall insulation override (e.g., R75, S75, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(R$11<=0,R$74,R$11)
        */
       grid.setCell('IN_rooms', `${col}75`, (s, c, g) =>
@@ -295,7 +295,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Window type 1 modernization year (e.g., R76, S76, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(OR(R$15=Daten!$E$17,R$15=""),IN_build!$S$8,IF(OR(R$15=Daten!$E$18,R$15<IN_build!$P$5),IN_build!$P$5,R$15))
        */
       grid.setCell('IN_rooms', `${col}76`, (s, c, g) =>
@@ -318,7 +318,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Window type 2 modernization year (e.g., R77, S77, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(OR(R$19=Daten!$E$17,R$19=""),IN_build!$S$8,IF(OR(R$19=Daten!$E$18,R$19<IN_build!$P$5),IN_build!$P$5,R$19))
        */
       grid.setCell('IN_rooms', `${col}77`, (s, c, g) =>
@@ -341,7 +341,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Window type 3 modernization year (e.g., R78, S78, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(OR(R$23=Daten!$E$17,R$23=""),IN_build!$S$8,IF(OR(R$23=Daten!$E$18,R$23<IN_build!$P$5),IN_build!$P$5,R$23))
        */
       grid.setCell('IN_rooms', `${col}78`, (s, c, g) =>
@@ -364,7 +364,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Roof window type 1 modernization year (e.g., R79, S79, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(OR(R$43=Daten!$E$17,R$43=""),IF(IN_build!$S$8>=IN_build!$S$9,IN_build!$S$8,IN_build!$S$9),IF(OR(R$43=Daten!$E$18,R$43<IN_build!$P$5),IN_build!$P$5,R$43))
        */
       grid.setCell('IN_rooms', `${col}79`, (s, c, g) =>
@@ -391,7 +391,7 @@ export class InRoomsOverlay implements FormulaOverlay {
 
       /**
        * Roof window type 2 modernization year (e.g., R80, S80, etc.)
-       * Original Excel formula:
+       * Excel:
        * =IF(OR(R$47=Daten!$E$17,R$47=""),IF(IN_build!$S$8>=IN_build!$S$9,IN_build!$S$8,IN_build!$S$9),IF(OR(R$47=Daten!$E$18,R$47<IN_build!$P$5),IN_build!$P$5,R$47))
        */
       grid.setCell('IN_rooms', `${col}80`, (s, c, g) =>

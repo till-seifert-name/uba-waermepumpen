@@ -14,7 +14,7 @@ export class Normaussentemperatur12831Overlay implements FormulaOverlay {
     /**
      * Cell B3: PLZ from building data
      * Gets the postal code from building data
-     * Original Excel formula: "IN_build!$P$2"
+     * Excel: "IN_build!$P$2"
      */
     grid.setCell('Normaußentemperatur_12831', 'B3', (s, c, g) =>
       g.g('IN_build', 'P2'));
@@ -23,7 +23,7 @@ export class Normaussentemperatur12831Overlay implements FormulaOverlay {
      * Cell B5: Find closest PLZ in Tabelle4
      * Finds the postal code in the database that's closest to the input PLZ
      * Uses an INDEX/MATCH with ABS difference to find the nearest match
-     * Original Excel formula: "INDEX(Tabelle4[Plz],MATCH(MIN(ABS(Tabelle4[Plz]-$B$3)),ABS(Tabelle4[Plz]-$B$3),0))"
+     * Excel: "INDEX(Tabelle4[Plz],MATCH(MIN(ABS(Tabelle4[Plz]-$B$3)),ABS(Tabelle4[Plz]-$B$3),0))"
      */
     grid.setCell('Normaußentemperatur_12831', 'B5', (s, c, g) => {
       // Get PLZ from cell B3
@@ -49,7 +49,7 @@ export class Normaussentemperatur12831Overlay implements FormulaOverlay {
      * Cell B6: Look up temperature based on found PLZ
      * Uses XLOOKUP to find the corresponding temperature for the matched postal code
      * This is the design temperature (Außentemperatur) from DIN 12831 standard
-     * Original Excel formula: "_xlfn.XLOOKUP(B5,Tabelle4[Plz],Tabelle4[Außentemperatur °C])"
+     * Excel: "_xlfn.XLOOKUP(B5,Tabelle4[Plz],Tabelle4[Außentemperatur °C])"
      */
     grid.setCell('Normaußentemperatur_12831', 'B6', (s, c, g) => {
       // Get the PLZ to look up

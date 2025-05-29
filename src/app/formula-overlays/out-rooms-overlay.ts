@@ -26,7 +26,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 3: Ausgabe zur Wärmepumpeneignung
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.IFS(
        *   1<=clc_build!G$39,TXT_rooms!$E$5,
        *   AND(1>clc_build!G$39,clc_build!G$39>=0.8),TXT_rooms!$E$4,
@@ -66,7 +66,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 4: Lückentext Bauteilbewertung Raumebene 1
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.LET(_xlpm.max_HT_share,MAX(clc_build!G$13,clc_build!G$17,clc_build!G$21,clc_build!G$25,clc_build!G$29,clc_build!G$33),
        *   _xlfn.IFS(clc_load!I$18=_xlpm.max_HT_share,' Außenwand ',
        *   clc_load!I$23=_xlpm.max_HT_share,' Innenwand ',
@@ -101,7 +101,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 5: Lückentext Bauteilbewertung Raumebene 2
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.LET(
        *   _xlpm.second_HT_share,LARGE((clc_build!G$13,clc_build!G$17,clc_build!G$21,clc_build!G$25,clc_build!G$29,clc_build!G$33),2),
        *   _xlfn.IFS(clc_load!I$18=_xlpm.second_HT_share,' Außenwand ',
@@ -139,11 +139,11 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 6: Ausgabe Bauteilbewertung Raumebene
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.IFS(
        *   clc_build!G$8<50,TXT_rooms!$E$6,
-       *   AND(clc_build!G$8>=50,clc_build!G$6<70),TXT_rooms!$E$7&OUT_rooms!H$4&TXT_rooms!$E$8,
-       *   AND(clc_build!G$8>=70,clc_build!G$6<90),TXT_rooms!$E$9&OUT_rooms!H$4&TXT_rooms!$E$10,
+       *   AND(clc_build!G$8>=50,clc_build!G$8<70),TXT_rooms!$E$7&OUT_rooms!H$4&TXT_rooms!$E$8,
+       *   AND(clc_build!G$8>=70,clc_build!G$8<90),TXT_rooms!$E$9&OUT_rooms!H$4&TXT_rooms!$E$10,
        *   clc_build!G$8>=90,TXT_rooms!$E$11&OUT_rooms!H$4&'und die'&H$5&TXT_rooms!$E$12
        * )"
        */
@@ -154,15 +154,15 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
           g.UND(
             g.n('clc_build', `${clcBuildCol}8`) >= 50,
-            g.n('clc_build', `${clcBuildCol}6`) < 70
+            g.n('clc_build', `${clcBuildCol}8`) < 70
           ),
           `${g.g('TXT_rooms', 'E7')}${g.g('OUT_rooms', `${outRoomsCol}4`)}${g.g('TXT_rooms', 'E8')}`,
 
           g.UND(
             g.n('clc_build', `${clcBuildCol}8`) >= 70,
-            g.n('clc_build', `${clcBuildCol}6`) < 90
+            g.n('clc_build', `${clcBuildCol}8`) < 90
           ),
-          `g.g('TXT_rooms', 'E9')${g.g('OUT_rooms', `${outRoomsCol}4`)}${g.g('TXT_rooms', 'E10')}`,
+          `${g.g('TXT_rooms', 'E9')}${g.g('OUT_rooms', `${outRoomsCol}4`)}${g.g('TXT_rooms', 'E10')}`,
 
           g.n('clc_build', `${clcBuildCol}8`) >= 90,
           `${g.g('TXT_rooms', 'E11')}${g.g('OUT_rooms', `${outRoomsCol}4`)} und die ${g.g('OUT_rooms', `${outRoomsCol}5`)}${g.g('TXT_rooms', 'E12')}`,
@@ -173,7 +173,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 7: Lückentext Bewertung Heizkörpertausch Raumebene 1
-       * Original Excel formula:
+       * Excel:
        * " _xlfn.IFS(
        *     clc_build!G$39>0.5,
        *   ' größerer ',
@@ -231,7 +231,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 10: Ausgabe Heizkörpertausch Raumebene
-       * Original Excel formula:
+       * Excel:
        * "_xlfn.IFS(
        *   clc_build!G$39 > 1,
        *   TXT_rooms!$E$19,
@@ -265,21 +265,21 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 11: Heizlast mit Abschlag / Qdot_room_cor [W]
-       * Original Excel formula: "clc_build!G7"
+       * Excel: "clc_build!G7"
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}11`, (s, c, g) =>
         g.n('clc_build', `${clcBuildCol}7`));
 
       /**
        * Row 12: Heizlast_spez mit Abschlag / qdot_room_cor [W/m²]
-       * Original Excel formula: "clc_build!G8"
+       * Excel: "clc_build!G8"
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}12`, (s, c, g) =>
         g.n('clc_build', `${clcBuildCol}8`));
 
       /**
        * Row 13: Formatted heat load with unit
-       * Original Excel formula: "TEXT(H11,\"0\")&\" Watt | \" & TEXT(H12,\"0\") & \" W/m²\""
+       * Excel: "TEXT(H11,\"0\")&\" Watt | \" & TEXT(H12,\"0\") & \" W/m²\""
        * The & operator in Excel concatenates strings, in JS we use + but need to ensure string coercion
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}13`, (s, c, g) =>
@@ -288,31 +288,102 @@ export class OutRoomsOverlay implements FormulaOverlay {
 
       /**
        * Row 14: Leistung Heizkörper IST 55°C [W] with units
-       * Original Excel formula: "TEXT(clc_build!G37,\"0\") & \" Watt\""
+       * Excel: "TEXT(clc_build!G37,\"0\") & \" Watt\""
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}14`, (s, c, g) =>
         g.TEXT(g.n('clc_build', `${clcBuildCol}37`), "0") + " Watt");
 
       /**
        * Row 15: Typ 33 max. Leistung Austausch-Heizkörper [W] with units
-       * Original Excel formula: "TEXT(clc_build!G38,\"0\") & \" Watt\""
+       * Excel: "TEXT(clc_build!G38,\"0\") & \" Watt\""
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}15`, (s, c, g) =>
         g.TEXT(g.n('clc_build', `${clcBuildCol}38`), "0") + " Watt");
 
       /**
        * Row 16: Deckungsgrad IST 55°C as percentage
-       * Original Excel formula: "TEXT(clc_build!G39*100,\"0\") & \" % Deckung\""
+       * Excel: "TEXT(clc_build!G39*100,\"0\") & \" % Deckung\""
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}16`, (s, c, g) =>
         g.TEXT(g.n('clc_build', `${clcBuildCol}39`) * 100, "0") + " % Deckung");
 
       /**
        * Row 17: Typ 33 Deckungsgrad as percentage
-       * Original Excel formula: "TEXT(clc_build!G40*100,\"0\") & \" % Deckung\""
+       * Excel: "TEXT(clc_build!G40*100,\"0\") & \" % Deckung\""
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}17`, (s, c, g) =>
         g.TEXT(g.n('clc_build', `${clcBuildCol}40`) * 100, "0") + " % Deckung");
+
+      /**
+       * Row 35: Position Marker Skalen - Aktueller Heizkörper
+       * Excel:
+       * "_xlfn.LET(
+       *   _xlpm.deck_ist,clc_build!G$39,
+       *   _xlfn.IFS(
+       *     _xlpm.deck_ist>=1,0.125,
+       *     0.8>=_xlpm.deck_ist<1, _xlpm.deck_ist*0.245,
+       *     0.8<_xlpm.deck_ist>=0.6, _xlpm.deck_ist*0.495,
+       *     0.6<_xlpm.deck_ist, _xlpm.deck_ist*0.745))"
+       */
+      grid.setCell('OUT_rooms', `${outRoomsCol}35`, (s, c, g) => {
+        const deck_ist = g.n('clc_build', `${clcBuildCol}39`);
+
+        return g.WENNS(
+          deck_ist >= 1, 0.125,
+          g.UND(deck_ist <= 0.8, deck_ist >= 1), deck_ist * 0.245,
+          g.UND(deck_ist < 0.8, deck_ist >= 0.6), deck_ist * 0.495,
+          deck_ist < 0.6, deck_ist * 0.745,
+
+          // Default fallback
+          0.125
+        );
+      });
+
+      /**
+       * Row 36: Position Marker Skalen - Besserer Heizkörper
+       * Excel:
+       * "_xlfn.LET(
+       *   _xlpm.deck_Typ33,clc_build!H$40,
+       *   _xlfn.IFS(
+       *     _xlpm.deck_Typ33>1,0.125,
+       *     0.8>=_xlpm.deck_Typ33<1, _xlpm.deck_Typ33*0.245,
+       *     0.8<_xlpm.deck_Typ33>=0.6, _xlpm.deck_Typ33*0.495,
+       *     0.6<_xlpm.deck_Typ33, _xlpm.deck_Typ33*0.745))"
+       */
+      grid.setCell('OUT_rooms', `${outRoomsCol}36`, (s, c, g) => {
+        const deck_Typ33 = g.n('clc_build', `${clcBuildCol}40`);
+
+        return g.WENNS(
+          deck_Typ33 > 1, 0.125,
+          g.UND(deck_Typ33 <= 0.8, deck_Typ33 >= 1), deck_Typ33 * 0.245,
+          g.UND(deck_Typ33 < 0.8, deck_Typ33 >= 0.6), deck_Typ33 * 0.495,
+          deck_Typ33 < 0.6, deck_Typ33 * 0.745,
+
+          // Default fallback
+          0.125
+        );
+      });
+
+      /**
+       * Row 37: Position Marker Skalen - Kalkulierte Raumheizlast
+       * Excel:
+       * "_xlfn.IFS(
+       *   clc_load!I$75<20,20,
+       *   clc_load!I$75>125,125,
+       *   20<=clc_load!I$75<=125,clc_load!I$75)"
+       */
+      grid.setCell('OUT_rooms', `${outRoomsCol}37`, (s, c, g) =>
+        g.WENNS(
+          g.n('clc_load', `${clcLoadCol}75`) < 20, 20,
+          g.n('clc_load', `${clcLoadCol}75`) > 125, 125,
+          g.UND(
+            g.n('clc_load', `${clcLoadCol}75`) >= 20,
+            g.n('clc_load', `${clcLoadCol}75`) <= 125
+          ), g.n('clc_load', `${clcLoadCol}75`),
+
+          // Default fallback
+          g.n('clc_load', `${clcLoadCol}75`)
+        ));
     }
   }
 }

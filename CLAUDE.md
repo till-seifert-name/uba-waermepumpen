@@ -38,9 +38,9 @@ The UBA Wärmepumpen-Tool is an Angular-based web application that helps users a
   - Master imports consolidated in `master.ts`
 
 ### Implementation Guidelines for Excel Formula Translation
-1. **Strict Adherence to Excel Logic**: When implementing formula overlays, the original Excel formula logic must be preserved exactly
+1. **Strict Adherence to Excel Logic**: When implementing formula overlays, the Excel formula logic must be preserved exactly
 2. **Review DataGrid Methods First**: Before implementing formulas, check DataGrid.ts for existing Excel-equivalent methods
-3. **Document Original Formulas**: Include the original Excel formula in comments before implementation
+3. **Document Original Formulas**: Include the Excel formula in comments before implementation
 4. **LET Functions Exception**: Excel LET functions need special handling in JavaScript/TypeScript
 5. **Use g.WENN Instead of if Statements**: Maintain the declarative style of Excel by using DataGrid equivalents to Excel functions
 6. **Match Excel Function Names**: German Excel function names should use German equivalents (WENN for IF, SUMMEWENN for SUMIF, etc.)

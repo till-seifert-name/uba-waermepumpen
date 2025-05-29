@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {DataGrid, parseCellReference} from "./data-grid";
-import {BehaviorSubject, debounceTime, filter} from "rxjs";
+import {BehaviorSubject, debounceTime, filter, tap} from "rxjs";
 import {CustomLocalStorageService} from "./custom-local-storage.service";
 import {databaseRanges, explicitNamedRanges, namedExpressions, sheetsData} from '../../20250507_WP_Check_Vorlage_ts_export/master';
 import {applyFormulaOverlays} from "./formula-overlays";
@@ -210,9 +210,11 @@ export class BerechnungService {
         const [refSheet, refCell] = parseCellReference(ref);
         return refSheet === cellChange.sheet && refCell === cellChange.cell;
       })),
+      tap(cellChange => {
+        console.log(`Cell changed: ${cellChange.sheet}!${cellChange.cell} = ${cellChange.value}`);
+      }),
       debounceTime(1000)
     ).subscribe(cellChange => {
-      console.log(`Cell changed: ${cellChange.sheet}!${cellChange.cell} = ${cellChange.value}`);
       this.storage.set<string>(STORAGE_KEY, this.serializeData());
     });
 
@@ -927,17 +929,17 @@ export class BerechnungService {
    * Gets heater main type (IN_rooms rows 49,56,63/TYP_1_rad*)
    * @param heaterNum 1-3 corresponds to rows 49+7*(heaterNum-1)
    */
-  getHeatingMainType(roomId: number | string, heaterNum: number = 1): string {
+  getHeatingMainType(roomId: number | string, heaterNum: number = 1) {
     const column = this.getRoomColumn(roomId);
     const row = 49 + (heaterNum - 1) * 7; // TYP_1_rad1 in row 49, TYP_1_rad2 in row 56, TYP_1_rad3 in row 63
-    return this.grid.getCell('IN_rooms', `${column}${row}`).toString();
+    return this.grid.getCell('IN_rooms', `${column}${row}`).toString() as HeaterType;
   }
 
   /**
    * Sets heater main type (IN_rooms rows 49,56,63/TYP_1_rad*)
    * @param heaterNum 1-3 corresponds to rows 49+7*(heaterNum-1)
    */
-  setHeatingMainType(roomId: number | string, type: string, heaterNum: number = 1): void {
+  setHeatingMainType(roomId: number | string, type: HeaterType, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 49 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, type);
@@ -947,10 +949,10 @@ export class BerechnungService {
    * Gets heater subtype (IN_rooms rows 50,57,64/TYP_2_rad*)
    * @param heaterNum 1-3 corresponds to rows 50+7*(heaterNum-1)
    */
-  getHeatingSubType(roomId: number | string, heaterNum: number = 1): HeaterType {
+  getHeatingSubType(roomId: number | string, heaterNum: number = 1) {
     const column = this.getRoomColumn(roomId);
     const row = 50 + (heaterNum - 1) * 7;
-    return this.grid.getCell('IN_rooms', `${column}${row}`).toString() as HeaterType;
+    return this.grid.getCell('IN_rooms', `${column}${row}`).toString();
   }
 
   /**
