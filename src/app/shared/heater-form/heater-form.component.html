@@ -100,16 +100,23 @@
         </div>
       </div>
 
-      <!-- Höhe - Dropdown with options from INDIREKT(subtype) -->
-      <div class="col mb-3" *ngIf="hoeheOptions.length > 0">
+      <!-- Höhe - Dropdown with options from INDIREKT(subtype) OR free input for Handtuchradiator -->
+      <div class="col mb-3" *ngIf="hoeheOptions.length > 0 || isHandtuchradiator()">
         <div class="input-group">
           <label [for]="'heater' + heaterNumber + '_height'" class="input-group-text" style="width: 90px;">Höhe</label>
-          <select class="form-select" [id]="'heater' + heaterNumber + '_height'"
+          <!-- Free input for Handtuchradiator -->
+          <input *ngIf="isHandtuchradiator()" type="number" class="form-control text-end" [id]="'heater' + heaterNumber + '_height'"
+                 [ngModel]="berechnungService.getHeatingHeight(roomId, heaterNumber)"
+                 (ngModelChange)="berechnungService.setHeatingHeight(roomId, $event, heaterNumber)"
+                 [name]="'heater' + heaterNumber + '_height'" min="100" max="3000" step="1" required>
+          <!-- Dropdown for other types -->
+          <select *ngIf="!isHandtuchradiator()" class="form-select" [id]="'heater' + heaterNumber + '_height'"
                  [ngModel]="berechnungService.getHeatingHeight(roomId, heaterNumber)"
                  (ngModelChange)="berechnungService.setHeatingHeight(roomId, $event, heaterNumber)"
                  [name]="'heater' + heaterNumber + '_height'" required>
             <option *ngFor="let height of hoeheOptions" [ngValue]="height">{{ height }} mm</option>
           </select>
+          <span class="input-group-text">mm</span>
         </div>
       </div>
 

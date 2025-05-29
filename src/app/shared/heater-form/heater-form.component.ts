@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {BerechnungService, HeaterType} from '../../berechnung.service';
 
 @Component({
@@ -46,7 +46,18 @@ export class HeaterFormComponent implements OnInit, OnChanges {
 
     // Get depth values using INDIREKT(subtype&"_t")
     this.tiefeOptions = this.berechnungService.getNamesExpressionValueList(this.heizfleacheSubtype + "_t").map(v => typeof v == 'number' ? v : parseInt(v));
+
+    // Handle transition from free input to dropdown (when switching away from Handtuchradiator)
+    if (!this.isHandtuchradiator()) {
+      const currentHeight = this.berechnungService.getHeatingHeight(this.roomId, this.heaterNumber);
+      if (currentHeight && this.hoeheOptions.length > 0 && !this.hoeheOptions.includes(currentHeight)) {
+        // Find nearest matching option value for height
+        this.berechnungService.setHeatingHeight(this.roomId,
+          findNearestValue(currentHeight, this.hoeheOptions), this.heaterNumber);
+      }
+    }
   }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['roomId'] || changes['heaterNumber']) {
@@ -57,11 +68,11 @@ export class HeaterFormComponent implements OnInit, OnChanges {
   loadHeaterData(): void {
     const mainType = this.berechnungService.getHeatingMainType(this.roomId, this.heaterNumber);
     const subType = this.berechnungService.getHeatingSubType(this.roomId, this.heaterNumber);
-    
+
     // Try to get subtype from the data model first
     if (subType) {
       this.heizfleacheSubtype = subType.toString();
-    } 
+    }
     // Fall back to main type and first available subtype
     else if (mainType) {
       const subtypes = this.berechnungService.getNamesExpressionValueList(mainType);
@@ -90,7 +101,7 @@ export class HeaterFormComponent implements OnInit, OnChanges {
   onHeaterTypeChange(heaterType: HeaterType): void {
     // Set main type
     this.berechnungService.setHeatingMainType(this.roomId, heaterType, this.heaterNumber);
-    
+
     // Set sub type with same value initially (will be updated properly in updateDimensionOptions)
     this.berechnungService.setHeatingSubType(this.roomId, heaterType, this.heaterNumber);
 
@@ -119,8 +130,21 @@ export class HeaterFormComponent implements OnInit, OnChanges {
     }
   }
 
+  // Check if current heater is Handtuchradiator (requires free input instead of dropdown)
+  isHandtuchradiator(): boolean {
+    return this.berechnungService.getHeatingMainType(this.roomId, this.heaterNumber) === 'Rohrradiator' &&
+           this.heizfleacheSubtype === 'Handtuchradiator';
+  }
+
   // Handle remove button click
   onRemove(): void {
     this.remove.emit(this.heaterNumber);
   }
+}
+
+// Find the nearest value in an array of numbers
+function findNearestValue(target: number, options: number[]): number {
+  if (options.length === 0) return target;
+
+  return options.reduce((prev, curr) => Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev);
 }
