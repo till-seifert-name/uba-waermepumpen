@@ -4,6 +4,7 @@ import { InRoomsOverlay } from './in-rooms-overlay';
 import { DatenOverlay } from './daten-overlay';
 import { InBuildOverlay } from './in-build-overlay';
 import { OutRoomsOverlay } from './out-rooms-overlay';
+import { OutBuildOverlay } from './out-build-overlay';
 import { ClcBuildOverlay } from './clc-build-overlay';
 import { ClcFlatOverlay } from './clc-flat-overlay';
 import { ClcLoadOverlay } from './clc-load-overlay';
@@ -21,6 +22,7 @@ const overlays: FormulaOverlay[] = [
   new DatenOverlay(),
   new InBuildOverlay(),
   new OutRoomsOverlay(),
+  new OutBuildOverlay(),
   new ClcBuildOverlay(),
   new ClcFlatOverlay(),
   new ClcLoadOverlay(),

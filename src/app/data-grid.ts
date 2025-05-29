@@ -306,6 +306,29 @@ export class DataGrid {
   }
 
   /**
+   * Calculates the average of the specified cells in the specified sheet.
+   * Or a vector.
+   */
+  AVERAGE(sheet: string, cellsOrValues: (string | number)[]): number {
+    const values = cellsOrValues.map(item => {
+      if (typeof item === 'string') {
+        return this.n(sheet, item);
+      }
+      return item;
+    }).filter(v => !isNaN(v) && typeof v === 'number');
+
+    if (values.length === 0) return 0;
+    return values.reduce((sum, value) => sum + value, 0) / values.length;
+  }
+
+  /**
+   * Deutsche Alias für AVERAGE
+   */
+  DURCHSCHNITT(sheet: string, cellsOrValues: (string | number)[]): number {
+    return this.AVERAGE(sheet, cellsOrValues);
+  }
+
+  /**
    * Converts a range string like "A1:A10" or "Sheet!B2:B5" into a flat array of values.
    */
   resolveRange(sheet: string, input: (string | number)[] | string): (string | number)[] {
