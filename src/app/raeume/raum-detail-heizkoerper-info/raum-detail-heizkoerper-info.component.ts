@@ -8,13 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './raum-detail-heizkoerper-info.component.scss'
 })
 export class RaumDetailHeizkoerperInfoComponent implements OnInit {
-  roomId: string | null = null;
+  roomId: number = 1;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.roomId = params['room'] || null;
+      this.roomId = parseInt(params['room']) ?? 1;
     });
   }
 }

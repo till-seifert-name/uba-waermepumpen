@@ -36,7 +36,7 @@ export class RaumDetailHeizflaechenComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.route.queryParams.subscribe(params => {
         if (params['room']) {
-          this.roomId = params['room'];
+          this.roomId = parseInt(params['room']) ?? 1;
           this.berechnungService.setSelectedRoom(this.roomId);
           this.loadRoomData();
         } else {
