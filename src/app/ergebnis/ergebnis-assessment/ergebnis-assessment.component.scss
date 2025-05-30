@@ -1,5 +1,5 @@
 // Active nav state when sections are targeted
-$sections: 'rooms', 'nt-readiness', 'radiators', 'envelope';
+$sections: 'rooms', 'nt-readiness', 'radiators', 'envelope', 'next-steps';
 
 @each $section in $sections {
   :host:has(##{$section}-section:target) .nav-link[fragment="#{$section}-section"] {

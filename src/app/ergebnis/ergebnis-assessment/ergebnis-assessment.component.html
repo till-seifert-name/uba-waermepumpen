@@ -6,15 +6,15 @@
   <div class="mb-4 pb-2 border-bottom">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="[]" fragment="rooms-section" (click)="location.hash = 'rooms-section';">
-          <i class="bi bi-grid me-1"></i>
-          Raumübersicht
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" [routerLink]="[]" fragment="nt-readiness-section" (click)="location.hash = 'nt-readiness-section';">
           <i class="bi bi-speedometer2 me-1"></i>
           NT-Readiness Gebäude
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="rooms-section" (click)="location.hash = 'rooms-section';">
+          <i class="bi bi-grid me-1"></i>
+          Raumübersicht
         </a>
       </li>
       <li class="nav-item">
@@ -27,6 +27,12 @@
         <a class="nav-link" [routerLink]="[]" fragment="envelope-section" (click)="location.hash = 'envelope-section';">
           <i class="bi bi-house me-1"></i>
           Gebäudehülle
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="next-steps-section" (click)="location.hash = 'next-steps-section';">
+          <i class="bi bi-arrow-right-circle me-1"></i>
+          Nächste Schritte
         </a>
       </li>
     </ul>
@@ -272,6 +278,141 @@
   <div>
     <!-- Use OUT_build H40 for general hint -->
     <markdown [data]="grid.g('OUT_build', 'H40').toString()"></markdown>
+  </div>
+
+</section>
+
+<hr class="my-4"/>
+
+<!-- Nächste Schritte View -->
+<section id="next-steps-section">
+  <h3 class="mb-3">Nächste Schritte</h3>
+
+  <p><i class="bi bi-tools me-2"></i> Ihre nächsten Schritte – so geht es jetzt weiter</p>
+
+  <p>Je nach Ergebnis Ihres Checks können Sie nun aktiv werden:</p>
+
+  <p>
+    <strong>Wichtig:</strong> Für viele Förderprogramme ist eine Energieberatung Pflicht, z. B. wenn Sie die energetische Sanierung der Gebäudehülle in der BEG (Bundesförderung für effiziente Gebäude) fördern lassen wollen.
+  </p>
+
+
+  <!-- 1. Fachlich beraten lassen -->
+  <div class="card h-100 mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <i class="bi bi-person-check-fill me-2 text-success"></i>
+        1. Fachlich beraten lassen – mit Förderung
+      </h5>
+      <p class="card-text">
+        Wenn Ihr Gebäude noch nicht vollständig NT-ready ist oder Sie konkrete Sanierungsmaßnahmen planen, empfiehlt sich die Beratung durch eine*n Energieeffizienz-Expert*in.
+      </p>
+      <p class="card-text">
+        <strong>Gut zu wissen:</strong> Für viele Maßnahmen gibt es Fördermittel – eine qualifizierte Beratung ist oft Voraussetzung.
+      </p>
+      <p class="card-text">
+        <i class="bi bi-arrow-right"></i> Expert*innen finden Sie z. B. unter: <br>
+        <a href="https://www.energie-effizienz-experten.de/" target="_blank" class="btn btn-sm btn-outline-primary mt-2">
+          <i class="bi bi-box-arrow-up-right me-1"></i>energie-effizienz-experten.de
+        </a>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- 2. Einsparpotenziale und Kosten abschätzen -->
+  <div class="card h-100 mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <i class="bi bi-currency-euro me-2 text-primary"></i>
+        2. Einsparpotenziale und Kosten abschätzen
+      </h5>
+      <p class="card-text">
+        Sie möchten wissen, was Dämmung, neue Fenster oder eine Wärmepumpe kosten – und wie viel Energie Sie dadurch sparen können?
+      </p>
+      <p class="card-text">
+        <i class="bi bi-arrow-right"></i> Nutzen Sie kostenlos den ModernisierungsCheck von co2online für eine erste Einschätzung.
+      </p>
+      <a href="https://www.co2online.de/service/energiesparchecks/modernisierungscheck/" target="_blank" class="btn btn-sm btn-outline-primary">
+        <i class="bi bi-box-arrow-up-right me-1"></i>ModernisierungsCheck
+      </a>
+    </div>
+  </div>
+
+
+  <!-- 3. Heizung direkt planen -->
+  <div class="card h-100 mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <i class="bi bi-fire me-2 text-warning"></i>
+        3. Heizung direkt planen – wenn NT-ready
+      </h5>
+      <p class="card-text">
+        Ihr Gebäude ist bereits NT-ready oder braucht nur kleinere Anpassungen wie den Tausch von Heizkörpern? Dann können Sie direkt Kontakt zu einem Heizungsbaubetrieb aufnehmen, um die Wärmepumpe zu planen und ggf. die Förderung zu
+        beantragen.
+      </p>
+      <p class="card-text">
+        Fragen Sie Ihren Handwerksbetrieb, ob er die Antragstellung zur Förderung für den Heizungstausch übernehmen kann.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- 4. Heizlast berechnen lassen -->
+  <div class="card h-100 mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <i class="bi bi-calculator-fill me-2 text-info"></i>
+        4. Heizlast berechnen lassen – für Planung und Förderung
+      </h5>
+      <p class="card-text">
+        Damit Ihre Wärmepumpe korrekt dimensioniert wird, benötigen Sie eine Heizlastberechnung nach DIN EN 12831.
+      </p>
+      <p class="card-text">
+        Zusätzlich wird die raumweise Heizlastberechnung nach DIN EN 12831 für den hydraulischen Abgleich (Verfahren B) sowie für die Berechnung eines Heizkörpertauschs benötigt.
+      </p>
+      <p>
+        Beim hydraulischen Abgleich wird die Verteilung des Heizungswassers zwischen den Heizflächen so eingestellt, dass alle Räume gleichmäßig warm werden. Dafür werden zusätzlich die
+        Heizkörperleistung und der erforderliche Durchfluss ermittelt.
+      </p>
+      <p>
+        Ist ein Gebäude nicht hydraulisch abgeglichen, brauchen einige Räume unnötig hohe Vorlauftemperaturen und die Effizienz der Heizungsanlage sinkt.
+      </p>
+      <p class="card-text">
+        <i class="bi bi-arrow-right"></i> Ein*e Energieberater*in oder Fachplaner*in kann diese Berechnungen erstellen – oft im Rahmen eines individuellen Sanierungsfahrplans (iSFP).
+      </p>
+    </div>
+  </div>
+
+
+  <!-- 5. Weitere Räume erfassen -->
+  <div class="card h-100 mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <i class="bi bi-pencil-fill me-2 text-secondary"></i>
+        5. Weitere Räume erfassen (optional)
+      </h5>
+      <p class="card-text">
+        Je mehr Räume Sie im Check angeben, desto präziser fällt die Bewertung aus. Falls Sie noch nicht alle Räume erfasst haben, können Sie die Eingabe jetzt fortsetzen oder die offene Prüfung an eine Fachperson übergeben.
+      </p>
+      <button class="btn btn-sm btn-outline-primary" routerLink="/raeume/intro">
+        <i class="bi bi-plus-lg me-1"></i>Weitere Räume hinzufügen
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Fazit -->
+  <div class="card h-100 border-success">
+    <div class="card-body">
+      <h5 class="card-title text-success">
+        <i class="bi bi-check-square-fill me-2"></i>
+        Fazit
+      </h5>
+      <p class="card-text">
+        Ob Sie sofort loslegen oder noch mehr Informationen sammeln möchten – dieser Check ist der erste Schritt. Jetzt können Sie gezielt entscheiden, wie Sie Ihr Gebäude fit für die Wärmepumpe machen.
+      </p>
+    </div>
   </div>
 
 </section>
