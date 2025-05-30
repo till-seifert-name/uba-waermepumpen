@@ -1121,32 +1121,51 @@ export class DataGrid {
   }
 
   /**
-   * Helper function to check if a value matches Excel criteria
+   * Helper function to check if a value matches Excel-like criteria (e.g., used in COUNTIF)
    */
-  private matchesCriteria(value: number|boolean, criteria: string | number | boolean): boolean {
+  private matchesCriteria(value: number | boolean, criteria: string | number | boolean): boolean {
     if (typeof criteria === 'number') {
       return value === criteria;
     }
+
     if (typeof criteria === 'boolean') {
-      return value == criteria;
+      return value == criteria; // loose equality to allow 1 == true
     }
 
-    const criteriaStr = criteria.toString();
+    const criteriaStr = criteria.toString().trim();
+
+    // Try to parse value as number for numeric comparisons
+    const numericValue = Number(value);
+    const isNumeric = !isNaN(numericValue);
 
     if (criteriaStr.startsWith('>=')) {
-      return Number(value) >= Number(criteriaStr.substring(2));
+      const comp = Number(criteriaStr.substring(2));
+      return isNumeric && numericValue >= comp;
     } else if (criteriaStr.startsWith('<=')) {
-      return Number(value) <= Number(criteriaStr.substring(2));
+      const comp = Number(criteriaStr.substring(2));
+      return isNumeric && numericValue <= comp;
     } else if (criteriaStr.startsWith('>')) {
-      return Number(value) > Number(criteriaStr.substring(1));
+      const comp = Number(criteriaStr.substring(1));
+      return isNumeric && numericValue > comp;
     } else if (criteriaStr.startsWith('<')) {
-      return Number(value) < Number(criteriaStr.substring(1));
+      const comp = Number(criteriaStr.substring(1));
+      return isNumeric && numericValue < comp;
     } else if (criteriaStr.startsWith('=')) {
-      return Number(value) === Number(criteriaStr.substring(1));
+      const compStr = criteriaStr.substring(1);
+      // Match either numeric or string equality
+      if (isNumeric && !isNaN(Number(compStr))) {
+        return numericValue === Number(compStr);
+      }
+      return value.toString() === compStr;
     } else {
-      return Number(value) === Number(criteriaStr);
+      // Default: equality comparison as in COUNTIF without an operator
+      if (isNumeric && !isNaN(Number(criteriaStr))) {
+        return numericValue === Number(criteriaStr);
+      }
+      return value.toString() === criteriaStr;
     }
   }
+
 
   /**
    * Helper function to get cell range values

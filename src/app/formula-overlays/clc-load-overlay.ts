@@ -255,12 +255,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           g.AGGREGATE(
             15, // SMALL
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.LINKS(g.g(s, `A14`), 9)),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.LINKS(g.g(s, `A14`), 9)),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             ),
@@ -471,12 +471,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.LINKS(g.g('clc_load', 'A27'), 4)),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.LINKS(g.g('clc_load', 'A27'), 4)),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -571,12 +571,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
             15, // SMALL
             g.MULTIPLY(
               g.DIVIDE(
-                g.RANGE('U_Werte_IWU!F30:F262', s),
+                g.RANGE('F30:F262', 'U_Werte_IWU'),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.LINKS(g.g('clc_load', 'A33'), 5)),
+                  g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.LINKS(g.g('clc_load', 'A33'), 5)),
                   g.MULTIPLY(
-                    g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                    g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                    g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                    g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                   )
                 )
               )
@@ -676,12 +676,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A38')),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A38')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -759,12 +759,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A43')),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A43')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -784,12 +784,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.RANGE('F30:F267', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A44')),
+                g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A44')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}76`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}76`)),
+                  g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -848,12 +848,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A49')),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A49')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -873,12 +873,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.RANGE('F30:F267', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A50')),
+                g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A50')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}77`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}77`)),
+                  g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -937,12 +937,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A55')),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A55')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -962,12 +962,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.RANGE('F30:F267', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A56')),
+                g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A56')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}78`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}78`)),
+                  g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -1026,12 +1026,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A61')),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A61')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -1051,12 +1051,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.RANGE('F30:F267', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A62')),
+                g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A62')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}79`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}79`)),
+                  g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -1111,12 +1111,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F262', s),
+              g.RANGE('F30:F262', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E262', s), g.g('clc_load', 'A67')),
+                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A67')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D262', s), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C262', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )
@@ -1136,12 +1136,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           15, // SMALL
           g.MULTIPLY(
             g.DIVIDE(
-              g.RANGE('U_Werte_IWU!F30:F267', s),
+              g.RANGE('F30:F267', 'U_Werte_IWU'),
               g.MULTIPLY(
-                g.GLEICH(g.RANGE('U_Werte_IWU!E30:E267', s), g.g('clc_load', 'A68')),
+                g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A68')),
                 g.MULTIPLY(
-                  g.GLEICH(g.RANGE('U_Werte_IWU!D30:D267', s), g.g('IN_rooms', `${roomCol}80`)),
-                  g.GLEICH(g.RANGE('U_Werte_IWU!C30:C267', s), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}80`)),
+                  g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
             )

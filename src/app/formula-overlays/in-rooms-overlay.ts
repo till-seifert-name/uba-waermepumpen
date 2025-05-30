@@ -232,7 +232,7 @@ export class InRoomsOverlay implements FormulaOverlay {
       /**
        * Modernization year for walls (e.g., R73, S73, etc.)
        * Excel:
-       * =IF(OR(R$10=Daten!$B$19,R$10=""),IF(IN_build!Q7="Ja",IN_build!$S$7,IN_build!$P$5),IF(OR(R$10<IN_build!$P$5,R$10=Daten!$B$20),IN_build!$P$5,R$10))
+       * =IF(OR(R$10=Daten!$B$19,R$10=""),IF(IN_build!$Q$7="Ja",IN_build!$R$7,IN_build!$P$5),IF(OR(R$10<IN_build!$P$5,R$10=Daten!$B$20),IN_build!$P$5,R$10))
        */
       grid.setCell('IN_rooms', `${col}73`, (s, c, g) =>
         g.WENN(
@@ -242,7 +242,7 @@ export class InRoomsOverlay implements FormulaOverlay {
           ),
           g.WENN(
             g.g('IN_build', 'Q7') === "Ja",
-            g.g('IN_build', 'S7'),
+            g.g('IN_build', 'R7'),
             g.g('IN_build', 'P5')
           ),
           g.WENN(
@@ -296,7 +296,7 @@ export class InRoomsOverlay implements FormulaOverlay {
       /**
        * Window type 1 modernization year (e.g., R76, S76, etc.)
        * Excel:
-       * =IF(OR(R$15=Daten!$E$17,R$15=""),IN_build!$S$8,IF(OR(R$15=Daten!$E$18,R$15<IN_build!$P$5),IN_build!$P$5,R$15))
+       * =IF(OR(R$15=Daten!$E$17,R$15=""),IN_build!$R$8,IF(OR(R$15=Daten!$E$18,R$15<IN_build!$P$5),IN_build!$P$5,R$15))
        */
       grid.setCell('IN_rooms', `${col}76`, (s, c, g) =>
         g.WENN(
@@ -304,7 +304,7 @@ export class InRoomsOverlay implements FormulaOverlay {
             g.g(s, `${col}15`) === g.g('Daten', 'E17'),
             g.g(s, `${col}15`) === ""
           ),
-          g.g('IN_build', 'S8'),
+          g.g('IN_build', 'R8'),
           g.WENN(
             g.ODER(
               g.g(s, `${col}15`) === g.g('Daten', 'E18'),
@@ -319,7 +319,7 @@ export class InRoomsOverlay implements FormulaOverlay {
       /**
        * Window type 2 modernization year (e.g., R77, S77, etc.)
        * Excel:
-       * =IF(OR(R$19=Daten!$E$17,R$19=""),IN_build!$S$8,IF(OR(R$19=Daten!$E$18,R$19<IN_build!$P$5),IN_build!$P$5,R$19))
+       * =IF(OR(R$19=Daten!$E$17,R$19=""),IN_build!$R$8,IF(OR(R$19=Daten!$E$18,R$19<IN_build!$P$5),IN_build!$P$5,R$19))
        */
       grid.setCell('IN_rooms', `${col}77`, (s, c, g) =>
         g.WENN(
@@ -327,7 +327,7 @@ export class InRoomsOverlay implements FormulaOverlay {
             g.g(s, `${col}19`) === g.g('Daten', 'E17'),
             g.g(s, `${col}19`) === ""
           ),
-          g.g('IN_build', 'S8'),
+          g.g('IN_build', 'R8'),
           g.WENN(
             g.ODER(
               g.g(s, `${col}19`) === g.g('Daten', 'E18'),
@@ -342,7 +342,7 @@ export class InRoomsOverlay implements FormulaOverlay {
       /**
        * Window type 3 modernization year (e.g., R78, S78, etc.)
        * Excel:
-       * =IF(OR(R$23=Daten!$E$17,R$23=""),IN_build!$S$8,IF(OR(R$23=Daten!$E$18,R$23<IN_build!$P$5),IN_build!$P$5,R$23))
+       * =IF(OR(R$23=Daten!$E$17,R$23=""),IN_build!$R$8,IF(OR(R$23=Daten!$E$18,R$23<IN_build!$P$5),IN_build!$P$5,R$23))
        */
       grid.setCell('IN_rooms', `${col}78`, (s, c, g) =>
         g.WENN(
@@ -350,7 +350,7 @@ export class InRoomsOverlay implements FormulaOverlay {
             g.g(s, `${col}23`) === g.g('Daten', 'E17'),
             g.g(s, `${col}23`) === ""
           ),
-          g.g('IN_build', 'S8'),
+          g.g('IN_build', 'R8'),
           g.WENN(
             g.ODER(
               g.g(s, `${col}23`) === g.g('Daten', 'E18'),
@@ -365,7 +365,7 @@ export class InRoomsOverlay implements FormulaOverlay {
       /**
        * Roof window type 1 modernization year (e.g., R79, S79, etc.)
        * Excel:
-       * =IF(OR(R$43=Daten!$E$17,R$43=""),IF(IN_build!$S$8>=IN_build!$S$9,IN_build!$S$8,IN_build!$S$9),IF(OR(R$43=Daten!$E$18,R$43<IN_build!$P$5),IN_build!$P$5,R$43))
+       * =IF(OR(R$43=Daten!$E$17,R$43=""),IF(IN_build!$R$8>=IN_build!$R$9,IN_build!$R$8,IN_build!$R$9),IF(OR(R$43=Daten!$E$18,R$43<IN_build!$P$5),IN_build!$P$5,R$43))
        */
       grid.setCell('IN_rooms', `${col}79`, (s, c, g) =>
         g.WENN(
@@ -374,9 +374,9 @@ export class InRoomsOverlay implements FormulaOverlay {
             g.g(s, `${col}43`) === ""
           ),
           g.WENN(
-            g.g('IN_build', 'S8') >= g.g('IN_build', 'S9'),
-            g.g('IN_build', 'S8'),
-            g.g('IN_build', 'S9')
+            g.g('IN_build', 'R8') >= g.g('IN_build', 'R9'),
+            g.g('IN_build', 'R8'),
+            g.g('IN_build', 'R9')
           ),
           g.WENN(
             g.ODER(
@@ -392,7 +392,7 @@ export class InRoomsOverlay implements FormulaOverlay {
       /**
        * Roof window type 2 modernization year (e.g., R80, S80, etc.)
        * Excel:
-       * =IF(OR(R$47=Daten!$E$17,R$47=""),IF(IN_build!$S$8>=IN_build!$S$9,IN_build!$S$8,IN_build!$S$9),IF(OR(R$47=Daten!$E$18,R$47<IN_build!$P$5),IN_build!$P$5,R$47))
+       * =IF(OR(R$47=Daten!$E$17,R$47=""),IF(IN_build!$R$8>=IN_build!$R$9,IN_build!$R$8,IN_build!$R$9),IF(OR(R$47=Daten!$E$18,R$47<IN_build!$P$5),IN_build!$P$5,R$47))
        */
       grid.setCell('IN_rooms', `${col}80`, (s, c, g) =>
         g.WENN(
@@ -401,9 +401,9 @@ export class InRoomsOverlay implements FormulaOverlay {
             g.g(s, `${col}47`) === ""
           ),
           g.WENN(
-            g.g('IN_build', 'S8') >= g.g('IN_build', 'S9'),
-            g.g('IN_build', 'S8'),
-            g.g('IN_build', 'S9')
+            g.g('IN_build', 'R8') >= g.g('IN_build', 'R9'),
+            g.g('IN_build', 'R8'),
+            g.g('IN_build', 'R9')
           ),
           g.WENN(
             g.ODER(
