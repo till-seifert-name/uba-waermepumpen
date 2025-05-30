@@ -28,7 +28,7 @@ export class RoomListComponent   {
    * Removes the room with the specified ID
    * Only the last room can be removed (enforced by the service)
    */
-  removeRoom(roomId: string): void {
+  removeRoom(roomId: number): void {
     this.berechnungService.removeRoom(roomId);
   }
 
@@ -37,7 +37,7 @@ export class RoomListComponent   {
    * @param roomId The ID of the room to rename
    * @param newName The new name for the room
    */
-  renameRoom(roomId: string, newName: string): void {
+  renameRoom(roomId: number, newName: string): void {
     if (!newName || !newName.trim()) {
       // If the name is empty, restore the previous name
       // We shouldn't allow empty names since they're used to determine room existence

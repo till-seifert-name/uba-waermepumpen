@@ -9,21 +9,15 @@ $sections: 'rooms', 'nt-readiness', 'radiators', 'envelope';
 }
 
 // Room dashboard styling
-.room-dashboard-card {
-  h3 {
-    font-weight: 600;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--bs-border-color-translucent);
-  }
-
-  .value-box {
-    font-weight: 600;
-    min-width: 150px;
-    text-align: center;
-    color: white;
-  }
+.value-box {
+  font-weight: 600;
+  min-width: 150px;
+  text-align: center;
+  color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: var(--bs-border-radius);
 }
-
 
 // Icon colors
 .icon-success {
@@ -36,4 +30,21 @@ $sections: 'rooms', 'nt-readiness', 'radiators', 'envelope';
 
 .icon-danger {
   color: var(--bs-danger);
+}
+
+// Rating color system using CSS custom properties
+:host {
+  --green: #28a745;
+  --yellow: #ffc107;
+  --orange: #fd7e14;
+  --red: #dc3545;
+  --gray: #6c757d;
+}
+
+.rating-color {
+  color: var(--rating-color, var(--gray));
+}
+
+.rating-bg-color {
+  background-color: var(--rating-color, var(--gray));
 }

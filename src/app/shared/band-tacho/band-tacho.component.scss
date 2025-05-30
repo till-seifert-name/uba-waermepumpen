@@ -57,7 +57,7 @@
 .gauge-label {
   position: absolute;
   text-align: center;
-  white-space: nowrap;
+  max-width: 15%;
 
   .gauge-label-marker {
     position: absolute;

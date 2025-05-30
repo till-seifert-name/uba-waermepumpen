@@ -11,7 +11,7 @@ import {DataGrid} from '../../data-grid';
   styleUrl: './raum-detail-walls.component.scss'
 })
 export class RaumDetailWallsComponent implements OnInit, OnDestroy {
-  roomId: string = '';
+  roomId: number = 1;
   public grid: DataGrid;
   private subscriptions: Subscription[] = [];
 
@@ -68,7 +68,7 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  loadRoomData(roomId: string): void {
+  loadRoomData(roomId: number): void {
     // Check if window types 2 and 3 have any data and should be shown
     this.window2Visible = this.berechnungService.getWindowWidth(roomId, 2) > 0;
     this.window3Visible = this.berechnungService.getWindowWidth(roomId, 3) > 0;

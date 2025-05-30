@@ -12,7 +12,7 @@ import {OUT_ROOMS_COLS} from "../../formula-overlays/base-overlay";
   styleUrl: './raum-detail-ergebnis.component.scss'
 })
 export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
-  roomId: string = '';
+  roomId: number = 1;
 
   // Direct DataGrid access for templates
   get grid(): DataGrid {
@@ -22,12 +22,7 @@ export class RaumDetailErgebnisComponent implements OnInit, OnDestroy {
   // Helper method to get the room column in OUT_rooms sheet
   getRoomOutColumn(): string {
     // OUT_rooms columns H-V for rooms 1-15
-    const roomIndex = parseInt(this.roomId, 10) - 1;
-
-    // Return corresponding column or default to first column if out of bounds
-    return roomIndex >= 0 && roomIndex < OUT_ROOMS_COLS.length
-      ? OUT_ROOMS_COLS[roomIndex]
-      : OUT_ROOMS_COLS[0];
+    return OUT_ROOMS_COLS[this.roomId - 1]
   }
 
   // Helper method to get the room column in clc_build sheet

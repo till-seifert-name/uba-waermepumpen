@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './raum-detail-basic.component.scss'
 })
 export class RaumDetailBasicComponent implements OnInit, OnDestroy {
-  roomId: string = '';
+  roomId: number = 1;
   roomName: string = '';
   private subscriptions: Subscription[] = [];
 
@@ -41,7 +41,7 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  loadRoomName(roomId: string): void {
+  loadRoomName(roomId: number): void {
     try {
       // Get room name directly from the grid
       this.roomName = this.berechnungService.getRoomName(roomId);

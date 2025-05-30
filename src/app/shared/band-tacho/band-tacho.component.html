@@ -7,7 +7,7 @@
        class="pin position-absolute"
        [style.left.%]="calculatePositionPercent(pin.value)"
        [style.transform]="'translateX(-50%)'"
-       [title]="pin.tooltip">
+       [title]="pin.tooltip + ' (' + pin.value + ')'">
     <i class="bi bi-caret-down-fill fs-4" [style.color]="getPinColor(pin)"></i>
   </div>
 

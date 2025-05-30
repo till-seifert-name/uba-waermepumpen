@@ -9,10 +9,10 @@ import { Subscription } from 'rxjs';
   styleUrl: './raeume-intro.component.scss'
 })
 export class RaeumeIntroComponent implements OnInit, OnDestroy {
-  selectedRoomId: string = '';
+  selectedRoomId: number = 1;
   selectedRoomName: string = '';
   roomList: Room[] = [];
-  
+
   private subscriptions: Subscription[] = [];
 
   constructor(private berechnungService: BerechnungService) {}
@@ -22,14 +22,14 @@ export class RaeumeIntroComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.berechnungService.rooms$.subscribe(rooms => {
         this.roomList = rooms;
-        
+
         // If no room is selected yet but we have rooms, select the first one
         if (!this.selectedRoomId && rooms.length > 0) {
           this.setSelectedRoom(rooms[0].id);
         }
       })
     );
-    
+
     // Subscribe to selected room changes
     this.subscriptions.push(
       this.berechnungService.selectedRoom$.subscribe(roomId => {
@@ -41,16 +41,16 @@ export class RaeumeIntroComponent implements OnInit, OnDestroy {
       })
     );
   }
-  
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  onRoomSelected(roomId: string): void {
+  onRoomSelected(roomId: number): void {
     this.setSelectedRoom(roomId);
   }
-  
-  setSelectedRoom(roomId: string): void {
+
+  setSelectedRoom(roomId: number): void {
     this.berechnungService.setSelectedRoom(roomId);
   }
 }

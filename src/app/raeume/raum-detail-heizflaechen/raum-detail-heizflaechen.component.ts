@@ -11,7 +11,7 @@ import {DataGrid} from '../../data-grid';
   styleUrl: './raum-detail-heizflaechen.component.scss'
 })
 export class RaumDetailHeizflaechenComponent implements OnInit, OnDestroy {
-  roomId: string = '';
+  roomId: number = 1;
   public grid: DataGrid;
 
   // Track visible heater types
@@ -57,7 +57,7 @@ export class RaumDetailHeizflaechenComponent implements OnInit, OnDestroy {
     if (!this.heater1Visible) {
       // Set main type
       this.berechnungService.setHeatingMainType(this.roomId, 'Flachheizkoerper_glatt', 1);
-      
+
       // Get first available subtype for this main type
       const subtypes = this.berechnungService.getNamesExpressionValueList('Flachheizkoerper_glatt');
       if (subtypes.length > 0) {
@@ -73,13 +73,13 @@ export class RaumDetailHeizflaechenComponent implements OnInit, OnDestroy {
       this.heater1Visible = true;
       // Set main type
       this.berechnungService.setHeatingMainType(this.roomId, 'Flachheizkoerper_glatt', 1);
-      
+
       // Get first available subtype for this main type
       const subtypes = this.berechnungService.getNamesExpressionValueList('Flachheizkoerper_glatt');
       if (subtypes.length > 0) {
         this.berechnungService.setHeatingSubType(this.roomId, subtypes[0].toString(), 1);
       }
-      
+
       this.berechnungService.setHeatingWidth(this.roomId, 100, 1);
       this.berechnungService.setHeatingHeight(this.roomId, 60, 1);
       this.berechnungService.setHeatingCount(this.roomId, 1, 1);

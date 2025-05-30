@@ -8,7 +8,7 @@ import {BerechnungService, HeaterType} from '../../berechnung.service';
   styleUrls: ['./heater-form.component.scss']
 })
 export class HeaterFormComponent implements OnInit, OnChanges {
-  @Input() roomId: string = '';
+  @Input() roomId: number = 1;
   @Input() heaterNumber: number = 1;
   @Input() visible: boolean = false;
   @Output() remove = new EventEmitter<number>();

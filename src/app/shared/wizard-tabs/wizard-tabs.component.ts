@@ -11,7 +11,7 @@ interface TabConfig {
   queryParams?: any;     // Optional query parameters
   pathMatch: string;
   disabled?: boolean;
-  roomId?: string;       // For room-specific tabs
+  roomId?: number;       // For room-specific tabs
   icon?: string;         // Bootstrap icon class name (without the 'bi-' prefix)
 }
 
@@ -38,7 +38,7 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
   activeTabId: string = 'gebaeude';
   roomTabs: TabConfig[] = [];
   rooms: Room[] = [];
-  currentRoomId: string = '';
+  currentRoomId: number = 1;
 
   // Flag to show room sub-tabs when a room tab is active
   showRoomSubTabs: boolean = false;
@@ -80,7 +80,7 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
         this.currentRoomId = selectedRoom;
         this.updateRoomTabs();
 
-        const roomId = queryParams['room'];
+        const roomId = parseInt(queryParams['room']) || 1;
         if (roomId) {
           this.berechnungService.setSelectedRoom(roomId);
         }

@@ -137,9 +137,9 @@ import {IN_ROOM_COLS} from "./formula-overlays/base-overlay";
 
 // Shared Room interface for consistent use across components
 export interface Room {
-  id: string;     // Room ID is the 1-based index matching the room column (1-15)
+  id: number;     // Room ID is the 1-based index matching the room column (1-15)
   name: string;   // Room name from the IN_rooms sheet
-  type: string;   // Room type: 'cold', 'exterior', 'ceiling', 'windows', 'other'
+  type?: string;   // Room type: 'cold', 'exterior', 'ceiling', 'windows', 'other'
 }
 
 export type HeaterType =
@@ -162,13 +162,10 @@ export class BerechnungService {
   private storage=inject(CustomLocalStorageService);
 
   // Room management
-  private roomsSubject = new BehaviorSubject<Room[]>([]);
-
-  // Observable for components to subscribe to
-  public rooms$ = this.roomsSubject;
+  public rooms$ = new BehaviorSubject<Room[]>([]);
 
   // Currently selected room
-  private selectedRoomSubject = new BehaviorSubject<string>('');
+  private selectedRoomSubject = new BehaviorSubject<number>(1);
   public selectedRoom$ = this.selectedRoomSubject;
 
 
@@ -367,20 +364,14 @@ export class BerechnungService {
 // Helper methods for room data access
 
   // Convert room ID (1-15) to a column letter (R-AF)
-  private getRoomColumn(roomId: number | string): string {
-    const id = typeof roomId === 'string' ? parseInt(roomId, 10) : roomId;
-    if (id < 1 || id > 15) {
-      throw new Error(`Room ID must be between 1 and 15, got ${id}`);
-    }
-    // Column R is for room 1, S for room 2, etc.
-    const columnIndex = 'R'.charCodeAt(0) + (id - 1);
-    return String.fromCharCode(columnIndex > 90 ? columnIndex - 26 + 64 : columnIndex);
+  private getRoomColumn(roomId: number) {
+    return IN_ROOM_COLS[roomId - 1];
   }
 
   /**
    * Gets room name from IN_rooms row 3 (TXT_room_name)
    */
-  getRoomName(roomId: number | string): string {
+  getRoomName(roomId: number): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}3`).toString();
   }
@@ -388,7 +379,7 @@ export class BerechnungService {
   /**
    * Sets room name in IN_rooms row 3 (TXT_room_name)
    */
-  setRoomName(roomId: number | string, name: string): void {
+  setRoomName(roomId: number, name: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}3`, name);
   }
@@ -396,7 +387,7 @@ export class BerechnungService {
   /**
    * Gets room area from IN_rooms row 4 (A_floor) in m²
    */
-  getRoomArea(roomId: number | string): number {
+  getRoomArea(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}4`);
   }
@@ -404,7 +395,7 @@ export class BerechnungService {
   /**
    * Sets room area in IN_rooms row 4 (A_floor) in m²
    */
-  setRoomArea(roomId: number | string, area: number): void {
+  setRoomArea(roomId: number, area: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}4`, area);
   }
@@ -412,7 +403,7 @@ export class BerechnungService {
   /**
    * Gets room height from IN_rooms row 5 (L_hei) in m
    */
-  getRoomHeight(roomId: number | string): number {
+  getRoomHeight(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}5`);
   }
@@ -420,7 +411,7 @@ export class BerechnungService {
   /**
    * Sets room height in IN_rooms row 5 (L_hei) in m
    */
-  setRoomHeight(roomId: number | string, height: number): void {
+  setRoomHeight(roomId: number, height: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}5`, height);
   }
@@ -428,7 +419,7 @@ export class BerechnungService {
   /**
    * Gets room temperature from IN_rooms row 6 (T_air_set) in °C
    */
-  getRoomTemperature(roomId: number | string): number {
+  getRoomTemperature(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}6`);
   }
@@ -436,7 +427,7 @@ export class BerechnungService {
   /**
    * Sets room temperature in IN_rooms row 6 (T_air_set) in °C
    */
-  setRoomTemperature(roomId: number | string, temperature: number): void {
+  setRoomTemperature(roomId: number, temperature: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}6`, temperature);
   }
@@ -444,7 +435,7 @@ export class BerechnungService {
   /**
    * Gets ceiling type from IN_rooms row 7 (TYP_V_above)
    */
-  getRoomCeilingType(roomId: number | string): string {
+  getRoomCeilingType(roomId: number): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}7`).toString();
   }
@@ -452,7 +443,7 @@ export class BerechnungService {
   /**
    * Sets ceiling type in IN_rooms row 7 (TYP_V_above)
    */
-  setRoomCeilingType(roomId: number | string, ceilingType: string): void {
+  setRoomCeilingType(roomId: number, ceilingType: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}7`, ceilingType);
   }
@@ -460,7 +451,7 @@ export class BerechnungService {
   /**
    * Gets floor type from IN_rooms row 8 (TYP_V_below)
    */
-  getRoomFloorType(roomId: number | string): string {
+  getRoomFloorType(roomId: number): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}8`).toString();
   }
@@ -468,7 +459,7 @@ export class BerechnungService {
   /**
    * Sets floor type in IN_rooms row 8 (TYP_V_below)
    */
-  setRoomFloorType(roomId: number | string, floorType: string): void {
+  setRoomFloorType(roomId: number, floorType: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}8`, floorType);
   }
@@ -476,7 +467,7 @@ export class BerechnungService {
   /**
    * Gets wall length from IN_rooms row 9 (L_wall_tot) in m
    */
-  getRoomWallLength(roomId: number | string): number {
+  getRoomWallLength(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}9`);
   }
@@ -484,7 +475,7 @@ export class BerechnungService {
   /**
    * Sets wall length in IN_rooms row 9 (L_wall_tot) in m
    */
-  setRoomWallLength(roomId: number | string, wallLength: number): void {
+  setRoomWallLength(roomId: number, wallLength: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}9`, wallLength);
   }
@@ -492,7 +483,7 @@ export class BerechnungService {
   /**
    * Gets wall insulation thickness from IN_rooms row 11 (UI_L_wall_ins) in cm
    */
-  getRoomWallInsulationThickness(roomId: number | string): number | string {
+  getRoomWallInsulationThickness(roomId: number): number | string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}11`) || "";
   }
@@ -500,7 +491,7 @@ export class BerechnungService {
   /**
    * Sets wall insulation thickness in IN_rooms row 11 (UI_L_wall_ins) in cm
    */
-  setRoomWallInsulationThickness(roomId: number | string, thickness: number | ""): void {
+  setRoomWallInsulationThickness(roomId: number, thickness: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}11`, thickness);
   }
@@ -510,7 +501,7 @@ export class BerechnungService {
   /**
    * Checks if room has interior walls against unheated spaces (IN_rooms row 25/EXIST_innerwall)
    */
-  hasInteriorWalls(roomId: number | string): boolean {
+  hasInteriorWalls(roomId: number): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}25`) === 'Ja';
   }
@@ -518,7 +509,7 @@ export class BerechnungService {
   /**
    * Sets if room has interior walls against unheated spaces (IN_rooms row 25/EXIST_innerwall)
    */
-  setHasInteriorWalls(roomId: number | string, hasWalls: boolean): void {
+  setHasInteriorWalls(roomId: number, hasWalls: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}25`, hasWalls ? 'Ja' : 'Nein');
   }
@@ -526,7 +517,7 @@ export class BerechnungService {
   /**
    * Gets interior wall length against unheated spaces (IN_rooms row 26/L_innerwall_tot) in m
    */
-  getInteriorWallLength(roomId: number | string): number {
+  getInteriorWallLength(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}26`);
   }
@@ -534,7 +525,7 @@ export class BerechnungService {
   /**
    * Sets interior wall length against unheated spaces (IN_rooms row 26/L_innerwall_tot) in m
    */
-  setInteriorWallLength(roomId: number | string, length: number): void {
+  setInteriorWallLength(roomId: number, length: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}26`, length);
   }
@@ -542,7 +533,7 @@ export class BerechnungService {
   /**
    * Gets interior wall insulation thickness (IN_rooms row 27/L_innerwall_ins) in cm
    */
-  getInteriorWallInsulationThickness(roomId: number | string): number {
+  getInteriorWallInsulationThickness(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}27`);
   }
@@ -550,7 +541,7 @@ export class BerechnungService {
   /**
    * Sets interior wall insulation thickness (IN_rooms row 27/L_innerwall_ins) in cm
    */
-  setInteriorWallInsulationThickness(roomId: number | string, thickness: number | ""): void {
+  setInteriorWallInsulationThickness(roomId: number, thickness: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}27`, thickness);
   }
@@ -560,7 +551,7 @@ export class BerechnungService {
   /**
    * Checks if room has roof slope/Dachschräge (IN_rooms row 28/EXIST_roof)
    */
-  getEXIST_roof(roomId: number | string): boolean {
+  getEXIST_roof(roomId: number): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}28`) === 'Ja';
   }
@@ -568,7 +559,7 @@ export class BerechnungService {
   /**
    * Sets if room has roof slope/Dachschräge (IN_rooms row 28/EXIST_roof)
    */
-  setEXIST_roof(roomId: number | string, hasSlope: boolean): void {
+  setEXIST_roof(roomId: number, hasSlope: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}28`, hasSlope ? 'Ja' : 'Nein');
   }
@@ -576,7 +567,7 @@ export class BerechnungService {
   /**
    * Checks if room has multiple roof slopes (IN_rooms row 29/NO_roof_slop)
    */
-  getNO_roof_slop(roomId: number | string): boolean {
+  getNO_roof_slop(roomId: number): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}29`) === 'Ja';
   }
@@ -584,7 +575,7 @@ export class BerechnungService {
   /**
    * Sets if room has multiple roof slopes (IN_rooms row 29/NO_roof_slop)
    */
-  setNO_roof_slop(roomId: number | string, hasMultiple: boolean): void {
+  setNO_roof_slop(roomId: number, hasMultiple: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}29`, hasMultiple ? 'Ja' : 'Nein');
   }
@@ -592,7 +583,7 @@ export class BerechnungService {
   /**
    * Gets roof width (IN_rooms row 30/L_roof_wid) in m
    */
-  getL_roof_wid(roomId: number | string): number {
+  getL_roof_wid(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}30`);
   }
@@ -600,7 +591,7 @@ export class BerechnungService {
   /**
    * Sets roof width (IN_rooms row 30/L_roof_wid) in m
    */
-  setL_roof_wid(roomId: number | string, width: number): void {
+  setL_roof_wid(roomId: number, width: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}30`, width);
   }
@@ -608,7 +599,7 @@ export class BerechnungService {
   /**
    * Gets roof height (IN_rooms row 31/L_roof_hei) in m
    */
-  getL_roof_hei(roomId: number | string): number {
+  getL_roof_hei(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}31`);
   }
@@ -616,7 +607,7 @@ export class BerechnungService {
   /**
    * Sets roof height (IN_rooms row 31/L_roof_hei) in m
    */
-  setL_roof_hei(roomId: number | string, height: number): void {
+  setL_roof_hei(roomId: number, height: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}31`, height);
   }
@@ -624,7 +615,7 @@ export class BerechnungService {
   /**
    * Gets knee wall/Drempelwand/Kniestock height (IN_rooms row 34/L_roof_jamb_hei) in m
    */
-  getL_roof_jamb_hei(roomId: number | string): number {
+  getL_roof_jamb_hei(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}34`);
   }
@@ -632,7 +623,7 @@ export class BerechnungService {
   /**
    * Sets knee wall/Drempelwand/Kniestock height (IN_rooms row 34/L_roof_jamb_hei) in m
    */
-  setL_roof_jamb_hei(roomId: number | string, height: number): void {
+  setL_roof_jamb_hei(roomId: number, height: number): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}34`, height);
   }
@@ -640,7 +631,7 @@ export class BerechnungService {
   /**
    * Checks if knee wall is hollow (IN_rooms row 35/TYP_jamb_hei)
    */
-  getTYP_jamb_hei(roomId: number | string): boolean {
+  getTYP_jamb_hei(roomId: number): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}35`) === 'Ja';
   }
@@ -648,7 +639,7 @@ export class BerechnungService {
   /**
    * Sets if knee wall is hollow (IN_rooms row 35/TYP_jamb_hei)
    */
-  setTYP_jamb_hei(roomId: number | string, isHollow: boolean): void {
+  setTYP_jamb_hei(roomId: number, isHollow: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}35`, isHollow ? 'Ja' : 'Nein');
   }
@@ -656,7 +647,7 @@ export class BerechnungService {
   /**
    * Checks if room has dormer/Gaube (IN_rooms row 40/EXIST_dormer)
    */
-  getEXIST_dormer(roomId: number | string): boolean {
+  getEXIST_dormer(roomId: number): boolean {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}40`) === 'Ja';
   }
@@ -664,7 +655,7 @@ export class BerechnungService {
   /**
    * Sets if room has dormer/Gaube (IN_rooms row 40/EXIST_dormer)
    */
-  setEXIST_dormer(roomId: number | string, hasDormer: boolean): void {
+  setEXIST_dormer(roomId: number, hasDormer: boolean): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}40`, hasDormer ? 'Ja' : 'Nein');
   }
@@ -674,7 +665,7 @@ export class BerechnungService {
   /**
    * Gets roof window width (IN_rooms row 41/L_roof_win1_wid) in cm
    */
-  getL_roof_win1_wid(roomId: number | string): number {
+  getL_roof_win1_wid(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}41`);
   }
@@ -682,7 +673,7 @@ export class BerechnungService {
   /**
    * Sets roof window width (IN_rooms row 41/L_roof_win1_wid) in cm
    */
-  setL_roof_win1_wid(roomId: number | string, width: number | ""): void {
+  setL_roof_win1_wid(roomId: number, width: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}41`, width);
   }
@@ -690,7 +681,7 @@ export class BerechnungService {
   /**
    * Gets roof window height (IN_rooms row 42/L_roof_win1_hei) in cm
    */
-  getL_roof_win1_hei(roomId: number | string): number {
+  getL_roof_win1_hei(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}42`);
   }
@@ -698,7 +689,7 @@ export class BerechnungService {
   /**
    * Sets roof window height (IN_rooms row 42/L_roof_win1_hei) in cm
    */
-  setL_roof_win1_hei(roomId: number | string, height: number | ""): void {
+  setL_roof_win1_hei(roomId: number, height: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}42`, height);
   }
@@ -706,7 +697,7 @@ export class BerechnungService {
   /**
    * Gets roof window year (IN_rooms row 43/YEAR_roof_win1) as string
    */
-  getYEAR_roof_win1(roomId: number | string): string {
+  getYEAR_roof_win1(roomId: number): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}43`).toString();
   }
@@ -714,7 +705,7 @@ export class BerechnungService {
   /**
    * Sets roof window year (IN_rooms row 43/YEAR_roof_win1)
    */
-  setYEAR_roof_win1(roomId: number | string, year: string): void {
+  setYEAR_roof_win1(roomId: number, year: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}43`, year);
   }
@@ -722,7 +713,7 @@ export class BerechnungService {
   /**
    * Gets roof window count (IN_rooms row 44/NO_roof_win1)
    */
-  getNO_roof_win1(roomId: number | string): number {
+  getNO_roof_win1(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}44`);
   }
@@ -730,7 +721,7 @@ export class BerechnungService {
   /**
    * Sets roof window count (IN_rooms row 44/NO_roof_win1)
    */
-  setNO_roof_win1(roomId: number | string, count: number | ""): void {
+  setNO_roof_win1(roomId: number, count: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}44`, count);
   }
@@ -740,7 +731,7 @@ export class BerechnungService {
   /**
    * Gets second roof window width (IN_rooms row 45/L_roof_win2_wid) in cm
    */
-  getL_roof_win2_wid(roomId: number | string): number {
+  getL_roof_win2_wid(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}45`);
   }
@@ -748,7 +739,7 @@ export class BerechnungService {
   /**
    * Sets second roof window width (IN_rooms row 45/L_roof_win2_wid) in cm
    */
-  setL_roof_win2_wid(roomId: number | string, width: number | ""): void {
+  setL_roof_win2_wid(roomId: number, width: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}45`, width);
   }
@@ -756,7 +747,7 @@ export class BerechnungService {
   /**
    * Gets second roof window height (IN_rooms row 46/L_roof_win2_hei) in cm
    */
-  getL_roof_win2_hei(roomId: number | string): number {
+  getL_roof_win2_hei(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}46`);
   }
@@ -764,7 +755,7 @@ export class BerechnungService {
   /**
    * Sets second roof window height (IN_rooms row 46/L_roof_win2_hei) in cm
    */
-  setL_roof_win2_hei(roomId: number | string, height: number | ""): void {
+  setL_roof_win2_hei(roomId: number, height: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}46`, height);
   }
@@ -772,7 +763,7 @@ export class BerechnungService {
   /**
    * Gets second roof window year (IN_rooms row 47/YEAR_roof_win2)
    */
-  getYEAR_roof_win2(roomId: number | string): string {
+  getYEAR_roof_win2(roomId: number): string {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCell('IN_rooms', `${column}47`).toString();
   }
@@ -780,7 +771,7 @@ export class BerechnungService {
   /**
    * Sets second roof window year (IN_rooms row 47/YEAR_roof_win2)
    */
-  setYEAR_roof_win2(roomId: number | string, year: string): void {
+  setYEAR_roof_win2(roomId: number, year: string): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}47`, year);
   }
@@ -788,7 +779,7 @@ export class BerechnungService {
   /**
    * Gets second roof window count (IN_rooms row 48/NO_roof_win2)
    */
-  getNO_roof_win2(roomId: number | string): number {
+  getNO_roof_win2(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}48`);
   }
@@ -796,7 +787,7 @@ export class BerechnungService {
   /**
    * Sets second roof window count (IN_rooms row 48/NO_roof_win2)
    */
-  setNO_roof_win2(roomId: number | string, count: number | ""): void {
+  setNO_roof_win2(roomId: number, count: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}48`, count);
   }
@@ -806,7 +797,7 @@ export class BerechnungService {
   /**
    * Gets horizontal ceiling width (IN_rooms row 32/L_topceil_int_wid) in m
    */
-  getL_topceil__wid(roomId: number | string): number {
+  getL_topceil__wid(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}32`);
   }
@@ -814,7 +805,7 @@ export class BerechnungService {
   /**
    * Sets horizontal ceiling width (IN_rooms row 32/L_topceil_int_wid) in m
    */
-  setL_topceil__wid(roomId: number | string, width: number | ""): void {
+  setL_topceil__wid(roomId: number, width: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}32`, width);
   }
@@ -822,7 +813,7 @@ export class BerechnungService {
   /**
    * Gets horizontal ceiling length (IN_rooms row 33/L_topceil_int_len) in m
    */
-  getL_topceil__len(roomId: number | string): number {
+  getL_topceil__len(roomId: number): number {
     const column = this.getRoomColumn(roomId);
     return this.grid.getCellNumeric('IN_rooms', `${column}33`);
   }
@@ -830,7 +821,7 @@ export class BerechnungService {
   /**
    * Sets horizontal ceiling length (IN_rooms row 33/L_topceil_int_len) in m
    */
-  setL_topceil__len(roomId: number | string, length: number | ""): void {
+  setL_topceil__len(roomId: number, length: number | ""): void {
     const column = this.getRoomColumn(roomId);
     this.grid.setCell('IN_rooms', `${column}33`, length);
   }
@@ -845,7 +836,7 @@ export class BerechnungService {
    * Gets window width (IN_rooms rows 13,17,21/L_win*_ext_wid) in cm
    * @param windowType 1-3 corresponds to rows 13+4*(type-1)
    */
-  getWindowWidth(roomId: number | string, windowType: number = 1): number {
+  getWindowWidth(roomId: number, windowType: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 13 + (windowType - 1) * 4; // Types are positioned 4 rows apart starting at row 13
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -855,7 +846,7 @@ export class BerechnungService {
    * Sets window width (IN_rooms rows 13,17,21/L_win*_ext_wid) in cm
    * @param windowType 1-3 corresponds to rows 13+4*(type-1)
    */
-  setWindowWidth(roomId: number | string, width: number, windowType: number = 1): void {
+  setWindowWidth(roomId: number, width: number, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 13 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, width);
@@ -865,7 +856,7 @@ export class BerechnungService {
    * Gets window height (IN_rooms rows 14,18,22/L_win*_ext_hei) in cm
    * @param windowType 1-3 corresponds to rows 14+4*(type-1)
    */
-  getWindowHeight(roomId: number | string, windowType: number = 1): number {
+  getWindowHeight(roomId: number, windowType: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 14 + (windowType - 1) * 4;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -875,7 +866,7 @@ export class BerechnungService {
    * Sets window height (IN_rooms rows 14,18,22/L_win*_ext_hei) in cm
    * @param windowType 1-3 corresponds to rows 14+4*(type-1)
    */
-  setWindowHeight(roomId: number | string, height: number, windowType: number = 1): void {
+  setWindowHeight(roomId: number, height: number, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 14 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, height);
@@ -885,7 +876,7 @@ export class BerechnungService {
    * Gets window installation year (IN_rooms rows 15,19,23/YEAR_win*_ext)
    * @param windowType 1-3 corresponds to rows 15+4*(type-1)
    */
-  getWindowYear(roomId: number | string, windowType: number = 1): string {
+  getWindowYear(roomId: number, windowType: number = 1): string {
     const column = this.getRoomColumn(roomId);
     const row = 15 + (windowType - 1) * 4;
     return this.grid.getCell('IN_rooms', `${column}${row}`).toString();
@@ -895,7 +886,7 @@ export class BerechnungService {
    * Sets window installation year (IN_rooms rows 15,19,23/YEAR_win*_ext)
    * @param windowType 1-3 corresponds to rows 15+4*(type-1)
    */
-  setWindowYear(roomId: number | string, year: string, windowType: number = 1): void {
+  setWindowYear(roomId: number, year: string, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 15 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, year);
@@ -905,7 +896,7 @@ export class BerechnungService {
    * Gets window count (IN_rooms rows 16,20,24/NO_win*_ext)
    * @param windowType 1-3 corresponds to rows 16+4*(type-1)
    */
-  getWindowCount(roomId: number | string, windowType: number = 1): number {
+  getWindowCount(roomId: number, windowType: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 16 + (windowType - 1) * 4;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -915,7 +906,7 @@ export class BerechnungService {
    * Sets window count (IN_rooms rows 16,20,24/NO_win*_ext)
    * @param windowType 1-3 corresponds to rows 16+4*(type-1)
    */
-  setWindowCount(roomId: number | string, count: number, windowType: number = 1): void {
+  setWindowCount(roomId: number, count: number, windowType: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 16 + (windowType - 1) * 4;
     this.grid.setCell('IN_rooms', `${column}${row}`, count);
@@ -929,7 +920,7 @@ export class BerechnungService {
    * Gets heater main type (IN_rooms rows 49,56,63/TYP_1_rad*)
    * @param heaterNum 1-3 corresponds to rows 49+7*(heaterNum-1)
    */
-  getHeatingMainType(roomId: number | string, heaterNum: number = 1) {
+  getHeatingMainType(roomId: number, heaterNum: number = 1) {
     const column = this.getRoomColumn(roomId);
     const row = 49 + (heaterNum - 1) * 7; // TYP_1_rad1 in row 49, TYP_1_rad2 in row 56, TYP_1_rad3 in row 63
     return this.grid.getCell('IN_rooms', `${column}${row}`).toString() as HeaterType;
@@ -939,7 +930,7 @@ export class BerechnungService {
    * Sets heater main type (IN_rooms rows 49,56,63/TYP_1_rad*)
    * @param heaterNum 1-3 corresponds to rows 49+7*(heaterNum-1)
    */
-  setHeatingMainType(roomId: number | string, type: HeaterType, heaterNum: number = 1): void {
+  setHeatingMainType(roomId: number, type: HeaterType, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 49 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, type);
@@ -949,7 +940,7 @@ export class BerechnungService {
    * Gets heater subtype (IN_rooms rows 50,57,64/TYP_2_rad*)
    * @param heaterNum 1-3 corresponds to rows 50+7*(heaterNum-1)
    */
-  getHeatingSubType(roomId: number | string, heaterNum: number = 1) {
+  getHeatingSubType(roomId: number, heaterNum: number = 1) {
     const column = this.getRoomColumn(roomId);
     const row = 50 + (heaterNum - 1) * 7;
     return this.grid.getCell('IN_rooms', `${column}${row}`).toString();
@@ -959,7 +950,7 @@ export class BerechnungService {
    * Sets heater subtype (IN_rooms rows 50,57,64/TYP_2_rad*)
    * @param heaterNum 1-3 corresponds to rows 50+7*(heaterNum-1)
    */
-  setHeatingSubType(roomId: number | string, type: string, heaterNum: number = 1): void {
+  setHeatingSubType(roomId: number, type: string, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 50 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, type);
@@ -969,7 +960,7 @@ export class BerechnungService {
    * Gets heater height (IN_rooms rows 51,58,65/L_rad*_hei) in cm
    * @param heaterNum 1-3 corresponds to rows 51+7*(heaterNum-1)
    */
-  getHeatingHeight(roomId: number | string, heaterNum: number = 1): number {
+  getHeatingHeight(roomId: number, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 51 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -979,7 +970,7 @@ export class BerechnungService {
    * Sets heater height (IN_rooms rows 51,58,65/L_rad*_hei) in cm
    * @param heaterNum 1-3 corresponds to rows 51+7*(heaterNum-1)
    */
-  setHeatingHeight(roomId: number | string, height: number, heaterNum: number = 1): void {
+  setHeatingHeight(roomId: number, height: number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 51 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, height);
@@ -989,7 +980,7 @@ export class BerechnungService {
    * Gets heater width (IN_rooms rows 52,59,66/L_rad*_wid) in cm
    * @param heaterNum 1-3 corresponds to rows 52+7*(heaterNum-1)
    */
-  getHeatingWidth(roomId: number | string, heaterNum: number = 1): number {
+  getHeatingWidth(roomId: number, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 52 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -999,7 +990,7 @@ export class BerechnungService {
    * Sets heater width (IN_rooms rows 52,59,66/L_rad*_wid) in cm
    * @param heaterNum 1-3 corresponds to rows 52+7*(heaterNum-1)
    */
-  setHeatingWidth(roomId: number | string, width: string | number, heaterNum: number = 1): void {
+  setHeatingWidth(roomId: number, width: string | number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 52 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, typeof width == 'number' ? width : parseInt(width));
@@ -1009,7 +1000,7 @@ export class BerechnungService {
    * Gets heater count (IN_rooms rows 55,62,69/n_rad*)
    * @param heaterNum 1-3 corresponds to rows 55+7*(heaterNum-1)
    */
-  getHeatingCount(roomId: number | string, heaterNum: number = 1): number {
+  getHeatingCount(roomId: number, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 55 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -1019,7 +1010,7 @@ export class BerechnungService {
    * Sets heater count (IN_rooms rows 55,62,69/n_rad*)
    * @param heaterNum 1-3 corresponds to rows 55+7*(heaterNum-1)
    */
-  setHeatingCount(roomId: number | string, count: number, heaterNum: number = 1): void {
+  setHeatingCount(roomId: number, count: number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 55 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, count);
@@ -1029,7 +1020,7 @@ export class BerechnungService {
    * Gets radiator element count (IN_rooms rows 54,61,68/n_rad*_col)
    * @param heaterNum 1-3 corresponds to rows 54+7*(heaterNum-1)
    */
-  getn_rad_col(roomId: number | string, heaterNum: number = 1): number {
+  getn_rad_col(roomId: number, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 54 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -1039,7 +1030,7 @@ export class BerechnungService {
    * Sets radiator element count (IN_rooms rows 54,61,68/n_rad*_col)
    * @param heaterNum 1-3 corresponds to rows 54+7*(heaterNum-1)
    */
-  setn_rad_col(roomId: number | string, count: number, heaterNum: number = 1): void {
+  setn_rad_col(roomId: number, count: number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 54 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, count);
@@ -1049,7 +1040,7 @@ export class BerechnungService {
    * Gets heater depth (IN_rooms rows 53,60,67/L_rad*_thick) in cm
    * @param heaterNum 1-3 corresponds to rows 53+7*(heaterNum-1)
    */
-  getHeatingDepth(roomId: number | string, heaterNum: number = 1): number {
+  getHeatingDepth(roomId: number, heaterNum: number = 1): number {
     const column = this.getRoomColumn(roomId);
     const row = 53 + (heaterNum - 1) * 7;
     return this.grid.getCellNumeric('IN_rooms', `${column}${row}`);
@@ -1059,7 +1050,7 @@ export class BerechnungService {
    * Sets heater depth (IN_rooms rows 53,60,67/L_rad*_thick) in cm
    * @param heaterNum 1-3 corresponds to rows 53+7*(heaterNum-1)
    */
-  setHeatingDepth(roomId: number | string, depth: string | number, heaterNum: number = 1): void {
+  setHeatingDepth(roomId: number, depth: string | number, heaterNum: number = 1): void {
     const column = this.getRoomColumn(roomId);
     const row = 53 + (heaterNum - 1) * 7;
     this.grid.setCell('IN_rooms', `${column}${row}`, typeof depth == 'number' ? depth : parseInt(depth));
@@ -1133,7 +1124,7 @@ export class BerechnungService {
   }
 
   // Room management methods
-  setSelectedRoom(roomId: string): void {
+  setSelectedRoom(roomId: number): void {
     this.selectedRoomSubject.next(roomId);
   }
 
@@ -1149,7 +1140,7 @@ export class BerechnungService {
       // If the room has a non-empty name, consider it as an active room
       if (name && name.trim() !== '') {
         rooms.push({
-          id: roomId.toString(),
+          id: roomId,
           name: name,
           type: '?' // Default type TODO: type is not saved, Absicht?
         });
@@ -1225,9 +1216,9 @@ export class BerechnungService {
         this.setYEAR_roof_win2(roomId, "");
         this.setNO_roof_win2(roomId, "");
 
-        // Update the roomsSubject
+        // Update the rooms$
         const newRoomsList = this.getAllRooms();
-        this.roomsSubject.next(newRoomsList);
+        this.rooms$.next(newRoomsList);
 
         return roomId.toString();
       }
@@ -1237,9 +1228,7 @@ export class BerechnungService {
   }
 
   // Remove a room from the DataGrid
-  removeRoom(roomId: string): void {
-    const id = parseInt(roomId, 10);
-
+  removeRoom(roomId: number): void {
     // Ensure we can only remove the last room in the list
     const rooms = this.getAllRooms();
     const isLastRoom = rooms.findIndex(room => room.id === roomId) === rooms.length - 1;
@@ -1250,15 +1239,15 @@ export class BerechnungService {
     }
 
     // Set name to empty to mark it as inactive/removed
-    this.setRoomName(id, '');
+    this.setRoomName(roomId, '');
 
-    // Update the roomsSubject
+    // Update the rooms$
     const updatedRooms = this.getAllRooms();
-    this.roomsSubject.next(updatedRooms);
+    this.rooms$.next(updatedRooms);
 
     // If the selected room was removed, select another one or none
     if (this.selectedRoomSubject.getValue() === roomId) {
-      const newSelectedId = updatedRooms.length > 0 ? updatedRooms[0].id : '';
+      const newSelectedId = updatedRooms.length > 0 ? updatedRooms[0].id : 1;
       this.setSelectedRoom(newSelectedId);
     }
   }
@@ -1266,7 +1255,7 @@ export class BerechnungService {
   // Initialize rooms from DataGrid
   initializeRooms(): void {
     const rooms = this.getAllRooms();
-    this.roomsSubject.next(rooms);
+    this.rooms$.next(rooms);
 
     // Select the first room if available
     if (rooms.length > 0) {
