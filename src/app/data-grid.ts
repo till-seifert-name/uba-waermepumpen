@@ -462,10 +462,23 @@ export class DataGrid {
    * 12 = MEDIAN, 13 = MODE.SNGL, 14 = LARGE, 15 = SMALL,
    * 16 = PERCENTILE.INC, 17 = QUARTILE.INC, 18 = PERCENTILE.EXC, 19 = QUARTILE.EXC
    */
-  AGGREGATE(functionNum: number, range: (number | string)[] | string, sheet: string = '', param?: number): number {
-    const values = this.resolveRange(sheet, range)
-      .map(v => typeof v === 'number' ? v : Number(v))
-      .filter(v => !isNaN(v));
+  AGGREGATE(functionNum: number, errors: number = 6, range: (number | string)[] | string, sheet: string = '', param?: number): number {
+
+    // build sanitized values based on errors mask
+    const values: number[] = [];
+    const raw = this.resolveRange(sheet, range);
+    for (let v of raw) {
+      const isEmpty = v === '' || v == null;
+      const num = typeof v === 'number' ? v : Number(v);
+      const isError = isNaN(num);
+      if ((errors & 4) && isEmpty) continue;
+      if ((errors & 2) && isError) continue;
+      if (isError) {
+        // Excel returns error if error not ignored
+        return NaN;
+      }
+      values.push(num);
+    }
 
     switch (functionNum) {
       case 1:
@@ -473,7 +486,8 @@ export class DataGrid {
       case 2:
         return values.length;
       case 3:
-        return this.resolveRange(sheet, range).filter(v => v !== null && v !== '').length;
+        // COUNTA counts non-empty raw
+        return raw.filter(v => !(v === '' || v == null)).length;
       case 4:
         return Math.max(...values);
       case 5:
@@ -987,18 +1001,27 @@ export class DataGrid {
   /**
    * Element-wise multiplication of boolean arrays (true = 1, false = 0).
    */
-  MULTIPLY(...args: (boolean[] | number[])[]): number[] {
-    const len = Math.max(...args.map(arr => arr.length));
-    return Array.from({length: len}, (_, i) =>
-      args.reduce((acc, arr) => acc * (arr[i % arr.length] ? 1 : 0), 1)
-    );
+  MULTIPLY_ARRAYS(...args: (boolean[] | number[])[]): number[] {
+    const [first, ...rest] = args;
+
+    return first.map((val, i) => {
+      let product = Number(val);
+      for (const arr of rest) {
+        product *= Number(arr[i % arr.length]);
+      }
+      return product;
+    });
   }
 
-  /**
-   * Filters values based on a numeric mask (0 = exclude, 1 = include).
-   */
-  DIVIDE(values: (number | string)[], mask: number[]): number[] {
-    return values.filter((_, i) => mask[i] > 0).map(v => Number(v)).filter(v => !isNaN(v));
+  DIVIDE_ARRAY(
+    numer: (number | string)[],
+    denom: number[]
+  ): number[] {
+    return numer.map((v, i) => {
+      const n = typeof v === 'number' ? v : Number(v);
+      const d = denom[i] || 0;
+      return d !== 0 && !isNaN(n) ? n / d : NaN;
+    });
   }
 
   /**
