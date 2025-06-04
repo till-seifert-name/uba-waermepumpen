@@ -128,23 +128,6 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Method to get user-friendly display labels for modernisierungsjahr values
-  getModernisierungsjahrLabel(value: string): string {
-    if (value === '') {
-      return 'unbekannt';
-    }
-    return value;
-  }
-
-  // Getter and Setter for Room Modernisierungsjahr (IN_rooms row 10)
-  get roomModernisierungsjahr(): string | number {
-    return this.berechnungService.grid.getCell('IN_rooms', this.roomId + '10') || '';
-  }
-
-  set roomModernisierungsjahr(value: string | number) {
-    this.berechnungService.grid.setCell('IN_rooms', this.roomId + '10', value);
-  }
-
   // Methode zum Abbilden von internen Werten auf Anzeigelabels für die Benutzeroberfläche
   getBauteilGrenzeLabel(value: string): string {
     // Mapping von internen Werten zu Benutzeroberflächen-Labels

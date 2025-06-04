@@ -58,17 +58,6 @@
     </div>
   </div>
 
-  <div class="mb-3 row align-items-center">
-    <label for="baujahr" class="col-sm-5 col-form-label">Abweichendes Modernisierungsjahr</label>
-    <div class="col-sm-7">
-      <select class="form-select" id="baujahr" name="baujahr" 
-              [(ngModel)]="roomModernisierungsjahr">
-        <option value="">Kein abweichendes Jahr</option>
-        <option *ngFor="let jahr of modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
-      </select>
-      <div class="form-text">Nur ausfüllen, wenn der Raum zu einem anderen Zeitpunkt modernisiert wurde als das Gebäude.</div>
-    </div>
-  </div>
 
   <!-- Spacer to prevent content from being hidden behind fixed footer -->
   <div class="pb-5 mb-5"></div>

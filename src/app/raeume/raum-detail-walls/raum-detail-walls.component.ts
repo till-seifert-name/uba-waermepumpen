@@ -31,6 +31,34 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
     return year;
   }
 
+  // Getter for Modernisierungsjahr from the Daten sheet (B19-B25)
+  get modernisierungsjahr(): string[] {
+    try {
+      // Get the values from the Daten sheet
+      return this.grid.getCells('Daten', 'B19', 'B25').map(row => row[0].toString());
+    } catch (error) {
+      console.error('Error loading Modernisierungsjahr:', error);
+      return [];
+    }
+  }
+
+  // Method to get user-friendly display labels for modernisierungsjahr values
+  getModernisierungsjahrLabel(value: string): string {
+    if (value === '') {
+      return 'unbekannt';
+    }
+    return value;
+  }
+
+  // Getter and Setter for Room Modernisierungsjahr (IN_rooms row 10)
+  get roomModernisierungsjahr(): string | number {
+    return this.berechnungService.grid.getCell('IN_rooms', this.roomId + '10') || '';
+  }
+
+  set roomModernisierungsjahr(value: string | number) {
+    this.berechnungService.grid.setCell('IN_rooms', this.roomId + '10', value);
+  }
+
   // Track visible window types
   window2Visible: boolean = false;
   window3Visible: boolean = false;
