@@ -18,7 +18,7 @@
         <input type="number" step="0.1" class="form-control text-end" id="aw_laenge"
                name="aw_laenge" [ngModel]="berechnungService.getRoomWallLength(roomId)"
                (ngModelChange)="berechnungService.setRoomWallLength(roomId, $event)" required
-               min="0.5" max="100">
+               min="0" max="100">
         <span class="input-group-text">m</span>
       </div>
     </div>
@@ -100,7 +100,7 @@
           <input type="number" class="form-control text-end" id="fenster1_anzahl"
                  name="fenster1_anzahl" [ngModel]="berechnungService.getWindowCount(roomId, 1) || 1"
                  (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 1)" required
-                 min="1" max="20" step="1">
+                 min="0" max="20" step="1">
         </div>
       </div>
     </div>
@@ -148,7 +148,7 @@
           <input type="number" class="form-control text-end" id="fenster2_anzahl"
                  [ngModel]="berechnungService.getWindowCount(roomId, 2) || 1"
                  (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 2)"
-                 name="fenster2_anzahl" min="1" max="20" step="1" required>
+                 name="fenster2_anzahl" min="0" max="20" step="1" required>
         </div>
       </div>
     </div>
@@ -201,7 +201,7 @@
           <input type="number" class="form-control text-end" id="fenster3_anzahl"
                  [ngModel]="berechnungService.getWindowCount(roomId, 3) || 1"
                  (ngModelChange)="berechnungService.setWindowCount(roomId, $event, 3)"
-                 name="fenster3_anzahl" min="1" max="20" step="1" required>
+                 name="fenster3_anzahl" min="0" max="20" step="1" required>
         </div>
       </div>
     </div>
@@ -346,7 +346,7 @@
               <input type="number" step="0.1" class="form-control text-end" id="roof_height"
                      name="roof_height" [ngModel]="berechnungService.getL_roof_hei(roomId)"
                      (ngModelChange)="berechnungService.setL_roof_hei(roomId, $event)" required
-                     min="1" max="4">
+                     min="1" max="6">
               <span class="input-group-text">m</span>
             </div>
             <div class="form-text">Bei mehreren Dachflächen bitte nicht summieren</div>
@@ -393,7 +393,7 @@
           <input type="number" step="0.1" class="form-control text-end" id="knee_wall_height"
                  name="knee_wall_height" [ngModel]="berechnungService.getL_roof_jamb_hei(roomId)"
                  (ngModelChange)="berechnungService.setL_roof_jamb_hei(roomId, $event)"
-                 min="0" max="2">
+                 min="0" max="6">
           <span class="input-group-text">m</span>
         </div>
       </div>
