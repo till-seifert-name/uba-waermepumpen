@@ -302,7 +302,18 @@
 
     <!-- Roof Dimensions -->
     <div class="row align-items-center mb-3">
-      <label for="roof_dimensions" class="col-sm-5 col-form-label">Dachschrägendimensionen</label>
+      <label for="roof_dimensions" class="col-sm-5 col-form-label">
+        Dachschrägendimensionen
+        <button type="button"
+                class="btn btn-link p-0 ms-1 text-muted"
+                [ngbPopover]="roofMeasurementPopover"
+                popoverTitle="Dachmaße - Hilfe"
+                placement="right"
+                triggers="click"
+                container="body">
+          <i class="bi bi-question-circle"></i>
+        </button>
+      </label>
       <div class="col-sm-7">
         <div class="row g-2">
           <div class="col-6">
@@ -546,3 +557,13 @@
     </div>
   </div>
 </form>
+
+<!-- Popover Template for Roof Measurement Help -->
+<ng-template #roofMeasurementPopover>
+  <div class="text-center">
+    <svg-icon
+      src="assets/images/Abmaße_Dach_Erklärung.svg"
+      [svgStyle]="{ 'width.px': 500, 'height.px': 400 }">
+    </svg-icon>
+  </div>
+</ng-template>

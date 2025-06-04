@@ -50,7 +50,11 @@ import {DebugOverlayComponent} from "./shared/debug-overlay/debug-overlay.compon
 import { MarkdownModule } from 'ngx-markdown';
 import 'marked';
 
+// SVG Icon Support
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 import '@angular/common/locales/global/de';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -103,7 +107,9 @@ import '@angular/common/locales/global/de';
     HttpClientModule,
     MarkdownModule.forRoot({
       sanitize: SecurityContext.HTML
-    })
+    }),
+    AngularSvgIconModule.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -94,7 +94,7 @@
             </div>
           </div>
           <div class="g-col-4 text-center">
-            <div class="value-box d-inline-block text-body bg-white">
+            <div class="value-box d-inline-block text-body bg-info-subtle">
               {{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '22') }}
             </div>
           </div>
@@ -112,10 +112,13 @@
             <!-- Radiator assessment text -->
             <div class="d-flex align-items-center">
               <!-- Icon area -->
-              <!-- TODO ICON from row 25 -->
-              <div class="text-center me-3" style="width: 60px;">
-                <i class="bi bi-{{grid.g('OUT_rooms', getRoomOutColumn(room.id) + '25')||'bookshelf'}} fs-2 rating-color"
-                   [style]="'--rating-color: var(--' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '26') + ')'"></i>
+              <div class="text-center me-3">
+                <svg-icon
+                  [src]="'assets/images/' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '25') + '.svg'"
+                  [svgStyle]="{ 'width.px': 144, 'height.px': 144 }"
+                  class="rating-color"
+                  [style]="'--rating-color: var(--' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '26') + ')'">
+                </svg-icon>
               </div>
               <!-- Text area -->
               <div>
@@ -129,12 +132,13 @@
             <!-- Building envelope assessment -->
             <div class="d-flex align-items-center">
               <!-- Icon area -->
-              <div class="text-center me-3" style="width: 60px;">
-                <i class="bi bi-{{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '28') || 'house' }} fs-2 rating-color"
-                   [style]="'--rating-color: var(--' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '31') + ')'">
-                  <!-- TODO: placeholder until icons arrives -->
-                  {{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '28') }}
-                </i>
+              <div class="text-center me-3">
+                <svg-icon
+                  [src]="'assets/images/' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '28') + '.svg'"
+                  [svgStyle]="{ 'width.px': 144, 'height.px': 144 }"
+                  class="rating-color"
+                  [style]="'--rating-color: var(--' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '31') + ')'">
+                </svg-icon>
                 <p class="small text-muted mt-2">{{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '30') }}</p>
               </div>
               <!-- Text area -->
@@ -173,48 +177,10 @@
 
   <div class="row">
     <div class="col-3 text-center">
-      <!-- TODO: Allgemeines Symbol Heizkörpertausch? -->
-      <svg width="120" height="120" viewBox="0 0 120 120" class="text-muted">
-        <!-- Old radiator (background, faded) -->
-        <g opacity="0.4">
-          <rect x="15" y="40" width="50" height="40" fill="#eee" stroke="#999" stroke-width="1"/>
-          <line x1="20" y1="45" x2="20" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="25" y1="45" x2="25" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="30" y1="45" x2="30" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="35" y1="45" x2="35" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="40" y1="45" x2="40" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="45" y1="45" x2="45" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="50" y1="45" x2="50" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="55" y1="45" x2="55" y2="75" stroke="#999" stroke-width="1"/>
-          <line x1="60" y1="45" x2="60" y2="75" stroke="#999" stroke-width="1"/>
-        </g>
-
-        <!-- Arrow indicating replacement -->
-        <g fill="currentColor" stroke="currentColor" stroke-width="2" transform="translate(-30, 0)">
-          <path d="M70 55 L85 60 L70 65 Z" fill="currentColor"/>
-        </g>
-
-        <!-- New radiator (foreground, prominent) -->
-        <g>
-          <rect x="55" y="35" width="50" height="50" fill="#ffffff" stroke="#495057" stroke-width="2"/>
-          <line x1="60" y1="40" x2="60" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="65" y1="40" x2="65" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="70" y1="40" x2="70" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="75" y1="40" x2="75" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="80" y1="40" x2="80" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="85" y1="40" x2="85" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="90" y1="40" x2="90" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="95" y1="40" x2="95" y2="80" stroke="#495057" stroke-width="1.5"/>
-          <line x1="100" y1="40" x2="100" y2="80" stroke="#495057" stroke-width="1.5"/>
-
-          <!-- Enhancement indicator (better efficiency) -->
-          <circle cx="97" cy="77" r="4" fill="#28a745" stroke="#28a745" stroke-width="2"/>
-          <text x="97" y="81" text-anchor="middle" font-size="14" fill="white">+</text>
-        </g>
-
-        <!-- Label -->
-        <text x="60" y="105" text-anchor="middle" font-size="12" fill="currentColor">Heizkörpertausch</text>
-      </svg>
+      <svg-icon 
+        src="assets/images/pic_G2_rad_better.svg"
+        [svgStyle]="{ 'width.px': 144, 'height.px': 144 }">
+      </svg-icon>
     </div>
     <div class="col">
       <!-- Use OUT_build H5 for all Heizkörpertausch content -->
@@ -235,7 +201,11 @@
   <div class="grid mt-4" style="--bs-gap: 1.25rem var(--bs-gutter-x);">
     <!-- Außenwand -->
     <div class="g-col-3 text-center">
-      <i class="bi bi-bricks fs-1 rating-color" [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H27') || 'gray') + ', #6c757d)'"></i>
+      <svg-icon
+        src="assets/images/pic_G2_load_wall.svg"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H27') || 'gray') + ')'"></svg-icon>
       <p class="small text-muted mt-2">{{ grid.g('OUT_build', 'H22') }}</p>
     </div>
     <div class="g-col-9">
@@ -244,7 +214,11 @@
 
     <!-- Fenster -->
     <div class="g-col-3 text-center">
-      <i class="bi bi-window fs-1 rating-color" [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H28') || 'gray') + ', #6c757d)'"></i>
+      <svg-icon
+        src="assets/images/pic_G2_load_win.svg"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H28') || 'gray') + ')'"></svg-icon>
       <p class="small text-muted mt-2">{{ grid.g('OUT_build', 'H23') }}</p>
     </div>
     <div class="g-col-9">
@@ -254,7 +228,11 @@
 
     <!-- Dach -->
     <div class="g-col-3 text-center">
-      <i class="bi bi-houses fs-1 rating-color" [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H29') || 'gray') + ', #6c757d)'"></i>
+      <svg-icon
+        src="assets/images/pic_G2_load_roof.svg"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H29') || 'gray') + ')'"></svg-icon>
       <p class="small text-muted mt-2">{{ grid.g('OUT_build', 'H24') }}</p>
     </div>
     <div class="g-col-9">
@@ -264,7 +242,11 @@
 
     <!-- Horizontaler Gebäudeabschluss (Floor/Basement) -->
     <div class="g-col-3 text-center">
-      <i class="bi bi-border-bottom fs-1 rating-color" [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H32') || 'gray') + ', #6c757d)'"></i>
+      <svg-icon
+        src="assets/images/pic_G2_load_botceil.svg"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--' + (grid.g('OUT_build', 'H32') || 'gray') + ')'"></svg-icon>
       <p class="small text-muted mt-2">{{ grid.g('OUT_build', 'H25') }}</p>
     </div>
     <div class="g-col-9">

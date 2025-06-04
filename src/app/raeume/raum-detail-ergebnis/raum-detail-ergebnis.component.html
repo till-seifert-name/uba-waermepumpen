@@ -44,9 +44,11 @@
     <div class="row">
       <div class="col-md-3 text-center">
         <div class="d-flex flex-column align-items-center justify-content-center mb-2">
-          <span class="position-relative d-inline-block mb-2">
-            <i class="bi bi-bookshelf fs-1 text-muted"></i>
-            <i class="bi bi-plus text-muted position-absolute top-50 start-100 translate-middle"></i>
+          <span class="d-inline-block mb-2">
+            <svg-icon
+              src="assets/images/pic_G2_rad_bigger.svg"
+              [svgStyle]="{ 'width.px': 144, 'height.px': 144 }">
+            </svg-icon>
           </span>
           <p class="small text-muted">Heizkörper vergrößern</p>
         </div>
@@ -83,11 +85,27 @@
     <!-- R2: Maßnahmen - Use OUT_rooms row 6 for component analysis -->
     <div class="row">
       <div class="col-md-3 text-center">
-        <div class="grid mb-2" style="--bs-columns: 2">
-          <i class="bi bi-house-door fs-2 text-muted mx-1"></i>
-          <i class="bi bi-window fs-2 text-muted mx-1"></i>
-          <i class="bi bi-shop-window fs-2 text-muted mx-1"></i>
-          <i class="bi bi-border-bottom fs-2 text-muted mx-1"></i>
+        <div class="grid mb-2 mx-4 gap-2" style="--bs-columns: 2">
+          <svg-icon
+            src="assets/images/pic_G2_load_wall.svg"
+            [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+            class="mx-1">
+          </svg-icon>
+          <svg-icon
+            src="assets/images/pic_G2_load_win.svg"
+            [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+            class="mx-1">
+          </svg-icon>
+          <svg-icon
+            src="assets/images/pic_G2_load_roof.svg"
+            [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+            class="mx-1">
+          </svg-icon>
+          <svg-icon
+            src="assets/images/pic_G2_load_botceil.svg"
+            [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+            class="mx-1">
+          </svg-icon>
         </div>
       </div>
       <div class="col-md-9">

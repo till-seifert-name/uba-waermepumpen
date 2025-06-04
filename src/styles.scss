@@ -32,6 +32,7 @@ $font-weight-bold: 600;
 $h1-font-size: $font-size-base * 2.25;
 
 $nav-pills-border-radius: 50rem;
+$popover-max-width: 512px;
 
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
@@ -142,6 +143,11 @@ body > app-root {
   color: var(--rating-yellow) !important;
 }
 
+// SVG coloring for nodes with _colored suffix
+.rating-color [id$="_colored"] {
+  fill: var(--rating-color, var(--bs-secondary)) !important;
+}
+
 // Markdown styling
 markdown {
   display: contents;
@@ -165,3 +171,6 @@ markdown {
     margin-bottom: 0;
   }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
