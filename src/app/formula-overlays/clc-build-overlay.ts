@@ -396,10 +396,10 @@ export class ClcBuildOverlay implements FormulaOverlay {
 
     /**
      * Row 49: Anzahl Räume (Number of rooms)
-     * Excel: "SUMPRODUCT((G9:AA9<>\"\")*1)"
+     * Excel: "SUMPRODUCT((G9:AA9<>0)*1)"
      */
     grid.setCell('clc_build', 'G49', (s, c, g) =>
-      g.SUMPRODUCT(g.RANGE("G9:AA9", s).map(v => v !== "" ? 1 : 0))
+      g.SUMPRODUCT(g.RANGE("G9:AA9", s).map(v => v != 0 ? 1 : 0))
     );
 
     /**

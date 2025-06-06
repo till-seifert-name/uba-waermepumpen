@@ -137,3 +137,25 @@ diff <(grep formula /path/to/source_file.ts | grep -o '"X[0-9][0-9]*"' | tr -d '
 ```
 
 The command extracts all formula cell references from the source file and compares them with the implemented rows in the overlay. The output shows cells that exist in the source but not in the overlay (missing implementations) and vice versa.
+
+## Formula Update Workflow
+
+When Excel data files are updated:
+
+### Progress Tracking
+Create a tracking file: `formula-update-tracking.txt` to maintain systematic completion status.
+
+### Git Diff Analysis
+```bash
+# Check each file for formula changes
+git diff HEAD -- 20250507_WP_Check_Vorlage_ts_export/[filename].ts | grep formula
+
+# Common patterns: Range extensions (F267→F297), criteria changes (""→0), text updates
+```
+
+### Update Process
+1. Find corresponding overlay files with `Glob` tool
+2. Update TypeScript implementations to match Excel changes exactly  
+3. Update JSDoc comments with new Excel formulas
+4. Use `!=` over `!==` for Excel-like dynamic casting
+5. Update progress tracking after each file

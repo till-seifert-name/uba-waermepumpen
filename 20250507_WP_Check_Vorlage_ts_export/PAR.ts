@@ -119,7 +119,7 @@ export const data = {
   "L2":  /* unknown */ 40,
   "M2":  /* unknown */ 55,
   "N2":  /* unknown */ 0.8,
-  "O2":  /* unknown */ 2.7,
+  "O2":  /* unknown */ 1.7,
   "P2":  /* unknown */ 0.2,
   "Q2":  /* unknown */ 100,
   "R2":  /* unknown */ 5,

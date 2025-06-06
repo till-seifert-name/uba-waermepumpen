@@ -14,6 +14,38 @@ export class OutBuildOverlay implements FormulaOverlay {
   applyFormulas(grid: DataGrid): void {
 
     /**
+     * Row 2: Real Wert Position NT-readiness Skala
+     * Excel: "_xlfn.IFS(OR(clc_build!G73>=0.5,clc_build!G75>=0.75),0.875,
+     * OR(clc_build!G66>0,clc_build!G76>=0.75),0.625,
+     * clc_build!G68>0,0.375,
+     * clc_build!G78>=1,0.125)"
+     */
+    grid.setCell('OUT_build', 'H2', (s, c, g) =>
+      g.WENNS(
+        g.ODER(
+          g.n('clc_build', 'G73') >= 0.5,
+          g.n('clc_build', 'G75') >= 0.75
+        ),
+        0.875,
+
+        g.ODER(
+          g.n('clc_build', 'G66') > 0,
+          g.n('clc_build', 'G76') >= 0.75
+        ),
+        0.625,
+
+        g.n('clc_build', 'G68') > 0,
+        0.375,
+
+        g.n('clc_build', 'G78') >= 1,
+        0.125,
+
+        // Default fallback
+        0.125
+      )
+    );
+
+    /**
      * Row 3: NT-Readiness Gesamtgebäude
      * Excel: "_xlfn.IFS(OR(clc_build!G73>=0.5,clc_build!G75>=0.75),TXT_build!D2,
      * OR(clc_build!G66>0,clc_build!G76>=0.75),TXT_build!D3,

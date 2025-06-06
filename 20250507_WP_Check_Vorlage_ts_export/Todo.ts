@@ -42,4 +42,11 @@ export const data = {
   "A12":  /* unknown */ "IN_rooms",
   "B12":  /* unknown */ "Heizkörperhöhe bei Typ Rohrradiator, Subtyp Handtuchradiator als Freifeld statt Dropdown",
   "D12":  /* unknown */ 2,
+  "A13":  /* unknown */ "IN_rooms",
+  "B13":  /* unknown */ "Erläuterung Subtypen per Bild in Online-Umsetzung fehlt",
+  "A14":  /* unknown */ "IN_rooms",
+  "B14":  /* unknown */ "Eingabe Fenster in Metern ist im Tool noch in Centimetern",
+  "A15":  /* unknown */ "IN_rooms",
+  "B15":  /* unknown */ "Eingabe HK in Metern ist im Tool noch in Millimetern",
+  "B16":  /* unknown */ "Infobox besserer HK auf Raumergebnisebene sollte über dem Marker auf dem Barchart stehen steht derzeit ganz links außen",
 } as const;

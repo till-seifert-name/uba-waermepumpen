@@ -357,7 +357,7 @@ export const data = {
   "L47":  /* formula */ "K47/0.2",
   "A48":  /* unknown */ "Aggregation Gebäudeebene ",
   "A49":  /* unknown */ "Azahl Räume ",
-  "G49":  /* formula */ "SUMPRODUCT((G9:AA9<>\"\")*1)",
+  "G49":  /* formula */ "SUMPRODUCT((G9:AA9<>0)*1)",
   "A50":  /* unknown */ "Bauteilbewertung ",
   "A51":  /* unknown */ "Anzahl Potenzial",
   "B51":  /* unknown */ "wall",

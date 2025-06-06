@@ -23,6 +23,7 @@ import { data as clc_colData } from './clc_col';
 import { data as res_colData } from './res_col';
 import { data as clc_tubeData } from './clc_tube';
 import { data as res_tubeData } from './res_tube';
+import { data as Skala_MarkerData } from './Skala_Marker';
 import { data as U_GEG_A_7Data } from './U_GEG_A.7';
 import { data as DatenData } from './Daten';
 import { data as Data_radiatorData } from './Data_radiator';
@@ -65,6 +66,7 @@ export const sheetsData = {
   "res_col": res_colData,
   "clc_tube": clc_tubeData,
   "res_tube": res_tubeData,
+  "Skala_Marker": Skala_MarkerData,
   "U_GEG_A.7": U_GEG_A_7Data,
   "Daten": DatenData,
   "Data_radiator": Data_radiatorData,

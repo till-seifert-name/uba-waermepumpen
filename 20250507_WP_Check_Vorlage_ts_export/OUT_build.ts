@@ -10,6 +10,7 @@ export const data = {
   "H1":  /* unknown */ "Ausgabe",
   "A2":  /* unknown */ "Real Wert Position NT-readiness Skala",
   "G2":  /* unknown */ "G1",
+  "H2":  /* formula */ "_xlfn.IFS(OR(clc_build!G73>=0.5,clc_build!G75>=0.75),0.875,\nOR(clc_build!G66>0,clc_build!G76>=0.75),0.625,\nclc_build!G68>0,0.375,\nclc_build!G78>=1,0.125)",
   "A3":  /* unknown */ "NT-Readiness Gesamtgebäude ",
   "B3":  /* unknown */ "G1 ",
   "D3":  /* unknown */ "TXT_build_G1",

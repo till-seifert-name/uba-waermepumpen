@@ -416,5 +416,25 @@ export class InRoomsOverlay implements FormulaOverlay {
         )
       );
     });
+
+    // Fixed cell formulas (not per-room)
+    
+    /**
+     * Cell S4: Fixed calculation
+     * Excel: "3.2*5"
+     */
+    grid.setCell('IN_rooms', 'S4', (s, c, g) => 3.2 * 5);
+
+    /**
+     * Cell R33: Fixed calculation  
+     * Excel: "9/2.5"
+     */
+    grid.setCell('IN_rooms', 'R33', (s, c, g) => 9 / 2.5);
+
+    /**
+     * Cell S33: Fixed calculation
+     * Excel: "16/3.2" 
+     */
+    grid.setCell('IN_rooms', 'S33', (s, c, g) => 16 / 3.2);
   }
 }

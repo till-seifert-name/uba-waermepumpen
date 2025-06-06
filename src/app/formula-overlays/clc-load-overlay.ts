@@ -246,19 +246,19 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 15: U-Wert Außenwand [W/(m²K)]
-       * Excel: "IF(I14=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A$14,9))*(U_Werte_IWU!$D$30:$D$262=clc_load!I4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I3)),1))"
+       * Excel: "IF(I14=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=LEFT($A$14,9))*(U_Werte_IWU!$D$30:$D$297=clc_load!I4)*(U_Werte_IWU!$C$30:$C$297=clc_load!I3)),1))"
        */
       grid.setCell('clc_load', `${clcLoadCol}15`, (s, c, g) => {
         return g.WENN(
           g.n(s, `${clcLoadCol}14`) === 0,
           0,
           g.AGGREGATE(15, 6, g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.LINKS(g.g(s, `A14`), 9)),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.LINKS(g.g(s, `A14`), 9)),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
             )
           ), s, 1)
@@ -459,17 +459,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 27: U-Wert_IWU
        * Excel:
-       * "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A27,4))*(U_Werte_IWU!$D$30:$D$262=clc_load!I4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I3)),1)"
+       * "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=LEFT($A27,4))*(U_Werte_IWU!$D$30:$D$297=clc_load!I4)*(U_Werte_IWU!$C$30:$C$297=clc_load!I3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}27`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.LINKS(g.g('clc_load', 'A27'), 4)),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.LINKS(g.g('clc_load', 'A27'), 4)),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
                      )
         ), s, 1);
@@ -550,7 +550,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 33: U-Wert_IWU
-       * Excel: "IF(I$32=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=LEFT($A33,5))*(U_Werte_IWU!$D$30:$D$262=clc_load!I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!I$3)),1))"
+       * Excel: IF(I$32=0,0,_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=LEFT($A33,5))*(U_Werte_IWU!$D$30:$D$297=clc_load!I$4)*(U_Werte_IWU!$C$30:$C$297=clc_load!I$3)),1))
        */
       grid.setCell('clc_load', `${clcLoadCol}33`, (s, c, g) => {
         return g.WENN(
@@ -558,12 +558,12 @@ export class ClcLoadOverlay implements FormulaOverlay {
           0,
           g.AGGREGATE(15, 6,
             g.DIVIDE_ARRAY(
-              g.RANGE('F30:F262', 'U_Werte_IWU'),
+              g.RANGE('F30:F297', 'U_Werte_IWU'),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.LINKS(g.g('clc_load', 'A33'), 5)),
+                g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.LINKS(g.g('clc_load', 'A33'), 5)),
                 g.MULTIPLY_ARRAYS(
-                  g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                  g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                  g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                  g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
                 )
               )
                     ), s, 1)
@@ -652,17 +652,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 38: U-Wert_IWU
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A38)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A38)*(U_Werte_IWU!$D$30:$D$297=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}38`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A38')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A38')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
             )
         ), s, 1);
@@ -729,17 +729,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 43: U-Wert_IWU
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A43)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A43)*(U_Werte_IWU!$D$30:$D$297=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}43`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A43')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A43')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
             )
         ), s, 1);
@@ -747,17 +747,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 44: U-Wert ausgetauschte Fenster
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A44)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$76)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A44)*(U_Werte_IWU!$D$30:$D$297=IN_rooms!R$76)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}44`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F267', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A44')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A44')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}76`)),
-                g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}76`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
             )
         ), s, 1);
@@ -805,17 +805,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 49: U-Wert_IWU
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A49)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A49)*(U_Werte_IWU!$D$30:$D$297=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}49`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A49')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A49')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
                        )
         ), s, 1);
@@ -823,17 +823,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 50: U-Wert ausgetauschte Fenster
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A50)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$77)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A50)*(U_Werte_IWU!$D$30:$D$297=IN_rooms!R$77)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}50`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F267', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A50')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A50')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}77`)),
-                g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}77`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
           )
         ), s, 1);
@@ -881,17 +881,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 55: U-Wert_IWU
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A55)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A55)*(U_Werte_IWU!$D$30:$D$297=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}55`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A55')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A55')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
          )
         ), s, 1);
@@ -899,17 +899,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 56: U-Wert ausgetauschte Fenster
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A56)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$78)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A56)*(U_Werte_IWU!$D$30:$D$297=IN_rooms!R$78)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}56`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F267', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A56')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A56')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}78`)),
-                g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}78`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
           )
         ), s, 1);
@@ -957,17 +957,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 61: U-Wert_IWU
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A61)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A61)*(U_Werte_IWU!$D$30:$D$297=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}61`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A61')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A61')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
           )
         ), s, 1);
@@ -975,17 +975,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 62: U-Wert ausgetauschte Fenster
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A62)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$79)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A62)*(U_Werte_IWU!$D$30:$D$297=IN_rooms!R$79)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}62`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F267', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A62')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A62')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}79`)),
-                g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}79`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
           )
         ), s, 1);
@@ -1029,17 +1029,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 67: U-Wert_IWU
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$262/((U_Werte_IWU!$E$30:$E$262=clc_load!$A67)*(U_Werte_IWU!$D$30:$D$262=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$262=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A67)*(U_Werte_IWU!$D$30:$D$297=clc_load!$I$4)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}67`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F262', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E262', 'U_Werte_IWU'), g.g('clc_load', 'A67')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A67')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
-                g.GLEICH(g.RANGE('C30:C262', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}4`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
           )
         ), s, 1);
@@ -1047,17 +1047,17 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 68: U-Wert ausgetauschte Fenster
-       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$267/((U_Werte_IWU!$E$30:$E$267=clc_load!$A68)*(U_Werte_IWU!$D$30:$D$267=IN_rooms!R$80)*(U_Werte_IWU!$C$30:$C$267=clc_load!$I$3)),1)"
+       * Excel: "_xlfn.AGGREGATE(15,6,U_Werte_IWU!$F$30:$F$297/((U_Werte_IWU!$E$30:$E$297=clc_load!$A68)*(U_Werte_IWU!$D$30:$D$297=IN_rooms!R$80)*(U_Werte_IWU!$C$30:$C$297=clc_load!$I$3)),1)"
        */
       grid.setCell('clc_load', `${clcLoadCol}68`, (s, c, g) => {
         return g.AGGREGATE(15, 6,
           g.DIVIDE_ARRAY(
-            g.RANGE('F30:F267', 'U_Werte_IWU'),
+            g.RANGE('F30:F297', 'U_Werte_IWU'),
             g.MULTIPLY_ARRAYS(
-              g.GLEICH(g.RANGE('E30:E267', 'U_Werte_IWU'), g.g('clc_load', 'A68')),
+              g.GLEICH(g.RANGE('E30:E297', 'U_Werte_IWU'), g.g('clc_load', 'A68')),
               g.MULTIPLY_ARRAYS(
-                g.GLEICH(g.RANGE('D30:D267', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}80`)),
-                g.GLEICH(g.RANGE('C30:C267', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
+                g.GLEICH(g.RANGE('D30:D297', 'U_Werte_IWU'), g.g('IN_rooms', `${roomCol}80`)),
+                g.GLEICH(g.RANGE('C30:C297', 'U_Werte_IWU'), g.g(s, `${clcLoadCol}3`))
               )
           )
         ), s, 1);

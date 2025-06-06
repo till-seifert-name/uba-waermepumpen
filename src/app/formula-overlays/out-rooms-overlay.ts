@@ -551,21 +551,44 @@ export class OutRoomsOverlay implements FormulaOverlay {
        * Row 35: Position Marker Skalen - Aktueller Heizkörper
        * Excel:
        * "_xlfn.LET(
-       *   _xlpm.deck_ist,clc_build!G$39,
+       *   _xlpm.deck,clc_build!G$39,
        *   _xlfn.IFS(
-       *     _xlpm.deck_ist>=1,0.125,
-       *     0.8>=_xlpm.deck_ist<1, _xlpm.deck_ist*0.245,
-       *     0.8<_xlpm.deck_ist>=0.6, _xlpm.deck_ist*0.495,
-       *     0.6<_xlpm.deck_ist, _xlpm.deck_ist*0.745))"
+       *     1<=clc_build!G$39,
+       *       MAX(0, MIN(0.25, (1.5 - _xlpm.deck)*0.25/0.5)),
+       *     AND(1>clc_build!G$39,clc_build!G$39>=0.8),
+       *       MAX(0.27, MIN(0.5, 0.25 + (1 - _xlpm.deck)*0.25/0.2)),
+       *     OR(AND(0.8>clc_build!G$39,clc_build!G$39>=0.6),clc_build!G$38>clc_build!G$7),
+       *       MAX(0.52, MIN(0.75, 0.5 + (0.8 - _xlpm.deck)*0.25/0.2)),
+       *     AND(clc_build!G$39<0.6,clc_build!G$38<clc_build!G$7),
+       *       MAX(0.77, MIN(1, 0.75 + (0.6 - _xlpm.deck)*0.25/0.2))))"
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}35`, (s, c, g) => {
-        const deck_ist = g.n('clc_build', `${clcBuildCol}39`);
+        const deck = g.n('clc_build', `${clcBuildCol}39`);
 
         return g.WENNS(
-          deck_ist >= 1, 0.125,
-          (0.8 >= deck_ist) && (deck_ist < 1), deck_ist * 0.245,
-          (0.8 < deck_ist) && (deck_ist >= 0.6), deck_ist * 0.495,
-          0.6 < deck_ist, deck_ist * 0.745,
+          g.n('clc_build', `${clcBuildCol}39`) >= 1,
+          Math.max(0, Math.min(0.25, (1.5 - deck) * 0.25 / 0.5)),
+
+          g.UND(
+            g.n('clc_build', `${clcBuildCol}39`) < 1,
+            g.n('clc_build', `${clcBuildCol}39`) >= 0.8
+          ),
+          Math.max(0.27, Math.min(0.5, 0.25 + (1 - deck) * 0.25 / 0.2)),
+
+          g.ODER(
+            g.UND(
+              g.n('clc_build', `${clcBuildCol}39`) < 0.8,
+              g.n('clc_build', `${clcBuildCol}39`) >= 0.6
+            ),
+            g.n('clc_build', `${clcBuildCol}38`) > g.n('clc_build', `${clcBuildCol}7`)
+          ),
+          Math.max(0.52, Math.min(0.75, 0.5 + (0.8 - deck) * 0.25 / 0.2)),
+
+          g.UND(
+            g.n('clc_build', `${clcBuildCol}39`) < 0.6,
+            g.n('clc_build', `${clcBuildCol}38`) < g.n('clc_build', `${clcBuildCol}7`)
+          ),
+          Math.max(0.77, Math.min(1, 0.75 + (0.6 - deck) * 0.25 / 0.2)),
 
           // Default fallback
           0.125
@@ -576,47 +599,28 @@ export class OutRoomsOverlay implements FormulaOverlay {
        * Row 36: Position Marker Skalen - Besserer Heizkörper
        * Excel:
        * "_xlfn.LET(
-       *   _xlpm.deck_Typ33,clc_build!H$40,
-       *   _xlfn.IFS(
-       *     _xlpm.deck_Typ33>1,0.125,
-       *     0.8>=_xlpm.deck_Typ33<1, _xlpm.deck_Typ33*0.245,
-       *     0.8<_xlpm.deck_Typ33>=0.6, _xlpm.deck_Typ33*0.495,
-       *     0.6<_xlpm.deck_Typ33, _xlpm.deck_Typ33*0.745))"
+       *   _xlpm.deck,clc_build!G$40,
+       *   IF(
+       *     1<=clc_build!G$39,
+       *       MAX(0, MIN(0.25, (1.5 - _xlpm.deck)*0.25/0.5)),
+       *       MAX(0.27, MIN(1, 0.25 + (1 - _xlpm.deck) *0.75/0.6))))"
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}36`, (s, c, g) => {
-        const deck_Typ33 = g.n('clc_build', `${clcBuildCol}40`);
+        const deck = g.n('clc_build', `${clcBuildCol}40`);
 
-        return g.WENNS(
-          deck_Typ33 > 1, 0.125,
-          (0.8 >= deck_Typ33) && (deck_Typ33 < 1), deck_Typ33 * 0.245,
-          (0.8 < deck_Typ33) && (deck_Typ33 >= 0.6), deck_Typ33 * 0.495,
-          0.6 < deck_Typ33, deck_Typ33 * 0.745,
-
-          // Default fallback
-          0.125
+        return g.WENN(
+          g.n('clc_build', `${clcBuildCol}39`) >= 1,
+          Math.max(0, Math.min(0.25, (1.5 - deck) * 0.25 / 0.5)),
+          Math.max(0.27, Math.min(1, 0.25 + (1 - deck) * 0.75 / 0.6))
         );
       });
 
       /**
        * Row 37: Position Marker Skalen - Kalkulierte Raumheizlast
-       * Excel:
-       * "_xlfn.IFS(
-       *   clc_load!I$75<20,20,
-       *   clc_load!I$75>125,125,
-       *   20<=clc_load!I$75<=125,clc_load!I$75)"
+       * Excel: "MAX(20,MIN(125,clc_build!G$8))"
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}37`, (s, c, g) =>
-        g.WENNS(
-          g.n('clc_load', `${clcLoadCol}75`) < 20, 20,
-          g.n('clc_load', `${clcLoadCol}75`) > 125, 125,
-          g.UND(
-            g.n('clc_load', `${clcLoadCol}75`) >= 20,
-            g.n('clc_load', `${clcLoadCol}75`) <= 125
-          ), g.n('clc_load', `${clcLoadCol}75`),
-
-          // Default fallback
-          g.n('clc_load', `${clcLoadCol}75`)
-        ));
+        Math.max(20, Math.min(125, g.n('clc_build', `${clcBuildCol}8`))));
     }
   }
 }
