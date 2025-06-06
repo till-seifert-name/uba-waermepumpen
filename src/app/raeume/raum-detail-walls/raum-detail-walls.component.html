@@ -390,8 +390,8 @@
       <div class="col-sm-7">
         <div class="input-group">
           <input type="number" step="1" class="form-control text-end" id="topceil_width"
-                 name="topceil_width" [ngModel]="berechnungService.getL_topceil__wid(roomId)"
-                 (ngModelChange)="berechnungService.setL_topceil__wid(roomId, $event)"
+                 name="topceil_width" [ngModel]="berechnungService.getL_topceil__len(roomId)"
+                 (ngModelChange)="berechnungService.setL_topceil__len(roomId, $event)"
                  min="0" max="2">
         </div>
         <div class="form-text">Ist keine Giebelwand vorhanden, bitte 0 eingeben</div>
