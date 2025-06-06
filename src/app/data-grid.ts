@@ -216,52 +216,61 @@ export class DataGrid {
     return result;
   }
 
+  private static readonly MAX_RECURSION_DEPTH = 100;
+
   private resolveFunction(sheet: string, cell: string, func: CellFunc): number {
     this.results[sheet] ??= {};
 
     const cellRef = `${sheet}!${cell}`;
 
-    // Check for circular dependencies using the stack
-    const circularIndex = this.cellRefStack.indexOf(cellRef);
-    if (circularIndex !== -1) {
-      // Construct the cycle for better logging
-      const cycle = [...this.cellRefStack.slice(circularIndex), cellRef];
-      console.error(`Circular dependency detected: ${cycle.join(' → ')}`);
+    // Check for maximum recursion depth
+    if (this.cellRefStack.length >= DataGrid.MAX_RECURSION_DEPTH) {
+      console.error(`Maximum recursion depth exceeded at ${cellRef}`);
+      return NaN;
+    }
 
-      // Reset the stack if we hit a circular dependency
-      this.cellRefStack = [];
-      return NaN; // Return NaN for circular dependencies
+    // Check for circular dependencies using the stack
+    if (this.cellRefStack.includes(cellRef)) {
+      const cycleStart = this.cellRefStack.indexOf(cellRef);
+      const cycle = [...this.cellRefStack.slice(cycleStart), cellRef];
+      console.error(`Circular dependency detected: ${cycle.join(' → ')}`);
+      return NaN; // Don't clear stack - let normal cleanup handle it
     }
 
     // Add current cell to the reference stack
     this.cellRefStack.push(cellRef);
 
     try {
-      const wasFirstCall = this.cellRefStack.length === 1;
       const result = func(sheet, cell, this);
       this.results[sheet][cell] = result;
 
       if (Number.isNaN(result)) {
         console.debug(`Error in formula at ${cellRef}: Result is NaN.`);
-      }
+        console.debug(`NaN propagation path: ${this.cellRefStack.join(' → ')}`);
 
-      // Remove the cell from the stack when done if we were the first call
-      if (wasFirstCall) {
-        this.cellRefStack = [];
-      } else {
-        // Just remove this cell from the stack
-        this.cellRefStack.pop();
+        // If we're the first cell to evaluate to NaN in this chain, log it differently
+        if (!this.cellRefStack.slice(0, -1).some(ref => {
+          const [refSheet, refCell] = ref.split('!');
+          return Number.isNaN(this.results[refSheet]?.[refCell]);
+        })) {
+          console.warn(`NaN ORIGIN detected at ${cellRef} - This is the first cell in the chain to return NaN`);
+        }
       }
 
       return this.results[sheet][cell];
     } catch (error) {
       console.error(`Error evaluating formula at ${cellRef}: ${error instanceof Error ? error.message : String(error)}`);
       console.error(`Cell reference stack: ${this.cellRefStack.join(' → ')}`);
-
-      // Reset the stack on error
-      this.cellRefStack = [];
       this.results[sheet][cell] = NaN;
       return NaN;
+    } finally {
+      // Always remove the current cell from stack in finally block
+      this.cellRefStack.pop();
+
+      // Clear stack only if we're back to the root level
+      if (this.cellRefStack.length === 0) {
+        this.cellRefStack = [];
+      }
     }
   }
 
