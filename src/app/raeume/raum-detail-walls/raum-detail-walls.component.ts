@@ -18,9 +18,7 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
   // Getter for window year options from Daten sheet (same as building years)
   get windowYearOptions(): string[] {
     // Get the values from the Daten sheet
-    const Baujahre = this.grid.getCells('Daten', 'E17', 'E29').map(row => row[0].toString());
-    // Add 'wie Gebäude' option at the beginning
-    return ['', ...Baujahre];
+    return this.grid.getCells('Daten', 'E17', 'E29').map(row => row[0].toString());
   }
 
   // Helper to get display text for building year option
