@@ -12,7 +12,7 @@
           eindeutigem Namen hier an:</label>
         <div class="input-group">
           <input type="text" class="form-control" id="raumNameKalt" [(ngModel)]="newColdRoomName" name="raumNameKalt"
-                 maxlength="30" minlength="2" required>
+                 maxlength="30" minlength="2" required (keyup.enter)="addColdRoom()">
           <button class="btn btn-outline-primary" type="button" id="addRaumKalt"
                 (click)="addColdRoom()" [disabled]="!newColdRoomName">
             <i class="bi bi-plus-lg"></i>
@@ -27,7 +27,7 @@
         <label for="raumNameAussen" class="form-label">Ergänzen Sie weiterhin diejenigen Räume mit besonders vielen Außenbauteilen.</label>
         <div class="input-group">
           <input type="text" class="form-control" id="raumNameAussen" [(ngModel)]="newExteriorRoomName" name="raumNameAussen"
-                 maxlength="30" minlength="2" required>
+                 maxlength="30" minlength="2" required (keyup.enter)="addExteriorRoom()">
           <button class="btn btn-outline-primary" type="button" id="addRaumAussen"
                 (click)="addExteriorRoom()" [disabled]="!newExteriorRoomName">
             <i class="bi bi-plus-lg"></i>

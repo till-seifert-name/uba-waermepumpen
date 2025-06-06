@@ -10,7 +10,7 @@
           <div class="input-group">
             <input type="text" class="form-control" id="raumNameGrenze"
                   placeholder="z.B. Kellerraum" [(ngModel)]="newBoundaryRoomName" name="raumNameGrenze"
-                  maxlength="30" minlength="2" required>
+                  maxlength="30" minlength="2" required (keyup.enter)="addBoundaryRoom()">
             <button class="btn btn-outline-primary" type="button" id="addRaumGrenze"
                   (click)="addBoundaryRoom()" [disabled]="!newBoundaryRoomName">
               <i class="bi bi-plus-lg"></i>
@@ -25,7 +25,7 @@
           <div class="input-group">
             <input type="text" class="form-control" id="raumNameFenster"
                   placeholder="z.B. Wohnzimmer" [(ngModel)]="newWindowRoomName" name="raumNameFenster"
-                  maxlength="30" minlength="2" required>
+                  maxlength="30" minlength="2" required (keyup.enter)="addWindowRoom()">
             <button class="btn btn-outline-primary" type="button" id="addRaumFenster"
                   (click)="addWindowRoom()" [disabled]="!newWindowRoomName">
               <i class="bi bi-plus-lg"></i>
@@ -40,7 +40,7 @@
           <div class="input-group">
             <input type="text" class="form-control" id="raumNameSonstige"
                   placeholder="z.B. Bad" [(ngModel)]="newOtherRoomName" name="raumNameSonstige"
-                  maxlength="30" minlength="2" required>
+                  maxlength="30" minlength="2" required (keyup.enter)="addOtherRoom()">
             <button class="btn btn-outline-primary" type="button" id="addRaumSonstige"
                   (click)="addOtherRoom()" [disabled]="!newOtherRoomName">
               <i class="bi bi-plus-lg"></i>
