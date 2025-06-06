@@ -138,9 +138,9 @@ export class ClcLoadOverlay implements FormulaOverlay {
        *   _xlpm.is_jamb, IN_rooms!R$35=\"Ja\",
        *   _xlpm.h_room, IN_rooms!R$5,
        *   _xlpm.alpha, _xlfn.IFS(
-       *     IN_build!$P$4 = \"Geneigt\", 25,
-       *     IN_build!$P$4 = \"Steil\", 40,
-       *     IN_build!$P$4 = \"Sehr steil\", 55),
+       *     IN_build!$P$4 = \"geneigt\", 25,
+       *     IN_build!$P$4 = \"steil\", 40,
+       *     IN_build!$P$4 = \"sehr steil\", 55),
        *   _xlpm.A_win, (IN_rooms!R$13 * IN_rooms!R$14 + IN_rooms!R$17 * IN_rooms!R$18 + IN_rooms!R$21 * IN_rooms!R$22),
        *   _xlpm.A_knee, IF(_xlpm.is_jamb, 0, _xlpm.h_knee *  IN_rooms!R$30),
        *   _xlpm.A_no_slop, _xlpm.L_wall * IN_rooms!R$5,
@@ -193,9 +193,9 @@ export class ClcLoadOverlay implements FormulaOverlay {
             let roofType = g.g('IN_build', 'P4');
             // angle in degrees from roof type
             let alpha = g.WENNS(
-              roofType === 'Geneigt', 25,
-              roofType === 'Steil', 40,
-              roofType === 'Sehr steil', 55,
+              roofType === 'geneigt', 25,
+              roofType === 'steil', 40,
+              roofType === 'sehr steil', 55,
               g.WAHR(), 0
             );
             // degrees to radians for JavaScript trigonometric functions
@@ -412,7 +412,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 26: Fläche [m²]
        * Excel:
-       * "_xlfn.IFS(\n   IN_rooms!R$28<>\"Ja\",\n    0,\n    IN_build!$P$4 = \"Flach bzw. Flachdach\",\n      IN_rooms!R$4     - (IN_rooms!R$41 * IN_rooms!R$42)\n      - (IN_rooms!R$45 * IN_rooms!R$46),\n  IN_rooms!R$39>0,\n    IN_rooms!R$30 * IN_rooms!R$31\n      * IF(IN_rooms!R$29=\"Nein\",1,2)\n    + IN_rooms!R$39\n      / SIN(\n          _xlfn.IFS(\n            IN_build!$P$4=\"Geneigt\",   25,\n            IN_build!$P$4=\"Steil\",     40,\n            IN_build!$P$4=\"Sehr steil\",55\n          )\n          * PI() / 180\n        )\n      * IN_rooms!R$30\n    - (IN_rooms!R$41 * IN_rooms!R$42)\n    - (IN_rooms!R$45 * IN_rooms!R$46),\n\n  OR(\n    IN_rooms!R$39=0,\n    IN_rooms!R$37>0\n  ),\n    IN_rooms!R$30 * IN_rooms!R$31\n    - (IN_rooms!R$41 * IN_rooms!R$42)\n    - (IN_rooms!R$45 * IN_rooms!R$46)\n)"
+       * "_xlfn.IFS(\n   IN_rooms!R$28<>\"Ja\",\n    0,\n    IN_build!$P$4 = \"Flach bzw. Flachdach\",\n      IN_rooms!R$4     - (IN_rooms!R$41 * IN_rooms!R$42)\n      - (IN_rooms!R$45 * IN_rooms!R$46),\n  IN_rooms!R$39>0,\n    IN_rooms!R$30 * IN_rooms!R$31\n      * IF(IN_rooms!R$29=\"Nein\",1,2)\n    + IN_rooms!R$39\n      / SIN(\n          _xlfn.IFS(\n            IN_build!$P$4=\"geneigt\",   25,\n            IN_build!$P$4=\"steil\",     40,\n            IN_build!$P$4=\"sehr steil\",55\n          )\n          * PI() / 180\n        )\n      * IN_rooms!R$30\n    - (IN_rooms!R$41 * IN_rooms!R$42)\n    - (IN_rooms!R$45 * IN_rooms!R$46),\n\n  OR(\n    IN_rooms!R$39=0,\n    IN_rooms!R$37>0\n  ),\n    IN_rooms!R$30 * IN_rooms!R$31\n    - (IN_rooms!R$41 * IN_rooms!R$42)\n    - (IN_rooms!R$45 * IN_rooms!R$46)\n)"
        */
       grid.setCell('clc_load', `${clcLoadCol}26`, (s, c, g) => {
         return g.WENNS(
@@ -425,22 +425,18 @@ export class ClcLoadOverlay implements FormulaOverlay {
             (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`)),
 
           g.n('IN_rooms', `${roomCol}39`) > 0,
-          (() => {
-            const roofAngle = g.WENNS(
-              g.g('IN_build', 'P4') === 'Geneigt', 25,
-              g.g('IN_build', 'P4') === 'Steil', 40,
-              g.g('IN_build', 'P4') === 'Sehr steil', 55,
-              g.WAHR(), 0 // Default fallback
-            );
-
-            return g.n('IN_rooms', `${roomCol}30`) * g.n('IN_rooms', `${roomCol}31`) *
-              g.WENN(g.g('IN_rooms', `${roomCol}29`) === 'Nein', 1, 2) +
-              g.n('IN_rooms', `${roomCol}39`) /
-              Math.sin(roofAngle * Math.PI / 180) *
-              g.n('IN_rooms', `${roomCol}30`) -
-              (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`)) -
-              (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`));
-          })(),
+          g.n('IN_rooms', `${roomCol}30`) * g.n('IN_rooms', `${roomCol}31`) *
+          g.WENN(g.g('IN_rooms', `${roomCol}29`) === 'Nein', 1, 2) +
+          g.n('IN_rooms', `${roomCol}39`) /
+          Math.sin(g.WENNS(
+            g.g('IN_build', 'P4') === 'geneigt', 25,
+            g.g('IN_build', 'P4') === 'steil', 40,
+            g.g('IN_build', 'P4') === 'sehr steil', 55,
+            g.WAHR(), 0 // Default fallback
+          ) * Math.PI / 180) *
+          g.n('IN_rooms', `${roomCol}30`) -
+          (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`)) -
+          (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`)),
 
           g.ODER(
             g.n('IN_rooms', `${roomCol}39`) === 0,
@@ -628,14 +624,14 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 37: Fläche [m²]
-       * Excel: "IF(IN_rooms!R$39=0,IN_rooms!R$4,IN_rooms!R$4+IN_rooms!R$39/TAN(_xlfn.IFS(IN_build!$P$4=\"Flach bzw. Flachdach\",90,IN_build!$P$4=\"Geneigt\",25,IN_build!$P$4=\"Steil\",40,IN_build!$P$4=\"Sehr steil\",55)*PI()/180)*IN_rooms!R$30)"
+       * Excel: "IF(IN_rooms!R$39=0,IN_rooms!R$4,IN_rooms!R$4+IN_rooms!R$39/TAN(_xlfn.IFS(IN_build!$P$4=\"Flach bzw. Flachdach\",90,IN_build!$P$4=\"geneigt\",25,IN_build!$P$4=\"steil\",40,IN_build!$P$4=\"sehr steil\",55)*PI()/180)*IN_rooms!R$30)"
        */
       grid.setCell('clc_load', `${clcLoadCol}37`, (s, c, g) => {
         const roofAngle = g.WENNS(
           g.g('IN_build', 'P4') === 'Flach bzw. Flachdach', 90,
-          g.g('IN_build', 'P4') === 'Geneigt', 25,
-          g.g('IN_build', 'P4') === 'Steil', 40,
-          g.g('IN_build', 'P4') === 'Sehr steil', 55,
+          g.g('IN_build', 'P4') === 'geneigt', 25,
+          g.g('IN_build', 'P4') === 'steil', 40,
+          g.g('IN_build', 'P4') === 'sehr steil', 55,
           g.WAHR(), 0 // Default fallback
         );
 

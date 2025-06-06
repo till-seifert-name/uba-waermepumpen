@@ -289,7 +289,7 @@ export class BerechnungService {
     // Basic building properties
     'IN_build!P2', // PLZ/Standort des Gebäudes
     'IN_build!P3', // Gebäudetyp (Ein- oder Zweifamilienhaus, Reihenhaus, Mehrfamilienhaus)
-    'IN_build!P4', // Dachform (Flach bzw. Flachdach, Geneigt, Steil, Sehr steil)
+    'IN_build!P4', // Dachform (Flach bzw. Flachdach, geneigt, steil, sehr steil)
     'IN_build!P5', // Baujahr
 
     // Retrofitting properties
