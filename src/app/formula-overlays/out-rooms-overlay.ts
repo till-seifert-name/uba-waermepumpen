@@ -620,7 +620,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
        * Excel: "MAX(20,MIN(125,clc_build!G$8))"
        */
       grid.setCell('OUT_rooms', `${outRoomsCol}37`, (s, c, g) =>
-        Math.max(20, Math.min(125, g.n('clc_build', `${clcBuildCol}8`))));
+        Math.max(30, Math.min(110, g.n('clc_build', `${clcBuildCol}8`))));
     }
   }
 }

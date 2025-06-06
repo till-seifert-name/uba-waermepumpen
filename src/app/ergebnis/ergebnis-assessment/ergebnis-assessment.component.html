@@ -48,14 +48,15 @@
   <div class="col-md-10 col-lg-8 mx-auto">
     <app-band-tacho
       [minValue]="0"
-      [maxValue]="2.5"
+      [maxValue]="1"
       [zones]="[
-        { value: 2.5 - 2.5, label: '', },
-        { value: 2.5 - 1.5, label: 'NT-ready',  },
-        { value: 2.5 - 1.0, label: 'eingeschränkt geeignet',  },
-        { value: 2.5 - 0.6, label: 'noch nicht gut geeignet',  },
+        {value: 0.00, label: ''},
+        {value: 0.25, label: 'NT-ready'},
+        {value: 0.50, label: 'eingeschränkt geeignet'},
+        {value: 0.75, label: 'noch nicht gut geeignet'},
+        {value: 1.00, label: ''},
       ]"
-      [pins]="[{ value: 2.5 - grid.n('OUT_build', 'H2'), tooltip: 'Gesamtbewertung' }]">
+      [pins]="[{ value: grid.n('OUT_build', 'H2'), tooltip: 'Gesamtbewertung' }]">
     </app-band-tacho>
   </div>
 
@@ -177,7 +178,7 @@
 
   <div class="row">
     <div class="col-3 text-center">
-      <svg-icon 
+      <svg-icon
         src="assets/images/pic_G2_rad_better.svg"
         [svgStyle]="{ 'width.px': 144, 'height.px': 144 }">
       </svg-icon>

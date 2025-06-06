@@ -116,14 +116,20 @@ See `README.md` for complete file documentation including:
 
 ## Searching Excel Data in TypeScript Files
 
-**Use -E for Extended Regex** with simple patterns (avoids backslash escaping issues):
+**Prefer ripgrep (rg) over grep** as it handles complex patterns better and is faster:
 ```bash
 # Find cell ranges: I2-I9, I10-I19, specific cells
-grep -E '"I[2-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
-grep -E '"I1[0-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+rg '"I[2-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+rg '"I1[0-9]"' 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
 
 # Search by content type
-grep -E " formula " 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+rg " formula " 20250507_WP_Check_Vorlage_ts_export/clc_load.ts
+
+# Find specific cell contents (e.g., help texts in column H)
+rg '"H\d+": +/\* unknown \*/ ".+"' 20250507_WP_Check_Vorlage_ts_export/IN_rooms.ts
+
+# Show context around matches (2 lines before, 4 lines after)
+rg -B2 -A4 '"H6": +/\* unknown \*/ ".+"' 20250507_WP_Check_Vorlage_ts_export/IN_rooms.ts
 ```
 
 ## Checking Formula Overlay Implementation Completeness

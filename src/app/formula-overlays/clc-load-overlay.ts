@@ -126,14 +126,13 @@ export class ClcLoadOverlay implements FormulaOverlay {
        * Row 14: Wand-Außenfläche [m²]
        * Excel:
        * "IF(
-       *     OR(IN_rooms!R$28=\"Nein\",IN_rooms!R$31=0,IN_rooms!R$30 = 0,  IN_rooms!R$9 = 0,IN_build!$P$4 = \"Flach bzw. Flachdach\"),
+       *     OR(IN_rooms!R$28=\"Nein\",IN_rooms!R$31=0,IN_rooms!R$30 = 0,IN_build!$P$4 = \"Flach bzw. Flachdach\"),
        *     IN_rooms!R$9 * IN_rooms!R$5 - (IN_rooms!R$13 * IN_rooms!R$14 +
        *     IN_rooms!R$17 * IN_rooms!R$18 + IN_rooms!R$21 * IN_rooms!R$22),
        * _xlfn.LET(
        *   _xlpm.b_ceil, IN_rooms!R$32,
-       *   _xlpm.b_room, IF(IN_rooms!R$29=\"Nein\", IN_rooms!R$4 / IN_rooms!R$30, 2 * IN_rooms!R$4 / IN_rooms!R$30),
        *   _xlpm.L_wall, IN_rooms!R$9,
-       *   _xlpm.L_giebel, IF(_xlpm.L_wall / 1.5 <= _xlpm.b_room, _xlpm.L_wall, _xlpm.L_wall / 2),
+       *   _xlpm.n_giebel, IF(_xlpm.L_wall=0,0,IN_rooms!R33),
        *   _xlpm.h_knee, IF(IN_rooms!R$37 > 0, IN_rooms!R$37, IN_rooms!R$39),
        *   _xlpm.h_roof, IN_rooms!R$31,
        *   _xlpm.is_jamb, IN_rooms!R$35=\"Ja\",
@@ -144,24 +143,26 @@ export class ClcLoadOverlay implements FormulaOverlay {
        *     IN_build!$P$4 = \"Sehr steil\", 55),
        *   _xlpm.A_win, (IN_rooms!R$13 * IN_rooms!R$14 + IN_rooms!R$17 * IN_rooms!R$18 + IN_rooms!R$21 * IN_rooms!R$22),
        *   _xlpm.A_knee, IF(_xlpm.is_jamb, 0, _xlpm.h_knee *  IN_rooms!R$30),
-       *   _xlpm.A_no_slop, IN_rooms!R$9 * IN_rooms!R$5 - _xlpm.A_win,
-       *    _xlpm.A_big_rect, _xlpm.h_roof * _xlpm.b_ceil,
-       *   _xlpm.A_triangle, IF(_xlpm.h_roof < _xlpm.L_giebel - _xlpm.b_ceil,0, 1/2 * (_xlpm.L_giebel - _xlpm.b_ceil) * SQRT(_xlpm.h_roof^2 - (_xlpm.L_giebel - _xlpm.b_ceil)^2)),
+       *   _xlpm.A_no_slop, _xlpm.L_wall * IN_rooms!R$5,
+       *   _xlpm.A_big_rect, _xlpm.h_room * _xlpm.b_ceil,
+       *   _xlpm.A_triangle, 1/4 * _xlpm.h_roof^2 * SIN(2*_xlpm.alpha*PI()/180),
        *   _xlpm.A_small_rect, _xlpm.h_knee * _xlpm.h_roof * COS(_xlpm.alpha*PI()/180),
-       *   _xlpm.A_triangle_jamb, 1/2 * _xlpm.h_knee^2 * _xlfn.COT(_xlpm.alpha*PI()/180),
+       *   _xlpm.A_triangle_jamb, 1/2 * _xlpm.h_knee^2 * TAN(_xlpm.alpha*PI()/180),
        *   _xlpm.A_slop_tot, _xlpm.A_triangle + _xlpm.A_small_rect + IF(_xlpm.is_jamb, _xlpm.A_triangle_jamb,0),
        *
-       *   _xlpm.giebel_1_slop_1, AND(IN_rooms!R$29 = \"Nein\", _xlpm.L_wall / 1.5 <= _xlpm.b_room),
-       *   _xlpm.giebel_2_slop_1, AND(IN_rooms!R$29 = \"Nein\", _xlpm.L_wall / 1.5 > _xlpm.b_room),
-       *   _xlpm.giebel_1_slop_2, AND(IN_rooms!R$29 = \"Ja\", _xlpm.L_wall / 1.5 <= _xlpm.b_room),
-       *   _xlpm.giebel_2_slop_2, AND(IN_rooms!R$29 = \"Ja\", _xlpm.L_wall / 1.5 > _xlpm.b_room),
+       *   _xlpm.giebel_0, _xlpm.n_giebel = 0,
+       *   _xlpm.giebel_1_slop_1, AND(IN_rooms!R$29 = \"Nein\", _xlpm.n_giebel = 1),
+       *   _xlpm.giebel_2_slop_1, AND(IN_rooms!R$29 = \"Nein\", _xlpm.n_giebel = 2),
+       *   _xlpm.giebel_1_slop_2, AND(IN_rooms!R$29 = \"Ja\", _xlpm.n_giebel = 1),
+       *   _xlpm.giebel_2_slop_2, AND(IN_rooms!R$29 = \"Ja\", _xlpm.n_giebel = 2),
        *
        *   MAX(MIN(_xlfn.IFS(
-       *     _xlpm.giebel_1_slop_1, _xlpm.A_big_rect + _xlpm.A_slop_tot - _xlpm.A_win,
-       *     _xlpm.giebel_2_slop_1, 2 * (_xlpm.A_big_rect + _xlpm.A_slop_tot) - _xlpm.A_win,
-       *     _xlpm.giebel_1_slop_2, _xlpm.A_big_rect + 2 * _xlpm.A_slop_tot - _xlpm.A_win,
-       *     _xlpm.giebel_2_slop_2, 2 * (_xlpm.A_big_rect + 2 * _xlpm.A_slop_tot) - _xlpm.A_win,
-       *     TRUE, _xlpm.A_no_slop),_xlpm.A_no_slop) + _xlpm.A_knee,0)
+       *     _xlpm.giebel_0, _xlpm.A_no_slop,
+       *     _xlpm.giebel_1_slop_1, _xlpm.A_big_rect + _xlpm.A_slop_tot,
+       *     _xlpm.giebel_2_slop_1, 2 * (_xlpm.A_big_rect + _xlpm.A_slop_tot),
+       *     _xlpm.giebel_1_slop_2, _xlpm.A_big_rect + 2 * _xlpm.A_slop_tot,
+       *     _xlpm.giebel_2_slop_2, 2 * (_xlpm.A_big_rect + 2 * _xlpm.A_slop_tot),
+       *     TRUE, _xlpm.A_no_slop),_xlpm.A_no_slop) + _xlpm.A_knee - _xlpm.A_win, 0)
        * ))"
        */
       grid.setCell('clc_load', `${clcLoadCol}14`, (s, c, g) => {
@@ -170,7 +171,6 @@ export class ClcLoadOverlay implements FormulaOverlay {
             g.g('IN_rooms', `${roomCol}28`) === 'Nein',
             g.n('IN_rooms', `${roomCol}31`) === 0,
             g.n('IN_rooms', `${roomCol}30`) === 0,
-            g.n('IN_rooms', `${roomCol}9`) === 0,
             g.g('IN_build', 'P4') === 'Flach bzw. Flachdach'
           ),
           (() =>
@@ -183,25 +183,22 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
           (() => {
             let b_ceil = g.n('IN_rooms', `${roomCol}32`);
-            let b_room = g.WENN(
-              g.g('IN_rooms', `${roomCol}29`) === 'Nein',
-              g.n('IN_rooms', `${roomCol}4`) / g.n('IN_rooms', `${roomCol}30`),
-              2 * g.n('IN_rooms', `${roomCol}4`) / g.n('IN_rooms', `${roomCol}30`)
-            );
             let L_wall = g.n('IN_rooms', `${roomCol}9`);
-            let L_giebel = L_wall / 1.5 <= b_room ? L_wall : L_wall / 2;
+            let n_giebel = L_wall === 0 ? 0 : g.n('IN_rooms', `${roomCol}33`);
             let h_knee = g.n('IN_rooms', `${roomCol}37`) > 0 ? g.n('IN_rooms', `${roomCol}37`) : g.n('IN_rooms', `${roomCol}39`);
             let h_roof = g.n('IN_rooms', `${roomCol}31`);
-            let h_room = g.n('IN_rooms', `${roomCol}5`);
             let is_jamb = g.g('IN_rooms', `${roomCol}35`) === 'Ja';
+            let h_room = g.n('IN_rooms', `${roomCol}5`);
 
             let roofType = g.g('IN_build', 'P4');
+            // angle in degrees from roof type
             let alpha = g.WENNS(
               roofType === 'Geneigt', 25,
               roofType === 'Steil', 40,
               roofType === 'Sehr steil', 55,
               g.WAHR(), 0
             );
+            // degrees to radians for JavaScript trigonometric functions
             let alphaRad = (alpha * Math.PI) / 180;
 
             let win1 = g.n('IN_rooms', `${roomCol}13`) * g.n('IN_rooms', `${roomCol}14`);
@@ -209,33 +206,35 @@ export class ClcLoadOverlay implements FormulaOverlay {
             let win3 = g.n('IN_rooms', `${roomCol}21`) * g.n('IN_rooms', `${roomCol}22`);
             let A_win = (win1 + win2 + win3);
 
-            // Added A_knee calculation
             let A_knee = is_jamb ? 0 : h_knee * g.n('IN_rooms', `${roomCol}30`);
 
-            let A_no_slop = L_wall * h_room - A_win;
-            let A_big_rect = h_roof * b_ceil;
+            let A_no_slop = L_wall * h_room;
 
-            let triangleBase = L_giebel - b_ceil;
-            let A_triangle = h_roof < triangleBase ? 0 : 0.5 * triangleBase * Math.sqrt(h_roof ** 2 - triangleBase ** 2);
+            let A_big_rect = h_room * b_ceil;
+
+            let A_triangle = 0.25 * h_roof * h_roof * Math.sin(2 * alphaRad);
+
             let A_small_rect = h_knee * h_roof * Math.cos(alphaRad);
-            let A_triangle_jamb = 0.5 * h_knee ** 2 / Math.tan(alphaRad);
+
+            let A_triangle_jamb = 0.5 * h_knee * h_knee * Math.tan(alphaRad);
+
             let A_slop_tot = A_triangle + A_small_rect + (is_jamb ? A_triangle_jamb : 0);
 
-            // Check different roof configurations
-            let giebel_1_slop_1 = g.g('IN_rooms', `${roomCol}29`) === 'Nein' && L_wall / 1.5 <= b_room;
-            let giebel_2_slop_1 = g.g('IN_rooms', `${roomCol}29`) === 'Nein' && L_wall / 1.5 > b_room;
-            let giebel_1_slop_2 = g.g('IN_rooms', `${roomCol}29`) === 'Ja' && L_wall / 1.5 <= b_room;
-            let giebel_2_slop_2 = g.g('IN_rooms', `${roomCol}29`) === 'Ja' && L_wall / 1.5 > b_room;
+            let giebel_0 = n_giebel === 0;
+            let giebel_1_slop_1 = g.g('IN_rooms', `${roomCol}29`) === 'Nein' && n_giebel === 1;
+            let giebel_2_slop_1 = g.g('IN_rooms', `${roomCol}29`) === 'Nein' && n_giebel === 2;
+            let giebel_1_slop_2 = g.g('IN_rooms', `${roomCol}29`) === 'Ja' && n_giebel === 1;
+            let giebel_2_slop_2 = g.g('IN_rooms', `${roomCol}29`) === 'Ja' && n_giebel === 2;
 
-            // Calculate area and ensure it's not negative with MAX
             const result = Math.max(
               Math.min(g.WENNS(
-                giebel_1_slop_1, A_big_rect + A_slop_tot - A_win,
-                giebel_2_slop_1, 2 * (A_big_rect + A_slop_tot) - A_win,
-                giebel_1_slop_2, A_big_rect + 2 * A_slop_tot - A_win,
-                giebel_2_slop_2, 2 * (A_big_rect + 2 * A_slop_tot) - A_win,
+                giebel_0, A_no_slop,
+                giebel_1_slop_1, A_big_rect + A_slop_tot,
+                giebel_2_slop_1, 2 * (A_big_rect + A_slop_tot),
+                giebel_1_slop_2, A_big_rect + 2 * A_slop_tot,
+                giebel_2_slop_2, 2 * (A_big_rect + 2 * A_slop_tot),
                 g.WAHR(), A_no_slop
-              ), A_no_slop) + A_knee,
+              ), A_no_slop) + A_knee - A_win,
               0
             );
 

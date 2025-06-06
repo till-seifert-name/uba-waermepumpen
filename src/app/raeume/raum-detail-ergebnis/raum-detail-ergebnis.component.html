@@ -24,17 +24,17 @@
 
     <app-band-tacho
       [minValue]="0"
-      [maxValue]="100"
+      [maxValue]="1"
       [zones]="[
-        {value: 100 - 100, label: ''},
-        {value: 100 - 75, label: 'NT-ready'},
-        {value: 100 - 50, label: 'eingeschränkt geeignet'},
-        {value: 100 - 25, label: 'noch nicht gut geeignet'},
-        {value: 100 - 0, label: ''},
+        {value: 0.00, label: ''},
+        {value: 0.25, label: 'NT-ready'},
+        {value: 0.50, label: 'eingeschränkt geeignet'},
+        {value: 0.75, label: 'noch nicht gut geeignet'},
+        {value: 1.00, label: ''},
       ]"
       [pins]="[
-        { value: 100 - grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '35') * 100, tooltip: 'Aktueller Heizkörper' },
-        { value: 100 - grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '36') * 100, tooltip: 'Besserer Heizkörper' }
+        { value: grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '35'), tooltip: 'Aktueller Heizkörper' },
+        { value: grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '36'), tooltip: 'Besserer Heizkörper' }
       ]">
     </app-band-tacho>
 

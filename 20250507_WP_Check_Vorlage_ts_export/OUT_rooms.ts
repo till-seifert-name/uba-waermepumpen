@@ -542,7 +542,7 @@ export const data = {
   "B37":  /* unknown */ "room",
   "D37":  /* unknown */ "pos_room_mark_load",
   "G37":  /* unknown */ "R3",
-  "H37":  /* formula */ "MAX(20,MIN(125,clc_build!G$8))",
+  "H37":  /* formula */ "MAX(30,MIN(110,clc_build!G$8))",
   "A41":  /* unknown */ "Warnhinweis Raumebene",
   "B41":  /* unknown */ "room",
   "D41":  /* unknown */ "TXT_room_RW",
