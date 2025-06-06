@@ -23,11 +23,11 @@
       </div>
     </div>
   </div>
-  
+
   <div class="mb-3 row align-items-center">
     <label for="modernisierungsjahr" class="col-sm-5 col-form-label">Abweichendes Modernisierungsjahr</label>
     <div class="col-sm-7">
-      <select class="form-select" id="modernisierungsjahr" name="modernisierungsjahr" 
+      <select class="form-select" id="modernisierungsjahr" name="modernisierungsjahr"
               [(ngModel)]="roomModernisierungsjahr">
         <option value="">Kein abweichendes Jahr</option>
         <option *ngFor="let jahr of modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
@@ -35,7 +35,7 @@
       <div class="form-text">Nur ausfüllen, wenn die Außenwand zu einem anderen Zeitpunkt modernisiert wurde als das Gebäude.</div>
     </div>
   </div>
-  
+
   <div class="mb-3 row align-items-center">
     <label for="aw_daemmung" class="col-sm-5 col-form-label">Abweichende Dämmstärke</label>
     <div class="col-sm-7">
@@ -320,10 +320,8 @@
         <button type="button"
                 class="btn btn-link p-0 ms-1 text-muted"
                 [ngbPopover]="roofMeasurementPopover"
-                popoverTitle="Dachmaße - Hilfe"
                 placement="right"
-                triggers="click"
-                container="body">
+                triggers="click">
           <i class="bi bi-question-circle"></i>
         </button>
       </label>
@@ -337,8 +335,14 @@
                      (ngModelChange)="berechnungService.setL_roof_wid(roomId, $event)" required
                      min="1" max="20">
               <span class="input-group-text">m</span>
+              <!--<button type="button"
+                      class="btn btn-link p-0 ms-1 text-muted"
+                      [ngbPopover]="grid.g('IN_rooms', 'H30').toString()"
+                      placement="right"
+                      triggers="click">
+                <i class="bi bi-question-circle"></i>
+              </button>-->
             </div>
-            <div class="form-text">Bei mehreren Dachflächen bitte summieren</div>
           </div>
           <div class="col-6">
             <div class="input-group">
@@ -348,8 +352,14 @@
                      (ngModelChange)="berechnungService.setL_roof_hei(roomId, $event)" required
                      min="1" max="6">
               <span class="input-group-text">m</span>
+              <!--<button type="button"
+                      class="btn btn-link p-0 ms-1 text-muted"
+                      [ngbPopover]="grid.g('IN_rooms', 'H31').toString()"
+                      placement="right"
+                      triggers="click">
+                <i class="bi bi-question-circle"></i>
+              </button>-->
             </div>
-            <div class="form-text">Bei mehreren Dachflächen bitte nicht summieren</div>
           </div>
         </div>
       </div>
@@ -357,7 +367,7 @@
 
     <!-- Horizontal Ceiling Section -->
     <div class="row align-items-center mb-3">
-      <label for="topceil_dimensions" class="col-sm-5 col-form-label">Ist eine horizontale Decke vorhanden? Geben Sie bitte Breite und Länge an</label>
+      <label for="topceil_dimensions" class="col-sm-5 col-form-label">Ist eine horizontale Decke vorhanden? Geben Sie bitte Breite an</label>
       <div class="col-sm-7">
         <div class="row g-2">
           <div class="col-6">
@@ -370,26 +380,39 @@
               <span class="input-group-text">m</span>
             </div>
           </div>
-          <div class="col-6">
-            <div class="input-group">
-              <span class="input-group-text" style="width: 70px;">Länge</span>
-              <input type="number" step="0.01" class="form-control text-end" id="topceil_length"
-                     name="topceil_length" [ngModel]="berechnungService.getL_topceil__len(roomId)"
-                     (ngModelChange)="berechnungService.setL_topceil__len(roomId, $event)"
-                     min="0" max="20">
-              <span class="input-group-text">m</span>
-            </div>
-          </div>
         </div>
         <div class="form-text">Lassen Sie die Felder leer, wenn keine horizontale Decke vorhanden ist</div>
+      </div>
+    </div>
+    <!-- Variable Länge wieder horizonzalen Decke wurde ohne Umbenennung für Anzahl Giebelwände wiederverwendet -->
+    <div class="row align-items-center mb-3">
+      <label for="topceil_dimensions" class="col-sm-5 col-form-label">Geben Sie die Anzahl der Giebelwände an</label>
+      <div class="col-sm-7">
+        <div class="input-group">
+          <input type="number" step="1" class="form-control text-end" id="topceil_width"
+                 name="topceil_width" [ngModel]="berechnungService.getL_topceil__wid(roomId)"
+                 (ngModelChange)="berechnungService.setL_topceil__wid(roomId, $event)"
+                 min="0" max="2">
+        </div>
+        <div class="form-text">Ist keine Giebelwand vorhanden, bitte 0 eingeben</div>
       </div>
     </div>
 
     <!-- Knee Wall (Drempelwand/Kniestock) -->
     <div class="row align-items-center mb-3">
-      <label for="knee_wall_height" class="col-sm-5 col-form-label">Falls eine Drempelwand bzw. Kniestock vorhanden ist, geben Sie die Höhe an</label>
+      <label for="knee_wall_height" class="col-sm-5 col-form-label">
+        Falls eine Drempelwand bzw. Kniestock vorhanden ist, geben Sie die Höhe an
+        <button type="button"
+                class="btn btn-link p-0 ms-1 text-muted"
+                [ngbPopover]="grid.g('IN_rooms', 'H39').toString()"
+                placement="right"
+                triggers="click">
+          <i class="bi bi-question-circle"></i>
+        </button>
+      </label>
       <div class="col-sm-7">
         <div class="input-group">
+          <span class="input-group-text" style="width: 70px;">Höhe</span>
           <input type="number" step="0.01" class="form-control text-end" id="knee_wall_height"
                  name="knee_wall_height" [ngModel]="berechnungService.getL_roof_jamb_hei(roomId)"
                  (ngModelChange)="berechnungService.setL_roof_jamb_hei(roomId, $event)"
@@ -400,7 +423,16 @@
     </div>
 
     <div class="row align-items-center mb-3">
-      <label for="knee_wall_hollow" class="col-sm-5 col-form-label">Klopfen Sie gegen die senkrechte Wand unter der Dachschräge. Klingt es hohl?</label>
+      <label for="knee_wall_hollow" class="col-sm-5 col-form-label">
+        Klopfen Sie gegen die senkrechte Wand unter der Dachschräge. Klingt es hohl?
+        <button type="button"
+                class="btn btn-link p-0 ms-1 text-muted"
+                [ngbPopover]="grid.g('IN_rooms', 'H38').toString()"
+                placement="right"
+                triggers="click">
+          <i class="bi bi-question-circle"></i>
+        </button>
+      </label>
       <div class="col-sm-7">
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="knee_wall_hollow" id="knee_wall_hollow_ja"

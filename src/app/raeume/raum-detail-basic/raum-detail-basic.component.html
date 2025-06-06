@@ -28,7 +28,16 @@
     </div>
   </div>
   <div class="mb-3 row align-items-center">
-    <label for="raumtemp" class="col-sm-5 col-form-label">Gewünschte Raumtemperatur</label>
+    <label for="raumtemp" class="col-sm-5 col-form-label">
+      Gewünschte Raumtemperatur
+      <button type="button"
+              class="btn btn-link p-0 ms-1 text-muted"
+              [ngbPopover]="grid.g('IN_rooms', 'H6').toString()"
+              placement="right"
+              triggers="click">
+        <i class="bi bi-question-circle"></i>
+      </button>
+    </label>
     <div class="col-sm-7">
       <div class="input-group">
         <input type="number" class="form-control text-end" id="raumtemp"

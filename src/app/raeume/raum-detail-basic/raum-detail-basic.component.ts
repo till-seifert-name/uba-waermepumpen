@@ -145,5 +145,10 @@ export class RaumDetailBasicComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Getter for the grid to access help texts and other data directly in the template
+  get grid() {
+    return this.berechnungService.grid;
+  }
+
 
 }
