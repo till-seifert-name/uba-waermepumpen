@@ -21,7 +21,7 @@ export const data = {
   "E6":  /* unknown */ "## <i class=\"bi bi-circle-fill rating-green\"></i> Sehr gut geeignet.\n\n### Stark gemacht!\n\nDie Heizlast in diesem Raum ist bereits sehr niedrig – eine Wärmepumpe kann den Raum effizient beheizen. Zusätzliche Maßnahmen wie Dämmung oder neue Fenster bringen nur noch geringe Verbesserungen.",
   "A7":  /* unknown */ "R2",
   "B7":  /* unknown */ "TXT_room_R2_suit_1",
-  "E7":  /* unknown */ "## <i class=\"bi bi-circle-fill rating-yellow\"></i> Gut geeignet, mit Potenzial.\n\n### Gute Basis – noch optimierbar.\n\nDie Heizlast ist durchschnittlich. Eine Dämmung der",
+  "E7":  /* unknown */ "## <i class=\"bi bi-circle-fill rating-yellow\"></i> Gut geeignet, mit Potenzial.\n\n### Gute Basis – noch optimierbar.\n\nDie Heizlast ist durchschnittlich. Eine Dämmung oder Erneuerung der",
   "A8":  /* unknown */ "R2",
   "B8":  /* unknown */ "TXT_room_R2_suit_2",
   "E8":  /* unknown */ "bietet hier das größte Potenzial, um den Wärmepumpenbetrieb effizienter zu gestalten und Energie zu sparen.",

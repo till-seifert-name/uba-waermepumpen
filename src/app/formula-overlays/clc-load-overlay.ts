@@ -413,7 +413,7 @@ export class ClcLoadOverlay implements FormulaOverlay {
       /**
        * Row 26: Fläche [m²]
        * Excel:
-       * "_xlfn.IFS(\n   IN_rooms!R$28<>\"Ja\",\n    0,\n    IN_build!$P$4 = \"Flach bzw. Flachdach\",\n      IN_rooms!R$4     - (IN_rooms!R$41 * IN_rooms!R$42 / 10000)\n      - (IN_rooms!R$45 * IN_rooms!R$46 / 10000),\n  IN_rooms!R$39>0,\n    IN_rooms!R$30 * IN_rooms!R$31\n      * IF(IN_rooms!R$29=\"Nein\",1,2)\n    + IN_rooms!R$39\n      / SIN(\n          _xlfn.IFS(\n            IN_build!$P$4=\"Geneigt\",   25,\n            IN_build!$P$4=\"Steil\",     40,\n            IN_build!$P$4=\"Sehr steil\",55\n          )\n          * PI() / 180\n        )\n      * IN_rooms!R$30\n    - (IN_rooms!R$41 * IN_rooms!R$42 / 10000)\n    - (IN_rooms!R$45 * IN_rooms!R$46 / 10000),\n\n  OR(\n    IN_rooms!R$39=0,\n    IN_rooms!R$37>0\n  ),\n    IN_rooms!R$30 * IN_rooms!R$31\n    - (IN_rooms!R$41 * IN_rooms!R$42 / 10000)\n    - (IN_rooms!R$45 * IN_rooms!R$46 / 10000)\n)"
+       * "_xlfn.IFS(\n   IN_rooms!R$28<>\"Ja\",\n    0,\n    IN_build!$P$4 = \"Flach bzw. Flachdach\",\n      IN_rooms!R$4     - (IN_rooms!R$41 * IN_rooms!R$42)\n      - (IN_rooms!R$45 * IN_rooms!R$46),\n  IN_rooms!R$39>0,\n    IN_rooms!R$30 * IN_rooms!R$31\n      * IF(IN_rooms!R$29=\"Nein\",1,2)\n    + IN_rooms!R$39\n      / SIN(\n          _xlfn.IFS(\n            IN_build!$P$4=\"Geneigt\",   25,\n            IN_build!$P$4=\"Steil\",     40,\n            IN_build!$P$4=\"Sehr steil\",55\n          )\n          * PI() / 180\n        )\n      * IN_rooms!R$30\n    - (IN_rooms!R$41 * IN_rooms!R$42)\n    - (IN_rooms!R$45 * IN_rooms!R$46),\n\n  OR(\n    IN_rooms!R$39=0,\n    IN_rooms!R$37>0\n  ),\n    IN_rooms!R$30 * IN_rooms!R$31\n    - (IN_rooms!R$41 * IN_rooms!R$42)\n    - (IN_rooms!R$45 * IN_rooms!R$46)\n)"
        */
       grid.setCell('clc_load', `${clcLoadCol}26`, (s, c, g) => {
         return g.WENNS(
@@ -422,8 +422,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
           g.g('IN_build', 'P4') === 'Flach bzw. Flachdach',
           g.n('IN_rooms', `${roomCol}4`) -
-            (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`) / 10000) -
-            (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`) / 10000),
+            (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`)) -
+            (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`)),
 
           g.n('IN_rooms', `${roomCol}39`) > 0,
           (() => {
@@ -439,8 +439,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
               g.n('IN_rooms', `${roomCol}39`) /
               Math.sin(roofAngle * Math.PI / 180) *
               g.n('IN_rooms', `${roomCol}30`) -
-              (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`) / 10000) -
-              (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`) / 10000);
+              (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`)) -
+              (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`));
           })(),
 
           g.ODER(
@@ -448,8 +448,8 @@ export class ClcLoadOverlay implements FormulaOverlay {
             g.n('IN_rooms', `${roomCol}37`) > 0
           ),
           g.n('IN_rooms', `${roomCol}30`) * g.n('IN_rooms', `${roomCol}31`) -
-            (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`) / 10000) -
-            (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`) / 10000),
+            (g.n('IN_rooms', `${roomCol}41`) * g.n('IN_rooms', `${roomCol}42`)) -
+            (g.n('IN_rooms', `${roomCol}45`) * g.n('IN_rooms', `${roomCol}46`)),
 
           // Default fallback
           0

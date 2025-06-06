@@ -44,7 +44,7 @@ export const data = {
   "G4":  /* unknown */ "Radio Button + Grafik",
   "J4":  /* unknown */ "String",
   "K4":  /* unknown */ 1,
-  "P4":  /* unknown */ "geneigt",
+  "P4":  /* unknown */ "sehr steil",
   "W4":  /* unknown */ "geneigt: 25°, steil: 40°, sehr steil: 55°",
   "B5":  /* unknown */ "build",
   "D5":  /* unknown */ "YEAR_build_bj",
