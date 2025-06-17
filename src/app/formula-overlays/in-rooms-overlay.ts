@@ -259,24 +259,31 @@ export class InRoomsOverlay implements FormulaOverlay {
       /**
        * Wall insulation thickness (e.g., R74, S74, etc.)
        * Excel:
-       * =IF(R73=IN_build!$P$5, 0, _xlfn.XLOOKUP(1,
-       *   (INDIRECT("UWert_Mod[Bauteil]")="Außenwand") *
-       *   (INDIRECT("UWert_Mod[Modernisierungsjahr]")=R73),
-       *   INDIRECT("UWert_Mod[d_ins]")
-       * ))
+       * =IF(R10>0,
+       *   IF(R73=IN_build!$P$5, 0, _xlfn.XLOOKUP(1,
+       *     (INDIRECT("UWert_Mod[Bauteil]")="Außenwand") *
+       *     (INDIRECT("UWert_Mod[Modernisierungsjahr]")=R73),
+       *     INDIRECT("UWert_Mod[d_ins]")
+       *   )),
+       *   IN_build!$T$7
+       * )
        */
       grid.setCell('IN_rooms', `${col}74`, (s, c, g) =>
         g.WENN(
-          g.g(s, `${col}73`) === g.g('IN_build', 'P5'),
-          0,
-          g.XVERWEIS(
-            1,
-            g.MULT(
-              g.GLEICH(g.INDIREKT_DB_REF("UWert_Mod", "Bauteil"), "Außenwand"),
-              g.GLEICH(g.INDIREKT_DB_REF("UWert_Mod", "Modernisierungsjahr"), g.g(s, `${col}73`))
-            ),
-            g.INDIREKT_DB_REF("UWert_Mod", "d_ins")
-          )
+          g.n(s, `${col}10`) > 0,
+          g.WENN(
+            g.g(s, `${col}73`) === g.g('IN_build', 'P5'),
+            0,
+            g.XVERWEIS(
+              1,
+              g.MULT(
+                g.GLEICH(g.INDIREKT_DB_REF("UWert_Mod", "Bauteil"), "Außenwand"),
+                g.GLEICH(g.INDIREKT_DB_REF("UWert_Mod", "Modernisierungsjahr"), g.g(s, `${col}73`))
+              ),
+              g.INDIREKT_DB_REF("UWert_Mod", "d_ins")
+            )
+          ),
+          g.g('IN_build', 'T7')
         )
       );
 

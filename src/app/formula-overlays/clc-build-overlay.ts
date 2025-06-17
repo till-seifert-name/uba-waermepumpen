@@ -353,21 +353,29 @@ export class ClcBuildOverlay implements FormulaOverlay {
 
       /**
        * Row 39: Deckungsgrad IST 55°C
-       * Excel: "ROUND(clc_power!G205/HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE),0)*HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE)"
+       * Excel: "IF(G45, ROUND(clc_power!G205/HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE),0)*HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE), NA())"
        */
-      grid.setCell('clc_build', `${clcBuildCol}39`, (s, c, g) => {
-        const noRoundRcover = g.HLOOKUP('PAR', 'NO_round_rcover', '$F$1', '$AZ$5', 2, false)  as number;
-        return Math.round(g.n('clc_power', `${clcBuildCol}205`) / noRoundRcover) * noRoundRcover;
-      });
+      grid.setCell('clc_build', `${clcBuildCol}39`, (s, c, g) =>
+        g.WENN(
+          !!g.g(s, `${clcBuildCol}45`),
+
+          Math.round(g.n('clc_power', `${clcBuildCol}205`) / (g.HLOOKUP('PAR', 'NO_round_rcover', '$F$1', '$AZ$5', 2, false) as number))
+          * (g.HLOOKUP('PAR', 'NO_round_rcover', '$F$1', '$AZ$5', 2, false) as number)
+          ,
+          NaN // NA() in Excel
+        ));
 
       /**
        * Row 40: Typ 33 Deckungsgrad
-       * Excel: "ROUND(clc_power!G206/HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE),0)*HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE)"
+       * Excel: "IF(G45, ROUND(clc_power!G206/HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE),0)*HLOOKUP(\"NO_round_rcover\", PAR!$F$1:$AZ$5, 2, FALSE), NA())"
        */
-      grid.setCell('clc_build', `${clcBuildCol}40`, (s, c, g) => {
-        const noRoundRcover = g.HLOOKUP('PAR', 'NO_round_rcover', '$F$1', '$AZ$5', 2, false)  as number;
-        return Math.round(g.n('clc_power', `${clcBuildCol}206`) / noRoundRcover) * noRoundRcover;
-      });
+      grid.setCell('clc_build', `${clcBuildCol}40`, (s, c, g) =>
+        g.WENN(
+          !!g.g(s, `${clcBuildCol}45`),
+          Math.round(g.n('clc_power', `${clcBuildCol}206`) / (g.HLOOKUP('PAR', 'NO_round_rcover', '$F$1', '$AZ$5', 2, false) as number))
+          * (g.HLOOKUP('PAR', 'NO_round_rcover', '$F$1', '$AZ$5', 2, false) as number),
+          NaN // NA() in Excel
+        ));
 
       /**
        * Row 41: NT1-ready (nt1 = 55°C)
@@ -389,6 +397,16 @@ export class ClcBuildOverlay implements FormulaOverlay {
        */
       grid.setCell('clc_build', `${clcBuildCol}43`, (s, c, g) =>
         g.n(s, `${clcBuildCol}40`) > (g.HLOOKUP('PAR', 'NO_r_nt2', '$F$1', '$AZ$5', 2, false)  as number));
+
+      /**
+       * Row 45: Raum vorhanden (Room exists)
+       * Excel: "AND(ISTEXT(G9),LEN(G9)>0)"
+       */
+      grid.setCell('clc_build', `${clcBuildCol}45`, (s, c, g) =>
+        g.UND(
+          g.ISTTEXT(g.g(s, `${clcBuildCol}9`)),
+          g.LEN(g.g(s, `${clcBuildCol}9`)) > 0
+        ));
     }
 
     // Aggregation formulas for building level (column G only, rows 49-88)
@@ -396,10 +414,10 @@ export class ClcBuildOverlay implements FormulaOverlay {
 
     /**
      * Row 49: Anzahl Räume (Number of rooms)
-     * Excel: "SUMPRODUCT((G9:AA9<>0)*1)"
+     * Excel: "SUMPRODUCT((G45:AA45)*1)"
      */
     grid.setCell('clc_build', 'G49', (s, c, g) =>
-      g.SUMPRODUCT(g.RANGE("G9:AA9", s).map(v => v != 0 ? 1 : 0))
+      g.SUMPRODUCT(g.RANGE("G45:AA45", s).map(v => v ? 1 : 0))
     );
 
     /**

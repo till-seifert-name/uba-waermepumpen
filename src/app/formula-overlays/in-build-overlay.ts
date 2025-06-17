@@ -153,6 +153,26 @@ export class InBuildOverlay implements FormulaOverlay {
       )
     );
 
+    // T11 formula: IF(U11="",IF(Q11="Ja",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E11)*(UWert_Mod[Modernisierungsjahr]=R11), UWert_Mod[d_ins]),0),U11)
+    grid.setCell('IN_build', 'T11', (s, c, g) =>
+      g.WENN(
+        g.g(s, 'U11') === '',
+        g.WENN(
+          g.g(s, 'Q11') === 'Ja',
+          g.XVERWEIS(
+            1,
+            g.MULT(
+              g.GLEICH(g.INDIREKT_DB_REF("UWert_Mod", "Bauteil"), g.g(s, 'E11')),
+              g.GLEICH(g.INDIREKT_DB_REF("UWert_Mod", "Modernisierungsjahr"), g.g(s, 'R11'))
+            ),
+            g.INDIREKT_DB_REF("UWert_Mod", "d_ins")
+          ),
+          0
+        ),
+        g.g(s, 'U11')
+      )
+    );
+
 
     // P21 formula: P20*-1.8257+43.457+P20
     // Calculating flow temperature based on outside temperature

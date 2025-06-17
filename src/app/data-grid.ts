@@ -904,6 +904,23 @@ export class DataGrid {
     return value === '' || value === null || value === undefined;
   }
 
+  /**
+   * Checks if a value is text (a string).
+   * Implementation of Excel's ISTEXT function.
+   */
+  ISTTEXT(value: unknown): boolean {
+    return typeof value === 'string';
+  }
+
+  /**
+   * Returns the number of characters in a text string.
+   * Implementation of Excel's LEN function.
+   */
+  LEN(value: unknown): number {
+    if (value === null || value === undefined) return 0;
+    return value.toString().length;
+  }
+
   ABS(wert: number) {
     return Math.abs(wert)
   };

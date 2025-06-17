@@ -601,7 +601,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
        * "_xlfn.LET(
        *   _xlpm.deck,clc_build!G$40,
        *   IF(
-       *     1<=clc_build!G$39,
+       *     1<=clc_build!G$40,
        *       MAX(0, MIN(0.25, (1.5 - _xlpm.deck)*0.25/0.5)),
        *       MAX(0.27, MIN(1, 0.25 + (1 - _xlpm.deck) *0.75/0.6))))"
        */
@@ -609,7 +609,7 @@ export class OutRoomsOverlay implements FormulaOverlay {
         const deck = g.n('clc_build', `${clcBuildCol}40`);
 
         return g.WENN(
-          g.n('clc_build', `${clcBuildCol}39`) >= 1,
+          g.n('clc_build', `${clcBuildCol}40`) >= 1,
           Math.max(0, Math.min(0.25, (1.5 - deck) * 0.25 / 0.5)),
           Math.max(0.27, Math.min(1, 0.25 + (1 - deck) * 0.75 / 0.6))
         );

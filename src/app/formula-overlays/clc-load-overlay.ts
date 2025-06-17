@@ -520,13 +520,13 @@ export class ClcLoadOverlay implements FormulaOverlay {
 
       /**
        * Row 31: Abzgl. Dachschräge vorhandene Deckenfläche
-       * Excel: "IF(IN_rooms!R$28=\"Nein\",IN_rooms!R$4,IN_rooms!R$32*IN_rooms!R$33)"
+       * Excel: "IF(IN_rooms!R$28=\"Nein\",IN_rooms!R$4,IN_rooms!R$32*IN_rooms!R$30)"
        */
       grid.setCell('clc_load', `${clcLoadCol}31`, (s, c, g) =>
         g.WENN(
           g.g('IN_rooms', `${roomCol}28`) === 'Nein',
           g.n('IN_rooms', `${roomCol}4`),
-          g.n('IN_rooms', `${roomCol}32`) * g.n('IN_rooms', `${roomCol}33`)
+          g.n('IN_rooms', `${roomCol}32`) * g.n('IN_rooms', `${roomCol}30`)
         ));
 
       /**
