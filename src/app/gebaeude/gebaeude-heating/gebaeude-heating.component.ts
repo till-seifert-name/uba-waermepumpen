@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BerechnungService } from '../../berechnung.service';
 import { DataGrid } from '../../data-grid';
 import { data as Daten } from '../../../../20250507_WP_Check_Vorlage_ts_export/Daten';
+import { extractPopupText, extractUntertext, hasPopupText, hasUntertext } from '../../text-utils';
 
 @Component({
   selector: 'app-gebaeude-heating',
@@ -53,6 +54,12 @@ export class GebaeudeHeatingComponent {
       return [];
     }
   }
+
+  // Expose utility functions for template
+  extractPopupText = extractPopupText;
+  extractUntertext = extractUntertext;
+  hasPopupText = hasPopupText;
+  hasUntertext = hasUntertext;
 
   onSubmit(): void {
     // Check for floor heating first (highest priority)

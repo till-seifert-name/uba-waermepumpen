@@ -95,6 +95,7 @@
              [checked]="grid.getCell('IN_build', 'Q11') === 'Ja'"
              (change)="grid.setCell('IN_build', 'Q11', checked($event) ? 'Ja' : 'Nein')">
       <label class="form-check-label" for="check_ogd">Oberste Geschossdecke</label>
+      <div class="form-text">{{ grid.g('IN_build', 'F11').toString() }}</div>
       <!-- Conditional Section for OGD -->
       <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'Q11') === 'Ja'">
         <div class="mb-3 row align-items-center">

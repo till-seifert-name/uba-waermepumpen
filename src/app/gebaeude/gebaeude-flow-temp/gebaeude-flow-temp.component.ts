@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BerechnungService } from '../../berechnung.service';
 import { DataGrid } from '../../data-grid';
 import { Router } from '@angular/router';
+import { extractPopupText, extractUntertext, hasPopupText, hasUntertext } from '../../text-utils';
 
 interface FlowTempData {
   knowsFlowTemp: boolean;
@@ -44,6 +45,12 @@ export class GebaeudeFlowTempComponent implements OnInit {
   checked(event: Event): boolean {
     return (event.target as HTMLInputElement)?.checked ?? false;
   }
+
+  // Expose utility functions for template
+  extractPopupText = extractPopupText;
+  extractUntertext = extractUntertext;
+  hasPopupText = hasPopupText;
+  hasUntertext = hasUntertext;
   
   onNext(): void {
     // Form validation will happen automatically thanks to ngNativeValidate

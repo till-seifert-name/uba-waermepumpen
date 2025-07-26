@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BerechnungService} from '../../berechnung.service';
 import {Subscription} from 'rxjs';
 import {DataGrid} from '../../data-grid';
+import {extractPopupText, extractUntertext, hasPopupText, hasUntertext} from '../../text-utils';
 
 @Component({
   selector: 'app-raum-detail-walls',
@@ -173,6 +174,12 @@ export class RaumDetailWallsComponent implements OnInit, OnDestroy {
       this.berechnungService.setNO_roof_win2(this.roomId, "");
     }
   }
+
+  // Expose utility functions for template
+  extractPopupText = extractPopupText;
+  extractUntertext = extractUntertext;
+  hasPopupText = hasPopupText;
+  hasUntertext = hasUntertext;
 
   onComplete(): void {
     // Navigate to the Heizkörper info page for this room

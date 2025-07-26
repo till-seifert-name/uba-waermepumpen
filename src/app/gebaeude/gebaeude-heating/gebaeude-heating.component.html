@@ -4,7 +4,17 @@
 <!-- Content -->
 <form (ngSubmit)="onSubmit()" ngNativeValidate>
   <div class="mb-4 row align-items-center">
-    <label for="effizienz" class="col-sm-5 col-form-label">Ist Ihnen die Effizienzklasse bekannt?</label>
+    <label for="effizienz" class="col-sm-5 col-form-label">
+      Ist Ihnen die Effizienzklasse bekannt?
+      <button type="button"
+              class="btn btn-link p-0 ms-1 text-muted"
+              *ngIf="hasPopupText(grid.g('IN_build', 'F12').toString())"
+              [ngbPopover]="extractPopupText(grid.g('IN_build', 'F12').toString())"
+              placement="right"
+              triggers="click">
+        <i class="bi bi-question-circle"></i>
+      </button>
+    </label>
     <div class="col-sm-7">
       <select class="form-select" id="effizienz" name="effizienz"
               [ngModel]="grid.getCell('IN_build', 'P12')"
@@ -45,7 +55,17 @@
   </div>
 
   <div class="mb-3 row">
-    <label class="col-sm-5 col-form-label pt-0">Wie wird die Wärme verteilt?</label>
+    <label class="col-sm-5 col-form-label pt-0">
+      Wie wird die Wärme verteilt?
+      <button type="button"
+              class="btn btn-link p-0 ms-1 text-muted"
+              *ngIf="hasPopupText(grid.g('IN_build', 'F15').toString())"
+              [ngbPopover]="extractPopupText(grid.g('IN_build', 'F15').toString())"
+              placement="right"
+              triggers="click">
+        <i class="bi bi-question-circle"></i>
+      </button>
+    </label>
     <div class="col-sm-7">
       <div *ngFor="let kreislauftyp of heizkreislaufTypen; let i = index" class="form-check">
         <input class="form-check-input" type="radio" name="verteilung" [id]="'verteil_' + i"

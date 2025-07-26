@@ -50,7 +50,16 @@
   </div>
 
   <div class="mb-3 row align-items-center">
-    <label for="decke_grenzt" class="col-sm-5 col-form-label">Decke grenzt an</label>
+    <label for="decke_grenzt" class="col-sm-5 col-form-label">
+      Decke grenzt an
+      <button type="button"
+              class="btn btn-link p-0 ms-1 text-muted"
+              [ngbPopover]="grid.g('IN_rooms', 'H7').toString()"
+              placement="right"
+              triggers="click">
+        <i class="bi bi-question-circle"></i>
+      </button>
+    </label>
     <div class="col-sm-7">
       <select class="form-select" id="decke_grenzt" name="decke_grenzt" [(ngModel)]="ceilingType">
         <option *ngFor="let grenze of deckenGrenzen" [value]="grenze">{{getBauteilGrenzeLabel(grenze)}}</option>

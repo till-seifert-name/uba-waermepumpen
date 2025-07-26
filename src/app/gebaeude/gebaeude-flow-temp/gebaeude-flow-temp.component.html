@@ -11,7 +11,18 @@
              name="check_vl_bekannt">
       <label class="form-check-label" for="check_vl_bekannt">
         Ich weiß, auf welche Vorlauftemperatur die Heizkurve der Heizung eingestellt ist
+        <button type="button"
+                class="btn btn-link p-0 ms-1 text-muted"
+                *ngIf="hasPopupText(grid.g('IN_build', 'F16').toString())"
+                [ngbPopover]="extractPopupText(grid.g('IN_build', 'F16').toString())"
+                placement="right"
+                triggers="click">
+          <i class="bi bi-question-circle"></i>
+        </button>
       </label>
+      <div class="form-text" *ngIf="hasUntertext(grid.g('IN_build', 'F16').toString())">
+        {{ extractUntertext(grid.g('IN_build', 'F16').toString()) }}
+      </div>
     </div>
     <!-- Conditional Section -->
     <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'P16') === 'Ja'">
@@ -39,7 +50,18 @@
              name="check_vl_gemessen">
       <label class="form-check-label" for="check_vl_gemessen">
         Ich kann im Heizungsraum die Vorlauftemperatur ablesen und die Außentemperatur messen
+        <button type="button"
+                class="btn btn-link p-0 ms-1 text-muted"
+                *ngIf="hasPopupText(grid.g('IN_build', 'F18').toString())"
+                [ngbPopover]="extractPopupText(grid.g('IN_build', 'F18').toString())"
+                placement="right"
+                triggers="click">
+          <i class="bi bi-question-circle"></i>
+        </button>
       </label>
+      <div class="form-text" *ngIf="hasUntertext(grid.g('IN_build', 'F18').toString())">
+        {{ extractUntertext(grid.g('IN_build', 'F18').toString()) }}
+      </div>
     </div>
     <!-- Conditional Section -->
     <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'P18') === 'Ja'">
