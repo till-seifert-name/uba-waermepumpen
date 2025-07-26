@@ -1,3 +1,23 @@
 // Sheet: Tabelle1
 export const data = {
+  "A1":  /* unknown */ "Hilfstexte IN_build (FM)",
+  "C1":  /* unknown */ "Hilfstexte IN_rooms (FM)",
+  "A4":  /* unknown */ "PopUp: \nHaben Sie ein sehr flach geneigtes Dach, z.B. ein Pultdach, wählen Sie \"Flachdach\" statt \"geneigt\" aus. ",
+  "C6":  /* unknown */ "Es werden typischerweise 20°C in Wohnräumen und 24°C in Bädern angesetzt. Ihre eigenen Komforttemperaturen können davon abweichen. ",
+  "C7":  /* unknown */ "Hiermit ist die horizontale Decke des Raumes gemeint. Befindet sich über dieser Decke ein kalter Dachraum, wählen Sie \"unbeheizt\".",
+  "C9":  /* unknown */ "Berücksichtigen Sie nur raumhohe Außenwände, die direkten Kontakt zur Außenluft haben.",
+  "A11":  /* unknown */ "Hiermit ist die in ihrem Haus am höchsten gelegene Decke eines beheizten Raumes gemeint.",
+  "A12":  /* unknown */ "PopUp: \nDie Energieeffizienzklasse des Gebäudes können Sie dem Energieausweis entnehmen.  \nHaben Sie diesen nicht zur Hand, kennen aber den Endenergiebedarf/-verbrauch ihres Gebäudes? In diesem Fall können Sie die Klasse anhand folgender Werte selbst zuordnen: \nHIER BILD GEG ANLAGE 10 ZEIGEN",
+  "A15":  /* unknown */ "PopUp: \nEine Zweirohrheizung führt das warme Wasser über zwei getrennte Leitungen – den Vorlauf zum Heizkörper und den Rücklauf zurück zur Heizungsanlage. Bei einem Einrohrsystem dagegen durchläuft das Wasser alle Heizkörper nacheinander in einer einzigen Leitung, sodass auch geschlossene Thermostatventile den Durchfluss nicht vollständig stoppen. Erkennen lässt sich ein Einrohrsystem daran, dass das Wasser trotz geschlossener Thermostatventile weiter zum nächsten Heizkörper strömt.",
+  "A16":  /* unknown */ "Die Vorlauftemperatur ist die Temperatur des Heizwassers, das von der Zentralheizung (Wärmepumpe, Gas- oder Pelletheizung, usw.) zu den einzelnen Heizkörpern oder zur Fußbodenheizung fließt.\n<i class=\"bi bi-lightbulb-fill\"></i> Je kälter die Außentemperatur, desto wärmer muss das Heizwasser sein. Dieser Zusammenhang wird der Heizung durch die Heizkurve vorgegeben. Daraus ergibt sich die Heizwassertemperatur, die am kältesten Wintertag (Normaußentemperatur), der am Gebäudestandort zu erwarten ist, benötigt wird (Auslegungspunkt). \nIst Ihnen diese Temperatur nicht bekannt, wählen Sie \"Nein\".",
+  "A18":  /* unknown */ "Sie können die Außentemperatur falls möglich an Ihrer Heizung ablesen. Sollte Ihnen keine vor Ort gemessene Außentemperatur vorliegen, nutzen Sie die Temperaturmessungen der nächstgelegenen Wetterstation zum gleichen Zeitpunkt.",
+  "C27":  /* unknown */ "Auch Innenwände sind manchmal gedämmt, z.B. aus Gründen des Schallschutzes, aber auch des Wärmeschutzes, wenn sie an unbeheizte Räume grenzen.",
+  "C30":  /* unknown */ "Bei mehreren Dachflächen bitte summieren",
+  "C31":  /* unknown */ "Bei mehreren Dachflächen bitte nicht summieren",
+  "C34":  /* unknown */ "Ein Drempel beschreibt eine senkrechte Wand zwischen Dachschräge und Fußboden, die nicht Teil der Außenwand ist. \nEin Kniestock beschreibt die senkrechte Wand zwischen Dachschräge und Fußboden, die Teil der Außenwand ist. ",
+  "C38":  /* unknown */ "Klopfen sie gegen die senkrechte Wand unter der Dachscrhräge. Klingt es hohl, haben sie einen Drempel.",
+  "C39":  /* unknown */ "Der Drempel beschreibt im Dachbereich die Höhe der leichten Trennwand zwischen Fußboden und Beginn des Dachs. ",
+  "C50":  /* unknown */ "Flachheizkörper werden zusätzlich zur Beschaffenheit der Heizkörperoberfläche nach dem Aufbau des Heizkörpers unterschieden. Die Bezeichnung des Subtyps setzt sich hierbei aus zwei Zahlen zusammen. Die erste Zahl steht für die Anzahl der Heizflächen, die zweite Zahl für die Anzahl der Heizflächen mit zusätzlichen Wärmeleitblechen auf der Innenseite.",
+  "C57":  /* unknown */ "Flachheizkörper werden zusätzlich zur Beschaffenheit der Heizkörperoberfläche nach dem Aufbau des Heizkörpers unterschieden. Die Bezeichnung des Subtyps setzt sich hierbei aus zwei Zahlen zusammen. Die erste Zahl steht für die Anzahl der Heizflächen, die zweite Zahl für die Anzahl der Heizflächen mit zusätzlichen Wärmeleitblechen auf der Innenseite.",
+  "C64":  /* unknown */ "Flachheizkörper werden zusätzlich zur Beschaffenheit der Heizkörperoberfläche nach dem Aufbau des Heizkörpers unterschieden. Die Bezeichnung des Subtyps setzt sich hierbei aus zwei Zahlen zusammen. Die erste Zahl steht für die Anzahl der Heizflächen, die zweite Zahl für die Anzahl der Heizflächen mit zusätzlichen Wärmeleitblechen auf der Innenseite.",
 } as const;

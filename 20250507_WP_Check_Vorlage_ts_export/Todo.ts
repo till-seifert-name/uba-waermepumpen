@@ -49,4 +49,9 @@ export const data = {
   "A15":  /* unknown */ "IN_rooms",
   "B15":  /* unknown */ "Eingabe HK in Metern ist im Tool noch in Millimetern",
   "B16":  /* unknown */ "Infobox besserer HK auf Raumergebnisebene sollte über dem Marker auf dem Barchart stehen steht derzeit ganz links außen",
+  "A17":  /* unknown */ "IN_rooms",
+  "B17":  /* unknown */ "Hilfstext bei gewünschter Raumtemp wird doppelt gezeigt (Mouseover Fragezeichen und dauerhaft sichtbar unter dem Eingabfeld für die Temp",
+  "D17":  /* unknown */ 2,
+  "E17":  /* unknown */ "ungelöst",
+  "F17":  /* unknown */ "FM 1.7.25",
 } as const;
