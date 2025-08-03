@@ -28,19 +28,19 @@ export class InBuildOverlay implements FormulaOverlay {
       )
     );
 
-    // R8 formula: IF(S8="",_xlfn.IFS(AND(RIGHT($P$5,4)<="1978",$Q$8="Ja"),Daten!$M$66,AND(RIGHT($P$5,4)>"1978",$Q$8="Ja"),U_Werte_IWU!$D$78,$Q$8="Nein",$P$5),S8)
+    // R8 formula: IF($Q$8="Ja",_xlfn.IFS(S8<>"",S8,RIGHT($P$5,4)<="1978",Daten!$M$66,RIGHT($P$5,4)>"1978",U_Werte_IWU!$D$78),$P$5)
     grid.setCell('IN_build', 'R8', (s, c, g) =>
       g.WENN(
-        g.g(s, 'S8') === "",
+        g.g(s, 'Q8') === "Ja",
         g.WENNS(
-          g.UND(g.RECHTS(g.g(s, 'P5'), 4) <= "1978", g.g(s, 'Q8') === "Ja"),
+          g.g(s, 'S8') != "",
+          g.g(s, 'S8'),
+          g.RECHTS(g.g(s, 'P5'), 4) <= "1978",
           g.g('Daten', 'M66'),
-          g.UND(g.RECHTS(g.g(s, 'P5'), 4) > "1978", g.g(s, 'Q8') === "Ja"),
-          g.g('U_Werte_IWU', 'D78'),
-          g.g(s, 'Q8') === "Nein",
-          g.g(s, 'P5')
+          g.RECHTS(g.g(s, 'P5'), 4) > "1978",
+          g.g('U_Werte_IWU', 'D78')
         ),
-        g.g(s, 'S8')
+        g.g(s, 'P5')
       )
     );
 
@@ -93,12 +93,12 @@ export class InBuildOverlay implements FormulaOverlay {
     );
 
     // Implementation of column T formulas (insulation thickness)
-    // T7 formula: IF(U7="",IF(Q7="Ja",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E7)*(UWert_Mod[Modernisierungsjahr]=R7), UWert_Mod[d_ins]),0),U7)
+    // T7 formula: IF(Q7="Ja",IF(U7="",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E7)*(UWert_Mod[Modernisierungsjahr]=R7), UWert_Mod[d_ins]),U7),0)
     grid.setCell('IN_build', 'T7', (s, c, g) =>
       g.WENN(
-        g.g(s, 'U7') === '',
+        g.g(s, 'Q7') === 'Ja',
         g.WENN(
-          g.g(s, 'Q7') === 'Ja',
+          g.g(s, 'U7') === '',
           g.XVERWEIS(
             1,
             g.MULT(
@@ -107,18 +107,18 @@ export class InBuildOverlay implements FormulaOverlay {
             ),
             g.INDIREKT_DB_REF("UWert_Mod", "d_ins")
           ),
-          0
+          g.g(s, 'U7')
         ),
-        g.g(s, 'U7')
+        0
       )
     );
 
-    // T9 formula: IF(U9="",IF(Q9="Ja",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E9)*(UWert_Mod[Modernisierungsjahr]=R9), UWert_Mod[d_ins]),0),U9)
+    // T9 formula: IF(Q9="Ja",IF(U9="",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E9)*(UWert_Mod[Modernisierungsjahr]=R9), UWert_Mod[d_ins]),U9),0)
     grid.setCell('IN_build', 'T9', (s, c, g) =>
       g.WENN(
-        g.g(s, 'U9') === '',
+        g.g(s, 'Q9') === 'Ja',
         g.WENN(
-          g.g(s, 'Q9') === 'Ja',
+          g.g(s, 'U9') === '',
           g.XVERWEIS(
             1,
             g.MULT(
@@ -127,18 +127,18 @@ export class InBuildOverlay implements FormulaOverlay {
             ),
             g.INDIREKT_DB_REF("UWert_Mod", "d_ins")
           ),
-          0
+          g.g(s, 'U9')
         ),
-        g.g(s, 'U9')
+        0
       )
     );
 
-    // T10 formula: IF(U10="",IF(Q10="Ja",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E10)*(UWert_Mod[Modernisierungsjahr]=R10), UWert_Mod[d_ins]),0),U10)
+    // T10 formula: IF(Q10="Ja",IF(U10="",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E10)*(UWert_Mod[Modernisierungsjahr]=R10), UWert_Mod[d_ins]),U10),0)
     grid.setCell('IN_build', 'T10', (s, c, g) =>
       g.WENN(
-        g.g(s, 'U10') === '',
+        g.g(s, 'Q10') === 'Ja',
         g.WENN(
-          g.g(s, 'Q10') === 'Ja',
+          g.g(s, 'U10') === '',
           g.XVERWEIS(
             1,
             g.MULT(
@@ -147,18 +147,18 @@ export class InBuildOverlay implements FormulaOverlay {
             ),
             g.INDIREKT_DB_REF("UWert_Mod", "d_ins")
           ),
-          0
+          g.g(s, 'U10')
         ),
-        g.g(s, 'U10')
+        0
       )
     );
 
-    // T11 formula: IF(U11="",IF(Q11="Ja",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E11)*(UWert_Mod[Modernisierungsjahr]=R11), UWert_Mod[d_ins]),0),U11)
+    // T11 formula: IF(Q11="Ja",IF(U11="",_xlfn.XLOOKUP(1, (UWert_Mod[Bauteil]=E11)*(UWert_Mod[Modernisierungsjahr]=R11), UWert_Mod[d_ins]),U11),0)
     grid.setCell('IN_build', 'T11', (s, c, g) =>
       g.WENN(
-        g.g(s, 'U11') === '',
+        g.g(s, 'Q11') === 'Ja',
         g.WENN(
-          g.g(s, 'Q11') === 'Ja',
+          g.g(s, 'U11') === '',
           g.XVERWEIS(
             1,
             g.MULT(
@@ -167,9 +167,9 @@ export class InBuildOverlay implements FormulaOverlay {
             ),
             g.INDIREKT_DB_REF("UWert_Mod", "d_ins")
           ),
-          0
+          g.g(s, 'U11')
         ),
-        g.g(s, 'U11')
+        0
       )
     );
 

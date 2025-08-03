@@ -7,7 +7,7 @@
     <div class="form-check form-switch mb-2">
       <input class="form-check-input" type="checkbox" role="switch" id="check_vl_bekannt"
              [checked]="grid.getCell('IN_build', 'P16') === 'Ja'"
-             (change)="grid.setCell('IN_build', 'P16', checked($event) ? 'Ja' : 'Nein')"
+             (change)="grid.setCell('IN_build', 'P16', checked($event) ? 'Ja' : 'Nein'); checked($event) ? grid.setCell('IN_build', 'P18', 'Nein') : null"
              name="check_vl_bekannt">
       <label class="form-check-label" for="check_vl_bekannt">
         Ich weiß, auf welche Vorlauftemperatur die Heizkurve der Heizung eingestellt ist
@@ -46,7 +46,7 @@
     <div class="form-check form-switch mb-2">
       <input class="form-check-input" type="checkbox" role="switch" id="check_vl_gemessen"
              [checked]="grid.getCell('IN_build', 'P18') === 'Ja'"
-             (change)="grid.setCell('IN_build', 'P18', checked($event) ? 'Ja' : 'Nein')"
+             (change)="grid.setCell('IN_build', 'P18', checked($event) ? 'Ja' : 'Nein'); checked($event) ? grid.setCell('IN_build', 'P16', 'Nein') : null"
              name="check_vl_gemessen">
       <label class="form-check-label" for="check_vl_gemessen">
         Ich kann im Heizungsraum die Vorlauftemperatur ablesen und die Außentemperatur messen

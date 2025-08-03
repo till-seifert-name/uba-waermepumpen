@@ -19,5 +19,8 @@ export const data = {
   "G4":  /* unknown */ "Todo Jakob: Fälle durchspielen für Debugging Berechnung ",
   "A5":  /* unknown */ new Date("2025-05-21T00:00:00.000Z"),
   "B5":  /* unknown */ "clc_power",
-  "D5":  /* unknown */ "Felder Breite und Tiefe scheinen in UI vertauscht, zumindest für Gliederheizkörper >> daher findet die Look-Up Funktion keinen Wert für nominale Leistung G21 usw",
+  "D5":  /* unknown */ "Felder Breite und Tiefe scheinen in UI vertauscht, zumindest für Gliederheizkörper >> daher findet die Look-Up Funktion keinen Wert für nominale Leistung G21 usw\n\nRückmeldung Fachbeirat: Für die fiktive installierte Heizfläche „Gussradiator“ (2000x580x70mm, 20 Glieder) in einem Raum wird eine Heizleistung von 0 Watt berechnet. \n>> in Excel klappt die Eingabe, daher vsl. gleiches Problem",
+  "A6":  /* unknown */ new Date("2025-08-01T00:00:00.000Z"),
+  "B6":  /* unknown */ "clc_load",
+  "D6":  /* unknown */ "Wenn Maßnahme Außenwand, Dach usw. wieder abgewählt wird, bleiben die eingegebenen Dämmstärken scheinbar im Hintergrund eingestellt. Todo: Die Werte sollten dann auf default zurückgesetzt werden.\n>> Fehler in Excel oder Typescript?",
 } as const;

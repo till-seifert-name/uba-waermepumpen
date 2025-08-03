@@ -2,7 +2,7 @@
 export const namedExpressions = {
   "Deckenheizung": "#REF!",
   "DropdownlisteHeizungsrohre": "#REF!",
-  "Flachheizkörper": "Daten!K4:K10",
+  "Flachheizkörper": "Daten!K4:K8",
   "Fußbodenheizung": "#REF!",
   "Gewinderohr": "Daten!X23:X24",
   "Gliederheizkröper": "Daten!M3:M5",
