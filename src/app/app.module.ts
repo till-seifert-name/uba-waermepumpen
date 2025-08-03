@@ -27,8 +27,7 @@ import {GebaeudeFlowTempComponent} from "./gebaeude/gebaeude-flow-temp/gebaeude-
 import {GebaeudeTransitionComponent} from "./gebaeude/gebaeude-transition/gebaeude-transition.component";
 
 // Räume (Rooms) Components
-import {RaeumeListCriteriaOneComponent} from "./raeume/raeume-list-criteria-one/raeume-list-criteria-one.component";
-import {RaeumeListCriteriaTwoComponent} from "./raeume/raeume-list-criteria-two/raeume-list-criteria-two.component";
+import {RaeumeListConsolidatedComponent} from "./raeume/raeume-list-consolidated/raeume-list-consolidated.component";
 import {RaeumeIntroComponent} from "./raeume/raeume-intro/raeume-intro.component";
 import {RaumDetailBasicComponent} from "./raeume/raum-detail-basic/raum-detail-basic.component";
 import {RaumDetailWallsComponent} from "./raeume/raum-detail-walls/raum-detail-walls.component";
@@ -43,7 +42,6 @@ import {ErgebnisAssessmentComponent} from "./ergebnis/ergebnis-assessment/ergebn
 import {WizardTabsComponent} from "./shared/wizard-tabs/wizard-tabs.component";
 import {BandTachoComponent} from "./shared/band-tacho/band-tacho.component";
 import {HeaterFormComponent} from "./shared/heater-form/heater-form.component";
-import {RoomListComponent} from "./shared/room-list/room-list.component";
 import {DebugOverlayComponent} from "./shared/debug-overlay/debug-overlay.component";
 
 // Markdown Support
@@ -80,8 +78,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     GebaeudeTransitionComponent,
 
     // Räume (Rooms) Components
-    RaeumeListCriteriaOneComponent,
-    RaeumeListCriteriaTwoComponent,
+    RaeumeListConsolidatedComponent,
     RaeumeIntroComponent,
     RaumDetailBasicComponent,
     RaumDetailWallsComponent,
@@ -96,7 +93,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     WizardTabsComponent,
     BandTachoComponent,
     HeaterFormComponent,
-    RoomListComponent,
     DebugOverlayComponent
   ],
   imports: [

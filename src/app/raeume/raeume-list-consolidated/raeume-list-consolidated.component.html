@@ -1,0 +1,92 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="10"></app-wizard-tabs>
+
+<h4 class="mb-3">Bitte Räume zur Erfassung eingeben</h4>
+
+<div class="row">
+  <div class="col-lg-7">
+
+    <!-- Room List -->
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Raumliste</span>
+        <small class="text-muted"><i class="bi bi-info-circle"></i> Raumnamen anklicken zum Bearbeiten</small>
+      </div>
+      <ul class="list-group list-group-flush" id="raumListeDisplay">
+        <li class="list-group-item d-flex justify-content-between gap-1 align-items-center"
+            *ngFor="let room of berechnungService.getAllRooms(); let isLast = last; trackBy: roomId">
+          <input type="text"
+                 class="form-control-plaintext flex-grow-1"
+                 #input
+                 [value]="room.name"
+                 [name]="'room-' + room.id"
+                 (blur)="renameRoom(room.id, input.value); input.value = room.name"
+                 maxlength="30"
+                 minlength="1"
+                 placeholder="der Name darf nicht leer sein">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-outline-danger"
+                 (click)="removeRoom(room.id)"
+                 *ngIf="isLast"
+                 title="Raum entfernen">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </li>
+        <li class="list-group-item list-group-item-secondary text-center"
+            *ngIf="berechnungService.getAllRooms().length === 0">
+          Noch keine Räume hinzugefügt
+        </li>
+        <!-- Add Room Button -->
+        <li class="list-group-item">
+          <p class="form-text" *ngIf="!canAddMoreRooms">
+            Maximale Anzahl von 15 Räumen erreicht
+          </p>
+          <button class="btn btn-outline-primary w-100" type="button"
+                  (click)="addRoomWithDefaultName()"
+                  [disabled]="!canAddMoreRooms">
+            <i class="bi bi-plus-lg"></i>
+            Raum hinzufügen
+          </button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="col-lg-5 mt-4 mt-lg-0">
+    <!-- instruction box -->
+    <div class="alert alert-success border-success" role="alert">
+      <h6 class="alert-heading">
+        <i class="bi bi-lightbulb"></i>
+        Kritische Räume erkennen:
+      </h6>
+      <ul class="mb-2">
+        <li>Bleibt der Raum im Winter oft zu kalt?</li>
+        <li>Hat der Raum viel Kontakt zur Außenluft (über Außenwand, Dach, Fenster)?</li>
+        <li>Liegt der Raum über oder unter unbeheizten Räumen oder direkt an Außenluft?</li>
+        <li>Hat der Raum viel Fensterfläche?</li>
+      </ul>
+      <div class="small">
+        <strong>Hinweis:</strong> Es sind nur beheizte Räume relevant.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<div class="navigation-footer">
+  <div class="container d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary" routerLink="/gebaeude/final">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </button>
+    <button type="button" class="btn btn-primary" routerLink="/raeume/intro">
+      Räume detaillieren <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </div>
+</div>

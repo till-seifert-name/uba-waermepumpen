@@ -1151,7 +1151,7 @@ export class BerechnungService {
   }
 
   // Add a new room to the DataGrid
-  addRoom(name: string, type: string): string {
+  addRoom(name: string): string {
     // Find the first available room slot (column)
     for (let roomId = 1; roomId <= 15; roomId++) {
       const column = this.getRoomColumn(roomId);

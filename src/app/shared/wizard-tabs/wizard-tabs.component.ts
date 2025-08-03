@@ -28,7 +28,7 @@ export class WizardTabsComponent implements OnInit, OnDestroy {
   // Base tabs (always present)
   baseTabs: TabConfig[] = [
     {id: 'gebaeude', title: 'Gebäude', routePath: '/gebaeude', pathMatch: '/gebaeude', icon: 'house'},
-    {id: 'raeume', title: 'Räume', routePath: '/raeume/liste-1', pathMatch: '/raeume', icon: 'grid'},
+    {id: 'raeume', title: 'Räume', routePath: '/raeume/liste', pathMatch: '/raeume', icon: 'grid'},
     {id: 'ergebnis', title: 'Ergebnis', routePath: '/ergebnis', pathMatch: '/ergebnis', icon: 'check-circle'}
   ];
 

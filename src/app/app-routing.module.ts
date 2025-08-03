@@ -21,8 +21,7 @@ import {GebaeudeFlowTempComponent} from "./gebaeude/gebaeude-flow-temp/gebaeude-
 import {GebaeudeTransitionComponent} from "./gebaeude/gebaeude-transition/gebaeude-transition.component";
 
 // Räume (Rooms) Components
-import {RaeumeListCriteriaOneComponent} from "./raeume/raeume-list-criteria-one/raeume-list-criteria-one.component";
-import {RaeumeListCriteriaTwoComponent} from "./raeume/raeume-list-criteria-two/raeume-list-criteria-two.component";
+import {RaeumeListConsolidatedComponent} from "./raeume/raeume-list-consolidated/raeume-list-consolidated.component";
 import {RaeumeIntroComponent} from "./raeume/raeume-intro/raeume-intro.component";
 import {RaumDetailBasicComponent} from "./raeume/raum-detail-basic/raum-detail-basic.component";
 import {RaumDetailWallsComponent} from "./raeume/raum-detail-walls/raum-detail-walls.component";
@@ -63,8 +62,7 @@ const routes: Routes = [
   {
     path: 'raeume',
     children: [
-      { path: 'liste-1', component: RaeumeListCriteriaOneComponent, title: 'Räume-Kriterien 1' },
-      { path: 'liste-2', component: RaeumeListCriteriaTwoComponent, title: 'Räume-Kriterien 2' },
+      { path: 'liste', component: RaeumeListConsolidatedComponent, title: 'Räume erfassen' },
       { path: 'intro', component: RaeumeIntroComponent, title: 'Räume-Einführung' },
       { path: 'detail-basis', component: RaumDetailBasicComponent, title: 'Raum-Details' },
       { path: 'detail-wand', component: RaumDetailWallsComponent, title: 'Raum-Wände' },
