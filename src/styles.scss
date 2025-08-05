@@ -174,3 +174,201 @@ markdown {
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+// Define custom position-try fallbacks for Bootstrap popover placements
+@position-try --popover-top {
+  position-area: top;
+  margin-bottom: 8px;
+}
+
+@position-try --popover-bottom {
+  position-area: bottom;
+  margin-top: 8px;
+}
+
+@position-try --popover-left {
+  position-area: left;
+  margin-right: 8px;
+}
+
+@position-try --popover-right {
+  position-area: right;
+  margin-left: 8px;
+}
+
+// CSS-only popover for abbr[title] elements
+abbr[title] {
+  anchor-name: --abbr;
+
+  // Modern anchor positioning with comprehensive fallbacks (when supported)
+  @supports (position-area: top) {
+
+    // Popover content pseudo-element with advanced anchor positioning
+    &::before {
+      content: attr(title);
+      position: absolute;
+      position-anchor: --abbr;
+      z-index: $zindex-popover;
+
+      // Default position: top center (Bootstrap default)
+      position-area: top;
+      margin-bottom: 8px;
+
+      // Comprehensive fallback strategy mimicking Bootstrap popover logic
+      position-try-fallbacks:
+        --popover-top,           // Try top first (default)
+        --popover-bottom,        // Then bottom
+        --popover-right,         // Then right
+        --popover-left,          // Then left
+        flip-block,              // Built-in flip block
+        flip-inline;             // Built-in flip inline
+
+      // Order preference: prioritize top/bottom over left/right
+      position-try-order: most-block-size, most-inline-size;
+
+      // Hide if no good position found
+      position-visibility: anchors-visible;
+
+      // Bootstrap popover styling
+
+      max-width: 50em;
+      min-width: 32em;
+      padding: $popover-body-padding-y $popover-body-padding-x;
+
+      background-color: $popover-bg;
+      border: $popover-border-width solid $popover-border-color;
+      border-radius: $popover-border-radius;
+      @include box-shadow($popover-box-shadow);
+
+      font-size: $popover-font-size;
+      color: $popover-body-color;
+      text-decoration: none;
+      text-align: left;
+      word-wrap: break-word;
+      white-space: normal;
+      line-height: 1.5;
+
+      // Initially hidden
+      opacity: 0;
+      visibility: hidden;
+      @include transition(opacity 0.15s ease-in-out, visibility 0.15s ease-in-out);
+    }
+
+    // Arrow pseudo-element with smart positioning
+    &::after {
+      content: '';
+      position: absolute;
+      position-anchor: --abbr-anchor;
+      z-index: $zindex-popover + 1;
+
+      // Default arrow position for top placement
+      position-area: top;
+      margin-bottom: 4px;
+
+      // Same fallback strategy as content
+      position-try-fallbacks:
+        --popover-top,
+        --popover-bottom,
+        --popover-right,
+        --popover-left,
+        flip-block,
+        flip-inline;
+
+      position-try-order: most-block-size, most-inline-size;
+      position-visibility: anchors-visible;
+
+      // Arrow styling - will need CSS logic for different orientations
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid $popover-bg;
+
+      // Initially hidden
+      opacity: 0;
+      visibility: hidden;
+      @include transition(opacity 0.15s ease-in-out, visibility 0.15s ease-in-out);
+      filter: drop-shadow(0 1px 0px $popover-border-color);
+    }
+  }
+
+  // Ultimate fallback for browsers without any anchor positioning support
+  @supports not (anchor-name: --abbr-anchor) {
+    position: relative;
+
+    // Traditional absolute positioning fallback
+    &::before {
+      content: attr(title);
+      position: absolute;
+      z-index: $zindex-popover;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+
+      // Bootstrap popover styling
+      max-width: 50em;
+      min-width: 32em;
+      padding: $popover-body-padding-y $popover-body-padding-x;
+
+      background-color: $popover-bg;
+      border: $popover-border-width solid $popover-border-color;
+      border-radius: $popover-border-radius;
+      @include box-shadow($popover-box-shadow);
+
+      font-size: $popover-font-size;
+      color: $popover-body-color;
+      text-decoration: none;
+      text-align: left;
+      word-wrap: break-word;
+      white-space: normal;
+      line-height: 1.5;
+
+      // Initially hidden
+      opacity: 0;
+      visibility: hidden;
+      @include transition(opacity 0.15s ease-in-out, visibility 0.15s ease-in-out);
+    }
+
+    // Traditional arrow positioning
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: $zindex-popover + 1;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-1px);
+
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid $popover-bg;
+      filter: drop-shadow(0 1px 0px $popover-border-color);
+
+      // Initially hidden
+      opacity: 0;
+      visibility: hidden;
+      @include transition(opacity 0.15s ease-in-out, visibility 0.15s ease-in-out);
+    }
+
+    // Responsive positioning for traditional fallback
+    @include media-breakpoint-down(sm) {
+      &::before {
+        max-width: 90vw;
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+      }
+    }
+  }
+
+  // Show popover on hover and focus-within (applies to all versions)
+  &:hover,
+  &:focus-within,
+  &:focus {
+    &::before,
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

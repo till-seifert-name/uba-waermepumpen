@@ -61,7 +61,7 @@
     <hr class="my-4">
 
     <!-- Raumheizlast - Use the formatted value from OUT_rooms row 13 -->
-    <h6>Kalkulierte Raumheizlast</h6>
+    <h6>Kalkulierte Raum<abbr title="Die Summe der Wärmeverluste eines Raumes über alle Bauteile bei angenommener Raum- und Außentemperatur. Die Normheizlast oder Auslegungsheizlast beschreibt die Heizlast bei der normativ festgelegten kältesten Außentemperatur am Standort und gibt somit den maximal zu erwartenden Wert an, der z. B. zur Dimensionierung von Heizungsanlagen herangezogen wird.">heizlast</abbr></h6>
     <div class="d-flex justify-content-center">
       <div class="text-center mb-3 alert alert-info">
         {{ grid.getCell('OUT_rooms', getRoomOutColumn() + '13') }}

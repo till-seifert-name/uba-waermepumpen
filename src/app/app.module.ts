@@ -10,6 +10,7 @@ import {StartComponent} from './start/start.component';
 import {ImpressumComponent} from './impressum/impressum.component';
 import {DatenschutzComponent} from './datenschutz/datenschutz.component';
 import {KontaktComponent} from './kontakt/kontakt.component';
+import {GlossarComponent} from './glossar/glossar.component';
 
 // Gebäude (Building) Components
 import {GebaeudeIntroComponent} from "./gebaeude/gebaeude-intro/gebaeude-intro.component";
@@ -61,6 +62,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ImpressumComponent,
     DatenschutzComponent,
     KontaktComponent,
+    GlossarComponent,
 
     // Gebäude (Building) Components
     GebaeudeIntroComponent,

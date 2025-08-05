@@ -10,7 +10,7 @@
              (change)="grid.setCell('IN_build', 'P16', checked($event) ? 'Ja' : 'Nein'); checked($event) ? grid.setCell('IN_build', 'P18', 'Nein') : null"
              name="check_vl_bekannt">
       <label class="form-check-label" for="check_vl_bekannt">
-        Ich weiß, auf welche Vorlauftemperatur die Heizkurve der Heizung eingestellt ist
+        Ich weiß, auf welche Vorlauftemperatur die <abbr title="Je kälter es draußen ist, desto mehr Wärme braucht der Raum – deshalb steigt die Vorlauftemperatur der Heizung. Die Heizkurve legt fest, welche Vorlauftemperatur bei welcher Außentemperatur nötig ist, damit es im Haus warm bleibt.">Heizkurve</abbr> der Heizung eingestellt ist
         <button type="button"
                 class="btn btn-link p-0 ms-1 text-muted"
                 *ngIf="hasPopupText(grid.g('IN_build', 'F16').toString())"

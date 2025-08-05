@@ -2,7 +2,7 @@
 <app-wizard-tabs [progress]="60" activeRoomSubTab="heizflaechen"></app-wizard-tabs>
 
 <!-- Content -->
-<h5 class="mb-4">Heizflächen für Raum: {{ berechnungService.getRoomName(roomId) }}</h5>
+<h5 class="mb-4"><abbr title="Heizflächen geben die Wärme an den Raum ab – entweder über klassische Heizkörper oder Flächenheizungen wie Fußbodenheizungen. Je größer die Fläche, desto niedriger kann die Vorlauftemperatur sein, um den Raum zu erwärmen.">Heizflächen</abbr> für Raum: {{ berechnungService.getRoomName(roomId) }}</h5>
 
 <form (ngSubmit)="onNext()" ngNativeValidate>
   <div class="mb-4" *ngIf="!heater1Visible && !heater2Visible">

@@ -4,6 +4,7 @@ import {StartComponent} from "./start/start.component";
 import {ImpressumComponent} from "./impressum/impressum.component";
 import {DatenschutzComponent} from "./datenschutz/datenschutz.component";
 import {KontaktComponent} from "./kontakt/kontakt.component";
+import {GlossarComponent} from "./glossar/glossar.component";
 
 // Gebäude (Building) Components
 import {GebaeudeIntroComponent} from "./gebaeude/gebaeude-intro/gebaeude-intro.component";
@@ -92,6 +93,11 @@ const routes: Routes = [
     path: 'kontakt',
     component: KontaktComponent,
     title: 'Kontakt'
+  },
+  {
+    path: 'glossar',
+    component: GlossarComponent,
+    title: 'Glossar'
   },
   {
     path: '**',
