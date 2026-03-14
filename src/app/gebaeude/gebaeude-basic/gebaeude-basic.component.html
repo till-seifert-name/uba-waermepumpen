@@ -1,0 +1,152 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="40"></app-wizard-tabs>
+
+<!-- Content -->
+
+<form (ngSubmit)="onSubmit()" ngNativeValidate class="d-contents">
+  <div class="mb-3 row align-items-center">
+    <label for="plz" class="col-sm-5 col-form-label">Standort des Gebäudes (PLZ)</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="plz" name="plz"
+             [ngModel]="grid.getCell('IN_build', 'P2')"
+             (ngModelChange)="grid.setCell('IN_build', 'P2', $event)"
+             [ngModelOptions]="{ updateOn: 'blur' }"
+             pattern="[0-9]{5}"
+             required>
+    </div>
+  </div>
+
+  <!-- Accessibility: fieldset groups related radio buttons semantically -->
+  <fieldset class="mb-3 row">
+    <legend class="col-sm-5 col-form-label">
+      Das Gebäude ist ...
+      <!-- Accessibility: aria-label provides screen reader description for icon-only help button -->
+      <button type="button"
+              class="btn btn-link p-0 ms-1 text-muted"
+              *ngIf="hasPopupText(grid.g('IN_build', 'F3').toString())"
+              [ngbPopover]="extractPopupText(grid.g('IN_build', 'F3').toString())"
+              placement="right"
+              triggers="click"
+              aria-label="Hilfe anzeigen">
+        <i class="bi bi-question-circle"></i>
+      </button>
+    </legend>
+    <div class="col-sm-7">
+      <div *ngFor="let gebaeudetyp of gebaeudetypen; let i = index" class="form-check">
+        <input class="form-check-input" type="radio" name="gebaeudetyp" [id]="'typ_' + i"
+               [value]="gebaeudetyp"
+               [checked]="grid.getCell('IN_build', 'P3') === gebaeudetyp"
+               (change)="grid.setCell('IN_build', 'P3', gebaeudetyp)"
+               required>
+        <label class="form-check-label" [for]="'typ_' + i">{{getGebaeudetypLabel(gebaeudetyp)}}</label>
+      </div>
+      <!-- Mehrfamilienhaus Hinweis -->
+      <details class="alert alert-info mb-4"
+               *ngIf="grid.getCell('IN_build', 'P3') === 'Mehrfamilienhaus'">
+        <summary class="fw-bold" style="cursor: pointer;">
+          Hinweis zur Erfassung von Mehrfamilienhäusern
+        </summary>
+        <div class="mt-2">
+          <p class="mb-2">
+            Der Gebäudecheck Wärmepumpe ist für die Erfassung einzelner kritischer Räume konzipiert.
+            Besonders bei Mehrfamilienhäusern wird die Erfassung sämtlicher Räume nicht empfohlen.
+            Es können maximal 20 Räume eingegeben werden.
+          </p>
+          <p class="mb-0">
+            Die Bewertung der Wärmepumpen-Eignung erfolgt anhand solcher Räume, die sich mit niedrigen
+            Vorlauftemperaturen besonders schwer beheizen lassen. Dazu zählen im Mehrfamilienhaus
+            typischerweise Räume im obersten oder untersten Geschoss, Eckräume, Zimmer mit großen
+            Fensterflächen oder mit angrenzenden unbeheizten Bereichen. Diese sollten bevorzugt erfasst werden.
+          </p>
+        </div>
+      </details>
+    </div>
+  </fieldset>
+
+
+  <!-- Accessibility: fieldset groups related radio buttons semantically -->
+  <fieldset class="mb-3 row">
+    <legend class="col-sm-5 col-form-label">
+      Dachform
+      <!-- Accessibility: aria-label provides screen reader description for icon-only help button -->
+      <button type="button"
+              class="btn btn-link p-0 ms-1 text-muted"
+              *ngIf="hasPopupText(grid.g('IN_build', 'F4').toString())"
+              [ngbPopover]="extractPopupText(grid.g('IN_build', 'F4').toString())"
+              placement="right"
+              triggers="click"
+              aria-label="Hilfe anzeigen">
+        <i class="bi bi-question-circle"></i>
+      </button>
+    </legend>
+    <div class="col-sm-7">
+      <div *ngFor="let option of dachtypOptions; let i = index; trackBy value" class="col-auto">
+        <div class="form-check d-flex flex-row gap-2 align-items-center">
+          <input class="form-check-input" type="radio" name="dachform" [id]="'dach_' + i"
+                 [value]="option.value"
+                 [checked]="grid.getCell('IN_build', 'P4') === option.value"
+                 (change)="grid.setCell('IN_build', 'P4', option.value)"
+                 required>
+          <label class="form-check-label d-flex flex-row align-items-center" [for]="'dach_' + i">
+            <!-- Accessibility: aria-hidden because the adjacent <small> text provides the label -->
+            <svg-icon
+              *ngIf="option.icon"
+              [src]="basePath + 'assets/images/' + option.icon"
+              [svgStyle]="{ 'width.px': 50, 'height.px': 35 }"
+              class="mb-1 me-1"
+              aria-hidden="true">
+            </svg-icon>
+            <small>{{ option.value }}</small>
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="mb-3 row align-items-center">
+    <label for="baujahr" class="col-sm-5 col-form-label">Baujahr</label>
+    <div class="col-sm-7">
+      <select class="form-select" id="baujahr" name="baujahr"
+              [ngModel]="grid.getCell('IN_build', 'P5')"
+              (ngModelChange)="grid.setCell('IN_build', 'P5', $event)"
+              required>
+        <option *ngFor="let jahr of baualtersklassen" [value]="jahr">{{getBaualtersklasseLabel(jahr)}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Datenverwaltung Infobox -->
+  <div class="alert alert-info">
+    <p class="h5">Datenverwaltung</p>
+    <p>Ihre Daten werden automatisch im Browser zwischengespeichert und können mit dem gleichen Gerät jederzeit wieder aufgerufen werden. <a routerLink="/datenmanagement">weitere Informationen</a></p>
+    <div class="grid gap-3" style="grid-template-columns: auto 1fr;">
+      <button type="submit" form="importForm" class="btn btn-sm btn-info" aria-describedby="import-desc-basic">
+        <i class="bi bi-upload me-1"></i>Daten Laden
+      </button>
+      <div id="import-desc-basic" class="align-self-center">
+        Klicken Sie hier, um gespeicherte Eingaben aus einer Datei zu importieren.
+      </div>
+
+      <button type="submit" form="resetForm" class="btn btn-sm btn-danger" aria-describedby="reset-desc-basic">
+        <i class="bi bi-trash me-1"></i>Daten löschen
+      </button>
+      <div id="reset-desc-basic" class="align-self-center">
+        Klicken Sie hier, um alle aktuellen Eingaben zu löschen
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+
+  <!-- Footer Navigation Container -->
+  <app-navigation-footer>
+    <a class="btn btn-info" footer-left routerLink="/">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </a>
+    <button type="submit" class="btn btn-info" footer-right>
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </app-navigation-footer>
+</form>
+

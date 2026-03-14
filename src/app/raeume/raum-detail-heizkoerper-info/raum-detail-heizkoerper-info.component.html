@@ -1,0 +1,42 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="75" activeRoomSubTab="heizflaechen"></app-wizard-tabs>
+
+<!-- Content -->
+<h1 class="h3">🔥 Warum die Heizkörperdaten wichtig sind</h1>
+
+<p>Die Wärme des Heizkreiswassers wird über die Oberfläche der Heizkörper an den Raum abgegeben.</p>
+
+<p>Je größer die Übertragungsfläche eines Heizkörpers ist, desto mehr Wärme kann bei gleicher Vorlauftemperatur abgegeben werden.</p>
+
+<div class="alert alert-warning" role="alert">
+  <p class="mb-0"><strong>👉 Das bedeutet:</strong> Größere oder leistungsstärkere Heizkörper ermöglichen eine niedrigere Vorlauftemperatur – und machen den effizienten Betrieb einer Wärmepumpe überhaupt erst möglich.</p>
+</div>
+
+<h2 class="h5">🧮 Was wird geprüft?</h2>
+<p>Um zu beurteilen, ob Ihr Gebäude <abbr
+  title="Ein Gebäude gilt als niedertemperaturfähig, wenn es bei einer Vorlauftemperatur von maximal 55 °C ausreichend Wärme liefert, um das Gebäude zu beheizen. Das hängt sowohl von den Wärmeverlusten der Räume als auch von der Größe und Effektivität der vorhandenen Heizflächen ab. Die nötige Vorlauftemperatur lässt sich senken, indem man die Heizflächen vergrößert (z.&#8239;B. durch einen Heizkörpertausch) oder die Wärmeverluste verringert (z.&#8239;B. durch Dämmung oder neue Fenster). Beides sind Wege, um ein Gebäude auf einen effizienten Wärmepumpenbetrieb vorzubereiten.">niedertemperaturfähig</abbr>
+  ist, wird berechnet, ob die installierte Heizkörperleistung ausreicht, um die Wärmeverluste des Raums bei einer maximalen Vorlauftemperatur von 55°C auszugleichen.</p>
+
+<h2 class="h5">📏 Welche Angaben sind dafür nötig?</h2>
+
+<div class="alert alert-success" role="alert">
+  <p>Für die Berechnung der Heizkörperleistung benötigen wir:</p>
+  <ul>
+    <li>den Typ des Heizkörpers (z.B. Flach, Glieder, Rippen)</li>
+    <li>und die Abmessungen (Breite, Höhe, Tiefe)</li>
+  </ul>
+  <p>Diese Daten erfassen Sie im nächsten Schritt.</p>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/raeume/detail-wand" [queryParams]="{room: roomId}">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <button type="button" class="btn btn-info" footer-right routerLink="/gebaeude/raeume/detail-heizflaechen" [queryParams]="{room: roomId}">
+    Weiter <i class="bi bi-arrow-right ms-1"></i>
+  </button>
+</app-navigation-footer>

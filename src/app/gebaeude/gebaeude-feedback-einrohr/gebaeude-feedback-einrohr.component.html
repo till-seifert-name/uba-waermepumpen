@@ -1,0 +1,49 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="75"></app-wizard-tabs>
+
+<!-- Feedback page for single-pipe heating systems -->
+
+<!-- Content -->
+<h1 class="h3">Eingabehnweise zur Einrohrheizung – eingeschränkte Berechnung möglich</h1>
+
+<p class="fw-bold">Super, Sie haben alle Gebäudedaten erfasst!</p>
+
+<p>Ihr Heizsystem scheint ein Einrohrsystem zu sein. Dabei fließt das Heizungswasser nacheinander durch alle Heizkörper im Heizkreis – der erste Heizkörper erhält heißeres Wasser als der letzte. Das ist für den Betrieb einer Wärmepumpe nicht ideal, denn Wärmepumpen arbeiten am effizientesten, wenn alle <abbr title="Heizflächen geben die Wärme an den Raum ab – entweder über klassische Heizkörper oder Flächenheizungen wie Fußbodenheizungen. Je größer die Fläche, desto niedriger kann die Vorlauftemperatur sein, um den Raum zu erwärmen.">Heizflächen</abbr> mit gleichmäßig niedriger Temperatur versorgt werden.</p>
+
+<p>Gleichzeitig bieten Einrohrsysteme mit ihrem hohen Volumenstrom auch gute Voraussetzungen – viele Gebäude mit Einrohrheizung lassen sich erfolgreich auf Wärmepumpen umstellen. In manchen Fällen wurde das System dafür in ein Zweirohrsystem umgebaut.</p>
+
+<h2 class="h5">🔍 Was bedeutet das für diesen Check?</h2>
+<ul>
+  <li>Die folgenden Berechnungen im Tool basieren auf einem <strong>Zweirohr-Heizsystem</strong>.</li>
+  <li>Sie können Ihre Heizkörper trotzdem eingeben (Typ und Abmessungen) – das Tool prüft dann, ob Ihr Gebäude bei einer Umrüstung auf ein Zweirohrsystem für den Wärmepumpenbetrieb geeignet wäre.</li>
+  <li>Eine direkte Bewertung Ihres aktuellen Einrohrsystems ist leider nicht möglich. Das bedeutet aber nicht, dass Ihr Gebäude ungeeignet ist – hier wäre eine individuelle Beratung sinnvoll.</li>
+</ul>
+
+<div class="alert alert-success" role="alert">
+  <div class="d-flex">
+    <div class="me-3">
+      <i class="bi bi-lightbulb fs-4"></i>
+    </div>
+    <div>
+      <h3 class="h6 mb-2">Wie geht es weiter?</h3>
+      <ul class="mb-0">
+        <li>Geben Sie die vorhandenen Heizkörperdaten wie gewohnt ein</li>
+        <li>Nutzen Sie die Ergebnisse als Orientierung für eine mögliche Umstellung auf ein Zweirohrsystem</li>
+        <li>Lassen Sie sich ggf. von einer Fachperson beraten, ob Ihr bestehendes System angepasst werden kann</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/heizung">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <button type="button" class="btn btn-info" footer-right routerLink="/gebaeude/transition">
+    Weiter <i class="bi bi-arrow-right ms-1"></i>
+  </button>
+</app-navigation-footer>

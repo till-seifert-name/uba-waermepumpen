@@ -1,0 +1,121 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="80"></app-wizard-tabs>
+
+<!-- Content -->
+<form (ngSubmit)="onNext()" ngNativeValidate class="d-contents">
+  <div class="mb-3 p-3 border rounded">
+    <div class="form-check form-switch mb-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="check_vl_bekannt"
+             [checked]="grid.getCell('IN_build', 'P16') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'P16', checked($event) ? 'Ja' : 'Nein'); checked($event) ? grid.setCell('IN_build', 'P18', 'Nein') : null"
+             name="check_vl_bekannt">
+      <label class="form-check-label" for="check_vl_bekannt">
+        Ich weiß, auf welche Vorlauftemperatur die <abbr title="Je kälter es draußen ist, desto mehr Wärme braucht der Raum – deshalb steigt die Vorlauftemperatur der Heizung. Die Heizkurve legt fest, welche Vorlauftemperatur bei welcher Außentemperatur nötig ist, damit es im Haus warm bleibt.">Heizkurve</abbr> der Heizung eingestellt ist
+        <!-- Accessibility: aria-label provides screen reader description for icon-only help button -->
+        <button type="button"
+                class="btn btn-link p-0 ms-1 text-muted"
+                *ngIf="hasPopupText(grid.g('IN_build', 'F16').toString())"
+                [ngbPopover]="extractPopupText(grid.g('IN_build', 'F16').toString())"
+                placement="right"
+                triggers="click"
+                aria-label="Hilfe anzeigen">
+          <i class="bi bi-question-circle"></i>
+        </button>
+      </label>
+      <div class="form-text" *ngIf="hasUntertext(grid.g('IN_build', 'F16').toString())">
+        {{ extractUntertext(grid.g('IN_build', 'F16').toString()) }}
+      </div>
+    </div>
+    <!-- Conditional Section -->
+    <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'P16') === 'Ja'">
+      <div class="row align-items-center">
+        <label for="vl_auslegung" class="col-sm-5 col-form-label">Vorlauftemperatur am Auslegungspunkt</label>
+        <div class="col-sm-5">
+          <div class="input-group input-group-sm">
+            <input type="number" class="form-control text-end" id="vl_auslegung"
+                   [ngModel]="grid.g('IN_build', 'P17')"
+                   (ngModelChange)="grid.setCell('IN_build', 'P17', $event)"
+                   name="vl_auslegung"
+                   min="30" max="90" required>
+            <span class="input-group-text">°C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3 p-3 border rounded">
+    <div class="form-check form-switch mb-2">
+      <input class="form-check-input" type="checkbox" role="switch" id="check_vl_gemessen"
+             [checked]="grid.getCell('IN_build', 'P18') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'P18', checked($event) ? 'Ja' : 'Nein'); checked($event) ? grid.setCell('IN_build', 'P16', 'Nein') : null"
+             name="check_vl_gemessen">
+      <label class="form-check-label" for="check_vl_gemessen">
+        Ich kann im Heizungsraum die Vorlauftemperatur ablesen und die Außentemperatur messen
+        <!-- Accessibility: aria-label provides screen reader description for icon-only help button -->
+        <button type="button"
+                class="btn btn-link p-0 ms-1 text-muted"
+                *ngIf="hasPopupText(grid.g('IN_build', 'F18').toString())"
+                [ngbPopover]="extractPopupText(grid.g('IN_build', 'F18').toString())"
+                placement="right"
+                triggers="click"
+                aria-label="Hilfe anzeigen">
+          <i class="bi bi-question-circle"></i>
+        </button>
+      </label>
+      <div class="form-text" *ngIf="hasUntertext(grid.g('IN_build', 'F18').toString())">
+        {{ extractUntertext(grid.g('IN_build', 'F18').toString()) }}
+      </div>
+    </div>
+    <!-- Conditional Section -->
+    <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'P18') === 'Ja'">
+      <div class="row align-items-center mb-2">
+        <label for="vl_aktuell" class="col-sm-4 col-form-label">Vorlauftemperatur</label>
+        <div class="col-sm-5">
+          <div class="input-group input-group-sm">
+            <input type="number" class="form-control text-end" id="vl_aktuell"
+                   [ngModel]="grid.g('IN_build', 'P19')"
+                   (ngModelChange)="grid.setCell('IN_build', 'P19', $event)"
+                   name="vl_aktuell"
+                   min="30" max="90" required>
+            <span class="input-group-text">°C</span>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <label for="aussen_aktuell" class="col-sm-4 col-form-label">{{ grid.g('IN_build', 'E20').toString() }}</label>
+        <div class="col-sm-5">
+          <div class="input-group input-group-sm">
+            <input type="number" class="form-control text-end" id="aussen_aktuell"
+                   [ngModel]="grid.g('IN_build', 'P20')"
+                   (ngModelChange)="grid.setCell('IN_build', 'P20', $event)"
+                   name="aussen_aktuell"
+                   min="-20" max="40" required>
+            <span class="input-group-text">°C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+
+  <!-- Footer Navigation Container -->
+  <app-navigation-footer>
+    <a class="btn btn-info" footer-left routerLink="/gebaeude/heizung">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </a>
+    <button type="submit" class="btn btn-info" footer-right>
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </app-navigation-footer>
+</form>
+
+<style>
+  .conditional-section {
+    padding-left: 20px;
+    margin-top: 10px;
+    border-left: 2px solid #EEE;
+  }
+</style>

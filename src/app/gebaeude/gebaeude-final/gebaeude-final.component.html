@@ -1,0 +1,38 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="90"></app-wizard-tabs>
+
+<!-- Final building section page - transition to rooms -->
+
+<!-- Content -->
+<h1 class="h3">📐 Weiter geht's mit den Einzelräumen – bitte Maß nehmen!</h1>
+
+<p class="fw-bold">Super, Sie haben alle Gebäudedaten erfasst.</p>
+
+<p>Im nächsten Schritt erfassen Sie die Einzelräume, um die Raumheizlast und die Leistung der vorhandenen Heizkörper zu berechnen.</p>
+
+<p>Dafür brauchen wir einige Maße zu den Bauteilflächen im Raum – also zu Außenwänden, Fenstern, Dach- oder Geschossdecken – sowie zu den installierten Heizkörpern.</p>
+
+<h2 class="h5">🧰 Was Sie jetzt bereithalten sollten:</h2>
+<ul>
+  <li>Einen <strong>Zollstock</strong> oder falls vorhanden idealerweise einen <strong>Laser-Entfernungsmesser</strong>,</li>
+  <li>Eine <strong>grobe Genauigkeit von ± 10 cm</strong> reicht für die Eingabe völlig aus,</li>
+  <li> Es genügt, Dach- und Deckenflächen <strong>vom Boden aus</strong> zu messen oder abzuschätzen.
+  </li>
+</ul>
+
+<div class="alert alert-success" role="alert">
+  <p class="mb-0"><strong>Tipp:</strong> Wer zu zweit misst, kommt schneller durch!</p>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/vorlauftemperatur">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <button type="button" class="btn btn-info" footer-right routerLink="/gebaeude/transition">
+    Weiter <i class="bi bi-arrow-right ms-1"></i>
+  </button>
+</app-navigation-footer>

@@ -1,0 +1,177 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="50"></app-wizard-tabs>
+
+  <!-- Content -->
+  <p>Wurde eines der folgenden Bauteile nachträglich gedämmt oder ausgetauscht?</p>
+
+  <form (ngSubmit)="onSubmit()" ngNativeValidate class="d-contents">
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_aussenwand"
+             [checked]="grid.getCell('IN_build', 'Q7') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'Q7', checked($event) ? 'Ja' : 'Nein')">
+      <label class="form-check-label" for="check_aussenwand">Außenwand</label>
+
+      <!-- Conditional Section for Außenwand -->
+      <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'Q7') === 'Ja'">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_aw" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_aw" name="modjahr_aw"
+                  [ngModel]="grid.getCell('IN_build', 'S7')"
+                  (ngModelChange)="grid.setCell('IN_build', 'S7', $event)">
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_aw" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control text-end" id="daemmstaerke_aw" name="daemmstaerke_aw"
+                    [ngModel]="grid.g('IN_build', 'U7')"
+                    (ngModelChange)="grid.setCell('IN_build', 'U7', $event)"
+                    min="0" max="40">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_fenster"
+             [checked]="grid.getCell('IN_build', 'Q8') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'Q8', checked($event) ? 'Ja' : 'Nein')">
+      <label class="form-check-label" for="check_fenster">Fenster</label>
+      <!-- Conditional Section for Fenster -->
+      <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'Q8') === 'Ja'">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_fenster" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_fenster" name="modjahr_fenster"
+                  [ngModel]="grid.getCell('IN_build', 'S8')"
+                  (ngModelChange)="grid.setCell('IN_build', 'S8', $event)">
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_dach"
+             [checked]="grid.getCell('IN_build', 'Q9') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'Q9', checked($event) ? 'Ja' : 'Nein')">
+      <label class="form-check-label" for="check_dach">Dach</label>
+      <!-- Conditional Section for Dach -->
+      <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'Q9') === 'Ja'">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_dach" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_dach" name="modjahr_dach"
+                  [ngModel]="grid.getCell('IN_build', 'S9')"
+                  (ngModelChange)="grid.setCell('IN_build', 'S9', $event)">
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_dach" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control text-end" id="daemmstaerke_dach" name="daemmstaerke_dach"
+                    [ngModel]="grid.g('IN_build', 'U9')"
+                    (ngModelChange)="grid.setCell('IN_build', 'U9', $event)"
+                    min="0" max="40">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_ogd"
+             [checked]="grid.getCell('IN_build', 'Q11') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'Q11', checked($event) ? 'Ja' : 'Nein')">
+      <label class="form-check-label" for="check_ogd">Oberste Geschossdecke</label>
+      <div class="form-text">{{ grid.g('IN_build', 'F11').toString() }}</div>
+      <!-- Conditional Section for OGD -->
+      <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'Q11') === 'Ja'">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_ogd" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_ogd" name="modjahr_ogd"
+                  [ngModel]="grid.getCell('IN_build', 'S11')"
+                  (ngModelChange)="grid.setCell('IN_build', 'S11', $event)">
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_ogd" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control text-end" id="daemmstaerke_ogd" name="daemmstaerke_ogd"
+                    [ngModel]="grid.g('IN_build', 'U11')"
+                    (ngModelChange)="grid.setCell('IN_build', 'U11', $event)"
+                    min="0" max="40">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check_keller"
+             [checked]="grid.getCell('IN_build', 'Q10') === 'Ja'"
+             (change)="grid.setCell('IN_build', 'Q10', checked($event) ? 'Ja' : 'Nein')">
+      <label class="form-check-label" for="check_keller">Kellerdecke / Fußboden</label>
+      <!-- Conditional Section for Keller -->
+      <div class="conditional-section" *ngIf="grid.getCell('IN_build', 'Q10') === 'Ja'">
+        <div class="mb-3 row align-items-center">
+          <label for="modjahr_keller" class="col-sm-4 col-form-label">Modernisierungsjahr bekannt?</label>
+          <div class="col-sm-8">
+            <select class="form-select form-select-sm" id="modjahr_keller" name="modjahr_keller"
+                  [ngModel]="grid.getCell('IN_build', 'S10')"
+                  (ngModelChange)="grid.setCell('IN_build', 'S10', $event)">
+              <option *ngFor="let jahr of Modernisierungsjahr" [value]="jahr">{{getModernisierungsjahrLabel(jahr)}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="daemmstaerke_keller" class="col-sm-4 col-form-label">Dämmstärke bekannt?</label>
+          <div class="col-sm-8">
+            <div class="input-group input-group-sm">
+              <input type="number" class="form-control text-end" id="daemmstaerke_keller" name="daemmstaerke_keller"
+                    [ngModel]="grid.g('IN_build', 'U10')"
+                    (ngModelChange)="grid.setCell('IN_build', 'U10', $event)"
+                    min="0" max="40">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer to prevent content from being hidden behind fixed footer -->
+    <div class="pb-5 mb-5"></div>
+
+    <!-- Footer Navigation Container -->
+    <app-navigation-footer>
+      <a class="btn btn-info" footer-left routerLink="/gebaeude/basisdaten">
+        <i class="bi bi-arrow-left me-1"></i> Zurück
+      </a>
+      <button type="submit" class="btn btn-info" footer-right>
+        Weiter <i class="bi bi-arrow-right ms-1"></i>
+      </button>
+    </app-navigation-footer>
+  </form>
+<style>
+.conditional-section {
+  padding-left: 20px;
+  margin-top: 10px;
+  border-left: 2px solid #eee;
+}
+</style>

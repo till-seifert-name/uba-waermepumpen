@@ -1,0 +1,55 @@
+<!-- Wizard Tabs Navigation -->
+<div class="wizard-tabs-container position-relative" [class.mb-4]="!showRoomSubTabs">
+  <!-- Main Tabs -->
+  <ul class="nav nav-tabs position-relative">
+    <li class="nav-item position-relative" *ngFor="let tab of tabs; let i = index">
+      <a class="nav-link"
+         style="display: grid"
+         [class.active]="isTabActive(tab.id)"
+         [class.disabled]="isTabDisabled(i)"
+         [routerLink]="tab.routePath"
+         [queryParams]="tab.queryParams"
+         [ngClass]="{'room-tab': tab.id.startsWith('room_')}">
+
+        <!-- Tab title -->
+        <span>
+          <!-- Base tabs have normal titles with icons -->
+          <span *ngIf="!tab.id.startsWith('room_')">
+            <i *ngIf="tab.icon" class="bi bi-{{ tab.icon }} me-1"></i>
+            {{ tab.title }}
+          </span>
+
+          <!-- Room tabs are indented and use their room name with specific icons -->
+          <span *ngIf="tab.id.startsWith('room_')">
+            <i *ngIf="tab.icon" class="bi bi-{{ tab.icon }} me-1"></i>
+            {{ tab.title }}
+          </span>
+        </span>
+
+        <!-- Progress bar only shows on active tab -->
+        <div class="progress"
+             *ngIf="isTabActive(tab.id) && progress > 0">
+          <div class="progress-bar bg-primary" aria-hidden="true"
+               [style.width.%]="progress"
+               [attr.aria-valuenow]="progress"
+               aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Room Sub-Tabs (only shown when a room tab is active) -->
+  <ul class="nav nav-pills position-relative mt-4 mb-4" *ngIf="showRoomSubTabs">
+    <li class="nav-item position-relative" *ngFor="let subTab of roomSubTabs">
+      <a class="nav-link" style="display: grid"
+         [class.active]="activeRoomSubTab === subTab.id"
+         [routerLink]="['/gebaeude/raeume', subTab.path]"
+         [queryParams]="{room: currentRoomId}">
+          <span>
+            <i *ngIf="subTab.icon" class="bi bi-{{ subTab.icon }} me-1"></i>
+            {{ subTab.title }}
+          </span>
+      </a>
+    </li>
+  </ul>
+</div>

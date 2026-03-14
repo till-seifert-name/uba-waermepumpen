@@ -1,0 +1,38 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="20"></app-wizard-tabs>
+
+
+<!-- Content -->
+<h1 class="h3">📐 Warum die Außenflächen wichtig sind</h1>
+
+<p>Um die <strong>Wärmeverluste eines Raumes</strong> zu bestimmen, braucht es Informationen über die <strong>Größe und Art der Außenflächen</strong> – also z. B. Außenwände, Fenster, Dach oder Decken.</p>
+
+<p>
+  Die Verluste hängen vom sogenannten <strong><abbr
+  title="Der U-Wert ist ein bauphysikalischer Kennwert und gibt an, wie viel Wärme durch einen Quadratmeter eines Bauteils fließt, wenn innen und außen ein Temperaturunterschied von einem Grad besteht. Ein niedriger U-Wert bedeutet, dass wenig Wärme verloren geht – das Bauteil dämmt also gut.">U-Wert</abbr></strong> der Bauteile ab.<br>
+  Dieser beschreibt, wie gut ein Bauteil gedämmt ist, und wird im Tool automatisch <strong>auf Basis Ihrer Gebäudedaten bestimmt</strong>.</p>
+
+<h2 class="h5">🧱 Innenwände müssen nicht erfasst werden</h2>
+<p>Wände zu beheizten Nachbarräumen müssen nicht angegeben werden. Das Tool geht davon aus, dass zwischen beheizten Räumen kein nennenswerter Wärmeaustausch stattfindet – diese Annahme ist in der Praxis meist ausreichend.</p>
+
+<div class="alert alert-warning" role="alert">
+  <h2 class="h5">⚠ Sonderfall: unbeheizter Nachbarraum</h2>
+  <p>Grenzt ein Raum an einen nicht beheizten Raum (z.B. unter 15°C, wie ein Abstellraum oder Keller), dann geben Sie diese Wand bitte als:</p>
+  <p class="mb-0"><strong>➡ „Innenwand gegen unbeheizt" ein.</strong></p>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/raeume/liste">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <button type="button" class="btn btn-info" footer-right
+          routerLink="/gebaeude/raeume/detail-basis"
+          [queryParams]="{room: selectedRoomId}"
+          [disabled]="!selectedRoomId">
+    Weiter <i class="bi bi-arrow-right ms-1"></i>
+  </button>
+</app-navigation-footer>

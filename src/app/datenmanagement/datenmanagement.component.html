@@ -1,0 +1,38 @@
+<div class="container py-5">
+  <h1 class="mb-4">Datenverwaltung</h1>
+
+  <p>Der „Gebäudecheck Wärmepumpe“ ist ein browserbasiertes Tool. Alle Eingaben werden deshalb im localStorage des Browsers gespeichert. Wird das Tool geschlossen und zu einem späteren Zeitpunkt wieder geöffnet, können Sie deshalb die
+    Eingabe mit demselben Gerät problemlos fortsetzen. Für das Speichern und Laden von Eingaben wird eine Datei im json-Format gespeichert, die Ihre Eingaben im Textformat enthält und beispielsweise zum Archivieren oder Austauschen der
+    Eingabedaten verwendet werden kann.</p>
+
+  <div class="grid gap-3 mb-3" style="grid-template-columns: auto 1fr;">
+    <button type="submit" form="exportForm" class="btn btn-info" aria-describedby="export-desc">
+      <i class="bi bi-download me-2"></i>Daten Speichern
+    </button>
+    <div id="export-desc" class="align-self-center">
+      klicken Sie hier, um die aktuellen Eingaben als Datei zu exportieren.
+    </div>
+
+    <button type="submit" form="importForm" class="btn btn-info" aria-describedby="import-desc">
+      <i class="bi bi-upload me-2"></i>Daten Laden
+    </button>
+    <div id="import-desc" class="align-self-center">
+      Klicken Sie hier, um gespeicherte Eingaben aus einer Datei zu importieren.
+    </div>
+
+    <button type="submit" form="resetForm" class="btn btn-danger" aria-describedby="reset-desc">
+      <i class="bi bi-trash me-2"></i>Daten löschen
+    </button>
+    <div id="reset-desc" class="align-self-center">
+      Klicken Sie hier, um alle aktuellen Eingaben zu löschen
+    </div>
+  </div>
+
+  <p>Der <strong>localStorage</strong> ist ein einfacher, lokaler Speicher im Browser, um Daten für eine bestimmte Website dauerhaft zu speichern, selbst nach dem Schließen des Browsers.</p>
+
+  <p>Anders als der <strong>Cache</strong>, der automatisch Ressourcen wie Bilder und Skripte puffert, um Ladezeiten zu verkürzen, dient der localStorage der spezifischen Ablage von strukturierten Daten und hat kein automatisches
+    Ablaufdatum.</p>
+
+  <p>Anders als die <strong>Cookies</strong> findet beim localStorage standardmäßig keine automatische Kommunikation mit der Webseite bei jeder einzelnen Anfrage an den Server statt; die Daten werden ausschließlich clientseitig (im Browser)
+    gespeichert.</p>
+</div>

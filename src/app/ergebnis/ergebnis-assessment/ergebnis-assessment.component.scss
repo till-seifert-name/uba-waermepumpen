@@ -1,0 +1,43 @@
+// Active nav state when sections are targeted
+$sections: 'rooms', 'nt-readiness', 'radiators', 'envelope', 'next-steps';
+
+@each $section in $sections {
+  :host:has(##{$section}-section:target) .nav-link[fragment="#{$section}-section"] {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: var(--bs-nav-pills-link-active-bg);
+  }
+}
+
+// Room dashboard styling
+.value-box {
+  font-weight: 600;
+  min-width: min(150px, 100vw / 3 - 2rem);
+  text-align: center;
+  color: white;
+  padding-inline: 0.75rem;
+  padding-block: 0.5rem;
+  border-radius: var(--bs-border-radius);
+  hyphens: auto;
+}
+
+// Icon colors
+.icon-success {
+  color: var(--bs-success);
+}
+
+.icon-warning {
+  color: var(--bs-warning);
+}
+
+.icon-danger {
+  color: var(--bs-danger);
+}
+
+// Rating color classes - verwenden globale --rating-* Variablen
+.rating-color {
+  color: var(--rating-color, var(--rating-gray));
+}
+
+.rating-bg-color {
+  background-color: var(--rating-color, var(--rating-gray));
+}

@@ -1,0 +1,59 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="80" activeRoomSubTab="heizflaechen"></app-wizard-tabs>
+
+<!-- Content -->
+<h1 class="h5 mb-4"><abbr title="Heizflächen geben die Wärme an den Raum ab – entweder über klassische Heizkörper oder Flächenheizungen wie Fußbodenheizungen. Je größer die Fläche, desto niedriger kann die Vorlauftemperatur sein, um den Raum zu erwärmen.">Heizflächen</abbr> für Raum: {{ berechnungService.getRoomName(roomId) }}</h1>
+
+<p class="mb-4 text-muted">Wählen Sie die Darstellung, die zu Ihrer Heizfläche passt, und geben Sie die Abmessungen an.<br>
+Bei mehreren Heizkörpertypen im Raum können Sie am Seitenende weitere hinzufügen.</p>
+
+<form (ngSubmit)="onNext()" ngNativeValidate class="d-contents">
+  <div class="mb-4" *ngIf="!heater1Visible && !heater2Visible">
+    <button type="button" class="btn btn-outline-secondary" (click)="addHeaterType()">
+      <i class="bi bi-plus-lg"></i> Heizfläche hinzufügen
+    </button>
+  </div>
+
+  <!-- Heater type 1 (shown only when visible) -->
+  <app-heater-form
+    [roomId]="roomId"
+    [heaterNumber]="1"
+    [visible]="heater1Visible"
+    (remove)="removeHeaterType(1)">
+  </app-heater-form>
+
+  <!-- Heater type 2 (shown only when visible) -->
+  <app-heater-form
+    [roomId]="roomId"
+    [heaterNumber]="2"
+    [visible]="heater2Visible"
+    (remove)="removeHeaterType(2)">
+  </app-heater-form>
+
+  <!-- Heater type 3 (shown only when visible) -->
+  <app-heater-form
+    [roomId]="roomId"
+    [heaterNumber]="3"
+    [visible]="heater3Visible"
+    (remove)="removeHeaterType(3)">
+  </app-heater-form>
+
+  <div class="mb-4" *ngIf="(heater1Visible && !heater2Visible) || (heater2Visible && !heater3Visible)">
+    <button type="button" class="btn btn-outline-secondary" (click)="addHeaterType()">
+      <i class="bi bi-plus-lg"></i> Gibt es weitere Heizflächen, die von der eingegebenen Heizfläche abweichen?
+    </button>
+  </div>
+
+  <!-- Spacer to prevent content from being hidden behind fixed footer -->
+  <div class="pb-5 mb-5"></div>
+
+  <!-- Footer Navigation Container -->
+  <app-navigation-footer>
+    <a class="btn btn-info" footer-left routerLink="/gebaeude/raeume/detail-wand" [queryParams]="{room: roomId}">
+      <i class="bi bi-arrow-left me-1"></i> Zurück
+    </a>
+    <button type="submit" class="btn btn-info" footer-right>
+      Weiter <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </app-navigation-footer>
+</form>

@@ -1,0 +1,28 @@
+:host {
+  display: contents;
+}
+
+.hero {
+  padding: 0.1px;
+  position: relative;
+  z-index: 0;
+
+  h1 {
+    text-shadow: 0 0 1rem var(--bs-dark);
+
+    @media print {
+      text-shadow: none;
+    }
+  }
+}
+
+/* focus clickable groups */
+svg [role="button"] {
+  filter: brightness(100%);
+  transition: filter 0.1s linear;
+
+  &:focus {
+    filter: brightness(75%) contrast(184%);
+  }
+}
+

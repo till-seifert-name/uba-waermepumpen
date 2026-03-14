@@ -1,0 +1,22 @@
+// named Expressions from FODS
+export const namedExpressions = {
+  "Deckenheizung": "#REF!",
+  "DropdownlisteHeizungsrohre": "#REF!",
+  "Flachheizkörper": "Daten!K4:K8",
+  "Fußbodenheizung": "#REF!",
+  "Gewinderohr": "Daten!X23:X24",
+  "Gliederheizkröper": "Daten!M3:M5",
+  "HeinzungsrohreDatensaetze": "#REF!",
+  "Heizkörpertypen": "Daten!I4:I8",
+  "Konvektor": "Daten!P4",
+  "Log_ÜT_Norm": "49.83",
+  "p": "\"INDEX(PAR[Parameter];1)\"",
+  "Rohrheizkörper": "Daten!O4:O6",
+  "Rohrradiator": "Daten!N4:N6",
+  "Rohrradiatoren": "Daten!N4:N6",
+  "Stahlrippenohr": "Daten!Z23",
+  "Stahlrohr": "Daten!Y23:Y24",
+  "TRL_Ziel": "45",
+  "TVL_Ziel": "55",
+  "Wandheizung": "#REF!",
+} as const;

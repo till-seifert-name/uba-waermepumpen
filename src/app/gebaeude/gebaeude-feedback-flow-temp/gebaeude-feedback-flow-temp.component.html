@@ -1,0 +1,45 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="85"></app-wizard-tabs>
+
+<!-- Feedback page for low flow temperature (< 55°C) -->
+
+<!-- Content -->
+<h1 class="h3">✅ Gebäudedaten vollständig – gute Voraussetzungen erkannt!</h1>
+
+<p class="fw-bold">Super, Sie haben alle Gebäudedaten erfasst.</p>
+
+<p>Die Angaben zur <abbr
+  title="Temperatur des Wassers in den Heizungsrohren, bevor das Wasser die Heizkörper erstmals durchströmt. Wird sowohl auf den Auslegungspunkt am kältesten Tag des Jahres (z.&#8239;B. 55&#8239;°C) als auch auf den aktuellen, sich im Laufe des Jahres verändernden Wert bezogen."><strong>Vorlauftemperatur</strong></abbr>
+  am Auslegungspunkt zeigen:</p>
+
+<p>Ihr Gebäude kann bereits an kalten Wintertagen mit einer Vorlauftemperatur von <strong>maximal 55&#8239;°C</strong> beheizt werden – das ist ein sehr guter Wert für den effizienten Betrieb einer Wärmepumpe.</p>
+
+<h2 class="h5">🔍 Was Sie jetzt tun können:</h2>
+
+<div class="alert alert-success">
+  <p>Wenn Sie noch genauer wissen möchten:</p>
+  <ul>
+    <li>wie hoch die <strong>Heizlast Ihrer Räume</strong> ist,</li>
+    <li>wie leistungsfähig Ihre <strong>Heizkörper</strong> sind</li>
+    <li>oder mit welchen Maßnahmen sich in <strong>kritischen Räumen</strong> die Heizkreistemperatur weiter senken lässt,</li>
+  </ul>
+
+  <p>👉 dann fahren Sie gern mit der <strong>Erfassung der Einzelräume</strong> fort.</p>
+</div>
+
+<div class="alert alert-warning">
+  <strong>Hinweis:</strong> Die eingegebene Vorlauftemperatur wird im Weiteren nicht berücksichtigt, sondern die Bewertung erfolgt auf Basis der erfassten Bauteile und Heizkörper.
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/vorlauftemperatur">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <button type="button" class="btn btn-info" footer-right routerLink="/gebaeude/transition">
+    Weiter <i class="bi bi-arrow-right ms-1"></i>
+  </button>
+</app-navigation-footer>

@@ -1,0 +1,131 @@
+<header class="py-5 bg-body-tertiary border">
+  <div class="container">
+    <h1 class="display-5 mb-2">Gebäudecheck Wärmepumpe</h1>
+    <h2 class="h3 mb-4">Raum für Raum genug Wärme</h2>
+
+    <div class="card bg-success-subtle border border-success-subtle">
+      <div class="card-body p-4 p-lg-5">
+        <p class="lead mb-2">Sie möchten wissen, ob Ihr Gebäude schon für eine Wärmepumpe geeignet ist – oder welche Schritte dafür noch nötig sind?</p>
+        <p class="lead mb-4">Mit unserem kostenlosen <strong>Gebäudecheck Wärmepumpe</strong> prüfen Sie Ihre Räume und Heizkörper und erhalten Hinweise, wie Sie Ihr Gebäude fit für die Wärmepumpe machen.</p>
+        <a routerLink="/gebaeude" class="btn btn-info btn-lg">
+          Hier geht's zum Check <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<main class="py-5">
+  <div class="container">
+    <!-- 2-spaltiger Bereich direkt nach Intro -->
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-8">
+        <div class="py-3">
+          <h2 class="h5">Warum ist ein Gebäudecheck wichtig?</h2>
+          <p class="mb-3">Die Effizienz einer Wärmepumpe hängt stark von der <abbr title="Temperatur des Wassers in den Heizungsrohren, bevor das Wasser die Heizkörper erstmals durchströmt.">Vorlauftemperatur</abbr> der Heizung ab. Je niedriger, desto weniger Strom braucht die Wärmepumpe. Oft reicht schon der Austausch einzelner Heizkörper, um die
+            Temperaturen weit genug abzusenken.</p>
+          <p class="mb-4">Unser kostenloses Tool unterstützt Eigentümer*innen von Bestandsgebäuden dabei, die nötigen Daten zu erfassen. Es bestimmt für Sie die <abbr title="Die Summe der Wärmeverluste eines Raumes über alle Bauteile bei angenommener Raum- und Außentemperatur.">Heizlast</abbr>, die der Raum an einem kalten Tag braucht, und die Heizleistung, die der Heizkörper mit Wärmepumpe dann liefern kann – Raum für Raum.</p>
+
+          <h3 class="h6 mb-3">Was Sie dafür brauchen:</h3>
+          <ul class="mb-3">
+            <li>Zugang zu den Räumen</li>
+            <li>Zollstock oder besser ein Lasermessgerät</li>
+            <li>Liegen Ihnen bemaßte Pläne des Gebäudes vor, lassen sich die Räume einfacher erfassen</li>
+          </ul>
+          <div class="text-body-secondary small"><i class="bi bi-clock me-2"></i>Je nachdem, wie viele Räume Sie erfassen, benötigen Sie 15 bis 45 Minuten. Ihre Daten werden automatisch im Browser zwischengespeichert und können mit dem gleichen Gerät jederzeit wieder aufgerufen werden.</div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card bg-success-subtle border border-success-subtle">
+          <div class="card-body p-4">
+            <p class="text-body-secondary mb-1">Ein Produkt von:</p>
+            <div class="d-grid gap-4 mb-4" style="grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; align-items: center;">
+              <img [src]="basePath + 'assets/logos/Logo_ifeu_no_text.svg'" alt="ifeu" class="img-fluid w-100" style="grid-row: span 2;"/>
+              <img [src]="basePath + 'assets/logos/co2online.svg'" alt="co2online" class="img-fluid w-100"/>
+              <img [src]="basePath + 'assets/logos/heckmann.png'" alt="Ingenieurbüro Heckmann" class="img-fluid w-100"/>
+            </div>
+
+            <p class="text-body-secondary mb-1">Im Auftrag des Umweltbundesamtes:</p>
+            <div class="d-grid">
+              <img [src]="basePath + 'assets/logos/uba.png'" alt="Umweltbundesamt (UBA)" class="img-fluid justify-self-center" style="height:80px;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 text-primary">
+
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-4 text-center">
+        <figure class="position-relative mx-auto d-block mb-0" style="width: 160px; height: 160px;" aria-label="Haus-mit-Wärmepumpe-Illustration">
+          <svg-icon
+            [src]="basePath + 'assets/images/pic_G2_load_wall.svg'"
+            [svgStyle]="{ 'width.px': 160, 'height.px': 160, 'max-width.%': 100 }"
+            class="rating-color"
+            [style]="'--rating-color: var(--rating-yellow)'"
+            >
+          </svg-icon>
+          <div class="position-absolute bottom-0 start-0 translate-middle-x mb-2 bg-success rounded-1 p-2 d-flex align-items-center gap-2 shadow-sm">
+            <i class="bi bi-fan text-white" style="font-size: 1.5rem;"></i>
+            <i class="bi bi-justify text-white" style="font-size: 1.2rem;"></i>
+          </div>
+        </figure>
+      </div>
+      <div class="col-lg-8">
+        <div class="py-3">
+          <h2 class="h5 mb-3">Ergebnis des Gebäudechecks</h2>
+          <p class="mb-3">Der Gebäudecheck zeigt Ihnen:</p>
+          <ul class="mb-4">
+            <li>Ob Ihr Gebäude schon für eine Wärmepumpe geeignet ist</li>
+            <li>Welche Räume aktuell besonders hohe <abbr title="Temperatur des Wassers in den Heizungsrohren, bevor das Wasser die Heizkörper erstmals durchströmt.">Vorlauftemperaturen</abbr> brauchen</li>
+            <li>In welchem Maß ein <abbr title="Ist ein Raum noch nicht für niedrige Temperaturen geeignet, lassen sich Heizkörper vergrößern oder durch leistungsstärkere Modelle ersetzen.">Austausch der Heizkörper</abbr> die Energieeffizienz der Wärmepumpe verbessern kann</li>
+            <li>Ergebnisse für die untersuchten Räume und für das gesamte Gebäude</li>
+            <li>Was die nächsten Schritte auf dem Weg zur Wärmepumpe sind</li>
+          </ul>
+          <a routerLink="/gebaeude" class="btn btn-info">
+            Gebäudecheck starten <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 text-primary">
+
+    <!-- Social sharing row -->
+    <!-- <p class="mt-4">Gebäudecheck Wärmepumpe teilen:</p>
+     <p class="d-flex gap-3">
+       <a class="btn btn-info btn-sm rounded-circle" href="#" aria-label="Link kopieren"><i class="bi bi-link-45deg"></i></a>
+       <a class="btn btn-info btn-sm rounded-circle" href="#" aria-label="Per E-Mail teilen"><i class="bi bi-envelope"></i></a>
+       <a class="btn btn-info btn-sm rounded-circle" href="#" aria-label="Auf X teilen"><i class="bi bi-twitter-x"></i></a>
+       <a class="btn btn-info btn-sm rounded-circle" href="#" aria-label="Auf LinkedIn teilen"><i class="bi bi-linkedin"></i></a>
+       <a class="btn btn-info btn-sm rounded-circle" href="#" aria-label="Auf Facebook teilen"><i class="bi bi-facebook"></i></a>
+     </p>-->
+
+
+  </div>
+</main>
+
+<footer class="bg-primary text-white py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="small">
+          <p class="mb-2">Das Tool wurde im Auftrag des Umweltbundesamtes im Projekt „Wärmepumpen-Projektdatenbank und Niedertemperatur-ready-Standard" in einem Projektteam aus ifeu - Institut für Energie- und Umweltforschung Heidelberg gGmbH, co2online gemeinnützige Beratungsgesellschaft mbH und Ingenieurbüro Heckmann erstellt.</p>
+          <!--<p class="mb-2">Hintergründe zum Projekt und der Methodik des Tools finden Sie hier im Abschlussbericht.</p>-->
+          <p class="mb-2">Das Tool gibt Ihnen eine erste Orientierung für die Vorplanung. Die Methodik enthält bewusst Vereinfachungen, und die selbstständig gemessenen und eingegebenen Daten werden nicht fachlich geprüft. Die Ergebnisse bieten eine gute Grundlage, ersetzen aber keine professionelle Beratung. Wenden Sie sich daher für die konkrete Planung an Energieberatende, Heizungsfachleute oder ein Planungsbüro. Für die Umsetzung empfohlener Maßnahmen oder die Bewertung übernehmen wir deshalb keine Haftung.</p>
+          <p class="mb-2">
+            Der „Gebäudecheck Wärmepumpe" ist lizenziert unter <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" class="text-white text-decoration-underline">CC BY-SA 4.0</a>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="Creative Commons" style="max-width: 1em; max-height: 1em; margin-left: .2em;">
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="Attribution" style="max-width: 1em; max-height: 1em; margin-left: .2em;">
+            <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="ShareAlike" style="max-width: 1em; max-height: 1em; margin-left: .2em;">
+            (siehe Impressum)
+          </p>
+          <p class="mb-0">Haben Sie Fragen und Anregungen? Wenden Sie sich gern an <a href="mailto:gebaeudecheck-waermepumpe@ifeu.de" class="text-white text-decoration-underline">gebaeudecheck-waermepumpe&#64;ifeu.de</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

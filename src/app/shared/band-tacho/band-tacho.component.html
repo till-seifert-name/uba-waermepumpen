@@ -1,0 +1,63 @@
+<!-- Accessibility: aria-label describes the gauge content for screen readers -->
+<div class="gauge-wrap" role="img" [attr.aria-label]="getAriaLabel()">
+
+  <!-- Seitenlabels links -->
+  <div class="side-label side-label--left">
+    <span>{{ leftSideLabel }}</span>
+  </div>
+
+  <div class="gauge-container">
+
+    <!-- Band -->
+    <div class="gauge-bar" [style.background]="gaugeGradient"></div>
+
+    @for (pin of pins; track $index) {
+      <!-- gemeinsame X-Position -->
+      <div class="marker-anchor"
+           [style.left.%]="calculatePositionPercent(pin.value)">
+
+        <!-- IST über dem Band -->
+        <div *ngIf="pin.variant!=='neu'"
+             class="marker marker--ist"
+             [class.near-the-end]="calculatePositionPercent(pin.value) > 80"
+             [style.--marker-zone-color]="getColorForValue(pin.value)">
+          <!-- Haus-/Pin-SVG -->
+          <svg class="badge-svg" viewBox="0 -4 48 72">
+            <path class="badge-fill" d=" M 8,0    H 40    V 44    L 24,64    L 8,44    Z"/>
+            <text x="15" y="43" text-anchor="middle" class="badge-text">{{ pin.variant }}</text>
+          </svg>
+
+          <div class="marker-text">
+            <div class="t-title">{{ pin.title }}</div>
+            <div class="t-line" *ngIf="pin.line1">{{ pin.line1 }}</div>
+            <div class="t-line" *ngIf="pin.line2">{{ pin.line2 }}</div>
+          </div>
+        </div>
+
+        <!-- NEU unter dem Band -->
+        <div *ngIf="pin.variant==='neu'"
+             class="marker marker--neu"
+             [class.near-the-end]="calculatePositionPercent(pin.value) > 80"
+             [style.--marker-zone-color]="getColorForValue(pin.value)">
+          <!-- Haus-/Pin-SVG -->
+          <svg class="badge-svg" viewBox="0 2 48 72">
+            <path class="badge-fill" d=" M 8,0    H 40    V 44    L 24,64    L 8,44    Z"/>
+            <text x="15" y="43" text-anchor="middle" class="badge-text">{{ pin.variant }}</text>
+          </svg>
+
+          <div class="marker-text">
+            <div class="t-title">{{ pin.title }}</div>
+            <div class="t-line" *ngIf="pin.line1">{{ pin.line1 }}</div>
+            <div class="t-line" *ngIf="pin.line2">{{ pin.line2 }}</div>
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+
+  <!-- Seitenlabels rechts -->
+  <div class="side-label side-label--right">
+    <span>{{ rightSideLabel }}</span>
+  </div>
+</div>

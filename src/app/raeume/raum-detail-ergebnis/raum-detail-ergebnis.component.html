@@ -1,0 +1,178 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="100" activeRoomSubTab="ergebnis"></app-wizard-tabs>
+
+<div class="nt-ready-colors">
+  <h1 class="h5 mb-4">Ergebnis für Raum: {{ berechnungService.getRoomName(roomId) }}</h1>
+
+
+<!-- R1: NT-Readiness - Dynamic text from OUT_rooms row 3 (overall assessment) -->
+<markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '3').toString()"></markdown>
+
+<div class="row">
+  <div class="col-auto text-center">
+    <span class="display-3 text-primary">❶</span>
+  </div>
+  <div class="col">
+    <h2 class="h6">Heizkörperleistung bei 55&#8239;°C</h2>
+    <p class="mb-0">Der obere Pfeil (IST) zeigt, wie viel Leistung der aktuelle Heizkörper noch bringt, wenn die Vorlauftemperatur auf 55&#8239;°C sinkt&nbsp;&ndash; im Vergleich zum Wärmebedarf des Raumes.</p>
+    <p>Der untere Pfeil (NEU) zeigt die Leistung eines verbesserten Heizkörpers (<abbr title="Ein Flachheizkörper moderner Bauart in der leistungsstärksten Grundkonfiguration. Mit diesen Heizkörpern ist bei gleichen Abmaßen die größtmögliche Heizleistung im Vergleich zu anderen Modellen zu erwarten.">Typ&nbsp;33</abbr>) mit gleicher Höhe und Breite bei 55&#8239;°C.</p>
+  </div>
+</div>
+
+<app-band-tacho
+  [minValue]="0"
+  [maxValue]="1"
+  [zones]="[
+    { value: 0.25, label:'Optimierte\nEffizienz' },
+    { value: 0.50 },
+    { value: 0.75 },
+    { value: 1.00, label:'Geringe\nEffizienz' }
+  ]"
+  [pins]="[
+    {
+      variant:'ist',
+      value: grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '35'),
+      title:'Aktueller Heizkörper',
+      line1:grid.getCell('OUT_rooms', getRoomOutColumn() + '14').toString(),
+      line2:grid.getCell('OUT_rooms', getRoomOutColumn() + '16').toString()
+    },
+    {
+      variant:'neu',
+      value: grid.getCellNumeric('OUT_rooms', getRoomOutColumn() + '36'),
+      title:'Besserer Heizkörper',
+      line1:grid.getCell('OUT_rooms', getRoomOutColumn() + '15').toString(),
+      line2:grid.getCell('OUT_rooms', getRoomOutColumn() + '17').toString()
+    }
+  ]"
+  [customAriaLabel]="grid.getCell('OUT_rooms', getRoomOutColumn() + '46').toString()">
+</app-band-tacho>
+</div>
+
+<hr class="my-4">
+
+<!-- R3: Leistung - Use OUT_rooms row 10 for heater recommendation -->
+<div class="row">
+  <div class="col-md-3 text-center">
+    <div class="d-flex flex-column align-items-center justify-content-center mb-2">
+          <span class="d-inline-block mb-2">
+            <!-- Accessibility: aria-hidden because the adjacent text and markdown describe the assessment -->
+            <svg-icon
+              [src]="basePath + 'assets/images/' + grid.g('OUT_rooms', getRoomOutColumn() + '28') + '.svg'"
+              [svgStyle]="{ 'width.px': 144, 'height.px': 144, 'max-width.%':100 }"
+              class="rating-color"
+              [style]="'--rating-color: var(--rating-' + grid.g('OUT_rooms', getRoomOutColumn() + '31') + ')'"
+              aria-hidden="true">
+            </svg-icon>
+          </span>
+      <p class="small text-muted">{{ grid.g('OUT_rooms', getRoomOutColumn() + '32') }}</p>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '29').toString()"></markdown>
+  </div>
+</div>
+
+<hr class="my-4">
+
+<!-- Raumheizlast - Use the formatted value from OUT_rooms row 13 -->
+<div class="row">
+  <div class="col-auto text-center">
+    <span class="display-3 text-primary">❷</span>
+  </div>
+  <div class="col">
+    <h2 class="h6">Geschätzte Raum<abbr
+      title="Die Summe der Wärmeverluste eines Raumes über alle Bauteile bei angenommener Raum- und Außentemperatur. Die Normheizlast oder Auslegungsheizlast beschreibt die Heizlast bei der normativ festgelegten kältesten Außentemperatur am Standort und gibt somit den maximal zu erwartenden Wert an, der z. B. zur Dimensionierung von Heizungsanlagen herangezogen wird.">heizlast</abbr>
+    </h2>
+    <p>Die Skala zeigt den Wärmebedarf Ihres Raums. Hohe Werte bedeuten mehr Energieverbrauch und Verbesserungspotenzial beim Wärmeschutz. Eine Wärmepumpe kann auch bei hoher Heizlast gut laufen, wenn die Heizkörper genug Wärme abgeben (siehe oben). Darüber hinaus hilft eine bessere Dämmung: Sie senkt die Vorlauftemperatur, steigert die Effizienz und reduziert den Energieverbrauch.</p>
+  </div>
+</div>
+
+<app-band-tacho
+  [minValue]="30"
+  [maxValue]="110"
+  [zones]="[
+    { value: 30, label: 'Sehr gut\ngedämmt' },
+    { value: 50 },
+    { value: 70 },
+    { value: 90, label: 'Hohe\nWärmeverluste' }
+  ]"
+  [pins]="[{
+     value: grid.getCellNumeric('OUT_rooms',     getRoomOutColumn() + '37'),
+     variant:'',
+     title: '',
+     line1: grid.getCellNumeric('OUT_rooms',     getRoomOutColumn() + '11').toString() + ' Watt',
+     line2: grid.getCellNumeric('OUT_rooms',     getRoomOutColumn() + '12').toString() + ' W/m²' ,
+   }]"
+  [customAriaLabel]="grid.getCell('OUT_rooms', getRoomOutColumn() + '47').toString()">
+</app-band-tacho>
+
+<hr class="my-4">
+
+<!-- R2: Maßnahmen - Use OUT_rooms row 6 for component analysis -->
+<div class="row">
+  <div class="col-md-3 text-center">
+    <!-- Accessibility: all icons aria-hidden because the adjacent markdown describes the building components -->
+    <div class="grid mb-2 mx-4 gap-2" style="--bs-columns: 2">
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_wall.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96, 'max-width.%' : 100 }"
+        class="mx-1 rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_rooms', getRoomOutColumn() + '40') || 'gray') + ')'"
+        aria-hidden="true">
+      </svg-icon>
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_win.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96, 'max-width.%' : 100 }"
+        class="mx-1 rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_rooms', getRoomOutColumn() + '41') || 'gray') + ')'"
+        aria-hidden="true">
+      </svg-icon>
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_roof.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96, 'max-width.%' : 100 }"
+        class="mx-1 rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_rooms', getRoomOutColumn() + '42') || 'gray') + ')'"
+        aria-hidden="true">
+      </svg-icon>
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_botceil.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96, 'max-width.%' : 100 }"
+        class="mx-1 rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_rooms', getRoomOutColumn() + '43') || 'gray') + ')'"
+        aria-hidden="true">
+      </svg-icon>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn() + '6').toString()"></markdown>
+  </div>
+</div>
+
+<hr *ngIf="berechnungService.getRoomTemperature(roomId) > 22" class="my-4">
+
+<!-- RW: Warning - Show warning if room temperature is high, using markdown for text from TXT_rooms E20 -->
+<div class="alert border-danger" *ngIf="berechnungService.getRoomTemperature(roomId) > 22">
+  <markdown [data]="grid.getCell('TXT_rooms', 'E20').toString()"></markdown>
+</div>
+
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/raeume/detail-heizflaechen" [queryParams]="{room: roomId}">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <div footer-right class="d-flex gap-2">
+    <!-- "+ Raum" button shown for last room -->
+    <a *ngIf="!hasNextRoom()" class="btn btn-outline-info" routerLink="/gebaeude/raeume/liste">
+      <i class="bi bi-plus-lg me-1"></i><span>Raum</span>
+    </a>
+
+    <button type="button" class="btn btn-info text-nowrap" (click)="onContinue()">
+      <span>{{ hasNextRoom() ? 'Nächster Raum' : 'Ergebnis Gebäude' }}</span>
+      <i class="bi bi-arrow-right ms-1"></i>
+    </button>
+  </div>
+</app-navigation-footer>

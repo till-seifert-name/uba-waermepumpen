@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+.nav-pills {
+  .nav-link {
+    border-radius: 50rem;
+  }
+}
+
+.nav-link {
+  display: grid;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+
+  // All children stack on top of each other
+  > * {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  // Text and title container on top
+  > :not(.progress) {
+    z-index: 2;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  }
+
+  // Progress bar behind
+  > .progress {
+    opacity: 0.3;
+    z-index: 1;
+    height: 100%;
+    pointer-events: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    > .progress-bar {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+  }
+
+  // Style for room tabs - slightly indented and with different styling
+  &.room-tab {
+    /*background-color: #f8f9fa;*/
+
+    &.active {
+      /*background-color: #e9ecef;*/
+    }
+  }
+}

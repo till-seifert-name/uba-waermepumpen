@@ -1,0 +1,10 @@
+# Excel Sheet Blacklist
+#
+# Sheets listed here will NOT be imported in master.ts
+
+# Development Sheets (never referenced)
+Todo
+log
+Syntax
+
+Debug

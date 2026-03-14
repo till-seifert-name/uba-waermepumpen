@@ -1,0 +1,380 @@
+<!-- Wizard Tabs -->
+<div class="sticky-lg-top bg-white z-1 pt-2 mt-n2 d-print-none" style="top: 61px; box-shadow: 0 -1rem 0 rgba(var(--bs-white-rgb),var(--bs-bg-opacity));">
+  <app-wizard-tabs [progress]="100"></app-wizard-tabs>
+
+  <!-- Sticky Tab Pills for Dashboard Views -->
+  <div class="mb-4 pb-2 border-bottom">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="nt-readiness-section" >
+          <i class="bi bi-speedometer2 me-1"></i>
+          Wärmepumpen-Eignung
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="rooms-section" (click)="scrollToSection('rooms-section', $event)">
+          <i class="bi bi-grid me-1"></i>
+          Raumübersicht
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="radiators-section" (click)="scrollToSection('radiators-section', $event)">
+          <i class="bi bi-bookshelf me-1 "></i>
+          <abbr
+            title="Ist ein Raum noch nicht für niedrige Temperaturen geeignet, lassen sich Heizkörper vergrößern oder durch leistungsstärkere Modelle ersetzen. Dann kann bei gleicher Vorlauftemperatur mehr Wärme an den Raum abgegeben werden.">Heizkörpertausch</abbr>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="envelope-section" (click)="scrollToSection('envelope-section', $event)">
+          <i class="bi bi-house me-1"></i>
+          Gebäudehülle
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[]" fragment="next-steps-section" (click)="scrollToSection('next-steps-section', $event)">
+          <i class="bi bi-arrow-right-circle me-1"></i>
+          Nächste Schritte
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- NT-Readiness Gebäude View -->
+<section id="nt-readiness-section" class="nt-ready-colors keep-together">
+  <h1 class="h3 mb-4">Bereit für eine effiziente Wärmepumpe?</h1>
+
+  <p>So gut kann die <abbr
+    title="Die Summe der Wärmeverluste eines Raumes über alle Bauteile bei angenommener Raum- und Außentemperatur. Die Normheizlast oder Auslegungsheizlast beschreibt die Heizlast bei der normativ festgelegten kältesten Außentemperatur am Standort und gibt somit den maximal zu erwartenden Wert an, der z. B. zur Dimensionierung von Heizungsanlagen herangezogen wird.">Heizlast</abbr>
+    mit den aktuellen Heizkörpern gedeckt werden, wenn die <abbr
+      title="Temperatur des Wassers in den Heizungsrohren, bevor das Wasser die Heizkörper erstmals durchströmt. Wird sowohl auf den Auslegungspunkt am kältesten Tag des Jahres (z.&#8239;B. 55&#8239;°C) als auch auf den aktuellen, sich im Laufe des Jahres verändernden Wert bezogen.">Vorlauftemperatur</abbr>
+    auf 55 °C sinkt (IST).</p>
+  <p>Der untere Pfeil zeigt die Abdeckung mit verbesserten Heizkörpern (<abbr
+    title="Ein Flachheizkörper moderner Bauart in der leistungsstärksten Grundkonfiguration. Mit diesen Heizkörpern ist bei gleichen Abmaßen die größtmögliche Heizleistung im Vergleich zu anderen Modellen zu erwarten.">Typ 33</abbr>) mit
+    gleicher Höhe und Breite in allen Räumen (NEU).</p>
+
+  <!-- NT-Readiness Gauge -->
+  <app-band-tacho
+    [minValue]="0"
+    [maxValue]="1"
+    [zones]="[
+        { value: 0.25, label:'Optimierte\nEffizienz' },
+        { value: 0.50 },
+        { value: 0.75 },
+        { value: 1.00, label:'Geringe\nEffizienz' }
+      ]"
+    [pins]="[
+        {
+          variant:'ist',
+          value: grid.n('OUT_build', 'H2'),
+          title:'Aktuelle Heizkörper',
+          line1:'',
+          line2:''
+        },
+        {
+          variant:'neu',
+          value: grid.n('OUT_build', 'H43'),
+          title:'Bessere Heizkörper',
+          line1:'',
+          line2:''
+        }
+      ]"
+    [customAriaLabel]="grid.getCell('OUT_build', 'H45').toString()">
+  </app-band-tacho>
+
+  <hr>
+
+  <!-- Textual Explanation from OUT_build H3 -->
+  <markdown [data]="grid.g('OUT_build', 'H3').toString()"></markdown>
+</section>
+
+<!-- Room Dashboard View -->
+<section id="rooms-section" class="new-page">
+
+  <!-- Print-only heading for rooms section -->
+  <hr class="d-none d-print-block my-4"/>
+  <h2 class="h3 d-none d-print-block mb-4">Ergebnisse der Einzelräume</h2>
+
+  <!-- For each room -->
+  <div *ngFor="let room of rooms; trackBy: roomId" class="mb-4 room-dashboard-card keep-together">
+
+    <hr class="my-4"/>
+
+    <h3 class="h4 mb-2">{{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '21') }}</h3>
+
+    <div class="card border">
+      <div class="card-body">
+
+        <div class="grid">
+          <div class="g-col-6">
+            <h4 class="h5">Erforderliche Heizleistung</h4>
+          </div>
+          <div class="g-col-6">
+            <h4 class="h5">Leistung der Heizkörper</h4>
+          </div>
+
+          <div class="g-col-4 text-center">
+            <!-- Heat load value box -->
+            <div class="value-box d-inline-block rating-bg-color"
+                 [attr.data-color]="grid.g('OUT_rooms', getRoomOutColumn(room.id) + '30')"
+                 [style]="'--rating-color: var(--rating-' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '30') + ')'"
+            >
+              {{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '20') }}
+            </div>
+          </div>
+          <div class="g-col-4 text-center">
+            <div class="value-box d-inline-block text-body bg-info-subtle">
+              {{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '22') }}
+            </div>
+          </div>
+          <div class="g-col-4 text-center">
+            <!-- Radiator performance value box -->
+            <div class="value-box d-inline-block rating-bg-color"
+                 [attr.data-color]="grid.g('OUT_rooms', getRoomOutColumn(room.id) + '31')"
+                 [style]="'--rating-color: var(--rating-' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '31') + ')'">
+              {{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '23') }}
+            </div>
+          </div>
+
+          <!-- Left column: Heizkörper -->
+          <div class="g-col-6">
+            <!-- Radiator assessment text -->
+            <div class="d-sm-flex align-items-center">
+              <!-- Icon area -->
+              <div class="text-center me-3" style="flex-shrink: 0.1">
+                <!-- Accessibility: aria-hidden because the adjacent markdown text describes the assessment -->
+                <svg-icon
+                  [src]="basePath + 'assets/images/' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '25') + '.svg'"
+                  [svgStyle]="{ 'width.px': 144, 'height.px': 144, 'max-width.%':100 }"
+                  class="rating-color"
+                  [style]="'--rating-color: var(--rating-' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '26') + ')'"
+                  aria-hidden="true">
+                </svg-icon>
+              </div>
+              <!-- Text area -->
+              <div>
+                <markdown [data]="grid.g('OUT_rooms', getRoomOutColumn(room.id) + '27').toString()"></markdown>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: Leistung der Heizkörper -->
+          <div class="g-col-6">
+            <!-- Building envelope assessment -->
+            <div class="d-sm-flex align-items-center">
+              <!-- Icon area -->
+              <div class="text-center me-3" style="flex-shrink: 0.1">
+                <!-- Accessibility: aria-hidden because the adjacent text and markdown describe the assessment -->
+                <svg-icon
+                  [src]="basePath + 'assets/images/' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '28') + '.svg'"
+                  [svgStyle]="{ 'width.px': 144, 'height.px': 144, 'max-width.%':100 }"
+                  class="rating-color"
+                  [style]="'--rating-color: var(--rating-' + grid.g('OUT_rooms', getRoomOutColumn(room.id) + '31') + ')'"
+                  aria-hidden="true">
+                </svg-icon>
+                <p class="small text-muted mt-2">{{ grid.g('OUT_rooms', getRoomOutColumn(room.id) + '32') }}</p>
+              </div>
+              <!-- Text area -->
+              <div>
+                <markdown [data]="grid.g('OUT_rooms', getRoomOutColumn(room.id) + '29').toString()"></markdown>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Room details link -->
+        <div class="text-end mt-3 d-print-none">
+          <button class="btn btn-sm btn-outline-info" (click)="navigateToRoom(room.id)">
+            Details anzeigen <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed room results (print only) -->
+    <div class="d-none d-print-block nt-ready-colors mb-4 mt-3">
+      <h4 class="h5 mb-4">Ergebnis für Raum: {{ berechnungService.getRoomName(room.id) }}</h4>
+
+      <!-- R1: NT-Readiness - Dynamic text from OUT_rooms row 3 (overall assessment) -->
+      <markdown [data]="grid.getCell('OUT_rooms', getRoomOutColumn(room.id) + '3').toString()"></markdown>
+
+      <div class="row">
+        <div class="col-auto text-center">
+          <span class="display-3 text-primary">❶</span>
+        </div>
+        <div class="col">
+          <h5 class="h6">Heizkörperleistung bei 55&#8239;°C</h5>
+          <p class="mb-0">Der obere Pfeil (IST) zeigt, wie viel Leistung der aktuelle Heizkörper noch bringt, wenn die Vorlauftemperatur auf 55&#8239;°C sinkt&nbsp;&ndash; im Vergleich zum Wärmebedarf des Raumes.</p>
+          <p>Der untere Pfeil (NEU) zeigt die Leistung eines verbesserten Heizkörpers (<abbr title="Ein Flachheizkörper moderner Bauart in der leistungsstärksten Grundkonfiguration. Mit diesen Heizkörpern ist bei gleichen Abmaßen die größtmögliche Heizleistung im Vergleich zu anderen Modellen zu erwarten.">Typ&nbsp;33</abbr>) mit gleicher Höhe und Breite bei 55&#8239;°C.</p>
+        </div>
+      </div>
+
+      <app-band-tacho
+        [minValue]="0"
+        [maxValue]="1"
+        [zones]="[
+          { value: 0.25, label:'Optimierte\nEffizienz' },
+          { value: 0.50 },
+          { value: 0.75 },
+          { value: 1.00, label:'Geringe\nEffizienz' }
+        ]"
+        [pins]="[
+          {
+            variant:'ist',
+            value: grid.getCellNumeric('OUT_rooms', getRoomOutColumn(room.id) + '35'),
+            title:'Aktueller Heizkörper',
+            line1:grid.getCell('OUT_rooms', getRoomOutColumn(room.id) + '14').toString(),
+            line2:grid.getCell('OUT_rooms', getRoomOutColumn(room.id) + '16').toString()
+          },
+          {
+            variant:'neu',
+            value: grid.getCellNumeric('OUT_rooms', getRoomOutColumn(room.id) + '36'),
+            title:'Besserer Heizkörper',
+            line1:grid.getCell('OUT_rooms', getRoomOutColumn(room.id) + '15').toString(),
+            line2:grid.getCell('OUT_rooms', getRoomOutColumn(room.id) + '17').toString()
+          }
+        ]"
+        [customAriaLabel]="grid.getCell('OUT_rooms', getRoomOutColumn(room.id) + '46').toString()">
+      </app-band-tacho>
+    </div>
+  </div>
+
+  <!-- No rooms message -->
+  <div *ngIf="berechnungService.getAllRooms().length === 0" class="alert alert-info d-print-none">
+    <p>Es wurden keine Räume erfasst.</p>
+    <a class="btn btn-info" routerLink="/gebaeude/raeume/liste">
+      <i class="bi bi-plus-lg me-1"></i> Räume erfassen
+    </a>
+  </div>
+</section>
+
+<hr class="my-4 d-print-none"/>
+
+<!-- Heizkörpertausch View -->
+<section id="radiators-section" class="d-print-none">
+  <h2 class="h3 mb-3">Heizkörpertausch</h2>
+
+  <div class="row">
+    <div class="col-3 text-center">
+      <!-- Accessibility: aria-hidden because the adjacent markdown text describes the content -->
+      <svg-icon
+        [src]="basePath + 'assets/images/' + grid.g('OUT_build', 'H44').toString() + '.svg'"
+        [svgStyle]="{ 'width.px': 144, 'height.px': 144, 'max-width.%':100 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--' + grid.g('OUT_build', 'H46') + ')'"
+        aria-hidden="true">
+      </svg-icon>
+    </div>
+    <div class="col">
+      <!-- Use OUT_build H5 for all Heizkörpertausch content -->
+      <markdown [data]="grid.g('OUT_build', 'H5').toString()"></markdown>
+    </div>
+  </div>
+</section>
+
+<hr class="my-4"/>
+
+<!-- Gebäudehülle View -->
+<section id="envelope-section" class="new-page">
+  <h2 class="h3 mb-3">Gebäudehülle</h2>
+
+  <!-- Use OUT_build H32 for main description -->
+  <markdown [data]="grid.g('OUT_build', 'H33').toString()"></markdown>
+
+  <div class="grid mt-4" style="--bs-gap: 1.25rem var(--bs-gutter-x);">
+    <!-- Außenwand -->
+    <div class="g-col-3 text-center">
+      <!-- Accessibility: aria-hidden because the adjacent text and markdown describe the building component -->
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_wall.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_build', 'H27') || 'gray') + ')'"
+        aria-hidden="true"></svg-icon>
+      <!-- Accessibility: aria-label provides context for screen readers -->
+      <p class="small text-muted mt-2" [attr.aria-label]="grid.g('OUT_build', 'H22') + ' entfallen auf die Außenwände'">{{ grid.g('OUT_build', 'H22') }}</p>
+    </div>
+    <div class="g-col-9">
+      <markdown [data]="grid.g('OUT_build', 'H34').toString()"></markdown>
+    </div>
+
+    <!-- Fenster -->
+    <div class="g-col-3 text-center">
+      <!-- Accessibility: aria-hidden because the adjacent text and markdown describe the building component -->
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_win.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_build', 'H28') || 'gray') + ')'"
+        aria-hidden="true"></svg-icon>
+      <!-- Accessibility: aria-label provides context for screen readers -->
+      <p class="small text-muted mt-2" [attr.aria-label]="grid.g('OUT_build', 'H23') + ' entfallen auf die Fenster'">{{ grid.g('OUT_build', 'H23') }}</p>
+    </div>
+    <div class="g-col-9">
+      <!-- Use OUT_build H28 for Fenster content -->
+      <markdown [data]="grid.g('OUT_build', 'H35').toString()"></markdown>
+    </div>
+
+    <!-- Dach -->
+    <div class="g-col-3 text-center">
+      <!-- Accessibility: aria-hidden because the adjacent text and markdown describe the building component -->
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_roof.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_build', 'H29') || 'gray') + ')'"
+        aria-hidden="true"></svg-icon>
+      <!-- Accessibility: aria-label provides context for screen readers -->
+      <p class="small text-muted mt-2" [attr.aria-label]="grid.g('OUT_build', 'H24') + ' entfallen auf das Dach'">{{ grid.g('OUT_build', 'H24') }}</p>
+    </div>
+    <div class="g-col-9">
+      <!-- Use OUT_build H36 for Dach content -->
+      <markdown [data]="grid.g('OUT_build', 'H36').toString()"></markdown>
+    </div>
+
+    <!-- Horizontaler Gebäudeabschluss (Floor/Basement) -->
+    <div class="g-col-3 text-center">
+      <!-- Accessibility: aria-hidden because the adjacent text and markdown describe the building component -->
+      <svg-icon
+        [src]="basePath + 'assets/images/pic_G2_load_botceil.svg'"
+        [svgStyle]="{ 'width.px': 96, 'height.px': 96 }"
+        class="rating-color"
+        [style]="'--rating-color: var(--rating-' + (grid.g('OUT_build', 'H32') || 'gray') + ')'"
+        aria-hidden="true"></svg-icon>
+      <!-- Accessibility: aria-label provides context for screen readers -->
+      <p class="small text-muted mt-2" [attr.aria-label]="grid.g('OUT_build', 'H25') + ' entfallen auf Keller- und Bodenplatten'">{{ grid.g('OUT_build', 'H25') }}</p>
+    </div>
+    <div class="g-col-9">
+      <!-- Use OUT_build H39 for horizontal building closure content -->
+      <markdown [data]="grid.g('OUT_build', 'H39').toString()"></markdown>
+    </div>
+  </div>
+
+
+  <hr class="my-5">
+  <div>
+    <!-- Use OUT_build H40 for general hint -->
+    <markdown [data]="grid.g('OUT_build', 'H40').toString()"></markdown>
+  </div>
+
+</section>
+
+<hr class="my-4"/>
+
+<!-- Nächste Schritte View -->
+<app-next-steps></app-next-steps>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer class="d-print-none">
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/raeume/liste">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <button class="btn btn-info" footer-right (click)="print()" type="button">
+    Druck/PDF <i class="bi bi-printer ms-1"></i>
+  </button>
+</app-navigation-footer>

@@ -1,0 +1,37 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="75"></app-wizard-tabs>
+
+<!-- Feedback page for floor heating systems -->
+
+<!-- Content -->
+<h1 class="h3">✅ Gebäudedaten vollständig – beste Voraussetzungen!</h1>
+
+<p class="fw-bold">Super, Sie haben alle Gebäudedaten erfasst.</p>
+
+<p>Ihr Gebäude scheint bereits sehr gut für den Einsatz einer Wärmepumpe geeignet zu sein.</p>
+
+<p><strong>Flächenheizungen</strong> wie Fußboden- oder Wandheizungen arbeiten mit sehr niedrigen Vorlauftemperaturen – ideal für einen effizienten Wärmepumpenbetrieb, selbst an kalten Wintertagen.</p>
+
+<h2 class="h5">Was bedeutet das für Sie?</h2>
+<div class="alert alert-success" role="alert">
+  <p class="mb-2">Da das Tool aktuell auf <strong>wasserführende Heizkörper</strong> ausgelegt ist, kann die <strong>Einzelraumbetrachtung bei Flächenheizungen nicht fortgesetzt werden</strong>.</p>
+  <p class="mb-0">Sie haben jedoch bereits jetzt ein sehr gutes Ergebnis erreicht.</p>
+</div>
+
+<hr class="my-4"/>
+
+<!-- Next Steps Component -->
+<app-next-steps></app-next-steps>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/heizung">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <button disabled type="button" class="btn btn-info" footer-right routerLink="/gebaeude/transition">
+    Weiter <i class="bi bi-arrow-right ms-1"></i>
+  </button>
+</app-navigation-footer>

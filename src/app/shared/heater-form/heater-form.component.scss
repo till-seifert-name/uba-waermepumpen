@@ -1,0 +1,57 @@
+/* Suppress checked state when type column is not active */
+.btn-check:checked + .btn.subtype-btn.suppress-checked {
+  background-color: transparent;
+  border-color: var(--bs-secondary);
+  color: var(--bs-secondary);
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    display: block;
+    width: 7rem;
+
+    background-color: color-mix(in srgb, var(--bs-body-bg), transparent 20%);
+    border-radius: var(--bs-btn-border-radius);
+  }
+}
+
+.heater-type-grid {
+  // Large screens: 5 columns
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+
+  // Small screens: 2 columns
+  @media (max-width: 767.98px) {
+    grid-template-rows: repeat(6, auto);
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  }
+}
+
+.subtype-btn {
+
+  .subtype-icon {
+
+    display: block;
+    flex-grow: 1;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-inline: auto;
+      max-width: 10rem;
+      background-color: color-mix(in srgb, var(--bs-body-bg), transparent 20%);
+      border-radius: var(--bs-btn-border-radius);
+    }
+
+    + span {
+      display: none;
+    }
+  }
+}

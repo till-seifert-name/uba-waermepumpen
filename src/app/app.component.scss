@@ -1,0 +1,119 @@
+// Import global styles into this component
+@import "../styles";
+
+// Bootstrap sets its CSS custom properties on :root; we must put them on :host becasue an custom element can not place them on :root
+:host {
+  @extend :root;
+  @extend body;
+}
+
+// Override navbar colors for light theme
+.navbar-light {
+  container-type: inline-size;
+
+  .navbar-nav {
+    gap: 30px;
+    margin-bottom: calc(-1 * var(--bs-navbar-padding-y) );
+
+    @container (max-width: 1170px) {
+      gap: 15px;
+    }
+
+    @container (max-width: 1070px) {
+      gap: 5px;
+    }
+  }
+
+  .nav-item {
+    padding-block: 0;
+
+    .nav-link {
+      line-height: 44px;
+      padding-block: 0;
+      padding-inline: 0;
+
+      &.active {
+        border-bottom: 3px solid currentColor;
+        margin-bottom: -3px;
+      }
+    }
+  }
+
+
+}
+
+.navbar {
+
+  .nav-menu {
+    min-width: 0;
+
+    .nav-item {
+      min-width: 32px;
+
+      a {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
+
+
+  /* hide toggle on sm and wider */
+  @include media-breakpoint-up(sm) {
+    .nav-toggle-label {
+      display: none !important;
+    }
+  }
+
+
+  /* collapse behavior below sm */
+  @include media-breakpoint-down(sm) {
+
+    // Shadow when open
+    &:has(.nav-toggle:checked) {
+      filter: drop-shadow(var(--bs-box-shadow));
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-toggle-label {
+      cursor: pointer;
+    }
+
+    .nav-menu {
+      position: fixed;
+      inset-block-start: var(--bs-navbar-height, 56px);
+      inset-inline: 0;
+      clip-path: inset(0 0 100% 0);
+      opacity: 0;
+      transition: clip-path .3s ease, opacity .3s ease;
+      pointer-events: none;
+
+      .navbar-nav {
+        padding: calc(var(--bs-gutter-x) * 0.5);
+        background-color: var(--bs-white);
+        display: grid;
+        gap: 0.5rem;
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .nav-toggle:checked ~ .nav-menu {
+      clip-path: inset(-3rem);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+
+.btn {
+  min-width: 0;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

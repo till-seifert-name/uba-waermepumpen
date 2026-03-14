@@ -1,0 +1,183 @@
+:host {
+  // Farben: Referenzieren zentrale Definitionen mit Fallbacks
+  --band-tacho-zone0-color: var(--rating-green, #5EAD35);
+  --band-tacho-zone1-color: var(--rating-green, #5EAD35);
+  --band-tacho-zone2-color: var(--rating-yellow, #FABB00);
+  --band-tacho-zone3-color: var(--rating-orange, #E66618);
+  --band-tacho-zone4-color: var(--rating-red, #C9401B);
+  --band-tacho-zone5-color: var(--rating-red, #C9401B);
+
+  // Marker: Lokale Namen referenzieren globale --band-tacho-* mit Fallbacks
+  --marker-color: var(--band-tacho-marker-color, #2D6172);
+  --marker-ist-bg: var(--band-tacho-marker-ist-bg, var(--marker-color));
+  --marker-ist-text: var(--band-tacho-marker-ist-text, #FFF);
+
+  // Layout
+  --gauge-height: 20px;
+  padding-block: 3rem;
+  display: block;
+}
+
+.gauge-wrap {
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+  align-items: center;
+  justify-items: stretch;
+  column-gap: 1rem;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1rem 1fr 1rem;
+  }
+}
+
+/* Seitenlabels links/rechts */
+.side-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+  font-weight: 600;
+  font-size: 1.2rem;
+
+  @media (max-width: 500px) {
+    visibility: hidden;
+    width: 1rem;
+    span {
+      display: none;
+    }
+  }
+
+  span {
+    white-space: pre-line;
+    text-align: center;
+  }
+
+  &--left {
+    color: var(--band-tacho-zone1-color);
+  }
+
+  &--right {
+    color: var(--band-tacho-zone5-color);
+  }
+}
+
+.gauge-container {
+  position: relative;
+  width: 100%;
+  padding-block: 2.3rem; /* Platz über/unter für Marker */
+
+  .gauge-bar {
+    height: var(--gauge-height);
+    border-radius: 4px;
+  }
+}
+
+
+/* gemeinsame X-Achse für Pins */
+.marker-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition-property: left;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Marker-Layouts */
+.marker {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  --translate-x: -2.0rem;
+  --translate-y: -2.6rem;
+  translate: var(--translate-x) var(--translate-y);
+
+  @media (max-width: 30cm)  {
+    &.near-the-end {
+      --translate-x: calc(-100% + 2rem);
+      flex-direction: row-reverse;
+
+      .marker-text {
+        text-align: right;
+      }
+    }
+  }
+
+  .marker-text {
+    color: var(--marker-color);
+    width: max-content;
+    line-height: 1.35;
+
+    .t-title {
+      font-weight: 500;
+    }
+
+    .t-line {
+
+    }
+  }
+
+  /* Badge-SVGs */
+  .badge-svg {
+    width: 64px;
+    height: auto;
+    display: block;
+    scale: 0.8;
+
+    .badge-fill {
+      fill: var(--marker-ist-bg);
+    }
+
+    .badge-text {
+      font-family: inherit;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 1.2rem;
+      fill: var(--marker-ist-text);
+    }
+
+    /* Use zone color when SVG has empty text */
+    &:has(.badge-text:empty) .badge-fill {
+      fill: var(--marker-zone-color, var(--marker-ist-bg));
+    }
+  }
+
+
+  /* ÜBER dem Band */
+  &--ist {
+    --translate-y: -2.6rem;
+    align-items: flex-start;
+
+    .badge-svg {
+      .badge-text {
+        rotate: 90deg;
+        transform-origin: 50% 50%;
+      }
+    }
+  }
+
+  /* UNTER dem Band */
+  &--neu {
+    --translate-y: 2.6rem;
+    align-items: flex-end;
+
+    .badge-svg {
+
+      .badge-text {
+        rotate: -90deg;
+        transform-origin: 50% 50%;
+        fill: var(--marker-ist-bg);
+      }
+
+      .badge-fill {
+        rotate: 180deg;
+        transform-origin: 50% 50%;
+
+        fill: var(--marker-ist-text);
+        stroke: var(--marker-ist-bg);
+        stroke-width: 4px;
+      }
+    }
+  }
+}

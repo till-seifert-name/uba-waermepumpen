@@ -1,0 +1,87 @@
+<!-- Bootstrap Navbar - Screen only -->
+<nav class="navbar navbar-expand navbar-light bg-white border-bottom border-light-subtle fixed-top position-sticky d-print-none">
+  <div class="container-fluid">
+
+    <!-- toggle -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <!-- Accessibility: aria-label provides screen reader description for icon-only toggle button -->
+    <label for="nav-toggle" class="flex-grow-1 nav-toggle-label border-0 bg-transparent text-bg-primary fs-3 d-flex align-items-center justify-content-end" aria-label="Navigation ein-/ausblenden">
+      <i class="bi bi-list mx-2"></i>
+    </label>
+
+    <div class="nav-menu flex-fill">
+      <ul class="navbar-nav text-uppercase flex-fill justify-content-between">
+        <!-- Accessibility: aria-label supplements title attribute for icon-only navigation buttons -->
+        <!--<li class="nav-item">
+          <button type="submit" form="exportForm" class="btn btn-link nav-link" title="Daten exportieren" aria-label="Daten exportieren">
+            <i class="bi bi-download"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="submit" form="importForm" class="btn btn-link nav-link" title="Daten importieren" aria-label="Daten importieren">
+            <i class="bi bi-upload"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="submit" form="resetForm" class="btn btn-link nav-link" title="Alle Werte zurücksetzen" aria-label="Alle Werte zurücksetzen">
+            <i class="bi bi-x-octagon"></i>
+          </button>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.ifeu.de/">Zum&nbsp;Ifeu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Start</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/gebaeude" routerLinkActive="active">Gebäudecheck</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/datenmanagement" routerLinkActive="active">Datenverwaltung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/datenschutz" routerLinkActive="active">Datenschutz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/glossar" routerLinkActive="active">Glossar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/faq" routerLinkActive="active">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/kontakt" routerLinkActive="active">Kontakt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/impressum" routerLinkActive="active">Impressum</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Print-only header (disabled because WC has has header) -->
+<!--<div class="d-none d-print-block border-bottom pb-2 mb-3">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <img [src]="basePath + 'assets/logos/Logo_Gebäudecheck_Wärmepumpe_ifeu_v2_abgerundet.svg'" alt="Logo" class="me-2" style="height: 40px;">
+    </div>
+  </div>
+</div>-->
+
+<!-- Main Content -->
+<div class="content-wrapper pt-3 flex-fill d-flex flex-column">
+  <!-- Global container for main content -->
+  <div class="container-fluid flex-fill d-flex flex-column">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- Hidden forms - can be triggered from any component -->
+<form id="exportForm" (ngSubmit)="exportData()" style="display: none;" aria-hidden="true"></form>
+<form id="importForm" (ngSubmit)="triggerImport()" style="display: none;" aria-hidden="true"></form>
+<form id="resetForm" (ngSubmit)="resetData()" style="display: none;" aria-hidden="true"></form>
+<input #fileInput type="file" accept=".json" (change)="importData($event)" style="display: none;" aria-hidden="true">
+
+<!-- Debug Overlay - Toggle with Meta+D -->
+<app-debug-overlay class="d-print-none"></app-debug-overlay>

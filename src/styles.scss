@@ -1,0 +1,478 @@
+
+// Bootstrap configuration
+$enable-negative-margins: true;
+$enable-transitions: true;
+$enable-caret: true;
+$enable-rfs: false;
+$enable-button-pointers: true;
+$enable-validation-icons: false;
+$enable-deprecation-messages: false;
+$enable-cssgrid: true;
+
+// Custom Bootstrap colors
+$primary: #93C120;
+$secondary: #626B71;
+$success: #5EAD35;
+$info: #2F4E66;
+$warning: #FABB00;
+$danger: #C9401B;
+$light: #f8f9fa;
+$dark: #212529;
+
+// show touched inputs' validation state
+input.ng-touched:invalid {
+  @extend .is-invalid;
+}
+
+// Fonts
+$font-family-sans-serif: 'Noto Emoji', 'Open Sans', sans-serif;
+$font-size-base: 1rem;
+$font-weight-bolder: 600;
+$font-weight-bold: 600;
+$h1-font-size: $font-size-base * 2.25;
+
+$nav-pills-border-radius: 50rem;
+$popover-max-width: 512px;
+$enable-shadows: true;
+
+// Accessibility: Increase navbar-dark text contrast for WCAG AA compliance (4.5:1 minimum)
+// Default rgba(255,255,255,0.55) on #005F85 only achieves ~2.9:1
+$navbar-dark-color: rgba(255, 255, 255, 0.8);  // Minimum for 4.5:1 contrast (~4.5:1)
+$navbar-dark-hover-color: rgba(255, 255, 255, 0.9);  // Hover brighter (~4.8:1)
+$navbar-dark-active-color: rgba(255, 255, 255, 1.0);  // Active fully opaque (~5.1:1)
+$navbar-dark-disabled-color: rgba(255, 255, 255, 0.45);
+
+$nav-link-font-weight: 600;
+$nav-link-color: $secondary;
+$form-check-input-checked-bg-color: var(--bs-primary, $primary);
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import "fonts";
+
+// Accessibility: White focus ring only for navbar-dark (overrides default blue ring)
+// Default primary-colored focus ring is barely visible on dark navbar background
+.navbar-dark .nav-link:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5);
+}
+
+
+html, body {
+  min-height: 100%;
+}
+
+:root {
+  --body-max-width: 92rem;
+
+  // Standard Rating Colors (Ampel-System für Heizlast-Tacho und allgemeine Verwendung)
+  --rating-green: #5EAD35;
+  --rating-yellow: #FABB00;
+  --rating-orange: #E66618;
+  --rating-red: #C9401B;
+  --rating-gray: #B4B4B4;
+  --rating-grey: #B4B4B4;
+  --rating-blue: #005F85;
+  --lightbulb-yellow: #FABB00;
+
+  // Bootstrap success color override to use rating-green
+  --bs-success: var(--rating-green) !important;
+
+  // NT-Ready Colors (Grün-Abstufung für Effizienz-Tacho)
+  --rating-nt-suff: #5EAD35;
+  --rating-nt-almost: #9BD77D;
+  --rating-nt-notyet: #DEF2D4;
+  --rating-nt-poor: #B4B4B4;
+
+  // Band-Tacho Zone Colors (Standard: referenzieren Rating Colors)
+  --band-tacho-zone0-color: var(--rating-green);
+  --band-tacho-zone1-color: var(--rating-green);
+  --band-tacho-zone2-color: var(--rating-yellow);
+  --band-tacho-zone3-color: var(--rating-orange);
+  --band-tacho-zone4-color: var(--rating-red);
+  --band-tacho-zone5-color: var(--rating-red);
+
+  // Marker Colors (für IST/NEU Pfeile im Band-Tacho)
+  --band-tacho-marker-color: #2D6172;
+  --band-tacho-marker-ist-bg: #2D6172;
+  --band-tacho-marker-ist-text: #FFF;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+
+  @media print {
+    display: block;
+    background-color: unset;
+    font-size: 14px;
+  }
+}
+
+router-outlet + * {
+  display: contents;
+}
+
+.d-contents {
+  display: contents;
+}
+
+// if web component
+:host {
+  position: relative;
+  overflow: auto;
+  overflow-x: clip;
+  // scrollbar-gutter: stable;
+
+  // navigation footer style
+  .navigation-footer {
+    margin-block-start: auto; // move at the end when in flex column
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--bs-body-bg);
+    padding: 1rem 0;
+    border-top: 1px solid var(--bs-border-color);
+    z-index: 1000;
+  }
+}
+// if standalone
+body > :is(app-root, uba-waermepumpen) {
+  display: contents;
+
+  // navigation footer style
+  .navigation-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--bs-body-bg);
+    padding: 1rem 0;
+    border-top: 1px solid var(--bs-border-color);
+    z-index: 1000;
+  }
+}
+
+// Scrolloffset, to scroll top edge down a bit, so any navbars are cleared
+* {
+  scroll-margin-top: 200px;
+}
+
+
+// Rotated bookshelf for radiator icon
+.bi-bookshelf::before {
+  transform: rotate(90deg);
+}
+
+// Rating color classes for icons/emojis in markdown content
+.rating-red {
+  color: var(--rating-red) !important;
+}
+
+.rating-orange {
+  color: var(--rating-orange) !important;
+}
+
+.rating-yellow {
+  color: var(--rating-yellow) !important;
+}
+
+.rating-green {
+  color: var(--rating-green) !important;
+}
+
+.rating-blue {
+  color: var(--rating-blue) !important;
+}
+
+// Special styling for lightbulb icons
+.bi-lightbulb-fill {
+  color: var(--lightbulb-yellow) !important;
+}
+
+// Yellow triangle warning icons
+.bi-exclamation-triangle-fill-yellow {
+  color: var(--rating-yellow) !important;
+}
+
+// NT-ready color scheme override for green gradation
+// Überschreibt die Rating-Farben und Band-Tacho-Zonen für Effizienz-Anzeigen
+.nt-ready-colors {
+  --rating-green: var(--rating-nt-suff);
+  --rating-yellow: var(--rating-nt-almost);
+  --rating-orange: var(--rating-nt-notyet);
+  --rating-red: var(--rating-nt-poor);
+
+  // Band-Tacho-Zonen ebenfalls auf NT-Ready Farben umschalten
+  --band-tacho-zone0-color: var(--rating-nt-suff);
+  --band-tacho-zone1-color: var(--rating-nt-suff);
+  --band-tacho-zone2-color: var(--rating-nt-almost);
+  --band-tacho-zone3-color: var(--rating-nt-notyet);
+  --band-tacho-zone4-color: var(--rating-nt-poor);
+  --band-tacho-zone5-color: var(--rating-nt-poor);
+}
+
+// SVG coloring for nodes with _colored suffix
+.rating-color {
+  [id$="_colored"], [inkscape\:label$="_colored"] {
+    fill: var(--rating-color, var(--bs-secondary)) !important;
+  }
+}
+
+// Markdown styling
+markdown {
+  display: contents;
+
+  h2 {
+    font-size: $h5-font-size;
+  }
+  h3 {
+    font-size: $h6-font-size;
+  }
+}
+.alert > markdown > p:last-child {
+  margin-block-end: 0;
+}
+
+// Override fonts for all elements inside SVG. So any hardcoded fonts in external SVG are ignored
+svg-icon svg text {
+  font-family: inherit !important;
+}
+
+// Import dynamic color overrides (replaces SCSS color calculations with CSS)
+@import 'bootstrap-dynamic-colors';
+
+// Define custom position-try fallbacks for Bootstrap popover placements
+@position-try --popover-top {
+  position-area: block-start center;
+  margin-bottom: $popover-arrow-height;
+}
+
+@position-try --popover-bottom {
+  position-area: block-end center;
+  margin-top: $popover-arrow-height;
+}
+
+@position-try --popover-left {
+  position-area: x-start span-all;
+  margin-right: $popover-arrow-height;
+}
+
+@position-try --popover-right {
+  position-area: x-end span-all;
+  margin-left: $popover-arrow-height;
+}
+
+// 'corners'
+@position-try --popover-top-left {
+  position-area: block-start span-inline-start;
+  margin-bottom: $popover-arrow-height;
+}
+
+@position-try --popover-top-right {
+  position-area: block-start span-inline-end;
+  margin-bottom: $popover-arrow-height;
+}
+
+@position-try --popover-bottom-left {
+  position-area: block-end span-inline-start;
+  margin-top: $popover-arrow-height;
+}
+
+@position-try --popover-bottom-right {
+  position-area: block-end span-inline-end;
+  margin-top: $popover-arrow-height;
+}
+
+// CSS popover for abbr[title] elements. Native tooltip supressed in main.ts
+abbr[title], abbr[data-title] {
+  anchor-name: --abbr;
+  anchor-scope: --abbr;
+
+  // anchor positioning with fallbacks (when supported)
+  @supports (position-area: top) {
+
+    // Popover content pseudo-element
+    &::before {
+      content: attr(data-title) attr(title);
+      position: absolute;
+      position-anchor: --abbr;
+      z-index: $zindex-popover;
+
+      position-area: block-end center;
+      margin-bottom: $popover-arrow-height;
+
+      position-try-fallbacks: --popover-bottom,
+        --popover-bottom-left,
+        --popover-bottom-right,
+        --popover-top,
+        --popover-top-left,
+        --popover-top-right,
+        --popover-right,
+        --popover-left;
+
+      // prioritize left/right
+      position-try-order: most-inline-size;
+
+      // popover styling
+      max-width: min($popover-max-width, calc(100vw - 1rem));
+      width: min(20em, calc(100vw - 1rem));
+      padding: $popover-body-padding-y $popover-body-padding-x;
+
+      background-color: $popover-bg;
+      border: $popover-border-width solid $popover-border-color;
+      border-radius: $popover-border-radius;
+      filter: drop-shadow($popover-box-shadow);
+
+      font-size: $popover-font-size;
+      font-weight: $font-weight-base;
+      color: $popover-body-color;
+      white-space: pre-wrap;
+
+      // hidden with delayed transition
+      display: none;
+      opacity: 0;
+      transition:
+        opacity 0.2s ease-in-out,
+        display 0.2s ease-in-out allow-discrete;
+    }
+  }
+
+  // fallback for browsers without anchor positioning
+  @supports not (anchor-name: --abbr-anchor) {
+    position: relative;
+
+    // Popover content pseudo-element
+    &::before {
+      content: attr(data-title) attr(title);
+      position: absolute;
+      z-index: $zindex-popover;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY($popover-arrow-height);
+
+      // popover styling
+      max-width: 50em;
+      min-width: 32em;
+      padding: $popover-body-padding-y $popover-body-padding-x;
+
+      background-color: $popover-bg;
+      border: $popover-border-width solid $popover-border-color;
+      border-radius: $popover-border-radius;
+      filter: drop-shadow($popover-box-shadow);
+
+      font-size: $popover-font-size;
+      color: $popover-body-color;
+      white-space: pre-wrap;
+
+      // hidden with delayed transition
+      display: none;
+      opacity: 0;
+      transition:
+        opacity 0.2s ease-in-out,
+        display 0.2s ease-in-out allow-discrete;
+    }
+
+    // Responsive positioning for traditional fallback
+    @include media-breakpoint-down(sm) {
+      &::before {
+        max-width: 90vw;
+        left: 50%;
+        transform: translateX(-50%) translateY($popover-arrow-height);
+      }
+    }
+  }
+
+  // Show popover on hover and focus
+  &:hover,
+  &:focus-within,
+  &:focus {
+    &::before,
+    &::after {
+      display: block;
+      opacity: 1;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  :root {
+    // Override print colors for optimal print quality
+    --print-text-color: #333;
+    --print-text-muted: #666;
+    --print-border-color: #{$gray-300};
+    --print-bg-transparent: transparent;
+  }
+
+  // Set print width to 21cm for the tool
+  :host {
+    width: 21cm !important;
+    max-width: 100% !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  // Remove abbr line
+  abbr {
+    text-decoration: none !important;
+  }
+
+  // Hide shadows and borders for cleaner print
+  .card {
+    border: 1px solid var(--print-border-color) !important;
+    box-shadow: none !important;
+  }
+
+  // Optimize button appearance for print
+  .btn {
+    border: 1px solid var(--print-border-color) !important;
+    background-color: var(--print-bg-transparent) !important;
+    color: var(--print-text-color) !important;
+    box-shadow: none !important;
+  }
+  // Show URLs for external links in print (using target="_blank")
+  a[target="_blank"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.875em;
+    color: var(--print-text-muted);
+    font-weight: normal;
+  }
+
+  // Page break utility classes (Bootstrap-style naming)
+  .page-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .page-break-after {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .page-break-inside-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .page-break-inside-auto {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  // Keep content together
+  .keep-together {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  // Force new page
+  .new-page {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+}

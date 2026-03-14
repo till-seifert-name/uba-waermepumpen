@@ -1,0 +1,111 @@
+// Bootstrap Dynamic Color Overrides
+// =================================
+// This file replaces Bootstrap's SCSS color calculations with pure CSS color functions
+// to enable runtime theme customization through CSS custom properties.
+//
+// Strategy:
+// - Replace SCSS functions (shade-color, tint-color) with CSS color-mix()
+// - Replace hardcoded RGB values with rgb(from var(...))
+// - Generate overrides for all theme colors dynamically
+
+// Use CSS props instead of SCSS vars for colors derived from theme colors
+a {
+  // Extract RGB channels from theme color using relative color syntax
+  color: rgb(from var(--bs-primary, $primary) r g b / var(--bs-link-opacity, 1));
+}
+
+// Mixin für Buttons, damit sie CSS props statt Sass-Variablen nutzen zur Laufzeit
+@mixin button-css-vars($color-name) {
+  $is-light: $color-name == "light";
+  $is-dark: $color-name == "dark";
+  $shade-or-tint: if($is-dark, "tint", if($is-light, "shade", "shade"));
+
+  .btn-#{$color-name} {
+    --bs-btn-color: #{if($is-light, '#000', '#fff')};
+    --bs-btn-bg: var(--bs-#{$color-name});
+    --bs-btn-border-color: var(--bs-#{$color-name});
+
+    --bs-btn-hover-color: #{if($is-light, '#000', '#fff')};
+    --bs-btn-hover-bg: #{'color-mix(in srgb, var(--bs-' + $color-name + '), ' + if($shade-or-tint == "shade", 'black ', 'white ') + if($is-light, $btn-hover-bg-shade-amount, if($is-dark, $btn-hover-bg-tint-amount, $btn-hover-bg-shade-amount)) + ')'};
+    --bs-btn-hover-border-color: #{'color-mix(in srgb, var(--bs-' + $color-name + '), ' + if($shade-or-tint == "shade", 'black ', 'white ') + if($is-light, $btn-hover-border-shade-amount, if($is-dark, $btn-hover-border-tint-amount, $btn-hover-border-shade-amount)) + ')'};
+
+    --bs-btn-active-color: #{if($is-light, '#000', '#fff')};
+    --bs-btn-active-bg: #{'color-mix(in srgb, var(--bs-' + $color-name + '), ' + if($shade-or-tint == "shade", 'black ', 'white ') + if($is-light, $btn-active-bg-shade-amount, if($is-dark, $btn-active-bg-tint-amount, $btn-active-bg-shade-amount)) + ')'};
+    --bs-btn-active-border-color: #{'color-mix(in srgb, var(--bs-' + $color-name + '), ' + if($shade-or-tint == "shade", 'black ', 'white ') + if($is-light, $btn-active-border-shade-amount, if($is-dark, $btn-active-border-tint-amount, $btn-active-border-shade-amount)) + ')'};
+  }
+
+  .btn-outline-#{$color-name} {
+    --bs-btn-color: var(--bs-#{$color-name});
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--bs-#{$color-name});
+    --bs-btn-hover-color: #{if($is-light, '#000', '#fff')};
+    --bs-btn-hover-bg: var(--bs-#{$color-name});
+    --bs-btn-hover-border-color: var(--bs-#{$color-name});
+    --bs-btn-active-color: #{if($is-light, '#000', '#fff')};
+    --bs-btn-active-bg: #{'color-mix(in srgb, var(--bs-' + $color-name + '), ' + if($shade-or-tint == "shade", 'black ', 'white ') + if($is-light, $btn-active-bg-shade-amount, if($is-dark, $btn-active-bg-tint-amount, $btn-active-bg-shade-amount)) + ')'};
+    --bs-btn-active-border-color: #{'color-mix(in srgb, var(--bs-' + $color-name + '), ' + if($shade-or-tint == "shade", 'black ', 'white ') + if($is-light, $btn-active-border-shade-amount, if($is-dark, $btn-active-border-tint-amount, $btn-active-border-shade-amount)) + ')'};
+  }
+}
+
+// Generiere alle Button-Varianten basierend auf Namen, nicht auf Werten
+@each $name, $value in $theme-colors {
+  @include button-css-vars($name);
+}
+
+// Override Bootstrap emphasis and subtle colors to use CSS properties
+// Bootstrap calculates these using shade-color() and tint-color() SCSS functions:
+// - text-emphasis: shade-color($color, 60%) → mix with black 60%
+// - bg-subtle: tint-color($color, 80%) → mix with white 80%
+// - border-subtle: tint-color($color, 60%) → mix with white 60%
+//
+// We replace these with CSS color-mix() for runtime customization
+:root {
+  @each $name, $value in $theme-colors {
+    // Skip light/dark as they have inverted shade/tint logic
+    @if $name != "light" and $name != "dark" {
+      --bs-#{$name}-text-emphasis: color-mix(in srgb, var(--bs-#{$name}), black 60%);
+      --bs-#{$name}-bg-subtle: color-mix(in srgb, var(--bs-#{$name}), white 80%);
+      --bs-#{$name}-border-subtle: color-mix(in srgb, var(--bs-#{$name}), white 60%);
+    }
+  }
+}
+
+// Override utility classes to use CSS properties instead of hardcoded RGB values
+// Generate for all theme colors
+@each $name, $value in $theme-colors {
+  .text-#{$name} {
+    color: var(--bs-#{$name}) !important;
+  }
+
+  .bg-#{$name} {
+    background-color: var(--bs-#{$name}) !important;
+  }
+
+  .border-#{$name} {
+    border-color: var(--bs-#{$name}) !important;
+  }
+
+  // Override text-bg-* utilities to use relative color syntax instead of RGB values
+  // Bootstrap uses: RGBA(var(--bs-*-rgb), var(--bs-bg-opacity, 1))
+  // We replace with: rgb(from var(--bs-*) r g b / var(--bs-bg-opacity, 1))
+  .text-bg-#{$name} {
+    // Determine text color (white for dark colors, black for light)
+    $text-color: if($name == "light", "#000", "#fff");
+    color: #{$text-color} !important;
+    background-color: rgb(from var(--bs-#{$name}) r g b / var(--bs-bg-opacity, 1)) !important;
+  }
+}
+
+.navbar {
+  --bs-navbar-active-color: var(--bs-primary);
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--bs-primary, $nav-pills-link-active-bg);
+}
+
+:root {
+  // Those are set from SCSS directly in BS
+  --bs-link-color: var(--bs-primary);
+  --bs-link-hover-color: color-mix(in srgb, var(--bs-link-color), black #{$link-shade-percentage});
+}

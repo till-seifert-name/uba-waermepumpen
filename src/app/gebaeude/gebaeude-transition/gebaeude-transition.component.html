@@ -1,0 +1,42 @@
+<!-- Wizard Tabs -->
+<app-wizard-tabs [progress]="95"></app-wizard-tabs>
+
+<!-- Content -->
+<h1 class="h3">🌡 Warum die Erfassung einzelner Räume wichtig ist</h1>
+
+<p>Je niedriger die <strong>Vorlauftemperatur im Heizkreis</strong>, desto effizienter arbeitet eine Wärmepumpe.</p>
+
+<p>Ein Gebäude gilt als <strong><abbr title="Ein Gebäude gilt als niedertemperaturfähig, wenn es bei einer Vorlauftemperatur von maximal 55 °C ausreichend Wärme liefert, um das Gebäude zu beheizen. Das hängt sowohl von den Wärmeverlusten der Räume als auch von der Größe und Effektivität der vorhandenen Heizflächen ab. Die nötige Vorlauftemperatur lässt sich senken, indem man die Heizflächen vergrößert (z.&#8239;B. durch einen Heizkörpertausch) oder die Wärmeverluste verringert (z.&#8239;B. durch Dämmung oder neue Fenster). Beides sind Wege, um ein Gebäude auf einen effizienten Wärmepumpenbetrieb vorzubereiten.">niedertemperaturfähig</abbr></strong>, wenn es auch an kalten Wintertagen mit einer Vorlauftemperatur
+  <strong>maximal 55&#8239;°C</strong> beheizt werden kann.</p>
+
+<h2 class="h5">🧭 Was wir jetzt überprüfen:</h2>
+<p>Um herauszufinden, ob Ihr Gebäude mit dieser Vorlauftemperatur warm wird – oder wie sie sich noch senken lässt –, schauen wir auf die <strong>erforderliche Vorlauftemperatur in den einzelnen Räumen</strong>.</p>
+
+<p>In der Praxis ist es oft so:</p>
+<p>Viele Räume kommen bereits mit niedriger Vorlauftemperatur aus, aber einige <strong>wenige kritische Räume</strong> benötigen mehr – und bestimmen damit die nötige Temperatur für das ganze Gebäude.</p>
+
+<h2 class="h5">📋 Wie geht es weiter?</h2>
+<div class="alert alert-success" role="alert">
+  <ul class="mb-0">
+    <li>Die k<strong>ritischsten Räume</strong> werden nun gesammelt und <strong>einzeln erfasst</strong></li>
+    <li>Die Eingabe dauert pro Raum etwa <strong>5 bis 10 Minuten</strong></li>
+    <li>Sie können jederzeit später weitere Räume ergänzen</li>
+  </ul>
+</div>
+
+<div class="alert alert-warning" role="alert">
+  <p class="mb-0"><strong>Tipp:</strong> Konzentrieren Sie sich zuerst auf Räume mit großen Außenflächen oder alten Heizkörpern – hier steckt oft das größte Optimierungspotenzial.</p>
+</div>
+
+<!-- Spacer to prevent content from being hidden behind fixed footer -->
+<div class="pb-5 mb-5"></div>
+
+<!-- Footer Navigation Container -->
+<app-navigation-footer>
+  <a class="btn btn-info" footer-left routerLink="/gebaeude/final">
+    <i class="bi bi-arrow-left me-1"></i> Zurück
+  </a>
+  <a class="btn btn-info" footer-right routerLink="/gebaeude/raeume/liste">
+    Räume erfassen <i class="bi bi-arrow-right ms-1"></i>
+  </a>
+</app-navigation-footer>
