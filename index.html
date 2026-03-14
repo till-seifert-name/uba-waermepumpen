@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="de" data-beasties-container>
+<head>
+  <meta charset="utf-8">
+  <title>Gebäudecheck Wärmepumpe</title>
+  <base href="/uba-waermepumpen/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    /* Screen styles for web component container */
+    body {
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      max-width: 90rem;
+    }
+
+    uba-waermepumpen {
+      flex: 1;
+      box-shadow: 0 0 1rem rgba(0,0,0,0.1);
+    }
+
+    /* Print styles - normalize layout for multi-page printing */
+    @media print {
+      body {
+        height: auto !important;
+        max-height: none !important;
+        display: block !important;
+        flex-direction: initial !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      uba-waermepumpen {
+        flex: none !important;
+        box-shadow: none !important;
+        display: block !important;
+        height: auto !important;
+        max-height: none !important;
+      }
+    }
+
+    /* Color editor */
+		#color-editor {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			background: #F8F9FA;
+      font-family: sans-serif;
+			z-index: 10000;
+			box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+
+			summary {
+				padding: 0.5rem 0.75rem;
+				cursor: pointer;
+			}
+
+			.color-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr auto);
+				gap: 0.5rem 0.75rem;
+				padding: 0rem 0.75rem 0.75rem 0.75rem;
+				max-height: 300px;
+				overflow-y: auto;
+				align-items: center;
+
+				label {
+					font-family: monospace;
+				}
+			}
+
+			.style-preview {
+				padding: 0.5rem 0.75rem;
+				background: #fff;
+				font-family: monospace;
+				font-size: 0.65rem;
+				width: 100%;
+				box-sizing: border-box;
+				border: none;
+				border-top: 1px solid #dee2e6;
+				resize: vertical;
+        display: block;
+			}
+		}
+
+		@media print {
+      #color-editor {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <uba-waermepumpen></uba-waermepumpen>
+
+  <details id="color-editor">
+    <summary>CSS properties</summary>
+    <div class="color-grid">
+      <!-- some Bootsrap props that can be overriden -->
+      <input type="color" id="bs-primary" data-prop="bs-primary">
+      <label for="bs-primary">--bs-primary</label>
+      <input type="color" id="bs-secondary" data-prop="bs-secondary">
+      <label for="bs-secondary">--bs-secondary</label>
+      <input type="color" id="bs-info" data-prop="bs-info">
+      <label for="bs-info">--bs-info</label>
+      <!-- Custom app colors that can be overriden -->
+      <input type="color" id="rating-green" data-prop="rating-green">
+      <label for="rating-green">--rating-green</label>
+      <input type="color" id="rating-yellow" data-prop="rating-yellow">
+      <label for="rating-yellow">--rating-yellow</label>
+      <input type="color" id="rating-orange" data-prop="rating-orange">
+      <label for="rating-orange">--rating-orange</label>
+      <input type="color" id="rating-red" data-prop="rating-red">
+      <label for="rating-red">--rating-red</label>
+      <input type="color" id="rating-gray" data-prop="rating-gray">
+      <label for="rating-gray">--rating-gray</label>
+      <input type="color" id="rating-nt-suff" data-prop="rating-nt-suff">
+      <label for="rating-nt-suff">--rating-nt-suff</label>
+      <input type="color" id="rating-nt-almost" data-prop="rating-nt-almost">
+      <label for="rating-nt-almost">--rating-nt-almost</label>
+      <input type="color" id="rating-nt-notyet" data-prop="rating-nt-notyet">
+      <label for="rating-nt-notyet">--rating-nt-notyet</label>
+      <input type="color" id="rating-nt-poor" data-prop="rating-nt-poor">
+      <label for="rating-nt-poor">--rating-nt-poor</label>
+      <input type="color" id="band-tacho-marker-color" data-prop="band-tacho-marker-color">
+      <label for="band-tacho-marker-color">--band-tacho-marker-color</label>
+      <input type="color" id="band-tacho-marker-ist-bg" data-prop="band-tacho-marker-ist-bg">
+      <label for="band-tacho-marker-ist-bg">--band-tacho-marker-ist-bg</label>
+      <input type="color" id="band-tacho-marker-ist-text" data-prop="band-tacho-marker-ist-text">
+      <label for="band-tacho-marker-ist-text">--band-tacho-marker-ist-text</label>
+    </div>
+    <textarea class="style-preview" id="style-preview" placeholder="style=&quot;&quot;" spellcheck="false"></textarea>
+  </details>
+
+  <script>
+		const wc = document.querySelector('uba-waermepumpen');
+		const preview = document.getElementById('style-preview');
+		const editor = document.getElementById('color-editor');
+
+		const normalizeHex = hex =>
+		{
+			const clean = hex?.trim().replace('#', '');
+			// #RRGGBB or #RRGGBBAA
+			if(/^[a-f\d]{6}([a-f\d]{2})?$/i.test(clean)) return `#${clean.slice(0, 6)}`;
+			// #RGB or #RGBA - expand to #RRGGBB
+			if(/^[a-f\d]{3}[a-f\d]?$/i.test(clean))
+				return `#${clean[0]}${clean[0]}${clean[1]}${clean[1]}${clean[2]}${clean[2]}`;
+			return null;
+		};
+
+		const hexToRgb = hex =>
+		{
+			const norm = normalizeHex(hex);
+			if(!norm) return null;
+			const [r, g, b] = [1, 3, 5].map(i => parseInt(norm.slice(i, i + 2), 16));
+			return `${r}, ${g}, ${b}`;
+		};
+
+		const setColor = (prop, hex) =>
+		{
+			wc.style.setProperty(`--${prop}`, hex);
+			if(prop.startsWith('bs-'))
+			{
+				const rgb = hexToRgb(hex);
+				if(rgb) wc.style.setProperty(`--${prop}-rgb`, rgb);
+			}
+		};
+
+		const syncInputs = () =>
+		{
+			const computed = getComputedStyle(wc);
+			editor.querySelectorAll('input[type="color"]').forEach(input =>
+			{
+				const value = computed.getPropertyValue(`--${input.dataset.prop}`).trim();
+				const normalized = normalizeHex(value);
+				if(normalized) input.value = normalized;
+			});
+			preview.value = `style="${wc.style.cssText}"`;
+			sessionStorage['color-editor-style'] = wc.style.cssText;
+		};
+
+		const parseStyle = text =>
+		{
+			const styleText = text.match(/style\s*=\s*["']([^"']*)["']/i)?.[1]
+				|| text.replace(/^style\s*=\s*["']?|["']?$/gi, '');
+
+			wc.style.cssText = styleText;
+			styleText.split(';').forEach(decl =>
+			{
+				const [prop, value] = decl.split(':').map(s => s?.trim());
+				if(prop?.startsWith('--bs-') && !prop.endsWith('-rgb') && /^#[\da-f]{6}$/i.test(value))
+				{
+					const rgb = hexToRgb(value);
+					if(rgb) wc.style.setProperty(`${prop}-rgb`, rgb);
+				}
+			});
+			syncInputs();
+		};
+
+		// Event delegation
+		editor.addEventListener('input', e =>
+		{
+			if(e.target.type === 'color')
+			{
+				setColor(e.target.dataset.prop, e.target.value);
+				syncInputs();
+			}
+		});
+
+		editor.addEventListener('toggle', () =>
+			sessionStorage['color-editor-open'] = editor.open
+		);
+
+		preview.addEventListener('input', e => parseStyle(e.target.value));
+
+		// Restore open/closed state immediately
+		const savedOpen = sessionStorage['color-editor-open'];
+		editor.open = savedOpen !== 'false'; // default open
+
+		// Wait for web component styles to be available
+		const initWhenReady = () =>
+		{
+			const hasStyles = getComputedStyle(wc).getPropertyValue('--bs-primary').trim();
+			if(hasStyles)
+			{
+				const savedStyle = sessionStorage['color-editor-style'];
+				if(savedStyle)
+				{
+					parseStyle(savedStyle); // parseStyle calls syncInputs() at the end
+				}
+				else
+				{
+					syncInputs(); // Only sync defaults if no saved style exists
+				}
+			}
+			else
+			{
+				setTimeout(initWhenReady, 1000)
+			}
+		};
+		setTimeout(initWhenReady, 1000)
+  </script>
+<script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script></body>
+</html>
